@@ -8,6 +8,7 @@ test-out
 
 .editorconfig
 .eslintrc.json
+pre-publish.sh
 tsconfig.json
 tsconfig.lint.json
 tsconfig.test.json

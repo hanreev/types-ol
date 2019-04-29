@@ -743,12 +743,22 @@ const PROCESSORS = {
   enum: (doclet, _module) => {
     const name = registerImport(_module, doclet.name) + ' ';
     const type = getType(doclet, _module);
+    const etDoclet = data({ name: 'module:ol/events/EventType', isEnum: true }).first();
     let children = [];
     if (doclet.properties)
       children = doclet.properties.map(prop => {
         let value = prop.defaultvalue;
-        if (type == 'string')
+
+        if (type == 'string') {
+          // FIXME: Patch EventType enum as value
+          if (value.startsWith('EventType.') && etDoclet) {
+            const etPropName = value.replace('EventType.', '');
+            const etProp = etDoclet.properties.find(p => p.name == etPropName);
+            value = etProp ? etProp.defaultvalue : etPropName.toLowerCase();
+          }
+
           value = `'${value}'`;
+        }
         return `${prop.name} = ${value},`;
       });
     else
@@ -968,7 +978,7 @@ exports.publish = (taffyData) => {
 
   for (const longname in PROPERTY_TYPE_PATCHES) {
     const doclet = data({ longname }).first();
-    if (!doclet) continue;
+    if (!(doclet && doclet.properties)) continue;
     doclet.properties = doclet.properties.map(prop => {
       if (prop.name in PROPERTY_TYPE_PATCHES[longname])
         prop.type.names = PROPERTY_TYPE_PATCHES[longname][prop.name];

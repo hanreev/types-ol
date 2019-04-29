@@ -2,8 +2,8 @@ declare module 'ol/MapBrowserEventType' {
 
   enum MapBrowserEventType {
     SINGLECLICK = 'singleclick',
-    CLICK = 'EventType.CLICK',
-    DBLCLICK = 'EventType.DBLCLICK',
+    CLICK = 'click',
+    DBLCLICK = 'dblclick',
     POINTERDRAG = 'pointerdrag',
     POINTERMOVE = 'pointermove',
     POINTERDOWN = 'pointerdown',
