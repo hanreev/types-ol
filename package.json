@@ -1,5 +1,5 @@
 {
-  "name": "types-ol",
+  "name": "@hanreev/types-ol",
   "version": "1.0.0",
   "description": "OpenLayers 5+ TypeScript declaration",
   "author": "Rifa'i M. Hanif <hanreev@gmail.com>",
@@ -7,14 +7,26 @@
     "type": "git",
     "url": "https://github.com/hanreev/types-ol.git"
   },
+  "bugs": {
+    "url": "https://github.com/hanreev/types-ol/issues"
+  },
+  "homepage": "https://github.com/hanreev/types-ol",
+  "keywords": [
+    "openlayers",
+    "ol",
+    "typescript",
+    "declaration"
+  ],
   "license": "MIT",
   "scripts": {
     "build": "jsdoc -c jsdoc/conf.json -P openlayers/package.json -d @types",
-    "lint": "tsc -p tsconfig.lint.json --pretty",
     "format": "tsfmt -r",
+    "lint": "tsc -p tsconfig.lint.json --pretty",
     "build-format": "npm run build && npm run format",
     "lint-test": "tsc -p tsconfig.test.json --pretty",
-    "build-test": "webpack --progress --color"
+    "build-test": "webpack --progress --color",
+    "pre-publish": "npm run build-format && npm run lint && npm run lint-test",
+    "publish": "rm -rf ol && cp -r @types/ol . && npm publish"
   },
   "dependencies": {
     "@types/arcgis-rest-api": "^10.4.4",
@@ -33,5 +45,8 @@
     "typescript-formatter": "^7.2.2",
     "webpack": "^4.30.0",
     "webpack-cli": "^3.3.1"
-  }
+  },
+  "files": [
+    "ol"
+  ]
 }

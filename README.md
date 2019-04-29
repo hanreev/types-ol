@@ -5,20 +5,33 @@ This project contains TypeScript declaration for [OpenLayers](https://openlayers
 
 
 
-## Requirements
-
-These [DefinitelyTyped](http://definitelytyped.org/) modules are required to use provided TypeScript declaration, install them using `npm` or `yarn`
-- `@types/arcgis-rest-api`
-- `@types/geojson`
-- `@types/topojson-specification`
+## Installation
 
 ```bash
 # NPM
-npm i -D @types/arcgis-rest-api @types/geojson @types/topojson-specification
+npm i -D @hanreev/types-ol
 
-#Yarn
-yarn add -D @types/arcgis-rest-api @types/geojson @types/topojson-specification
+# Yarn
+yarn add -D @hanreev/types-ol
 ```
+
+
+
+### Configuration
+
+```js
+// file: tsconfig.json
+{
+  ...
+  "baseUrl": "./",
+  "paths": {
+    "ol/*": ["node_modules/@hanreev/types-ol/ol/*"]
+  },
+  ...
+}
+```
+
+
 
 
 

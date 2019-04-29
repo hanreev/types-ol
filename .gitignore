@@ -1,9 +1,13 @@
 node_modules
 openlayers
 test-out
+ol
 
 yarn-error.log
 report.*.json
 
 Thumbs.db
 .DS_Store
+
+.vscode/*
+!.vscode/settings.json
