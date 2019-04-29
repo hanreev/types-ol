@@ -1,0 +1,9 @@
+node_modules
+openlayers
+test-out
+
+yarn-error.log
+report.*.json
+
+Thumbs.db
+.DS_Store
