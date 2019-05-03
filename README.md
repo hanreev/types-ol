@@ -22,9 +22,9 @@ yarn add -D @hanreev/types-ol
 There are several ways to use this package. Please choose one:
 
 - Install as `@types/ol`. This will simulate `@types/ol` installation from `./node_modules/@hanreev/types-ol/ol` directory.  
-  Why?
+  **Why?**
   1. TypeScript compiler will look for types in `node_modules/@types` by default.
-  2. If you're using [Visual Studio Code](https://code.visualstudio.com/), its IntelliSense will only recognize types from `@node_modules/@types`.
+  2. If you're using [Visual Studio Code](https://code.visualstudio.com/), its IntelliSense will only recognize types from `node_modules/@types`.
 
   ```js
   // file: package.json
@@ -38,6 +38,16 @@ There are several ways to use this package. Please choose one:
       ...
     }
   }
+  ```
+
+  then run
+
+  ```bash
+  # NPM
+  npm i
+
+  # Yarn
+  yarn install
   ```
 
 - Using `compilerOptions.paths` in `tsconfig.json`
