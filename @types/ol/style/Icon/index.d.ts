@@ -1,10 +1,10 @@
 declare module 'ol/style/Icon' {
 
-  import ImageStyle from 'ol/style/Image';
   import { Color } from 'ol/color';
-  import IconOrigin from 'ol/style/IconOrigin';
-  import IconAnchorUnits from 'ol/style/IconAnchorUnits';
   import { Size } from 'ol/size';
+  import IconAnchorUnits from 'ol/style/IconAnchorUnits';
+  import IconOrigin from 'ol/style/IconOrigin';
+  import ImageStyle from 'ol/style/Image';
 
   export default class Icon extends ImageStyle {
     constructor(opt_options?: Options);

@@ -1,18 +1,18 @@
 declare module 'ol/layer/VectorTile' {
 
-  import { Extent } from 'ol/extent';
-  import { OrderFunction } from 'ol/render';
-  import VectorTileRenderType from 'ol/layer/VectorTileRenderType';
-  import VectorTile from 'ol/source/VectorTile';
-  import PluggableMap from 'ol/PluggableMap';
-  import { StyleLike } from 'ol/style/Style';
-  import VectorLayer from 'ol/layer/Vector';
-  import LayerType from 'ol/LayerType';
-  import VectorSource from 'ol/source/Vector';
   import { EventsKey } from 'ol/events';
   import Event from 'ol/events/Event';
+  import { Extent } from 'ol/extent';
+  import VectorLayer from 'ol/layer/Vector';
+  import VectorTileRenderType from 'ol/layer/VectorTileRenderType';
+  import LayerType from 'ol/LayerType';
   import { ObjectEvent } from 'ol/Object';
+  import PluggableMap from 'ol/PluggableMap';
+  import { OrderFunction } from 'ol/render';
   import RenderEvent from 'ol/render/Event';
+  import VectorSource from 'ol/source/Vector';
+  import VectorTile from 'ol/source/VectorTile';
+  import { StyleLike } from 'ol/style/Style';
 
   export interface Options {
     opacity?: number;

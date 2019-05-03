@@ -1,16 +1,16 @@
 declare module 'ol/source/TileArcGISRest' {
 
-  import { AttributionLike } from 'ol/source/Source';
-  import TileGrid from 'ol/tilegrid/TileGrid';
-  import { ProjectionLike } from 'ol/proj';
-  import { LoadFunction } from 'ol/Tile';
-  import TileImage from 'ol/source/TileImage';
   import { EventsKey } from 'ol/events';
   import Event from 'ol/events/Event';
   import { ObjectEvent } from 'ol/Object';
-  import { TileSourceEvent } from 'ol/source/Tile';
-  import { TileCoord } from 'ol/tilecoord';
+  import { ProjectionLike } from 'ol/proj';
   import Projection from 'ol/proj/Projection';
+  import { AttributionLike } from 'ol/source/Source';
+  import { TileSourceEvent } from 'ol/source/Tile';
+  import TileImage from 'ol/source/TileImage';
+  import { LoadFunction } from 'ol/Tile';
+  import { TileCoord } from 'ol/tilecoord';
+  import TileGrid from 'ol/tilegrid/TileGrid';
 
   export interface Options {
     attributions?: AttributionLike;

@@ -1,14 +1,14 @@
 declare module 'ol/geom/Polygon' {
 
-  import GeometryLayout from 'ol/geom/GeometryLayout';
   import { Coordinate } from 'ol/coordinate';
-  import Circle from 'ol/geom/Circle';
-  import { Extent } from 'ol/extent';
-  import SimpleGeometry from 'ol/geom/SimpleGeometry';
-  import LinearRing from 'ol/geom/LinearRing';
-  import Point from 'ol/geom/Point';
   import { EventsKey } from 'ol/events';
   import Event from 'ol/events/Event';
+  import { Extent } from 'ol/extent';
+  import Circle from 'ol/geom/Circle';
+  import GeometryLayout from 'ol/geom/GeometryLayout';
+  import LinearRing from 'ol/geom/LinearRing';
+  import Point from 'ol/geom/Point';
+  import SimpleGeometry from 'ol/geom/SimpleGeometry';
   import { ObjectEvent } from 'ol/Object';
 
   export function circular(center: Coordinate, radius: number, opt_n?: number, opt_sphereRadius?: number): Polygon;

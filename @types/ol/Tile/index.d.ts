@@ -1,9 +1,9 @@
 declare module 'ol/Tile' {
 
   import Target from 'ol/events/Target';
+  import Projection from 'ol/proj/Projection';
   import { TileCoord } from 'ol/tilecoord';
   import TileState from 'ol/TileState';
-  import Projection from 'ol/proj/Projection';
 
   export type LoadFunction = ((param0: Tile, param1: string) => void);
 

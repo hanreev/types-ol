@@ -1,7 +1,7 @@
 declare module 'ol/centerconstraint' {
 
-  import { Extent } from 'ol/extent';
   import { Coordinate } from 'ol/coordinate';
+  import { Extent } from 'ol/extent';
 
   export function createExtent(extent: Extent): Type;
 

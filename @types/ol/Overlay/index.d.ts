@@ -1,15 +1,14 @@
 declare module 'ol/Overlay' {
 
   import { Coordinate } from 'ol/coordinate';
-  import OverlayPositioning from 'ol/OverlayPositioning';
-  import BaseObject from 'ol/Object';
   import { EventsKey } from 'ol/events';
-  import { Size } from 'ol/size';
+  import Event from 'ol/events/Event';
   import { Extent } from 'ol/extent';
+  import BaseObject, { ObjectEvent } from 'ol/Object';
+  import OverlayPositioning from 'ol/OverlayPositioning';
   import { Pixel } from 'ol/pixel';
   import PluggableMap from 'ol/PluggableMap';
-  import Event from 'ol/events/Event';
-  import { ObjectEvent } from 'ol/Object';
+  import { Size } from 'ol/size';
 
   export interface Options {
     id?: number | string;

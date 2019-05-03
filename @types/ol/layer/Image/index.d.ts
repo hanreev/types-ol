@@ -1,15 +1,15 @@
 declare module 'ol/layer/Image' {
 
-  import Layer from 'ol/layer/Layer';
-  import LayerType from 'ol/LayerType';
-  import ImageSource from 'ol/source/Image';
-  import Source from 'ol/source/Source';
   import { EventsKey } from 'ol/events';
   import Event from 'ol/events/Event';
-  import { ObjectEvent } from 'ol/Object';
-  import RenderEvent from 'ol/render/Event';
   import { Extent } from 'ol/extent';
+  import Layer from 'ol/layer/Layer';
+  import LayerType from 'ol/LayerType';
+  import { ObjectEvent } from 'ol/Object';
   import PluggableMap from 'ol/PluggableMap';
+  import RenderEvent from 'ol/render/Event';
+  import ImageSource from 'ol/source/Image';
+  import Source from 'ol/source/Source';
 
   export default class ImageLayer extends Layer {
     constructor(opt_options?: Options);

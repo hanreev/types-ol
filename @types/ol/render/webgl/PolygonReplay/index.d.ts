@@ -1,7 +1,7 @@
 declare module 'ol/render/webgl/PolygonReplay' {
 
-  import WebGLReplay from 'ol/render/webgl/Replay';
   import { Extent } from 'ol/extent';
+  import WebGLReplay from 'ol/render/webgl/Replay';
 
   export interface PolygonSegment {
     p0: PolygonVertex;

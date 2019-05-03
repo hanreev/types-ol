@@ -1,11 +1,11 @@
 declare module 'ol/interaction/DragPan' {
 
-  import PointerInteraction from 'ol/interaction/Pointer';
   import { EventsKey } from 'ol/events';
-  import Event from 'ol/events/Event';
-  import { ObjectEvent } from 'ol/Object';
   import { Condition } from 'ol/events/condition';
+  import Event from 'ol/events/Event';
+  import PointerInteraction from 'ol/interaction/Pointer';
   import Kinetic from 'ol/Kinetic';
+  import { ObjectEvent } from 'ol/Object';
 
   export default class DragPan extends PointerInteraction {
     constructor(opt_options?: Options);

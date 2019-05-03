@@ -1,12 +1,11 @@
 declare module 'ol/format/Feature' {
 
-  import Geometry from 'ol/geom/Geometry';
   import { Extent } from 'ol/extent';
-  import Projection from 'ol/proj/Projection';
+  import Feature, { FeatureLike } from 'ol/Feature';
   import FormatType from 'ol/format/FormatType';
-  import { FeatureLike } from 'ol/Feature';
-  import Feature from 'ol/Feature';
+  import Geometry from 'ol/geom/Geometry';
   import { ProjectionLike } from 'ol/proj';
+  import Projection from 'ol/proj/Projection';
 
   export function transformWithOptions(geometry: Geometry | Extent, write: boolean, opt_options?: WriteOptions | ReadOptions): Geometry | Extent;
 

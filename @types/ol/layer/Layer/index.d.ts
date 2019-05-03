@@ -1,13 +1,13 @@
 declare module 'ol/layer/Layer' {
 
-  import BaseLayer from 'ol/layer/Base';
-  import Source from 'ol/source/Source';
-  import PluggableMap from 'ol/PluggableMap';
   import { EventsKey } from 'ol/events';
-  import RenderEvent from 'ol/render/Event';
-  import { ObjectEvent } from 'ol/Object';
   import Event from 'ol/events/Event';
   import { Extent } from 'ol/extent';
+  import BaseLayer from 'ol/layer/Base';
+  import { ObjectEvent } from 'ol/Object';
+  import PluggableMap from 'ol/PluggableMap';
+  import RenderEvent from 'ol/render/Event';
+  import Source from 'ol/source/Source';
   import State_1 from 'ol/source/State';
 
   export function visibleAtResolution(layerState: State, resolution: number): boolean;

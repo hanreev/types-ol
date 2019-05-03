@@ -1,10 +1,10 @@
 declare module 'ol/webgl/Context' {
 
-  import WebGLBuffer from 'ol/webgl/Buffer';
   import Disposable from 'ol/Disposable';
+  import WebGLBuffer from 'ol/webgl/Buffer';
   import WebGLFragment from 'ol/webgl/Fragment';
-  import WebGLVertex from 'ol/webgl/Vertex';
   import WebGLShader from 'ol/webgl/Shader';
+  import WebGLVertex from 'ol/webgl/Vertex';
 
   export function createEmptyTexture(gl: WebGLRenderingContext, width: number, height: number, opt_wrapS?: number, opt_wrapT?: number): WebGLTexture;
 

@@ -1,12 +1,12 @@
 declare module 'ol/renderer/webgl/TileLayer' {
 
-  import WebGLLayerRenderer from 'ol/renderer/webgl/Layer';
-  import WebGLMapRenderer from 'ol/renderer/webgl/Map';
-  import TileLayer from 'ol/layer/Tile';
-  import MapRenderer from 'ol/renderer/Map';
-  import Layer from 'ol/layer/Layer';
   import { EventsKey } from 'ol/events';
   import Event from 'ol/events/Event';
+  import Layer from 'ol/layer/Layer';
+  import TileLayer from 'ol/layer/Tile';
+  import MapRenderer from 'ol/renderer/Map';
+  import WebGLLayerRenderer from 'ol/renderer/webgl/Layer';
+  import WebGLMapRenderer from 'ol/renderer/webgl/Map';
 
   export default class WebGLTileLayerRenderer extends WebGLLayerRenderer {
     constructor(mapRenderer: WebGLMapRenderer, tileLayer: TileLayer);

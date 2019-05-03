@@ -1,8 +1,8 @@
 declare module 'ol/Graticule' {
 
-  import PluggableMap from 'ol/PluggableMap';
   import LineString from 'ol/geom/LineString';
   import Point from 'ol/geom/Point';
+  import PluggableMap from 'ol/PluggableMap';
   import Stroke from 'ol/style/Stroke';
   import Text from 'ol/style/Text';
 

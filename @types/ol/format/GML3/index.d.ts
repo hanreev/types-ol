@@ -1,12 +1,11 @@
 declare module 'ol/format/GML3' {
 
-  import GMLBase from 'ol/format/GMLBase';
-  import { Options } from 'ol/format/GMLBase';
-  import { Parser } from 'ol/xml';
   import { Extent } from 'ol/extent';
   import Feature from 'ol/Feature';
   import { WriteOptions } from 'ol/format/Feature';
+  import GMLBase, { Options } from 'ol/format/GMLBase';
   import Geometry from 'ol/geom/Geometry';
+  import { Parser } from 'ol/xml';
 
   export default class GML3 extends GMLBase {
     constructor(opt_options?: Options);

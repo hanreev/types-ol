@@ -1,11 +1,11 @@
 declare module 'ol/interaction/KeyboardZoom' {
 
-  import MapBrowserEvent from 'ol/MapBrowserEvent';
-  import Interaction from 'ol/interaction/Interaction';
   import { EventsKey } from 'ol/events';
-  import Event from 'ol/events/Event';
-  import { ObjectEvent } from 'ol/Object';
   import { Condition } from 'ol/events/condition';
+  import Event from 'ol/events/Event';
+  import Interaction from 'ol/interaction/Interaction';
+  import MapBrowserEvent from 'ol/MapBrowserEvent';
+  import { ObjectEvent } from 'ol/Object';
 
   export default class KeyboardZoom extends Interaction {
     constructor(opt_options?: Options);

@@ -1,8 +1,8 @@
 declare module 'ol/structs/LRUCache' {
 
-  import Target from 'ol/events/Target';
   import { EventsKey } from 'ol/events';
   import Event from 'ol/events/Event';
+  import Target from 'ol/events/Target';
 
   export interface Entry {
     key_: string;

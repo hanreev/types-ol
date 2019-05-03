@@ -1,7 +1,7 @@
 declare module 'ol/render/Feature' {
 
-  import GeometryType from 'ol/geom/GeometryType';
   import { Extent } from 'ol/extent';
+  import GeometryType from 'ol/geom/GeometryType';
   import { ProjectionLike } from 'ol/proj';
 
   export default class RenderFeature {

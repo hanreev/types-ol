@@ -1,18 +1,18 @@
 declare module 'ol/render/webgl/Replay' {
 
-  import VectorContext from 'ol/render/VectorContext';
-  import { Extent } from 'ol/extent';
-  import WebGLBuffer from 'ol/webgl/Buffer';
-  import WebGLLineStringReplay from 'ol/render/webgl/LineStringReplay';
   import { Coordinate } from 'ol/coordinate';
-  import WebGLContext from 'ol/webgl/Context';
+  import { Extent } from 'ol/extent';
   import Feature from 'ol/Feature';
   import RenderFeature from 'ol/render/Feature';
-  import { Size } from 'ol/size';
+  import VectorContext from 'ol/render/VectorContext';
   import Locations from 'ol/render/webgl/circlereplay/defaultshader/Locations';
+  import WebGLLineStringReplay from 'ol/render/webgl/LineStringReplay';
   import Locations_1 from 'ol/render/webgl/linestringreplay/defaultshader/Locations';
   import Locations_2 from 'ol/render/webgl/polygonreplay/defaultshader/Locations';
   import Locations_3 from 'ol/render/webgl/texturereplay/defaultshader/Locations';
+  import { Size } from 'ol/size';
+  import WebGLBuffer from 'ol/webgl/Buffer';
+  import WebGLContext from 'ol/webgl/Context';
 
   export default class WebGLReplay extends VectorContext {
     constructor(tolerance: number, maxExtent: Extent);

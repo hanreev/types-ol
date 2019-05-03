@@ -1,18 +1,16 @@
 declare module 'ol/source/Vector' {
 
-  import Event from 'ol/events/Event';
-  import Feature from 'ol/Feature';
-  import { Extent } from 'ol/extent';
-  import { AttributionLike } from 'ol/source/Source';
   import Collection from 'ol/Collection';
-  import FeatureFormat from 'ol/format/Feature';
-  import { FeatureLoader } from 'ol/featureloader';
-  import { FeatureUrlFunction } from 'ol/featureloader';
-  import Source from 'ol/source/Source';
   import { Coordinate } from 'ol/coordinate';
-  import Projection from 'ol/proj/Projection';
   import { EventsKey } from 'ol/events';
+  import Event from 'ol/events/Event';
+  import { Extent } from 'ol/extent';
+  import Feature from 'ol/Feature';
+  import { FeatureLoader, FeatureUrlFunction } from 'ol/featureloader';
+  import FeatureFormat from 'ol/format/Feature';
   import { ObjectEvent } from 'ol/Object';
+  import Projection from 'ol/proj/Projection';
+  import Source, { AttributionLike } from 'ol/source/Source';
 
   export class VectorSourceEvent extends Event {
     constructor();

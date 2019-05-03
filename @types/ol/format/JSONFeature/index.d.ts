@@ -1,12 +1,9 @@
 declare module 'ol/format/JSONFeature' {
 
-  import FeatureFormat from 'ol/format/Feature';
-  import { ReadOptions } from 'ol/format/Feature';
-  import Feature from 'ol/Feature';
+  import Feature, { FeatureLike } from 'ol/Feature';
+  import FeatureFormat, { ReadOptions, WriteOptions } from 'ol/format/Feature';
   import Geometry from 'ol/geom/Geometry';
   import Projection from 'ol/proj/Projection';
-  import { FeatureLike } from 'ol/Feature';
-  import { WriteOptions } from 'ol/format/Feature';
 
   export default class JSONFeature extends FeatureFormat {
     constructor();

@@ -1,8 +1,8 @@
 declare module 'ol/control' {
 
-  import { DefaultsOptions } from 'ol/control/util';
   import Collection from 'ol/Collection';
   import Control from 'ol/control/Control';
+  import { DefaultsOptions } from 'ol/control/util';
 
   export { default as Attribution } from 'ol/control/Attribution';
   export { default as Control } from 'ol/control/Control';

@@ -1,14 +1,14 @@
 declare module 'ol/source/ImageStatic' {
 
-  import { AttributionLike } from 'ol/source/Source';
+  import { EventsKey } from 'ol/events';
+  import Event from 'ol/events/Event';
   import { Extent } from 'ol/extent';
   import { LoadFunction } from 'ol/Image';
+  import { ObjectEvent } from 'ol/Object';
   import { ProjectionLike } from 'ol/proj';
   import { Size } from 'ol/size';
   import ImageSource from 'ol/source/Image';
-  import { EventsKey } from 'ol/events';
-  import Event from 'ol/events/Event';
-  import { ObjectEvent } from 'ol/Object';
+  import { AttributionLike } from 'ol/source/Source';
 
   export interface Options {
     attributions?: AttributionLike;

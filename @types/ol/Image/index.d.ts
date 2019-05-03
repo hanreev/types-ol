@@ -1,7 +1,7 @@
 declare module 'ol/Image' {
 
-  import ImageBase from 'ol/ImageBase';
   import { Extent } from 'ol/extent';
+  import ImageBase from 'ol/ImageBase';
   import ImageState from 'ol/ImageState';
 
   export default class ImageWrapper extends ImageBase {

@@ -1,8 +1,8 @@
 declare module 'ol/interaction/PinchZoom' {
 
-  import PointerInteraction from 'ol/interaction/Pointer';
   import { EventsKey } from 'ol/events';
   import Event from 'ol/events/Event';
+  import PointerInteraction from 'ol/interaction/Pointer';
   import { ObjectEvent } from 'ol/Object';
 
   export interface Options {

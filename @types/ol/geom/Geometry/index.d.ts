@@ -1,14 +1,12 @@
 declare module 'ol/geom/Geometry' {
 
-  import BaseObject from 'ol/Object';
-  import { Extent } from 'ol/extent';
-  import { TransformFunction } from 'ol/proj';
   import { Coordinate } from 'ol/coordinate';
-  import GeometryType from 'ol/geom/GeometryType';
-  import { ProjectionLike } from 'ol/proj';
   import { EventsKey } from 'ol/events';
   import Event from 'ol/events/Event';
-  import { ObjectEvent } from 'ol/Object';
+  import { Extent } from 'ol/extent';
+  import GeometryType from 'ol/geom/GeometryType';
+  import BaseObject, { ObjectEvent } from 'ol/Object';
+  import { TransformFunction, ProjectionLike } from 'ol/proj';
 
   export default class Geometry extends BaseObject {
     constructor();

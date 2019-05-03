@@ -1,8 +1,8 @@
 declare module 'ol/style/Text' {
 
-  import TextPlacement from 'ol/style/TextPlacement';
   import Fill from 'ol/style/Fill';
   import Stroke from 'ol/style/Stroke';
+  import TextPlacement from 'ol/style/TextPlacement';
 
   export interface Options {
     font?: string;

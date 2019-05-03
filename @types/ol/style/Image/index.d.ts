@@ -1,9 +1,9 @@
 declare module 'ol/style/Image' {
 
-  import { Size } from 'ol/size';
-  import ImageState from 'ol/ImageState';
-  import Event from 'ol/events/Event';
   import { EventsKey } from 'ol/events';
+  import Event from 'ol/events/Event';
+  import ImageState from 'ol/ImageState';
+  import { Size } from 'ol/size';
 
   export default class ImageStyle {
     constructor(options: Options);

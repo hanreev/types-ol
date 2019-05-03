@@ -1,15 +1,15 @@
 declare module 'ol/layer/Tile' {
 
-  import { Extent } from 'ol/extent';
-  import TileSource from 'ol/source/Tile';
-  import PluggableMap from 'ol/PluggableMap';
-  import Layer from 'ol/layer/Layer';
-  import LayerType from 'ol/LayerType';
-  import Source from 'ol/source/Source';
   import { EventsKey } from 'ol/events';
   import Event from 'ol/events/Event';
+  import { Extent } from 'ol/extent';
+  import Layer from 'ol/layer/Layer';
+  import LayerType from 'ol/LayerType';
   import { ObjectEvent } from 'ol/Object';
+  import PluggableMap from 'ol/PluggableMap';
   import RenderEvent from 'ol/render/Event';
+  import Source from 'ol/source/Source';
+  import TileSource from 'ol/source/Tile';
 
   export interface Options {
     opacity?: number;

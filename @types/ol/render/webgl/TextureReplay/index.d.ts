@@ -1,7 +1,7 @@
 declare module 'ol/render/webgl/TextureReplay' {
 
-  import WebGLReplay from 'ol/render/webgl/Replay';
   import { Extent } from 'ol/extent';
+  import WebGLReplay from 'ol/render/webgl/Replay';
   import Locations from 'ol/render/webgl/texturereplay/defaultshader/Locations';
   import WebGLContext from 'ol/webgl/Context';
 

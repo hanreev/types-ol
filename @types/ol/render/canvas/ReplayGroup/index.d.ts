@@ -1,14 +1,14 @@
 declare module 'ol/render/canvas/ReplayGroup' {
 
-  import ReplayGroup from 'ol/render/ReplayGroup';
-  import { Extent } from 'ol/extent';
-  import { Transform } from 'ol/transform';
   import { Coordinate } from 'ol/coordinate';
+  import { Extent } from 'ol/extent';
   import Feature from 'ol/Feature';
-  import RenderFeature from 'ol/render/Feature';
   import { DeclutterGroup } from 'ol/render/canvas';
-  import ReplayType from 'ol/render/ReplayType';
   import CanvasReplay from 'ol/render/canvas/Replay';
+  import RenderFeature from 'ol/render/Feature';
+  import ReplayGroup from 'ol/render/ReplayGroup';
+  import ReplayType from 'ol/render/ReplayType';
+  import { Transform } from 'ol/transform';
 
   export function getCircleArray(radius: number): any[][];
 

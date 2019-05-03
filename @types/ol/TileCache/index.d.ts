@@ -1,9 +1,9 @@
 declare module 'ol/TileCache' {
 
-  import LRUCache from 'ol/structs/LRUCache';
-  import TileRange from 'ol/TileRange';
   import { EventsKey } from 'ol/events';
   import Event from 'ol/events/Event';
+  import LRUCache from 'ol/structs/LRUCache';
+  import TileRange from 'ol/TileRange';
 
   export default class TileCache extends LRUCache<any> {
     constructor(opt_highWaterMark?: number);

@@ -1,10 +1,10 @@
 declare module 'ol/featureloader' {
 
+  import { Extent } from 'ol/extent';
   import FeatureFormat from 'ol/format/Feature';
+  import Projection from 'ol/proj/Projection';
   import VectorSource from 'ol/source/Vector';
   import VectorTile from 'ol/VectorTile';
-  import { Extent } from 'ol/extent';
-  import Projection from 'ol/proj/Projection';
 
   export function loadFeaturesXhr(url: string | FeatureUrlFunction, format: FeatureFormat, success: (() => void) | (() => void), failure: ((this: VectorSource) => void) | (() => void)): FeatureLoader;
 

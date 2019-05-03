@@ -1,20 +1,18 @@
 declare module 'ol/source/TileImage' {
 
-  import ImageTile from 'ol/ImageTile';
-  import { AttributionLike } from 'ol/source/Source';
-  import { ProjectionLike } from 'ol/proj';
-  import State from 'ol/source/State';
-  import TileGrid from 'ol/tilegrid/TileGrid';
-  import { LoadFunction } from 'ol/Tile';
-  import { UrlFunction } from 'ol/Tile';
-  import UrlTile from 'ol/source/UrlTile';
-  import TileCache from 'ol/TileCache';
-  import Projection from 'ol/proj/Projection';
-  import Tile from 'ol/Tile';
   import { EventsKey } from 'ol/events';
   import Event from 'ol/events/Event';
+  import ImageTile from 'ol/ImageTile';
   import { ObjectEvent } from 'ol/Object';
+  import { ProjectionLike } from 'ol/proj';
+  import Projection from 'ol/proj/Projection';
+  import { AttributionLike } from 'ol/source/Source';
+  import State from 'ol/source/State';
   import { TileSourceEvent } from 'ol/source/Tile';
+  import UrlTile from 'ol/source/UrlTile';
+  import Tile, { LoadFunction, UrlFunction } from 'ol/Tile';
+  import TileCache from 'ol/TileCache';
+  import TileGrid from 'ol/tilegrid/TileGrid';
 
   export interface Options {
     attributions?: AttributionLike;

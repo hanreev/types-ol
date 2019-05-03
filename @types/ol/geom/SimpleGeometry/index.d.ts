@@ -1,12 +1,12 @@
 declare module 'ol/geom/SimpleGeometry' {
 
-  import GeometryLayout from 'ol/geom/GeometryLayout';
-  import { Transform } from 'ol/transform';
-  import Geometry from 'ol/geom/Geometry';
   import { Coordinate } from 'ol/coordinate';
   import { EventsKey } from 'ol/events';
   import Event from 'ol/events/Event';
+  import Geometry from 'ol/geom/Geometry';
+  import GeometryLayout from 'ol/geom/GeometryLayout';
   import { ObjectEvent } from 'ol/Object';
+  import { Transform } from 'ol/transform';
 
   export function getStrideForLayout(layout: GeometryLayout): number;
 

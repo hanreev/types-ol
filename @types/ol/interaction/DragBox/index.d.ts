@@ -1,14 +1,14 @@
 declare module 'ol/interaction/DragBox' {
 
+  import { Coordinate } from 'ol/coordinate';
+  import { EventsKey } from 'ol/events';
+  import { Condition } from 'ol/events/condition';
+  import Event from 'ol/events/Event';
+  import Polygon from 'ol/geom/Polygon';
   import PointerInteraction from 'ol/interaction/Pointer';
   import MapBrowserEvent from 'ol/MapBrowserEvent';
-  import { Pixel } from 'ol/pixel';
-  import Polygon from 'ol/geom/Polygon';
-  import { EventsKey } from 'ol/events';
-  import Event from 'ol/events/Event';
   import { ObjectEvent } from 'ol/Object';
-  import { Coordinate } from 'ol/coordinate';
-  import { Condition } from 'ol/events/condition';
+  import { Pixel } from 'ol/pixel';
 
   export default class DragBox extends PointerInteraction {
     constructor(opt_options?: Options);

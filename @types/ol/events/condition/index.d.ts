@@ -1,8 +1,7 @@
 declare module 'ol/events/condition' {
 
+  import { TRUE, FALSE } from 'ol/functions';
   import MapBrowserEvent from 'ol/MapBrowserEvent';
-  import { TRUE } from 'ol/functions';
-  import { FALSE } from 'ol/functions';
 
   export function altKeyOnly(mapBrowserEvent: MapBrowserEvent): boolean;
 

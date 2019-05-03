@@ -1,17 +1,16 @@
 declare module 'ol/source/WMTS' {
 
-  import { UrlFunction } from 'ol/Tile';
-  import { AttributionLike } from 'ol/source/Source';
-  import WMTSTileGrid from 'ol/tilegrid/WMTS';
-  import { ProjectionLike } from 'ol/proj';
-  import WMTSRequestEncoding from 'ol/source/WMTSRequestEncoding';
-  import ImageTile from 'ol/ImageTile';
-  import { LoadFunction } from 'ol/Tile';
-  import TileImage from 'ol/source/TileImage';
   import { EventsKey } from 'ol/events';
   import Event from 'ol/events/Event';
+  import ImageTile from 'ol/ImageTile';
   import { ObjectEvent } from 'ol/Object';
+  import { ProjectionLike } from 'ol/proj';
+  import { AttributionLike } from 'ol/source/Source';
   import { TileSourceEvent } from 'ol/source/Tile';
+  import TileImage from 'ol/source/TileImage';
+  import WMTSRequestEncoding from 'ol/source/WMTSRequestEncoding';
+  import { UrlFunction, LoadFunction } from 'ol/Tile';
+  import WMTSTileGrid from 'ol/tilegrid/WMTS';
 
   export function optionsFromCapabilities(wmtsCap: any, config: any): Options;
 

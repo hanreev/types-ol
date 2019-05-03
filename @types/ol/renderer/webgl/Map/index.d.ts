@@ -1,14 +1,13 @@
 declare module 'ol/renderer/webgl/Map' {
 
-  import MapRenderer from 'ol/renderer/Map';
-  import PluggableMap from 'ol/PluggableMap';
   import Event from 'ol/events/Event';
-  import Tile from 'ol/Tile';
-  import { Size } from 'ol/size';
+  import PluggableMap, { FrameState } from 'ol/PluggableMap';
   import EventType from 'ol/render/EventType';
-  import { FrameState } from 'ol/PluggableMap';
-  import WebGLContext from 'ol/webgl/Context';
+  import MapRenderer from 'ol/renderer/Map';
+  import { Size } from 'ol/size';
   import PriorityQueue from 'ol/structs/PriorityQueue';
+  import Tile from 'ol/Tile';
+  import WebGLContext from 'ol/webgl/Context';
 
   export interface TextureCacheEntry {
     magFilter: number;

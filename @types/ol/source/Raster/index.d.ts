@@ -1,16 +1,15 @@
 declare module 'ol/source/Raster' {
 
-  import ImageSource from 'ol/source/Image';
-  import CanvasLayerRenderer from 'ol/renderer/canvas/Layer';
-  import Source from 'ol/source/Source';
-  import Layer from 'ol/layer/Layer';
-  import TileSource from 'ol/source/Tile';
-  import { FrameState } from 'ol/PluggableMap';
-  import { State } from 'ol/layer/Layer';
   import { EventsKey } from 'ol/events';
   import Event from 'ol/events/Event';
-  import { ObjectEvent } from 'ol/Object';
   import { Extent } from 'ol/extent';
+  import Layer, { State } from 'ol/layer/Layer';
+  import { ObjectEvent } from 'ol/Object';
+  import { FrameState } from 'ol/PluggableMap';
+  import CanvasLayerRenderer from 'ol/renderer/canvas/Layer';
+  import ImageSource from 'ol/source/Image';
+  import Source from 'ol/source/Source';
+  import TileSource from 'ol/source/Tile';
 
   export type Operation = ((param0: number[][] | ImageData[], param1: any) => number[] | ImageData);
 

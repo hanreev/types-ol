@@ -1,18 +1,16 @@
 declare module 'ol/VectorImageTile' {
 
-  import VectorTile from 'ol/VectorTile';
-  import { OrderFunction } from 'ol/render';
-  import Tile from 'ol/Tile';
-  import { TileCoord } from 'ol/tilecoord';
-  import TileState from 'ol/TileState';
-  import FeatureFormat from 'ol/format/Feature';
-  import { LoadFunction } from 'ol/Tile';
-  import { UrlFunction } from 'ol/Tile';
-  import TileGrid from 'ol/tilegrid/TileGrid';
-  import Projection from 'ol/proj/Projection';
-  import VectorTile_1 from 'ol/source/VectorTile';
   import Event from 'ol/events/Event';
+  import FeatureFormat from 'ol/format/Feature';
   import Layer from 'ol/layer/Layer';
+  import Projection from 'ol/proj/Projection';
+  import { OrderFunction } from 'ol/render';
+  import VectorTile_1 from 'ol/source/VectorTile';
+  import Tile, { LoadFunction, UrlFunction } from 'ol/Tile';
+  import { TileCoord } from 'ol/tilecoord';
+  import TileGrid from 'ol/tilegrid/TileGrid';
+  import TileState from 'ol/TileState';
+  import VectorTile from 'ol/VectorTile';
 
   export function defaultLoadFunction(tile: VectorTile, url: string): void;
 

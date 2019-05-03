@@ -1,15 +1,15 @@
 declare module 'ol/source/UTFGrid' {
 
+  import { Coordinate } from 'ol/coordinate';
+  import { EventsKey } from 'ol/events';
+  import Event from 'ol/events/Event';
+  import { Extent } from 'ol/extent';
+  import { ObjectEvent } from 'ol/Object';
+  import TileSource from 'ol/source/Tile';
+  import { Config } from 'ol/source/TileJSON';
   import Tile from 'ol/Tile';
   import { TileCoord } from 'ol/tilecoord';
   import TileState from 'ol/TileState';
-  import { Extent } from 'ol/extent';
-  import { Coordinate } from 'ol/coordinate';
-  import { Config } from 'ol/source/TileJSON';
-  import TileSource from 'ol/source/Tile';
-  import { EventsKey } from 'ol/events';
-  import Event from 'ol/events/Event';
-  import { ObjectEvent } from 'ol/Object';
 
   export class CustomTile extends Tile {
     constructor(tileCoord: TileCoord, state: TileState, src: string, extent: Extent, preemptive: boolean, jsonp: boolean);

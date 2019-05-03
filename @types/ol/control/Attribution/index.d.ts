@@ -1,9 +1,9 @@
 declare module 'ol/control/Attribution' {
 
-  import MapEvent from 'ol/MapEvent';
   import Control from 'ol/control/Control';
   import { EventsKey } from 'ol/events';
   import Event from 'ol/events/Event';
+  import MapEvent from 'ol/MapEvent';
   import { ObjectEvent } from 'ol/Object';
 
   export function render(mapEvent: MapEvent): void;

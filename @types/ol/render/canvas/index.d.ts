@@ -1,10 +1,10 @@
 declare module 'ol/render/canvas' {
 
-  import { Transform } from 'ol/transform';
   import { ColorLike } from 'ol/colorlike';
   import LRUCache from 'ol/structs/LRUCache';
   import Fill from 'ol/style/Fill';
   import Stroke from 'ol/style/Stroke';
+  import { Transform } from 'ol/transform';
 
   export function drawImage(context: CanvasRenderingContext2D, transform: Transform, opacity: number, image: HTMLImageElement | HTMLCanvasElement | HTMLVideoElement, originX: number, originY: number, w: number, h: number, x: number, y: number, scale: number): void;
 

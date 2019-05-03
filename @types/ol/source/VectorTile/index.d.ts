@@ -1,20 +1,19 @@
 declare module 'ol/source/VectorTile' {
 
-  import { AttributionLike } from 'ol/source/Source';
-  import { Extent } from 'ol/extent';
-  import FeatureFormat from 'ol/format/Feature';
-  import { ProjectionLike } from 'ol/proj';
-  import State from 'ol/source/State';
-  import VectorTile_1 from 'ol/VectorTile';
-  import { Size } from 'ol/size';
-  import TileGrid from 'ol/tilegrid/TileGrid';
-  import { LoadFunction } from 'ol/Tile';
-  import { UrlFunction } from 'ol/Tile';
-  import UrlTile from 'ol/source/UrlTile';
   import { EventsKey } from 'ol/events';
   import Event from 'ol/events/Event';
+  import { Extent } from 'ol/extent';
+  import FeatureFormat from 'ol/format/Feature';
   import { ObjectEvent } from 'ol/Object';
+  import { ProjectionLike } from 'ol/proj';
+  import { Size } from 'ol/size';
+  import { AttributionLike } from 'ol/source/Source';
+  import State from 'ol/source/State';
   import { TileSourceEvent } from 'ol/source/Tile';
+  import UrlTile from 'ol/source/UrlTile';
+  import { LoadFunction, UrlFunction } from 'ol/Tile';
+  import TileGrid from 'ol/tilegrid/TileGrid';
+  import VectorTile_1 from 'ol/VectorTile';
 
   export interface Options {
     attributions?: AttributionLike;

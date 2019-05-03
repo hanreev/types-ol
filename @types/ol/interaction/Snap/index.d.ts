@@ -1,17 +1,15 @@
 declare module 'ol/interaction/Snap' {
 
-  import { VectorSourceEvent } from 'ol/source/Vector';
-  import { CollectionEvent } from 'ol/Collection';
-  import Feature from 'ol/Feature';
-  import Collection from 'ol/Collection';
-  import VectorSource from 'ol/source/Vector';
+  import Collection, { CollectionEvent } from 'ol/Collection';
   import { Coordinate } from 'ol/coordinate';
-  import { Pixel } from 'ol/pixel';
-  import PointerInteraction from 'ol/interaction/Pointer';
-  import PluggableMap from 'ol/PluggableMap';
   import { EventsKey } from 'ol/events';
   import Event from 'ol/events/Event';
+  import Feature from 'ol/Feature';
+  import PointerInteraction from 'ol/interaction/Pointer';
   import { ObjectEvent } from 'ol/Object';
+  import { Pixel } from 'ol/pixel';
+  import PluggableMap from 'ol/PluggableMap';
+  import VectorSource, { VectorSourceEvent } from 'ol/source/Vector';
 
   export interface Options {
     features?: Collection<Feature>;

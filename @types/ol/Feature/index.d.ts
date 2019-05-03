@@ -1,14 +1,11 @@
 declare module 'ol/Feature' {
 
-  import { StyleFunction } from 'ol/style/Style';
-  import Style from 'ol/style/Style';
-  import BaseObject from 'ol/Object';
-  import Geometry from 'ol/geom/Geometry';
-  import { StyleLike } from 'ol/style/Style';
   import { EventsKey } from 'ol/events';
   import Event from 'ol/events/Event';
-  import { ObjectEvent } from 'ol/Object';
+  import Geometry from 'ol/geom/Geometry';
+  import BaseObject, { ObjectEvent } from 'ol/Object';
   import RenderFeature from 'ol/render/Feature';
+  import Style, { StyleFunction, StyleLike } from 'ol/style/Style';
 
   export function createStyleFunction(obj: StyleFunction | Style[] | Style): StyleFunction;
 

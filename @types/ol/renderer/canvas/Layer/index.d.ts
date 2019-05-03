@@ -1,14 +1,13 @@
 declare module 'ol/renderer/canvas/Layer' {
 
-  import LayerRenderer from 'ol/renderer/Layer';
-  import Layer from 'ol/layer/Layer';
-  import { FrameState } from 'ol/PluggableMap';
-  import { Extent } from 'ol/extent';
-  import { Transform } from 'ol/transform';
-  import { State } from 'ol/layer/Layer';
   import { Coordinate } from 'ol/coordinate';
   import { EventsKey } from 'ol/events';
   import Event from 'ol/events/Event';
+  import { Extent } from 'ol/extent';
+  import Layer, { State } from 'ol/layer/Layer';
+  import { FrameState } from 'ol/PluggableMap';
+  import LayerRenderer from 'ol/renderer/Layer';
+  import { Transform } from 'ol/transform';
 
   export default class CanvasLayerRenderer extends LayerRenderer {
     constructor(layer: Layer);

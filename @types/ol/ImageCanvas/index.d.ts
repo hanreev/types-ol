@@ -1,7 +1,7 @@
 declare module 'ol/ImageCanvas' {
 
-  import ImageBase from 'ol/ImageBase';
   import { Extent } from 'ol/extent';
+  import ImageBase from 'ol/ImageBase';
 
   export default class ImageCanvas extends ImageBase {
     constructor(extent: Extent, resolution: number, pixelRatio: number, canvas: HTMLCanvasElement, opt_loader?: Loader);

@@ -1,10 +1,10 @@
 declare module 'ol/interaction/DragRotate' {
 
-  import PointerInteraction from 'ol/interaction/Pointer';
   import { EventsKey } from 'ol/events';
-  import Event from 'ol/events/Event';
-  import { ObjectEvent } from 'ol/Object';
   import { Condition } from 'ol/events/condition';
+  import Event from 'ol/events/Event';
+  import PointerInteraction from 'ol/interaction/Pointer';
+  import { ObjectEvent } from 'ol/Object';
 
   export default class DragRotate extends PointerInteraction {
     constructor(opt_options?: Options);

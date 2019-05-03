@@ -1,11 +1,11 @@
 declare module 'ol/layer/Group' {
 
-  import BaseLayer from 'ol/layer/Base';
   import Collection from 'ol/Collection';
   import { EventsKey } from 'ol/events';
   import Event from 'ol/events/Event';
-  import { ObjectEvent } from 'ol/Object';
   import { Extent } from 'ol/extent';
+  import BaseLayer from 'ol/layer/Base';
+  import { ObjectEvent } from 'ol/Object';
 
   export default class LayerGroup extends BaseLayer {
     constructor(opt_options?: Options);

@@ -1,11 +1,11 @@
 declare module 'ol/geom/MultiLineString' {
 
-  import GeometryLayout from 'ol/geom/GeometryLayout';
-  import SimpleGeometry from 'ol/geom/SimpleGeometry';
-  import LineString from 'ol/geom/LineString';
   import { Coordinate } from 'ol/coordinate';
   import { EventsKey } from 'ol/events';
   import Event from 'ol/events/Event';
+  import GeometryLayout from 'ol/geom/GeometryLayout';
+  import LineString from 'ol/geom/LineString';
+  import SimpleGeometry from 'ol/geom/SimpleGeometry';
   import { ObjectEvent } from 'ol/Object';
 
   export default class MultiLineString extends SimpleGeometry {

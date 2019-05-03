@@ -1,8 +1,8 @@
 declare module 'ol/pointer/PointerEventHandler' {
 
   import Target from 'ol/events/Target';
-  import PointerEvent from 'ol/pointer/PointerEvent';
   import EventSource from 'ol/pointer/EventSource';
+  import PointerEvent from 'ol/pointer/PointerEvent';
 
   export default class PointerEventHandler extends Target {
     constructor(element: Element | HTMLDocument);

@@ -1,11 +1,10 @@
 declare module 'ol/format/GML2' {
 
-  import GMLBase from 'ol/format/GMLBase';
-  import { Options } from 'ol/format/GMLBase';
-  import { Parser } from 'ol/xml';
-  import Feature from 'ol/Feature';
-  import Geometry from 'ol/geom/Geometry';
   import { Extent } from 'ol/extent';
+  import Feature from 'ol/Feature';
+  import GMLBase, { Options } from 'ol/format/GMLBase';
+  import Geometry from 'ol/geom/Geometry';
+  import { Parser } from 'ol/xml';
 
   export default class GML2 extends GMLBase {
     constructor(opt_options?: Options);

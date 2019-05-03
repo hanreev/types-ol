@@ -1,9 +1,9 @@
 declare module 'ol/extent' {
 
-  import { TransformFunction } from 'ol/proj';
   import { Coordinate } from 'ol/coordinate';
-  import Relationship from 'ol/extent/Relationship';
   import Corner from 'ol/extent/Corner';
+  import Relationship from 'ol/extent/Relationship';
+  import { TransformFunction } from 'ol/proj';
   import { Size } from 'ol/size';
 
   export function applyTransform(extent: Extent, transformFn: TransformFunction, opt_extent?: Extent): Extent;

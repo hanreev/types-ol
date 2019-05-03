@@ -1,10 +1,10 @@
 declare module 'ol/interaction/DoubleClickZoom' {
 
-  import Interaction from 'ol/interaction/Interaction';
   import { EventsKey } from 'ol/events';
   import Event from 'ol/events/Event';
-  import { ObjectEvent } from 'ol/Object';
+  import Interaction from 'ol/interaction/Interaction';
   import MapBrowserEvent from 'ol/MapBrowserEvent';
+  import { ObjectEvent } from 'ol/Object';
 
   export default class DoubleClickZoom extends Interaction {
     constructor(opt_options?: Options);

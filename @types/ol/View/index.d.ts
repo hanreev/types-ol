@@ -1,20 +1,19 @@
 declare module 'ol/View' {
 
   import { Type } from 'ol/centerconstraint';
-  import { Type as Type_1 } from 'ol/rotationconstraint';
   import { Coordinate } from 'ol/coordinate';
-  import { Type as Type_2 } from 'ol/resolutionconstraint';
-  import { Size } from 'ol/size';
-  import Projection from 'ol/proj/Projection';
-  import BaseObject from 'ol/Object';
-  import { Extent } from 'ol/extent';
-  import { Pixel } from 'ol/pixel';
-  import SimpleGeometry from 'ol/geom/SimpleGeometry';
-  import ViewHint from 'ol/ViewHint';
   import { EventsKey } from 'ol/events';
   import Event from 'ol/events/Event';
-  import { ObjectEvent } from 'ol/Object';
+  import { Extent } from 'ol/extent';
+  import SimpleGeometry from 'ol/geom/SimpleGeometry';
+  import BaseObject, { ObjectEvent } from 'ol/Object';
+  import { Pixel } from 'ol/pixel';
   import { ProjectionLike } from 'ol/proj';
+  import Projection from 'ol/proj/Projection';
+  import { Type as Type_2 } from 'ol/resolutionconstraint';
+  import { Type as Type_1 } from 'ol/rotationconstraint';
+  import { Size } from 'ol/size';
+  import ViewHint from 'ol/ViewHint';
 
   export function createCenterConstraint(options: ViewOptions): Type;
 

@@ -1,16 +1,14 @@
 declare module 'ol/renderer/Map' {
 
-  import { State } from 'ol/layer/Layer';
-  import PluggableMap from 'ol/PluggableMap';
-  import { FrameState } from 'ol/PluggableMap';
-  import Disposable from 'ol/Disposable';
-  import BaseLayer from 'ol/layer/Base';
-  import LayerRenderer from 'ol/renderer/Layer';
-  import EventType from 'ol/render/EventType';
   import { Coordinate } from 'ol/coordinate';
+  import Disposable from 'ol/Disposable';
   import { FeatureLike } from 'ol/Feature';
-  import Layer from 'ol/layer/Layer';
+  import BaseLayer from 'ol/layer/Base';
+  import Layer, { State } from 'ol/layer/Layer';
   import { Pixel } from 'ol/pixel';
+  import PluggableMap, { FrameState } from 'ol/PluggableMap';
+  import EventType from 'ol/render/EventType';
+  import LayerRenderer from 'ol/renderer/Layer';
 
   export function sortByZIndex(state1: State, state2: State): number;
 

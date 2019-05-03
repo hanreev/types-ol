@@ -1,19 +1,19 @@
 declare module 'ol/source/TileWMS' {
 
-  import { AttributionLike } from 'ol/source/Source';
-  import { ProjectionLike } from 'ol/proj';
-  import ImageTile from 'ol/ImageTile';
-  import TileGrid from 'ol/tilegrid/TileGrid';
-  import WMSServerType from 'ol/source/WMSServerType';
-  import { LoadFunction } from 'ol/Tile';
-  import { TileCoord } from 'ol/tilecoord';
-  import Projection from 'ol/proj/Projection';
-  import TileImage from 'ol/source/TileImage';
   import { Coordinate } from 'ol/coordinate';
   import { EventsKey } from 'ol/events';
   import Event from 'ol/events/Event';
+  import ImageTile from 'ol/ImageTile';
   import { ObjectEvent } from 'ol/Object';
+  import { ProjectionLike } from 'ol/proj';
+  import Projection from 'ol/proj/Projection';
+  import { AttributionLike } from 'ol/source/Source';
   import { TileSourceEvent } from 'ol/source/Tile';
+  import TileImage from 'ol/source/TileImage';
+  import WMSServerType from 'ol/source/WMSServerType';
+  import { LoadFunction } from 'ol/Tile';
+  import { TileCoord } from 'ol/tilecoord';
+  import TileGrid from 'ol/tilegrid/TileGrid';
 
   export interface Options {
     attributions?: AttributionLike;

@@ -1,16 +1,14 @@
 declare module 'ol/source/UrlTile' {
 
-  import { AttributionLike } from 'ol/source/Source';
-  import { ProjectionLike } from 'ol/proj';
-  import State from 'ol/source/State';
-  import TileGrid from 'ol/tilegrid/TileGrid';
-  import { LoadFunction } from 'ol/Tile';
-  import { UrlFunction } from 'ol/Tile';
-  import TileSource from 'ol/source/Tile';
-  import Event from 'ol/events/Event';
   import { EventsKey } from 'ol/events';
-  import { TileSourceEvent } from 'ol/source/Tile';
+  import Event from 'ol/events/Event';
   import { ObjectEvent } from 'ol/Object';
+  import { ProjectionLike } from 'ol/proj';
+  import { AttributionLike } from 'ol/source/Source';
+  import State from 'ol/source/State';
+  import TileSource, { TileSourceEvent } from 'ol/source/Tile';
+  import { LoadFunction, UrlFunction } from 'ol/Tile';
+  import TileGrid from 'ol/tilegrid/TileGrid';
 
   export interface Options {
     attributions?: AttributionLike;

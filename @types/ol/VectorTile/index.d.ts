@@ -1,18 +1,15 @@
 declare module 'ol/VectorTile' {
 
-  import Tile from 'ol/Tile';
+  import { Extent } from 'ol/extent';
+  import Feature, { FeatureLike } from 'ol/Feature';
+  import { FeatureLoader } from 'ol/featureloader';
+  import FeatureFormat from 'ol/format/Feature';
+  import Layer from 'ol/layer/Layer';
+  import Projection from 'ol/proj/Projection';
+  import ReplayGroup from 'ol/render/ReplayGroup';
+  import Tile, { LoadFunction, Options } from 'ol/Tile';
   import { TileCoord } from 'ol/tilecoord';
   import TileState from 'ol/TileState';
-  import FeatureFormat from 'ol/format/Feature';
-  import { LoadFunction } from 'ol/Tile';
-  import { Options } from 'ol/Tile';
-  import { Extent } from 'ol/extent';
-  import { FeatureLike } from 'ol/Feature';
-  import Projection from 'ol/proj/Projection';
-  import Layer from 'ol/layer/Layer';
-  import ReplayGroup from 'ol/render/ReplayGroup';
-  import Feature from 'ol/Feature';
-  import { FeatureLoader } from 'ol/featureloader';
 
   export default class VectorTile extends Tile {
     constructor(tileCoord: TileCoord, state: TileState, src: string, format: FeatureFormat, tileLoadFunction: LoadFunction, opt_options?: Options);

@@ -1,10 +1,10 @@
 declare module 'ol/style/RegularShape' {
 
-  import Fill from 'ol/style/Fill';
-  import Stroke from 'ol/style/Stroke';
-  import AtlasManager from 'ol/style/AtlasManager';
-  import ImageStyle from 'ol/style/Image';
   import { ColorLike } from 'ol/colorlike';
+  import AtlasManager from 'ol/style/AtlasManager';
+  import Fill from 'ol/style/Fill';
+  import ImageStyle from 'ol/style/Image';
+  import Stroke from 'ol/style/Stroke';
 
   export interface Options {
     fill?: Fill;

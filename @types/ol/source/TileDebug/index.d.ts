@@ -1,14 +1,14 @@
 declare module 'ol/source/TileDebug' {
 
-  import Tile from 'ol/Tile';
-  import { TileCoord } from 'ol/tilecoord';
-  import { Size } from 'ol/size';
-  import { ProjectionLike } from 'ol/proj';
-  import TileGrid from 'ol/tilegrid/TileGrid';
-  import TileSource from 'ol/source/Tile';
   import { EventsKey } from 'ol/events';
   import Event from 'ol/events/Event';
   import { ObjectEvent } from 'ol/Object';
+  import { ProjectionLike } from 'ol/proj';
+  import { Size } from 'ol/size';
+  import TileSource from 'ol/source/Tile';
+  import Tile from 'ol/Tile';
+  import { TileCoord } from 'ol/tilecoord';
+  import TileGrid from 'ol/tilegrid/TileGrid';
 
   export interface Options {
     projection?: ProjectionLike;

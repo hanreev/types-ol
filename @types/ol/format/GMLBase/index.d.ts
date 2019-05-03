@@ -1,8 +1,7 @@
 declare module 'ol/format/GMLBase' {
 
-  import XMLFeature from 'ol/format/XMLFeature';
-  import { Parser } from 'ol/xml';
   import Feature from 'ol/Feature';
+  import XMLFeature from 'ol/format/XMLFeature';
   import Geometry from 'ol/geom/Geometry';
   import LinearRing from 'ol/geom/LinearRing';
   import LineString from 'ol/geom/LineString';
@@ -11,6 +10,7 @@ declare module 'ol/format/GMLBase' {
   import MultiPolygon from 'ol/geom/MultiPolygon';
   import Point from 'ol/geom/Point';
   import Polygon from 'ol/geom/Polygon';
+  import { Parser } from 'ol/xml';
 
   export default class GMLBase extends XMLFeature {
     constructor(opt_options?: Options);

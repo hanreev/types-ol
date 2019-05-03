@@ -1,21 +1,19 @@
 declare module 'ol/layer/Vector' {
 
-  import { Extent } from 'ol/extent';
-  import { OrderFunction } from 'ol/render';
-  import VectorRenderType from 'ol/layer/VectorRenderType';
-  import VectorSource from 'ol/source/Vector';
-  import PluggableMap from 'ol/PluggableMap';
-  import { StyleLike } from 'ol/style/Style';
-  import Layer from 'ol/layer/Layer';
-  import LayerType from 'ol/LayerType';
-  import Feature from 'ol/Feature';
-  import Source from 'ol/source/Source';
-  import { StyleFunction } from 'ol/style/Style';
-  import Style from 'ol/style/Style';
   import { EventsKey } from 'ol/events';
   import Event from 'ol/events/Event';
+  import { Extent } from 'ol/extent';
+  import Feature from 'ol/Feature';
+  import Layer from 'ol/layer/Layer';
+  import VectorRenderType from 'ol/layer/VectorRenderType';
+  import LayerType from 'ol/LayerType';
   import { ObjectEvent } from 'ol/Object';
+  import PluggableMap from 'ol/PluggableMap';
+  import { OrderFunction } from 'ol/render';
   import RenderEvent from 'ol/render/Event';
+  import Source from 'ol/source/Source';
+  import VectorSource from 'ol/source/Vector';
+  import Style, { StyleLike, StyleFunction } from 'ol/style/Style';
 
   export interface Options {
     opacity?: number;

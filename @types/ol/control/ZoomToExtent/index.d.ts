@@ -1,9 +1,9 @@
 declare module 'ol/control/ZoomToExtent' {
 
-  import { Extent } from 'ol/extent';
   import Control from 'ol/control/Control';
   import { EventsKey } from 'ol/events';
   import Event from 'ol/events/Event';
+  import { Extent } from 'ol/extent';
   import { ObjectEvent } from 'ol/Object';
 
   export interface Options {

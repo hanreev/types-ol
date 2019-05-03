@@ -1,9 +1,8 @@
 declare module 'ol/Collection' {
 
-  import Event from 'ol/events/Event';
-  import BaseObject from 'ol/Object';
   import { EventsKey } from 'ol/events';
-  import { ObjectEvent } from 'ol/Object';
+  import Event from 'ol/events/Event';
+  import BaseObject, { ObjectEvent } from 'ol/Object';
 
   export class CollectionEvent<T> extends Event {
     constructor();

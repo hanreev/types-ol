@@ -1,12 +1,12 @@
 declare module 'ol/tilegrid' {
 
-  import Corner from 'ol/extent/Corner';
   import { Extent } from 'ol/extent';
-  import { Size } from 'ol/size';
-  import TileGrid from 'ol/tilegrid/TileGrid';
+  import Corner from 'ol/extent/Corner';
   import { ProjectionLike } from 'ol/proj';
   import Projection from 'ol/proj/Projection';
+  import { Size } from 'ol/size';
   import { TileCoord } from 'ol/tilecoord';
+  import TileGrid from 'ol/tilegrid/TileGrid';
 
   export function createForExtent(extent: Extent, opt_maxZoom?: number, opt_tileSize?: number | Size, opt_corner?: Corner): TileGrid;
 

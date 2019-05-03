@@ -1,8 +1,8 @@
 declare module 'ol/Observable' {
 
   import { EventsKey } from 'ol/events';
-  import Target from 'ol/events/Target';
   import Event from 'ol/events/Event';
+  import Target from 'ol/events/Target';
 
   export function unByKey(key: EventsKey | EventsKey[]): void;
 

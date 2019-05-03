@@ -1,13 +1,12 @@
 declare module 'ol/Geolocation' {
 
-  import BaseObject from 'ol/Object';
-  import Polygon from 'ol/geom/Polygon';
   import { Coordinate } from 'ol/coordinate';
-  import Projection from 'ol/proj/Projection';
-  import { ProjectionLike } from 'ol/proj';
   import { EventsKey } from 'ol/events';
   import Event from 'ol/events/Event';
-  import { ObjectEvent } from 'ol/Object';
+  import Polygon from 'ol/geom/Polygon';
+  import BaseObject, { ObjectEvent } from 'ol/Object';
+  import { ProjectionLike } from 'ol/proj';
+  import Projection from 'ol/proj/Projection';
 
   export default class Geolocation extends BaseObject {
     constructor(opt_options?: Options);

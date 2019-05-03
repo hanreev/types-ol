@@ -1,33 +1,29 @@
 declare module 'ol/PluggableMap' {
 
-  import Layer from 'ol/layer/Layer';
-  import { State } from 'ol/View';
-  import { Transform } from 'ol/transform';
-  import { Extent } from 'ol/extent';
-  import { Coordinate } from 'ol/coordinate';
-  import { State as State_1 } from 'ol/layer/Layer';
-  import { Size } from 'ol/size';
-  import TileQueue from 'ol/TileQueue';
-  import TileRange from 'ol/TileRange';
-  import BaseLayer from 'ol/layer/Base';
   import Collection from 'ol/Collection';
   import Control from 'ol/control/Control';
-  import Interaction from 'ol/interaction/Interaction';
-  import LayerGroup from 'ol/layer/Group';
-  import Overlay from 'ol/Overlay';
-  import View from 'ol/View';
-  import BaseObject from 'ol/Object';
-  import MapRenderer from 'ol/renderer/Map';
-  import { Pixel } from 'ol/pixel';
-  import { FeatureLike } from 'ol/Feature';
-  import Tile from 'ol/Tile';
-  import MapBrowserEvent from 'ol/MapBrowserEvent';
-  import Feature from 'ol/Feature';
+  import { Coordinate } from 'ol/coordinate';
   import { EventsKey } from 'ol/events';
   import Event from 'ol/events/Event';
-  import { ObjectEvent } from 'ol/Object';
+  import { Extent } from 'ol/extent';
+  import Feature, { FeatureLike } from 'ol/Feature';
+  import Interaction from 'ol/interaction/Interaction';
+  import BaseLayer from 'ol/layer/Base';
+  import LayerGroup from 'ol/layer/Group';
+  import Layer, { State as State_1 } from 'ol/layer/Layer';
+  import MapBrowserEvent from 'ol/MapBrowserEvent';
   import MapEvent from 'ol/MapEvent';
+  import BaseObject, { ObjectEvent } from 'ol/Object';
+  import Overlay from 'ol/Overlay';
+  import { Pixel } from 'ol/pixel';
   import RenderEvent from 'ol/render/Event';
+  import MapRenderer from 'ol/renderer/Map';
+  import { Size } from 'ol/size';
+  import Tile from 'ol/Tile';
+  import TileQueue from 'ol/TileQueue';
+  import TileRange from 'ol/TileRange';
+  import { Transform } from 'ol/transform';
+  import View, { State } from 'ol/View';
 
   export interface AtPixelOptions {
     layerFilter: ((param0: Layer) => boolean);

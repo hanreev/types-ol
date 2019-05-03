@@ -1,12 +1,12 @@
 declare module 'ol/source/TileJSON' {
 
-  import { AttributionLike } from 'ol/source/Source';
-  import { LoadFunction } from 'ol/Tile';
-  import TileImage from 'ol/source/TileImage';
   import { EventsKey } from 'ol/events';
   import Event from 'ol/events/Event';
   import { ObjectEvent } from 'ol/Object';
+  import { AttributionLike } from 'ol/source/Source';
   import { TileSourceEvent } from 'ol/source/Tile';
+  import TileImage from 'ol/source/TileImage';
+  import { LoadFunction } from 'ol/Tile';
 
   export interface Config {
     name?: string;

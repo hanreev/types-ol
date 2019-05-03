@@ -1,15 +1,14 @@
 declare module 'ol/interaction/DragAndDrop' {
 
-  import Interaction from 'ol/interaction/Interaction';
   import { EventsKey } from 'ol/events';
   import Event from 'ol/events/Event';
-  import { ObjectEvent } from 'ol/Object';
-  import Feature from 'ol/Feature';
-  import Projection from 'ol/proj/Projection';
-  import { FeatureLike } from 'ol/Feature';
+  import Feature, { FeatureLike } from 'ol/Feature';
   import FeatureFormat from 'ol/format/Feature';
-  import VectorSource from 'ol/source/Vector';
+  import Interaction from 'ol/interaction/Interaction';
+  import { ObjectEvent } from 'ol/Object';
   import { ProjectionLike } from 'ol/proj';
+  import Projection from 'ol/proj/Projection';
+  import VectorSource from 'ol/source/Vector';
 
   export default class DragAndDrop extends Interaction {
     constructor(opt_options?: Options);

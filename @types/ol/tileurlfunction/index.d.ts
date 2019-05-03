@@ -1,9 +1,9 @@
 declare module 'ol/tileurlfunction' {
 
-  import TileGrid from 'ol/tilegrid/TileGrid';
+  import Projection from 'ol/proj/Projection';
   import { UrlFunction } from 'ol/Tile';
   import { TileCoord } from 'ol/tilecoord';
-  import Projection from 'ol/proj/Projection';
+  import TileGrid from 'ol/tilegrid/TileGrid';
 
   export function createFromTemplate(template: string, tileGrid: TileGrid): UrlFunction;
 

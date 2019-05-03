@@ -1,10 +1,10 @@
 declare module 'ol/format/GPX' {
 
-  import GeometryLayout from 'ol/geom/GeometryLayout';
-  import XMLFeature from 'ol/format/XMLFeature';
-  import Feature from 'ol/Feature';
-  import LineString from 'ol/geom/LineString';
   import { Coordinate } from 'ol/coordinate';
+  import Feature from 'ol/Feature';
+  import XMLFeature from 'ol/format/XMLFeature';
+  import GeometryLayout from 'ol/geom/GeometryLayout';
+  import LineString from 'ol/geom/LineString';
 
   export default class GPX extends XMLFeature {
     constructor(opt_options?: Options);

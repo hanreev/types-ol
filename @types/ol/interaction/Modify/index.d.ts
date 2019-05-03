@@ -1,20 +1,19 @@
 declare module 'ol/interaction/Modify' {
 
-  import Event from 'ol/events/Event';
   import Collection from 'ol/Collection';
-  import Feature from 'ol/Feature';
-  import MapBrowserEvent from 'ol/MapBrowserEvent';
   import { Coordinate } from 'ol/coordinate';
-  import { StyleFunction } from 'ol/style/Style';
+  import { EventsKey } from 'ol/events';
+  import { Condition } from 'ol/events/condition';
+  import Event from 'ol/events/Event';
+  import { Extent } from 'ol/extent';
+  import Feature from 'ol/Feature';
+  import SimpleGeometry from 'ol/geom/SimpleGeometry';
   import PointerInteraction from 'ol/interaction/Pointer';
   import VectorLayer from 'ol/layer/Vector';
-  import { EventsKey } from 'ol/events';
+  import MapBrowserEvent from 'ol/MapBrowserEvent';
   import { ObjectEvent } from 'ol/Object';
-  import { Condition } from 'ol/events/condition';
-  import { StyleLike } from 'ol/style/Style';
   import VectorSource from 'ol/source/Vector';
-  import SimpleGeometry from 'ol/geom/SimpleGeometry';
-  import { Extent } from 'ol/extent';
+  import { StyleFunction, StyleLike } from 'ol/style/Style';
 
   export class ModifyEvent extends Event {
     constructor();

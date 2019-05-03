@@ -1,12 +1,9 @@
 declare module 'ol/format/XMLFeature' {
 
-  import FeatureFormat from 'ol/format/Feature';
-  import { ReadOptions } from 'ol/format/Feature';
-  import Feature from 'ol/Feature';
+  import Feature, { FeatureLike } from 'ol/Feature';
+  import FeatureFormat, { ReadOptions, WriteOptions } from 'ol/format/Feature';
   import Geometry from 'ol/geom/Geometry';
   import Projection from 'ol/proj/Projection';
-  import { WriteOptions } from 'ol/format/Feature';
-  import { FeatureLike } from 'ol/Feature';
 
   export default class XMLFeature extends FeatureFormat {
     constructor();

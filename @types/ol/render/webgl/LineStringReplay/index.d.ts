@@ -1,9 +1,9 @@
 declare module 'ol/render/webgl/LineStringReplay' {
 
-  import WebGLReplay from 'ol/render/webgl/Replay';
   import { Extent } from 'ol/extent';
   import Feature from 'ol/Feature';
   import RenderFeature from 'ol/render/Feature';
+  import WebGLReplay from 'ol/render/webgl/Replay';
 
   export default class WebGLLineStringReplay extends WebGLReplay {
     constructor(tolerance: number, maxExtent: Extent);

@@ -1,22 +1,21 @@
 declare module 'ol/format/WFS' {
 
-  import Filter from 'ol/format/filter/Filter';
   import { Extent } from 'ol/extent';
-  import GMLBase from 'ol/format/GMLBase';
-  import XMLFeature from 'ol/format/XMLFeature';
   import Feature from 'ol/Feature';
   import Bbox from 'ol/format/filter/Bbox';
   import ComparisonBinary from 'ol/format/filter/ComparisonBinary';
   import Contains from 'ol/format/filter/Contains';
   import During from 'ol/format/filter/During';
+  import Filter from 'ol/format/filter/Filter';
   import Intersects from 'ol/format/filter/Intersects';
   import IsBetween from 'ol/format/filter/IsBetween';
   import IsLike from 'ol/format/filter/IsLike';
   import IsNull from 'ol/format/filter/IsNull';
   import LogicalNary from 'ol/format/filter/LogicalNary';
   import Not from 'ol/format/filter/Not';
-  import { Options as Options_1 } from 'ol/format/GMLBase';
   import Within from 'ol/format/filter/Within';
+  import GMLBase, { Options as Options_1 } from 'ol/format/GMLBase';
+  import XMLFeature from 'ol/format/XMLFeature';
 
   export function writeFilter(filter: Filter): Node;
 

@@ -1,12 +1,12 @@
 declare module 'ol/renderer/canvas/ImageLayer' {
 
-  import IntermediateCanvasRenderer from 'ol/renderer/canvas/IntermediateCanvas';
-  import ImageLayer from 'ol/layer/Image';
-  import VectorLayer from 'ol/layer/Vector';
-  import MapRenderer from 'ol/renderer/Map';
-  import Layer from 'ol/layer/Layer';
   import { EventsKey } from 'ol/events';
   import Event from 'ol/events/Event';
+  import ImageLayer from 'ol/layer/Image';
+  import Layer from 'ol/layer/Layer';
+  import VectorLayer from 'ol/layer/Vector';
+  import IntermediateCanvasRenderer from 'ol/renderer/canvas/IntermediateCanvas';
+  import MapRenderer from 'ol/renderer/Map';
 
   export default class CanvasImageLayerRenderer extends IntermediateCanvasRenderer {
     constructor(imageLayer: ImageLayer | VectorLayer);

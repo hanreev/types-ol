@@ -1,15 +1,14 @@
 declare module 'ol/renderer/webgl/Layer' {
 
-  import LayerRenderer from 'ol/renderer/Layer';
-  import WebGLMapRenderer from 'ol/renderer/webgl/Map';
-  import Layer from 'ol/layer/Layer';
-  import { Transform } from 'ol/transform';
-  import { FrameState } from 'ol/PluggableMap';
-  import { State } from 'ol/layer/Layer';
-  import WebGLContext from 'ol/webgl/Context';
-  import { Pixel } from 'ol/pixel';
   import { EventsKey } from 'ol/events';
   import Event from 'ol/events/Event';
+  import Layer, { State } from 'ol/layer/Layer';
+  import { Pixel } from 'ol/pixel';
+  import { FrameState } from 'ol/PluggableMap';
+  import LayerRenderer from 'ol/renderer/Layer';
+  import WebGLMapRenderer from 'ol/renderer/webgl/Map';
+  import { Transform } from 'ol/transform';
+  import WebGLContext from 'ol/webgl/Context';
 
   export default class WebGLLayerRenderer extends LayerRenderer {
     constructor(mapRenderer: WebGLMapRenderer, layer: Layer);

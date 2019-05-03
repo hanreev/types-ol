@@ -1,7 +1,7 @@
 declare module 'ol/pointer/MouseSource' {
 
-  import PointerEventHandler from 'ol/pointer/PointerEventHandler';
   import EventSource from 'ol/pointer/EventSource';
+  import PointerEventHandler from 'ol/pointer/PointerEventHandler';
 
   export function prepareEvent(inEvent: Event, dispatcher: PointerEventHandler): any;
 

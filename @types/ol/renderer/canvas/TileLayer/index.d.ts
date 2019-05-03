@@ -1,17 +1,16 @@
 declare module 'ol/renderer/canvas/TileLayer' {
 
-  import IntermediateCanvasRenderer from 'ol/renderer/canvas/IntermediateCanvas';
-  import TileLayer from 'ol/layer/Tile';
-  import VectorTileLayer from 'ol/layer/VectorTile';
-  import Tile from 'ol/Tile';
-  import { Extent } from 'ol/extent';
-  import MapRenderer from 'ol/renderer/Map';
-  import Layer from 'ol/layer/Layer';
-  import { FrameState } from 'ol/PluggableMap';
-  import { State } from 'ol/layer/Layer';
-  import Projection from 'ol/proj/Projection';
   import { EventsKey } from 'ol/events';
   import Event from 'ol/events/Event';
+  import { Extent } from 'ol/extent';
+  import Layer, { State } from 'ol/layer/Layer';
+  import TileLayer from 'ol/layer/Tile';
+  import VectorTileLayer from 'ol/layer/VectorTile';
+  import { FrameState } from 'ol/PluggableMap';
+  import Projection from 'ol/proj/Projection';
+  import IntermediateCanvasRenderer from 'ol/renderer/canvas/IntermediateCanvas';
+  import MapRenderer from 'ol/renderer/Map';
+  import Tile from 'ol/Tile';
 
   export default class CanvasTileLayerRenderer extends IntermediateCanvasRenderer {
     constructor(tileLayer: TileLayer | VectorTileLayer, opt_noContext?: boolean);

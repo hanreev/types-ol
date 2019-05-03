@@ -1,10 +1,7 @@
 declare module 'ol/render/VectorContext' {
 
-  import Circle from 'ol/geom/Circle';
   import Feature from 'ol/Feature';
-  import SimpleGeometry from 'ol/geom/SimpleGeometry';
-  import RenderFeature from 'ol/render/Feature';
-  import Style from 'ol/style/Style';
+  import Circle from 'ol/geom/Circle';
   import Geometry from 'ol/geom/Geometry';
   import GeometryCollection from 'ol/geom/GeometryCollection';
   import LineString from 'ol/geom/LineString';
@@ -13,10 +10,13 @@ declare module 'ol/render/VectorContext' {
   import MultiPolygon from 'ol/geom/MultiPolygon';
   import Point from 'ol/geom/Point';
   import Polygon from 'ol/geom/Polygon';
-  import Fill from 'ol/style/Fill';
-  import Stroke from 'ol/style/Stroke';
-  import ImageStyle from 'ol/style/Image';
+  import SimpleGeometry from 'ol/geom/SimpleGeometry';
   import { DeclutterGroup } from 'ol/render/canvas';
+  import RenderFeature from 'ol/render/Feature';
+  import Fill from 'ol/style/Fill';
+  import ImageStyle from 'ol/style/Image';
+  import Stroke from 'ol/style/Stroke';
+  import Style from 'ol/style/Style';
   import Text from 'ol/style/Text';
 
   export default class VectorContext {

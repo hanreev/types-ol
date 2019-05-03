@@ -1,14 +1,14 @@
 declare module 'ol/control/OverviewMap' {
 
-  import MapEvent from 'ol/MapEvent';
-  import Layer from 'ol/layer/Layer';
   import Collection from 'ol/Collection';
-  import View from 'ol/View';
   import Control from 'ol/control/Control';
-  import PluggableMap from 'ol/PluggableMap';
   import { EventsKey } from 'ol/events';
   import Event from 'ol/events/Event';
+  import Layer from 'ol/layer/Layer';
+  import MapEvent from 'ol/MapEvent';
   import { ObjectEvent } from 'ol/Object';
+  import PluggableMap from 'ol/PluggableMap';
+  import View from 'ol/View';
 
   export function render(mapEvent: MapEvent): void;
 

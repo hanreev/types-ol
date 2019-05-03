@@ -1,13 +1,12 @@
 declare module 'ol/source/Source' {
 
-  import { FrameState } from 'ol/PluggableMap';
-  import { ProjectionLike } from 'ol/proj';
-  import State from 'ol/source/State';
-  import BaseObject from 'ol/Object';
-  import Projection from 'ol/proj/Projection';
   import { EventsKey } from 'ol/events';
   import Event from 'ol/events/Event';
-  import { ObjectEvent } from 'ol/Object';
+  import BaseObject, { ObjectEvent } from 'ol/Object';
+  import { FrameState } from 'ol/PluggableMap';
+  import { ProjectionLike } from 'ol/proj';
+  import Projection from 'ol/proj/Projection';
+  import State from 'ol/source/State';
 
   export type Attribution = ((param0: FrameState) => string | string[]);
 

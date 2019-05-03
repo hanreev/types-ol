@@ -1,12 +1,11 @@
 declare module 'ol/WebGLMap' {
 
-  import PluggableMap from 'ol/PluggableMap';
-  import { MapOptions } from 'ol/PluggableMap';
   import { EventsKey } from 'ol/events';
   import Event from 'ol/events/Event';
-  import { ObjectEvent } from 'ol/Object';
   import MapBrowserEvent from 'ol/MapBrowserEvent';
   import MapEvent from 'ol/MapEvent';
+  import { ObjectEvent } from 'ol/Object';
+  import PluggableMap, { MapOptions } from 'ol/PluggableMap';
   import RenderEvent from 'ol/render/Event';
 
   export default class WebGLMap extends PluggableMap {

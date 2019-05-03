@@ -1,13 +1,13 @@
 declare module 'ol/interaction/Pointer' {
 
-  import PointerEvent from 'ol/pointer/PointerEvent';
-  import { Pixel } from 'ol/pixel';
-  import MapBrowserPointerEvent from 'ol/MapBrowserPointerEvent';
-  import MapBrowserEvent from 'ol/MapBrowserEvent';
-  import Interaction from 'ol/interaction/Interaction';
   import { EventsKey } from 'ol/events';
   import Event from 'ol/events/Event';
+  import Interaction from 'ol/interaction/Interaction';
+  import MapBrowserEvent from 'ol/MapBrowserEvent';
+  import MapBrowserPointerEvent from 'ol/MapBrowserPointerEvent';
   import { ObjectEvent } from 'ol/Object';
+  import { Pixel } from 'ol/pixel';
+  import PointerEvent from 'ol/pointer/PointerEvent';
 
   export function centroid(pointerEvents: PointerEvent[]): Pixel;
 

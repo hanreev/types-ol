@@ -1,15 +1,15 @@
 declare module 'ol/style/Style' {
 
+  import { Coordinate } from 'ol/coordinate';
   import { FeatureLike } from 'ol/Feature';
-  import GeometryType from 'ol/geom/GeometryType';
   import Geometry from 'ol/geom/Geometry';
+  import GeometryType from 'ol/geom/GeometryType';
+  import { State } from 'ol/render';
   import RenderFeature from 'ol/render/Feature';
   import Fill from 'ol/style/Fill';
   import ImageStyle from 'ol/style/Image';
   import Stroke from 'ol/style/Stroke';
   import Text from 'ol/style/Text';
-  import { Coordinate } from 'ol/coordinate';
-  import { State } from 'ol/render';
 
   export function createDefaultStyle(feature: FeatureLike, resolution: number): Style[];
 

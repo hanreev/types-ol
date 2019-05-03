@@ -1,10 +1,10 @@
 declare module 'ol/interaction/MouseWheelZoom' {
 
-  import Interaction from 'ol/interaction/Interaction';
   import { EventsKey } from 'ol/events';
-  import Event from 'ol/events/Event';
-  import { ObjectEvent } from 'ol/Object';
   import { Condition } from 'ol/events/condition';
+  import Event from 'ol/events/Event';
+  import Interaction from 'ol/interaction/Interaction';
+  import { ObjectEvent } from 'ol/Object';
 
   export enum Mode {
     TRACKPAD = 'trackpad',

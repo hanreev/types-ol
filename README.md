@@ -17,21 +17,69 @@ yarn add -D @hanreev/types-ol
 
 
 
-### Configuration
+### Configuration and Usage
 
-```js
-// file: tsconfig.json
-{
-  ...
-  "baseUrl": "./",
-  "paths": {
-    "ol/*": ["node_modules/@hanreev/types-ol/ol/*"]
-  },
-  ...
-}
-```
+There are several ways to use this package. Please choose one:
 
+- Install as `@types/ol`. This will simulate `@types/ol` installation from `./node_modules/@hanreev/types-ol/ol` directory.  
+  Why?
+  1. TypeScript compiler will look for types in `node_modules/@types` by default.
+  2. If you're using [Visual Studio Code](https://code.visualstudio.com/), its IntelliSense will only recognize types from `@node_modules/@types`.
 
+  ```js
+  // file: package.json
+  
+  {
+    ...
+    "devDependencies": {
+      ...
+      "@hanreev/types-ol": "^1.0.2",
+      "@types/ol": "./node_modules/@hanreev/types-ol/ol",
+      ...
+    }
+  }
+  ```
+
+- Using `compilerOptions.paths` in `tsconfig.json`
+  
+  ```js
+  // file: tsconfig.json
+
+  {
+    "compilerOptions": {
+      ...
+      "baseUrl": "./",
+      "paths": {
+        "ol/*": ["node_modules/@hanreev/types-ol/ol/*"]
+      },
+      ...
+    }
+  }
+  ```
+
+- Using `compilerOptions.typeRoots` and `compilerOptions.types` in `tsconfig.json`
+
+- 
+  ```js
+  // file: tsconfig.json
+
+  {
+    "compilerOptions": {
+      ...
+      "baseUrl": "./",
+      "typeRoots": [
+        "node_modules/@types",
+        "node_modules/@hanreev/types-ol"
+      ],
+      "types": [
+        "ol",
+        ...
+      ],
+      ...
+    }
+  }
+  ```
+  
 
 
 
@@ -76,6 +124,18 @@ Configuration is located at `jsdoc/conf.json`
 
 > ***Note:***  
 > Some declaration was patched manually. If you found any errors please [create a new issue](https://github.com/hanreev/types-ol/issues).
+
+
+
+## Changelog
+
+- **v1.0.2**
+  - Sort imports
+  - NPM compatibility as `@types/ol` 
+- **v1.0.1**
+  - Fix `ol/MapBrowserEventType` module
+- **v1.0.0**
+  - Initial release
 
 
 

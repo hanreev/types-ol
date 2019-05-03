@@ -1,19 +1,18 @@
 declare module 'ol/interaction/Draw' {
 
-  import PointerInteraction from 'ol/interaction/Pointer';
-  import Feature from 'ol/Feature';
-  import VectorLayer from 'ol/layer/Vector';
-  import { EventsKey } from 'ol/events';
-  import Event from 'ol/events/Event';
-  import { ObjectEvent } from 'ol/Object';
-  import SimpleGeometry from 'ol/geom/SimpleGeometry';
-  import { StyleFunction } from 'ol/style/Style';
-  import GeometryType from 'ol/geom/GeometryType';
-  import { Coordinate } from 'ol/coordinate';
   import Collection from 'ol/Collection';
-  import VectorSource from 'ol/source/Vector';
+  import { Coordinate } from 'ol/coordinate';
+  import { EventsKey } from 'ol/events';
   import { Condition } from 'ol/events/condition';
-  import { StyleLike } from 'ol/style/Style';
+  import Event from 'ol/events/Event';
+  import Feature from 'ol/Feature';
+  import GeometryType from 'ol/geom/GeometryType';
+  import SimpleGeometry from 'ol/geom/SimpleGeometry';
+  import PointerInteraction from 'ol/interaction/Pointer';
+  import VectorLayer from 'ol/layer/Vector';
+  import { ObjectEvent } from 'ol/Object';
+  import VectorSource from 'ol/source/Vector';
+  import { StyleFunction, StyleLike } from 'ol/style/Style';
 
   export function createBox(): GeometryFunction;
 

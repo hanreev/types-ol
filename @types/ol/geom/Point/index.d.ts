@@ -1,10 +1,10 @@
 declare module 'ol/geom/Point' {
 
-  import SimpleGeometry from 'ol/geom/SimpleGeometry';
   import { Coordinate } from 'ol/coordinate';
-  import GeometryLayout from 'ol/geom/GeometryLayout';
   import { EventsKey } from 'ol/events';
   import Event from 'ol/events/Event';
+  import GeometryLayout from 'ol/geom/GeometryLayout';
+  import SimpleGeometry from 'ol/geom/SimpleGeometry';
   import { ObjectEvent } from 'ol/Object';
 
   export default class Point extends SimpleGeometry {

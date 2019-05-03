@@ -1,14 +1,14 @@
 declare module 'ol/renderer/canvas/VectorTileLayer' {
 
-  import CanvasTileLayerRenderer from 'ol/renderer/canvas/TileLayer';
-  import VectorTileLayer from 'ol/layer/VectorTile';
-  import MapRenderer from 'ol/renderer/Map';
-  import Layer from 'ol/layer/Layer';
+  import { EventsKey } from 'ol/events';
   import Event from 'ol/events/Event';
   import { FeatureLike } from 'ol/Feature';
-  import Style from 'ol/style/Style';
+  import Layer from 'ol/layer/Layer';
+  import VectorTileLayer from 'ol/layer/VectorTile';
   import CanvasReplayGroup from 'ol/render/canvas/ReplayGroup';
-  import { EventsKey } from 'ol/events';
+  import CanvasTileLayerRenderer from 'ol/renderer/canvas/TileLayer';
+  import MapRenderer from 'ol/renderer/Map';
+  import Style from 'ol/style/Style';
 
   export default class CanvasVectorTileLayerRenderer extends CanvasTileLayerRenderer {
     constructor(layer: VectorTileLayer);

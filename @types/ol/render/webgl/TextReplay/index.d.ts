@@ -1,8 +1,8 @@
 declare module 'ol/render/webgl/TextReplay' {
 
-  import AtlasManager from 'ol/style/AtlasManager';
-  import WebGLTextureReplay from 'ol/render/webgl/TextureReplay';
   import { Extent } from 'ol/extent';
+  import WebGLTextureReplay from 'ol/render/webgl/TextureReplay';
+  import AtlasManager from 'ol/style/AtlasManager';
 
   export interface GlyphAtlas {
     atlas: AtlasManager;

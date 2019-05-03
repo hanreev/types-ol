@@ -1,25 +1,25 @@
 declare module 'ol/format/filter' {
 
-  import Filter from 'ol/format/filter/Filter';
-  import And from 'ol/format/filter/And';
   import { Extent } from 'ol/extent';
+  import And from 'ol/format/filter/And';
   import Bbox from 'ol/format/filter/Bbox';
-  import IsBetween from 'ol/format/filter/IsBetween';
-  import Geometry from 'ol/geom/Geometry';
   import Contains from 'ol/format/filter/Contains';
   import During from 'ol/format/filter/During';
   import EqualTo from 'ol/format/filter/EqualTo';
+  import Filter from 'ol/format/filter/Filter';
   import GreaterThan from 'ol/format/filter/GreaterThan';
   import GreaterThanOrEqualTo from 'ol/format/filter/GreaterThanOrEqualTo';
   import Intersects from 'ol/format/filter/Intersects';
+  import IsBetween from 'ol/format/filter/IsBetween';
+  import IsLike from 'ol/format/filter/IsLike';
   import IsNull from 'ol/format/filter/IsNull';
   import LessThan from 'ol/format/filter/LessThan';
   import LessThanOrEqualTo from 'ol/format/filter/LessThanOrEqualTo';
-  import IsLike from 'ol/format/filter/IsLike';
   import Not from 'ol/format/filter/Not';
   import NotEqualTo from 'ol/format/filter/NotEqualTo';
   import Or from 'ol/format/filter/Or';
   import Within from 'ol/format/filter/Within';
+  import Geometry from 'ol/geom/Geometry';
 
   export function and(...conditions: Filter[]): And;
 

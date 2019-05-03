@@ -1,8 +1,8 @@
 declare module 'ol/Object' {
 
+  import { EventsKey } from 'ol/events';
   import Event from 'ol/events/Event';
   import Observable from 'ol/Observable';
-  import { EventsKey } from 'ol/events';
 
   export function getChangeEventType(key: string): string;
 

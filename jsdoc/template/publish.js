@@ -307,6 +307,89 @@ function registerImport(_module, val) {
 }
 
 /**
+ * @param {string[]} expressions
+ * @param {number} [maxLineLength=120]
+ * @returns {string[]}
+ */
+function sortImports(expressions, maxLineLength = 120) {
+  if (!Array.isArray(expressions))
+    return logger.error('sortImports -- Invalid argument:', expressions);
+
+  /**
+   * @typedef ImportMap
+   * @prop {string} default
+   * @prop {string[]} members
+   */
+
+  /** @type {Object<string, ImportMap>} */
+  const importMap = {};
+
+  /**
+   * @param {string} a
+   * @param {string} b
+   * @returns {number}
+   */
+  const sortFn = (a, b) => {
+    a = a.toLowerCase().replace(/^\.\//, 'zz').replace(/^\.\.\//, 'za');
+    b = b.toLowerCase().replace(/^\.\//, 'zz').replace(/^\.\.\//, 'za');
+    return a < b ? -1 : a > b ? 1 : 0;
+  };
+
+  const formatExpression = (moduleName, multiLine = false) => {
+    const map = importMap[moduleName];
+    let expression = 'import ';
+    if (map.default)
+      expression += map.default;
+    if (map.members && map.members.length) {
+      if (map.default)
+        expression += ', ';
+      if (multiLine)
+        expression += `{\n${map.members.join(',\n')}\n}`;
+      else
+        expression += `{ ${map.members.join(', ')} }`;
+    }
+    expression += ` from '${moduleName}';`;
+    if (!multiLine && expression.length > maxLineLength)
+      return formatExpression(moduleName, true);
+    return expression;
+  };
+
+  expressions.forEach(expression => {
+    /** @type {RegExpMatchArray} */
+    const match = expression.match(/^import (?:([^{]+?),\s?)?(.+?) from ['"](.+?)['"];?$/);
+    if (!match)
+      return logger.error('sortImports -- Invalid expression:', expression);
+
+    let importDefault = match[1] && match[1].trim();
+    let importMembers = match[2];
+    const moduleName = match[3];
+
+    if (/{.+}/.test(importMembers)) {
+      importMembers = importMembers.replace(/{\s?(.+?)\s?}/, '$1');
+    } else {
+      importDefault = importMembers;
+      importMembers = undefined;
+    }
+
+    /** @type {ImportMap} */
+    const map = {
+      default: importDefault,
+      members: importMembers ? importMembers.split(/,\s?/).sort(sortFn) : [],
+    };
+
+    if (!importMap[moduleName]) {
+      importMap[moduleName] = map;
+    } else {
+      importMap[moduleName].default = importMap[moduleName].default || map.default;
+      importMap[moduleName].members = importMap[moduleName].members.concat(map.members);
+    }
+
+  });
+
+  return Object.keys(importMap).sort(sortFn).map(moduleName => formatExpression(moduleName));
+}
+
+/**
  * @param {ParsedType} parsedType
  * @param {Doclet} _module
  * @returns {string}
@@ -790,7 +873,6 @@ function processModule(doclet) {
     classes.add(child.longname);
   });
 
-
   find({
     kind: ['class', 'member', 'function', 'typedef', 'enum', 'constant'],
     memberof: doclet.longname
@@ -808,6 +890,9 @@ function processModule(doclet) {
     children = children.concat(MEMBER_PATCHES[doclet.longname]);
 
   MODULE_CHILDREN[doclet.name] = children;
+
+  if (doclet.name in MODULE_IMPORTS)
+    MODULE_IMPORTS[doclet.name].expressions = sortImports(MODULE_IMPORTS[doclet.name].expressions);
 }
 
 /**

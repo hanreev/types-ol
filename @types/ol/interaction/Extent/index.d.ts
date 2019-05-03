@@ -1,13 +1,12 @@
 declare module 'ol/interaction/Extent' {
 
-  import PointerInteraction from 'ol/interaction/Pointer';
-  import { Extent } from 'ol/extent';
+  import { Coordinate } from 'ol/coordinate';
   import { EventsKey } from 'ol/events';
   import Event from 'ol/events/Event';
+  import { Extent } from 'ol/extent';
+  import PointerInteraction from 'ol/interaction/Pointer';
   import { ObjectEvent } from 'ol/Object';
-  import { StyleFunction } from 'ol/style/Style';
-  import { Coordinate } from 'ol/coordinate';
-  import { StyleLike } from 'ol/style/Style';
+  import { StyleFunction, StyleLike } from 'ol/style/Style';
 
   export default class ExtentInteraction extends PointerInteraction {
     constructor(opt_options?: Options);

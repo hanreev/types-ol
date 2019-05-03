@@ -1,8 +1,8 @@
 declare module 'ol/geom/GeometryCollection' {
 
-  import Geometry from 'ol/geom/Geometry';
   import { EventsKey } from 'ol/events';
   import Event from 'ol/events/Event';
+  import Geometry from 'ol/geom/Geometry';
   import { ObjectEvent } from 'ol/Object';
 
   export default class GeometryCollection extends Geometry {

@@ -1,11 +1,10 @@
 declare module 'ol/interaction/DragZoom' {
 
-  import DragBox from 'ol/interaction/DragBox';
   import { EventsKey } from 'ol/events';
-  import { DragBoxEvent } from 'ol/interaction/DragBox';
-  import Event from 'ol/events/Event';
-  import { ObjectEvent } from 'ol/Object';
   import { Condition } from 'ol/events/condition';
+  import Event from 'ol/events/Event';
+  import DragBox, { DragBoxEvent } from 'ol/interaction/DragBox';
+  import { ObjectEvent } from 'ol/Object';
 
   export default class DragZoom extends DragBox {
     constructor(opt_options?: Options);

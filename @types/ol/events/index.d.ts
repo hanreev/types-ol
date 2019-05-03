@@ -1,7 +1,7 @@
 declare module 'ol/events' {
 
-  import { EventTargetLike } from 'ol/events/Target';
   import Event from 'ol/events/Event';
+  import { EventTargetLike } from 'ol/events/Target';
 
   export function bindListener(listenerObj: EventsKey): ListenerFunction;
 

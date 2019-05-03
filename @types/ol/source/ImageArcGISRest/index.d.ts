@@ -1,13 +1,12 @@
 declare module 'ol/source/ImageArcGISRest' {
 
-  import ImageSource from 'ol/source/Image';
-  import { LoadFunction } from 'ol/Image';
   import { EventsKey } from 'ol/events';
   import Event from 'ol/events/Event';
-  import { ImageSourceEvent } from 'ol/source/Image';
+  import { LoadFunction } from 'ol/Image';
   import { ObjectEvent } from 'ol/Object';
-  import { AttributionLike } from 'ol/source/Source';
   import { ProjectionLike } from 'ol/proj';
+  import ImageSource, { ImageSourceEvent } from 'ol/source/Image';
+  import { AttributionLike } from 'ol/source/Source';
 
   export default class ImageArcGISRest extends ImageSource {
     constructor(opt_options?: Options);

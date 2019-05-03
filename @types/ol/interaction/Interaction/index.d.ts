@@ -1,13 +1,12 @@
 declare module 'ol/interaction/Interaction' {
 
-  import View from 'ol/View';
   import { Coordinate } from 'ol/coordinate';
-  import BaseObject from 'ol/Object';
-  import PluggableMap from 'ol/PluggableMap';
-  import MapBrowserEvent from 'ol/MapBrowserEvent';
   import { EventsKey } from 'ol/events';
   import Event from 'ol/events/Event';
-  import { ObjectEvent } from 'ol/Object';
+  import MapBrowserEvent from 'ol/MapBrowserEvent';
+  import BaseObject, { ObjectEvent } from 'ol/Object';
+  import PluggableMap from 'ol/PluggableMap';
+  import View from 'ol/View';
 
   export function pan(view: View, delta: Coordinate, opt_duration?: number): void;
 

@@ -1,19 +1,19 @@
 declare module 'ol/renderer/Layer' {
 
-  import Observable from 'ol/Observable';
-  import Layer from 'ol/layer/Layer';
-  import TileSource from 'ol/source/Tile';
-  import Projection from 'ol/proj/Projection';
-  import Tile from 'ol/Tile';
-  import TileRange from 'ol/TileRange';
-  import ImageBase from 'ol/ImageBase';
-  import { FrameState } from 'ol/PluggableMap';
-  import TileGrid from 'ol/tilegrid/TileGrid';
-  import { Extent } from 'ol/extent';
   import { Coordinate } from 'ol/coordinate';
-  import { FeatureLike } from 'ol/Feature';
   import { EventsKey } from 'ol/events';
   import Event from 'ol/events/Event';
+  import { Extent } from 'ol/extent';
+  import { FeatureLike } from 'ol/Feature';
+  import ImageBase from 'ol/ImageBase';
+  import Layer from 'ol/layer/Layer';
+  import Observable from 'ol/Observable';
+  import { FrameState } from 'ol/PluggableMap';
+  import Projection from 'ol/proj/Projection';
+  import TileSource from 'ol/source/Tile';
+  import Tile from 'ol/Tile';
+  import TileGrid from 'ol/tilegrid/TileGrid';
+  import TileRange from 'ol/TileRange';
 
   export default class LayerRenderer extends Observable {
     constructor(layer: Layer);

@@ -1,20 +1,18 @@
 declare module 'ol/source/Tile' {
 
-  import Event from 'ol/events/Event';
-  import Tile from 'ol/Tile';
-  import { AttributionLike } from 'ol/source/Source';
-  import { ProjectionLike } from 'ol/proj';
-  import State from 'ol/source/State';
-  import TileGrid from 'ol/tilegrid/TileGrid';
-  import Source from 'ol/source/Source';
-  import TileCache from 'ol/TileCache';
-  import { Options as Options_1 } from 'ol/Tile';
-  import { Size } from 'ol/size';
-  import Projection from 'ol/proj/Projection';
-  import TileRange from 'ol/TileRange';
-  import { TileCoord } from 'ol/tilecoord';
   import { EventsKey } from 'ol/events';
+  import Event from 'ol/events/Event';
   import { ObjectEvent } from 'ol/Object';
+  import { ProjectionLike } from 'ol/proj';
+  import Projection from 'ol/proj/Projection';
+  import { Size } from 'ol/size';
+  import Source, { AttributionLike } from 'ol/source/Source';
+  import State from 'ol/source/State';
+  import Tile, { Options as Options_1 } from 'ol/Tile';
+  import TileCache from 'ol/TileCache';
+  import { TileCoord } from 'ol/tilecoord';
+  import TileGrid from 'ol/tilegrid/TileGrid';
+  import TileRange from 'ol/TileRange';
 
   export class TileSourceEvent extends Event {
     constructor();

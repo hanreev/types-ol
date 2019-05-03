@@ -1,6 +1,6 @@
 {
   "name": "@hanreev/types-ol",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "OpenLayers 5+ TypeScript declaration",
   "author": "Rifa'i M. Hanif <hanreev@gmail.com>",
   "repository": {
@@ -24,9 +24,7 @@
     "lint": "tsc -p tsconfig.lint.json --pretty",
     "build-format": "npm run build && npm run format",
     "lint-test": "tsc -p tsconfig.test.json --pretty",
-    "build-test": "webpack --progress --color",
-    "pre-publish": "npm run build-format && npm run lint && npm run lint-test",
-    "publish": "npm publish --access public"
+    "test": "webpack --progress --color"
   },
   "dependencies": {
     "@types/arcgis-rest-api": "^10.4.4",

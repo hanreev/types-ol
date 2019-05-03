@@ -1,9 +1,9 @@
 declare module 'ol/proj' {
 
-  import Units from 'ol/proj/Units';
   import { Coordinate } from 'ol/coordinate';
-  import Projection from 'ol/proj/Projection';
   import { Extent } from 'ol/extent';
+  import Projection from 'ol/proj/Projection';
+  import Units from 'ol/proj/Units';
 
   export function addCommon(): void;
 

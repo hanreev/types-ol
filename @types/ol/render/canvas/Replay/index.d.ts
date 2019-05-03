@@ -1,15 +1,14 @@
 declare module 'ol/render/canvas/Replay' {
 
-  import VectorContext from 'ol/render/VectorContext';
-  import { Extent } from 'ol/extent';
-  import { FillStrokeState } from 'ol/render/canvas';
-  import Geometry from 'ol/geom/Geometry';
-  import RenderFeature from 'ol/render/Feature';
-  import Feature from 'ol/Feature';
-  import SimpleGeometry from 'ol/geom/SimpleGeometry';
-  import { DeclutterGroup } from 'ol/render/canvas';
-  import { Transform } from 'ol/transform';
   import { Coordinate } from 'ol/coordinate';
+  import { Extent } from 'ol/extent';
+  import Feature from 'ol/Feature';
+  import Geometry from 'ol/geom/Geometry';
+  import SimpleGeometry from 'ol/geom/SimpleGeometry';
+  import { FillStrokeState, DeclutterGroup } from 'ol/render/canvas';
+  import RenderFeature from 'ol/render/Feature';
+  import VectorContext from 'ol/render/VectorContext';
+  import { Transform } from 'ol/transform';
 
   export default class CanvasReplay extends VectorContext {
     constructor(tolerance: number, maxExtent: Extent, resolution: number, pixelRatio: number, overlaps: boolean, declutterTree: any);

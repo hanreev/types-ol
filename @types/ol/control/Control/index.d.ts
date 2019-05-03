@@ -1,11 +1,10 @@
 declare module 'ol/control/Control' {
 
-  import BaseObject from 'ol/Object';
   import { EventsKey } from 'ol/events';
-  import PluggableMap from 'ol/PluggableMap';
   import Event from 'ol/events/Event';
-  import { ObjectEvent } from 'ol/Object';
   import MapEvent from 'ol/MapEvent';
+  import BaseObject, { ObjectEvent } from 'ol/Object';
+  import PluggableMap from 'ol/PluggableMap';
 
   export default class Control extends BaseObject {
     constructor(options: Options);

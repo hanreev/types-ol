@@ -1,8 +1,8 @@
 declare module 'ol/reproj' {
 
-  import Projection from 'ol/proj/Projection';
   import { Coordinate } from 'ol/coordinate';
   import { Extent } from 'ol/extent';
+  import Projection from 'ol/proj/Projection';
   import Triangulation from 'ol/reproj/Triangulation';
 
   export function calculateSourceResolution(sourceProj: Projection, targetProj: Projection, targetCenter: Coordinate, targetResolution: number): number;

@@ -1,8 +1,8 @@
 declare module 'ol/reproj/Triangulation' {
 
   import { Coordinate } from 'ol/coordinate';
-  import Projection from 'ol/proj/Projection';
   import { Extent } from 'ol/extent';
+  import Projection from 'ol/proj/Projection';
 
   export interface Triangle {
     source: Coordinate[];

@@ -1,13 +1,12 @@
 declare module 'ol/source/Cluster' {
 
-  import Point from 'ol/geom/Point';
-  import VectorSource from 'ol/source/Vector';
-  import Feature from 'ol/Feature';
   import { EventsKey } from 'ol/events';
-  import { VectorSourceEvent } from 'ol/source/Vector';
   import Event from 'ol/events/Event';
+  import Feature from 'ol/Feature';
+  import Point from 'ol/geom/Point';
   import { ObjectEvent } from 'ol/Object';
   import { AttributionLike } from 'ol/source/Source';
+  import VectorSource, { VectorSourceEvent } from 'ol/source/Vector';
 
   export default class Cluster extends VectorSource {
     constructor(options: Options);

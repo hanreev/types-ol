@@ -1,13 +1,13 @@
 declare module 'ol/geom/Circle' {
 
-  import SimpleGeometry from 'ol/geom/SimpleGeometry';
   import { Coordinate } from 'ol/coordinate';
-  import GeometryLayout from 'ol/geom/GeometryLayout';
-  import { ProjectionLike } from 'ol/proj';
-  import Geometry from 'ol/geom/Geometry';
   import { EventsKey } from 'ol/events';
   import Event from 'ol/events/Event';
+  import Geometry from 'ol/geom/Geometry';
+  import GeometryLayout from 'ol/geom/GeometryLayout';
+  import SimpleGeometry from 'ol/geom/SimpleGeometry';
   import { ObjectEvent } from 'ol/Object';
+  import { ProjectionLike } from 'ol/proj';
 
   export default class Circle extends SimpleGeometry {
     constructor(center: Coordinate, opt_radius?: number, opt_layout?: GeometryLayout);

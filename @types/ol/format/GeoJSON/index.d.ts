@@ -1,18 +1,19 @@
 declare module 'ol/format/GeoJSON' {
 
+  import {
+    Feature,
+    FeatureCollection,
+    Geometry,
+    GeometryCollection,
+    LineString,
+    MultiLineString,
+    MultiPoint,
+    MultiPolygon,
+    Point,
+    Polygon
+  } from 'geojson';
+  import { ReadOptions, WriteOptions } from 'ol/format/Feature';
   import JSONFeature from 'ol/format/JSONFeature';
-  import { Feature } from 'geojson';
-  import { FeatureCollection } from 'geojson';
-  import { Geometry } from 'geojson';
-  import { GeometryCollection } from 'geojson';
-  import { LineString } from 'geojson';
-  import { MultiLineString } from 'geojson';
-  import { MultiPoint } from 'geojson';
-  import { MultiPolygon } from 'geojson';
-  import { Point } from 'geojson';
-  import { Polygon } from 'geojson';
-  import { ProjectionLike } from 'ol/proj';
-  import { ReadOptions } from 'ol/format/Feature';
   import Geometry_1 from 'ol/geom/Geometry';
   import GeometryCollection_1 from 'ol/geom/GeometryCollection';
   import LineString_1 from 'ol/geom/LineString';
@@ -21,7 +22,7 @@ declare module 'ol/format/GeoJSON' {
   import MultiPolygon_1 from 'ol/geom/MultiPolygon';
   import Point_1 from 'ol/geom/Point';
   import Polygon_1 from 'ol/geom/Polygon';
-  import { WriteOptions } from 'ol/format/Feature';
+  import { ProjectionLike } from 'ol/proj';
 
   export default class GeoJSON extends JSONFeature {
     constructor(opt_options?: Options);

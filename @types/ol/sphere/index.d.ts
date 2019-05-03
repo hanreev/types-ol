@@ -1,7 +1,7 @@
 declare module 'ol/sphere' {
 
-  import Geometry from 'ol/geom/Geometry';
   import { Coordinate } from 'ol/coordinate';
+  import Geometry from 'ol/geom/Geometry';
   import { ProjectionLike } from 'ol/proj';
 
   export function getArea(geometry: Geometry, opt_options?: SphereMetricOptions): number;

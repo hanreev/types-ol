@@ -1,21 +1,22 @@
 declare module 'ol/format/EsriJSON' {
 
-  import GeometryLayout from 'ol/geom/GeometryLayout';
+  import {
+    Feature,
+    FeatureSet,
+    Geometry,
+    HasZM,
+    Multipoint,
+    Point,
+    Polygon,
+    Polyline,
+    Position,
+    SpatialReferenceWkid
+  } from 'arcgis-rest-api';
+  import { ReadOptions, WriteOptions } from 'ol/format/Feature';
   import JSONFeature from 'ol/format/JSONFeature';
-  import { Feature } from 'arcgis-rest-api';
-  import { FeatureSet } from 'arcgis-rest-api';
-  import { Geometry } from 'arcgis-rest-api';
-  import { HasZM } from 'arcgis-rest-api';
-  import { Multipoint } from 'arcgis-rest-api';
-  import { Point } from 'arcgis-rest-api';
-  import { Polygon } from 'arcgis-rest-api';
-  import { Polyline } from 'arcgis-rest-api';
-  import { Position } from 'arcgis-rest-api';
-  import { SpatialReferenceWkid } from 'arcgis-rest-api';
-  import SimpleGeometry from 'ol/geom/SimpleGeometry';
-  import { ReadOptions } from 'ol/format/Feature';
   import Geometry_1 from 'ol/geom/Geometry';
-  import { WriteOptions } from 'ol/format/Feature';
+  import GeometryLayout from 'ol/geom/GeometryLayout';
+  import SimpleGeometry from 'ol/geom/SimpleGeometry';
 
   export default class EsriJSON extends JSONFeature {
     constructor(opt_options?: Options);

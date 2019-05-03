@@ -1,7 +1,7 @@
 declare module 'ol/TileRange' {
 
-  import { TileCoord } from 'ol/tilecoord';
   import { Size } from 'ol/size';
+  import { TileCoord } from 'ol/tilecoord';
 
   export function createOrUpdate(minX: number, maxX: number, minY: number, maxY: number, tileRange?: TileRange): TileRange;
 

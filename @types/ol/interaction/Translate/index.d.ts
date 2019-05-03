@@ -1,12 +1,12 @@
 declare module 'ol/interaction/Translate' {
 
-  import Event from 'ol/events/Event';
   import Collection from 'ol/Collection';
-  import Feature from 'ol/Feature';
   import { Coordinate } from 'ol/coordinate';
-  import Layer from 'ol/layer/Layer';
-  import PointerInteraction from 'ol/interaction/Pointer';
   import { EventsKey } from 'ol/events';
+  import Event from 'ol/events/Event';
+  import Feature from 'ol/Feature';
+  import PointerInteraction from 'ol/interaction/Pointer';
+  import Layer from 'ol/layer/Layer';
   import { ObjectEvent } from 'ol/Object';
 
   export class TranslateEvent extends Event {

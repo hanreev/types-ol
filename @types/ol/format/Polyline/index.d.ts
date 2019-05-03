@@ -1,7 +1,7 @@
 declare module 'ol/format/Polyline' {
 
-  import GeometryLayout from 'ol/geom/GeometryLayout';
   import TextFeature from 'ol/format/TextFeature';
+  import GeometryLayout from 'ol/geom/GeometryLayout';
 
   export function decodeDeltas(encoded: string, stride: number, opt_factor?: number): number[];
 

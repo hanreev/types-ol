@@ -1,15 +1,14 @@
 declare module 'ol/source/ImageMapGuide' {
 
-  import { Extent } from 'ol/extent';
-  import { Size } from 'ol/size';
-  import ImageSource from 'ol/source/Image';
-  import { LoadFunction } from 'ol/Image';
-  import Projection from 'ol/proj/Projection';
   import { EventsKey } from 'ol/events';
   import Event from 'ol/events/Event';
-  import { ImageSourceEvent } from 'ol/source/Image';
+  import { Extent } from 'ol/extent';
+  import { LoadFunction } from 'ol/Image';
   import { ObjectEvent } from 'ol/Object';
   import { ProjectionLike } from 'ol/proj';
+  import Projection from 'ol/proj/Projection';
+  import { Size } from 'ol/size';
+  import ImageSource, { ImageSourceEvent } from 'ol/source/Image';
 
   export default class ImageMapGuide extends ImageSource {
     constructor(options: Options);

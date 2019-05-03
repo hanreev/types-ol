@@ -1,7 +1,7 @@
 declare module 'ol/tilegrid/TileGrid' {
 
-  import { Extent } from 'ol/extent';
   import { Coordinate } from 'ol/coordinate';
+  import { Extent } from 'ol/extent';
   import { Size } from 'ol/size';
   import { TileCoord } from 'ol/tilecoord';
   import TileRange from 'ol/TileRange';

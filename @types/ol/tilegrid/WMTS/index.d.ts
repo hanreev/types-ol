@@ -1,7 +1,7 @@
 declare module 'ol/tilegrid/WMTS' {
 
-  import { Extent } from 'ol/extent';
   import { Coordinate } from 'ol/coordinate';
+  import { Extent } from 'ol/extent';
   import { Size } from 'ol/size';
   import TileGrid from 'ol/tilegrid/TileGrid';
 

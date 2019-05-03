@@ -1,8 +1,8 @@
 declare module 'ol/reproj/Image' {
 
+  import { Extent } from 'ol/extent';
   import ImageBase from 'ol/ImageBase';
   import Projection from 'ol/proj/Projection';
-  import { Extent } from 'ol/extent';
 
   export type FunctionType = (() => void);
 

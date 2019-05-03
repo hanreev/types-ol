@@ -1,13 +1,13 @@
 declare module 'ol/control/MousePosition' {
 
-  import MapEvent from 'ol/MapEvent';
   import Control from 'ol/control/Control';
   import { CoordinateFormat } from 'ol/coordinate';
-  import Projection from 'ol/proj/Projection';
-  import { ProjectionLike } from 'ol/proj';
   import { EventsKey } from 'ol/events';
   import Event from 'ol/events/Event';
+  import MapEvent from 'ol/MapEvent';
   import { ObjectEvent } from 'ol/Object';
+  import { ProjectionLike } from 'ol/proj';
+  import Projection from 'ol/proj/Projection';
 
   export function render(mapEvent: MapEvent): void;
 

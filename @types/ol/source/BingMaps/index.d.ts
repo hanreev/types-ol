@@ -1,10 +1,10 @@
 declare module 'ol/source/BingMaps' {
 
-  import TileImage from 'ol/source/TileImage';
   import { EventsKey } from 'ol/events';
   import Event from 'ol/events/Event';
   import { ObjectEvent } from 'ol/Object';
   import { TileSourceEvent } from 'ol/source/Tile';
+  import TileImage from 'ol/source/TileImage';
   import { LoadFunction } from 'ol/Tile';
 
   export default class BingMaps extends TileImage {

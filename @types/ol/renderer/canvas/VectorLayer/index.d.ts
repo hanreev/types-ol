@@ -1,16 +1,15 @@
 declare module 'ol/renderer/canvas/VectorLayer' {
 
-  import CanvasLayerRenderer from 'ol/renderer/canvas/Layer';
-  import VectorLayer from 'ol/layer/Vector';
-  import MapRenderer from 'ol/renderer/Map';
-  import Layer from 'ol/layer/Layer';
-  import { FrameState } from 'ol/PluggableMap';
-  import { State } from 'ol/layer/Layer';
+  import { EventsKey } from 'ol/events';
   import Event from 'ol/events/Event';
   import Feature from 'ol/Feature';
-  import Style from 'ol/style/Style';
+  import Layer, { State } from 'ol/layer/Layer';
+  import VectorLayer from 'ol/layer/Vector';
+  import { FrameState } from 'ol/PluggableMap';
   import CanvasReplayGroup from 'ol/render/canvas/ReplayGroup';
-  import { EventsKey } from 'ol/events';
+  import CanvasLayerRenderer from 'ol/renderer/canvas/Layer';
+  import MapRenderer from 'ol/renderer/Map';
+  import Style from 'ol/style/Style';
 
   export default class CanvasVectorLayerRenderer extends CanvasLayerRenderer {
     constructor(vectorLayer: VectorLayer);

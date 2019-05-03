@@ -1,16 +1,15 @@
 declare module 'ol/source/XYZ' {
 
-  import { AttributionLike } from 'ol/source/Source';
-  import { ProjectionLike } from 'ol/proj';
-  import TileGrid from 'ol/tilegrid/TileGrid';
-  import { LoadFunction } from 'ol/Tile';
-  import { Size } from 'ol/size';
-  import { UrlFunction } from 'ol/Tile';
-  import TileImage from 'ol/source/TileImage';
   import { EventsKey } from 'ol/events';
   import Event from 'ol/events/Event';
   import { ObjectEvent } from 'ol/Object';
+  import { ProjectionLike } from 'ol/proj';
+  import { Size } from 'ol/size';
+  import { AttributionLike } from 'ol/source/Source';
   import { TileSourceEvent } from 'ol/source/Tile';
+  import TileImage from 'ol/source/TileImage';
+  import { LoadFunction, UrlFunction } from 'ol/Tile';
+  import TileGrid from 'ol/tilegrid/TileGrid';
 
   export interface Options {
     attributions?: AttributionLike;

@@ -1,12 +1,12 @@
 declare module 'ol/source/OSM' {
 
-  import { AttributionLike } from 'ol/source/Source';
-  import { LoadFunction } from 'ol/Tile';
-  import XYZ from 'ol/source/XYZ';
   import { EventsKey } from 'ol/events';
   import Event from 'ol/events/Event';
   import { ObjectEvent } from 'ol/Object';
+  import { AttributionLike } from 'ol/source/Source';
   import { TileSourceEvent } from 'ol/source/Tile';
+  import XYZ from 'ol/source/XYZ';
+  import { LoadFunction } from 'ol/Tile';
 
   export const ATTRIBUTION: string;
 

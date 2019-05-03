@@ -1,14 +1,12 @@
 declare module 'ol/layer/Base' {
 
-  import BaseObject from 'ol/Object';
-  import { Extent } from 'ol/extent';
-  import Layer from 'ol/layer/Layer';
-  import { State } from 'ol/layer/Layer';
-  import State_1 from 'ol/source/State';
-  import LayerType from 'ol/LayerType';
   import { EventsKey } from 'ol/events';
   import Event from 'ol/events/Event';
-  import { ObjectEvent } from 'ol/Object';
+  import { Extent } from 'ol/extent';
+  import Layer, { State } from 'ol/layer/Layer';
+  import LayerType from 'ol/LayerType';
+  import BaseObject, { ObjectEvent } from 'ol/Object';
+  import State_1 from 'ol/source/State';
 
   export default class BaseLayer extends BaseObject {
     constructor(options: Options);

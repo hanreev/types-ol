@@ -1,9 +1,9 @@
 declare module 'ol/style/IconImage' {
 
-  import { Size } from 'ol/size';
-  import ImageState from 'ol/ImageState';
   import { Color } from 'ol/color';
   import Target from 'ol/events/Target';
+  import ImageState from 'ol/ImageState';
+  import { Size } from 'ol/size';
 
   export function get(image: HTMLImageElement | HTMLCanvasElement, src: string, size: Size, crossOrigin: string, imageState: ImageState, color: Color): IconImage;
 

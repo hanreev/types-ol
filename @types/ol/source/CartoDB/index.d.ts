@@ -1,12 +1,12 @@
 declare module 'ol/source/CartoDB' {
 
-  import XYZ from 'ol/source/XYZ';
   import { EventsKey } from 'ol/events';
   import Event from 'ol/events/Event';
   import { ObjectEvent } from 'ol/Object';
-  import { TileSourceEvent } from 'ol/source/Tile';
-  import { AttributionLike } from 'ol/source/Source';
   import { ProjectionLike } from 'ol/proj';
+  import { AttributionLike } from 'ol/source/Source';
+  import { TileSourceEvent } from 'ol/source/Tile';
+  import XYZ from 'ol/source/XYZ';
 
   export default class CartoDB extends XYZ {
     constructor(options: Options);

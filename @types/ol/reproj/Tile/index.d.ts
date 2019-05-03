@@ -1,9 +1,9 @@
 declare module 'ol/reproj/Tile' {
 
-  import Tile from 'ol/Tile';
   import Projection from 'ol/proj/Projection';
-  import TileGrid from 'ol/tilegrid/TileGrid';
+  import Tile from 'ol/Tile';
   import { TileCoord } from 'ol/tilecoord';
+  import TileGrid from 'ol/tilegrid/TileGrid';
 
   export type FunctionType = (() => void);
 

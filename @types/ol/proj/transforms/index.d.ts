@@ -1,7 +1,7 @@
 declare module 'ol/proj/transforms' {
 
-  import Projection from 'ol/proj/Projection';
   import { TransformFunction } from 'ol/proj';
+  import Projection from 'ol/proj/Projection';
 
   export function add(source: Projection, destination: Projection, transformFn: TransformFunction): void;
 

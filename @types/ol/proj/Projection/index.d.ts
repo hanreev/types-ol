@@ -1,8 +1,8 @@
 declare module 'ol/proj/Projection' {
 
-  import Units from 'ol/proj/Units';
-  import { Extent } from 'ol/extent';
   import { Coordinate } from 'ol/coordinate';
+  import { Extent } from 'ol/extent';
+  import Units from 'ol/proj/Units';
   import TileGrid from 'ol/tilegrid/TileGrid';
 
   export interface Options {

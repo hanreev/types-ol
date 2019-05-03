@@ -1,13 +1,9 @@
 declare module 'ol/renderer/vector' {
 
-  import { FeatureLike } from 'ol/Feature';
-  import ReplayGroup from 'ol/render/ReplayGroup';
-  import Style from 'ol/style/Style';
   import Event from 'ol/events/Event';
+  import Feature, { FeatureLike } from 'ol/Feature';
   import Circle from 'ol/geom/Circle';
-  import Feature from 'ol/Feature';
   import Geometry from 'ol/geom/Geometry';
-  import RenderFeature from 'ol/render/Feature';
   import GeometryCollection from 'ol/geom/GeometryCollection';
   import LineString from 'ol/geom/LineString';
   import MultiLineString from 'ol/geom/MultiLineString';
@@ -15,6 +11,9 @@ declare module 'ol/renderer/vector' {
   import MultiPolygon from 'ol/geom/MultiPolygon';
   import Point from 'ol/geom/Point';
   import Polygon from 'ol/geom/Polygon';
+  import RenderFeature from 'ol/render/Feature';
+  import ReplayGroup from 'ol/render/ReplayGroup';
+  import Style from 'ol/style/Style';
 
   export function defaultOrder(feature1: FeatureLike, feature2: FeatureLike): number;
 

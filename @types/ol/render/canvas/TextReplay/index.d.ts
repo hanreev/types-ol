@@ -1,7 +1,7 @@
 declare module 'ol/render/canvas/TextReplay' {
 
-  import CanvasReplay from 'ol/render/canvas/Replay';
   import { Extent } from 'ol/extent';
+  import CanvasReplay from 'ol/render/canvas/Replay';
 
   export function measureTextWidths(font: string, lines: string[], widths: number[]): number;
 
