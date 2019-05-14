@@ -950,9 +950,13 @@ function generateDeclaration(doclet, emitOutput = true) {
   content = `declare module '${doclet.name}' {\n\n${content}}`;
 
   if (emitOutput) {
-    const moduleOutDir = path.resolve(outDir, doclet.name);
-    fs.mkPath(moduleOutDir);
-    fs.writeFileSync(path.resolve(moduleOutDir, 'index.d.ts'), content);
+    let outoutPath = path.resolve(outDir, doclet.name);
+    if (doclet.name == 'ol')
+      outoutPath = path.join(outoutPath, 'index.d.ts');
+    else
+      outoutPath += '.d.ts';
+    fs.mkPath(path.dirname(outoutPath));
+    fs.writeFileSync(outoutPath, content);
   }
 
   return content;

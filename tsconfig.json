@@ -1,12 +1,7 @@
 {
   "compilerOptions": {
-    "allowJs": false,
     "allowSyntheticDefaultImports": true,
     "baseUrl": "./",
-    "emitDecoratorMetadata": true,
-    "esModuleInterop": true,
-    "experimentalDecorators": true,
-    "importHelpers": true,
     "lib": [
       "dom",
       "esnext"
@@ -21,11 +16,10 @@
         "node_modules/@types/*"
       ]
     },
-    "strict": false,
     "target": "es5"
   },
   "include": [
-    "test/**/*",
-    "@types/**/*"
+    "test/**/*.ts",
+    "@types/**/*.d.ts"
   ]
 }

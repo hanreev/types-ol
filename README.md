@@ -17,14 +17,14 @@ yarn add -D @hanreev/types-ol
 
 
 
-### Configuration and Usage
+### Usage
 
 There are several ways to use this package. Please choose one:
 
 - Install as `@types/ol`. This will simulate `@types/ol` installation from `./node_modules/@hanreev/types-ol/ol` directory.  
   **Why?**
-  1. TypeScript compiler will look for types in `node_modules/@types` by default.
-  2. If you're using [Visual Studio Code](https://code.visualstudio.com/), its IntelliSense will only recognize types from `node_modules/@types`.
+  - TypeScript compiler will look for types in `node_modules/@types` by default.
+  - If you're using [Visual Studio Code](https://code.visualstudio.com/), its IntelliSense will only recognize types from `node_modules/@types`.
 
   ```js
   // file: package.json
@@ -33,8 +33,8 @@ There are several ways to use this package. Please choose one:
     ...
     "devDependencies": {
       ...
-      "@hanreev/types-ol": "^1.0.2",
-      "@types/ol": "./node_modules/@hanreev/types-ol/ol",
+      "@hanreev/types-ol": "^1.0.3",
+      "@types/ol": "file:node_modules/@hanreev/types-ol/ol",
       ...
     }
   }
@@ -49,6 +49,8 @@ There are several ways to use this package. Please choose one:
   # Yarn
   yarn install
   ```
+  > ***Note:***  
+  > This package must be installed first before adding `"@types/ol": "file:node_modules/@hanreev/types-ol/ol"` in `package.json`.
 
 - Using `compilerOptions.paths` in `tsconfig.json`
   
@@ -101,9 +103,15 @@ Configuration is located at `jsdoc/conf.json`
 // file: jsdoc/conf.json
 
 {
+  "source": {
+    ...
+    "include": [
+      "openlayers/src/ol" // openlayers source
+    ]
+  },
   ...
   "typescript": {
-    "moduleRoot": "openlayers/src",
+    "moduleRoot": "openlayers/src", // openlayers source
     "declaration": {
       "mode": "multiple", // "single" will generate all declarations in single index.d.ts file.
       "strictGenericTypes": false // set to true to extract classes generic type from super class, members and methods.
