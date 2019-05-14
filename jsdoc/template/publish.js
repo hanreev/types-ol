@@ -641,7 +641,6 @@ const PROCESSORS = {
   /** @type {DocletParser} */
   class: (doclet, _module) => {
     const children = [];
-    const fires = {};
     let name = doclet.name;
 
     if (doclet.longname in GENERIC_TYPES)
@@ -684,13 +683,12 @@ const PROCESSORS = {
 
       fireType = getType({ type: { names: [fireType || 'undefined'] } }, _module);
 
-      if (genericType)
-        fireMethod += `<${genericType}>`;
-      const listener = `(evt: ${fireType}) => void`;
-      fires[listener] = fires[listener] || {};
-      fires[listener].genericType = genericType;
-      fires[listener].types = fires[listener].types || [];
-      fires[listener].types.push(`'${eventType}'`);
+      ['on', 'once', 'un'].forEach(fireMethod => {
+        const returnType = fireMethod == 'un' ? 'void' : 'EventsKey';
+        if (genericType)
+          fireMethod += `<${genericType}>`;
+        children.push(`${fireMethod}(type: '${eventType}', listener: (evt: ${fireType}) => void): ${returnType};`);
+      });
     };
 
     if (doclet.fires) {
@@ -737,17 +735,6 @@ const PROCESSORS = {
           logger.error('Fires process failed --', doclet.longname, fire);
         }
       });
-
-      for (const listener in fires) {
-        const fire = fires[listener];
-
-        ['on', 'once', 'un'].forEach(fireMethod => {
-          const returnType = fireMethod == 'un' ? 'void' : 'EventsKey';
-          if (fire.genericType)
-            fireMethod += `<${fire.genericType}>`;
-          children.push(`${fireMethod}(type: ${fire.types.join(' | ')}, listener: ${listener}): ${returnType};`);
-        });
-      }
     }
 
     const decl = `class ${name} {\n${children.join('\n')}\n}`;
