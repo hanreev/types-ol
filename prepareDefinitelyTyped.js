@@ -18,15 +18,23 @@ const configs = {
       strictFunctionTypes: true,
       strictNullChecks: true,
       typeRoots: [
-        '../',
-        '../../node_modules/@types'
+        '../'
       ],
       types: []
     },
     files: []
   },
   tslint: {
-    extends: 'dtslint/dtslint.json'
+    extends: 'dtslint/dt.json',
+    rules: {
+      'adjacent-overload-signatures': false,
+      'array-type': false,
+      'max-line-length': false,
+      'no-self-import': false,
+      'no-unnecessary-class': false,
+      'no-unnecessary-generics': false,
+      'unified-signatures': false
+    }
   }
 };
 
@@ -34,7 +42,7 @@ const header = `// Type definitions for ol 5.3
 // Project: https://github.com/openlayers/openlayers, https://openlayers.org
 // Definitions by: Rifa'i M. Hanif <https://github.com/hanreev>
 // Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
-// TypeScript Version: 2.3
+// TypeScript Version: 2.4
 
 `;
 
@@ -50,7 +58,7 @@ glob.sync(path.join(destPath, '**', '*.d.ts')).forEach(dtsPath => {
 });
 
 for (const key in configs)
-  fs.writeFileSync(path.join(destPath, key + '.json'), JSON.stringify(configs[key], null, 2));
+  fs.writeFileSync(path.join(destPath, key + '.json'), JSON.stringify(configs[key], null, 4));
 
 const indexPath = path.join(destPath, 'index.d.ts')
 fs.writeFileSync(indexPath, header + fs.readFileSync(indexPath).toString());

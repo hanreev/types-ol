@@ -455,7 +455,7 @@ function stringifyType(parsedType, _module) {
   if (typeStr == 'Array')
     typeStr = 'any[]';
   else if (typeStr == 'Object')
-    typeStr = 'any';
+    typeStr = '{ [key: string]: any }';
 
   return typeStr;
 }
@@ -543,7 +543,7 @@ function getType(doclet, _module) {
       return 'any';
     }
 
-  return doclet.type.names.map(type => {
+  let types = doclet.type.names.map(type => {
     /** @type {ParsedType} */
     let parsedType;
     let prefix = '';
@@ -568,7 +568,12 @@ function getType(doclet, _module) {
       }
 
     return prefix + type;
-  }).filter(t => t != 'undefined').join(' | ') || 'any';
+  }).filter(t => t != 'undefined');
+
+  if (types.length > 1 && types.indexOf('any') != -1)
+    types = types.filter(t => t != 'any');
+
+  return types.join(' | ') || 'any';
 }
 
 /** @type {DocletParser} */
@@ -620,10 +625,12 @@ function declaration(doclet, decl, _module) {
 
   if (_module && _module.exports)
     if (doclet.name == _module.exports.default)
-      if (doclet.isEnum || doclet.kind == 'constant')
+      if (doclet.isEnum || doclet.kind == 'constant') {
+        prefix = 'declare ';
         suffix = `\n\nexport default ${registerImport(_module, doclet.name)};`;
-      else
+      } else {
         prefix = 'export default ';
+      }
     else if (_module.exports.exports.indexOf(doclet.name) != -1)
       prefix = 'export ';
 
@@ -634,6 +641,7 @@ const PROCESSORS = {
   /** @type {DocletParser} */
   class: (doclet, _module) => {
     const children = [];
+    const fires = {};
     let name = doclet.name;
 
     if (doclet.longname in GENERIC_TYPES)
@@ -676,12 +684,13 @@ const PROCESSORS = {
 
       fireType = getType({ type: { names: [fireType || 'undefined'] } }, _module);
 
-      ['on', 'once', 'un'].forEach(fireMethod => {
-        const returnType = fireMethod == 'un' ? 'void' : 'EventsKey';
-        if (genericType)
-          fireMethod += `<${genericType}>`;
-        children.push(`${fireMethod}(type: '${eventType}', listener: (evt: ${fireType}) => void): ${returnType};`);
-      });
+      if (genericType)
+        fireMethod += `<${genericType}>`;
+      const listener = `(evt: ${fireType}) => void`;
+      fires[listener] = fires[listener] || {};
+      fires[listener].genericType = genericType;
+      fires[listener].types = fires[listener].types || [];
+      fires[listener].types.push(`'${eventType}'`);
     };
 
     if (doclet.fires) {
@@ -728,6 +737,17 @@ const PROCESSORS = {
           logger.error('Fires process failed --', doclet.longname, fire);
         }
       });
+
+      for (const listener in fires) {
+        const fire = fires[listener];
+
+        ['on', 'once', 'un'].forEach(fireMethod => {
+          const returnType = fireMethod == 'un' ? 'void' : 'EventsKey';
+          if (fire.genericType)
+            fireMethod += `<${fire.genericType}>`;
+          children.push(`${fireMethod}(type: ${fire.types.join(' | ')}, listener: ${listener}): ${returnType};`);
+        });
+      }
     }
 
     const decl = `class ${name} {\n${children.join('\n')}\n}`;
@@ -782,7 +802,7 @@ const PROCESSORS = {
       return ['string', 'number'].map(t => {
         const decl = `function ${doclet.name}<V>(obj: { [key: ${t}]: V }): V[];`;
         return declaration(doclet, decl, _module);
-      }).join('\n\n');
+      }).join('\n');
 
     const decl = 'function ' + PROCESSORS.method(doclet, _module);
     return declaration(doclet, decl, _module);
@@ -908,7 +928,7 @@ function generateDeclaration(doclet, emitOutput = true) {
   let content = '';
 
   if (_imports && _imports.expressions.length)
-    content += _imports.expressions.join('\n') + '\n\n';
+    content += _imports.expressions.join('\n') + '\n';
 
   let reExports = [];
   if (_exports && _exports.reExports.length) {
@@ -936,7 +956,7 @@ function generateDeclaration(doclet, emitOutput = true) {
       }
     });
     MODULE_EXPORTS[doclet.name].reExports = reExports;
-    content += reExports.join('\n') + '\n\n';
+    content += reExports.join('\n') + '\n';
   }
 
   if (!content && !children.length) {
@@ -945,9 +965,7 @@ function generateDeclaration(doclet, emitOutput = true) {
   }
 
   if (children.length)
-    content += children.join('\n\n') + '\n\n';
-
-  content = `declare module '${doclet.name}' {\n\n${content}}`;
+    content += children.join('\n') + '\n';
 
   if (emitOutput) {
     let outoutPath = path.resolve(outDir, doclet.name);
@@ -959,7 +977,7 @@ function generateDeclaration(doclet, emitOutput = true) {
     fs.writeFileSync(outoutPath, content);
   }
 
-  return content;
+  return `declare module '${doclet.name}' {\n${content}}`;
 }
 
 function extractGenericTypes(initial = true, strict = false) {
@@ -1035,6 +1053,48 @@ function extractGenericTypes(initial = true, strict = false) {
     if (genericTypes.length)
       GENERIC_TYPES[doclet.longname] = Array.from(new Set(genericTypes)).join(', ');
   });
+}
+
+/**
+ * @param {string} filepath
+ */
+function fileExistsWithCaseSync(filepath) {
+  var dir = path.dirname(filepath)
+  if (dir === path.dirname(dir)) {
+    return true
+  }
+  var filenames = fs.readdirSync(dir)
+  if (filenames.indexOf(path.basename(filepath)) === -1) {
+    return false
+  }
+  return fileExistsWithCaseSync(dir)
+}
+
+/**
+ * @param {string} dirpath
+ */
+function preventSelfImport(dirpath) {
+  if (!(fileExistsWithCaseSync(dirpath) && fs.statSync(dirpath).isDirectory()))
+    return;
+
+  fs.readdirSync(dirpath)
+    .forEach(name => {
+      const fullPath = path.join(dirpath, name);
+      if (!(fileExistsWithCaseSync(fullPath) && fs.statSync(fullPath).isDirectory())) return;
+
+      const dtsPath = fullPath + '.d.ts';
+      if (fileExistsWithCaseSync(dtsPath)) {
+        const indexDtsPath = path.join(fullPath, 'index.d.ts');
+        let indexDtsContent = '';
+        if (fileExistsWithCaseSync(indexDtsPath))
+          indexDtsContent = fs.readFileSync(indexDtsPath).toString();
+        indexDtsContent += fs.readFileSync(dtsPath).toString();
+        fs.writeFileSync(indexDtsPath, indexDtsContent);
+        fs.unlinkSync(dtsPath);
+      }
+
+      preventSelfImport(fullPath);
+    });
 }
 
 exports.publish = (taffyData) => {
@@ -1120,7 +1180,7 @@ exports.publish = (taffyData) => {
     /**
      * Generate single declaration file
      */
-    const content = members.modules.map(doclet => generateDeclaration(doclet, false)).join('\n\n');
+    const content = members.modules.map(doclet => generateDeclaration(doclet, false)).join('\n');
     const outputPath = path.resolve(outDir, 'ol', 'index.d.ts');
     fs.mkPath(path.dirname(outputPath));
     fs.writeFileSync(outputPath, content);
@@ -1129,5 +1189,6 @@ exports.publish = (taffyData) => {
      * Generate multiple declaration files
      */
     members.modules.forEach(doclet => generateDeclaration(doclet));
+    preventSelfImport(outDir);
   }
 };

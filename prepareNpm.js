@@ -30,4 +30,4 @@ delete src.scripts;
 delete src.devDependencies;
 delete src.files;
 
-fs.writeFileSync(packageJsonDestPath, JSON.stringify(src, null, 2));
+fs.writeFileSync(packageJsonDestPath, JSON.stringify(src, null, 4));
