@@ -1,8 +1,8 @@
-node_modules
-openlayers
-test-out
-ol
-DefinitelyTyped
+/node_modules
+/openlayers
+/test-out
+/ol
+/DefinitelyTyped
 
 yarn-error.log
 report.*.json
