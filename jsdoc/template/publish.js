@@ -315,6 +315,9 @@ function relativeImport(expressions, _module) {
   if (!Array.isArray(expressions))
     return logger.error('relativeImport -- Invalid argument:', expressions);
 
+  if (declarationConfig.mode == 'single')
+    return expressions;
+
   const moduleDirname = _module.name == 'ol' ? 'ol' : path.dirname(_module.name);
 
   return expressions.map(expression => {
@@ -666,7 +669,7 @@ function declaration(doclet, decl, _module) {
   if (_module && _module.exports)
     if (doclet.name == _module.exports.default)
       if (doclet.isEnum || doclet.kind == 'constant') {
-        prefix = 'declare ';
+        prefix = declarationConfig.mode == 'single' ? '' : 'declare ';
         suffix = `\n\nexport default ${registerImport(_module, doclet.name)};`;
       } else {
         prefix = 'export default ';
@@ -1169,7 +1172,7 @@ exports.publish = (taffyData) => {
     /**
      * Generate single declaration file
      */
-    const content = members.modules.map(doclet => generateDeclaration(doclet, false)).join('\n');
+    const content = members.modules.map(doclet => generateDeclaration(doclet, false)).join('\n\n');
     const outputPath = path.resolve(outDir, 'ol', 'index.d.ts');
     fs.mkPath(path.dirname(outputPath));
     fs.writeFileSync(outputPath, content);
