@@ -1,7 +1,8 @@
-import { Extent } from 'ol/extent';
-import WebGLReplay from 'ol/render/webgl/Replay';
-import Locations from 'ol/render/webgl/texturereplay/defaultshader/Locations';
-import WebGLContext from 'ol/webgl/Context';
+import { Extent } from '../../extent';
+import WebGLContext from '../../webgl/Context';
+import WebGLReplay from './Replay';
+import Locations from './texturereplay/defaultshader/Locations';
+
 export default class WebGLTextureReplay extends WebGLReplay {
     constructor(tolerance: number, maxExtent: Extent);
     protected hitDetectionGroupIndices: number[];

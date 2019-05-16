@@ -1,12 +1,13 @@
-import { EventsKey } from 'ol/events';
-import Event from 'ol/events/Event';
-import { Extent } from 'ol/extent';
-import BaseLayer from 'ol/layer/Base';
-import { ObjectEvent } from 'ol/Object';
-import PluggableMap from 'ol/PluggableMap';
-import RenderEvent from 'ol/render/Event';
-import Source from 'ol/source/Source';
-import State_1 from 'ol/source/State';
+import { EventsKey } from '../events';
+import Event from '../events/Event';
+import { Extent } from '../extent';
+import { ObjectEvent } from '../Object';
+import PluggableMap from '../PluggableMap';
+import RenderEvent from '../render/Event';
+import Source from '../source/Source';
+import State_1 from '../source/State';
+import BaseLayer from './Base';
+
 export function visibleAtResolution(layerState: State, resolution: number): boolean;
 export default class Layer extends BaseLayer {
     constructor(options: Options);

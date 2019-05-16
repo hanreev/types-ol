@@ -13,7 +13,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'test-out'),
     filename: '[name].js',
-    libraryTarget: 'umd'
+    libraryTarget: 'commonjs2'
   },
   target: 'web',
   mode: 'none',

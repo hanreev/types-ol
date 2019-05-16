@@ -1,10 +1,11 @@
-import { EventsKey } from 'ol/events';
-import Event from 'ol/events/Event';
-import Target from 'ol/events/Target';
+import { EventsKey } from '../events';
+import Event from '../events/Event';
+import Target from '../events/Target';
+
 export interface Entry {
     key_: string;
-    newer: { [key: string]: any };
-    older: { [key: string]: any };
+    newer: any;
+    older: any;
     value_: any;
 }
 export default class LRUCache<T> extends Target {

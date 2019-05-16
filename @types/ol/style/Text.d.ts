@@ -1,6 +1,7 @@
-import Fill from 'ol/style/Fill';
-import Stroke from 'ol/style/Stroke';
-import TextPlacement from 'ol/style/TextPlacement';
+import Fill from './Fill';
+import Stroke from './Stroke';
+import TextPlacement from './TextPlacement';
+
 export interface Options {
     font?: string;
     maxAngle?: number;

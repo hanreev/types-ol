@@ -1,10 +1,11 @@
-import { Extent } from 'ol/extent';
+import { Extent } from '../extent';
+
 export interface Entry {
     minX: number;
     minY: number;
     maxX: number;
     maxY: number;
-    value?: { [key: string]: any };
+    value?: any;
 }
 export default class RBush<T> {
     constructor(opt_maxEntries?: number);

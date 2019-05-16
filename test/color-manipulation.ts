@@ -99,7 +99,7 @@ const raster = new RasterSource({
   sources: [new Stamen({
     layer: 'watercolor',
   })],
-  operation: function(pixels, data) {
+  operation: function(pixels, data: any) {
     const hcl = rgb2hcl(pixels[0] as number[]);
 
     let h = hcl[0] + Math.PI * data.hue / 180;

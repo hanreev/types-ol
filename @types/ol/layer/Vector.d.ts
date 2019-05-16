@@ -1,17 +1,18 @@
-import { EventsKey } from 'ol/events';
-import Event from 'ol/events/Event';
-import { Extent } from 'ol/extent';
-import Feature from 'ol/Feature';
-import Layer from 'ol/layer/Layer';
-import VectorRenderType from 'ol/layer/VectorRenderType';
-import LayerType from 'ol/LayerType';
-import { ObjectEvent } from 'ol/Object';
-import PluggableMap from 'ol/PluggableMap';
-import { OrderFunction } from 'ol/render';
-import RenderEvent from 'ol/render/Event';
-import Source from 'ol/source/Source';
-import VectorSource from 'ol/source/Vector';
-import Style, { StyleLike, StyleFunction } from 'ol/style/Style';
+import { EventsKey } from '../events';
+import Event from '../events/Event';
+import { Extent } from '../extent';
+import Feature from '../Feature';
+import LayerType from '../LayerType';
+import { ObjectEvent } from '../Object';
+import PluggableMap from '../PluggableMap';
+import { OrderFunction } from '../render';
+import RenderEvent from '../render/Event';
+import Source from '../source/Source';
+import VectorSource from '../source/Vector';
+import Style, { StyleLike, StyleFunction } from '../style/Style';
+import Layer from './Layer';
+import VectorRenderType from './VectorRenderType';
+
 export interface Options {
     opacity?: number;
     visible?: boolean;

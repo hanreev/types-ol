@@ -1,12 +1,13 @@
-import { EventsKey } from 'ol/events';
-import Event from 'ol/events/Event';
-import Layer, { State } from 'ol/layer/Layer';
-import { Pixel } from 'ol/pixel';
-import { FrameState } from 'ol/PluggableMap';
-import LayerRenderer from 'ol/renderer/Layer';
-import WebGLMapRenderer from 'ol/renderer/webgl/Map';
-import { Transform } from 'ol/transform';
-import WebGLContext from 'ol/webgl/Context';
+import { EventsKey } from '../../events';
+import Event from '../../events/Event';
+import Layer, { State } from '../../layer/Layer';
+import { Pixel } from '../../pixel';
+import { FrameState } from '../../PluggableMap';
+import { Transform } from '../../transform';
+import WebGLContext from '../../webgl/Context';
+import LayerRenderer from '../Layer';
+import WebGLMapRenderer from './Map';
+
 export default class WebGLLayerRenderer extends LayerRenderer {
     constructor(mapRenderer: WebGLMapRenderer, layer: Layer);
     protected texture: WebGLTexture;

@@ -1,12 +1,13 @@
-import { Coordinate } from 'ol/coordinate';
-import { EventsKey } from 'ol/events';
-import Event from 'ol/events/Event';
-import { Extent } from 'ol/extent';
-import BaseObject, { ObjectEvent } from 'ol/Object';
-import OverlayPositioning from 'ol/OverlayPositioning';
-import { Pixel } from 'ol/pixel';
-import PluggableMap from 'ol/PluggableMap';
-import { Size } from 'ol/size';
+import { Coordinate } from './coordinate';
+import { EventsKey } from './events';
+import Event from './events/Event';
+import { Extent } from './extent';
+import BaseObject, { ObjectEvent } from './Object';
+import OverlayPositioning from './OverlayPositioning';
+import { Pixel } from './pixel';
+import PluggableMap from './PluggableMap';
+import { Size } from './size';
+
 export interface Options {
     id?: number | string;
     element?: HTMLElement;
@@ -26,7 +27,7 @@ export default class Overlay extends BaseObject {
     protected autoPanMargin: number;
     protected element: HTMLElement;
     protected stopEvent: boolean;
-    protected rendered: { [key: string]: any };
+    protected rendered: any;
     protected options: Options;
     protected autoPanAnimation: PanOptions;
     protected id: number | string;

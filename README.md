@@ -33,7 +33,7 @@ There are several ways to use this package. Please choose one:
     ...
     "devDependencies": {
       ...
-      "@hanreev/types-ol": "^2.0.1",
+      "@hanreev/types-ol": "^2.0.2",
       "@types/ol": "file:node_modules/@hanreev/types-ol/ol",
       ...
     }
@@ -147,6 +147,20 @@ Configuration is located at `jsdoc/conf.json`
 
 ## Changelog
 
+- **v2.0.2**
+  - Fix `object` type
+  - Use relative import path for `ol` modules (`no-self-import`).
+- **v2.0.1**
+  - Refactor definition filenames
+  - Remove module declaration
+  - [DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped) standard with these ignored rules:
+    - `adjacent-overload-signatures`
+    - `array-type`
+    - `max-line-length`
+    - `no-self-import`
+    - `no-unnecessary-class`
+    - `no-unnecessary-generics`
+    - `unified-signatures`
 - **v1.0.2**
   - Sort imports
   - NPM compatibility as `@types/ol` 

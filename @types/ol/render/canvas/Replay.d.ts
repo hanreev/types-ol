@@ -1,12 +1,13 @@
-import { Coordinate } from 'ol/coordinate';
-import { Extent } from 'ol/extent';
-import Feature from 'ol/Feature';
-import Geometry from 'ol/geom/Geometry';
-import SimpleGeometry from 'ol/geom/SimpleGeometry';
-import { FillStrokeState, DeclutterGroup } from 'ol/render/canvas';
-import RenderFeature from 'ol/render/Feature';
-import VectorContext from 'ol/render/VectorContext';
-import { Transform } from 'ol/transform';
+import { Coordinate } from '../../coordinate';
+import { Extent } from '../../extent';
+import Feature from '../../Feature';
+import Geometry from '../../geom/Geometry';
+import SimpleGeometry from '../../geom/SimpleGeometry';
+import { Transform } from '../../transform';
+import { FillStrokeState, DeclutterGroup } from '../canvas';
+import RenderFeature from '../Feature';
+import VectorContext from '../VectorContext';
+
 export default class CanvasReplay extends VectorContext {
     constructor(tolerance: number, maxExtent: Extent, resolution: number, pixelRatio: number, overlaps: boolean, declutterTree: any);
     protected overlaps: boolean;

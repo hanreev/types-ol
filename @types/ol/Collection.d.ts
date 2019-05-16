@@ -1,6 +1,7 @@
-import { EventsKey } from 'ol/events';
-import Event from 'ol/events/Event';
-import BaseObject, { ObjectEvent } from 'ol/Object';
+import { EventsKey } from './events';
+import Event from './events/Event';
+import BaseObject, { ObjectEvent } from './Object';
+
 export class CollectionEvent<T> extends Event {
     constructor();
     element: T;

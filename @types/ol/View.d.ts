@@ -1,19 +1,20 @@
-import { Type } from 'ol/centerconstraint';
-import { Coordinate } from 'ol/coordinate';
-import { EventsKey } from 'ol/events';
-import Event from 'ol/events/Event';
-import { Extent } from 'ol/extent';
-import SimpleGeometry from 'ol/geom/SimpleGeometry';
-import BaseObject, { ObjectEvent } from 'ol/Object';
-import { Pixel } from 'ol/pixel';
-import { ProjectionLike } from 'ol/proj';
-import Projection from 'ol/proj/Projection';
-import { Type as Type_2 } from 'ol/resolutionconstraint';
-import { Type as Type_1 } from 'ol/rotationconstraint';
-import { Size } from 'ol/size';
-import ViewHint from 'ol/ViewHint';
+import { Type } from './centerconstraint';
+import { Coordinate } from './coordinate';
+import { EventsKey } from './events';
+import Event from './events/Event';
+import { Extent } from './extent';
+import SimpleGeometry from './geom/SimpleGeometry';
+import BaseObject, { ObjectEvent } from './Object';
+import { Pixel } from './pixel';
+import { ProjectionLike } from './proj';
+import Projection from './proj/Projection';
+import { Type as Type_2 } from './resolutionconstraint';
+import { Type as Type_1 } from './rotationconstraint';
+import { Size } from './size';
+import ViewHint from './ViewHint';
+
 export function createCenterConstraint(options: ViewOptions): Type;
-export function createResolutionConstraint(options: ViewOptions): { [key: string]: any };
+export function createResolutionConstraint(options: ViewOptions): any;
 export function createRotationConstraint(options: ViewOptions): Type_1;
 export function isNoopAnimation(animation: Animation): boolean;
 export interface Animation {

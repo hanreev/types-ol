@@ -308,10 +308,44 @@ function registerImport(_module, val) {
 
 /**
  * @param {string[]} expressions
+ * @param {Doclet} _module
+ * @returns {string[]}
+ */
+function relativeImport(expressions, _module) {
+  if (!Array.isArray(expressions))
+    return logger.error('relativeImport -- Invalid argument:', expressions);
+
+  const moduleDirname = _module.name == 'ol' ? 'ol' : path.dirname(_module.name);
+
+  return expressions.map(expression => {
+    const match = expression.match(/^((import|export)\s.+?\sfrom\s['"])(.+?)(['"];)$/);
+
+    if (!match)
+      return expression;
+
+    let fromPath = match[3];
+
+    if (!fromPath.startsWith('ol'))
+      return expression;
+
+    fromPath = path.relative(moduleDirname, fromPath);
+
+    if (!fromPath)
+      fromPath = '../' + path.basename(moduleDirname);
+    else if (!fromPath.startsWith('.'))
+      fromPath = './' + fromPath;
+
+    return match[1] + fromPath + match[4];
+  });
+}
+
+/**
+ * @param {string[]} expressions
+ * @param {Doclet} _module
  * @param {number} [maxLineLength=120]
  * @returns {string[]}
  */
-function sortImports(expressions, maxLineLength = 120) {
+function sortImports(expressions, _module, maxLineLength = 120) {
   if (!Array.isArray(expressions))
     return logger.error('sortImports -- Invalid argument:', expressions);
 
@@ -353,6 +387,9 @@ function sortImports(expressions, maxLineLength = 120) {
       return formatExpression(moduleName, true);
     return expression;
   };
+
+  // Relative import ol modules
+  expressions = relativeImport(expressions, _module);
 
   expressions.forEach(expression => {
     /** @type {RegExpMatchArray} */
@@ -455,7 +492,7 @@ function stringifyType(parsedType, _module) {
   if (typeStr == 'Array')
     typeStr = 'any[]';
   else if (typeStr == 'Object')
-    typeStr = '{ [key: string]: any }';
+    typeStr = 'object';
 
   return typeStr;
 }
@@ -572,6 +609,9 @@ function getType(doclet, _module) {
 
   if (types.length > 1 && types.indexOf('any') != -1)
     types = types.filter(t => t != 'any');
+
+  if (types.length == 1 && types[0] == 'object')
+    types[0] = 'any';
 
   return types.join(' | ') || 'any';
 }
@@ -899,7 +939,7 @@ function processModule(doclet) {
   MODULE_CHILDREN[doclet.name] = children;
 
   if (doclet.name in MODULE_IMPORTS)
-    MODULE_IMPORTS[doclet.name].expressions = sortImports(MODULE_IMPORTS[doclet.name].expressions);
+    MODULE_IMPORTS[doclet.name].expressions = sortImports(MODULE_IMPORTS[doclet.name].expressions, doclet);
 }
 
 /**
@@ -942,6 +982,7 @@ function generateDeclaration(doclet, emitOutput = true) {
         reExports.push(x);
       }
     });
+    reExports = relativeImport(reExports, doclet);
     MODULE_EXPORTS[doclet.name].reExports = reExports;
     content += reExports.join('\n') + '\n';
   }
@@ -951,8 +992,11 @@ function generateDeclaration(doclet, emitOutput = true) {
     return;
   }
 
-  if (children.length)
+  if (children.length) {
+    if ((_imports && _imports.expressions.length) || reExports.length)
+      content += '\n';
     content += children.join('\n') + '\n';
+  }
 
   if (emitOutput) {
     let outoutPath = path.resolve(outDir, doclet.name);
@@ -1040,48 +1084,6 @@ function extractGenericTypes(initial = true, strict = false) {
     if (genericTypes.length)
       GENERIC_TYPES[doclet.longname] = Array.from(new Set(genericTypes)).join(', ');
   });
-}
-
-/**
- * @param {string} filepath
- */
-function fileExistsWithCaseSync(filepath) {
-  var dir = path.dirname(filepath)
-  if (dir === path.dirname(dir)) {
-    return true
-  }
-  var filenames = fs.readdirSync(dir)
-  if (filenames.indexOf(path.basename(filepath)) === -1) {
-    return false
-  }
-  return fileExistsWithCaseSync(dir)
-}
-
-/**
- * @param {string} dirpath
- */
-function preventSelfImport(dirpath) {
-  if (!(fileExistsWithCaseSync(dirpath) && fs.statSync(dirpath).isDirectory()))
-    return;
-
-  fs.readdirSync(dirpath)
-    .forEach(name => {
-      const fullPath = path.join(dirpath, name);
-      if (!(fileExistsWithCaseSync(fullPath) && fs.statSync(fullPath).isDirectory())) return;
-
-      const dtsPath = fullPath + '.d.ts';
-      if (fileExistsWithCaseSync(dtsPath)) {
-        const indexDtsPath = path.join(fullPath, 'index.d.ts');
-        let indexDtsContent = '';
-        if (fileExistsWithCaseSync(indexDtsPath))
-          indexDtsContent = fs.readFileSync(indexDtsPath).toString();
-        indexDtsContent += fs.readFileSync(dtsPath).toString();
-        fs.writeFileSync(indexDtsPath, indexDtsContent);
-        fs.unlinkSync(dtsPath);
-      }
-
-      preventSelfImport(fullPath);
-    });
 }
 
 exports.publish = (taffyData) => {
@@ -1176,6 +1178,5 @@ exports.publish = (taffyData) => {
      * Generate multiple declaration files
      */
     members.modules.forEach(doclet => generateDeclaration(doclet));
-    preventSelfImport(outDir);
   }
 };

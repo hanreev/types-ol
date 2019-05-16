@@ -1,16 +1,17 @@
-import { Coordinate } from 'ol/coordinate';
-import { Extent } from 'ol/extent';
-import Feature from 'ol/Feature';
-import RenderFeature from 'ol/render/Feature';
-import VectorContext from 'ol/render/VectorContext';
-import Locations from 'ol/render/webgl/circlereplay/defaultshader/Locations';
-import WebGLLineStringReplay from 'ol/render/webgl/LineStringReplay';
-import Locations_1 from 'ol/render/webgl/linestringreplay/defaultshader/Locations';
-import Locations_2 from 'ol/render/webgl/polygonreplay/defaultshader/Locations';
-import Locations_3 from 'ol/render/webgl/texturereplay/defaultshader/Locations';
-import { Size } from 'ol/size';
-import WebGLBuffer from 'ol/webgl/Buffer';
-import WebGLContext from 'ol/webgl/Context';
+import { Coordinate } from '../../coordinate';
+import { Extent } from '../../extent';
+import Feature from '../../Feature';
+import { Size } from '../../size';
+import WebGLBuffer from '../../webgl/Buffer';
+import WebGLContext from '../../webgl/Context';
+import RenderFeature from '../Feature';
+import VectorContext from '../VectorContext';
+import Locations from './circlereplay/defaultshader/Locations';
+import WebGLLineStringReplay from './LineStringReplay';
+import Locations_1 from './linestringreplay/defaultshader/Locations';
+import Locations_2 from './polygonreplay/defaultshader/Locations';
+import Locations_3 from './texturereplay/defaultshader/Locations';
+
 export default class WebGLReplay extends VectorContext {
     constructor(tolerance: number, maxExtent: Extent);
     protected verticesBuffer: WebGLBuffer;

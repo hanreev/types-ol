@@ -1,12 +1,13 @@
-import { EventsKey } from 'ol/events';
-import Event from 'ol/events/Event';
-import { ObjectEvent } from 'ol/Object';
-import { ProjectionLike } from 'ol/proj';
-import { AttributionLike } from 'ol/source/Source';
-import State from 'ol/source/State';
-import TileSource, { TileSourceEvent } from 'ol/source/Tile';
-import { LoadFunction, UrlFunction } from 'ol/Tile';
-import TileGrid from 'ol/tilegrid/TileGrid';
+import { EventsKey } from '../events';
+import Event from '../events/Event';
+import { ObjectEvent } from '../Object';
+import { ProjectionLike } from '../proj';
+import { LoadFunction, UrlFunction } from '../Tile';
+import TileGrid from '../tilegrid/TileGrid';
+import { AttributionLike } from './Source';
+import State from './State';
+import TileSource, { TileSourceEvent } from './Tile';
+
 export interface Options {
     attributions?: AttributionLike;
     attributionsCollapsible?: boolean;

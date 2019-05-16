@@ -1,14 +1,15 @@
-import Collection from 'ol/Collection';
-import { Coordinate } from 'ol/coordinate';
-import { EventsKey } from 'ol/events';
-import Event from 'ol/events/Event';
-import { Extent } from 'ol/extent';
-import Feature from 'ol/Feature';
-import { FeatureLoader, FeatureUrlFunction } from 'ol/featureloader';
-import FeatureFormat from 'ol/format/Feature';
-import { ObjectEvent } from 'ol/Object';
-import Projection from 'ol/proj/Projection';
-import Source, { AttributionLike } from 'ol/source/Source';
+import Collection from '../Collection';
+import { Coordinate } from '../coordinate';
+import { EventsKey } from '../events';
+import Event from '../events/Event';
+import { Extent } from '../extent';
+import Feature from '../Feature';
+import { FeatureLoader, FeatureUrlFunction } from '../featureloader';
+import FeatureFormat from '../format/Feature';
+import { ObjectEvent } from '../Object';
+import Projection from '../proj/Projection';
+import Source, { AttributionLike } from './Source';
+
 export class VectorSourceEvent extends Event {
     constructor();
     feature: Feature;

@@ -9,7 +9,7 @@ import View from 'ol/View';
  * Generates a shaded relief image given elevation data.  Uses a 3x3
  * neighborhood for determining slope and aspect.
  */
-const shade: Operation = (inputs: ImageData[], data) => {
+const shade: Operation = (inputs: ImageData[], data: any) => {
   const elevationImage = inputs[0];
   const width = elevationImage.width;
   const height = elevationImage.height;

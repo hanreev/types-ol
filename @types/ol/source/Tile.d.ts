@@ -1,16 +1,17 @@
-import { EventsKey } from 'ol/events';
-import Event from 'ol/events/Event';
-import { ObjectEvent } from 'ol/Object';
-import { ProjectionLike } from 'ol/proj';
-import Projection from 'ol/proj/Projection';
-import { Size } from 'ol/size';
-import Source, { AttributionLike } from 'ol/source/Source';
-import State from 'ol/source/State';
-import Tile, { Options as Options_1 } from 'ol/Tile';
-import TileCache from 'ol/TileCache';
-import { TileCoord } from 'ol/tilecoord';
-import TileGrid from 'ol/tilegrid/TileGrid';
-import TileRange from 'ol/TileRange';
+import { EventsKey } from '../events';
+import Event from '../events/Event';
+import { ObjectEvent } from '../Object';
+import { ProjectionLike } from '../proj';
+import Projection from '../proj/Projection';
+import { Size } from '../size';
+import Tile, { Options as Options_1 } from '../Tile';
+import TileCache from '../TileCache';
+import { TileCoord } from '../tilecoord';
+import TileGrid from '../tilegrid/TileGrid';
+import TileRange from '../TileRange';
+import Source, { AttributionLike } from './Source';
+import State from './State';
+
 export class TileSourceEvent extends Event {
     constructor();
     tile: Tile;

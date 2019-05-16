@@ -1,14 +1,15 @@
-import { EventsKey } from 'ol/events';
-import Event from 'ol/events/Event';
-import { Extent } from 'ol/extent';
-import Layer, { State } from 'ol/layer/Layer';
-import TileLayer from 'ol/layer/Tile';
-import VectorTileLayer from 'ol/layer/VectorTile';
-import { FrameState } from 'ol/PluggableMap';
-import Projection from 'ol/proj/Projection';
-import IntermediateCanvasRenderer from 'ol/renderer/canvas/IntermediateCanvas';
-import MapRenderer from 'ol/renderer/Map';
-import Tile from 'ol/Tile';
+import { EventsKey } from '../../events';
+import Event from '../../events/Event';
+import { Extent } from '../../extent';
+import Layer, { State } from '../../layer/Layer';
+import TileLayer from '../../layer/Tile';
+import VectorTileLayer from '../../layer/VectorTile';
+import { FrameState } from '../../PluggableMap';
+import Projection from '../../proj/Projection';
+import Tile from '../../Tile';
+import MapRenderer from '../Map';
+import IntermediateCanvasRenderer from './IntermediateCanvas';
+
 export default class CanvasTileLayerRenderer extends IntermediateCanvasRenderer {
     constructor(tileLayer: TileLayer | VectorTileLayer, opt_noContext?: boolean);
     protected zDirection: number;

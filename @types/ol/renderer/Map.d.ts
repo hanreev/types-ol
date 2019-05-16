@@ -1,12 +1,13 @@
-import { Coordinate } from 'ol/coordinate';
-import Disposable from 'ol/Disposable';
-import { FeatureLike } from 'ol/Feature';
-import BaseLayer from 'ol/layer/Base';
-import Layer, { State } from 'ol/layer/Layer';
-import { Pixel } from 'ol/pixel';
-import PluggableMap, { FrameState } from 'ol/PluggableMap';
-import EventType from 'ol/render/EventType';
-import LayerRenderer from 'ol/renderer/Layer';
+import { Coordinate } from '../coordinate';
+import Disposable from '../Disposable';
+import { FeatureLike } from '../Feature';
+import BaseLayer from '../layer/Base';
+import Layer, { State } from '../layer/Layer';
+import { Pixel } from '../pixel';
+import PluggableMap, { FrameState } from '../PluggableMap';
+import EventType from '../render/EventType';
+import LayerRenderer from './Layer';
+
 export function sortByZIndex(state1: State, state2: State): number;
 export default class MapRenderer extends Disposable {
     constructor(map: PluggableMap);

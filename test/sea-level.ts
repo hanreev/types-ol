@@ -5,7 +5,7 @@ import RasterSource, { Operation } from 'ol/source/Raster';
 import XYZ from 'ol/source/XYZ';
 import View from 'ol/View';
 
-const flood: Operation = (pixels: number[][], data) => {
+const flood: Operation = (pixels: number[][], data: any) => {
   const pixel = pixels[0];
   if (pixel[3]) {
     const height = -10000 + ((pixel[0] * 256 * 256 + pixel[1] * 256 + pixel[2]) * 0.1);

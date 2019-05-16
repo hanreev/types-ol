@@ -1,5 +1,6 @@
-import { Color } from 'ol/color';
-import { ColorLike } from 'ol/colorlike';
+import { Color } from '../color';
+import { ColorLike } from '../colorlike';
+
 export interface Options {
     color?: Color | ColorLike;
     lineCap?: string;

@@ -30,7 +30,6 @@ const configs = {
       'adjacent-overload-signatures': false,
       'array-type': false,
       'max-line-length': false,
-      'no-self-import': false,
       'no-unnecessary-class': false,
       'no-unnecessary-generics': false,
       'unified-signatures': false

@@ -1,8 +1,9 @@
-import { ColorLike } from 'ol/colorlike';
-import AtlasManager from 'ol/style/AtlasManager';
-import Fill from 'ol/style/Fill';
-import ImageStyle from 'ol/style/Image';
-import Stroke from 'ol/style/Stroke';
+import { ColorLike } from '../colorlike';
+import AtlasManager from './AtlasManager';
+import Fill from './Fill';
+import ImageStyle from './Image';
+import Stroke from './Stroke';
+
 export interface Options {
     fill?: Fill;
     points: number;

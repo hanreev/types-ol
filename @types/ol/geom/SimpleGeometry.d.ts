@@ -1,10 +1,11 @@
-import { Coordinate } from 'ol/coordinate';
-import { EventsKey } from 'ol/events';
-import Event from 'ol/events/Event';
-import Geometry from 'ol/geom/Geometry';
-import GeometryLayout from 'ol/geom/GeometryLayout';
-import { ObjectEvent } from 'ol/Object';
-import { Transform } from 'ol/transform';
+import { Coordinate } from '../coordinate';
+import { EventsKey } from '../events';
+import Event from '../events/Event';
+import { ObjectEvent } from '../Object';
+import { Transform } from '../transform';
+import Geometry from './Geometry';
+import GeometryLayout from './GeometryLayout';
+
 export function getStrideForLayout(layout: GeometryLayout): number;
 export function transformGeom2D(simpleGeometry: SimpleGeometry, transform: Transform, opt_dest?: number[]): number[];
 export default class SimpleGeometry extends Geometry {

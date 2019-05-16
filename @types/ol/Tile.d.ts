@@ -1,7 +1,8 @@
-import Target from 'ol/events/Target';
-import Projection from 'ol/proj/Projection';
-import { TileCoord } from 'ol/tilecoord';
-import TileState from 'ol/TileState';
+import Target from './events/Target';
+import Projection from './proj/Projection';
+import { TileCoord } from './tilecoord';
+import TileState from './TileState';
+
 export type LoadFunction = ((param0: Tile, param1: string) => void);
 export interface Options {
     transition?: number;

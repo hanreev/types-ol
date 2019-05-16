@@ -1,7 +1,8 @@
-import { EventsKey } from 'ol/events';
-import Event from 'ol/events/Event';
-import ImageState from 'ol/ImageState';
-import { Size } from 'ol/size';
+import { EventsKey } from '../events';
+import Event from '../events/Event';
+import ImageState from '../ImageState';
+import { Size } from '../size';
+
 export default class ImageStyle {
     constructor(options: Options);
     getScale(): number;

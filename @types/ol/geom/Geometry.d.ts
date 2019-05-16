@@ -1,10 +1,11 @@
-import { Coordinate } from 'ol/coordinate';
-import { EventsKey } from 'ol/events';
-import Event from 'ol/events/Event';
-import { Extent } from 'ol/extent';
-import GeometryType from 'ol/geom/GeometryType';
-import BaseObject, { ObjectEvent } from 'ol/Object';
-import { TransformFunction, ProjectionLike } from 'ol/proj';
+import { Coordinate } from '../coordinate';
+import { EventsKey } from '../events';
+import Event from '../events/Event';
+import { Extent } from '../extent';
+import BaseObject, { ObjectEvent } from '../Object';
+import { TransformFunction, ProjectionLike } from '../proj';
+import GeometryType from './GeometryType';
+
 export default class Geometry extends BaseObject {
     constructor();
     protected simplifiedGeometryCache: { [key: string]: Geometry };

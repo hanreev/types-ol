@@ -1,14 +1,15 @@
-import Feature from 'ol/Feature';
-import XMLFeature from 'ol/format/XMLFeature';
-import Geometry from 'ol/geom/Geometry';
-import LinearRing from 'ol/geom/LinearRing';
-import LineString from 'ol/geom/LineString';
-import MultiLineString from 'ol/geom/MultiLineString';
-import MultiPoint from 'ol/geom/MultiPoint';
-import MultiPolygon from 'ol/geom/MultiPolygon';
-import Point from 'ol/geom/Point';
-import Polygon from 'ol/geom/Polygon';
-import { Parser } from 'ol/xml';
+import Feature from '../Feature';
+import Geometry from '../geom/Geometry';
+import LinearRing from '../geom/LinearRing';
+import LineString from '../geom/LineString';
+import MultiLineString from '../geom/MultiLineString';
+import MultiPoint from '../geom/MultiPoint';
+import MultiPolygon from '../geom/MultiPolygon';
+import Point from '../geom/Point';
+import Polygon from '../geom/Polygon';
+import { Parser } from '../xml';
+import XMLFeature from './XMLFeature';
+
 export default class GMLBase extends XMLFeature {
     constructor(opt_options?: Options);
     protected featureNS: { [key: string]: string } | string;
@@ -27,7 +28,7 @@ export default class GMLBase extends XMLFeature {
     readMultiPolygon(node: Element, objectStack: any[]): MultiPolygon;
     readPoint(node: Element, objectStack: any[]): Point;
     readPolygon(node: Element, objectStack: any[]): Polygon;
-    readFeatureElementInternal(node: Element, objectStack: any[], asFeature: boolean): Feature | { [key: string]: any };
+    readFeatureElementInternal(node: Element, objectStack: any[], asFeature: boolean): Feature | object;
     readFeaturesInternal(node: Element, objectStack: any[]): Feature[];
     readMultiLineString(node: Element, objectStack: any[]): MultiLineString;
 }

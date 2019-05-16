@@ -1,8 +1,9 @@
-import { Coordinate } from 'ol/coordinate';
-import { Extent } from 'ol/extent';
-import { Size } from 'ol/size';
-import { TileCoord } from 'ol/tilecoord';
-import TileRange from 'ol/TileRange';
+import { Coordinate } from '../coordinate';
+import { Extent } from '../extent';
+import { Size } from '../size';
+import { TileCoord } from '../tilecoord';
+import TileRange from '../TileRange';
+
 export interface Options {
     extent?: Extent;
     minZoom?: number;

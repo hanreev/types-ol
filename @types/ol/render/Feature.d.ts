@@ -1,6 +1,7 @@
-import { Extent } from 'ol/extent';
-import GeometryType from 'ol/geom/GeometryType';
-import { ProjectionLike } from 'ol/proj';
+import { Extent } from '../extent';
+import GeometryType from '../geom/GeometryType';
+import { ProjectionLike } from '../proj';
+
 export default class RenderFeature {
     constructor(type: GeometryType, flatCoordinates: number[], ends: number[] | number[][], properties: { [key: string]: any }, id: number | string);
     getId(): number | string;
