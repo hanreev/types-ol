@@ -21,7 +21,7 @@ yarn add -D @hanreev/types-ol
 
 There are several ways to use this package. Please choose one:
 
-- Install as `@types/ol`. This will simulate `@types/ol` installation from `./node_modules/@hanreev/types-ol/ol` directory.  
+- Install as `@types/ol`. This will simulate `@types/ol` installation from `node_modules/@hanreev/types-ol/ol` directory.  
   **Why?**
   - TypeScript compiler will look for types in `node_modules/@types` by default.
   - If you're using [Visual Studio Code](https://code.visualstudio.com/), its IntelliSense will only recognize types from `node_modules/@types`.
@@ -62,7 +62,7 @@ There are several ways to use this package. Please choose one:
       ...
       "baseUrl": "./",
       "paths": {
-        "ol/*": ["node_modules/@hanreev/types-ol/ol/*"]
+        "ol": ["node_modules/@hanreev/types-ol/ol"]
       },
       ...
     }
@@ -71,7 +71,6 @@ There are several ways to use this package. Please choose one:
 
 - Using `compilerOptions.typeRoots` and `compilerOptions.types` in `tsconfig.json`
 
-- 
   ```js
   // file: tsconfig.json
 
@@ -132,16 +131,24 @@ Configuration is located at `jsdoc/conf.json`
   ```bash
   # NPM
   npm run build-format && npm run lint
-
+  
   # Yarn
   yarn build-format && yarn lint
+  ```
+- Run test
+  ```bash
+  # NPM
+  npm run lint-test && npm run test
+  
+  # Yarn
+  yarn lint-test && yarn test
   ```
 
 
 
 
 > ***Note:***  
-> Some declaration was patched manually. If you found any errors please [create a new issue](https://github.com/hanreev/types-ol/issues).
+> Some declaration was patched manually. If you found any error please [create a new issue](https://github.com/hanreev/types-ol/issues).
 
 
 
@@ -149,11 +156,11 @@ Configuration is located at `jsdoc/conf.json`
 
 - **v2.0.2**
   - Fix `object` type
-  - Use relative import path for `ol` modules (`no-self-import`).
+  - Use relative import path for `ol` modules ([no-self-import](https://github.com/microsoft/dtslint/blob/master/docs/no-self-import.md))
 - **v2.0.1**
   - Refactor definition filenames
-  - Remove module declaration
-  - [DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped) standard with these ignored rules:
+  - Remove module declaration ([no-declare-current-package](https://github.com/microsoft/dtslint/blob/master/docs/no-declare-current-package.md))
+  - [DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped) standard. These [dtslint](https://github.com/microsoft/dtslint) rules are ignored:
     - `adjacent-overload-signatures`
     - `array-type`
     - `max-line-length`
