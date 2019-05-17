@@ -1,5 +1,6 @@
 import Collection from './Collection';
 import Interaction from './interaction/Interaction';
+
 export { default as DoubleClickZoom } from './interaction/DoubleClickZoom';
 export { default as DragAndDrop } from './interaction/DragAndDrop';
 export { default as DragBox } from './interaction/DragBox';

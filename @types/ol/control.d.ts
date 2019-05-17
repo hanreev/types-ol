@@ -1,6 +1,7 @@
 import Collection from './Collection';
 import Control from './control/Control';
 import { DefaultsOptions } from './control/util';
+
 export { default as Attribution } from './control/Attribution';
 export { default as Control } from './control/Control';
 export { default as FullScreen } from './control/FullScreen';

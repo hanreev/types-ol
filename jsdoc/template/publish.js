@@ -987,6 +987,8 @@ function generateDeclaration(doclet, emitOutput = true) {
     });
     reExports = relativeImport(reExports, doclet);
     MODULE_EXPORTS[doclet.name].reExports = reExports;
+    if (_imports && _imports.expressions.length)
+      content += '\n';
     content += reExports.join('\n') + '\n';
   }
 

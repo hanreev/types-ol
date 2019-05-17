@@ -17,7 +17,7 @@ yarn add -D @hanreev/types-ol
 
 
 
-### Usage
+## Usage
 
 There are several ways to use this package. Please choose one:
 
@@ -181,4 +181,4 @@ Configuration is located at `jsdoc/conf.json`
 ## License
 
 Copyright &copy; 2019 [Rifa'i M. Hanif](https://github.com/hanreev)  
-Licensed under MIT License
+Licensed under [MIT License](LICENSE)
