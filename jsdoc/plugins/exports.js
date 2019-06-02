@@ -55,7 +55,7 @@ function remapExports(doclet) {
     doclet.exports.reExports = doclet.exports.reExports.map(reExport => {
       return reExport.replace(/^(export\s{)(.+?)(}\sfrom\s['"])(.+?)(['"];)$/, (_, p1, p2, p3, p4, p5) => {
         p4 = path.normalize(path.join(doclet.meta.path, p4));
-        p4 = path.relative(moduleRoot, p4);
+        p4 = path.relative(moduleRoot, p4).replace(/\\/g, '/');
         p2.split(/,\s?/).forEach(e => {
           if (e.indexOf(' as ') == -1)
             doclet.exports.exports.push(e);

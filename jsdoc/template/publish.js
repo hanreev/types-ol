@@ -170,8 +170,8 @@ const TYPE_PATCHES = {
 
 /** @type {Object<string, string[]>} */
 const PARAM_TYPE_PATCHES = {
-  'module:ol/layer/Tile~TileLayer': ['opt_options', 'module:ol/layer/Tile~Options'],
-  'module:ol/layer/VectorTile~VectorTileLayer': ['opt_options', 'module:ol/layer/VectorTile~Options'],
+  // 'module:ol/layer/Tile~TileLayer': ['opt_options', 'module:ol/layer/Tile~Options'],
+  // 'module:ol/layer/VectorTile~VectorTileLayer': ['opt_options', 'module:ol/layer/VectorTile~Options'],
 };
 
 /** @type {Object<string, Object<string, string[]>} */
@@ -331,7 +331,7 @@ function relativeImport(expressions, _module) {
     if (!fromPath.startsWith('ol'))
       return expression;
 
-    fromPath = path.relative(moduleDirname, fromPath);
+    fromPath = path.relative(moduleDirname, fromPath).replace(/\\/g, '/');
 
     if (!fromPath)
       fromPath = '../' + path.basename(moduleDirname);
@@ -595,6 +595,10 @@ function getType(doclet, _module) {
       prefix = 'typeof ';
       type = type.replace(/^typeof:/, '');
     }
+
+    const objRegex = /^\[ '(.+)' \](\..+)$/;
+    if (objRegex.test(type))
+      type = type.replace(objRegex, '$1$2');
 
     if (type.startsWith('function'))
       type = parseFunctionType(type, _module);
@@ -967,8 +971,8 @@ function generateDeclaration(doclet, emitOutput = true) {
       if (match && match[2].indexOf(' as ') == -1) {
         const names = match[2].split(/,\s?/).map(name => {
           name = name.trim();
-          const isDuplicate = find({ name: name, memberof: doclet.longname }).length > 0;
-          const isInvalid = !find({ name: name, memberof: `module:${match[4]}` }).length;
+          const isDuplicate = find({ name, memberof: doclet.longname }).length > 0;
+          const isInvalid = !find({ name, memberof: `module:${match[4]}` }).length;
 
           if (!isDuplicate && isInvalid)
             logger.warn('Removed export --', name, 'in', doclet.longname, '--', x);
