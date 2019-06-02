@@ -8,13 +8,13 @@ export class CollectionEvent<T> extends Event {
 }
 export default class Collection<T> extends BaseObject {
     constructor(opt_array?: T[], opt_options?: Options);
-    item(index: number): T;
     clear(): void;
+    extend(arr: T[]): Collection<T>;
     forEach(f: ((param0: T, param1: number, param2: T[]) => void)): void;
     getArray(): T[];
     getLength(): number;
     insertAt(index: number, elem: T): void;
-    extend(arr: T[]): Collection<T>;
+    item(index: number): T;
     pop(): T;
     push(elem: T): number;
     remove(elem: T): T;

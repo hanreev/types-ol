@@ -11,13 +11,13 @@ import TileState from './TileState';
 
 export default class VectorTile extends Tile {
     constructor(tileCoord: TileCoord, state: TileState, src: string, format: FeatureFormat, tileLoadFunction: LoadFunction, opt_options?: Options);
-    onLoad(features: Feature[], dataProjection: Projection, extent: Extent): void;
     getExtent(): Extent;
+    getFeatures(): FeatureLike[];
     getFormat(): FeatureFormat;
     getProjection(): Projection;
     getReplayGroup(layer: Layer, key: string): ReplayGroup;
     onError(): void;
-    getFeatures(): FeatureLike[];
+    onLoad(features: Feature[], dataProjection: Projection, extent: Extent): void;
     setExtent(extent: Extent): void;
     setFeatures(features: Feature[]): void;
     setLoader(loader: FeatureLoader): void;

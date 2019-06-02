@@ -10,15 +10,15 @@ export interface Entry {
 }
 export default class LRUCache<T> extends Target {
     constructor(opt_highWaterMark?: number);
-    peekFirstKey(): string;
     canExpireCache(): boolean;
+    clear(): void;
     containsKey(key: string): boolean;
     forEach<S>(f: (<T>(this: S, param1: T, param2: string, param3: LRUCache<T>) => void), opt_this?: S): void;
     get(key: string): T;
     getCount(): number;
     getKeys(): string[];
     getValues(): T[];
-    clear(): void;
+    peekFirstKey(): string;
     peekLast(): T;
     peekLastKey(): string;
     pop(): T;

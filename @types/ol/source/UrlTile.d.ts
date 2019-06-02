@@ -27,17 +27,17 @@ export interface Options {
 }
 export default class UrlTile extends TileSource {
     constructor(options: Options);
-    protected urls: string[];
     protected tileLoadFunction: LoadFunction;
     protected tileUrlFunction: UrlFunction;
+    protected urls: string[];
     protected handleTileChange(event: Event): void;
-    setTileLoadFunction(tileLoadFunction: LoadFunction): void;
+    getTileLoadFunction(): LoadFunction;
     getTileUrlFunction(): UrlFunction;
+    getUrls(): string[];
+    setTileLoadFunction(tileLoadFunction: LoadFunction): void;
+    setTileUrlFunction(tileUrlFunction: UrlFunction, key?: string): void;
     setUrl(url: string): void;
     setUrls(urls: string[]): void;
-    getUrls(): string[];
-    getTileLoadFunction(): LoadFunction;
-    setTileUrlFunction(tileUrlFunction: UrlFunction, key?: string): void;
     on(type: string | string[], listener: ((param0: any) => void)): EventsKey | EventsKey[];
     once(type: string | string[], listener: ((param0: any) => void)): EventsKey | EventsKey[];
     un(type: string | string[], listener: ((param0: any) => void)): void;

@@ -23,8 +23,8 @@ export interface Options {
 }
 export default class Text {
     constructor(opt_options?: Options);
-    getTextBaseline(): string;
     clone(): Text;
+    getBackgroundFill(): Fill;
     getBackgroundStroke(): Stroke;
     getFill(): Fill;
     getFont(): string;
@@ -40,7 +40,7 @@ export default class Text {
     getStroke(): Stroke;
     getText(): string;
     getTextAlign(): string;
-    getBackgroundFill(): Fill;
+    getTextBaseline(): string;
     setBackgroundFill(fill: Fill): void;
     setBackgroundStroke(stroke: Stroke): void;
     setFill(fill: Fill): void;

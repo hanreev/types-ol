@@ -10,20 +10,20 @@ import WebGLMapRenderer from './Map';
 
 export default class WebGLLayerRenderer extends LayerRenderer {
     constructor(mapRenderer: WebGLMapRenderer, layer: Layer);
-    protected texture: WebGLTexture;
-    protected texCoordMatrix: Transform;
     protected framebuffer: WebGLFramebuffer;
     protected framebufferDimension: number;
-    protected projectionMatrix: Transform;
     protected mapRenderer: WebGLMapRenderer;
+    protected projectionMatrix: Transform;
+    protected texCoordMatrix: Transform;
+    protected texture: WebGLTexture;
     protected bindFramebuffer(frameState: FrameState, framebufferDimension: number): void;
     composeFrame(frameState: FrameState, layerState: State, context: WebGLContext): void;
-    handleWebGLContextLost(): void;
-    getTexCoordMatrix(): Transform;
-    prepareFrame(frameState: FrameState, layerState: State, context: WebGLContext): boolean;
-    getProjectionMatrix(): Transform;
     forEachLayerAtPixel<S, T, U>(pixel: Pixel, frameState: FrameState, callback: ((this: S, param1: Layer, param2: Uint8ClampedArray | Uint8Array) => T), thisArg: S): T;
+    getProjectionMatrix(): Transform;
+    getTexCoordMatrix(): Transform;
     getTexture(): WebGLTexture;
+    handleWebGLContextLost(): void;
+    prepareFrame(frameState: FrameState, layerState: State, context: WebGLContext): boolean;
     on(type: string | string[], listener: ((param0: any) => void)): EventsKey | EventsKey[];
     once(type: string | string[], listener: ((param0: any) => void)): EventsKey | EventsKey[];
     un(type: string | string[], listener: ((param0: any) => void)): void;

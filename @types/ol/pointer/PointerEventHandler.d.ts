@@ -4,15 +4,15 @@ import PointerEvent from './PointerEvent';
 
 export default class PointerEventHandler extends Target {
     constructor(element: Element | HTMLDocument);
-    leaveOut(data: any, event: Event): void;
     cancel(data: any, event: Event): void;
+    cloneEvent(event: Event, inEvent: Event | Touch): any;
     down(data: any, event: Event): void;
     enter(data: any, event: Event): void;
     enterOver(data: any, event: Event): void;
     fireEvent(inType: string, data: any, event: Event): void;
     fireNativeEvent(event: Event): void;
     leave(data: any, event: Event): void;
-    cloneEvent(event: Event, inEvent: Event | Touch): any;
+    leaveOut(data: any, event: Event): void;
     makeEvent(inType: string, data: any, event: Event): PointerEvent;
     move(data: any, event: Event): void;
     out(data: any, event: Event): void;

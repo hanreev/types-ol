@@ -11,16 +11,16 @@ export function transformGeom2D(simpleGeometry: SimpleGeometry, transform: Trans
 export default class SimpleGeometry extends Geometry {
     constructor();
     protected flatCoordinates: number[];
-    protected stride: number;
     protected layout: GeometryLayout;
-    protected setLayout(layout: GeometryLayout, coordinates: any[], nesting: number): void;
+    protected stride: number;
     protected getSimplifiedGeometryInternal(squaredTolerance: number): SimpleGeometry;
+    protected setLayout(layout: GeometryLayout, coordinates: any[], nesting: number): void;
+    getCoordinates(): any[];
+    getFirstCoordinate(): Coordinate;
     getFlatCoordinates(): number[];
     getLastCoordinate(): Coordinate;
     getLayout(): GeometryLayout;
-    getCoordinates(): any[];
     getStride(): number;
-    getFirstCoordinate(): Coordinate;
     setCoordinates(coordinates: any[], opt_layout?: GeometryLayout): void;
     setFlatCoordinates(layout: GeometryLayout, flatCoordinates: number[]): void;
     on(type: string | string[], listener: ((param0: any) => void)): EventsKey | EventsKey[];

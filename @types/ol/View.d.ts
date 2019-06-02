@@ -65,8 +65,8 @@ export interface State {
 }
 export default class View extends BaseObject {
     constructor(opt_options?: ViewOptions);
-    getResolution(): number;
     animate(...var_args: (AnimationOptions | ((param0: boolean) => void))[]): void;
+    applyOptions_(options: ViewOptions): void;
     calculateCenterRotate(rotation: number, anchor: Coordinate): Coordinate;
     calculateCenterZoom(resolution: number, anchor: Coordinate): Coordinate;
     calculateExtent(opt_size?: Size): Extent;
@@ -86,7 +86,7 @@ export default class View extends BaseObject {
     getMinResolution(): number;
     getMinZoom(): number;
     getProjection(): Projection;
-    applyOptions_(options: ViewOptions): void;
+    getResolution(): number;
     getResolutionForExtent(extent: Extent, opt_size?: Size): number;
     getResolutionForValueFunction(opt_power?: number): ((param0: number) => number);
     getResolutionForZoom(zoom: number): number;

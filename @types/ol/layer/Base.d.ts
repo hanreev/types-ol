@@ -8,15 +8,15 @@ import Layer, { State } from './Layer';
 
 export default class BaseLayer extends BaseObject {
     constructor(options: Options);
-    getType(): LayerType;
     getExtent(): Extent;
+    getLayersArray(opt_array?: Layer[]): Layer[];
     getLayerState(): State;
     getLayerStatesArray(opt_states?: State[]): State[];
     getMaxResolution(): number;
     getMinResolution(): number;
     getOpacity(): number;
     getSourceState(): State_1;
-    getLayersArray(opt_array?: Layer[]): Layer[];
+    getType(): LayerType;
     getVisible(): boolean;
     getZIndex(): number;
     setExtent(extent: Extent): void;

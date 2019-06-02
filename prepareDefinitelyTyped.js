@@ -64,7 +64,7 @@ fs.copySync(srcPath, destPath);
 console.log('# Generating tsconfig.json and tslint.json');
 // Append .d.ts path to tsconfig files
 glob.sync(path.join(destPath, '**', '*.d.ts')).forEach(dtsPath => {
-  configs.tsconfig.files.push(path.relative(destPath, dtsPath));
+  configs.tsconfig.files.push(path.relative(destPath, dtsPath).replace(/\\/g, '/'));
 });
 
 // Write tsconfig.json and tslint.json

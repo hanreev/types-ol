@@ -25,15 +25,15 @@ export interface Options {
 export type RenderFunction = ((param0: Coordinate | Coordinate[] | Coordinate[][], param1: State) => void);
 export default class Style {
     constructor(opt_options?: Options);
-    getZIndex(): number;
     clone(): Style;
+    getFill(): Fill;
     getGeometry(): string | Geometry | GeometryFunction;
     getGeometryFunction(): GeometryFunction;
     getImage(): ImageStyle;
     getRenderer(): RenderFunction;
     getStroke(): Stroke;
     getText(): Text;
-    getFill(): Fill;
+    getZIndex(): number;
     setFill(fill: Fill): void;
     setGeometry(geometry: string | Geometry | GeometryFunction): void;
     setImage(image: ImageStyle): void;

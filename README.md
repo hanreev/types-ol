@@ -7,6 +7,8 @@ This project contains TypeScript declaration for [OpenLayers](https://openlayers
 
 ## Installation
 
+Definitions from this project will be syncronized with official [@types/ol](https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/ol) repository.
+
 ```bash
 # NPM
 npm i -D @hanreev/types-ol
@@ -33,7 +35,7 @@ There are several ways to use this package. Please choose one:
     ...
     "devDependencies": {
       ...
-      "@hanreev/types-ol": "^2.0.2",
+      "@hanreev/types-ol": "^2.0.3",
       "@types/ol": "file:node_modules/@hanreev/types-ol/ol",
       ...
     }
@@ -154,6 +156,9 @@ Configuration is located at `jsdoc/conf.json`
 
 ## Changelog
 
+- **v2.0.3**
+  - OpenLayers 5.3.3 source
+  - Members and methods sorting
 - **v2.0.2**
   - Fix `object` type
   - Use relative import path for `ol` modules ([no-self-import](https://github.com/microsoft/dtslint/blob/master/docs/no-self-import.md))

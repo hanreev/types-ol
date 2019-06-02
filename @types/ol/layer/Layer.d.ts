@@ -50,12 +50,12 @@ export default class Layer extends BaseLayer {
     on(type: 'change:zIndex', listener: (evt: ObjectEvent) => void): EventsKey;
     once(type: 'change:zIndex', listener: (evt: ObjectEvent) => void): EventsKey;
     un(type: 'change:zIndex', listener: (evt: ObjectEvent) => void): void;
-    on(type: 'propertychange', listener: (evt: ObjectEvent) => void): EventsKey;
-    once(type: 'propertychange', listener: (evt: ObjectEvent) => void): EventsKey;
-    un(type: 'propertychange', listener: (evt: ObjectEvent) => void): void;
     on(type: 'change', listener: (evt: Event) => void): EventsKey;
     once(type: 'change', listener: (evt: Event) => void): EventsKey;
     un(type: 'change', listener: (evt: Event) => void): void;
+    on(type: 'propertychange', listener: (evt: ObjectEvent) => void): EventsKey;
+    once(type: 'propertychange', listener: (evt: ObjectEvent) => void): EventsKey;
+    un(type: 'propertychange', listener: (evt: ObjectEvent) => void): void;
 }
 export interface Options {
     opacity?: number;

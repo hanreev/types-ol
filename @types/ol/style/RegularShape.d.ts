@@ -21,15 +21,15 @@ export default class RegularShape extends ImageStyle {
     protected atlasManager_: AtlasManager;
     protected radius_: number;
     protected render_(atlasManager: AtlasManager): void;
-    getChecksum(): string;
-    getFill(): Fill;
     clone(): RegularShape;
     clone(): ImageStyle;
+    getAngle(): number;
+    getChecksum(): string;
+    getFill(): Fill;
+    getPoints(): number;
     getRadius(): number;
     getRadius2(): number;
     getStroke(): Stroke;
-    getAngle(): number;
-    getPoints(): number;
 }
 export interface RenderOptions {
     strokeStyle?: ColorLike;
