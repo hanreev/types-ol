@@ -1,11 +1,10 @@
-import Feature from 'ol/Feature';
+import Feature, { FeatureLike } from 'ol/Feature';
+import Map from 'ol/Map';
+import View from 'ol/View';
 import GeoJSON from 'ol/format/GeoJSON';
 import VectorLayer from 'ol/layer/Vector';
-import Map from 'ol/Map';
 import VectorSource from 'ol/source/Vector';
 import { Fill, Stroke, Style, Text } from 'ol/style';
-import View from 'ol/View';
-
 
 const style = new Style({
   fill: new Fill({
@@ -41,7 +40,7 @@ const map = new Map({
 
 const featureOverlay = new VectorLayer({
   source: new VectorSource(),
-  map: map,
+  map,
   style: new Style({
     stroke: new Stroke({
       color: '#f00',
@@ -55,29 +54,23 @@ const featureOverlay = new VectorLayer({
 
 let highlight: Feature;
 const displayFeatureInfo = (pixel: number[]) => {
-
   // tslint:disable-next-line: no-shadowed-variable
-  const feature = map.forEachFeatureAtPixel(pixel, (feature: Feature) => {
+  const feature = map.forEachFeatureAtPixel(pixel, (feature: FeatureLike) => {
     return feature;
   });
 
-  const info = document.getElementById('info');
-  if (feature) {
-    info.innerHTML = feature.getId() + ': ' + feature.get('name');
-  } else {
-    info.innerHTML = '&nbsp;';
-  }
+  const info = document.getElementById('info') as HTMLElement;
+  info.innerHTML = feature ? feature.getId() + ': ' + feature.get('name') : '&nbsp;';
 
   if (feature !== highlight) {
     if (highlight) {
       featureOverlay.getSource().removeFeature(highlight);
     }
     if (feature) {
-      featureOverlay.getSource().addFeature(feature);
+      featureOverlay.getSource().addFeature(feature as Feature);
     }
-    highlight = feature;
+    highlight = feature as Feature;
   }
-
 };
 
 map.on('pointermove', (evt) => {

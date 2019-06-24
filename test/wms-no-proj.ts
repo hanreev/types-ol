@@ -5,7 +5,6 @@ import Projection from 'ol/proj/Projection';
 import ImageWMS from 'ol/source/ImageWMS';
 import TileWMS from 'ol/source/TileWMS';
 
-
 const layers = [
   new TileLayer({
     source: new TileWMS({
@@ -13,8 +12,8 @@ const layers = [
         'en/home.html">Pixelmap 1:1000000 / geo.admin.ch</a>',
       crossOrigin: 'anonymous',
       params: {
-        'LAYERS': 'ch.swisstopo.pixelkarte-farbe-pk1000.noscale',
-        'FORMAT': 'image/jpeg'
+        LAYERS: 'ch.swisstopo.pixelkarte-farbe-pk1000.noscale',
+        FORMAT: 'image/jpeg'
       },
       url: 'https://wms.geo.admin.ch/'
     })
@@ -24,7 +23,7 @@ const layers = [
       attributions: '© <a href="http://www.geo.admin.ch/internet/geoportal/' +
         'en/home.html">National parks / geo.admin.ch</a>',
       crossOrigin: 'anonymous',
-      params: { 'LAYERS': 'ch.bafu.schutzgebiete-paerke_nationaler_bedeutung' },
+      params: { LAYERS: 'ch.bafu.schutzgebiete-paerke_nationaler_bedeutung' },
       serverType: 'mapserver',
       url: 'https://wms.geo.admin.ch/'
     })
@@ -42,11 +41,11 @@ const projection = new Projection({
 });
 
 const map = new Map({
-  layers: layers,
+  layers,
   target: 'map',
   view: new View({
     center: [660000, 190000],
-    projection: projection,
+    projection,
     zoom: 9
   })
 });

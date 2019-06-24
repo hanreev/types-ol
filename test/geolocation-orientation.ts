@@ -23,7 +23,7 @@ const map = new Map({
     })
   ],
   target: 'map',
-  view: view
+  view
 });
 
 // Geolocation marker
@@ -75,7 +75,7 @@ geolocation.on('change', () => {
     'Speed: ' + (speed * 3.6).toFixed(1) + ' km/h',
     'Delta: ' + Math.round(deltaMean) + 'ms'
   ].join('<br />');
-  document.getElementById('info').innerHTML = html;
+  (document.getElementById('info') as HTMLElement).innerHTML = html;
 });
 
 geolocation.on('error', () => {
@@ -118,11 +118,7 @@ function addPosition(position: number[], heading: number, m: number, speed: numb
   positions.setCoordinates(positions.getCoordinates().slice(-20));
 
   // FIXME use speed instead
-  if (heading && speed) {
-    markerEl.src = 'data/geolocation_marker_heading.png';
-  } else {
-    markerEl.src = 'data/geolocation_marker.png';
-  }
+  markerEl.src = heading && speed ? 'data/geolocation_marker_heading.png' : 'data/geolocation_marker.png';
 }
 
 // recenters the view by putting the given coordinates at 3/4 from the top or
@@ -167,8 +163,6 @@ geolocateBtn.addEventListener('click', () => {
 let simulationData: any;
 const client = new XMLHttpRequest();
 client.open('GET', 'data/geolocation-orientation.json');
-
-
 
 client.onload = () => {
   simulationData = JSON.parse(client.responseText).data;

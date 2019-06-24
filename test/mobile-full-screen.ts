@@ -4,7 +4,6 @@ import View from 'ol/View';
 import TileLayer from 'ol/layer/Tile';
 import BingMaps from 'ol/source/BingMaps';
 
-
 const view = new View({
   center: [0, 0],
   zoom: 2
@@ -20,7 +19,7 @@ const map = new Map({
     })
   ],
   target: 'map',
-  view: view
+  view
 });
 
 const geolocation = new Geolocation({

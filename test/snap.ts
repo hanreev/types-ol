@@ -38,38 +38,62 @@ const map = new Map({
   })
 });
 
-const ExampleModify = {
-  init: function() {
-    this.select = new Select();
-    map.addInteraction(this.select);
+class ExampleModifyClass {
+  select = new Select();
 
-    this.modify = new Modify({
-      features: this.select.getFeatures()
-    });
+  modify = new Modify({
+    features: this.select.getFeatures()
+  });
+
+  constructor() {
+    map.addInteraction(this.select);
     map.addInteraction(this.modify);
 
     this.setEvents();
-  },
-  setEvents: function() {
-    const selectedFeatures = (this.select as Select).getFeatures();
+  }
 
-    (this.select as Select).on('change:active', () => {
+  setEvents() {
+    const selectedFeatures = this.select.getFeatures();
+
+    this.select.on('change:active', () => {
       selectedFeatures.forEach((each) => {
         selectedFeatures.remove(each);
       });
     });
-  },
-  setActive: function(active: boolean) {
-    (this.select as Select).setActive(active);
-    (this.modify as Modify).setActive(active);
   }
-};
-ExampleModify.init();
+  setActive(active: boolean) {
+    this.select.setActive(active);
+    this.modify.setActive(active);
+  }
+}
+const ExampleModify = new ExampleModifyClass();
 
 const optionsForm = document.getElementById('options-form') as HTMLFormElement;
 
-const ExampleDraw = {
-  init: function() {
+class ExampleDrawClass {
+  Point = new Draw({
+    source: vector.getSource(),
+    type: GeometryType.POINT
+  });
+
+  LineString = new Draw({
+    source: vector.getSource(),
+    type: GeometryType.LINE_STRING
+  });
+
+  Polygon = new Draw({
+    source: vector.getSource(),
+    type: GeometryType.POLYGON
+  });
+
+  Circle = new Draw({
+    source: vector.getSource(),
+    type: GeometryType.CIRCLE
+  });
+
+  activeType: 'Point' | 'LineString' | 'Polygon' | 'Circle' | null;
+
+  constructor() {
     map.addInteraction(this.Point);
     this.Point.setActive(false);
     map.addInteraction(this.LineString);
@@ -78,28 +102,14 @@ const ExampleDraw = {
     this.Polygon.setActive(false);
     map.addInteraction(this.Circle);
     this.Circle.setActive(false);
-  },
-  Point: new Draw({
-    source: vector.getSource(),
-    type: GeometryType.POINT
-  }),
-  LineString: new Draw({
-    source: vector.getSource(),
-    type: GeometryType.LINE_STRING
-  }),
-  Polygon: new Draw({
-    source: vector.getSource(),
-    type: GeometryType.POLYGON
-  }),
-  Circle: new Draw({
-    source: vector.getSource(),
-    type: GeometryType.CIRCLE
-  }),
-  getActive: function() {
+  }
+
+  getActive() {
     return this.activeType ? this[this.activeType].getActive() : false;
-  },
-  setActive: function(active: boolean) {
-    const type = (optionsForm.elements['draw-type' as any] as HTMLInputElement).value;
+  }
+
+  setActive(active: boolean) {
+    const type = (optionsForm.elements['draw-type' as any] as HTMLInputElement).value as 'Point' | 'LineString' | 'Polygon' | 'Circle';
     if (active) {
       if (this.activeType)
         this[this.activeType].setActive(false);
@@ -111,25 +121,20 @@ const ExampleDraw = {
       this.activeType = null;
     }
   }
-};
-ExampleDraw.init();
+}
+const ExampleDraw = new ExampleDrawClass();
 
-
-/**
- * Let user change the geometry type.
- * @param {Event} e Change event.
- */
 optionsForm.onchange = (e) => {
   const type = (e.target as HTMLInputElement).getAttribute('name');
   const value = (e.target as HTMLInputElement).value;
-  if (type == 'draw-type') {
+  if (type === 'draw-type') {
     if (ExampleDraw.getActive())
       ExampleDraw.setActive(true);
-  } else if (type == 'interaction') {
-    if (value == 'modify') {
+  } else if (type === 'interaction') {
+    if (value === 'modify') {
       ExampleDraw.setActive(false);
       ExampleModify.setActive(true);
-    } else if (value == 'draw') {
+    } else if (value === 'draw') {
       ExampleDraw.setActive(true);
       ExampleModify.setActive(false);
     }

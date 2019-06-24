@@ -1,11 +1,10 @@
+import Map from 'ol/Map';
+import View from 'ol/View';
 import { getWidth } from 'ol/extent';
 import TileLayer from 'ol/layer/Tile';
-import Map from 'ol/Map';
 import { fromLonLat, get as getProjection } from 'ol/proj';
 import WMTS from 'ol/source/WMTS';
 import WMTSTileGrid from 'ol/tilegrid/WMTS';
-import View from 'ol/View';
-
 
 const map = new Map({
   target: 'map',
@@ -27,8 +26,8 @@ for (let i = 0; i < 18; i++) {
 
 const tileGrid = new WMTSTileGrid({
   origin: [-20037508, 20037508],
-  resolutions: resolutions,
-  matrixIds: matrixIds
+  resolutions,
+  matrixIds
 });
 
 // For more information about the IGN API key see
@@ -40,7 +39,7 @@ const ign_source = new WMTS({
   matrixSet: 'PM',
   format: 'image/jpeg',
   projection: 'EPSG:3857',
-  tileGrid: tileGrid,
+  tileGrid,
   style: 'normal',
   attributions: '<a href="http://www.geoportail.fr/" target="_blank">' +
     '<img src="https://api.ign.fr/geoportail/api/js/latest/' +

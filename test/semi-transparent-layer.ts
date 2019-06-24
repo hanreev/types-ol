@@ -5,7 +5,6 @@ import { fromLonLat } from 'ol/proj';
 import OSM from 'ol/source/OSM';
 import TileJSON from 'ol/source/TileJSON';
 
-
 const map = new Map({
   layers: [
     new TileLayer({

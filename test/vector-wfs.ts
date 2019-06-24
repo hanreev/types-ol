@@ -7,10 +7,10 @@ import BingMaps from 'ol/source/BingMaps';
 import VectorSource from 'ol/source/Vector';
 import { Stroke, Style } from 'ol/style';
 
-
 const vectorSource = new VectorSource({
   format: new GeoJSON(),
   url: (extent) => {
+    // tslint:disable-next-line: prefer-template
     return 'https://ahocevar.com/geoserver/wfs?service=WFS&' +
       'version=1.1.0&request=GetFeature&typename=osm:water_areas&' +
       'outputFormat=application/json&srsname=EPSG:3857&' +
@@ -18,7 +18,6 @@ const vectorSource = new VectorSource({
   },
   strategy: bboxStrategy
 });
-
 
 const vector = new VectorLayer({
   source: vectorSource,
@@ -39,7 +38,7 @@ const raster = new TileLayer({
 
 const map = new Map({
   layers: [raster, vector],
-  target: document.getElementById('map'),
+  target: document.getElementById('map') as HTMLElement,
   view: new View({
     center: [-8908887.277395891, 5381918.072437216],
     maxZoom: 19,

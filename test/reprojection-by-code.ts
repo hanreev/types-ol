@@ -1,13 +1,12 @@
+import Map from 'ol/Map';
+import View from 'ol/View';
 import { applyTransform } from 'ol/extent';
 import TileLayer from 'ol/layer/Tile';
-import Map from 'ol/Map';
 import { get as getProjection, getTransform } from 'ol/proj';
 import { register } from 'ol/proj/proj4';
 import OSM from 'ol/source/OSM';
 import TileImage from 'ol/source/TileImage';
-import View from 'ol/View';
-import proj4 from 'proj4';
-
+import * as proj4 from 'proj4';
 
 const map = new Map({
   layers: [
@@ -23,10 +22,9 @@ const map = new Map({
   })
 });
 
-
 const queryInput = document.getElementById('epsg-query') as HTMLInputElement;
-const searchButton = document.getElementById('epsg-search');
-const resultSpan = document.getElementById('epsg-result');
+const searchButton = document.getElementById('epsg-search') as HTMLButtonElement;
+const resultSpan = document.getElementById('epsg-result') as HTMLSpanElement;
 const renderEdgesCheckbox = document.getElementById('render-edges') as HTMLInputElement;
 
 function setProjection(code: string, name: string, proj4def: string | proj4.ProjectionDefinition, bbox: number[]) {
@@ -59,7 +57,6 @@ function setProjection(code: string, name: string, proj4def: string | proj4.Proj
   newView.fit(extent);
 }
 
-
 function search(query: string) {
   resultSpan.innerHTML = 'Searching ...';
   fetch('https://epsg.io/?format=json&q=' + query).then((response) => {
@@ -75,31 +72,22 @@ function search(query: string) {
           const proj4def = result['proj4'];
           const bbox = result['bbox'];
           if (code && code.length > 0 && proj4def && proj4def.length > 0 &&
-            bbox && bbox.length == 4) {
+            bbox && bbox.lengt === 4) {
             setProjection(code, name, proj4def, bbox);
             return;
           }
         }
       }
     }
-    setProjection(null, null, null, null);
+    setProjection(null as any, null as any, null as any, null as any);
   });
 }
 
-
-/**
- * Handle click event.
- * @param {Event} event The event.
- */
 searchButton.onclick = (event) => {
   search(queryInput.value);
   event.preventDefault();
 };
 
-
-/**
- * Handle change event.
- */
 renderEdgesCheckbox.onchange = () => {
   map.getLayers().forEach((layer) => {
     if (layer instanceof TileLayer) {

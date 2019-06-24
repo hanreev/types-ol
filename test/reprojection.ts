@@ -1,16 +1,15 @@
+import Map from 'ol/Map';
+import View from 'ol/View';
 import { getCenter, getWidth } from 'ol/extent';
 import WMTSCapabilities from 'ol/format/WMTSCapabilities';
 import BaseLayer from 'ol/layer/Base';
 import TileLayer from 'ol/layer/Tile';
-import Map from 'ol/Map';
 import { get as getProjection } from 'ol/proj';
 import { register } from 'ol/proj/proj4';
 import { OSM, TileImage, TileWMS, XYZ } from 'ol/source';
 import WMTS, { optionsFromCapabilities } from 'ol/source/WMTS';
 import TileGrid from 'ol/tilegrid/TileGrid';
-import View from 'ol/View';
-import proj4 from 'proj4';
-
+import * as proj4 from 'proj4';
 
 proj4.defs('EPSG:27700', '+proj=tmerc +lat_0=49 +lon_0=-2 +k=0.9996012717 ' +
   '+x_0=400000 +y_0=-100000 +ellps=airy ' +
@@ -53,7 +52,6 @@ proj2163.setExtent([-8040784.5135, -2577524.9210, 3668901.4484, 4785105.1096]);
 const proj54009 = getProjection('ESRI:54009');
 proj54009.setExtent([-18e6, -9e6, 18e6, 9e6]);
 
-
 const layers: { [key: string]: TileLayer } = {};
 
 layers['bng'] = new TileLayer({
@@ -74,8 +72,8 @@ layers['wms4326'] = new TileLayer({
     url: 'https://ahocevar.com/geoserver/wms',
     crossOrigin: '',
     params: {
-      'LAYERS': 'ne:NE1_HR_LC_SR_W_DR',
-      'TILED': true
+      LAYERS: 'ne:NE1_HR_LC_SR_W_DR',
+      TILED: true
     },
     projection: 'EPSG:4326'
   })
@@ -87,8 +85,8 @@ layers['wms21781'] = new TileLayer({
       'en/home.html">Pixelmap 1:1000000 / geo.admin.ch</a>',
     crossOrigin: 'anonymous',
     params: {
-      'LAYERS': 'ch.swisstopo.pixelkarte-farbe-pk1000.noscale',
-      'FORMAT': 'image/jpeg'
+      LAYERS: 'ch.swisstopo.pixelkarte-farbe-pk1000.noscale',
+      FORMAT: 'image/jpeg'
     },
     url: 'https://wms.geo.admin.ch/',
     projection: 'EPSG:21781'
@@ -110,7 +108,7 @@ fetch(url).then((response) => {
   options.projection = 'EPSG:3413';
   options.wrapX = false;
   layers['wmts3413'] = new TileLayer({
-    source: new WMTS(/** @type {!module:ol/source/WMTS~Options} */(options))
+    source: new WMTS((options))
   });
 });
 
@@ -136,17 +134,16 @@ layers['states'] = new TileLayer({
   source: new TileWMS({
     url: 'https://ahocevar.com/geoserver/wms',
     crossOrigin: '',
-    params: { 'LAYERS': 'topp:states' },
+    params: { LAYERS: 'topp:states' },
     serverType: 'geoserver',
     tileGrid: new TileGrid({
       extent: [-13884991, 2870341, -7455066, 6338219],
-      resolutions: resolutions,
+      resolutions,
       tileSize: [512, 256]
     }),
     projection: 'EPSG:3857'
   })
 });
-
 
 const map = new Map({
   layers: [
@@ -161,7 +158,6 @@ const map = new Map({
   })
 });
 
-
 const baseLayerSelect = document.getElementById('base-layer') as HTMLSelectElement;
 const overlayLayerSelect = document.getElementById('overlay-layer') as HTMLSelectElement;
 const viewProjSelect = document.getElementById('view-projection') as HTMLSelectElement;
@@ -175,22 +171,18 @@ function updateViewProjection() {
     projection: newProj,
     center: getCenter(newProjExtent || [0, 0, 0, 0]),
     zoom: 0,
-    extent: newProjExtent || undefined
+    extent: newProjExtent
   });
   map.setView(newView);
 
   // Example how to prevent double occurrence of map by limiting layer extent
-  if (newProj == getProjection('EPSG:3857')) {
+  if (newProj === getProjection('EPSG:3857')) {
     layers['bng'].setExtent([-1057216, 6405988, 404315, 8759696]);
   } else {
-    layers['bng'].setExtent(undefined);
+    layers['bng'].setExtent([]);
   }
 }
 
-
-/**
- * Handle change event.
- */
 viewProjSelect.onchange = () => {
   updateViewProjection();
 };
@@ -206,10 +198,6 @@ const updateRenderEdgesOnLayer = (layer: BaseLayer) => {
   }
 };
 
-
-/**
- * Handle change event.
- */
 baseLayerSelect.onchange = () => {
   const layer = layers[baseLayerSelect.value];
   if (layer) {
@@ -219,10 +207,6 @@ baseLayerSelect.onchange = () => {
   }
 };
 
-
-/**
- * Handle change event.
- */
 overlayLayerSelect.onchange = () => {
   const layer = layers[overlayLayerSelect.value];
   if (layer) {
@@ -232,10 +216,6 @@ overlayLayerSelect.onchange = () => {
   }
 };
 
-
-/**
- * Handle change event.
- */
 renderEdgesCheckbox.onchange = () => {
   renderEdges = renderEdgesCheckbox.checked;
   map.getLayers().forEach((layer) => {

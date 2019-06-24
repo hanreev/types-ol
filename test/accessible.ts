@@ -16,13 +16,13 @@ const map = new Map({
   })
 });
 
-document.getElementById('zoom-out').onclick = () => {
+(document.getElementById('zoom-out') as HTMLElement).onclick = () => {
   const view = map.getView();
   const zoom = view.getZoom();
   view.setZoom(zoom - 1);
 };
 
-document.getElementById('zoom-in').onclick = () => {
+(document.getElementById('zoom-in') as HTMLElement).onclick = () => {
   const view = map.getView();
   const zoom = view.getZoom();
   view.setZoom(zoom + 1);

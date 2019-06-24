@@ -1,25 +1,26 @@
 import Feature from 'ol/Feature';
 import Map from 'ol/Map';
 import View from 'ol/View';
+import { Coordinate } from 'ol/coordinate';
 import LineString from 'ol/geom/LineString';
 import VectorLayer from 'ol/layer/Vector';
 import VectorSource from 'ol/source/Vector';
 import { Stroke, Style } from 'ol/style';
 
-
 const count = 10000;
 const features = new Array(count);
 
 let startPoint = [0, 0];
-let endPoint;
+let endPoint: Coordinate;
 
-let delta, deltaX, deltaY;
+let delta: number;
+let deltaX: number;
+let deltaY: number;
 let signX = 1;
 let signY = -1;
 
 // Create a square spiral.
-let i;
-for (i = 0; i < count; ++i) {
+for (let i = 0; i < count; ++i) {
   delta = (i + 1) * 2500;
   if (i % 2 === 0) {
     signY *= -1;
@@ -30,14 +31,14 @@ for (i = 0; i < count; ++i) {
   deltaY = delta * signY;
   endPoint = [startPoint[0] + deltaX, startPoint[1] + deltaY];
   features[i] = new Feature({
-    'geometry': new LineString([startPoint, endPoint])
+    geometry: new LineString([startPoint, endPoint])
   });
   startPoint = endPoint;
 }
 
 const vector = new VectorLayer({
   source: new VectorSource({
-    features: features,
+    features,
     wrapX: false
   }),
   style: new Style({
@@ -56,5 +57,5 @@ const view = new View({
 const map = new Map({
   layers: [vector],
   target: 'map',
-  view: view
+  view
 });

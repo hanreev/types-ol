@@ -50,7 +50,7 @@ function makeFractal(depth: number) {
     }
   }
   const coordinates = graphToCoords(graph);
-  document.getElementById('count').innerHTML = String(coordinates.length);
+  (document.getElementById('count') as HTMLElement).innerHTML = String(coordinates.length);
   geometry.setCoordinates(coordinates);
   feature.setGeometry(geometry);
 }
@@ -86,7 +86,6 @@ function injectNodes(startNode: any) {
   thirdNode.next = endNode;
 }
 
-
 function coordsToGraph(coordinates: any[]) {
   const graph: PointNode = {
     point: coordinates[0]
@@ -116,8 +115,6 @@ function update() {
 }
 
 let updateTimer: any;
-
-
 
 depthInput.onchange = () => {
   window.clearTimeout(updateTimer);

@@ -23,7 +23,6 @@ const vector = new VectorLayer({
   })
 });
 
-
 const map = new Map({
   layers: [raster, vector],
   target: 'map',
@@ -32,7 +31,6 @@ const map = new Map({
     zoom: 2
   })
 });
-
 
 const dims: { [key: string]: number[] } = {
   a0: [1189, 841],
@@ -46,7 +44,6 @@ const dims: { [key: string]: number[] } = {
 const exportButton = document.getElementById('export-pdf') as HTMLButtonElement;
 
 exportButton.addEventListener('click', () => {
-
   exportButton.disabled = true;
   document.body.style.cursor = 'progress';
 
@@ -75,5 +72,4 @@ exportButton.addEventListener('click', () => {
   const printSize = [width, height];
   map.setSize(printSize);
   map.getView().fit(extent, { size: printSize });
-
 }, false);

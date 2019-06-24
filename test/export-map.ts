@@ -25,7 +25,7 @@ const map = new Map({
   })
 });
 
-document.getElementById('export-png').addEventListener('click', () => {
+(document.getElementById('export-png') as HTMLElement).addEventListener('click', () => {
   map.once('rendercomplete', (event: any) => {
     const canvas = event.context.canvas;
     if (navigator.msSaveBlob) {

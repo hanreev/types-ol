@@ -5,7 +5,6 @@ import Map from 'ol/Map';
 import OSM from 'ol/source/OSM';
 import View from 'ol/View';
 
-
 const scaleLineControl = new ScaleLine();
 
 const map = new Map({
@@ -23,7 +22,6 @@ const map = new Map({
     zoom: 2
   })
 });
-
 
 const unitsSelect = document.getElementById('units') as HTMLSelectElement;
 function onChange() {

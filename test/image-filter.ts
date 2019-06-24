@@ -7,7 +7,7 @@ import BingMaps from 'ol/source/BingMaps';
 const key = 'As1HiMj1PvLPlqc_gtM7AqZfBL8ZL3VrjaS3zIb22Uvb9WKhuJObROC-qUpa81U5';
 
 const imagery = new TileLayer({
-  source: new BingMaps({ key: key, imagerySet: 'Aerial' })
+  source: new BingMaps({ key, imagerySet: 'Aerial' })
 });
 
 const map = new Map({
@@ -60,9 +60,9 @@ const kernels: { [key: string]: number[] } = {
 function normalize(kernel: number[]): number[] {
   const len = kernel.length;
   const normal = new Array(len);
-  let i: number, sum = 0;
-  for (i = 0; i < len; ++i) {
-    sum += kernel[i];
+  let sum = 0;
+  for (const k of kernel) {
+    sum += k;
   }
   if (sum <= 0) {
     (normal as any).normalized = false;
@@ -70,7 +70,7 @@ function normalize(kernel: number[]): number[] {
   } else {
     (normal as any).normalized = true;
   }
-  for (i = 0; i < len; ++i) {
+  for (let i = 0; i < len; ++i) {
     normal[i] = kernel[i] / sum;
   }
   return normal;
@@ -79,20 +79,14 @@ function normalize(kernel: number[]): number[] {
 const select = document.getElementById('kernel') as HTMLSelectElement;
 let selectedKernel = normalize(kernels[select.value]);
 
-
-
 select.onchange = () => {
   selectedKernel = normalize(kernels[select.value]);
   map.render();
 };
 
-
-
 imagery.on('postcompose', event => {
   convolve(event.context, selectedKernel);
 });
-
-
 
 function convolve(context: CanvasRenderingContext2D, kernel: number[]) {
   const canvas = context.canvas;
@@ -110,7 +104,10 @@ function convolve(context: CanvasRenderingContext2D, kernel: number[]) {
   for (let pixelY = 0; pixelY < height; ++pixelY) {
     const pixelsAbove = pixelY * width;
     for (let pixelX = 0; pixelX < width; ++pixelX) {
-      let r = 0, g = 0, b = 0, a = 0;
+      let r = 0;
+      let g = 0;
+      let b = 0;
+      let a = 0;
       for (let kernelY = 0; kernelY < size; ++kernelY) {
         for (let kernelX = 0; kernelX < size; ++kernelX) {
           const weight = kernel[kernelY * size + kernelX];

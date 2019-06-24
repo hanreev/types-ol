@@ -3,10 +3,10 @@ import View from 'ol/View';
 import { getCenter } from 'ol/extent';
 import { Image as ImageLayer, Tile as TileLayer } from 'ol/layer';
 import { transform } from 'ol/proj';
+import { register } from 'ol/proj/proj4';
 import Static from 'ol/source/ImageStatic';
 import OSM from 'ol/source/OSM';
-import { register } from 'ol/proj/proj4';
-import proj4 from 'proj4';
+import * as proj4 from 'proj4';
 
 proj4.defs('EPSG:27700', '+proj=tmerc +lat_0=49 +lon_0=-2 +k=0.9996012717 ' +
   '+x_0=400000 +y_0=-100000 +ellps=airy ' +
@@ -27,7 +27,7 @@ const map = new Map({
           'British_National_Grid.svg/2000px-British_National_Grid.svg.png',
         crossOrigin: '',
         projection: 'EPSG:27700',
-        imageExtent: imageExtent
+        imageExtent
       })
     })
   ],

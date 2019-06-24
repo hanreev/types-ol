@@ -1,10 +1,10 @@
+import Map from 'ol/Map';
+import View from 'ol/View';
 import { defaults as defaultControls } from 'ol/control';
 import MousePosition from 'ol/control/MousePosition';
 import { createStringXY } from 'ol/coordinate';
 import TileLayer from 'ol/layer/Tile';
-import Map from 'ol/Map';
 import OSM from 'ol/source/OSM';
-import View from 'ol/View';
 
 const mousePositionControl = new MousePosition({
   coordinateFormat: createStringXY(4),
@@ -12,7 +12,7 @@ const mousePositionControl = new MousePosition({
   // comment the following two lines to have the mouse position
   // be placed within the map.
   className: 'custom-mouse-position',
-  target: document.getElementById('mouse-position'),
+  target: document.getElementById('mouse-position') as HTMLElement,
   undefinedHTML: '&nbsp;'
 });
 

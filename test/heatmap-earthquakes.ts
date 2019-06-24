@@ -43,7 +43,6 @@ const map = new Map({
   })
 });
 
-
 blur.addEventListener('input', () => {
   vector.setBlur(parseInt(blur.value, 10));
 });

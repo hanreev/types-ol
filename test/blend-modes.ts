@@ -84,67 +84,45 @@ const map = new Map({
 
 // Get the form elements and bind the listeners
 const select = document.getElementById('blend-mode') as HTMLSelectElement;
-const affectRed = document.getElementById('affect-red');
-const affectGreen = document.getElementById('affect-green');
-const affectBlue = document.getElementById('affect-blue');
+const affectRed = document.getElementById('affect-red') as HTMLInputElement;
+const affectGreen = document.getElementById('affect-green') as HTMLInputElement;
+const affectBlue = document.getElementById('affect-blue') as HTMLInputElement;
 
-
-/**
- * This method sets the globalCompositeOperation to the value of the select
- * field and it is bound to the precompose event of the layers.
- */
 const setBlendModeFromSelect = (evt: RenderEvent) => {
   evt.context.globalCompositeOperation = select.value;
 };
 
-
-/**
- * This method resets the globalCompositeOperation to the default value of
- * 'source-over' and it is bound to the postcompose event of the layers.
- */
 const resetBlendModeFromSelect = (evt: RenderEvent) => {
   evt.context.globalCompositeOperation = 'source-over';
 };
 
-
-/**
- * Bind the pre- and postcompose handlers to the passed layer.
- */
 const bindLayerListeners = (layer: VectorLayer) => {
   layer.on('precompose', setBlendModeFromSelect);
   layer.on('postcompose', resetBlendModeFromSelect);
 };
 
-
-/**
- * Unind the pre- and postcompose handlers to the passed layers.
- */
 const unbindLayerListeners = (layer: VectorLayer) => {
   layer.un('precompose', setBlendModeFromSelect);
   layer.un('postcompose', resetBlendModeFromSelect);
 };
 
-
-/**
- * Handler for the click event of the 'affect-XXX' checkboxes.
- */
-const affectLayerClicked = function() {
+const affectLayerClicked = (event: Event) => {
+  const that = event.target as HTMLInputElement;
   let layer: VectorLayer;
-  if (this.id == 'affect-red') {
+  if (that.id === 'affect-red') {
     layer = redLayer;
-  } else if (this.id == 'affect-green') {
+  } else if (that.id === 'affect-green') {
     layer = greenLayer;
   } else {
     layer = blueLayer;
   }
-  if (this.checked) {
+  if (that.checked) {
     bindLayerListeners(layer);
   } else {
     unbindLayerListeners(layer);
   }
   map.render();
 };
-
 
 // Rerender map when blend mode changes
 select.addEventListener('change', () => {

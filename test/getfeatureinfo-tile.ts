@@ -3,10 +3,9 @@ import View from 'ol/View';
 import TileLayer from 'ol/layer/Tile';
 import TileWMS from 'ol/source/TileWMS';
 
-
 const wmsSource = new TileWMS({
   url: 'https://ahocevar.com/geoserver/wms',
-  params: { 'LAYERS': 'ne:ne', 'TILED': true },
+  params: { LAYERS: 'ne:ne', TILED: true },
   serverType: 'geoserver',
   crossOrigin: 'anonymous'
 });
@@ -23,17 +22,17 @@ const view = new View({
 const map = new Map({
   layers: [wmsLayer],
   target: 'map',
-  view: view
+  view
 });
 
 map.on('singleclick', (evt) => {
-  document.getElementById('info').innerHTML = '';
-  const viewResolution = /** @type {number} */ (view.getResolution());
+  (document.getElementById('info') as HTMLElement).innerHTML = '';
+  const viewResolution = (view.getResolution());
   const url = wmsSource.getGetFeatureInfoUrl(
     evt.coordinate, viewResolution, 'EPSG:3857',
-    { 'INFO_FORMAT': 'text/html' });
+    { INFO_FORMAT: 'text/html' });
   if (url) {
-    document.getElementById('info').innerHTML =
+    (document.getElementById('info') as HTMLElement).innerHTML =
       '<iframe seamless src="' + url + '"></iframe>';
   }
 });

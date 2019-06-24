@@ -4,10 +4,6 @@ import TileLayer from 'ol/layer/Tile';
 import OSM from 'ol/source/OSM';
 import TileJSON from 'ol/source/TileJSON';
 
-
-/**
- * Create the map.
- */
 const map = new Map({
   layers: [
     new TileLayer({

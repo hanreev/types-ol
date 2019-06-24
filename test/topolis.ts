@@ -125,7 +125,7 @@ function removeElementFeature(source: VectorSource, element: any) {
 function nodeToFeature(node: any) {
   const feature = new Feature({
     geometry: new Point(node.coordinate),
-    node: node
+    node
   });
   feature.setId(node.id);
   nodes.addFeature(feature);
@@ -134,7 +134,7 @@ function nodeToFeature(node: any) {
 function edgeToFeature(edge: any) {
   const feature = new Feature({
     geometry: new LineString(edge.coordinates),
-    edge: edge
+    edge
   });
   feature.setId(edge.id);
   edges.addFeature(feature);
@@ -144,35 +144,30 @@ function faceToFeature(face: any) {
   const coordinates = topo.getFaceGeometry(face);
   const feature = new Feature({
     geometry: new Polygon(coordinates),
-    face: face
+    face
   });
   feature.setId(face.id);
   faces.addFeature(feature);
 }
 
 function createNode(topo_: any, coord: any) {
-  let node: any;
   const existingEdge = topo_.getEdgeByPoint(coord, 5)[0];
-  if (existingEdge) {
-    node = topo_.modEdgeSplit(existingEdge, coord);
-  } else {
-    node = topo_.addIsoNode(coord);
-  }
-  return node;
+  return existingEdge ? topo_.modEdgeSplit(existingEdge, coord) : topo_.addIsoNode(coord);
 }
 
 function onDrawend(e: DrawEvent) {
   const edgeGeom = (e.feature.getGeometry() as SimpleGeometry).getCoordinates();
   const startCoord = edgeGeom[0];
   const endCoord = edgeGeom[edgeGeom.length - 1];
-  let start: any, end: any;
+  let start: any;
+  let end: any;
   try {
     start = topo.getNodeByPoint(startCoord);
     end = topo.getNodeByPoint(endCoord);
     const edgesAtStart = topo.getEdgeByPoint(startCoord, 5);
     const edgesAtEnd = topo.getEdgeByPoint(endCoord, 5);
     const crossing = topo.getEdgesByLine(edgeGeom);
-    if (crossing.length === 1 && !start && !end && edgesAtStart.length === 0 && edgesAtEnd.length === 0) {
+    if (crossing.lengt === 1 && !start && !end && edgesAtStart.lengt === 0 && edgesAtEnd.lengt === 0) {
       topo.remEdgeNewFace(crossing[0]);
       start = crossing[0].start;
       if (start.face) {

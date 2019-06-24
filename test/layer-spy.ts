@@ -1,21 +1,21 @@
-import TileLayer from 'ol/layer/Tile';
 import Map from 'ol/Map';
+import View from 'ol/View';
+import TileLayer from 'ol/layer/Tile';
 import { Pixel } from 'ol/pixel';
 import { fromLonLat } from 'ol/proj';
 import BingMaps from 'ol/source/BingMaps';
-import View from 'ol/View';
 
 const key = 'As1HiMj1PvLPlqc_gtM7AqZfBL8ZL3VrjaS3zIb22Uvb9WKhuJObROC-qUpa81U5';
 
 const roads = new TileLayer({
-  source: new BingMaps({ key: key, imagerySet: 'Road' })
+  source: new BingMaps({ key, imagerySet: 'Road' })
 });
 
 const imagery = new TileLayer({
-  source: new BingMaps({ key: key, imagerySet: 'Aerial' })
+  source: new BingMaps({ key, imagerySet: 'Aerial' })
 });
 
-const container = document.getElementById('map');
+const container = document.getElementById('map') as HTMLElement;
 
 const map = new Map({
   layers: [roads, imagery],
@@ -42,7 +42,7 @@ document.addEventListener('keydown', (evt: KeyboardEvent) => {
 });
 
 // get the pixel position with every move
-let mousePosition: Pixel = null;
+let mousePosition: Pixel = null as any;
 
 container.addEventListener('mousemove', (event) => {
   mousePosition = map.getEventPixel(event);
@@ -50,7 +50,7 @@ container.addEventListener('mousemove', (event) => {
 });
 
 container.addEventListener('mouseout', () => {
-  mousePosition = null;
+  mousePosition = null as any;
   map.render();
 });
 

@@ -6,5 +6,7 @@ fetch('data/WMTSCapabilities.xml')
   .then(response => response.text())
   .then(text => {
     const result = parser.read(text);
-    document.getElementById('log').innerText = JSON.stringify(result, null, 2);
+    const logEl = document.getElementById('log');
+    if (logEl)
+      logEl.innerText = JSON.stringify(result, null, 2);
   });

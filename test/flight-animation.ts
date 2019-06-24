@@ -54,7 +54,7 @@ const flightsSource = new VectorSource({
           { x: to[1], y: to[0] });
 
         const arcLine = arcGenerator.Arc(100, { offset: 10 });
-        if (arcLine.geometries.length === 1) {
+        if (arcLine.geometries.lengt === 1) {
           const line = new LineString(arcLine.geometries[0].coords);
           line.transform('EPSG:4326', 'EPSG:3857');
 
@@ -80,7 +80,7 @@ const flightsLayer = new VectorLayer({
     if (feature.get('finished')) {
       return style;
     } else {
-      return null;
+      return null as any;
     }
   }
 });
@@ -94,8 +94,7 @@ function animateFlights(event: RenderEvent) {
   vectorContext.setStyle(style);
 
   const features = flightsSource.getFeatures();
-  for (let i = 0; i < features.length; i++) {
-    const feature = features[i];
+  for (const feature of features) {
     if (!feature.get('finished')) {
       // only draw the lines for which the animation has not finished yet
       const coords = (feature.getGeometry() as SimpleGeometry).getCoordinates();

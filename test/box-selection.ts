@@ -1,17 +1,15 @@
+import Map from 'ol/Map';
+import View from 'ol/View';
 import { platformModifierKeyOnly } from 'ol/events/condition';
 import GeoJSON from 'ol/format/GeoJSON';
 import { DragBox, Select } from 'ol/interaction';
 import { Tile as TileLayer, Vector as VectorLayer } from 'ol/layer';
-import Map from 'ol/Map';
 import { OSM, Vector as VectorSource } from 'ol/source';
-import View from 'ol/View';
-
 
 const vectorSource = new VectorSource({
   url: 'data/geojson/countries.geojson',
   format: new GeoJSON()
 });
-
 
 const map = new Map({
   layers: [
@@ -38,7 +36,7 @@ const selectedFeatures = select.getFeatures();
 // a DragBox interaction used to select features by drawing boxes
 const dragBox = new DragBox({
   condition: platformModifierKeyOnly,
-  onBoxEnd: null
+  onBoxEnd: null as any
 });
 
 map.addInteraction(dragBox);
@@ -57,15 +55,11 @@ dragBox.on('boxstart', () => {
   selectedFeatures.clear();
 });
 
-const infoBox = document.getElementById('info');
+const infoBox = document.getElementById('info') as HTMLElement;
 
 selectedFeatures.on(['add', 'remove'], () => {
   const names = selectedFeatures.getArray().map((feature) => {
     return feature.get('name');
   });
-  if (names.length > 0) {
-    infoBox.innerHTML = names.join(', ');
-  } else {
-    infoBox.innerHTML = 'No countries selected';
-  }
+  infoBox.innerHTML = names.length > 0 ? names.join(', ') : 'No countries selected';
 });

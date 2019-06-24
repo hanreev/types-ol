@@ -1,11 +1,11 @@
 import { Feature } from 'ol';
+import Map from 'ol/Map';
+import View from 'ol/View';
 import KML from 'ol/format/KML';
 import { Tile as TileLayer, Vector as VectorLayer } from 'ol/layer';
-import Map from 'ol/Map';
 import { Pixel } from 'ol/pixel';
 import BingMaps from 'ol/source/BingMaps';
 import VectorSource from 'ol/source/Vector';
-import View from 'ol/View';
 
 const raster = new TileLayer({
   source: new BingMaps({
@@ -23,7 +23,7 @@ const vector = new VectorLayer({
 
 const map = new Map({
   layers: [raster, vector],
-  target: document.getElementById('map'),
+  target: document.getElementById('map') as HTMLElement,
   view: new View({
     center: [876970.8463461736, 5859807.853963373],
     projection: 'EPSG:3857',
@@ -38,14 +38,13 @@ const displayFeatureInfo = (pixel: Pixel) => {
   });
   if (features.length > 0) {
     const info = [];
-    let i, ii;
-    for (i = 0, ii = features.length; i < ii; ++i) {
-      info.push(features[i].get('name'));
+    for (const f of features) {
+      info.push(f.get('name'));
     }
-    document.getElementById('info').innerHTML = info.join(', ') || '(unknown)';
+    (document.getElementById('info') as HTMLElement).innerHTML = info.join(', ') || '(unknown)';
     (map.getTarget() as HTMLElement).style.cursor = 'pointer';
   } else {
-    document.getElementById('info').innerHTML = '&nbsp;';
+    (document.getElementById('info') as HTMLElement).innerHTML = '&nbsp;';
     (map.getTarget() as HTMLElement).style.cursor = '';
   }
 };

@@ -1,18 +1,17 @@
 import { Feature, MapBrowserEvent } from 'ol';
+import Map from 'ol/Map';
+import { unByKey } from 'ol/Observable';
+import Overlay from 'ol/Overlay';
+import OverlayPositioning from 'ol/OverlayPositioning';
+import View from 'ol/View';
 import { EventsKey } from 'ol/events';
 import { LineString, Polygon } from 'ol/geom';
 import GeometryType from 'ol/geom/GeometryType';
 import Draw from 'ol/interaction/Draw';
 import { Tile as TileLayer, Vector as VectorLayer } from 'ol/layer';
-import Map from 'ol/Map';
-import { unByKey } from 'ol/Observable';
-import Overlay from 'ol/Overlay';
-import OverlayPositioning from 'ol/OverlayPositioning';
 import { OSM, Vector as VectorSource } from 'ol/source';
 import { getArea, getLength } from 'ol/sphere';
 import { Circle as CircleStyle, Fill, Stroke, Style } from 'ol/style';
-import View from 'ol/View';
-
 
 const raster = new TileLayer({
   source: new OSM()
@@ -21,7 +20,7 @@ const raster = new TileLayer({
 const source = new VectorSource();
 
 const vector = new VectorLayer({
-  source: source,
+  source,
   style: new Style({
     fill: new Fill({
       color: 'rgba(255, 255, 255, 0.2)'
@@ -39,52 +38,20 @@ const vector = new VectorLayer({
   })
 });
 
-
-/**
- * Currently drawn feature.
- */
 let sketch: Feature;
 
-
-/**
- * The help tooltip element.
- */
 let helpTooltipElement: HTMLElement;
 
-
-/**
- * Overlay to show the help messages.
- */
 let helpTooltip: Overlay;
 
-
-/**
- * The measure tooltip element.
- */
 let measureTooltipElement: HTMLElement;
 
-
-/**
- * Overlay to show the measurement.
- */
 let measureTooltip: Overlay;
 
-
-/**
- * Message to show when the user is drawing a polygon.
- */
 const continuePolygonMsg = 'Click to continue drawing the polygon';
 
-
-/**
- * Message to show when the user is drawing a line.
- */
 const continueLineMsg = 'Click to continue drawing the line';
 
-
-/**
- * Handle pointer move.
- */
 const pointerMoveHandler = (evt: MapBrowserEvent) => {
   if (evt.dragging) {
     return;
@@ -106,7 +73,6 @@ const pointerMoveHandler = (evt: MapBrowserEvent) => {
   helpTooltipElement.classList.remove('hidden');
 };
 
-
 const map = new Map({
   layers: [raster, vector],
   target: 'map',
@@ -126,10 +92,6 @@ const typeSelect = document.getElementById('type') as HTMLSelectElement;
 
 let draw: Draw; // global so we can remove it later
 
-
-/**
- * Format length output.
- */
 const formatLength = (line: LineString) => {
   const length = getLength(line);
   let output;
@@ -143,10 +105,6 @@ const formatLength = (line: LineString) => {
   return output;
 };
 
-
-/**
- * Format area output.
- */
 const formatArea = (polygon: Polygon) => {
   const area = getArea(polygon);
   let output;
@@ -161,9 +119,9 @@ const formatArea = (polygon: Polygon) => {
 };
 
 function addInteraction() {
-  const type = (typeSelect.value == 'area' ? 'Polygon' : 'LineString');
+  const type = (typeSelect.value === 'area' ? 'Polygon' : 'LineString');
   draw = new Draw({
-    source: source,
+    source,
     type: type as GeometryType,
     style: new Style({
       fill: new Fill({
@@ -208,7 +166,7 @@ function addInteraction() {
           output = formatLength(geom);
           tooltipCoord = geom.getLastCoordinate();
         }
-        measureTooltipElement.innerHTML = output;
+        measureTooltipElement.innerHTML = output as any;
         measureTooltip.setPosition(tooltipCoord);
       });
     });
@@ -218,21 +176,17 @@ function addInteraction() {
       measureTooltipElement.className = 'tooltip tooltip-static';
       measureTooltip.setOffset([0, -7]);
       // unset sketch
-      sketch = null;
+      sketch = null as any;
       // unset tooltip so that a new one can be created
-      measureTooltipElement = null;
+      measureTooltipElement = null as any;
       createMeasureTooltip();
       unByKey(listener);
     });
 }
 
-
-/**
- * Creates a new help tooltip
- */
 function createHelpTooltip() {
   if (helpTooltipElement) {
-    helpTooltipElement.parentNode.removeChild(helpTooltipElement);
+    (helpTooltipElement.parentNode as HTMLElement).removeChild(helpTooltipElement);
   }
   helpTooltipElement = document.createElement('div');
   helpTooltipElement.className = 'tooltip hidden';
@@ -244,13 +198,9 @@ function createHelpTooltip() {
   map.addOverlay(helpTooltip);
 }
 
-
-/**
- * Creates a new measure tooltip
- */
 function createMeasureTooltip() {
   if (measureTooltipElement) {
-    measureTooltipElement.parentNode.removeChild(measureTooltipElement);
+    (measureTooltipElement.parentNode as HTMLElement).removeChild(measureTooltipElement);
   }
   measureTooltipElement = document.createElement('div');
   measureTooltipElement.className = 'tooltip tooltip-measure';
@@ -262,10 +212,6 @@ function createMeasureTooltip() {
   map.addOverlay(measureTooltip);
 }
 
-
-/**
- * Let user change the geometry type.
- */
 typeSelect.onchange = () => {
   map.removeInteraction(draw);
   addInteraction();

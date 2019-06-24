@@ -100,7 +100,6 @@ function process(doclet) {
   });
 }
 
-
 exports.handlers = {
   newDoclet: e => {
     process(e.doclet);

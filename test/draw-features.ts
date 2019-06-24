@@ -1,9 +1,9 @@
+import Map from 'ol/Map';
+import View from 'ol/View';
 import GeometryType from 'ol/geom/GeometryType';
 import Draw from 'ol/interaction/Draw';
 import { Tile as TileLayer, Vector as VectorLayer } from 'ol/layer';
-import Map from 'ol/Map';
 import { OSM, Vector as VectorSource } from 'ol/source';
-import View from 'ol/View';
 
 const raster = new TileLayer({
   source: new OSM()
@@ -12,7 +12,7 @@ const raster = new TileLayer({
 const source = new VectorSource({ wrapX: false });
 
 const vector = new VectorLayer({
-  source: source
+  source
 });
 
 const map = new Map({
@@ -31,17 +31,13 @@ function addInteraction() {
   const value = typeSelect.value;
   if (value !== 'None') {
     draw = new Draw({
-      source: source,
+      source,
       type: typeSelect.value as GeometryType
     });
     map.addInteraction(draw);
   }
 }
 
-
-/**
- * Handle change event.
- */
 typeSelect.onchange = () => {
   map.removeInteraction(draw);
   addInteraction();

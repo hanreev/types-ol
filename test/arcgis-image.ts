@@ -14,12 +14,12 @@ const layers = [
     source: new ImageArcGISRest({
       ratio: 1,
       params: {},
-      url: url
+      url
     })
   })
 ];
 const map = new Map({
-  layers: layers,
+  layers,
   target: 'map',
   view: new View({
     center: [-10997148, 4569099],

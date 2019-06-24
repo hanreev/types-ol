@@ -38,13 +38,13 @@ const map = new Map({
 function bindInputs(layerid: any, layer: any) {
   const visibilityInput = $(layerid + ' input.visible');
   visibilityInput.on('change', () => {
-    layer.setVisible(this.checked);
+    layer.setVisible(visibilityInput.checked);
   });
   visibilityInput.prop('checked', layer.getVisible());
 
   const opacityInput = $(layerid + ' input.opacity');
   opacityInput.on('input change', () => {
-    layer.setOpacity(parseFloat((this as HTMLInputElement).value));
+    layer.setOpacity(parseFloat(opacityInput.value));
   });
   opacityInput.val(String(layer.getOpacity()));
 }
@@ -56,7 +56,3 @@ map.getLayers().forEach((layer: any, i: any) => {
     });
   }
 });
-
-$('#layertree li > span').click(() => {
-  $(this).siblings('fieldset').toggle();
-}).siblings('fieldset').hide();

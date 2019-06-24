@@ -1,4 +1,5 @@
 import { Feature } from 'ol';
+import { FeatureLike } from 'ol/Feature';
 import Map from 'ol/Map';
 import View from 'ol/View';
 import KML from 'ol/format/KML';
@@ -9,8 +10,7 @@ import { Fill, Stroke, Style } from 'ol/style';
 
 declare var $: any;
 
-
-const styleFunction = (feature: Feature) => {
+const styleFunction = (feature: FeatureLike) => {
   let offset = 0;
   const name = feature.get('name'); // e.g. GMT -08:30
   const match = name.match(/([\-+]\d{2}):(\d{2})$/);
@@ -74,7 +74,7 @@ const displayFeatureInfo = (pixel: number[]) => {
     left: pixel[0] + 'px',
     top: (pixel[1] - 15) + 'px'
   });
-  const feature = map.forEachFeatureAtPixel(pixel, (f: Feature) => {
+  const feature = map.forEachFeatureAtPixel(pixel, (f: FeatureLike) => {
     return f;
   });
   if (feature) {

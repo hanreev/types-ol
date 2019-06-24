@@ -13,13 +13,13 @@ const layers = [
   new TileLayer({
     extent: [-13884991, 2870341, -7455066, 6338219],
     source: new TileArcGISRest({
-      url: url,
+      url,
       urls: []
     })
   })
 ];
 const map = new Map({
-  layers: layers,
+  layers,
   target: 'map',
   view: new View({
     center: [-10997148, 4569099],

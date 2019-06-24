@@ -1,4 +1,5 @@
 import { Feature } from 'ol';
+import { FeatureLike } from 'ol/Feature';
 import Map from 'ol/Map';
 import View from 'ol/View';
 import GPX from 'ol/format/GPX';
@@ -15,7 +16,7 @@ const raster = new TileLayer({
 });
 
 const style: { [key: string]: Style } = {
-  'Point': new Style({
+  Point: new Style({
     image: new CircleStyle({
       fill: new Fill({
         color: 'rgba(255,255,0,0.4)'
@@ -27,13 +28,13 @@ const style: { [key: string]: Style } = {
       })
     })
   }),
-  'LineString': new Style({
+  LineString: new Style({
     stroke: new Stroke({
       color: '#f00',
       width: 3
     })
   }),
-  'MultiLineString': new Style({
+  MultiLineString: new Style({
     stroke: new Stroke({
       color: '#0f0',
       width: 3
@@ -53,7 +54,7 @@ const vector = new VectorLayer({
 
 const map = new Map({
   layers: [raster, vector],
-  target: document.getElementById('map'),
+  target: document.getElementById('map') as HTMLElement,
   view: new View({
     center: [-7916041.528716288, 5228379.045749711],
     zoom: 12
@@ -62,19 +63,18 @@ const map = new Map({
 
 const displayFeatureInfo = (pixel: number[]) => {
   const features: Feature[] = [];
-  map.forEachFeatureAtPixel(pixel, (feature: Feature) => {
-    features.push(feature);
+  map.forEachFeatureAtPixel(pixel, (feature: FeatureLike) => {
+    features.push(feature as Feature);
   });
   if (features.length > 0) {
     const info = [];
-    let i: number, ii: number;
-    for (i = 0, ii = features.length; i < ii; ++i) {
-      info.push(features[i].get('desc'));
+    for (const f of features) {
+      info.push(f.get('desc'));
     }
-    document.getElementById('info').innerHTML = info.join(', ') || '(unknown)';
+    (document.getElementById('info') as HTMLElement).innerHTML = info.join(', ') || '(unknown)';
     (map.getTarget() as HTMLElement).style.cursor = 'pointer';
   } else {
-    document.getElementById('info').innerHTML = '&nbsp;';
+    (document.getElementById('info') as HTMLElement).innerHTML = '&nbsp;';
     (map.getTarget() as HTMLElement).style.cursor = '';
   }
 };

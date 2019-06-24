@@ -4,13 +4,16 @@
     "allowSyntheticDefaultImports": true,
     "baseUrl": "./",
     "checkJs": true,
+    "forceConsistentCasingInFileNames": true,
     "lib": [
       "dom",
       "esnext"
     ],
-    "module": "es2015",
+    "module": "commonjs",
     "moduleResolution": "node",
     "noEmit": true,
+    "noImplicitAny": true,
+    "noImplicitThis": true,
     "paths": {
       "*": [
         "@types/*",
@@ -18,6 +21,8 @@
       ]
     },
     "resolveJsonModule": true,
+    "strictFunctionTypes": true,
+    "strictNullChecks": true,
     "target": "es5"
   },
   "include": [

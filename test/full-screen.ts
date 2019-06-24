@@ -1,9 +1,8 @@
 import Map from 'ol/Map';
 import View from 'ol/View';
-import { defaults as defaultControls, FullScreen } from 'ol/control';
+import { FullScreen, defaults as defaultControls } from 'ol/control';
 import TileLayer from 'ol/layer/Tile';
 import BingMaps from 'ol/source/BingMaps';
-
 
 const view = new View({
   center: [-9101767, 2822912],
@@ -23,5 +22,5 @@ const map = new Map({
     })
   ],
   target: 'map',
-  view: view
+  view
 });

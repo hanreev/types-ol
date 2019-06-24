@@ -19,8 +19,8 @@ for (let i = 0; i <= 14; i++) {
 }
 const tileGrid = new WMTSTileGrid({
   origin: getTopLeft(projection.getExtent()),
-  resolutions: resolutions,
-  matrixIds: matrixIds
+  resolutions,
+  matrixIds
 });
 
 const scalgoToken = 'CC5BF28A7D96B320C7DFBFD1236B5BEB';
@@ -35,17 +35,17 @@ const wmtsSource = new WMTS({
     '<a href="http://www.cgiar-csi.org/data/' +
     'srtm-90m-digital-elevation-database-v4-1">CGIAR-CSI SRTM</a>'
   ],
-  tileGrid: tileGrid,
+  tileGrid,
   style: 'default',
   dimensions: {
-    'threshold': 100
+    threshold: 100
   }
 });
 
 const map = new Map({
   target: 'map',
   view: new View({
-    projection: projection,
+    projection,
     center: [-9871995, 3566245],
     zoom: 6
   }),
@@ -61,12 +61,15 @@ const map = new Map({
 });
 
 const updateSourceDimension = (source: WMTS, sliderVal: string | number) => {
-  source.updateDimensions({ 'threshold': sliderVal });
-  document.getElementById('theinfo').innerHTML = sliderVal + ' meters';
+  source.updateDimensions({ threshold: sliderVal });
+  const theinfoEl = document.getElementById('theinfo');
+  if (theinfoEl)
+    theinfoEl.innerHTML = sliderVal + ' meters';
 };
 
 updateSourceDimension(wmtsSource, 10);
 
-document.getElementById('slider').addEventListener('input', function() {
+const sliderEl = document.getElementById('slider');
+sliderEl && sliderEl.addEventListener('input', function() {
   updateSourceDimension(wmtsSource, (this as HTMLInputElement).value);
 });

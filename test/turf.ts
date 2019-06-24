@@ -7,7 +7,6 @@ import { OSM, Vector as VectorSource } from 'ol/source';
 
 declare var turf: any;
 
-
 const source = new VectorSource();
 fetch('data/geojson/roads-seoul.geojson').then(response => {
   return response.json();
@@ -37,7 +36,7 @@ fetch('data/geojson/roads-seoul.geojson').then(response => {
   source.addFeature(street);
 });
 const vectorLayer = new VectorLayer({
-  source: source
+  source
 });
 
 const rasterLayer = new TileLayer({
@@ -46,7 +45,7 @@ const rasterLayer = new TileLayer({
 
 const map = new Map({
   layers: [rasterLayer, vectorLayer],
-  target: document.getElementById('map'),
+  target: document.getElementById('map') as HTMLElement,
   view: new View({
     center: fromLonLat([126.980366, 37.526540]),
     zoom: 15

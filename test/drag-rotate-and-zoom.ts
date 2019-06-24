@@ -4,7 +4,6 @@ import { defaults as defaultInteractions, DragRotateAndZoom } from 'ol/interacti
 import TileLayer from 'ol/layer/Tile';
 import OSM from 'ol/source/OSM';
 
-
 const map = new Map({
   interactions: defaultInteractions().extend([
     new DragRotateAndZoom()

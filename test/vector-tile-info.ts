@@ -1,9 +1,9 @@
 import { MapBrowserEvent } from 'ol';
+import Map from 'ol/Map';
+import View from 'ol/View';
 import MVT from 'ol/format/MVT';
 import VectorTileLayer from 'ol/layer/VectorTile';
-import Map from 'ol/Map';
 import VectorTileSource from 'ol/source/VectorTile';
-import View from 'ol/View';
 
 const map = new Map({
   target: 'map',
@@ -23,6 +23,9 @@ map.on('pointermove', showInfo);
 
 const info = document.getElementById('info');
 function showInfo(event: MapBrowserEvent) {
+  if (!info)
+    return;
+
   const features = map.getFeaturesAtPixel(event.pixel);
   if (!features) {
     info.innerText = '';

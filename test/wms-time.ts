@@ -1,10 +1,10 @@
+import Map from 'ol/Map';
+import View from 'ol/View';
 import { getCenter } from 'ol/extent';
 import TileLayer from 'ol/layer/Tile';
-import Map from 'ol/Map';
 import { transformExtent } from 'ol/proj';
 import Stamen from 'ol/source/Stamen';
 import TileWMS from 'ol/source/TileWMS';
-import View from 'ol/View';
 
 function threeHoursAgo() {
   return new Date(Math.round(Date.now() / 3600000) * 3600000 - 3600000 * 3);
@@ -13,7 +13,7 @@ function threeHoursAgo() {
 const extent = transformExtent([-126, 24, -66, 50], 'EPSG:4326', 'EPSG:3857');
 let startDate = threeHoursAgo();
 const frameRate = 0.5; // frames per second
-let animationId: number = null;
+let animationId: number | null = null;
 
 const layers = [
   new TileLayer({
@@ -22,16 +22,16 @@ const layers = [
     })
   }),
   new TileLayer({
-    extent: extent,
+    extent,
     source: new TileWMS({
       attributions: ['Iowa State University'],
       url: 'https://mesonet.agron.iastate.edu/cgi-bin/wms/nexrad/n0r-t.cgi',
-      params: { 'LAYERS': 'nexrad-n0r-wmst' }
+      params: { LAYERS: 'nexrad-n0r-wmst' }
     })
   })
 ];
 const map = new Map({
-  layers: layers,
+  layers,
   target: 'map',
   view: new View({
     center: getCenter(extent),
@@ -41,7 +41,8 @@ const map = new Map({
 
 function updateInfo() {
   const el = document.getElementById('info');
-  el.innerHTML = startDate.toISOString();
+  if (el)
+    el.innerHTML = startDate.toISOString();
 }
 
 function setTime() {
@@ -49,7 +50,7 @@ function setTime() {
   if (startDate.valueOf() > Date.now()) {
     startDate = threeHoursAgo();
   }
-  (layers[1].getSource() as TileWMS).updateParams({ 'TIME': startDate.toISOString() });
+  (layers[1].getSource() as TileWMS).updateParams({ TIME: startDate.toISOString() });
   updateInfo();
 }
 setTime();
@@ -67,9 +68,9 @@ const play = () => {
 };
 
 const startButton = document.getElementById('play');
-startButton.addEventListener('click', play, false);
+startButton && startButton.addEventListener('click', play, false);
 
 const stopButton = document.getElementById('pause');
-stopButton.addEventListener('click', stop, false);
+stopButton && stopButton.addEventListener('click', stop, false);
 
 updateInfo();

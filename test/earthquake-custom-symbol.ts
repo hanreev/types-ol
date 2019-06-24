@@ -1,15 +1,14 @@
+import Map from 'ol/Map';
+import View from 'ol/View';
 import { Coordinate } from 'ol/coordinate';
 import KML from 'ol/format/KML';
 import Polygon from 'ol/geom/Polygon';
 import { Tile as TileLayer, Vector as VectorLayer } from 'ol/layer';
-import Map from 'ol/Map';
 import { toContext } from 'ol/render';
 import Stamen from 'ol/source/Stamen';
 import VectorSource from 'ol/source/Vector';
 import { Fill, Icon, Stroke, Style } from 'ol/style';
 import { StyleFunction } from 'ol/style/Style';
-import View from 'ol/View';
-
 
 const symbol = [[0, 0], [4, 2], [6, 0], [10, 5], [6, 3], [4, 5], [0, 0]];
 let scale: number;
@@ -30,7 +29,7 @@ const styleFunction: StyleFunction = (feature) => {
   if (!style) {
     const canvas = document.createElement('canvas');
     const vectorContext = toContext(
-      canvas.getContext('2d'),
+      canvas.getContext('2d') as CanvasRenderingContext2D,
       { size: [size, size], pixelRatio: 1 });
     vectorContext.setStyle(new Style({
       fill: new Fill({ color: 'rgba(255, 153, 0, 0.4)' }),

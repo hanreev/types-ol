@@ -4,7 +4,6 @@ import { defaults as defaultInteractions, PinchZoom } from 'ol/interaction';
 import TileLayer from 'ol/layer/Tile';
 import OSM from 'ol/source/OSM';
 
-
 const map = new Map({
   interactions: defaultInteractions({ pinchZoom: false }).extend([
     new PinchZoom({

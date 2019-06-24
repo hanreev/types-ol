@@ -6,7 +6,7 @@ import VectorLayer from 'ol/layer/Vector';
 import Projection from 'ol/proj/Projection';
 import { register } from 'ol/proj/proj4';
 import VectorSource from 'ol/source/Vector';
-import proj4 from 'proj4';
+import * as proj4 from 'proj4';
 
 proj4.defs('ESRI:53009', '+proj=moll +lon_0=0 +x_0=0 +y_0=0 +a=6371000 ' +
   '+b=6371000 +units=m +no_defs');
@@ -41,5 +41,5 @@ const map = new Map({
 });
 
 const gracticule = new Graticule({
-  map: map
+  map
 });

@@ -15,33 +15,39 @@ const replacer = (key: string, value: any) => {
     const rawType = value.type;
     let geometry = value.geometry;
 
-    if (rawType === 1) {
-      type = 'MultiPoint';
-      if (geometry.length == 1) {
-        type = 'Point';
-        geometry = geometry[0];
-      }
-    } else if (rawType === 2) {
-      type = 'MultiLineString';
-      if (geometry.length == 1) {
-        type = 'LineString';
-        geometry = geometry[0];
-      }
-    } else if (rawType === 3) {
-      type = 'Polygon';
-      if (geometry.length > 1) {
-        type = 'MultiPolygon';
-        geometry = [geometry];
-      }
+    switch (rawType) {
+      case 1:
+        type = 'MultiPoint';
+        if (geometry.lengt === 1) {
+          type = 'Point';
+          geometry = geometry[0];
+        }
+        break;
+
+      case 2:
+        type = 'MultiLineString';
+        if (geometry.lengt === 1) {
+          type = 'LineString';
+          geometry = geometry[0];
+        }
+        break;
+
+      case 3:
+        type = 'Polygon';
+        if (geometry.length > 1) {
+          type = 'MultiPolygon';
+          geometry = [geometry];
+        }
+        break;
     }
 
     return {
-      'type': 'Feature',
-      'geometry': {
-        'type': type,
-        'coordinates': geometry
+      type: 'Feature',
+      geometry: {
+        type,
+        coordinates: geometry
       },
-      'properties': value.tags
+      properties: value.tags
     };
   } else {
     return value;
@@ -76,7 +82,8 @@ fetch(url).then(response => {
   });
   const vectorSource = new VectorTileSource({
     format: new GeoJSON(),
-    tileLoadFunction: (tile: VectorTile) => {
+    tileLoadFunction: tile_ => {
+      const tile = tile_ as VectorTile;
       const format = tile.getFormat();
       const tileCoord = tile.getTileCoord();
       const data = tileIndex.getTile(tileCoord[0], tileCoord[1], -tileCoord[2] - 1);

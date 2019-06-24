@@ -1,18 +1,15 @@
+import Map from 'ol/Map';
+import View from 'ol/View';
 import { Control, defaults as defaultControls } from 'ol/control';
 import { Options } from 'ol/control/Control';
 import TileLayer from 'ol/layer/Tile';
-import Map from 'ol/Map';
 import OSM from 'ol/source/OSM';
-import View from 'ol/View';
-
 
 //
 // Define rotate to north control.
 //
 
-
 class RotateNorthControl extends Control {
-
   constructor(opt_options?: Options) {
     const options = opt_options || {};
 
@@ -24,7 +21,7 @@ class RotateNorthControl extends Control {
     element.appendChild(button);
 
     super({
-      element: element,
+      element,
       target: options.target
     });
 
@@ -34,14 +31,11 @@ class RotateNorthControl extends Control {
   handleRotateNorth() {
     this.getMap().getView().setRotation(0);
   }
-
 }
-
 
 //
 // Create map, giving it a rotate to north control.
 //
-
 
 const map = new Map({
   controls: defaultControls().extend([

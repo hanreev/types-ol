@@ -1,4 +1,4 @@
-import { Feature } from 'ol';
+import { FeatureLike } from 'ol/Feature';
 import Map from 'ol/Map';
 import View from 'ol/View';
 import GeoJSON from 'ol/format/GeoJSON';
@@ -9,7 +9,7 @@ import VectorSource from 'ol/source/Vector';
 import { Fill, Stroke, Style } from 'ol/style';
 
 const canvas = document.createElement('canvas');
-const context = canvas.getContext('2d');
+const context = canvas.getContext('2d') as CanvasRenderingContext2D;
 
 // Gradient and pattern are in canvas pixel space, so we adjust for the
 // renderer's pixel ratio
@@ -29,7 +29,7 @@ const gradient = (() => {
 })();
 
 // Generate a canvasPattern with two circles on white background
-const pattern = (function() {
+const pattern = (() => {
   canvas.width = 8 * pixelRatio;
   canvas.height = 8 * pixelRatio;
   // white background
@@ -46,25 +46,21 @@ const pattern = (function() {
   context.arc(4 * pixelRatio, 4 * pixelRatio, 1.5 * pixelRatio, 0, 2 * Math.PI);
   context.fill();
   return context.createPattern(canvas, 'repeat');
-}());
+})();
 
 // Generate style for gradient or pattern fill
 const fill = new Fill();
 const style = new Style({
-  fill: fill,
+  fill,
   stroke: new Stroke({
     color: '#333',
     width: 2
   })
 });
 
-/**
- * The styling function for the vector layer, will return an array of styles
- * which either contains the aboove gradient or pattern.
- */
-const getStackedStyle = (feature: Feature) => {
+const getStackedStyle = (feature: FeatureLike) => {
   const id = feature.getId();
-  fill.setColor(id > 'J' ? gradient : pattern);
+  fill.setColor(id > 'J' ? gradient : pattern as CanvasPattern);
   return style;
 };
 

@@ -1,40 +1,39 @@
-import { Coordinate } from 'ol/coordinate';
 import Feature from 'ol/Feature';
+import Map from 'ol/Map';
+import View from 'ol/View';
+import { Coordinate } from 'ol/coordinate';
 import Point from 'ol/geom/Point';
 import VectorLayer from 'ol/layer/Vector';
-import Map from 'ol/Map';
 import VectorSource from 'ol/source/Vector';
 import { Fill, RegularShape, Stroke, Style } from 'ol/style';
 import { StyleLike } from 'ol/style/Style';
-import View from 'ol/View';
-
 
 const stroke = new Stroke({ color: 'black', width: 1 });
 
 const styles = {
-  'square': new Style({
+  square: new Style({
     image: new RegularShape({
       fill: new Fill({ color: 'blue' }),
-      stroke: stroke,
+      stroke,
       points: 4,
       radius: 80,
       angle: Math.PI / 4
     })
   }),
-  'triangle': new Style({
+  triangle: new Style({
     image: new RegularShape({
       fill: new Fill({ color: 'red' }),
-      stroke: stroke,
+      stroke,
       points: 3,
       radius: 80,
       rotation: Math.PI / 4,
       angle: 0
     })
   }),
-  'star': new Style({
+  star: new Style({
     image: new RegularShape({
       fill: new Fill({ color: 'green' }),
-      stroke: stroke,
+      stroke,
       points: 5,
       radius: 80,
       radius2: 4,
@@ -42,7 +41,6 @@ const styles = {
     })
   })
 };
-
 
 function createLayer(coordinates: Coordinate, style: StyleLike, zIndex: number) {
   const feature = new Feature(new Point(coordinates));
@@ -53,7 +51,7 @@ function createLayer(coordinates: Coordinate, style: StyleLike, zIndex: number) 
   });
 
   const vectorLayer = new VectorLayer({
-    source: source
+    source
   });
   vectorLayer.setZIndex(zIndex);
 
@@ -69,7 +67,7 @@ layers.push(layer1);
 layers.push(layer2);
 
 const map = new Map({
-  layers: layers,
+  layers,
   target: 'map',
   view: new View({
     center: [0, 0],
@@ -79,11 +77,10 @@ const map = new Map({
 
 layer0.setMap(map);
 
-
 function bindInputs(id: number, layer: VectorLayer) {
   const idxInput = document.getElementById('idx' + id) as HTMLInputElement;
   idxInput.onchange = () => {
-    layer.setZIndex(parseInt((this as any).value, 10) || 0);
+    layer.setZIndex(parseInt(idxInput.value, 10) || 0);
   };
   idxInput.value = String(layer.getZIndex());
 }

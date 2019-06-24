@@ -3,7 +3,6 @@ import View from 'ol/View';
 import TileLayer from 'ol/layer/Tile';
 import BingMaps from 'ol/source/BingMaps';
 
-
 const view = new View({
   center: [-4808600, -2620936],
   zoom: 8
@@ -20,7 +19,7 @@ const map1 = new Map({
     })
   ],
   target: 'map1',
-  view: view
+  view
 });
 
 const map2 = new Map({
@@ -34,5 +33,5 @@ const map2 = new Map({
     })
   ],
   target: 'map2',
-  view: view
+  view
 });

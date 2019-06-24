@@ -1,11 +1,11 @@
+import Map from 'ol/Map';
+import View from 'ol/View';
 import { getWidth } from 'ol/extent';
 import GeoJSON from 'ol/format/GeoJSON';
 import { MultiPolygon } from 'ol/geom';
 import VectorLayer from 'ol/layer/Vector';
-import Map from 'ol/Map';
 import VectorSource from 'ol/source/Vector';
 import { Fill, Stroke, Style, Text } from 'ol/style';
-import View from 'ol/View';
 
 const map = new Map({
   target: 'map',
@@ -18,7 +18,7 @@ const map = new Map({
 const labelStyle = new Style({
   geometry: (feature) => {
     let geometry = feature.getGeometry();
-    if (geometry.getType() == 'MultiPolygon') {
+    if (geometry.getType() === 'MultiPolygon') {
       // Only render label for the widest polygon of a multipolygon
       const polygons = (geometry as MultiPolygon).getPolygons();
       let widest = 0;

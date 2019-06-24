@@ -30,9 +30,9 @@ const map = new Map({
   ],
   target: 'map',
   view: new View({
-    center: center,
-    zoom: zoom,
-    rotation: rotation
+    center,
+    zoom,
+    rotation
   })
 });
 

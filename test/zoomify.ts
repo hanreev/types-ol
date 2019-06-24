@@ -1,7 +1,7 @@
-import TileLayer from 'ol/layer/Tile';
 import Map from 'ol/Map';
-import Zoomify from 'ol/source/Zoomify';
 import View from 'ol/View';
+import TileLayer from 'ol/layer/Tile';
+import Zoomify from 'ol/source/Zoomify';
 
 const imgWidth = 9911;
 const imgHeight = 6100;
@@ -29,12 +29,12 @@ const map = new Map({
     // adjust zoom levels to those provided by the source
     resolutions: layer.getSource().getTileGrid().getResolutions(),
     // constrain the center: center cannot be set outside this extent
-    extent: extent
+    extent
   })
 });
 map.getView().fit(extent);
 
-const control = document.getElementById('zoomifyProtocol');
+const control = document.getElementById('zoomifyProtocol') as HTMLElement;
 control.addEventListener('change', (event) => {
   const value = (event.currentTarget as HTMLInputElement).value;
   if (value === 'iip') {
@@ -50,5 +50,4 @@ control.addEventListener('change', (event) => {
       crossOrigin: 'anonymous'
     }));
   }
-
 });

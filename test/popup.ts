@@ -6,41 +6,24 @@ import TileLayer from 'ol/layer/Tile';
 import { toLonLat } from 'ol/proj';
 import TileJSON from 'ol/source/TileJSON';
 
-
-/**
- * Elements that make up the popup.
- */
 const container = document.getElementById('popup');
-const content = document.getElementById('popup-content');
-const closer = document.getElementById('popup-closer');
+const content = document.getElementById('popup-content') as HTMLElement;
+const closer = document.getElementById('popup-closer') as HTMLElement;
 
-
-/**
- * Create an overlay to anchor the popup to the map.
- */
 const overlay = new Overlay({
-  element: container,
+  element: container as HTMLElement,
   autoPan: true,
   autoPanAnimation: {
     duration: 250
   }
 });
 
-
-/**
- * Add a click handler to hide the popup.
- * @return {boolean} Don't follow the href.
- */
 closer.onclick = () => {
-  overlay.setPosition(undefined);
+  overlay.setPosition([]);
   closer.blur();
   return false;
 };
 
-
-/**
- * Create the map.
- */
 const map = new Map({
   layers: [
     new TileLayer({
@@ -58,10 +41,6 @@ const map = new Map({
   })
 });
 
-
-/**
- * Add a click handler to the map to render the popup.
- */
 map.on('singleclick', (evt) => {
   const coordinate = evt.coordinate;
   const hdms = toStringHDMS(toLonLat(coordinate));

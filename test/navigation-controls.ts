@@ -4,7 +4,6 @@ import { defaults as defaultControls, ZoomToExtent } from 'ol/control';
 import TileLayer from 'ol/layer/Tile';
 import OSM from 'ol/source/OSM';
 
-
 const map = new Map({
   controls: defaultControls().extend([
     new ZoomToExtent({

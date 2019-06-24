@@ -1,4 +1,4 @@
-import Feature from 'ol/Feature';
+import Feature, { FeatureLike } from 'ol/Feature';
 import Map from 'ol/Map';
 import View from 'ol/View';
 import { Coordinate } from 'ol/coordinate';
@@ -19,13 +19,13 @@ const colors: { [key: string]: string } = {
 };
 
 const styleCache: { [key: string]: Style } = {};
-const styleFunction = (feature: Feature) => {
+const styleFunction = (feature: FeatureLike) => {
   const color = colors[feature.get('PLT')];
   let style_ = styleCache[color];
   if (!style_) {
     style_ = new Style({
       stroke: new Stroke({
-        color: color,
+        color,
         width: 3
       })
     });
@@ -54,8 +54,8 @@ function get(url: string, callback: (p0: string) => void) {
 }
 
 const igcFormat = new IGC();
-for (let i = 0; i < igcUrls.length; ++i) {
-  get(igcUrls[i], data => {
+for (const igcUrl of igcUrls) {
+  get(igcUrl, data => {
     const features = igcFormat.readFeatures(data,
       { featureProjection: 'EPSG:3857' });
     vectorSource.addFeatures(features);
@@ -73,7 +73,6 @@ vectorSource.on('addfeature', event => {
   time.stop = Math.max(time.stop, geometry.getLastCoordinate()[2]);
   time.duration = time.stop - time.start;
 });
-
 
 const map = new Map({
   layers: [
@@ -99,15 +98,14 @@ const map = new Map({
   })
 });
 
-
-let point: Point = null;
-let line: LineString = null;
+let point: Point = null as any;
+let line: LineString = null as any;
 const displaySnap = (coordinate: Coordinate) => {
   const closestFeature = vectorSource.getClosestFeatureToCoordinate(coordinate);
-  const info = document.getElementById('info');
+  const info = document.getElementById('info') as HTMLElement;
   if (closestFeature === null) {
-    point = null;
-    line = null;
+    point = null as any;
+    line = null as any;
     info.innerHTML = '&nbsp;';
   } else {
     const geometry = closestFeature.getGeometry();
@@ -147,11 +145,11 @@ const stroke = new Stroke({
   width: 1
 });
 const style = new Style({
-  stroke: stroke,
+  stroke,
   image: new CircleStyle({
     radius: 5,
-    fill: null,
-    stroke: stroke
+    fill: null as any,
+    stroke
   })
 });
 map.on('postcompose', evt => {
@@ -167,7 +165,7 @@ map.on('postcompose', evt => {
 
 const featureOverlay = new VectorLayer({
   source: new VectorSource(),
-  map: map,
+  map,
   style: new Style({
     image: new CircleStyle({
       radius: 5,
@@ -178,7 +176,7 @@ const featureOverlay = new VectorLayer({
   })
 });
 
-document.getElementById('time').addEventListener('input', function() {
+(document.getElementById('time') as HTMLElement).addEventListener('input', function() {
   const value = parseInt((this as HTMLInputElement).value, 10) / 100;
   const m = time.start + (time.duration * value);
   vectorSource.forEachFeature((feature: any) => {

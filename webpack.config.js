@@ -27,6 +27,8 @@ module.exports = {
         loader: 'ts-loader',
         options: {
           compilerOptions: {
+            allowJs: false,
+            checkJs: false,
             noEmit: false
           }
         }

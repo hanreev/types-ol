@@ -6,7 +6,6 @@ import { Tile as TileLayer, Vector as VectorLayer } from 'ol/layer';
 import OSM from 'ol/source/OSM';
 import VectorSource from 'ol/source/Vector';
 
-
 const raster = new TileLayer({
   source: new OSM()
 });

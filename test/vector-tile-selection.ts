@@ -1,10 +1,10 @@
 import { FeatureLike } from 'ol/Feature';
+import Map from 'ol/Map';
+import View from 'ol/View';
 import MVT from 'ol/format/MVT';
 import VectorTileLayer from 'ol/layer/VectorTile';
-import Map from 'ol/Map';
 import VectorTileSource from 'ol/source/VectorTile';
 import { Fill, Stroke, Style } from 'ol/style';
-import View from 'ol/View';
 
 // lookup for selection objects
 let selection: { [key: string]: FeatureLike } = {};

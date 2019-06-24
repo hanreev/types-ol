@@ -5,8 +5,8 @@ import { fromLonLat } from 'ol/proj';
 import RasterSource, { Operation } from 'ol/source/Raster';
 import XYZ from 'ol/source/XYZ';
 
-const flood: Operation = (pixels: number[][], data: any) => {
-  const pixel = pixels[0];
+const flood: Operation = (pixels: number[][] | ImageData[], data: any) => {
+  const pixel = pixels[0] as number[];
   if (pixel[3]) {
     const height = -10000 + ((pixel[0] * 256 * 256 + pixel[1] * 256 + pixel[2]) * 0.1);
     if (height <= data.level) {
@@ -54,7 +54,7 @@ const map = new Map({
 });
 
 const control = document.getElementById('level') as HTMLInputElement;
-const output = document.getElementById('output');
+const output = document.getElementById('output') as HTMLElement;
 control.addEventListener('input', () => {
   output.innerText = control.value;
   raster.changed();
@@ -73,6 +73,10 @@ for (let i = 0, ii = locations.length; i < ii; ++i) {
 function relocate(event: Event) {
   const data = (event.target as HTMLAnchorElement).dataset;
   const view = map.getView();
-  view.setCenter(fromLonLat(data.center.split(',').map(Number)));
-  view.setZoom(Number(data.zoom));
+  if (data) {
+    if (data.center)
+      view.setCenter(fromLonLat([]));
+    if (data.zoom)
+      view.setZoom(Number(data.zoom));
+  }
 }

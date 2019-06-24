@@ -1,13 +1,14 @@
 import { Feature } from 'ol';
+import { FeatureLike } from 'ol/Feature';
+import Map from 'ol/Map';
+import View from 'ol/View';
 import { LineString } from 'ol/geom';
 import GeometryType from 'ol/geom/GeometryType';
 import Point from 'ol/geom/Point';
 import Draw from 'ol/interaction/Draw';
 import { Tile as TileLayer, Vector as VectorLayer } from 'ol/layer';
-import Map from 'ol/Map';
 import { OSM, Vector as VectorSource } from 'ol/source';
 import { Icon, Stroke, Style } from 'ol/style';
-import View from 'ol/View';
 
 const raster = new TileLayer({
   source: new OSM()
@@ -15,7 +16,7 @@ const raster = new TileLayer({
 
 const source = new VectorSource();
 
-const styleFunction = (feature: Feature) => {
+const styleFunction = (feature: FeatureLike) => {
   const geometry = feature.getGeometry() as LineString;
   const styles = [
     // linestring
@@ -46,7 +47,7 @@ const styleFunction = (feature: Feature) => {
   return styles;
 };
 const vector = new VectorLayer({
-  source: source,
+  source,
   style: styleFunction
 });
 
@@ -60,6 +61,6 @@ const map = new Map({
 });
 
 map.addInteraction(new Draw({
-  source: source,
+  source,
   type: GeometryType.LINE_STRING
 }));

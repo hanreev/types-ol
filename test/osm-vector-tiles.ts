@@ -1,19 +1,19 @@
 import { FeatureLike } from 'ol/Feature';
+import Map from 'ol/Map';
+import View from 'ol/View';
 import TopoJSON from 'ol/format/TopoJSON';
 import VectorTileLayer from 'ol/layer/VectorTile';
-import Map from 'ol/Map';
 import { fromLonLat } from 'ol/proj';
 import VectorTileSource from 'ol/source/VectorTile';
 import { Fill, Stroke, Style } from 'ol/style';
-import View from 'ol/View';
 
 const key = 'vector-tiles-5eJz6JX';
 
 const roadStyleCache: { [key: string]: Style } = {};
 const roadColor: { [key: string]: string } = {
-  'major_road': '#776',
-  'minor_road': '#ccb',
-  'highway': '#f39'
+  major_road: '#776',
+  minor_road: '#ccb',
+  highway: '#f39'
 };
 const buildingStyle = new Style({
   fill: new Fill({
@@ -36,18 +36,19 @@ const roadStyle = (feature: FeatureLike) => {
   const styleKey = kind + '/' + railway + '/' + sort_key;
   let style = roadStyleCache[styleKey];
   if (!style) {
-    let color, width;
+    let color: string;
+    let width: number;
     if (railway) {
       color = '#7de';
       width = 1;
     } else {
       color = roadColor[kind];
-      width = kind == 'highway' ? 1.5 : 1;
+      width = kind === 'highway' ? 1.5 : 1;
     }
     style = new Style({
       stroke: new Stroke({
-        color: color,
-        width: width
+        color,
+        width
       }),
       zIndex: sort_key
     });
@@ -73,8 +74,8 @@ const map = new Map({
         switch (feature.get('layer')) {
           case 'water': return waterStyle;
           case 'roads': return roadStyle(feature);
-          case 'buildings': return (resolution < 10) ? buildingStyle : null;
-          default: return null;
+          case 'buildings': return (resolution < 10) ? buildingStyle : null as any;
+          default: return null as any;
         }
       }
     })

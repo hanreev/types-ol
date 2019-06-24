@@ -1,10 +1,11 @@
 import Feature from 'ol/Feature';
+import View from 'ol/View';
+import Map from 'ol/WebGLMap';
 import Point from 'ol/geom/Point';
+import SimpleGeometry from 'ol/geom/SimpleGeometry';
 import VectorLayer from 'ol/layer/Vector';
 import VectorSource from 'ol/source/Vector';
 import { AtlasManager, Circle as CircleStyle, Fill, RegularShape, Stroke, Style } from 'ol/style';
-import View from 'ol/View';
-import Map from 'ol/WebGLMap';
 
 const atlasManager = new AtlasManager({
   // we increase the initial size so that all symbols fit into
@@ -37,13 +38,11 @@ const symbolInfo = [{
 const radiuses = [3, 6, 9, 15, 19, 25];
 const symbolCount = symbolInfo.length * radiuses.length * 2;
 const symbols = [];
-let i, j;
-for (i = 0; i < symbolInfo.length; ++i) {
-  const info = symbolInfo[i];
-  for (j = 0; j < radiuses.length; ++j) {
+for (const info of symbolInfo) {
+  for (const radius of radiuses) {
     // circle symbol
     symbols.push(new CircleStyle({
-      radius: radiuses[j],
+      radius,
       fill: new Fill({
         color: info.fillColor
       }),
@@ -53,14 +52,14 @@ for (i = 0; i < symbolInfo.length; ++i) {
       }),
       // by passing the atlas manager to the symbol,
       // the symbol will be added to an atlas
-      atlasManager: atlasManager
+      atlasManager
     }));
 
     // star symbol
     symbols.push(new RegularShape({
       points: 8,
-      radius: radiuses[j],
-      radius2: radiuses[j] * 0.7,
+      radius,
+      radius2: radius * 0.7,
       angle: 1.4,
       fill: new Fill({
         color: info.fillColor
@@ -69,16 +68,17 @@ for (i = 0; i < symbolInfo.length; ++i) {
         color: info.strokeColor,
         width: 1
       }),
-      atlasManager: atlasManager
+      atlasManager
     }));
   }
 }
 
 const featureCount = 50000;
 const features = new Array(featureCount);
-let feature, geometry;
+let feature: Feature;
+let geometry: SimpleGeometry;
 const e = 25000000;
-for (i = 0; i < featureCount; ++i) {
+for (let i = 0; i < featureCount; ++i) {
   geometry = new Point(
     [2 * e * Math.random() - e, 2 * e * Math.random() - e]);
   feature = new Feature(geometry);
@@ -91,7 +91,7 @@ for (i = 0; i < featureCount; ++i) {
 }
 
 const vectorSource = new VectorSource({
-  features: features
+  features
 });
 const vector = new VectorLayer({
   source: vectorSource
@@ -99,7 +99,7 @@ const vector = new VectorLayer({
 
 const map = new Map({
   layers: [vector],
-  target: document.getElementById('map'),
+  target: document.getElementById('map') as HTMLElement,
   view: new View({
     center: [0, 0],
     zoom: 4

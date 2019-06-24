@@ -1,14 +1,14 @@
 import Feature from 'ol/Feature';
+import Map from 'ol/Map';
+import View from 'ol/View';
 import Polyline from 'ol/format/Polyline';
 import { LineString } from 'ol/geom';
 import Point from 'ol/geom/Point';
 import { Tile as TileLayer, Vector as VectorLayer } from 'ol/layer';
-import Map from 'ol/Map';
 import RenderEvent from 'ol/render/Event';
 import BingMaps from 'ol/source/BingMaps';
 import VectorSource from 'ol/source/Vector';
 import { Circle as CircleStyle, Fill, Icon, Stroke, Style } from 'ol/style';
-import View from 'ol/View';
 
 // This long string is placed here due to jsFiddle limitations.
 // It is usually loaded with AJAX.
@@ -82,18 +82,18 @@ const endMarker = new Feature({
 });
 
 const styles: { [key: string]: Style } = {
-  'route': new Style({
+  route: new Style({
     stroke: new Stroke({
       width: 6, color: [237, 212, 0, 0.8]
     })
   }),
-  'icon': new Style({
+  icon: new Style({
     image: new Icon({
       anchor: [0.5, 1],
       src: 'data/icon.png'
     })
   }),
-  'geoMarker': new Style({
+  geoMarker: new Style({
     image: new CircleStyle({
       radius: 7,
       fill: new Fill({ color: 'black' }),
@@ -105,9 +105,10 @@ const styles: { [key: string]: Style } = {
 };
 
 let animating = false;
-let speed: number, now: number;
+let speed: number;
+let now: number;
 const speedInput = document.getElementById('speed') as HTMLInputElement;
-const startButton = document.getElementById('start-animation');
+const startButton = document.getElementById('start-animation') as HTMLButtonElement;
 
 const vectorLayer = new VectorLayer({
   source: new VectorSource({
@@ -116,7 +117,7 @@ const vectorLayer = new VectorLayer({
   style: (feature) => {
     // hide geoMarker if animation is active
     if (animating && feature.get('type') === 'geoMarker') {
-      return null;
+      return null as any;
     }
     return styles[feature.get('type')];
   }
@@ -124,10 +125,10 @@ const vectorLayer = new VectorLayer({
 
 const center = [-5639523.95, -3501274.52];
 const map = new Map({
-  target: document.getElementById('map'),
+  target: document.getElementById('map') as HTMLElement,
   loadTilesWhileAnimating: true,
   view: new View({
-    center: center,
+    center,
     zoom: 10,
     minZoom: 2,
     maxZoom: 19
@@ -175,7 +176,7 @@ function startAnimation() {
     speed = Number(speedInput.value);
     startButton.textContent = 'Cancel Animation';
     // hide geoMarker
-    geoMarker.setStyle(null);
+    geoMarker.setStyle(null as any);
     // just in case you pan somewhere else
     map.getView().setCenter(center);
     map.on('postcompose', moveFeature);
@@ -183,10 +184,6 @@ function startAnimation() {
   }
 }
 
-
-/**
- * @param {boolean} ended end of animation.
- */
 function stopAnimation(ended: boolean) {
   animating = false;
   startButton.textContent = 'Start Animation';

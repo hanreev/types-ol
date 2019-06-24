@@ -3,7 +3,7 @@ import View from 'ol/View';
 import TileLayer from 'ol/layer/Tile';
 import OSM from 'ol/source/OSM';
 
-const viewport = document.getElementById('map');
+const viewport = document.getElementById('map') as HTMLElement;
 
 function getMinZoom() {
   const width = viewport.clientWidth;
@@ -25,7 +25,7 @@ const map = new Map({
     })
   ],
   target: 'map',
-  view: view
+  view
 });
 
 window.addEventListener('resize', () => {

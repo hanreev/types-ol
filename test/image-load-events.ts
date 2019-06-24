@@ -4,7 +4,6 @@ import ImageLayer from 'ol/layer/Image';
 import ImageWMS from 'ol/source/ImageWMS';
 
 class Progress {
-
   el: HTMLElement;
   loading = 0;
   loaded = 0;
@@ -50,14 +49,13 @@ class Progress {
       this.el.style.width = '0';
     }
   }
-
 }
 
-const progress = new Progress(document.getElementById('progress'));
+const progress = new Progress(document.getElementById('progress') as HTMLElement);
 
 const source = new ImageWMS({
   url: 'https://ahocevar.com/geoserver/wms',
-  params: { 'LAYERS': 'topp:states' },
+  params: { LAYERS: 'topp:states' },
   serverType: 'geoserver'
 });
 
@@ -74,7 +72,7 @@ source.on('imageloaderror', () => {
 
 const map = new Map({
   layers: [
-    new ImageLayer({ source: source })
+    new ImageLayer({ source })
   ],
   target: 'map',
   view: new View({

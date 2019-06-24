@@ -1,14 +1,15 @@
 import { Feature } from 'ol';
+import { FeatureLike } from 'ol/Feature';
+import Map from 'ol/Map';
+import View from 'ol/View';
 import { createEmpty, extend, getHeight, getWidth } from 'ol/extent';
 import KML from 'ol/format/KML';
-import { defaults as defaultInteractions, Select } from 'ol/interaction';
+import { or } from 'ol/format/filter';
+import { Select, defaults as defaultInteractions } from 'ol/interaction';
 import { Tile as TileLayer, Vector as VectorLayer } from 'ol/layer';
-import Map from 'ol/Map';
 import { Cluster, Stamen, Vector as VectorSource } from 'ol/source';
 import { Circle as CircleStyle, Fill, RegularShape, Stroke, Style, Text } from 'ol/style';
 import { StyleFunction } from 'ol/style/Style';
-import View from 'ol/View';
-
 
 const earthquakeFill = new Fill({
   color: 'rgba(255, 153, 0, 0.8)'
@@ -50,20 +51,20 @@ function createEarthquakeStyle(feature: Feature) {
 }
 
 let maxFeatureCount: number;
-let vector: VectorLayer = null;
+let vector: VectorLayer = null as any;
 const calculateClusterInfo = (resolution: number) => {
   maxFeatureCount = 0;
   const features = vector.getSource().getFeatures();
-  let feature, radius;
+  let feature: Feature;
+  let radius: number;
   for (let i = features.length - 1; i >= 0; --i) {
     feature = features[i];
     const originalFeatures = feature.get('features');
     const extent = createEmpty();
-    let j, jj;
-    for (j = 0, jj = originalFeatures.length; j < jj; ++j) {
-      extend(extent, originalFeatures[j].getGeometry().getExtent());
+    for (const originalFeature of originalFeatures) {
+      extend(extent, originalFeature.getGeometry().getExtent());
     }
-    maxFeatureCount = Math.max(maxFeatureCount, jj);
+    maxFeatureCount = Math.max(maxFeatureCount, originalFeatures.length);
     radius = 0.25 * (getWidth(extent) + getHeight(extent)) /
       resolution;
     feature.set('radius', radius);
@@ -72,7 +73,7 @@ const calculateClusterInfo = (resolution: number) => {
 
 let currentResolution: number;
 const styleFunction: StyleFunction = (feature, resolution) => {
-  if (resolution != currentResolution) {
+  if (resolution !== currentResolution) {
     calculateClusterInfo(resolution);
     currentResolution = resolution;
   }
@@ -99,7 +100,7 @@ const styleFunction: StyleFunction = (feature, resolution) => {
   return style;
 };
 
-function selectStyleFunction(feature: Feature) {
+function selectStyleFunction(feature: FeatureLike) {
   const styles = [new Style({
     image: new CircleStyle({
       radius: feature.get('radius'),
@@ -138,8 +139,8 @@ const map = new Map({
   layers: [raster, vector],
   interactions: defaultInteractions().extend([new Select({
     condition: (evt) => {
-      return evt.type == 'pointermove' ||
-        evt.type == 'singleclick';
+      return evt.type === 'pointermove' ||
+        evt.type === 'singleclick';
     },
     style: selectStyleFunction
   })]),

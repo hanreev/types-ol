@@ -1,11 +1,11 @@
+import Map from 'ol/Map';
+import View from 'ol/View';
 import { altKeyOnly, click, pointerMove } from 'ol/events/condition';
 import GeoJSON from 'ol/format/GeoJSON';
 import Select from 'ol/interaction/Select';
 import { Tile as TileLayer, Vector as VectorLayer } from 'ol/layer';
-import Map from 'ol/Map';
 import OSM from 'ol/source/OSM';
 import VectorSource from 'ol/source/Vector';
-import View from 'ol/View';
 
 const raster = new TileLayer({
   source: new OSM()
@@ -27,7 +27,7 @@ const map = new Map({
   })
 });
 
-let select: Select = null; // ref to currently selected interaction
+let select: Select | null = null; // ref to currently selected interaction
 
 // select interaction working on "singleclick"
 const selectSingleClick = new Select();
@@ -55,21 +55,32 @@ const changeInteraction = () => {
     map.removeInteraction(select);
   }
   const value = selectElement.value;
-  if (value == 'singleclick') {
-    select = selectSingleClick;
-  } else if (value == 'click') {
-    select = selectClick;
-  } else if (value == 'pointermove') {
-    select = selectPointerMove;
-  } else if (value == 'altclick') {
-    select = selectAltClick;
-  } else {
-    select = null;
+  switch (value) {
+    case 'singleclick':
+      select = selectSingleClick;
+      break;
+
+    case 'click':
+      select = selectClick;
+      break;
+
+    case 'pointermove':
+      select = selectPointerMove;
+      break;
+
+    case 'altclick':
+      select = selectAltClick;
+      break;
+
+    default:
+      select = null;
+      break;
   }
+
   if (select !== null) {
     map.addInteraction(select);
     select.on('select', (e) => {
-      document.getElementById('status').innerHTML = '&nbsp;' +
+      (document.getElementById('status') as HTMLElement).innerHTML = '&nbsp;' +
         e.target.getFeatures().getLength() +
         ' selected features (last operation selected ' + e.selected.length +
         ' and deselected ' + e.deselected.length + ' features)';
@@ -77,9 +88,5 @@ const changeInteraction = () => {
   }
 };
 
-
-/**
- * onchange callback on the select element.
- */
 selectElement.onchange = changeInteraction;
 changeInteraction();

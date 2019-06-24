@@ -27,7 +27,7 @@ const map = new Map({
   // Improve user experience by loading tiles while animating. Will make
   // animations stutter on mobile or slow devices.
   loadTilesWhileAnimating: true,
-  view: view
+  view
 });
 
 // A bounce easing method (from https://github.com/DmitryBaranovskiy/raphael).
@@ -60,7 +60,7 @@ function elastic(t: number) {
 }
 
 function onClick(id: string, callback: (this: HTMLElement, ev: MouseEvent) => any) {
-  document.getElementById(id).addEventListener('click', callback);
+  (document.getElementById(id) as HTMLElement).addEventListener('click', callback);
 }
 
 onClick('rotate-left', () => {
@@ -146,13 +146,13 @@ function flyTo(location: number[], done: (arg0: boolean) => void) {
   }
   view.animate({
     center: location,
-    duration: duration
+    duration
   }, callback);
   view.animate({
     zoom: zoom - 1,
     duration: duration / 2
   }, {
-      zoom: zoom,
+      zoom,
       duration: duration / 2
     }, callback);
 }

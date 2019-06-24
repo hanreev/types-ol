@@ -6,7 +6,6 @@ import { toLonLat } from 'ol/proj';
 import OSM from 'ol/source/OSM';
 import View from 'ol/View';
 
-
 const map = new Map({
   layers: [
     new TileLayer({

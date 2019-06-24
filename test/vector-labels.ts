@@ -1,4 +1,4 @@
-import { Feature } from 'ol';
+import { FeatureLike } from 'ol/Feature';
 import Map from 'ol/Map';
 import View from 'ol/View';
 import GeoJSON from 'ol/format/GeoJSON';
@@ -62,26 +62,25 @@ const myDom = {
   }
 };
 
-const getText = (feature: Feature, resolution: number, dom: any) => {
+const getText = (feature: FeatureLike, resolution: number, dom: any) => {
   const type = dom.text.value;
   const maxResolution = dom.maxreso.value;
   let text = feature.get('name');
 
   if (resolution > maxResolution) {
     text = '';
-  } else if (type == 'hide') {
+  } else if (type === 'hide') {
     text = '';
-  } else if (type == 'shorten') {
+  } else if (type === 'shorten') {
     text = text.trunc(12);
-  } else if (type == 'wrap' && (!dom.placement || dom.placement.value != 'line')) {
+  } else if (type === 'wrap' && (!dom.placement || dom.placement.value !== 'line')) {
     text = stringDivider(text, 16, '\n');
   }
 
   return text;
 };
 
-
-const createTextStyle = (feature: Feature, resolution: number, dom: any) => {
+const createTextStyle = (feature: FeatureLike, resolution: number, dom: any) => {
   const align = dom.align.value;
   const baseline = dom.baseline.value;
   const size = dom.size.value;
@@ -90,9 +89,9 @@ const createTextStyle = (feature: Feature, resolution: number, dom: any) => {
   const weight = dom.weight.value;
   const placement = dom.placement ? dom.placement.value : undefined;
   const maxAngle = dom.maxangle ? parseFloat(dom.maxangle.value) : undefined;
-  const overflow = dom.overflow ? (dom.overflow.value == 'true') : undefined;
+  const overflow = dom.overflow ? (dom.overflow.valu === 'true') : undefined;
   const rotation = parseFloat(dom.rotation.value);
-  if (dom.font.value == '\'Open Sans\'' && !openSansAdded) {
+  if (dom.font.valu === '\'Open Sans\'' && !openSansAdded) {
     const openSans = document.createElement('link');
     openSans.href = 'https://fonts.googleapis.com/css?family=Open+Sans';
     openSans.rel = 'stylesheet';
@@ -105,24 +104,23 @@ const createTextStyle = (feature: Feature, resolution: number, dom: any) => {
   const outlineWidth = parseInt(dom.outlineWidth.value, 10);
 
   return new Text({
-    textAlign: align == '' ? undefined : align,
+    textAlign: align === '' ? undefined : align,
     textBaseline: baseline,
-    font: font,
+    font,
     text: getText(feature, resolution, dom),
     fill: new Fill({ color: fillColor }),
     stroke: new Stroke({ color: outlineColor, width: outlineWidth }),
-    offsetX: offsetX,
-    offsetY: offsetY,
-    placement: placement,
-    maxAngle: maxAngle,
-    overflow: overflow,
-    rotation: rotation
+    offsetX,
+    offsetY,
+    placement,
+    maxAngle,
+    overflow,
+    rotation
   });
 };
 
-
 // Polygons
-function polygonStyleFunction(feature: Feature, resolution: number) {
+function polygonStyleFunction(feature: FeatureLike, resolution: number) {
   return new Style({
     stroke: new Stroke({
       color: 'blue',
@@ -143,9 +141,8 @@ const vectorPolygons = new VectorLayer({
   style: polygonStyleFunction
 });
 
-
 // Lines
-function lineStyleFunction(feature: Feature, resolution: number) {
+function lineStyleFunction(feature: FeatureLike, resolution: number) {
   return new Style({
     stroke: new Stroke({
       color: 'green',
@@ -163,9 +160,8 @@ const vectorLines = new VectorLayer({
   style: lineStyleFunction
 });
 
-
 // Points
-function pointStyleFunction(feature: Feature, resolution: number) {
+function pointStyleFunction(feature: FeatureLike, resolution: number) {
   return new Style({
     image: new CircleStyle({
       radius: 10,
@@ -200,36 +196,31 @@ const map = new Map({
   })
 });
 
-document.getElementById('refresh-points')
-  .addEventListener('click', () => {
-    vectorPoints.setStyle(pointStyleFunction);
-  });
+const refreshPointsEl = document.getElementById('refresh-points');
+refreshPointsEl && refreshPointsEl.addEventListener('click', () => {
+  vectorPoints.setStyle(pointStyleFunction);
+});
 
-document.getElementById('refresh-lines')
-  .addEventListener('click', () => {
-    vectorLines.setStyle(lineStyleFunction);
-  });
+const refreshLinesEl = document.getElementById('refresh-lines');
+refreshLinesEl && refreshLinesEl.addEventListener('click', () => {
+  vectorLines.setStyle(lineStyleFunction);
+});
 
-document.getElementById('refresh-polygons')
-  .addEventListener('click', () => {
-    vectorPolygons.setStyle(polygonStyleFunction);
-  });
-
+const refreshPolygonsEl = document.getElementById('refresh-polygons');
+refreshPolygonsEl && refreshPolygonsEl.addEventListener('click', () => {
+  vectorPolygons.setStyle(polygonStyleFunction);
+});
 
 // http://stackoverflow.com/questions/14484787/wrap-text-in-javascript
 function stringDivider(str: string, width: number, spaceReplacer: string): string {
   if (str.length > width) {
     let p = width;
-    while (p > 0 && (str[p] != ' ' && str[p] != '-')) {
+    while (p > 0 && (str[p] !== ' ' && str[p] !== '-')) {
       p--;
     }
     if (p > 0) {
       let left: string;
-      if (str.substring(p, p + 1) == '-') {
-        left = str.substring(0, p + 1);
-      } else {
-        left = str.substring(0, p);
-      }
+      left = str.substring(p, p + 1) === '-' ? str.substring(0, p + 1) : str.substring(0, p);
       const right = str.substring(p + 1);
       return left + spaceReplacer + stringDivider(right, width, spaceReplacer);
     }

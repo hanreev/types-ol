@@ -1,16 +1,15 @@
+import Map from 'ol/Map';
+import View from 'ol/View';
 import WMTSCapabilities from 'ol/format/WMTSCapabilities';
 import { DEVICE_PIXEL_RATIO } from 'ol/has';
 import TileLayer from 'ol/layer/Tile';
-import Map from 'ol/Map';
 import WMTS, { optionsFromCapabilities } from 'ol/source/WMTS';
-import View from 'ol/View';
-
 
 const capabilitiesUrl = 'https://www.basemap.at/wmts/1.0.0/WMTSCapabilities.xml';
 
 // HiDPI support:
 // * Use 'bmaphidpi' layer (pixel ratio 2) for device pixel ratio > 1
-// * Use 'geolandbasemap' layer (pixel ratio 1) for device pixel ratio == 1
+// * Use 'geolandbasemap' layer (pixel ratio 1) for device pixel rati === 1
 const hiDPI = DEVICE_PIXEL_RATIO > 1;
 const layer = hiDPI ? 'bmaphidpi' : 'geolandbasemap';
 const tilePixelRatio = hiDPI ? 2 : 1;
@@ -28,12 +27,12 @@ fetch(capabilitiesUrl).then((response) => {
 }).then((text) => {
   const result = new WMTSCapabilities().read(text);
   const options = optionsFromCapabilities(result, {
-    layer: layer,
+    layer,
     matrixSet: 'google3857',
     style: 'normal'
   });
   options.tilePixelRatio = tilePixelRatio;
   map.addLayer(new TileLayer({
-    source: new WMTS(/** @type {!module:ol/source/WMTS~Options} */(options))
+    source: new WMTS((options))
   }));
 });

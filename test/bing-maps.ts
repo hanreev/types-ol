@@ -13,8 +13,7 @@ const styles = [
   'ordnanceSurvey'
 ];
 const layers: BaseLayer[] = [];
-let i, j;
-for (i = 0, j = styles.length; i < j; ++i) {
+for (let i = 0, j = styles.length; i < j; ++i) {
   layers.push(new TileLayer({
     visible: false,
     preload: Infinity,
@@ -28,7 +27,7 @@ for (i = 0, j = styles.length; i < j; ++i) {
   }));
 }
 const map = new Map({
-  layers: layers,
+  layers,
   // Improve user experience by loading tiles while dragging/zooming. Will make
   // zooming choppy on mobile or slow devices.
   loadTilesWhileInteracting: true,
@@ -42,7 +41,7 @@ const map = new Map({
 const select = document.getElementById('layer-select') as HTMLSelectElement;
 function onChange() {
   const style = select.value;
-  for (i = 0, j = layers.length; i < j; ++i) {
+  for (let i = 0, j = layers.length; i < j; ++i) {
     layers[i].setVisible(styles[i] === style);
   }
 }

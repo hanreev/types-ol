@@ -7,7 +7,6 @@ import OSM from 'ol/source/OSM';
 import TileWMS from 'ol/source/TileWMS';
 import TileGrid from 'ol/tilegrid/TileGrid';
 
-
 const projExtent = getProjection('EPSG:3857').getExtent();
 const startResolution = getWidth(projExtent) / 256;
 const resolutions = new Array(22);
@@ -16,7 +15,7 @@ for (let i = 0, ii = resolutions.length; i < ii; ++i) {
 }
 const tileGrid = new TileGrid({
   extent: [-13884991, 2870341, -7455066, 6338219],
-  resolutions: resolutions,
+  resolutions,
   tileSize: [512, 256]
 });
 
@@ -27,14 +26,14 @@ const layers = [
   new TileLayer({
     source: new TileWMS({
       url: 'https://ahocevar.com/geoserver/wms',
-      params: { 'LAYERS': 'topp:states', 'TILED': true },
+      params: { LAYERS: 'topp:states', TILED: true },
       serverType: 'geoserver',
-      tileGrid: tileGrid
+      tileGrid
     })
   })
 ];
 const map = new Map({
-  layers: layers,
+  layers,
   target: 'map',
   view: new View({
     center: [-10997148, 4569099],

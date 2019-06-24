@@ -6,7 +6,6 @@ import TileJSON from 'ol/source/TileJSON';
 import VectorSource from 'ol/source/Vector';
 import { Fill, Stroke, Style } from 'ol/style';
 
-
 const raster = new TileLayer({
   source: new TileJSON({
     url: 'https://api.tiles.mapbox.com/v3/mapbox.world-dark.json?secure'
@@ -33,7 +32,7 @@ const vector = new VectorLayer({
     }),
     overlaps: false
   }),
-  style: style
+  style
 });
 
 const map = new Map({

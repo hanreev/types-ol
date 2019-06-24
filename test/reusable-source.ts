@@ -1,7 +1,7 @@
-import TileLayer from 'ol/layer/Tile';
 import Map from 'ol/Map';
-import XYZ from 'ol/source/XYZ';
 import View from 'ol/View';
+import TileLayer from 'ol/layer/Tile';
+import XYZ from 'ol/source/XYZ';
 
 const urls = [
   'https://{a-c}.tiles.mapbox.com/v3/mapbox.blue-marble-topo-jan/{z}/{x}/{y}.png',
@@ -16,7 +16,7 @@ const map = new Map({
   target: 'map',
   layers: [
     new TileLayer({
-      source: source
+      source
     })
   ],
   view: new View({
@@ -24,7 +24,6 @@ const map = new Map({
     zoom: 2
   })
 });
-
 
 function updateUrl(index: number) {
   source.setUrl(urls[index]);

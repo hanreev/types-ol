@@ -5,8 +5,8 @@ import { fromLonLat } from 'ol/proj';
 import BingMaps from 'ol/source/BingMaps';
 import RasterSource from 'ol/source/Raster';
 
-function growRegion(inputs: ImageData[], data: { pixel: any; delta: string; }) {
-  const image = inputs[0];
+function growRegion(inputs: number[][] | ImageData[], data: any) {
+  const image = inputs[0] as ImageData;
   let seed = data.pixel;
   const delta = parseInt(data.delta, 10);
   if (!seed) {
@@ -40,7 +40,7 @@ function growRegion(inputs: ImageData[], data: { pixel: any; delta: string; }) {
           const cb = inputData[ci + 2];
           const ca = inputData[ci + 3];
           // if alpha is zero, carry on
-          if (ca === 0) {
+          if (ci === 0) {
             continue;
           }
           if (Math.abs(seedR - cr) < delta && Math.abs(seedG - cg) < delta &&
@@ -58,7 +58,7 @@ function growRegion(inputs: ImageData[], data: { pixel: any; delta: string; }) {
     }
     edge = newedge;
   }
-  return { data: outputData, width: width, height: height };
+  return { data: outputData, width, height };
 }
 
 function next4Edges(edge: any[]) {
@@ -75,7 +75,7 @@ function next4Edges(edge: any[]) {
 const key = 'As1HiMj1PvLPlqc_gtM7AqZfBL8ZL3VrjaS3zIb22Uvb9WKhuJObROC-qUpa81U5';
 
 const imagery = new TileLayer({
-  source: new BingMaps({ key: key, imagerySet: 'Aerial' })
+  source: new BingMaps({ key, imagerySet: 'Aerial' })
 });
 
 const raster = new RasterSource({
@@ -85,7 +85,7 @@ const raster = new RasterSource({
   // Functions in the `lib` object will be available to the operation run in
   // the web worker.
   lib: {
-    next4Edges: next4Edges
+    next4Edges
   }
 });
 
@@ -122,7 +122,7 @@ raster.on('beforeoperations', (event) => {
 });
 
 function updateControlValue() {
-  document.getElementById('threshold-value').innerText = thresholdControl.value;
+  (document.getElementById('threshold-value') as HTMLElement).innerText = thresholdControl.value;
 }
 updateControlValue();
 

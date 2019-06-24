@@ -3,7 +3,6 @@ import View from 'ol/View';
 import TileLayer from 'ol/layer/Tile';
 import OSM, { ATTRIBUTION } from 'ol/source/OSM';
 
-
 const openCycleMapLayer = new TileLayer({
   source: new OSM({
     attributions: [
@@ -25,7 +24,6 @@ const openSeaMapLayer = new TileLayer({
     url: 'https://tiles.openseamap.org/seamark/{z}/{x}/{y}.png'
   })
 });
-
 
 const map = new Map({
   layers: [

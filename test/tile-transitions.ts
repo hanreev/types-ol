@@ -1,16 +1,16 @@
-import TileLayer from 'ol/layer/Tile';
 import Map from 'ol/Map';
-import XYZ from 'ol/source/XYZ';
 import View from 'ol/View';
+import TileLayer from 'ol/layer/Tile';
+import XYZ from 'ol/source/XYZ';
 
 const url = 'https://{a-c}.tiles.mapbox.com/v3/mapbox.world-bright/{z}/{x}/{y}.png';
 
 const withTransition = new TileLayer({
-  source: new XYZ({ url: url })
+  source: new XYZ({ url })
 });
 
 const withoutTransition = new TileLayer({
-  source: new XYZ({ url: url, transition: 0 }),
+  source: new XYZ({ url, transition: 0 }),
   visible: false
 });
 
@@ -24,7 +24,7 @@ const map = new Map({
   })
 });
 
-document.getElementById('transition').addEventListener('change', (event) => {
+(document.getElementById('transition') as HTMLElement).addEventListener('change', (event) => {
   const transition = (event.target as HTMLInputElement).checked;
   withTransition.setVisible(transition);
   withoutTransition.setVisible(!transition);

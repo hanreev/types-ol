@@ -10,16 +10,12 @@ const minVgi = 0;
 const maxVgi = 0.25;
 const bins = 10;
 
-
-
 function vgi(pixel: number[]) {
   const r = pixel[0] / 255;
   const g = pixel[1] / 255;
   const b = pixel[2] / 255;
   return (2 * g - r - b) / (2 * g + r + b);
 }
-
-
 
 function summarize(value: number, counts: any) {
   const min = counts.min;
@@ -35,20 +31,16 @@ function summarize(value: number, counts: any) {
   }
 }
 
-
-
 const bing = new BingMaps({
   key: 'As1HiMj1PvLPlqc_gtM7AqZfBL8ZL3VrjaS3zIb22Uvb9WKhuJObROC-qUpa81U5',
   imagerySet: 'Aerial'
 });
 
-
-
 const raster = new RasterSource({
   sources: [bing],
 
-  operation: (pixels: number[][], data: any) => {
-    const pixel = pixels[0];
+  operation: (pixels, data: any) => {
+    const pixel = pixels[0] as number[];
     const value = vgi(pixel);
     summarize(value, data.counts);
     if (value >= data.threshold) {
@@ -62,8 +54,8 @@ const raster = new RasterSource({
     return pixel;
   },
   lib: {
-    vgi: vgi,
-    summarize: summarize
+    vgi,
+    summarize
   }
 });
 raster.set('threshold', 0.1);
@@ -74,9 +66,9 @@ function createCounts(min: number, max: number, num: number) {
     values[i] = 0;
   }
   return {
-    min: min,
-    max: max,
-    values: values,
+    min,
+    max,
+    values,
     delta: (max - min) / num
   };
 }
@@ -108,8 +100,7 @@ const map = new Map({
   })
 });
 
-
-let timer: number = null;
+let timer: number | null = null;
 function schedulePlot(resolution: number, counts: any, threshold: any) {
   if (timer) {
     clearTimeout(timer);
@@ -177,7 +168,6 @@ function plot(resolution: number, counts: any, threshold: any) {
       tip.style('display', 'none');
     });
   });
-
 }
 
 function message(value: any, area: any) {

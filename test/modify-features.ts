@@ -5,7 +5,6 @@ import { defaults as defaultInteractions, Modify, Select } from 'ol/interaction'
 import { Tile as TileLayer, Vector as VectorLayer } from 'ol/layer';
 import { OSM, Vector as VectorSource } from 'ol/source';
 
-
 const raster = new TileLayer({
   source: new OSM()
 });

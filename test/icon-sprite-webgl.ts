@@ -1,4 +1,4 @@
-import Feature from 'ol/Feature';
+import Feature, { FeatureLike } from 'ol/Feature';
 import View from 'ol/View';
 import Map from 'ol/WebGLMap';
 import Point from 'ol/geom/Point';
@@ -56,7 +56,8 @@ for (i = 0; i < iconCount; ++i) {
 
 const featureCount = 50000;
 const features = new Array(featureCount);
-let feature: any, geometry: any;
+let feature: any;
+let geometry: any;
 const e = 25000000;
 for (i = 0; i < featureCount; ++i) {
   geometry = new Point(
@@ -71,7 +72,7 @@ for (i = 0; i < featureCount; ++i) {
 }
 
 const vectorSource = new VectorSource({
-  features: features
+  features
 });
 const vector = new VectorLayer({
   source: vectorSource
@@ -79,7 +80,7 @@ const vector = new VectorLayer({
 
 const map = new Map({
   layers: [vector],
-  target: document.getElementById('map'),
+  target: document.getElementById('map') as HTMLElement,
   view: new View({
     center: [0, 0],
     zoom: 5
@@ -94,7 +95,7 @@ for (i = 0; i < featureCount; i += 30) {
 }
 
 const layer = new VectorLayer({
-  map: map,
+  map,
   source: new VectorSource({
     features: overlayFeatures
   }),
@@ -104,14 +105,14 @@ const layer = new VectorLayer({
 });
 
 map.on('click', evt => {
-  const info = document.getElementById('info');
+  const info = document.getElementById('info') as HTMLElement;
   info.innerHTML =
     'Hold on a second, while I catch those butterflies for you ...';
 
   window.setTimeout(() => {
     const features_: Feature[] = [];
-    map.forEachFeatureAtPixel(evt.pixel, (f: Feature) => {
-      features_.push(f);
+    map.forEachFeatureAtPixel(evt.pixel, (f: FeatureLike) => {
+      features_.push(f as Feature);
       return false;
     });
 

@@ -23,7 +23,7 @@ const vector = new VectorLayer({
   source: new VectorSource({
     features: [feature]
   }),
-  style: style
+  style
 });
 
 const map = new Map({
@@ -37,7 +37,7 @@ const map = new Map({
 
 let hitTolerance: number;
 
-const statusElement = document.getElementById('status');
+const statusElement = document.getElementById('status') as HTMLElement;
 
 map.on('singleclick', e => {
   let hit = false;
@@ -66,7 +66,7 @@ const changeHitTolerance = () => {
   const size = 2 * hitTolerance + 2;
   circleCanvas.width = size;
   circleCanvas.height = size;
-  const ctx = circleCanvas.getContext('2d');
+  const ctx = circleCanvas.getContext('2d') as CanvasRenderingContext2D;
   ctx.clearRect(0, 0, size, size);
   ctx.beginPath();
   ctx.arc(hitTolerance + 1, hitTolerance + 1, hitTolerance + 0.5, 0, 2 * Math.PI);

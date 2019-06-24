@@ -4,7 +4,6 @@ import { fromLonLat } from 'ol/proj';
 import { OSM, TileDebug } from 'ol/source';
 import View from 'ol/View';
 
-
 const osmSource = new OSM();
 const map = new Map({
   layers: [

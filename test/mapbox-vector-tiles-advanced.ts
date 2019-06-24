@@ -38,10 +38,10 @@ const map = new Map({
         format: new MVT(),
         tileGrid: new TileGrid({
           extent: getProjection('EPSG:3857').getExtent(),
-          resolutions: resolutions,
+          resolutions,
           tileSize: 512
         }),
-        tileUrlFunction: tileUrlFunction
+        tileUrlFunction
       }),
       style: createMapboxStreetsV6Style(Style, Fill, Stroke, Icon, Text)
     })

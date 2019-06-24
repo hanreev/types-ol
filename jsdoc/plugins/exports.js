@@ -38,7 +38,6 @@ shaderModules.forEach(moduleName => {
   SOURCE_OVERRIDES[filename] = `/**\n * @module ${moduleName}\n */\n${shaderSource}`;
 });
 
-
 function remapExports(doclet) {
   const filename = path.join(doclet.meta.path, doclet.meta.filename);
 

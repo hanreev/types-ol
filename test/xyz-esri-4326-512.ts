@@ -1,7 +1,7 @@
-import TileLayer from 'ol/layer/Tile';
 import Map from 'ol/Map';
-import XYZ from 'ol/source/XYZ';
 import View from 'ol/View';
+import TileLayer from 'ol/layer/Tile';
+import XYZ from 'ol/source/XYZ';
 
 // The tile size supported by the ArcGIS tile service.
 const tileSize = 512;
@@ -17,7 +17,7 @@ const map = new Map({
         attributions: 'Copyright:© 2013 ESRI, i-cubed, GeoEye',
         maxZoom: 16,
         projection: 'EPSG:4326',
-        tileSize: tileSize,
+        tileSize,
         tileUrlFunction: (tileCoord) => {
           return urlTemplate.replace('{z}', (tileCoord[0] - 1).toString())
             .replace('{x}', tileCoord[1].toString())

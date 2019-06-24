@@ -19,7 +19,7 @@ const map = new Map({
     })
   ],
   target: 'map',
-  view: view
+  view
 });
 
 const geolocation = new Geolocation({
@@ -31,7 +31,7 @@ const geolocation = new Geolocation({
 });
 
 function el(id: string) {
-  return document.getElementById(id);
+  return document.getElementById(id) as HTMLElement;
 }
 
 el('track').addEventListener('change', function() {
@@ -49,7 +49,7 @@ geolocation.on('change', () => {
 
 // handle geolocation error.
 geolocation.on('error', (error: any) => {
-  const info = document.getElementById('info');
+  const info = document.getElementById('info') as HTMLElement;
   info.innerHTML = error.message;
   info.style.display = '';
 });
@@ -76,11 +76,11 @@ positionFeature.setStyle(new Style({
 geolocation.on('change:position', () => {
   const coordinates = geolocation.getPosition();
   positionFeature.setGeometry(coordinates ?
-    new Point(coordinates) : null);
+    new Point(coordinates) : null as any);
 });
 
 const layer = new VectorLayer({
-  map: map,
+  map,
   source: new VectorSource({
     features: [accuracyFeature, positionFeature]
   })

@@ -1,17 +1,14 @@
-import Map from 'ol/WebGLMap';
 import View from 'ol/View';
+import Map from 'ol/WebGLMap';
 import { WEBGL } from 'ol/has';
 import TileLayer from 'ol/layer/Tile';
 import OSM from 'ol/source/OSM';
 
 if (!WEBGL) {
-  const info = document.getElementById('no-webgl');
-  /**
-   * display error message
-   */
+  const info = document.getElementById('no-webgl') as HTMLElement;
+
   info.style.display = '';
 } else {
-
   const osm = new TileLayer({
     source: new OSM()
   });
@@ -42,14 +39,14 @@ if (!WEBGL) {
     const context = event.glContext;
 
     const gl = context.getGL();
-    const program = gl.createProgram();
+    const program = gl.createProgram() as WebGLProgram;
 
-    const vertexShader = gl.createShader(gl.VERTEX_SHADER);
+    const vertexShader = gl.createShader(gl.VERTEX_SHADER) as WebGLShader;
     gl.shaderSource(vertexShader, vertexShaderSource);
     gl.compileShader(vertexShader);
     gl.attachShader(program, vertexShader);
 
-    const fragmentShader = gl.createShader(gl.FRAGMENT_SHADER);
+    const fragmentShader = gl.createShader(gl.FRAGMENT_SHADER) as WebGLShader;
     gl.shaderSource(fragmentShader, fragmentShaderSource);
     gl.compileShader(fragmentShader);
     gl.attachShader(program, fragmentShader);

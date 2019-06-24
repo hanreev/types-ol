@@ -1,6 +1,6 @@
 import Map from 'ol/Map';
-import WebGLMap from 'ol/WebGLMap';
 import View from 'ol/View';
+import WebGLMap from 'ol/WebGLMap';
 import TileLayer from 'ol/layer/Tile';
 import OSM from 'ol/source/OSM';
 
@@ -16,11 +16,11 @@ const view = new View({
 const map1 = new Map({
   target: 'canvasMap',
   layers: [layer],
-  view: view
+  view
 });
 
 const map2 = new WebGLMap({
   target: 'webglMap',
   layers: [layer],
-  view: view
+  view
 });

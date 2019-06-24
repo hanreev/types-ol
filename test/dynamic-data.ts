@@ -5,7 +5,6 @@ import TileLayer from 'ol/layer/Tile';
 import OSM from 'ol/source/OSM';
 import { Circle as CircleStyle, Fill, Stroke, Style } from 'ol/style';
 
-
 const map = new Map({
   layers: [
     new TileLayer({

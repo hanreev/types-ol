@@ -14,7 +14,6 @@ exports.defineTags = dictionary => {
   });
 };
 
-
 const lookup = {};
 const incompleteByClass = {};
 const keepKeys = ['comment', 'meta', 'name', 'memberof', 'longname', 'augment',

@@ -14,7 +14,6 @@ exports.defineTags = dictionary => {
   });
 };
 
-
 /*
  * Based on @api annotations, and assuming that items with no @api annotation
  * should not be documented, this plugin removes undocumented symbols

@@ -5,7 +5,6 @@ import { defaults as defaultInteractions, DragRotateAndZoom } from 'ol/interacti
 import TileLayer from 'ol/layer/Tile';
 import BingMaps from 'ol/source/BingMaps';
 
-
 const map = new Map({
   controls: defaultControls().extend([
     new FullScreen()

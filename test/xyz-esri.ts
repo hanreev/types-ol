@@ -4,7 +4,6 @@ import { fromLonLat } from 'ol/proj';
 import XYZ from 'ol/source/XYZ';
 import View from 'ol/View';
 
-
 const map = new Map({
   target: 'map',
   layers: [

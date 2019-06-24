@@ -1,19 +1,19 @@
 import { Feature } from 'ol';
-import { GeoJSON, GPX, IGC, KML, TopoJSON } from 'ol/format';
-import { defaults as defaultInteractions, DragAndDrop } from 'ol/interaction';
-import { Tile as TileLayer, Vector as VectorLayer } from 'ol/layer';
 import Map from 'ol/Map';
+import View from 'ol/View';
+import { GPX, GeoJSON, IGC, KML, TopoJSON } from 'ol/format';
+import { DragAndDrop, defaults as defaultInteractions } from 'ol/interaction';
+import { Tile as TileLayer, Vector as VectorLayer } from 'ol/layer';
 import { Pixel } from 'ol/pixel';
 import { BingMaps, Vector as VectorSource } from 'ol/source';
-import View from 'ol/View';
 
 const dragAndDropInteraction = new DragAndDrop({
   formatConstructors: [
-    new GPX,
-    new GeoJSON,
-    new IGC,
-    new KML,
-    new TopoJSON
+    new GPX(),
+    new GeoJSON(),
+    new IGC(),
+    new KML(),
+    new TopoJSON()
   ]
 });
 
@@ -51,13 +51,12 @@ const displayFeatureInfo = (pixel: Pixel) => {
   });
   if (features.length > 0) {
     const info = [];
-    let i, ii;
-    for (i = 0, ii = features.length; i < ii; ++i) {
-      info.push(features[i].get('name'));
+    for (const f of features) {
+      info.push(f.get('name'));
     }
-    document.getElementById('info').innerHTML = info.join(', ') || '&nbsp';
+    (document.getElementById('info') as HTMLElement).innerHTML = info.join(', ') || '&nbsp';
   } else {
-    document.getElementById('info').innerHTML = '&nbsp;';
+    (document.getElementById('info') as HTMLElement).innerHTML = '&nbsp;';
   }
 };
 

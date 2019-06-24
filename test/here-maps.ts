@@ -54,9 +54,7 @@ const urlTpl = 'https://{1-4}.{base}.maps.cit.api.here.com' +
   '/{type}/2.1/maptile/newest/{scheme}/{z}/{x}/{y}/256/png' +
   '?app_id={app_id}&app_code={app_code}';
 const layers: Layer[] = [];
-let i: number, ii: number;
-for (i = 0, ii = hereLayers.length; i < ii; ++i) {
-  const layerDesc = hereLayers[i];
+for (const layerDesc of hereLayers) {
   layers.push(new TileLayer({
     visible: false,
     preload: Infinity,
@@ -69,7 +67,7 @@ for (i = 0, ii = hereLayers.length; i < ii; ++i) {
 }
 
 const map = new Map({
-  layers: layers,
+  layers,
   // Improve user experience by loading tiles while dragging/zooming. Will make
   // zooming choppy on mobile or slow devices.
   loadTilesWhileInteracting: true,

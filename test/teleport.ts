@@ -3,7 +3,6 @@ import View from 'ol/View';
 import TileLayer from 'ol/layer/Tile';
 import OSM from 'ol/source/OSM';
 
-
 const map = new Map({
   layers: [
     new TileLayer({
@@ -20,7 +19,7 @@ map.setTarget('map1');
 
 const teleportButton = document.getElementById('teleport');
 
-teleportButton.addEventListener('click', () => {
+teleportButton && teleportButton.addEventListener('click', () => {
   const target = map.getTarget() === 'map1' ? 'map2' : 'map1';
   map.setTarget(target);
 }, false);

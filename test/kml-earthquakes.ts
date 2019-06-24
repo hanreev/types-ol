@@ -1,4 +1,5 @@
 import { Feature } from 'ol';
+import { FeatureLike } from 'ol/Feature';
 import Map from 'ol/Map';
 import View from 'ol/View';
 import KML from 'ol/format/KML';
@@ -10,7 +11,7 @@ import { Circle as CircleStyle, Fill, Stroke, Style } from 'ol/style';
 declare var $: any;
 
 const styleCache: { [key: string]: Style } = {};
-const styleFunction = (feature: Feature) => {
+const styleFunction = (feature: FeatureLike) => {
   // 2012_Earthquakes_Mag5.kml stores the magnitude of each earthquake in a
   // standards-violating <magnitude> tag in each Placemark.  We extract it from
   // the Placemark's name instead.
@@ -21,7 +22,7 @@ const styleFunction = (feature: Feature) => {
   if (!style) {
     style = new Style({
       image: new CircleStyle({
-        radius: radius,
+        radius,
         fill: new Fill({
           color: 'rgba(255, 153, 0, 0.4)'
         }),
@@ -72,7 +73,7 @@ const displayFeatureInfo = (pixel: any) => {
     left: pixel[0] + 'px',
     top: (pixel[1] - 15) + 'px'
   });
-  const feature = map.forEachFeatureAtPixel(pixel, (f: Feature) => {
+  const feature = map.forEachFeatureAtPixel(pixel, (f: FeatureLike) => {
     return f;
   });
   if (feature) {

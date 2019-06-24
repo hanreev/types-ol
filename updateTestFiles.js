@@ -63,6 +63,9 @@ function processTestFile(srcPath) {
   // Fix HTMLInputElement
   content = content.replace(/this\.value/g, '(this as HTMLInputElement).value');
 
+  // Remove multiple blank lines
+  content = content.replace(/\n{3,}/g, '\n\n');
+
   console.log(`# Writing to ${destPath}`);
   fs.writeFileSync(destPath, content);
 }

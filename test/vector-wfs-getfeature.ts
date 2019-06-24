@@ -1,16 +1,11 @@
 import Map from 'ol/Map';
 import View from 'ol/View';
-import {
-  equalTo as equalToFilter,
-  like as likeFilter,
-  and as andFilter
-} from 'ol/format/filter';
-import { WFS, GeoJSON } from 'ol/format';
+import { GeoJSON, WFS } from 'ol/format';
+import { and as andFilter, equalTo as equalToFilter, like as likeFilter } from 'ol/format/filter';
 import { Tile as TileLayer, Vector as VectorLayer } from 'ol/layer';
 import BingMaps from 'ol/source/BingMaps';
 import VectorSource from 'ol/source/Vector';
 import { Stroke, Style } from 'ol/style';
-
 
 const vectorSource = new VectorSource();
 const vector = new VectorLayer({
@@ -32,7 +27,7 @@ const raster = new TileLayer({
 
 const map = new Map({
   layers: [raster, vector],
-  target: document.getElementById('map'),
+  target: document.getElementById('map') as HTMLElement,
   view: new View({
     center: [-8908887.277395891, 5381918.072437216],
     maxZoom: 19,

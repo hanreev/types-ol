@@ -1,59 +1,58 @@
 import Feature from 'ol/Feature';
+import Map from 'ol/Map';
+import View from 'ol/View';
 import Point from 'ol/geom/Point';
 import VectorLayer from 'ol/layer/Vector';
-import Map from 'ol/Map';
 import VectorSource from 'ol/source/Vector';
 import { Fill, RegularShape, Stroke, Style } from 'ol/style';
-import View from 'ol/View';
-
 
 const stroke = new Stroke({ color: 'black', width: 2 });
 const fill = new Fill({ color: 'red' });
 
 const styles: { [key: string]: Style } = {
-  'square': new Style({
+  square: new Style({
     image: new RegularShape({
-      fill: fill,
-      stroke: stroke,
+      fill,
+      stroke,
       points: 4,
       radius: 10,
       angle: Math.PI / 4
     })
   }),
-  'triangle': new Style({
+  triangle: new Style({
     image: new RegularShape({
-      fill: fill,
-      stroke: stroke,
+      fill,
+      stroke,
       points: 3,
       radius: 10,
       rotation: Math.PI / 4,
       angle: 0
     })
   }),
-  'star': new Style({
+  star: new Style({
     image: new RegularShape({
-      fill: fill,
-      stroke: stroke,
+      fill,
+      stroke,
       points: 5,
       radius: 10,
       radius2: 4,
       angle: 0
     })
   }),
-  'cross': new Style({
+  cross: new Style({
     image: new RegularShape({
-      fill: fill,
-      stroke: stroke,
+      fill,
+      stroke,
       points: 4,
       radius: 10,
       radius2: 0,
       angle: 0
     })
   }),
-  'x': new Style({
+  x: new Style({
     image: new RegularShape({
-      fill: fill,
-      stroke: stroke,
+      fill,
+      stroke,
       points: 4,
       radius: 10,
       radius2: 0,
@@ -61,7 +60,6 @@ const styles: { [key: string]: Style } = {
     })
   })
 };
-
 
 const styleKeys = ['x', 'cross', 'star', 'triangle', 'square'];
 const count = 250;
@@ -74,11 +72,11 @@ for (let i = 0; i < count; ++i) {
 }
 
 const source = new VectorSource({
-  features: features
+  features
 });
 
 const vectorLayer = new VectorLayer({
-  source: source
+  source
 });
 
 const map = new Map({

@@ -1,9 +1,9 @@
+import Map from 'ol/Map';
+import View from 'ol/View';
 import { Extent } from 'ol/extent';
 import TileLayer from 'ol/layer/Tile';
-import Map from 'ol/Map';
 import { transformExtent } from 'ol/proj';
 import TileJSON from 'ol/source/TileJSON';
-import View from 'ol/View';
 
 function transform(extent: Extent) {
   return transformExtent(extent, 'EPSG:4326', 'EPSG:3857');
@@ -41,7 +41,7 @@ const map = new Map({
 });
 
 for (const key in extents) {
-  document.getElementById(key).onclick = (event) => {
+  (document.getElementById(key) as HTMLElement).onclick = (event) => {
     overlay.setExtent(extents[(event.target as HTMLElement).id]);
   };
 }

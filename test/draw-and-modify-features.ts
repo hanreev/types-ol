@@ -1,10 +1,10 @@
+import Map from 'ol/Map';
+import View from 'ol/View';
 import GeometryType from 'ol/geom/GeometryType';
 import { Draw, Modify, Snap } from 'ol/interaction';
 import { Tile as TileLayer, Vector as VectorLayer } from 'ol/layer';
-import Map from 'ol/Map';
 import { OSM, Vector as VectorSource } from 'ol/source';
 import { Circle as CircleStyle, Fill, Stroke, Style } from 'ol/style';
-import View from 'ol/View';
 
 const raster = new TileLayer({
   source: new OSM()
@@ -12,7 +12,7 @@ const raster = new TileLayer({
 
 const source = new VectorSource();
 const vector = new VectorLayer({
-  source: source,
+  source,
   style: new Style({
     fill: new Fill({
       color: 'rgba(255, 255, 255, 0.2)'
@@ -39,26 +39,23 @@ const map = new Map({
   })
 });
 
-const modify = new Modify({ source: source });
+const modify = new Modify({ source });
 map.addInteraction(modify);
 
-let draw: Draw, snap: Snap; // global so we can remove them later
+let draw: Draw;
+let snap: Snap; // global so we can remove them later
 const typeSelect = document.getElementById('type') as HTMLSelectElement;
 
 function addInteractions() {
   draw = new Draw({
-    source: source,
+    source,
     type: typeSelect.value as GeometryType
   });
   map.addInteraction(draw);
-  snap = new Snap({ source: source });
+  snap = new Snap({ source });
   map.addInteraction(snap);
-
 }
 
-/**
- * Handle change event.
- */
 typeSelect.onchange = () => {
   map.removeInteraction(draw);
   map.removeInteraction(snap);

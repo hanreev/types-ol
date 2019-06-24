@@ -3,7 +3,6 @@ import Map from 'ol/Map';
 import BingMaps from 'ol/source/BingMaps';
 import View from 'ol/View';
 
-
 const map = new Map({
   target: 'map',
   layers: [

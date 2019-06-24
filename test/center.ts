@@ -32,8 +32,8 @@ const style = new Style({
   })
 });
 const vectorLayer = new VectorLayer({
-  source: source,
-  style: style
+  source,
+  style
 });
 const view = new View({
   center: [0, 0],
@@ -47,10 +47,10 @@ const map = new Map({
     vectorLayer
   ],
   target: 'map',
-  view: view
+  view
 });
 
-const zoomtoswitzerlandbest = document.getElementById('zoomtoswitzerlandbest');
+const zoomtoswitzerlandbest = document.getElementById('zoomtoswitzerlandbest') as HTMLElement;
 zoomtoswitzerlandbest.addEventListener('click', () => {
   const feature = source.getFeatures()[0];
   const polygon = feature.getGeometry() as SimpleGeometry;
@@ -58,7 +58,7 @@ zoomtoswitzerlandbest.addEventListener('click', () => {
 }, false);
 
 const zoomtoswitzerlandconstrained =
-  document.getElementById('zoomtoswitzerlandconstrained');
+  document.getElementById('zoomtoswitzerlandconstrained') as HTMLElement;
 zoomtoswitzerlandconstrained.addEventListener('click', () => {
   const feature = source.getFeatures()[0];
   const polygon = feature.getGeometry() as SimpleGeometry;
@@ -66,24 +66,24 @@ zoomtoswitzerlandconstrained.addEventListener('click', () => {
 }, false);
 
 const zoomtoswitzerlandnearest =
-  document.getElementById('zoomtoswitzerlandnearest');
+  document.getElementById('zoomtoswitzerlandnearest') as HTMLElement;
 zoomtoswitzerlandnearest.addEventListener('click', () => {
   const feature = source.getFeatures()[0];
   const polygon = feature.getGeometry() as SimpleGeometry;
   view.fit(polygon, { padding: [170, 50, 30, 150], nearest: true });
 }, false);
 
-const zoomtolausanne = document.getElementById('zoomtolausanne');
+const zoomtolausanne = document.getElementById('zoomtolausanne') as HTMLElement;
 zoomtolausanne.addEventListener('click', () => {
   const feature = source.getFeatures()[1];
   const point = feature.getGeometry() as SimpleGeometry;
   view.fit(point, { padding: [170, 50, 30, 150], minResolution: 50 });
 }, false);
 
-const centerlausanne = document.getElementById('centerlausanne');
+const centerlausanne = document.getElementById('centerlausanne') as HTMLElement;
 centerlausanne.addEventListener('click', () => {
   const feature = source.getFeatures()[1];
   const point = feature.getGeometry() as Point;
-  const size = map.getSize() as Size;
+  const size = map.getSize();
   view.centerOn(point.getCoordinates(), size, [570, 500]);
 }, false);

@@ -20,8 +20,8 @@ const map4326 = new Map({
       source: new TileWMS({
         url: 'https://ahocevar.com/geoserver/wms',
         params: {
-          'LAYERS': 'ne:NE1_HR_LC_SR_W_DR',
-          'TILED': true
+          LAYERS: 'ne:NE1_HR_LC_SR_W_DR',
+          TILED: true
         }
       })
     }),
@@ -41,8 +41,8 @@ const map3857 = new Map({
       source: new TileWMS({
         url: 'https://ahocevar.com/geoserver/wms',
         params: {
-          'LAYERS': 'ne:NE1_HR_LC_SR_W_DR',
-          'TILED': true
+          LAYERS: 'ne:NE1_HR_LC_SR_W_DR',
+          TILED: true
         }
       })
     }),
@@ -56,7 +56,8 @@ const map3857 = new Map({
 });
 
 const radius = 800000;
-let x, y;
+let x: number;
+let y: number;
 for (x = -180; x < 180; x += 30) {
   for (y = -90; y < 90; y += 30) {
     const circle4326 = circularPolygon([x, y], radius, 64);

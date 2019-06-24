@@ -8,7 +8,6 @@ import TileJSON from 'ol/source/TileJSON';
 import VectorSource from 'ol/source/Vector';
 import { Icon, Style } from 'ol/style';
 
-
 const rome = new Feature({
   geometry: new Point(fromLonLat([12.5, 41.9]))
 });
@@ -22,7 +21,7 @@ const madrid = new Feature({
 });
 
 rome.setStyle(new Style({
-  image: new Icon(/** @type {module:ol/style/Icon~Options} */({
+  image: new Icon(({
     color: '#8959A8',
     crossOrigin: 'anonymous',
     src: 'data/dot.png'
@@ -30,7 +29,7 @@ rome.setStyle(new Style({
 }));
 
 london.setStyle(new Style({
-  image: new Icon(/** @type {module:ol/style/Icon~Options} */({
+  image: new Icon(({
     color: '#4271AE',
     crossOrigin: 'anonymous',
     src: 'data/dot.png'
@@ -38,13 +37,12 @@ london.setStyle(new Style({
 }));
 
 madrid.setStyle(new Style({
-  image: new Icon(/** @type {module:ol/style/Icon~Options} */({
+  image: new Icon(({
     color: [113, 140, 0],
     crossOrigin: 'anonymous',
     src: 'data/dot.png'
   }))
 }));
-
 
 const vectorSource = new VectorSource({
   features: [rome, london, madrid]
@@ -63,7 +61,7 @@ const rasterLayer = new TileLayer({
 
 const map = new Map({
   layers: [rasterLayer, vectorLayer],
-  target: document.getElementById('map'),
+  target: document.getElementById('map') as HTMLElement,
   view: new View({
     center: fromLonLat([2.896372, 44.60240]),
     zoom: 3

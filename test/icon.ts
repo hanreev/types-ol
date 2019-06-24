@@ -1,4 +1,4 @@
-import Feature from 'ol/Feature';
+import Feature, { FeatureLike } from 'ol/Feature';
 import Map from 'ol/Map';
 import Overlay from 'ol/Overlay';
 import OverlayPositioning from 'ol/OverlayPositioning';
@@ -48,17 +48,17 @@ const rasterLayer = new TileLayer({
 
 const map = new Map({
   layers: [rasterLayer, vectorLayer],
-  target: document.getElementById('map'),
+  target: document.getElementById('map') as HTMLElement,
   view: new View({
     center: [0, 0],
     zoom: 3
   })
 });
 
-const element = document.getElementById('popup');
+const element = document.getElementById('popup') as HTMLElement;
 
 const popup = new Overlay({
-  element: element,
+  element,
   positioning: OverlayPositioning.BOTTOM_CENTER,
   stopEvent: false,
   offset: [0, -50]
@@ -68,7 +68,7 @@ map.addOverlay(popup);
 // display popup on click
 map.on('click', evt => {
   const feature = map.forEachFeatureAtPixel(evt.pixel,
-    (f: Feature) => {
+    (f: FeatureLike) => {
       return f;
     });
   if (feature) {

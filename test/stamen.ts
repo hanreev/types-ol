@@ -4,7 +4,6 @@ import TileLayer from 'ol/layer/Tile';
 import { fromLonLat } from 'ol/proj';
 import Stamen from 'ol/source/Stamen';
 
-
 const map = new Map({
   layers: [
     new TileLayer({

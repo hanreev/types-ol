@@ -1,14 +1,9 @@
-import ImageLayer from 'ol/layer/Image';
 import Map from 'ol/Map';
+import View from 'ol/View';
+import ImageLayer from 'ol/layer/Image';
 import { Raster as RasterSource, Stamen } from 'ol/source';
 import { RasterSourceEvent } from 'ol/source/Raster';
-import View from 'ol/View';
 
-
-/**
- * Color manipulation functions below are adapted from
- * https://github.com/d3/d3-color.
- */
 const Xn = 0.950470;
 const Yn = 1;
 const Zn = 1.088830;
@@ -18,10 +13,6 @@ const t2 = 3 * t1 * t1;
 const t3 = t1 * t1 * t1;
 const twoPi = 2 * Math.PI;
 
-
-/**
- * Convert an RGB pixel into an HCL pixel.
- */
 function rgb2hcl(pixel: number[]): number[] {
   const red = rgb2xyz(pixel[0]);
   const green = rgb2xyz(pixel[1]);
@@ -51,10 +42,6 @@ function rgb2hcl(pixel: number[]): number[] {
   return pixel;
 }
 
-
-/**
- * Convert an HCL pixel into an RGB pixel.
- */
 function hcl2rgb(pixel: number[]): number[] {
   const h = pixel[0];
   const c = pixel[1];
@@ -87,7 +74,8 @@ function lab2xyz(t: number) {
 }
 
 function rgb2xyz(x: number) {
-  return (x /= 255) <= 0.04045 ? x / 12.92 : Math.pow((x + 0.055) / 1.055, 2.4);
+  x /= 255;
+  return x <= 0.04045 ? x / 12.92 : Math.pow((x + 0.055) / 1.055, 2.4);
 }
 
 function xyz2rgb(x: number) {
@@ -116,20 +104,20 @@ const raster = new RasterSource({
     return hcl2rgb(hcl);
   },
   lib: {
-    rgb2hcl: rgb2hcl,
-    hcl2rgb: hcl2rgb,
-    rgb2xyz: rgb2xyz,
-    lab2xyz: lab2xyz,
-    xyz2lab: xyz2lab,
-    xyz2rgb: xyz2rgb,
-    Xn: Xn,
-    Yn: Yn,
-    Zn: Zn,
-    t0: t0,
-    t1: t1,
-    t2: t2,
-    t3: t3,
-    twoPi: twoPi
+    rgb2hcl,
+    hcl2rgb,
+    rgb2xyz,
+    lab2xyz,
+    xyz2lab,
+    xyz2rgb,
+    Xn,
+    Yn,
+    Zn,
+    t0,
+    t1,
+    t2,
+    t3,
+    twoPi
   }
 });
 
@@ -159,7 +147,7 @@ const map = new Map({
 const controlIds = ['hue', 'chroma', 'lightness'];
 controlIds.forEach((id) => {
   const control = document.getElementById(id) as HTMLInputElement;
-  const output = document.getElementById(id + 'Out');
+  const output = document.getElementById(id + 'Out') as HTMLElement;
   control.addEventListener('input', () => {
     output.innerText = control.value;
     raster.changed();

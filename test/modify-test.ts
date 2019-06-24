@@ -7,14 +7,14 @@ import VectorSource from 'ol/source/Vector';
 import { Circle as CircleStyle, Fill, Stroke, Style } from 'ol/style';
 import { StyleFunction, StyleLike } from 'ol/style/Style';
 
-const styleFunction = (function() {
+const styleFunction = (() => {
   const styles: { [key: string]: Style } = {};
   const image = new CircleStyle({
     radius: 5,
-    fill: null,
+    fill: undefined,
     stroke: new Stroke({ color: 'orange', width: 2 })
   });
-  styles['Point'] = new Style({ image: image });
+  styles['Point'] = new Style({ image });
   styles['Polygon'] = new Style({
     stroke: new Stroke({
       color: 'blue',
@@ -47,7 +47,7 @@ const styleFunction = (function() {
     fill: new Fill({
       color: 'rgba(255, 0, 0, 0.1)'
     }),
-    image: image
+    image
   });
   return ((feature) => {
     return styles[feature.getGeometry().getType()] || styles['default'];
@@ -55,50 +55,50 @@ const styleFunction = (function() {
 })();
 
 const geojsonObject = {
-  'type': 'FeatureCollection',
-  'crs': {
-    'type': 'name',
-    'properties': {
-      'name': 'EPSG:3857'
+  type: 'FeatureCollection',
+  crs: {
+    type: 'name',
+    properties: {
+      name: 'EPSG:3857'
     }
   },
-  'features': [{
-    'type': 'Feature',
-    'geometry': {
-      'type': 'Point',
-      'coordinates': [0, 0]
+  features: [{
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [0, 0]
     }
   }, {
-    'type': 'Feature',
-    'geometry': {
-      'type': 'MultiPoint',
-      'coordinates': [[-2e6, 0], [0, -2e6]]
+    type: 'Feature',
+    geometry: {
+      type: 'MultiPoint',
+      coordinates: [[-2e6, 0], [0, -2e6]]
     }
   }, {
-    'type': 'Feature',
-    'geometry': {
-      'type': 'LineString',
-      'coordinates': [[4e6, -2e6], [8e6, 2e6], [9e6, 2e6]]
+    type: 'Feature',
+    geometry: {
+      type: 'LineString',
+      coordinates: [[4e6, -2e6], [8e6, 2e6], [9e6, 2e6]]
     }
   }, {
-    'type': 'Feature',
-    'geometry': {
-      'type': 'LineString',
-      'coordinates': [[4e6, -2e6], [8e6, 2e6], [8e6, 3e6]]
+    type: 'Feature',
+    geometry: {
+      type: 'LineString',
+      coordinates: [[4e6, -2e6], [8e6, 2e6], [8e6, 3e6]]
     }
   }, {
-    'type': 'Feature',
-    'geometry': {
-      'type': 'Polygon',
-      'coordinates': [[[-5e6, -1e6], [-4e6, 1e6],
+    type: 'Feature',
+    geometry: {
+      type: 'Polygon',
+      coordinates: [[[-5e6, -1e6], [-4e6, 1e6],
       [-3e6, -1e6], [-5e6, -1e6]], [[-4.5e6, -0.5e6],
       [-3.5e6, -0.5e6], [-4e6, 0.5e6], [-4.5e6, -0.5e6]]]
     }
   }, {
-    'type': 'Feature',
-    'geometry': {
-      'type': 'MultiLineString',
-      'coordinates': [
+    type: 'Feature',
+    geometry: {
+      type: 'MultiLineString',
+      coordinates: [
         [[-1e6, -7.5e5], [-1e6, 7.5e5]],
         [[-1e6, -7.5e5], [-1e6, 7.5e5], [-5e5, 0], [-1e6, -7.5e5]],
         [[1e6, -7.5e5], [15e5, 0], [15e5, 0], [1e6, 7.5e5]],
@@ -107,10 +107,10 @@ const geojsonObject = {
       ]
     }
   }, {
-    'type': 'Feature',
-    'geometry': {
-      'type': 'MultiPolygon',
-      'coordinates': [
+    type: 'Feature',
+    geometry: {
+      type: 'MultiPolygon',
+      coordinates: [
         [[[-5e6, 6e6], [-5e6, 8e6], [-3e6, 8e6],
         [-3e6, 6e6], [-5e6, 6e6]]],
         [[[-3e6, 6e6], [-2e6, 8e6], [0, 8e6],
@@ -120,18 +120,18 @@ const geojsonObject = {
       ]
     }
   }, {
-    'type': 'Feature',
-    'geometry': {
-      'type': 'GeometryCollection',
-      'geometries': [{
-        'type': 'LineString',
-        'coordinates': [[-5e6, -5e6], [0, -5e6]]
+    type: 'Feature',
+    geometry: {
+      type: 'GeometryCollection',
+      geometries: [{
+        type: 'LineString',
+        coordinates: [[-5e6, -5e6], [0, -5e6]]
       }, {
-        'type': 'Point',
-        'coordinates': [4e6, -5e6]
+        type: 'Point',
+        coordinates: [4e6, -5e6]
       }, {
-        'type': 'Polygon',
-        'coordinates': [
+        type: 'Polygon',
+        coordinates: [
           [[1e6, -6e6], [2e6, -4e6], [3e6, -6e6], [1e6, -6e6]]
         ]
       }]
@@ -144,11 +144,11 @@ const source = new VectorSource({
 });
 
 const layer = new VectorLayer({
-  source: source,
+  source,
   style: styleFunction
 });
 
-const overlayStyle = (function() {
+const overlayStyle = (() => {
   const styles: { [key: string]: StyleLike } = {};
   styles['Polygon'] = [
     new Style({

@@ -4,12 +4,8 @@ import { Image as ImageLayer, Tile as TileLayer } from 'ol/layer';
 import { OSM, Raster, XYZ } from 'ol/source';
 import { Operation } from 'ol/source/Raster';
 
-/**
- * Generates a shaded relief image given elevation data.  Uses a 3x3
- * neighborhood for determining slope and aspect.
- */
-const shade: Operation = (inputs: ImageData[], data: any) => {
-  const elevationImage = inputs[0];
+const shade: Operation = (inputs: number[][] | ImageData[], data: any) => {
+  const elevationImage = inputs[0] as ImageData;
   const width = elevationImage.width;
   const height = elevationImage.height;
   const elevationData = elevationImage.data;
@@ -24,8 +20,22 @@ const shade: Operation = (inputs: ImageData[], data: any) => {
   const sunAz = Math.PI * data.sunAz / 180;
   const cosSunEl = Math.cos(sunEl);
   const sinSunEl = Math.sin(sunEl);
-  let pixelX, pixelY, x0, x1, y0, y1, offset,
-    z0, z1, dzdx, dzdy, slope, aspect, cosIncidence, scaled;
+  let pixelX: number;
+  let pixelY: number;
+  let x0: number;
+  let x1: number;
+  let y0: number;
+  let y1: number;
+  let offset: number;
+  let z0: number;
+  let z1: number;
+  let dzdx: number;
+  let dzdy: number;
+  let slope: number;
+  let aspect: number;
+  let cosIncidence: number;
+  let scaled: number;
+
   for (pixelY = 0; pixelY <= maxY; ++pixelY) {
     y0 = pixelY === 0 ? 0 : pixelY - 1;
     y1 = pixelY === maxY ? maxY : pixelY + 1;
@@ -92,7 +102,7 @@ const shade: Operation = (inputs: ImageData[], data: any) => {
     }
   }
 
-  return { data: shadeData, width: width, height: height };
+  return { data: shadeData, width, height };
 };
 
 const elevation = new XYZ({
@@ -131,7 +141,7 @@ const controlIds = ['vert', 'sunEl', 'sunAz'];
 const controls: { [key: string]: HTMLInputElement } = {};
 controlIds.forEach((id) => {
   const control = document.getElementById(id) as HTMLInputElement;
-  const output = document.getElementById(id + 'Out');
+  const output = document.getElementById(id + 'Out') as HTMLElement;
   control.addEventListener('input', () => {
     output.innerText = control.value;
     raster.changed();

@@ -3,7 +3,6 @@ import View from 'ol/View';
 import TileLayer from 'ol/layer/Tile';
 import TileJSON from 'ol/source/TileJSON';
 
-
 const map = new Map({
   layers: [
     new TileLayer({

@@ -1,18 +1,18 @@
+import Map from 'ol/Map';
+import View from 'ol/View';
 import OSMXML from 'ol/format/OSMXML';
 import { Tile as TileLayer, Vector as VectorLayer } from 'ol/layer';
 import { bbox as bboxStrategy } from 'ol/loadingstrategy';
-import Map from 'ol/Map';
 import { transformExtent } from 'ol/proj';
 import BingMaps from 'ol/source/BingMaps';
 import VectorSource from 'ol/source/Vector';
 import { Circle as CircleStyle, Fill, Stroke, Style } from 'ol/style';
-import View from 'ol/View';
 
-let map: Map = null;
+let map: Map;
 
 const styles: { [key: string]: { [key: string]: Style } } = {
-  'amenity': {
-    'parking': new Style({
+  amenity: {
+    parking: new Style({
       stroke: new Stroke({
         color: 'rgba(170, 170, 170, 1.0)',
         width: 1
@@ -22,7 +22,7 @@ const styles: { [key: string]: { [key: string]: Style } } = {
       })
     })
   },
-  'building': {
+  building: {
     '.*': new Style({
       zIndex: 100,
       stroke: new Stroke({
@@ -34,8 +34,8 @@ const styles: { [key: string]: { [key: string]: Style } } = {
       })
     })
   },
-  'highway': {
-    'service': new Style({
+  highway: {
+    service: new Style({
       stroke: new Stroke({
         color: 'rgba(255, 255, 255, 1.0)',
         width: 2
@@ -48,7 +48,7 @@ const styles: { [key: string]: { [key: string]: Style } } = {
       })
     })
   },
-  'landuse': {
+  landuse: {
     'forest|grass|allotments': new Style({
       stroke: new Stroke({
         color: 'rgba(140, 208, 95, 1.0)',
@@ -59,14 +59,13 @@ const styles: { [key: string]: { [key: string]: Style } } = {
       })
     })
   },
-  'natural': {
-    'tree': new Style({
+  natural: {
+    tree: new Style({
       image: new CircleStyle({
         radius: 2,
         fill: new Fill({
           color: 'rgba(140, 208, 95, 1.0)'
-        }),
-        stroke: null
+        })
       })
     })
   }
@@ -84,6 +83,7 @@ const vectorSource = new VectorSource({
       });
       vectorSource.addFeatures(features);
     });
+    // tslint:disable-next-line: prefer-template
     const query = '(node(' +
       epsg4326Extent[1] + ',' + epsg4326Extent[0] + ',' +
       epsg4326Extent[3] + ',' + epsg4326Extent[2] +
@@ -106,7 +106,7 @@ const vector = new VectorLayer({
         }
       }
     }
-    return null;
+    return null as any;
   }
 });
 
@@ -119,7 +119,7 @@ const raster = new TileLayer({
 
 map = new Map({
   layers: [raster, vector],
-  target: document.getElementById('map'),
+  target: document.getElementById('map') as HTMLElement,
   view: new View({
     center: [739218, 5906096],
     maxZoom: 19,

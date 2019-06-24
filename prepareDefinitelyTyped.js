@@ -27,17 +27,7 @@ const configs = {
     },
     files: []
   },
-  tslint: {
-    extends: 'dtslint/dt.json',
-    rules: {
-      'adjacent-overload-signatures': false,
-      'array-type': false,
-      'max-line-length': false,
-      'no-unnecessary-class': false,
-      'no-unnecessary-generics': false,
-      'unified-signatures': false
-    }
-  }
+  tslint: require('./tslint.json')
 };
 
 const header = `// Type definitions for ol ${olVersion}
@@ -49,6 +39,7 @@ const header = `// Type definitions for ol ${olVersion}
 `;
 
 const srcPath = path.resolve(__dirname, '@types', 'ol');
+const testSrcPath = path.resolve(__dirname, 'test');
 const dtPath = path.resolve(__dirname, 'DefinitelyTyped');
 const destPath = path.join(dtPath, 'types', 'ol');
 
@@ -63,10 +54,24 @@ fs.mkdirpSync(destPath);
 console.log('# Copying definition files');
 fs.copySync(srcPath, destPath);
 
+// Copy test files
+console.log('# Copying test files');
+fs.copySync(testSrcPath, path.join(destPath, 'test'));
+
+// Copy test files
+console.log('# Writing ol-tests.ts file');
+const testContent = glob.sync(path.join(destPath, 'test', '*.ts')).map(testPath => {
+  const relPath = path.relative(destPath, testPath).replace(/\\/g, '/');
+  return `import './${relPath}';`;
+}).join('\n') + '\n';
+fs.writeFileSync(path.join(destPath, 'ol-tests.ts'), testContent);
+
 console.log('# Generating tsconfig.json and tslint.json');
 // Append .d.ts path to tsconfig files
-glob.sync(path.join(destPath, '**', '*.d.ts')).forEach(dtsPath => {
-  configs.tsconfig.files.push(path.relative(destPath, dtsPath).replace(/\\/g, '/'));
+['*.d.ts', '*[!.d].ts'].forEach(ext => {
+  glob.sync(path.join(destPath, '**', ext)).forEach(dtsPath => {
+    configs.tsconfig.files.push(path.relative(destPath, dtsPath).replace(/\\/g, '/'));
+  });
 });
 
 // Write tsconfig.json and tslint.json

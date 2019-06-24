@@ -7,10 +7,10 @@ import BingMaps from 'ol/source/BingMaps';
 const key = 'As1HiMj1PvLPlqc_gtM7AqZfBL8ZL3VrjaS3zIb22Uvb9WKhuJObROC-qUpa81U5';
 
 const imagery = new TileLayer({
-  source: new BingMaps({ key: key, imagerySet: 'Aerial' })
+  source: new BingMaps({ key, imagerySet: 'Aerial' })
 });
 
-const container = document.getElementById('map');
+const container = document.getElementById('map') as HTMLElement;
 
 const map = new Map({
   layers: [imagery],
@@ -37,7 +37,7 @@ document.addEventListener('keydown', evt => {
 });
 
 // get the pixel position with every move
-let mousePosition: number[] = null;
+let mousePosition: number[] = null as any;
 
 container.addEventListener('mousemove', event => {
   mousePosition = map.getEventPixel(event);
@@ -45,7 +45,7 @@ container.addEventListener('mousemove', event => {
 });
 
 container.addEventListener('mouseout', () => {
-  mousePosition = null;
+  mousePosition = null as any;
   map.render();
 });
 

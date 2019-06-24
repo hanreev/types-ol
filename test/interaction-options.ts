@@ -4,7 +4,6 @@ import { defaults as defaultInteractions } from 'ol/interaction';
 import TileLayer from 'ol/layer/Tile';
 import OSM from 'ol/source/OSM';
 
-
 const map = new Map({
   interactions: defaultInteractions({
     constrainResolution: true, onFocusOnly: true

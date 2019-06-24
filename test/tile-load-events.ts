@@ -4,7 +4,6 @@ import TileLayer from 'ol/layer/Tile';
 import TileJSON from 'ol/source/TileJSON';
 
 class Progress {
-
   el: HTMLElement;
   loading = 0;
   loaded = 0;
@@ -50,10 +49,9 @@ class Progress {
       this.el.style.width = '0';
     }
   }
-
 }
 
-const progress = new Progress(document.getElementById('progress'));
+const progress = new Progress(document.getElementById('progress') as HTMLElement);
 
 const source = new TileJSON({
   url: 'https://api.tiles.mapbox.com/v3/mapbox.world-bright.json?secure',
@@ -73,7 +71,7 @@ source.on('tileloaderror', () => {
 
 const map = new Map({
   layers: [
-    new TileLayer({ source: source })
+    new TileLayer({ source })
   ],
   target: 'map',
   view: new View({

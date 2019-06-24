@@ -6,7 +6,6 @@ import { fromLonLat } from 'ol/proj';
 import OSM from 'ol/source/OSM';
 import Stroke from 'ol/style/Stroke';
 
-
 const map = new Map({
   layers: [
     new TileLayer({

@@ -1,12 +1,11 @@
+import Map from 'ol/Map';
+import View from 'ol/View';
 import { getTopLeft, getWidth } from 'ol/extent';
 import TileLayer from 'ol/layer/Tile';
-import Map from 'ol/Map';
 import { get as getProjection } from 'ol/proj';
 import OSM from 'ol/source/OSM';
 import WMTS from 'ol/source/WMTS';
 import WMTSTileGrid from 'ol/tilegrid/WMTS';
-import View from 'ol/View';
-
 
 const projection = getProjection('EPSG:3857');
 const projectionExtent = projection.getExtent();
@@ -35,11 +34,11 @@ const map = new Map({
         layer: '0',
         matrixSet: 'EPSG:3857',
         format: 'image/png',
-        projection: projection,
+        projection,
         tileGrid: new WMTSTileGrid({
           origin: getTopLeft(projectionExtent),
-          resolutions: resolutions,
-          matrixIds: matrixIds
+          resolutions,
+          matrixIds
         }),
         style: 'default',
         wrapX: true

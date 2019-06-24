@@ -20,8 +20,7 @@ fetch('data/geojson/roads-seoul.geojson').then(response => {
   const parser = new jsts.io.OL3Parser();
   parser.inject(Point, LineString, LinearRing, Polygon, MultiPoint, MultiLineString, MultiPolygon);
 
-  for (let i = 0; i < features.length; i++) {
-    const feature = features[i];
+  for (const feature of features) {
     // convert the OpenLayers geometry to a JSTS geometry
     const jstsGeom = parser.read(feature.getGeometry());
 
@@ -35,7 +34,7 @@ fetch('data/geojson/roads-seoul.geojson').then(response => {
   source.addFeatures(features);
 });
 const vectorLayer = new VectorLayer({
-  source: source
+  source
 });
 
 const rasterLayer = new TileLayer({
@@ -44,7 +43,7 @@ const rasterLayer = new TileLayer({
 
 const map = new Map({
   layers: [rasterLayer, vectorLayer],
-  target: document.getElementById('map'),
+  target: document.getElementById('map') as HTMLElement,
   view: new View({
     center: fromLonLat([126.979293, 37.528787]),
     zoom: 15

@@ -21,7 +21,7 @@ function createStyle(src: string, img: HTMLImageElement | HTMLCanvasElement) {
 }
 
 const iconFeature = new Feature(new Point([0, 0]));
-iconFeature.set('style', createStyle('data/icon.png', undefined));
+iconFeature.set('style', createStyle('data/icon.png', undefined as any));
 
 const map = new Map({
   layers: [
@@ -35,7 +35,7 @@ const map = new Map({
       source: new VectorSource({ features: [iconFeature] })
     })
   ],
-  target: document.getElementById('map'),
+  target: document.getElementById('map') as HTMLElement,
   view: new View({
     center: [0, 0],
     zoom: 3
@@ -48,17 +48,17 @@ const select = new Select({
     const image = feature.get('style').getImage().getImage();
     if (!selectStyle[image.src]) {
       const canvas = document.createElement('canvas');
-      const context = canvas.getContext('2d');
+      const context = canvas.getContext('2d') as CanvasRenderingContext2D;
       canvas.width = image.width;
       canvas.height = image.height;
       context.drawImage(image, 0, 0, image.width, image.height);
       const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
       const data = imageData.data;
-      for (let i = 0, ii = data.length; i < ii; i = i + (i % 4 == 2 ? 2 : 1)) {
+      for (let i = 0, ii = data.length; i < ii; i = i + (i % 4 === 2 ? 2 : 1)) {
         data[i] = 255 - data[i];
       }
       context.putImageData(imageData, 0, 0);
-      selectStyle[image.src] = createStyle(undefined, canvas);
+      selectStyle[image.src] = createStyle(undefined as any, canvas);
     }
     return selectStyle[image.src];
   }

@@ -1,11 +1,10 @@
 import Feature from 'ol/Feature';
+import Map from 'ol/Map';
+import View from 'ol/View';
 import Point from 'ol/geom/Point';
 import { Tile as TileLayer, Vector as VectorLayer } from 'ol/layer';
-import Map from 'ol/Map';
 import { Cluster, OSM, Vector as VectorSource } from 'ol/source';
 import { Circle as CircleStyle, Fill, Stroke, Style, Text } from 'ol/style';
-import View from 'ol/View';
-
 
 const distance = document.getElementById('distance') as HTMLInputElement;
 
@@ -18,12 +17,12 @@ for (let i = 0; i < count; ++i) {
 }
 
 const source = new VectorSource({
-  features: features
+  features
 });
 
 const clusterSource = new Cluster({
   distance: parseInt(distance.value, 10),
-  source: source
+  source
 });
 
 const styleCache: { [key: number]: Style } = {};

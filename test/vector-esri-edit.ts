@@ -12,7 +12,6 @@ import { createXYZ } from 'ol/tilegrid';
 
 declare var $: any;
 
-
 const serviceUrl = 'https://services.arcgis.com/rOo16HdIMeOBI4Mb/arcgis/rest/' +
   'services/PDX_Pedestrian_Districts/FeatureServer/';
 const layer = '0';
@@ -29,7 +28,9 @@ const vectorSource = new VectorSource({
       '&geometryType=esriGeometryEnvelope&inSR=102100&outFields=*' +
       '&outSR=102100';
     $.ajax({
-      url: url, dataType: 'jsonp', success: (response: any) => {
+      url,
+      dataType: 'jsonp',
+      success: (response: any) => {
         if (response.error) {
           alert(response.error.message + '\n' +
             response.error.details.join('\n'));
@@ -80,7 +81,7 @@ modify.setActive(false);
 const map = new Map({
   interactions: defaultInteractions().extend([draw, select, modify]),
   layers: [raster, vector],
-  target: document.getElementById('map'),
+  target: document.getElementById('map') as HTMLElement,
   view: new View({
     center: fromLonLat([-122.619, 45.512]),
     zoom: 12
@@ -88,8 +89,6 @@ const map = new Map({
 });
 
 const typeSelect = document.getElementById('type') as HTMLSelectElement;
-
-
 
 typeSelect.onchange = () => {
   draw.setActive(typeSelect.value === 'DRAW');
@@ -121,6 +120,7 @@ selected.on('remove', evt => {
           const error = result.updateResults[0].error;
           alert(error.description + ' (' + error.code + ')');
         } else {
+          // tslint:disable-next-line: no-dynamic-delete
           delete dirty[fid];
         }
       }
@@ -137,7 +137,7 @@ draw.on('drawend', evt => {
   $.post(url, { f: 'json', features: payload }).done((data: any) => {
     const result = JSON.parse(data);
     if (result.addResults && result.addResults.length > 0) {
-      if (result.addResults[0].success === true) {
+      if (result.addResults[0].succes === true) {
         feature.setId(result.addResults[0]['objectId']);
         vectorSource.clear();
       } else {

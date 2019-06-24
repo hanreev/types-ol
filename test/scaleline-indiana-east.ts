@@ -1,11 +1,11 @@
+import Map from 'ol/Map';
+import View from 'ol/View';
 import { ScaleLine } from 'ol/control';
 import TileLayer from 'ol/layer/Tile';
-import Map from 'ol/Map';
 import { fromLonLat, transformExtent } from 'ol/proj';
 import { register } from 'ol/proj/proj4';
 import OSM from 'ol/source/OSM';
-import View from 'ol/View';
-import proj4 from 'proj4';
+import * as proj4 from 'proj4';
 
 proj4.defs('Indiana-East', 'PROJCS["IN83-EF",GEOGCS["LL83",DATUM["NAD83",' +
   'SPHEROID["GRS1980",6378137.000,298.25722210]],PRIMEM["Greenwich",0],' +

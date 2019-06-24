@@ -1,15 +1,14 @@
-import { easeOut } from 'ol/easing';
 import Feature from 'ol/Feature';
-import Point from 'ol/geom/Point';
-import { Tile as TileLayer, Vector as VectorLayer } from 'ol/layer';
 import Map from 'ol/Map';
 import { unByKey } from 'ol/Observable';
+import View from 'ol/View';
+import { easeOut } from 'ol/easing';
+import Point from 'ol/geom/Point';
+import { Tile as TileLayer, Vector as VectorLayer } from 'ol/layer';
 import { fromLonLat } from 'ol/proj';
 import RenderEvent from 'ol/render/Event';
 import { OSM, Vector as VectorSource } from 'ol/source';
 import { Circle as CircleStyle, Stroke, Style } from 'ol/style';
-import View from 'ol/View';
-
 
 const map = new Map({
   layers: [
@@ -30,7 +29,7 @@ const source = new VectorSource({
   wrapX: false
 });
 const vector = new VectorLayer({
-  source: source
+  source
 });
 map.addLayer(vector);
 
@@ -59,7 +58,7 @@ function flash(feature: Feature) {
 
     const style = new Style({
       image: new CircleStyle({
-        radius: radius,
+        radius,
         stroke: new Stroke({
           color: 'rgba(255, 0, 0, ' + opacity + ')',
           width: 0.25 + opacity

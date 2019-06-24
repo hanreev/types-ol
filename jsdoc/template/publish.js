@@ -1168,7 +1168,6 @@ exports.publish = (taffyData) => {
     extractGenericTypes();
   }
 
-
   /**
    * Update module exports
    */

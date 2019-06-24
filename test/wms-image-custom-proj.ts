@@ -1,13 +1,12 @@
 import Map from 'ol/Map';
 import View from 'ol/View';
-import { defaults as defaultControls, ScaleLine } from 'ol/control';
+import { ScaleLine, defaults as defaultControls } from 'ol/control';
 import ImageLayer from 'ol/layer/Image';
 import { fromLonLat } from 'ol/proj';
 import Projection from 'ol/proj/Projection';
-import ImageWMS from 'ol/source/ImageWMS';
 import { register } from 'ol/proj/proj4';
-import proj4 from 'proj4';
-
+import ImageWMS from 'ol/source/ImageWMS';
+import * as proj4 from 'proj4';
 
 // Transparent Proj4js support:
 //
@@ -36,27 +35,27 @@ const projection = new Projection({
 const extent = [420000, 30000, 900000, 350000];
 const layers = [
   new ImageLayer({
-    extent: extent,
+    extent,
     source: new ImageWMS({
       url: 'https://wms.geo.admin.ch/',
       crossOrigin: 'anonymous',
       attributions: '© <a href="http://www.geo.admin.ch/internet/geoportal/' +
         'en/home.html">Pixelmap 1:1000000 / geo.admin.ch</a>',
       params: {
-        'LAYERS': 'ch.swisstopo.pixelkarte-farbe-pk1000.noscale',
-        'FORMAT': 'image/jpeg'
+        LAYERS: 'ch.swisstopo.pixelkarte-farbe-pk1000.noscale',
+        FORMAT: 'image/jpeg'
       },
       serverType: 'mapserver'
     })
   }),
   new ImageLayer({
-    extent: extent,
+    extent,
     source: new ImageWMS({
       url: 'https://wms.geo.admin.ch/',
       crossOrigin: 'anonymous',
       attributions: '© <a href="http://www.geo.admin.ch/internet/geoportal/' +
         'en/home.html">National parks / geo.admin.ch</a>',
-      params: { 'LAYERS': 'ch.bafu.schutzgebiete-paerke_nationaler_bedeutung' },
+      params: { LAYERS: 'ch.bafu.schutzgebiete-paerke_nationaler_bedeutung' },
       serverType: 'mapserver'
     })
   })
@@ -66,12 +65,12 @@ const map = new Map({
   controls: defaultControls().extend([
     new ScaleLine()
   ]),
-  layers: layers,
+  layers,
   target: 'map',
   view: new View({
-    projection: projection,
+    projection,
     center: fromLonLat([8.23, 46.86], projection),
-    extent: extent,
+    extent,
     zoom: 2
   })
 });

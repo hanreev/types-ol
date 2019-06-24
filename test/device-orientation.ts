@@ -15,13 +15,12 @@ const map = new Map({
     })
   ],
   target: 'map',
-  view: view
+  view
 });
 
 function el(id: string) {
-  return document.getElementById(id);
+  return document.getElementById(id) as HTMLElement;
 }
-
 
 // const gn = new GyroNorm();
 const gn: any = {};

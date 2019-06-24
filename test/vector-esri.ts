@@ -12,15 +12,14 @@ import { createXYZ } from 'ol/tilegrid';
 
 declare var $: any;
 
-
 const serviceUrl = 'https://sampleserver3.arcgisonline.com/ArcGIS/rest/services/' +
   'Petroleum/KSFields/FeatureServer/';
 const layer = '0';
 
 const esrijsonFormat = new EsriJSON();
 
-const styleCache = {
-  'ABANDONED': new Style({
+const styleCache: { [key: string]: Style } = {
+  ABANDONED: new Style({
     fill: new Fill({
       color: 'rgba(225, 225, 225, 255)'
     }),
@@ -29,7 +28,7 @@ const styleCache = {
       width: 0.4
     })
   }),
-  'GAS': new Style({
+  GAS: new Style({
     fill: new Fill({
       color: 'rgba(255, 0, 0, 255)'
     }),
@@ -38,7 +37,7 @@ const styleCache = {
       width: 0.4
     })
   }),
-  'OIL': new Style({
+  OIL: new Style({
     fill: new Fill({
       color: 'rgba(56, 168, 0, 255)'
     }),
@@ -47,7 +46,7 @@ const styleCache = {
       width: 0
     })
   }),
-  'OILGAS': new Style({
+  OILGAS: new Style({
     fill: new Fill({
       color: 'rgba(168, 112, 0, 255)'
     }),
@@ -68,7 +67,9 @@ const vectorSource = new VectorSource({
       '&geometryType=esriGeometryEnvelope&inSR=102100&outFields=*' +
       '&outSR=102100';
     $.ajax({
-      url: url, dataType: 'jsonp', success: (response: any) => {
+      url,
+      aType: 'jsonp',
+      success: (response: any) => {
         if (response.error) {
           alert(response.error.message + '\n' +
             response.error.details.join('\n'));
@@ -92,7 +93,7 @@ const vectorSource = new VectorSource({
 const vector = new VectorLayer({
   source: vectorSource,
   style: feature => {
-    const classify = feature.get('activeprod') as 'ABANDONED' | 'GAS' | 'OILGAS';
+    const classify = feature.get('activeprod');
     return styleCache[classify];
   }
 });
@@ -108,7 +109,7 @@ const raster = new TileLayer({
 
 const map = new Map({
   layers: [raster, vector],
-  target: document.getElementById('map'),
+  target: document.getElementById('map') as HTMLElement,
   view: new View({
     center: fromLonLat([-97.6114, 38.8403]),
     zoom: 7
@@ -117,20 +118,23 @@ const map = new Map({
 
 const displayFeatureInfo = (pixel: number[]) => {
   const features: Feature[] = [];
-  map.forEachFeatureAtPixel(pixel, (feature: Feature) => {
-    features.push(feature);
+  map.forEachFeatureAtPixel(pixel, feature => {
+    features.push(feature as Feature);
   });
+  const infoEl = document.getElementById('info');
+  const mapTarget = map.getTargetElement();
   if (features.length > 0) {
     const info: string[] = [];
-    let i: number, ii: number;
-    for (i = 0, ii = features.length; i < ii; ++i) {
-      info.push(features[i].get('field_name'));
-    }
-    document.getElementById('info').innerHTML = info.join(', ') || '(unknown)';
-    (map.getTarget() as HTMLElement).style.cursor = 'pointer';
+    for (const f of features)
+      info.push(f.get('field_name'));
+
+    if (infoEl)
+      infoEl.innerHTML = info.join(', ') || '(unknown)';
+    mapTarget.style.cursor = 'pointer';
   } else {
-    document.getElementById('info').innerHTML = '&nbsp;';
-    (map.getTarget() as HTMLElement).style.cursor = '';
+    if (infoEl)
+      infoEl.innerHTML = '&nbsp;';
+    mapTarget.style.cursor = '';
   }
 };
 

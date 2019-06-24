@@ -1,12 +1,11 @@
 import Feature, { FeatureLike } from 'ol/Feature';
+import Map from 'ol/Map';
+import View from 'ol/View';
 import GeoJSON from 'ol/format/GeoJSON';
 import VectorLayer from 'ol/layer/Vector';
-import Map from 'ol/Map';
 import { Pixel } from 'ol/pixel';
 import VectorSource from 'ol/source/Vector';
 import { Fill, Stroke, Style, Text } from 'ol/style';
-import View from 'ol/View';
-
 
 const style = new Style({
   fill: new Fill({
@@ -70,7 +69,7 @@ const highlightStyle = new Style({
 
 const featureOverlay = new VectorLayer({
   source: new VectorSource(),
-  map: map,
+  map,
   style: (feature) => {
     highlightStyle.getText().setText(feature.get('name'));
     return highlightStyle;
@@ -79,18 +78,14 @@ const featureOverlay = new VectorLayer({
 
 let highlight: FeatureLike;
 const displayFeatureInfo = (pixel: Pixel) => {
-
   // tslint:disable-next-line: no-shadowed-variable
   const feature = map.forEachFeatureAtPixel(pixel, (feature) => {
     return feature;
   });
 
   const info = document.getElementById('info');
-  if (feature) {
-    info.innerHTML = feature.getId() + ': ' + feature.get('name');
-  } else {
-    info.innerHTML = '&nbsp;';
-  }
+  if (info)
+    info.innerHTML = feature ? feature.getId() + ': ' + feature.get('name') : '&nbsp;';
 
   if (feature !== highlight) {
     if (highlight) {
@@ -101,7 +96,6 @@ const displayFeatureInfo = (pixel: Pixel) => {
     }
     highlight = feature;
   }
-
 };
 
 map.on('pointermove', (evt) => {
