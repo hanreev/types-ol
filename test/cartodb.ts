@@ -42,6 +42,6 @@ function setArea(n: string) {
 }
 
 
-(document.getElementById('country-area') as HTMLSelectElement).addEventListener('change', function () {
+(document.getElementById('country-area') as HTMLSelectElement).addEventListener('change', function() {
   setArea(this.value);
 });

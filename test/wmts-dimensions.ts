@@ -67,6 +67,6 @@ const updateSourceDimension = (source: WMTS, sliderVal: string | number) => {
 
 updateSourceDimension(wmtsSource, 10);
 
-document.getElementById('slider').addEventListener('input', function () {
+document.getElementById('slider').addEventListener('input', function() {
   updateSourceDimension(wmtsSource, (this as HTMLInputElement).value);
 });

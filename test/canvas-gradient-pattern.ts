@@ -29,7 +29,7 @@ const gradient = (() => {
 })();
 
 // Generate a canvasPattern with two circles on white background
-const pattern = (function () {
+const pattern = (function() {
   canvas.width = 8 * pixelRatio;
   canvas.height = 8 * pixelRatio;
   // white background

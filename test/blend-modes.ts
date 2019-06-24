@@ -128,7 +128,7 @@ const unbindLayerListeners = (layer: VectorLayer) => {
 /**
  * Handler for the click event of the 'affect-XXX' checkboxes.
  */
-const affectLayerClicked = function () {
+const affectLayerClicked = function() {
   let layer: VectorLayer;
   if (this.id == 'affect-red') {
     layer = redLayer;

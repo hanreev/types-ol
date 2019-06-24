@@ -39,7 +39,7 @@ const map = new Map({
 });
 
 const ExampleModify = {
-  init: function () {
+  init: function() {
     this.select = new Select();
     map.addInteraction(this.select);
 
@@ -50,7 +50,7 @@ const ExampleModify = {
 
     this.setEvents();
   },
-  setEvents: function () {
+  setEvents: function() {
     const selectedFeatures = (this.select as Select).getFeatures();
 
     (this.select as Select).on('change:active', () => {
@@ -59,7 +59,7 @@ const ExampleModify = {
       });
     });
   },
-  setActive: function (active: boolean) {
+  setActive: function(active: boolean) {
     (this.select as Select).setActive(active);
     (this.modify as Modify).setActive(active);
   }
@@ -69,7 +69,7 @@ ExampleModify.init();
 const optionsForm = document.getElementById('options-form') as HTMLFormElement;
 
 const ExampleDraw = {
-  init: function () {
+  init: function() {
     map.addInteraction(this.Point);
     this.Point.setActive(false);
     map.addInteraction(this.LineString);
@@ -95,10 +95,10 @@ const ExampleDraw = {
     source: vector.getSource(),
     type: GeometryType.CIRCLE
   }),
-  getActive: function () {
+  getActive: function() {
     return this.activeType ? this[this.activeType].getActive() : false;
   },
-  setActive: function (active: boolean) {
+  setActive: function(active: boolean) {
     const type = (optionsForm.elements['draw-type' as any] as HTMLInputElement).value;
     if (active) {
       if (this.activeType)

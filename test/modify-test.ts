@@ -7,7 +7,7 @@ import VectorSource from 'ol/source/Vector';
 import { Circle as CircleStyle, Fill, Stroke, Style } from 'ol/style';
 import { StyleFunction, StyleLike } from 'ol/style/Style';
 
-const styleFunction = (function () {
+const styleFunction = (function() {
   const styles: { [key: string]: Style } = {};
   const image = new CircleStyle({
     radius: 5,
@@ -148,7 +148,7 @@ const layer = new VectorLayer({
   style: styleFunction
 });
 
-const overlayStyle = (function () {
+const overlayStyle = (function() {
   const styles: { [key: string]: StyleLike } = {};
   styles['Polygon'] = [
     new Style({
