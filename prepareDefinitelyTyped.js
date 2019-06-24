@@ -3,6 +3,8 @@ const path = require('path');
 const glob = require('glob');
 const childProcess = require('child_process');
 
+const olVersion = require('./openlayers/package.json').version.replace(/^(\d+)\.(\d+)(\.\d+)?$/, '$1.$2');
+
 const configs = {
   tsconfig: {
     compilerOptions: {
@@ -38,7 +40,7 @@ const configs = {
   }
 };
 
-const header = `// Type definitions for ol 5.3
+const header = `// Type definitions for ol ${olVersion}
 // Project: https://github.com/openlayers/openlayers, https://openlayers.org
 // Definitions by: Rifa'i M. Hanif <https://github.com/hanreev>
 // Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped

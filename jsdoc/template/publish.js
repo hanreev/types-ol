@@ -1,4 +1,3 @@
-// @ts-nocheck
 /* global env */
 
 /**
@@ -49,7 +48,7 @@
  * @prop {DocletType} [type]
  * @prop {string[]} [augments]
  * @prop {DocletProp[]} [properties]
- * @prop {DocletParam]} [params]
+ * @prop {DocletParam} [params]
  * @prop {DocletReturns[]} [yields]
  * @prop {DocletReturns[]} [returns]
  * @prop {string} [comment]
@@ -713,7 +712,7 @@ const PROCESSORS = {
       inheritdoc: { '!is': true },
       inherited: { '!is': true },
       memberof: doclet.longname
-    }).order('access, kind desc').get().forEach(child => {
+    }).order('access, kind desc, name').get().forEach(child => {
       // Remove non alphanumeric from member name
       child.name = child.name.replace(/\W/g, '');
       const processorName = child.kind == 'function' ? 'method' : child.kind == 'constant' ? 'member' : child.kind;
@@ -752,7 +751,13 @@ const PROCESSORS = {
         });
 
       // Add per event observsable method
-      doclet.fires.forEach(fire => {
+      doclet.fires.sort((a, b) => {
+        const aMatch = a.match(/^(.*?)([#~.])?event:(.+?)$/);
+        const bMatch = b.match(/^(.*?)([#~.])?event:(.+?)$/);
+        if (aMatch && bMatch)
+          return aMatch[3] < bMatch[3] ? -1 : aMatch[3] > bMatch[3] ? 1 : 0;
+        return 0;
+      }).forEach(fire => {
         let eventType;
         let fireType;
         const match = fire.match(/^(.*?)([#~.])?event:(.+?)$/);

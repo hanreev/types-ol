@@ -1,4 +1,3 @@
-// @ts-nocheck
 /* global env */
 
 const path = require('path');
