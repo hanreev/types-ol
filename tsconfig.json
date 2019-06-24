@@ -1,7 +1,9 @@
 {
   "compilerOptions": {
+    "allowJs": true,
     "allowSyntheticDefaultImports": true,
     "baseUrl": "./",
+    "checkJs": true,
     "lib": [
       "dom",
       "esnext"
@@ -9,17 +11,20 @@
     "module": "es2015",
     "moduleResolution": "node",
     "noEmit": true,
-    "noImplicitAny": true,
     "paths": {
       "*": [
         "@types/*",
         "node_modules/@types/*"
       ]
     },
+    "resolveJsonModule": true,
     "target": "es5"
   },
   "include": [
     "test/**/*.ts",
-    "@types/**/*.d.ts"
+    "@types/**/*.d.ts",
+    "*.ts",
+    "jsdoc/**/*.js",
+    "*.js"
   ]
 }

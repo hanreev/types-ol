@@ -9,13 +9,15 @@
  * @prop {DocletType} [type]
  * @prop {string} [description]
  * @prop {boolean} [optional]
- * @prop {*} [defaultvalue]
+ * @prop {*} [defaultValue]
  *
  * @typedef DocletParam
  * @prop {string} name
  * @prop {string} [description]
  * @prop {DocletType} [type]
  * @prop {boolean} [optional]
+ * @prop {boolean} [variable]
+ * @prop {*} [defaultValue]
  *
  * @typedef DocletReturns
  * @prop {string} [description]
@@ -48,7 +50,7 @@
  * @prop {DocletType} [type]
  * @prop {string[]} [augments]
  * @prop {DocletProp[]} [properties]
- * @prop {DocletParam} [params]
+ * @prop {DocletParam[]} [params]
  * @prop {DocletReturns[]} [yields]
  * @prop {DocletReturns[]} [returns]
  * @prop {string} [comment]
@@ -62,6 +64,10 @@
  * @prop {string[]} [fires]
  * @prop {ModuleExports} [exports]
  * @prop {string[]} [force_include_members]
+ * @prop {string} [access]
+ * @prop {string} [overrides]
+ * @prop {*[]} [tags]
+ * @prop {boolean} [_hideConstructor]
  */
 
 /**
@@ -103,7 +109,7 @@
  *
  * @typedef ModuleExports
  * @prop {string[]} exports
- * @prop {string[]} reExport
+ * @prop {string[]} reExports
  * @prop {string} [default]
  */
 
@@ -114,11 +120,9 @@
 const path = require('path');
 const catharsis = require('catharsis');
 
-/** @type {import('jsdoc/lib/jsdoc/fs') & import('fs')} */
-const fs = require('jsdoc/lib/jsdoc/fs');
+const fs = require('fs-extra');
 const helper = require('jsdoc/lib/jsdoc/util/templateHelper');
 const logger = require('jsdoc/lib/jsdoc/util/logger');
-const rimraf = require('rimraf');
 
 const outDir = path.resolve(env.opts.destination);
 
@@ -134,7 +138,7 @@ const MODULE_IMPORTS = {};
 /** @type {Object<string, ModuleExports>} */
 const MODULE_EXPORTS = {};
 
-/** @type {Object<string, Doclet>} */
+/** @type {Object<string, Doclet[]>} */
 const MODULE_CHILDREN = {};
 
 /** @type {string[]} */
@@ -173,7 +177,7 @@ const PARAM_TYPE_PATCHES = {
   // 'module:ol/layer/VectorTile~VectorTileLayer': ['opt_options', 'module:ol/layer/VectorTile~Options'],
 };
 
-/** @type {Object<string, Object<string, string[]>} */
+/** @type {Object<string, Object<string, string[]>>} */
 const PROPERTY_TYPE_PATCHES = {
   'module:ol/control/Attribution~Options': { label: ['string', 'HTMLElement'] },
   'module:ol/control/FullScreen~Options': {
@@ -218,10 +222,11 @@ function registerImport(_module, val) {
   const value = val.replace(/^module:/, '');
 
   /** @type {ModuleImports} */
-  const _imports = MODULE_IMPORTS[_module.name] || {};
-  _imports.names = _imports.names || [];
-  _imports.imported = _imports.imported || {};
-  _imports.expressions = _imports.expressions || [];
+  const _imports = MODULE_IMPORTS[_module.name] || {
+    names: [],
+    imported: [],
+    expressions: [],
+  };
 
   /** @type {boolean} */
   let isDefault;
@@ -434,8 +439,10 @@ function sortImports(expressions, _module, maxLineLength = 120) {
  * @returns {string}
  */
 function stringifyType(parsedType, _module) {
-  let typeStr = parsedType.expression ? parsedType.expression.name : parsedType.name;
   let suffix = '';
+  let typeStr = (/** @type {TypeApplication} */ (parsedType)).expression ?
+    (/** @type {TypeApplication} */ (parsedType)).expression.name :
+    (/** @type {TypeNameExpression} */ (parsedType)).name;
 
   if (typeStr in GENERIC_TYPES)
     suffix = `<${GENERIC_TYPES[typeStr]}>`;
@@ -447,7 +454,7 @@ function stringifyType(parsedType, _module) {
   }
 
   if (parsedType.type == 'TypeApplication') {
-    const applications = parsedType.applications.map(app => {
+    const applications = (/** @type {TypeApplication} */ (parsedType)).applications.map(app => {
       const t = stringifyType(app, _module);
       return t == 'undefined' ? 'any' : t;
     });
@@ -512,6 +519,7 @@ function parseFunctionType(type, _module) {
   let returnType = 'void';
   let genericTypes = [];
 
+  /** @param {string} t */
   const parse = t => {
     t = t.replace(/[()]/g, '');
 
@@ -523,10 +531,13 @@ function parseFunctionType(type, _module) {
       let parsedType = catharsis.parse(t, { jsdoc: true });
 
       // FIXME: Patch
-      if (_module.name == 'ol/PluggableMap' && parsedType.name == 'FrameState')
+      if (_module.name == 'ol/PluggableMap' && (/** @type {TypeNameExpression} */ (parsedType)).name == 'FrameState')
         parsedType = Object.assign({}, parsedType, { name: 'module:ol/PluggableMap~FrameState' });
 
-      let typeStr = parsedType.expression ? parsedType.expression.name : parsedType.name;
+      let typeStr = (/** @type {TypeApplication} */ (parsedType)).expression ?
+        (/** @type {TypeApplication} */ (parsedType)).expression.name :
+        (/** @type {TypeNameExpression} */ (parsedType)).name;
+
       if (typeStr in GENERIC_TYPES)
         genericTypes = genericTypes.concat(GENERIC_TYPES[typeStr].split(/,\s?/));
 
@@ -628,7 +639,7 @@ function getReturnType(doclet, _module) {
 
   if (doclet.yields || doclet.returns)
     (doclet.yields || doclet.returns).forEach(r => {
-      returnTypes.push(getType(r, _module));
+      returnTypes.push(getType((/** @type {Doclet} */ (r)), _module));
     });
 
   return returnTypes.join(' | ') || 'void';
@@ -642,7 +653,7 @@ function getParams(doclet, _module) {
   return doclet.params.filter(param => param.name.indexOf('.') == -1)
     .map(param => {
       let name = param.name;
-      let paramType = getType(param, _module);
+      let paramType = getType((/** @type {Doclet} */ (param)), _module);
 
       if (param.optional && !param.defaultValue)
         name += '?';
@@ -719,6 +730,10 @@ const PROCESSORS = {
       children.push(PROCESSORS[processorName](child, _module));
     });
 
+    /**
+     * @param {string} eventType
+     * @param {string} fireType
+     */
     const addFire = (eventType, fireType) => {
       if (fireType.startsWith('ol'))
         fireType = 'module:' + fireType;
@@ -727,7 +742,7 @@ const PROCESSORS = {
       if (genericType && genericType == GENERIC_TYPES[doclet.longname])
         genericType = null;
 
-      fireType = getType({ type: { names: [fireType || 'undefined'] } }, _module);
+      fireType = getType(/** @type {Doclet} */({ type: { names: [fireType || 'undefined'] } }), _module);
 
       ['on', 'once', 'un'].forEach(fireMethod => {
         const returnType = fireMethod == 'un' ? 'void' : 'EventsKey';
@@ -780,7 +795,7 @@ const PROCESSORS = {
               break;
 
             default:
-              addFire(eventType, fireType, _module);
+              addFire(eventType, fireType);
               break;
           }
         } else {
@@ -866,7 +881,7 @@ const PROCESSORS = {
         if (prop.optional || (doclet.name == 'Options' && prop.name == 'projection'))
           name += '?';
 
-        children.push(`${name}: ${getType(prop, _module)};`);
+        children.push(`${name}: ${getType((/** @type {Doclet} */ (prop)), _module)};`);
       });
 
       let name = doclet.name;
@@ -1018,7 +1033,7 @@ function generateDeclaration(doclet, emitOutput = true) {
       outoutPath = path.join(outoutPath, 'index.d.ts');
     else
       outoutPath += '.d.ts';
-    fs.mkPath(path.dirname(outoutPath));
+    fs.mkdirpSync(path.dirname(outoutPath));
     fs.writeFileSync(outoutPath, content);
   }
 
@@ -1076,16 +1091,17 @@ function extractGenericTypes(initial = true, strict = false) {
       GENERIC_TYPES[doclet.longname] = Array.from(new Set(genericTypes)).join(', ');
   });
 
-  find(
+  data(
     { kind: ['function', 'class'] },
     [{ params: { isArray: true } }, { returns: { isArray: true } }, { yields: { isArray: true } }]
-  ).forEach(doclet => {
+  ).get().forEach((/** @type {Doclet} */ doclet) => {
     let genericTypes = [];
 
     if (doclet.longname in GENERIC_TYPES)
       genericTypes = GENERIC_TYPES[doclet.longname].split(/,\s?/);
 
-    const merged = (doclet.params || []).concat(doclet.yields || doclet.returns || []);
+    const merged = ((/** @type {Doclet[]} */ (doclet.params)) || [])
+      .concat((/** @type {Doclet[]} */ (doclet.yields)) || (/** @type {Doclet[]} */ (doclet.returns)) || []);
 
     merged.forEach(d => {
       if (!d.type) return;
@@ -1174,7 +1190,7 @@ exports.publish = (taffyData) => {
   members.modules.forEach(processModule);
 
   // Clean output directory
-  rimraf.sync(outDir);
+  fs.removeSync(outDir);
 
   /**
    * Emit declaration files
@@ -1185,7 +1201,7 @@ exports.publish = (taffyData) => {
      */
     const content = members.modules.map(doclet => generateDeclaration(doclet, false)).join('\n\n');
     const outputPath = path.resolve(outDir, 'ol', 'index.d.ts');
-    fs.mkPath(path.dirname(outputPath));
+    fs.mkdirpSync(path.dirname(outputPath));
     fs.writeFileSync(outputPath, content);
   } else {
     /**

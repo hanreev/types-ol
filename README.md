@@ -1,7 +1,7 @@
 OpenLayers TypeScript Declaration
 =================================
 
-This project contains TypeScript declaration for [OpenLayers](https://openlayers.org/) `v5.3.2` that includes all documented API and protected class members and methods.
+This project contains TypeScript declaration for [OpenLayers](https://openlayers.org/) `v5.3.3` that includes all documented API and protected class members and methods.
 
 
 
