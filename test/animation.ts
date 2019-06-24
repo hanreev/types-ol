@@ -1,9 +1,9 @@
+import Map from 'ol/Map';
+import View from 'ol/View';
 import { easeIn, easeOut } from 'ol/easing';
 import TileLayer from 'ol/layer/Tile';
-import Map from 'ol/Map';
 import { fromLonLat } from 'ol/proj';
 import OSM from 'ol/source/OSM';
-import View from 'ol/View';
 
 const london = fromLonLat([-0.12755, 51.507222]);
 const moscow = fromLonLat([37.6178, 55.7517]);
@@ -63,19 +63,19 @@ function onClick(id: string, callback: (this: HTMLElement, ev: MouseEvent) => an
   document.getElementById(id).addEventListener('click', callback);
 }
 
-onClick('rotate-left', function() {
+onClick('rotate-left', () => {
   view.animate({
     rotation: view.getRotation() + Math.PI / 2
   });
 });
 
-onClick('rotate-right', function() {
+onClick('rotate-right', () => {
   view.animate({
     rotation: view.getRotation() - Math.PI / 2
   });
 });
 
-onClick('rotate-around-rome', function() {
+onClick('rotate-around-rome', () => {
   // Rotation animation takes the shortest arc, so animate in two parts
   const rotation = view.getRotation();
   view.animate({
@@ -89,14 +89,14 @@ onClick('rotate-around-rome', function() {
     });
 });
 
-onClick('pan-to-london', function() {
+onClick('pan-to-london', () => {
   view.animate({
     center: london,
     duration: 2000
   });
 });
 
-onClick('elastic-to-moscow', function() {
+onClick('elastic-to-moscow', () => {
   view.animate({
     center: moscow,
     duration: 2000,
@@ -104,7 +104,7 @@ onClick('elastic-to-moscow', function() {
   });
 });
 
-onClick('bounce-to-istanbul', function() {
+onClick('bounce-to-istanbul', () => {
   view.animate({
     center: istanbul,
     duration: 2000,
@@ -112,7 +112,7 @@ onClick('bounce-to-istanbul', function() {
   });
 });
 
-onClick('spin-to-rome', function() {
+onClick('spin-to-rome', () => {
   // Rotation animation takes the shortest arc, so animate in two parts
   const center = view.getCenter();
   view.animate({
@@ -157,8 +157,8 @@ function flyTo(location: number[], done: (arg0: boolean) => void) {
     }, callback);
 }
 
-onClick('fly-to-bern', function() {
-  flyTo(bern, function() { });
+onClick('fly-to-bern', () => {
+  flyTo(bern, () => { });
 });
 
 function tour() {
@@ -169,7 +169,7 @@ function tour() {
       ++index;
       if (index < locations.length) {
         const delay = index === 0 ? 0 : 750;
-        setTimeout(function() {
+        setTimeout(() => {
           flyTo(locations[index], next);
         }, delay);
       } else {

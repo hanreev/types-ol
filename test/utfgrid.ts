@@ -44,10 +44,10 @@ const infoOverlay = new Overlay({
 });
 map.addOverlay(infoOverlay);
 
-const displayCountryInfo = function(coordinate: Coordinate) {
+const displayCountryInfo = (coordinate: Coordinate) => {
   const viewResolution = /** @type {number} */ (view.getResolution());
   gridSource.forDataAtCoordinateAndResolution(coordinate, viewResolution,
-    function(data) {
+    (data) => {
       // If you want to use the template from the TileJSON,
       //  load the mustache.js library separately and call
       //  info.innerHTML = Mustache.render(gridSource.getTemplate(), data);
@@ -60,7 +60,7 @@ const displayCountryInfo = function(coordinate: Coordinate) {
     });
 };
 
-map.on('pointermove', function(evt) {
+map.on('pointermove', (evt) => {
   if (evt.dragging) {
     return;
   }
@@ -68,6 +68,6 @@ map.on('pointermove', function(evt) {
   displayCountryInfo(coordinate);
 });
 
-map.on('click', function(evt) {
+map.on('click', (evt) => {
   displayCountryInfo(evt.coordinate);
 });

@@ -79,7 +79,7 @@ const styles: { [key: string]: Style } = {
   })
 };
 
-const styleFunction = function(feature: Feature) {
+const styleFunction = (feature: Feature) => {
   return styles[feature.getGeometry().getType()];
 };
 

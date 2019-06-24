@@ -57,9 +57,9 @@ const featureRequest = new WFS().writeGetFeature({
 fetch('https://ahocevar.com/geoserver/wfs', {
   method: 'POST',
   body: new XMLSerializer().serializeToString(featureRequest)
-}).then(function(response) {
+}).then((response) => {
   return response.json();
-}).then(function(json) {
+}).then((json) => {
   const features = new GeoJSON().readFeatures(json);
   vectorSource.addFeatures(features);
   map.getView().fit(vectorSource.getExtent());

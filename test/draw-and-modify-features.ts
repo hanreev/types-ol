@@ -59,7 +59,7 @@ function addInteractions() {
 /**
  * Handle change event.
  */
-typeSelect.onchange = function() {
+typeSelect.onchange = () => {
   map.removeInteraction(draw);
   map.removeInteraction(snap);
   addInteractions();

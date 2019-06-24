@@ -30,7 +30,7 @@ const map = new Map({
       format: new GeoJSON(),
       url: 'data/geojson/vienna-streets.geojson'
     }),
-    style: function(feature) {
+    style: (feature) => {
       style.getText().setText(feature.get('name'));
       return style;
     }

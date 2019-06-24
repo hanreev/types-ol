@@ -89,8 +89,8 @@ const dtPackageJson = {
 };
 process.chdir(dtPath);
 fs.writeFileSync('package.json', JSON.stringify(dtPackageJson, null, 4));
-childProcess.execSync('npm i -D dtslint', { stdio: 'inherit' });
-childProcess.execSync('npm run lint ol', { stdio: 'inherit' });
+childProcess.execSync('yarn add -D dtslint', { stdio: 'inherit' });
+childProcess.execSync('yarn lint ol', { stdio: 'inherit' });
 fs.readdirSync(dtPath).forEach(filename => filename != 'types' && fs.removeSync(filename));
 process.chdir(__dirname);
 

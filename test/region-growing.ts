@@ -1,14 +1,14 @@
-import { Image as ImageLayer, Tile as TileLayer } from 'ol/layer';
 import Map from 'ol/Map';
+import View from 'ol/View';
+import { Image as ImageLayer, Tile as TileLayer } from 'ol/layer';
 import { fromLonLat } from 'ol/proj';
 import BingMaps from 'ol/source/BingMaps';
 import RasterSource from 'ol/source/Raster';
-import View from 'ol/View';
 
 function growRegion(inputs: ImageData[], data: { pixel: any; delta: string; }) {
   const image = inputs[0];
   let seed = data.pixel;
-  const delta = parseInt(data.delta);
+  const delta = parseInt(data.delta, 10);
   if (!seed) {
     return image;
   }
@@ -105,14 +105,14 @@ const map = new Map({
 
 let coordinate: number[];
 
-map.on('click', function(event) {
+map.on('click', (event) => {
   coordinate = event.coordinate;
   raster.changed();
 });
 
 const thresholdControl = document.getElementById('threshold') as HTMLInputElement;
 
-raster.on('beforeoperations', function(event) {
+raster.on('beforeoperations', (event) => {
   // the event.data object will be passed to operations
   const data = event.data;
   data.delta = thresholdControl.value;
@@ -126,7 +126,7 @@ function updateControlValue() {
 }
 updateControlValue();
 
-thresholdControl.addEventListener('input', function() {
+thresholdControl.addEventListener('input', () => {
   updateControlValue();
   raster.changed();
 });

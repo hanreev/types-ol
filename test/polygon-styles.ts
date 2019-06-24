@@ -31,7 +31,7 @@ const styles = [
         color: 'orange'
       })
     }),
-    geometry: function(feature) {
+    geometry: (feature) => {
       // return the coordinates of the first ring of the polygon
       const coordinates = (feature.getGeometry() as Polygon).getCoordinates()[0];
       return new MultiPoint(coordinates);

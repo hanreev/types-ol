@@ -27,7 +27,7 @@ const geolocation = new Geolocation({
   projection: view.getProjection(),
   tracking: true
 });
-geolocation.once('change:position', function() {
+geolocation.once('change:position', () => {
   view.setCenter(geolocation.getPosition());
   view.setResolution(2.388657133911758);
 });

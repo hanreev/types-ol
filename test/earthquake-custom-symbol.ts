@@ -13,12 +13,12 @@ import View from 'ol/View';
 
 const symbol = [[0, 0], [4, 2], [6, 0], [10, 5], [6, 3], [4, 5], [0, 0]];
 let scale: number;
-const scaleFunction = function(coordinate: Coordinate) {
+const scaleFunction = (coordinate: Coordinate) => {
   return [coordinate[0] * scale, coordinate[1] * scale];
 };
 
 const styleCache: { [key: number]: Style } = {};
-const styleFunction: StyleFunction = function(feature) {
+const styleFunction: StyleFunction = (feature) => {
   // 2012_Earthquakes_Mag5.kml stores the magnitude of each earthquake in a
   // standards-violating <magnitude> tag in each Placemark.  We extract it from
   // the Placemark's name instead.

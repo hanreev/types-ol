@@ -43,24 +43,24 @@ const dragBox = new DragBox({
 
 map.addInteraction(dragBox);
 
-dragBox.on('boxend', function() {
+dragBox.on('boxend', () => {
   // features that intersect the box are added to the collection of
   // selected features
   const extent = dragBox.getGeometry().getExtent();
-  vectorSource.forEachFeatureIntersectingExtent(extent, function(feature) {
+  vectorSource.forEachFeatureIntersectingExtent(extent, (feature) => {
     selectedFeatures.push(feature);
   });
 });
 
 // clear selection when drawing a new box and when clicking on the map
-dragBox.on('boxstart', function() {
+dragBox.on('boxstart', () => {
   selectedFeatures.clear();
 });
 
 const infoBox = document.getElementById('info');
 
-selectedFeatures.on(['add', 'remove'], function() {
-  const names = selectedFeatures.getArray().map(function(feature) {
+selectedFeatures.on(['add', 'remove'], () => {
+  const names = selectedFeatures.getArray().map((feature) => {
     return feature.get('name');
   });
   if (names.length > 0) {

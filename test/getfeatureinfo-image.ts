@@ -26,7 +26,7 @@ const map = new Map({
   view: view
 });
 
-map.on('singleclick', function(evt) {
+map.on('singleclick', (evt) => {
   document.getElementById('info').innerHTML = '';
   const viewResolution = /** @type {number} */ (view.getResolution());
   const url = wmsSource.getGetFeatureInfoUrl(
@@ -38,12 +38,12 @@ map.on('singleclick', function(evt) {
   }
 });
 
-map.on('pointermove', function(evt) {
+map.on('pointermove', (evt) => {
   if (evt.dragging) {
     return;
   }
   const pixel = map.getEventPixel(evt.originalEvent);
-  const hit = map.forEachLayerAtPixel(pixel, function() {
+  const hit = map.forEachLayerAtPixel(pixel, () => {
     return true;
   });
   map.getTargetElement().style.cursor = hit ? 'pointer' : '';

@@ -1,12 +1,12 @@
+import Map from 'ol/Map';
+import View from 'ol/View';
 import GeoJSON from 'ol/format/GeoJSON';
 import { Point } from 'ol/geom';
 import SimpleGeometry from 'ol/geom/SimpleGeometry';
 import { Tile as TileLayer, Vector as VectorLayer } from 'ol/layer';
-import Map from 'ol/Map';
 import { Size } from 'ol/size';
 import { OSM, Vector as VectorSource } from 'ol/source';
 import { Circle as CircleStyle, Fill, Stroke, Style } from 'ol/style';
-import View from 'ol/View';
 
 const source = new VectorSource({
   url: 'data/geojson/switzerland.geojson',
@@ -51,7 +51,7 @@ const map = new Map({
 });
 
 const zoomtoswitzerlandbest = document.getElementById('zoomtoswitzerlandbest');
-zoomtoswitzerlandbest.addEventListener('click', function() {
+zoomtoswitzerlandbest.addEventListener('click', () => {
   const feature = source.getFeatures()[0];
   const polygon = feature.getGeometry() as SimpleGeometry;
   view.fit(polygon, { padding: [170, 50, 30, 150], constrainResolution: false });
@@ -59,7 +59,7 @@ zoomtoswitzerlandbest.addEventListener('click', function() {
 
 const zoomtoswitzerlandconstrained =
   document.getElementById('zoomtoswitzerlandconstrained');
-zoomtoswitzerlandconstrained.addEventListener('click', function() {
+zoomtoswitzerlandconstrained.addEventListener('click', () => {
   const feature = source.getFeatures()[0];
   const polygon = feature.getGeometry() as SimpleGeometry;
   view.fit(polygon, { padding: [170, 50, 30, 150] });
@@ -67,21 +67,21 @@ zoomtoswitzerlandconstrained.addEventListener('click', function() {
 
 const zoomtoswitzerlandnearest =
   document.getElementById('zoomtoswitzerlandnearest');
-zoomtoswitzerlandnearest.addEventListener('click', function() {
+zoomtoswitzerlandnearest.addEventListener('click', () => {
   const feature = source.getFeatures()[0];
   const polygon = feature.getGeometry() as SimpleGeometry;
   view.fit(polygon, { padding: [170, 50, 30, 150], nearest: true });
 }, false);
 
 const zoomtolausanne = document.getElementById('zoomtolausanne');
-zoomtolausanne.addEventListener('click', function() {
+zoomtolausanne.addEventListener('click', () => {
   const feature = source.getFeatures()[1];
   const point = feature.getGeometry() as SimpleGeometry;
   view.fit(point, { padding: [170, 50, 30, 150], minResolution: 50 });
 }, false);
 
 const centerlausanne = document.getElementById('centerlausanne');
-centerlausanne.addEventListener('click', function() {
+centerlausanne.addEventListener('click', () => {
   const feature = source.getFeatures()[1];
   const point = feature.getGeometry() as Point;
   const size = map.getSize() as Size;

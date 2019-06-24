@@ -1,12 +1,12 @@
 import { Feature } from 'ol';
+import Map from 'ol/Map';
+import View from 'ol/View';
 import GeoJSON from 'ol/format/GeoJSON';
 import { DEVICE_PIXEL_RATIO } from 'ol/has';
 import VectorLayer from 'ol/layer/Vector';
-import Map from 'ol/Map';
 import { fromLonLat } from 'ol/proj';
 import VectorSource from 'ol/source/Vector';
 import { Fill, Stroke, Style } from 'ol/style';
-import View from 'ol/View';
 
 const canvas = document.createElement('canvas');
 const context = canvas.getContext('2d');
@@ -16,7 +16,7 @@ const context = canvas.getContext('2d');
 const pixelRatio = DEVICE_PIXEL_RATIO;
 
 // Generate a rainbow gradient
-const gradient = (function() {
+const gradient = (() => {
   const grad = context.createLinearGradient(0, 0, 512 * pixelRatio, 0);
   grad.addColorStop(0, 'red');
   grad.addColorStop(1 / 6, 'orange');
@@ -29,7 +29,7 @@ const gradient = (function() {
 })();
 
 // Generate a canvasPattern with two circles on white background
-const pattern = (function() {
+const pattern = (function () {
   canvas.width = 8 * pixelRatio;
   canvas.height = 8 * pixelRatio;
   // white background
@@ -62,7 +62,7 @@ const style = new Style({
  * The styling function for the vector layer, will return an array of styles
  * which either contains the aboove gradient or pattern.
  */
-const getStackedStyle = function(feature: Feature): Style {
+const getStackedStyle = (feature: Feature) => {
   const id = feature.getId();
   fill.setColor(id > 'J' ? gradient : pattern);
   return style;

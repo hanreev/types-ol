@@ -1,8 +1,8 @@
+import Map from 'ol/Map';
+import View from 'ol/View';
 import { Attribution, defaults as defaultControls } from 'ol/control';
 import TileLayer from 'ol/layer/Tile';
-import Map from 'ol/Map';
 import OSM from 'ol/source/OSM';
-import View from 'ol/View';
 
 const attribution = new Attribution({
   collapsible: false

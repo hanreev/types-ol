@@ -18,7 +18,7 @@ const vtLayer = new VectorTileLayer({
     url: 'https://ahocevar.com/geoserver/gwc/service/tms/1.0.0/' +
       'ne:ne_10m_admin_0_countries@EPSG%3A900913@pbf/{z}/{x}/{-y}.pbf'
   }),
-  style: function(feature) {
+  style: (feature) => {
     const selected = !!selection[feature.get(idProp)];
     return new Style({
       stroke: new Stroke({
@@ -45,7 +45,7 @@ const map = new Map({
 
 const selectElement = document.getElementById('type') as HTMLSelectElement;
 
-map.on('click', function(event) {
+map.on('click', (event) => {
   const features = map.getFeaturesAtPixel(event.pixel);
   if (!features) {
     selection = {};

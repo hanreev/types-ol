@@ -74,11 +74,11 @@ const styles: { [key: string]: { [key: string]: Style } } = {
 
 const vectorSource = new VectorSource({
   format: new OSMXML(),
-  loader: function(extent, resolution, projection) {
+  loader: (extent, resolution, projection) => {
     const epsg4326Extent = transformExtent(extent, projection, 'EPSG:4326');
     const client = new XMLHttpRequest();
     client.open('POST', 'https://overpass-api.de/api/interpreter');
-    client.addEventListener('load', function() {
+    client.addEventListener('load', () => {
       const features = new OSMXML().readFeatures(client.responseText, {
         featureProjection: map.getView().getProjection()
       });
@@ -95,7 +95,7 @@ const vectorSource = new VectorSource({
 
 const vector = new VectorLayer({
   source: vectorSource,
-  style: function(feature) {
+  style: (feature) => {
     for (const key in styles) {
       const value = feature.get(key);
       if (value !== undefined) {

@@ -21,9 +21,9 @@
   "scripts": {
     "build": "jsdoc -c jsdoc/conf.json -P openlayers/package.json -d @types",
     "format": "tsfmt -r",
-    "lint": "tsc -p tsconfig.lint.json --pretty",
+    "lint": "tsc -p tsconfig.lint.json --pretty && tslint -p tsconfig.lint.json",
     "build-format": "npm run build && npm run format",
-    "lint-test": "tsc -p tsconfig.test.json --pretty",
+    "lint-test": "tsc -p tsconfig.test.json --pretty && tslint -p tsconfig.test.json",
     "test": "webpack --progress --color",
     "prepare-npm": "node prepareNpm.js",
     "prepare-dt": "node prepareDefinitelyTyped.js"

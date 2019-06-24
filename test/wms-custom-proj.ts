@@ -26,13 +26,13 @@ addProjection(projection);
 // for setting the view's initial center (see below).
 
 addCoordinateTransforms('EPSG:4326', projection,
-  function(coordinate) {
+  (coordinate) => {
     return [
       WGStoCHy(coordinate[1], coordinate[0]),
       WGStoCHx(coordinate[1], coordinate[0])
     ];
   },
-  function(coordinate) {
+  (coordinate) => {
     return [
       CHtoWGSlng(coordinate[0], coordinate[1]),
       CHtoWGSlat(coordinate[0], coordinate[1])

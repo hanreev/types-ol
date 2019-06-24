@@ -1,9 +1,8 @@
-import { Image as ImageLayer, Tile as TileLayer } from 'ol/layer';
 import Map from 'ol/Map';
+import View from 'ol/View';
+import { Image as ImageLayer, Tile as TileLayer } from 'ol/layer';
 import { OSM, Raster, XYZ } from 'ol/source';
 import { Operation } from 'ol/source/Raster';
-import View from 'ol/View';
-
 
 /**
  * Generates a shaded relief image given elevation data.  Uses a 3x3
@@ -94,7 +93,7 @@ const shade: Operation = (inputs: ImageData[], data: any) => {
   }
 
   return { data: shadeData, width: width, height: height };
-}
+};
 
 const elevation = new XYZ({
   url: 'https://{a-d}.tiles.mapbox.com/v3/aj.sf-dem/{z}/{x}/{y}.png',
@@ -130,10 +129,10 @@ const map = new Map({
 
 const controlIds = ['vert', 'sunEl', 'sunAz'];
 const controls: { [key: string]: HTMLInputElement } = {};
-controlIds.forEach(function(id) {
+controlIds.forEach((id) => {
   const control = document.getElementById(id) as HTMLInputElement;
   const output = document.getElementById(id + 'Out');
-  control.addEventListener('input', function() {
+  control.addEventListener('input', () => {
     output.innerText = control.value;
     raster.changed();
   });
@@ -141,7 +140,7 @@ controlIds.forEach(function(id) {
   controls[id] = control;
 });
 
-raster.on('beforeoperations', function(event) {
+raster.on('beforeoperations', (event) => {
   // the event.data object will be passed to operations
   const data = event.data;
   data.resolution = event.resolution;

@@ -1,7 +1,7 @@
-import TileLayer from 'ol/layer/Tile';
 import Map from 'ol/Map';
-import { CartoDB, OSM } from 'ol/source';
 import View from 'ol/View';
+import TileLayer from 'ol/layer/Tile';
+import { CartoDB, OSM } from 'ol/source';
 
 const mapConfig = {
   'layers': [{
@@ -42,6 +42,6 @@ function setArea(n: string) {
 }
 
 
-(document.getElementById('country-area') as HTMLSelectElement).addEventListener('change', function() {
+(document.getElementById('country-area') as HTMLSelectElement).addEventListener('change', function () {
   setArea(this.value);
 });

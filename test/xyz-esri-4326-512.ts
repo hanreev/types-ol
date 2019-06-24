@@ -18,7 +18,7 @@ const map = new Map({
         maxZoom: 16,
         projection: 'EPSG:4326',
         tileSize: tileSize,
-        tileUrlFunction: function(tileCoord) {
+        tileUrlFunction: (tileCoord) => {
           return urlTemplate.replace('{z}', (tileCoord[0] - 1).toString())
             .replace('{x}', tileCoord[1].toString())
             .replace('{y}', (-tileCoord[2] - 1).toString());

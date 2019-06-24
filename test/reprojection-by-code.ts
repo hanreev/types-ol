@@ -62,9 +62,9 @@ function setProjection(code: string, name: string, proj4def: string | proj4.Proj
 
 function search(query: string) {
   resultSpan.innerHTML = 'Searching ...';
-  fetch('https://epsg.io/?format=json&q=' + query).then(function(response) {
+  fetch('https://epsg.io/?format=json&q=' + query).then((response) => {
     return response.json();
-  }).then(function(json) {
+  }).then((json) => {
     const results = json['results'];
     if (results && results.length > 0) {
       for (let i = 0, ii = results.length; i < ii; i++) {
@@ -91,7 +91,7 @@ function search(query: string) {
  * Handle click event.
  * @param {Event} event The event.
  */
-searchButton.onclick = function(event) {
+searchButton.onclick = (event) => {
   search(queryInput.value);
   event.preventDefault();
 };
@@ -100,8 +100,8 @@ searchButton.onclick = function(event) {
 /**
  * Handle change event.
  */
-renderEdgesCheckbox.onchange = function() {
-  map.getLayers().forEach(function(layer) {
+renderEdgesCheckbox.onchange = () => {
+  map.getLayers().forEach((layer) => {
     if (layer instanceof TileLayer) {
       const source = layer.getSource();
       if (source instanceof TileImage) {

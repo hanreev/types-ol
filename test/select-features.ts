@@ -43,14 +43,14 @@ const selectPointerMove = new Select({
 });
 
 const selectAltClick = new Select({
-  condition: function(mapBrowserEvent) {
+  condition: (mapBrowserEvent) => {
     return click(mapBrowserEvent) && altKeyOnly(mapBrowserEvent);
   }
 });
 
 const selectElement = document.getElementById('type') as HTMLSelectElement;
 
-const changeInteraction = function() {
+const changeInteraction = () => {
   if (select !== null) {
     map.removeInteraction(select);
   }
@@ -68,7 +68,7 @@ const changeInteraction = function() {
   }
   if (select !== null) {
     map.addInteraction(select);
-    select.on('select', function(e) {
+    select.on('select', (e) => {
       document.getElementById('status').innerHTML = '&nbsp;' +
         e.target.getFeatures().getLength() +
         ' selected features (last operation selected ' + e.selected.length +

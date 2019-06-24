@@ -23,9 +23,9 @@ const map = new Map({
   })
 });
 
-fetch(capabilitiesUrl).then(function(response) {
+fetch(capabilitiesUrl).then((response) => {
   return response.text();
-}).then(function(text) {
+}).then((text) => {
   const result = new WMTSCapabilities().read(text);
   const options = optionsFromCapabilities(result, {
     layer: layer,

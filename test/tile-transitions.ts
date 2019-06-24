@@ -24,7 +24,7 @@ const map = new Map({
   })
 });
 
-document.getElementById('transition').addEventListener('change', function(event) {
+document.getElementById('transition').addEventListener('change', (event) => {
   const transition = (event.target as HTMLInputElement).checked;
   withTransition.setVisible(transition);
   withoutTransition.setVisible(!transition);

@@ -43,7 +43,7 @@ const vectorSource = new VectorSource({
 });
 const vector = new VectorLayer({
   source: vectorSource,
-  style: function(feature) {
+  style: (feature) => {
     return styles[feature.get('size')];
   }
 });
@@ -59,7 +59,7 @@ const map = new Map({
 
 let point: Point = null;
 let line: LineString = null;
-const displaySnap = function(coordinate: Coordinate) {
+const displaySnap = (coordinate: Coordinate) => {
   const closestFeature = vectorSource.getClosestFeatureToCoordinate(coordinate);
   if (closestFeature === null) {
     point = null;
@@ -81,7 +81,7 @@ const displaySnap = function(coordinate: Coordinate) {
   map.render();
 };
 
-map.on('pointermove', function(evt) {
+map.on('pointermove', (evt) => {
   if (evt.dragging) {
     return;
   }
@@ -89,7 +89,7 @@ map.on('pointermove', function(evt) {
   displaySnap(coordinate);
 });
 
-map.on('click', function(evt) {
+map.on('click', (evt) => {
   displaySnap(evt.coordinate);
 });
 
@@ -105,7 +105,7 @@ const style = new Style({
   })
 });
 
-map.on('postcompose', function(evt) {
+map.on('postcompose', (evt) => {
   const vectorContext = evt.vectorContext;
   vectorContext.setStyle(style);
   if (point !== null) {
@@ -116,7 +116,7 @@ map.on('postcompose', function(evt) {
   }
 });
 
-map.on('pointermove', function(evt) {
+map.on('pointermove', (evt) => {
   if (evt.dragging) {
     return;
   }

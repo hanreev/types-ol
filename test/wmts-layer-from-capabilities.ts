@@ -8,9 +8,9 @@ import View from 'ol/View';
 const parser = new WMTSCapabilities();
 let map;
 
-fetch('data/WMTSCapabilities.xml').then(function(response) {
+fetch('data/WMTSCapabilities.xml').then((response) => {
   return response.text();
-}).then(function(text) {
+}).then((text) => {
   const result = parser.read(text);
   const options = optionsFromCapabilities(result, {
     layer: 'layer-7328',

@@ -38,22 +38,22 @@ const map = new Map({
 
 let shouldUpdate = true;
 const view = map.getView();
-const updatePermalink = function() {
+const updatePermalink = () => {
   if (!shouldUpdate) {
     // do not update the URL when the view was changed in the 'popstate' handler
     shouldUpdate = true;
     return;
   }
 
-  const center = view.getCenter();
+  const center_ = view.getCenter();
   const hash = '#map=' +
     view.getZoom() + '/' +
-    Math.round(center[0] * 100) / 100 + '/' +
-    Math.round(center[1] * 100) / 100 + '/' +
+    Math.round(center_[0] * 100) / 100 + '/' +
+    Math.round(center_[1] * 100) / 100 + '/' +
     view.getRotation();
   const state = {
     zoom: view.getZoom(),
-    center: view.getCenter(),
+    center_: view.getCenter(),
     rotation: view.getRotation()
   };
   window.history.pushState(state, 'map', hash);
@@ -63,7 +63,7 @@ map.on('moveend', updatePermalink);
 
 // restore the view state when navigating through the history, see
 // https://developer.mozilla.org/en-US/docs/Web/API/WindowEventHandlers/onpopstate
-window.addEventListener('popstate', function(event) {
+window.addEventListener('popstate', (event) => {
   if (event.state === null) {
     return;
   }

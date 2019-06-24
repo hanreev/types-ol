@@ -51,7 +51,7 @@ function createEarthquakeStyle(feature: Feature) {
 
 let maxFeatureCount: number;
 let vector: VectorLayer = null;
-const calculateClusterInfo = function(resolution: number) {
+const calculateClusterInfo = (resolution: number) => {
   maxFeatureCount = 0;
   const features = vector.getSource().getFeatures();
   let feature, radius;
@@ -137,7 +137,7 @@ const raster = new TileLayer({
 const map = new Map({
   layers: [raster, vector],
   interactions: defaultInteractions().extend([new Select({
-    condition: function(evt) {
+    condition: (evt) => {
       return evt.type == 'pointermove' ||
         evt.type == 'singleclick';
     },

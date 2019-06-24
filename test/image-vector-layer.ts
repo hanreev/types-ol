@@ -26,7 +26,7 @@ const map = new Map({
         url: 'data/geojson/countries.geojson',
         format: new GeoJSON()
       }),
-      style: function(feature) {
+      style: (feature) => {
         style.getText().setText(feature.get('name'));
         return style;
       }
@@ -54,10 +54,10 @@ const featureOverlay = new VectorLayer({
 });
 
 let highlight: Feature;
-const displayFeatureInfo = function(pixel: number[]) {
+const displayFeatureInfo = (pixel: number[]) => {
 
   // tslint:disable-next-line: no-shadowed-variable
-  const feature = map.forEachFeatureAtPixel(pixel, function(feature: Feature) {
+  const feature = map.forEachFeatureAtPixel(pixel, (feature: Feature) => {
     return feature;
   });
 
@@ -80,7 +80,7 @@ const displayFeatureInfo = function(pixel: number[]) {
 
 };
 
-map.on('pointermove', function(evt) {
+map.on('pointermove', (evt) => {
   if (evt.dragging) {
     return;
   }
@@ -88,6 +88,6 @@ map.on('pointermove', function(evt) {
   displayFeatureInfo(pixel);
 });
 
-map.on('click', function(evt) {
+map.on('click', (evt) => {
   displayFeatureInfo(evt.pixel);
 });

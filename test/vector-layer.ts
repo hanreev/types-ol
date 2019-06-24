@@ -33,7 +33,7 @@ const vectorLayer = new VectorLayer({
     url: 'data/geojson/countries.geojson',
     format: new GeoJSON()
   }),
-  style: function(feature) {
+  style: (feature) => {
     style.getText().setText(feature.get('name'));
     return style;
   }
@@ -71,17 +71,17 @@ const highlightStyle = new Style({
 const featureOverlay = new VectorLayer({
   source: new VectorSource(),
   map: map,
-  style: function(feature) {
+  style: (feature) => {
     highlightStyle.getText().setText(feature.get('name'));
     return highlightStyle;
   }
 });
 
 let highlight: FeatureLike;
-const displayFeatureInfo = function(pixel: Pixel) {
+const displayFeatureInfo = (pixel: Pixel) => {
 
   // tslint:disable-next-line: no-shadowed-variable
-  const feature = map.forEachFeatureAtPixel(pixel, function(feature) {
+  const feature = map.forEachFeatureAtPixel(pixel, (feature) => {
     return feature;
   });
 
@@ -104,7 +104,7 @@ const displayFeatureInfo = function(pixel: Pixel) {
 
 };
 
-map.on('pointermove', function(evt) {
+map.on('pointermove', (evt) => {
   if (evt.dragging) {
     return;
   }
@@ -112,6 +112,6 @@ map.on('pointermove', function(evt) {
   displayFeatureInfo(pixel);
 });
 
-map.on('click', function(evt) {
+map.on('click', (evt) => {
   displayFeatureInfo(evt.pixel);
 });

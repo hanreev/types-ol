@@ -31,13 +31,13 @@ map.addInteraction(extent);
 extent.setActive(false);
 
 // Enable interaction by holding shift
-window.addEventListener('keydown', function(event) {
+window.addEventListener('keydown', (event) => {
   // tslint:disable-next-line: deprecation
   if (event.keyCode == 16) {
     extent.setActive(true);
   }
 });
-window.addEventListener('keyup', function(event) {
+window.addEventListener('keyup', (event) => {
   // tslint:disable-next-line: deprecation
   if (event.keyCode == 16) {
     extent.setActive(false);

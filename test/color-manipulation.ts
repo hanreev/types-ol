@@ -99,7 +99,7 @@ const raster = new RasterSource({
   sources: [new Stamen({
     layer: 'watercolor',
   })],
-  operation: function(pixels, data: any) {
+  operation: (pixels, data: any) => {
     const hcl = rgb2hcl(pixels[0] as number[]);
 
     let h = hcl[0] + Math.PI * data.hue / 180;
@@ -135,7 +135,7 @@ const raster = new RasterSource({
 
 const controls: { [key: string]: HTMLInputElement } = {};
 
-raster.on('beforeoperations', function(event: RasterSourceEvent) {
+raster.on('beforeoperations', (event: RasterSourceEvent) => {
   const data = event.data;
   for (const id in controls) {
     data[id] = Number(controls[id].value);
@@ -157,10 +157,10 @@ const map = new Map({
 });
 
 const controlIds = ['hue', 'chroma', 'lightness'];
-controlIds.forEach(function(id) {
+controlIds.forEach((id) => {
   const control = document.getElementById(id) as HTMLInputElement;
   const output = document.getElementById(id + 'Out');
-  control.addEventListener('input', function() {
+  control.addEventListener('input', () => {
     output.innerText = control.value;
     raster.changed();
   });

@@ -35,7 +35,7 @@ const map = new Map({
 map.getView().fit(extent);
 
 const control = document.getElementById('zoomifyProtocol');
-control.addEventListener('change', function(event) {
+control.addEventListener('change', (event) => {
   const value = (event.currentTarget as HTMLInputElement).value;
   if (value === 'iip') {
     layer.setSource(new Zoomify({

@@ -1,9 +1,9 @@
-import { Image as ImageLayer, Tile as TileLayer } from 'ol/layer';
 import Map from 'ol/Map';
+import View from 'ol/View';
+import { Image as ImageLayer, Tile as TileLayer } from 'ol/layer';
 import { fromLonLat } from 'ol/proj';
 import RasterSource, { Operation } from 'ol/source/Raster';
 import XYZ from 'ol/source/XYZ';
-import View from 'ol/View';
 
 const flood: Operation = (pixels: number[][], data: any) => {
   const pixel = pixels[0];
@@ -19,7 +19,7 @@ const flood: Operation = (pixels: number[][], data: any) => {
     }
   }
   return pixel;
-}
+};
 
 const key = 'pk.eyJ1IjoidHNjaGF1YiIsImEiOiJjaW5zYW5lNHkxMTNmdWttM3JyOHZtMmNtIn0.CDIBD8H-G2Gf-cPkIuWtRg';
 const elevation = new XYZ({
@@ -55,13 +55,13 @@ const map = new Map({
 
 const control = document.getElementById('level') as HTMLInputElement;
 const output = document.getElementById('output');
-control.addEventListener('input', function() {
+control.addEventListener('input', () => {
   output.innerText = control.value;
   raster.changed();
 });
 output.innerText = control.value;
 
-raster.on('beforeoperations', function(event) {
+raster.on('beforeoperations', (event) => {
   event.data.level = control.value;
 });
 

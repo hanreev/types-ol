@@ -15,7 +15,7 @@ const raster = new TileLayer({
 
 const source = new VectorSource();
 
-const styleFunction = function(feature: Feature) {
+const styleFunction = (feature: Feature) => {
   const geometry = feature.getGeometry() as LineString;
   const styles = [
     // linestring
@@ -27,7 +27,7 @@ const styleFunction = function(feature: Feature) {
     })
   ];
 
-  geometry.forEachSegment(function(start, end) {
+  geometry.forEachSegment((start, end) => {
     const dx = end[0] - start[0];
     const dy = end[1] - start[1];
     const rotation = Math.atan2(dy, dx);

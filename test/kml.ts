@@ -31,9 +31,9 @@ const map = new Map({
   })
 });
 
-const displayFeatureInfo = function(pixel: Pixel) {
+const displayFeatureInfo = (pixel: Pixel) => {
   const features: Feature[] = [];
-  map.forEachFeatureAtPixel(pixel, function(feature) {
+  map.forEachFeatureAtPixel(pixel, (feature) => {
     features.push(feature as Feature);
   });
   if (features.length > 0) {
@@ -50,7 +50,7 @@ const displayFeatureInfo = function(pixel: Pixel) {
   }
 };
 
-map.on('pointermove', function(evt) {
+map.on('pointermove', (evt) => {
   if (evt.dragging) {
     return;
   }
@@ -58,6 +58,6 @@ map.on('pointermove', function(evt) {
   displayFeatureInfo(pixel);
 });
 
-map.on('click', function(evt) {
+map.on('click', (evt) => {
   displayFeatureInfo(evt.pixel);
 });

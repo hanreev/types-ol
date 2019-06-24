@@ -16,10 +16,10 @@ const map = new Map({
   })
 });
 
-document.getElementById('set-source').onclick = function() {
+document.getElementById('set-source').onclick = () => {
   layer.setSource(source);
 };
 
-document.getElementById('unset-source').onclick = function() {
+document.getElementById('unset-source').onclick = () => {
   layer.setSource(null);
 };

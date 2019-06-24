@@ -31,7 +31,7 @@ const overlay = new Overlay({
  * Add a click handler to hide the popup.
  * @return {boolean} Don't follow the href.
  */
-closer.onclick = function() {
+closer.onclick = () => {
   overlay.setPosition(undefined);
   closer.blur();
   return false;
@@ -62,7 +62,7 @@ const map = new Map({
 /**
  * Add a click handler to the map to render the popup.
  */
-map.on('singleclick', function(evt) {
+map.on('singleclick', (evt) => {
   const coordinate = evt.coordinate;
   const hdms = toStringHDMS(toLonLat(coordinate));
 

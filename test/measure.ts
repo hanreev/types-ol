@@ -85,7 +85,7 @@ const continueLineMsg = 'Click to continue drawing the line';
 /**
  * Handle pointer move.
  */
-const pointerMoveHandler = function(evt: MapBrowserEvent) {
+const pointerMoveHandler = (evt: MapBrowserEvent) => {
   if (evt.dragging) {
     return;
   }
@@ -118,7 +118,7 @@ const map = new Map({
 
 map.on('pointermove', pointerMoveHandler);
 
-map.getViewport().addEventListener('mouseout', function() {
+map.getViewport().addEventListener('mouseout', () => {
   helpTooltipElement.classList.add('hidden');
 });
 
@@ -130,7 +130,7 @@ let draw: Draw; // global so we can remove it later
 /**
  * Format length output.
  */
-const formatLength = function(line: LineString) {
+const formatLength = (line: LineString) => {
   const length = getLength(line);
   let output;
   if (length > 100) {
@@ -147,7 +147,7 @@ const formatLength = function(line: LineString) {
 /**
  * Format area output.
  */
-const formatArea = function(polygon: Polygon) {
+const formatArea = (polygon: Polygon) => {
   const area = getArea(polygon);
   let output;
   if (area > 10000) {
@@ -192,13 +192,13 @@ function addInteraction() {
 
   let listener: EventsKey;
   draw.on('drawstart',
-    function(evt) {
+    (evt) => {
       // set sketch
       sketch = evt.feature;
 
       let tooltipCoord = (evt as any).coordinate;
 
-      listener = sketch.getGeometry().on('change', function(ev) {
+      listener = sketch.getGeometry().on('change', (ev) => {
         const geom = ev.target;
         let output;
         if (geom instanceof Polygon) {
@@ -214,7 +214,7 @@ function addInteraction() {
     });
 
   draw.on('drawend',
-    function() {
+    () => {
       measureTooltipElement.className = 'tooltip tooltip-static';
       measureTooltip.setOffset([0, -7]);
       // unset sketch
@@ -266,7 +266,7 @@ function createMeasureTooltip() {
 /**
  * Let user change the geometry type.
  */
-typeSelect.onchange = function() {
+typeSelect.onchange = () => {
   map.removeInteraction(draw);
   addInteraction();
 };

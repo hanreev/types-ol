@@ -20,7 +20,7 @@ const map = new Map({
         projection: 'EPSG:4326',
         url: agentUrl,
         useOverlay: false,
-        metersPerUnit: 111319.4908, //value returned from mapguide
+        metersPerUnit: 111319.4908, // value returned from mapguide
         params: {
           MAPDEFINITION: mdf,
           FORMAT: 'PNG',

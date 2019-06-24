@@ -1,14 +1,13 @@
-import GeoJSON from 'ol/format/GeoJSON';
-import { defaults as defaultInteractions, Modify, Select } from 'ol/interaction';
-import VectorLayer from 'ol/layer/Vector';
 import Map from 'ol/Map';
+import View from 'ol/View';
+import GeoJSON from 'ol/format/GeoJSON';
+import { Modify, Select, defaults as defaultInteractions } from 'ol/interaction';
+import VectorLayer from 'ol/layer/Vector';
 import VectorSource from 'ol/source/Vector';
 import { Circle as CircleStyle, Fill, Stroke, Style } from 'ol/style';
 import { StyleFunction, StyleLike } from 'ol/style/Style';
-import View from 'ol/View';
 
-
-const styleFunction = (function() {
+const styleFunction = (function () {
   const styles: { [key: string]: Style } = {};
   const image = new CircleStyle({
     radius: 5,
@@ -50,9 +49,9 @@ const styleFunction = (function() {
     }),
     image: image
   });
-  return function(feature) {
+  return ((feature) => {
     return styles[feature.getGeometry().getType()] || styles['default'];
-  } as StyleFunction;
+  }) as StyleFunction;
 })();
 
 const geojsonObject = {
@@ -149,7 +148,7 @@ const layer = new VectorLayer({
   style: styleFunction
 });
 
-const overlayStyle = (function() {
+const overlayStyle = (function () {
   const styles: { [key: string]: StyleLike } = {};
   styles['Polygon'] = [
     new Style({
@@ -207,9 +206,9 @@ const overlayStyle = (function() {
 
   styles['GeometryCollection'] = (styles['Polygon'] as Style[]).concat(styles['Point'] as Style[]);
 
-  return function(feature) {
+  return (feature => {
     return styles[feature.getGeometry().getType()];
-  } as StyleFunction;
+  }) as StyleFunction;
 })();
 
 const select = new Select({
@@ -219,9 +218,9 @@ const select = new Select({
 const modify = new Modify({
   features: select.getFeatures(),
   style: overlayStyle,
-  insertVertexCondition: function() {
+  insertVertexCondition: () => {
     // prevent new vertices to be added to the polygons
-    return !select.getFeatures().getArray().every(function(feature) {
+    return !select.getFeatures().getArray().every((feature) => {
       return !!feature.getGeometry().getType().match(/Polygon/);
     });
   }

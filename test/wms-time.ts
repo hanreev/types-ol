@@ -54,14 +54,14 @@ function setTime() {
 }
 setTime();
 
-const stop = function() {
+const stop = () => {
   if (animationId !== null) {
     window.clearInterval(animationId);
     animationId = null;
   }
 };
 
-const play = function() {
+const play = () => {
   stop();
   animationId = window.setInterval(setTime, 1000 / frameRate);
 };

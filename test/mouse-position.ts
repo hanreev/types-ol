@@ -31,12 +31,12 @@ const map = new Map({
 });
 
 const projectionSelect = document.getElementById('projection') as HTMLSelectElement;
-projectionSelect.addEventListener('change', function(event) {
+projectionSelect.addEventListener('change', (event) => {
   mousePositionControl.setProjection((event.target as HTMLSelectElement).value);
 });
 
 const precisionInput = document.getElementById('precision') as HTMLInputElement;
-precisionInput.addEventListener('change', function(event) {
+precisionInput.addEventListener('change', (event) => {
   const format = createStringXY((event.target as HTMLInputElement).valueAsNumber);
   mousePositionControl.setCoordinateFormat(format);
 });

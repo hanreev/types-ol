@@ -42,7 +42,7 @@ function handleDownEvent(evt: MapBrowserEvent) {
 
   const feature = map.forEachFeatureAtPixel(evt.pixel,
     // tslint:disable-next-line: no-shadowed-variable
-    function(feature) {
+    (feature) => {
       return feature;
     });
 
@@ -73,7 +73,7 @@ function handleMoveEvent(evt: MapBrowserEvent) {
     const map: Map = evt.map;
     const feature = map.forEachFeatureAtPixel(evt.pixel,
       // tslint:disable-next-line: no-shadowed-variable
-      function(feature) {
+      (feature) => {
         return feature;
       });
     const element = evt.map.getTargetElement();

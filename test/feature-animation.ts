@@ -78,7 +78,7 @@ function flash(feature: Feature) {
   }
 }
 
-source.on('addfeature', function(e) {
+source.on('addfeature', (e) => {
   flash(e.feature);
 });
 

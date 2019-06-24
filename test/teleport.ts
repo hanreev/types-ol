@@ -20,7 +20,7 @@ map.setTarget('map1');
 
 const teleportButton = document.getElementById('teleport');
 
-teleportButton.addEventListener('click', function() {
+teleportButton.addEventListener('click', () => {
   const target = map.getTarget() === 'map1' ? 'map2' : 'map1';
   map.setTarget(target);
 }, false);

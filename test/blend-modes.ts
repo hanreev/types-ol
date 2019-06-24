@@ -1,12 +1,11 @@
 import Feature from 'ol/Feature';
+import Map from 'ol/Map';
+import View from 'ol/View';
 import Point from 'ol/geom/Point';
 import VectorLayer from 'ol/layer/Vector';
-import Map from 'ol/Map';
 import RenderEvent from 'ol/render/Event';
 import VectorSource from 'ol/source/Vector';
 import { Circle as CircleStyle, Fill, Stroke, Style } from 'ol/style';
-import View from 'ol/View';
-
 
 // Create separate layers for red, green an blue circles.
 //
@@ -94,7 +93,7 @@ const affectBlue = document.getElementById('affect-blue');
  * This method sets the globalCompositeOperation to the value of the select
  * field and it is bound to the precompose event of the layers.
  */
-const setBlendModeFromSelect = function(evt: RenderEvent) {
+const setBlendModeFromSelect = (evt: RenderEvent) => {
   evt.context.globalCompositeOperation = select.value;
 };
 
@@ -103,7 +102,7 @@ const setBlendModeFromSelect = function(evt: RenderEvent) {
  * This method resets the globalCompositeOperation to the default value of
  * 'source-over' and it is bound to the postcompose event of the layers.
  */
-const resetBlendModeFromSelect = function(evt: RenderEvent) {
+const resetBlendModeFromSelect = (evt: RenderEvent) => {
   evt.context.globalCompositeOperation = 'source-over';
 };
 
@@ -111,7 +110,7 @@ const resetBlendModeFromSelect = function(evt: RenderEvent) {
 /**
  * Bind the pre- and postcompose handlers to the passed layer.
  */
-const bindLayerListeners = function(layer: VectorLayer) {
+const bindLayerListeners = (layer: VectorLayer) => {
   layer.on('precompose', setBlendModeFromSelect);
   layer.on('postcompose', resetBlendModeFromSelect);
 };
@@ -120,7 +119,7 @@ const bindLayerListeners = function(layer: VectorLayer) {
 /**
  * Unind the pre- and postcompose handlers to the passed layers.
  */
-const unbindLayerListeners = function(layer: VectorLayer) {
+const unbindLayerListeners = (layer: VectorLayer) => {
   layer.un('precompose', setBlendModeFromSelect);
   layer.un('postcompose', resetBlendModeFromSelect);
 };
@@ -129,8 +128,8 @@ const unbindLayerListeners = function(layer: VectorLayer) {
 /**
  * Handler for the click event of the 'affect-XXX' checkboxes.
  */
-const affectLayerClicked = function() {
-  let layer;
+const affectLayerClicked = function () {
+  let layer: VectorLayer;
   if (this.id == 'affect-red') {
     layer = redLayer;
   } else if (this.id == 'affect-green') {
@@ -148,7 +147,7 @@ const affectLayerClicked = function() {
 
 
 // Rerender map when blend mode changes
-select.addEventListener('change', function() {
+select.addEventListener('change', () => {
   map.render();
 });
 

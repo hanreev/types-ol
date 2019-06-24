@@ -46,7 +46,7 @@ const omegaTheta = 30000; // Rotation period in ms
 const R = 7e6;
 const r = 2e6;
 const p = 2e6;
-map.on('postcompose', function(event) {
+map.on('postcompose', (event) => {
   const vectorContext = event.vectorContext;
   const frameState = event.frameState;
   const theta = 2 * Math.PI * frameState.time / omegaTheta;

@@ -82,7 +82,7 @@ layer0.setMap(map);
 
 function bindInputs(id: number, layer: VectorLayer) {
   const idxInput = document.getElementById('idx' + id) as HTMLInputElement;
-  idxInput.onchange = function() {
+  idxInput.onchange = () => {
     layer.setZIndex(parseInt((this as any).value, 10) || 0);
   };
   idxInput.value = String(layer.getZIndex());

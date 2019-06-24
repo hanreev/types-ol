@@ -38,7 +38,7 @@ if (!WEBGL) {
     '}'
   ].join('');
 
-  osm.on('precompose', function(event) {
+  osm.on('precompose', (event) => {
     const context = event.glContext;
 
     const gl = context.getGL();
@@ -93,7 +93,7 @@ if (!WEBGL) {
     gl.stencilOp(gl.KEEP, gl.KEEP, gl.KEEP);
   });
 
-  osm.on('postcompose', function(event) {
+  osm.on('postcompose', (event) => {
     const context = event.glContext;
     const gl = context.getGL();
     gl.disable(gl.STENCIL_TEST);

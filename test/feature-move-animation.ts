@@ -113,7 +113,7 @@ const vectorLayer = new VectorLayer({
   source: new VectorSource({
     features: [routeFeature, geoMarker, startMarker, endMarker]
   }),
-  style: function(feature) {
+  style: (feature) => {
     // hide geoMarker if animation is active
     if (animating && feature.get('type') === 'geoMarker') {
       return null;
@@ -143,7 +143,7 @@ const map = new Map({
   ]
 });
 
-const moveFeature = function(event: RenderEvent) {
+const moveFeature = (event: RenderEvent) => {
   const vectorContext = event.vectorContext;
   const frameState = event.frameState;
 

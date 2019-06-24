@@ -41,7 +41,7 @@ const map = new Map({
 });
 
 for (const key in extents) {
-  document.getElementById(key).onclick = function(event) {
+  document.getElementById(key).onclick = (event) => {
     overlay.setExtent(extents[(event.target as HTMLElement).id]);
   };
 }

@@ -1,8 +1,8 @@
 import WMSGetFeatureInfo from 'ol/format/WMSGetFeatureInfo';
 
-fetch('data/wmsgetfeatureinfo/osm-restaurant-hotel.xml').then(function(response) {
+fetch('data/wmsgetfeatureinfo/osm-restaurant-hotel.xml').then((response) => {
   return response.text();
-}).then(function(response) {
+}).then((response) => {
 
   // this is the standard way to read the features
   const allFeatures = new WMSGetFeatureInfo().readFeatures(response);

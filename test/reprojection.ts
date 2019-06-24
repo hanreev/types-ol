@@ -98,9 +98,9 @@ layers['wms21781'] = new TileLayer({
 const parser = new WMTSCapabilities();
 const url = 'https://map1.vis.earthdata.nasa.gov/wmts-arctic/' +
   'wmts.cgi?SERVICE=WMTS&request=GetCapabilities';
-fetch(url).then(function(response) {
+fetch(url).then((response) => {
   return response.text();
-}).then(function(text) {
+}).then((text) => {
   const result = parser.read(text);
   const options = optionsFromCapabilities(result, {
     layer: 'OSM_Land_Mask',
@@ -191,13 +191,13 @@ function updateViewProjection() {
 /**
  * Handle change event.
  */
-viewProjSelect.onchange = function() {
+viewProjSelect.onchange = () => {
   updateViewProjection();
 };
 
 updateViewProjection();
 
-const updateRenderEdgesOnLayer = function(layer: BaseLayer) {
+const updateRenderEdgesOnLayer = (layer: BaseLayer) => {
   if (layer instanceof TileLayer) {
     const source = layer.getSource();
     if (source instanceof TileImage) {
@@ -210,7 +210,7 @@ const updateRenderEdgesOnLayer = function(layer: BaseLayer) {
 /**
  * Handle change event.
  */
-baseLayerSelect.onchange = function() {
+baseLayerSelect.onchange = () => {
   const layer = layers[baseLayerSelect.value];
   if (layer) {
     layer.setOpacity(1);
@@ -223,7 +223,7 @@ baseLayerSelect.onchange = function() {
 /**
  * Handle change event.
  */
-overlayLayerSelect.onchange = function() {
+overlayLayerSelect.onchange = () => {
   const layer = layers[overlayLayerSelect.value];
   if (layer) {
     layer.setOpacity(0.7);
@@ -236,9 +236,9 @@ overlayLayerSelect.onchange = function() {
 /**
  * Handle change event.
  */
-renderEdgesCheckbox.onchange = function() {
+renderEdgesCheckbox.onchange = () => {
   renderEdges = renderEdgesCheckbox.checked;
-  map.getLayers().forEach(function(layer) {
+  map.getLayers().forEach((layer) => {
     updateRenderEdgesOnLayer(layer);
   });
 };

@@ -13,17 +13,17 @@ fs.removeSync(destPath);
 
 // Build
 console.log('# Rebuilding definitions');
-childProcess.execSync('npm run build', { stdio: 'inherit' });
+childProcess.execSync('yarn build', { stdio: 'inherit' });
 console.log('# Formatting definitions');
-childProcess.execSync('npm run format', { stdio: 'inherit' });
+childProcess.execSync('yarn format', { stdio: 'inherit' });
 
 // Lint
 console.log('# Linting definitions');
-childProcess.execSync('npm run lint', { stdio: 'inherit' });
+childProcess.execSync('yarn lint', { stdio: 'inherit' });
 
 // Test
 console.log('# Testing definitions');
-childProcess.execSync('npm run lint-test && npm run test', { stdio: 'inherit' });
+childProcess.execSync('yarn lint-test && yarn test', { stdio: 'inherit' });
 
 // Copy
 console.log('# Emitting definitions to output directory');

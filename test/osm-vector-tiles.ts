@@ -29,7 +29,7 @@ const waterStyle = new Style({
     color: '#9db9e8'
   })
 });
-const roadStyle = function(feature: FeatureLike) {
+const roadStyle = (feature: FeatureLike) => {
   const kind = feature.get('kind');
   const railway = feature.get('railway');
   const sort_key = feature.get('sort_key');
@@ -69,7 +69,7 @@ const map = new Map({
         maxZoom: 19,
         url: 'https://tile.mapzen.com/mapzen/vector/v1/all/{z}/{x}/{y}.topojson?api_key=' + key
       }),
-      style: function(feature, resolution) {
+      style: (feature, resolution) => {
         switch (feature.get('layer')) {
           case 'water': return waterStyle;
           case 'roads': return roadStyle(feature);

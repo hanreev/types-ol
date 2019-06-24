@@ -25,7 +25,7 @@ const map = new Map({
 
 const swipe = document.getElementById('swipe') as HTMLInputElement;
 
-bing.on('precompose', function(event) {
+bing.on('precompose', (event) => {
   const ctx = event.context;
   const width = ctx.canvas.width * (swipe.valueAsNumber / 100);
 
@@ -35,11 +35,11 @@ bing.on('precompose', function(event) {
   ctx.clip();
 });
 
-bing.on('postcompose', function(event) {
+bing.on('postcompose', (event) => {
   const ctx = event.context;
   ctx.restore();
 });
 
-swipe.addEventListener('input', function() {
+swipe.addEventListener('input', () => {
   map.render();
 }, false);

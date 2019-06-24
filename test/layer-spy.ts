@@ -27,7 +27,7 @@ const map = new Map({
 });
 
 let radius = 75;
-document.addEventListener('keydown', function(evt: KeyboardEvent) {
+document.addEventListener('keydown', (evt: KeyboardEvent) => {
   // tslint:disable-next-line: deprecation
   if (evt.which === 38) {
     radius = Math.min(radius + 5, 150);
@@ -44,18 +44,18 @@ document.addEventListener('keydown', function(evt: KeyboardEvent) {
 // get the pixel position with every move
 let mousePosition: Pixel = null;
 
-container.addEventListener('mousemove', function(event) {
+container.addEventListener('mousemove', (event) => {
   mousePosition = map.getEventPixel(event);
   map.render();
 });
 
-container.addEventListener('mouseout', function() {
+container.addEventListener('mouseout', () => {
   mousePosition = null;
   map.render();
 });
 
 // before rendering the layer, do some clipping
-imagery.on('precompose', function(event) {
+imagery.on('precompose', (event) => {
   const ctx = event.context;
   const pixelRatio = event.frameState.pixelRatio;
   ctx.save();
@@ -72,7 +72,7 @@ imagery.on('precompose', function(event) {
 });
 
 // after rendering the layer, restore the canvas context
-imagery.on('postcompose', function(event) {
+imagery.on('postcompose', (event) => {
   const ctx = event.context;
   ctx.restore();
 });

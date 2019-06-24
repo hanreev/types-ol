@@ -16,7 +16,7 @@ const map = new Map({
 });
 
 const labelStyle = new Style({
-  geometry: function(feature) {
+  geometry: (feature) => {
     let geometry = feature.getGeometry();
     if (geometry.getType() == 'MultiPolygon') {
       // Only render label for the widest polygon of a multipolygon
@@ -61,7 +61,7 @@ const vectorLayer = new VectorLayer({
     url: 'data/geojson/countries.geojson',
     format: new GeoJSON()
   }),
-  style: function(feature) {
+  style: (feature) => {
     labelStyle.getText().setText(feature.get('name'));
     return style;
   },

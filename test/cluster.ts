@@ -29,7 +29,7 @@ const clusterSource = new Cluster({
 const styleCache: { [key: number]: Style } = {};
 const clusters = new VectorLayer({
   source: clusterSource,
-  style: function(feature) {
+  style: (feature) => {
     const size = feature.get('features').length as number;
     let style = styleCache[size];
     if (!style) {
@@ -69,6 +69,6 @@ const map = new Map({
   })
 });
 
-distance.addEventListener('input', function() {
+distance.addEventListener('input', () => {
   clusterSource.setDistance(parseInt(distance.value, 10));
 });

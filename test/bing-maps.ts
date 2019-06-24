@@ -1,9 +1,8 @@
+import Map from 'ol/Map';
+import View from 'ol/View';
 import BaseLayer from 'ol/layer/Base';
 import TileLayer from 'ol/layer/Tile';
-import Map from 'ol/Map';
 import BingMaps from 'ol/source/BingMaps';
-import View from 'ol/View';
-
 
 const styles = [
   'Road',

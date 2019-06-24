@@ -40,7 +40,7 @@ function addInteraction() {
       geometryFunction = createBox();
     } else if (value === 'Star') {
       value = 'Circle';
-      geometryFunction = function(coordinates, geometry) {
+      geometryFunction = (coordinates, geometry) => {
         const center = coordinates[0] as number[];
         const last = coordinates[1] as number[];
         const dx = center[0] - last[0];
@@ -78,7 +78,7 @@ function addInteraction() {
 /**
  * Handle change event.
  */
-typeSelect.onchange = function() {
+typeSelect.onchange = () => {
   map.removeInteraction(draw);
   addInteraction();
 };
