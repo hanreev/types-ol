@@ -5,7 +5,7 @@ const childProcess = require('child_process');
 const srcPath = path.resolve(__dirname, '@types', 'ol');
 const destPath = path.resolve(__dirname, 'ol');
 
-console.log('# Preparing definitions before publishing to npmjs.org');
+console.log('# Preparing definitions before publishing to npmjs');
 
 // Clean
 console.log('# Cleaning output directory');

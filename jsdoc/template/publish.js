@@ -9,7 +9,7 @@
  * @prop {DocletType} [type]
  * @prop {string} [description]
  * @prop {boolean} [optional]
- * @prop {*} [defaultValue]
+ * @prop {*} [defaultvalue]
  *
  * @typedef DocletParam
  * @prop {string} name
@@ -163,7 +163,7 @@ const ANY_GENERIC_TYPES = [
 /** @type {Object<string, string>} */
 const TYPE_PATCHES = {
   'module:ol/Collection.CollectionEvent#element': 'T',
-  'module:ol/css~getFontFamilies': 'function(string): (Object<string, *>|null)',
+  'module:ol/css~getFontFamilies': 'function(string): (Array<string>|null)',
   'module:ol/events/condition~always': 'typeof:module:ol/functions.TRUE',
   'module:ol/events/condition~never': 'typeof:module:ol/functions.FALSE',
   'module:ol/format/GML~GML': 'module:ol/format/GML3~GML3',
@@ -553,7 +553,7 @@ function parseFunctionType(type, _module) {
   const match = type.match(/^function\((.+?)\)(: ?(.+?))?$/);
   if (match) {
     params = match[1].split(/,\s?/).map((p, i) => {
-      let name = `param${i}`;
+      let name = `p${i}`;
       if (p.startsWith('this:')) {
         name = 'this';
         p = p.replace(/^this:\s?/, '');
@@ -897,6 +897,7 @@ const PROCESSORS = {
     return 'export ' + decl;
   },
 
+  /** @type {DocletParser} */
   enum: (doclet, _module) => {
     const name = registerImport(_module, doclet.name) + ' ';
     const type = getType(doclet, _module);
