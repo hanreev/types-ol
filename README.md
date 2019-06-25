@@ -35,7 +35,7 @@ There are several ways to use this package. Please choose one:
     ...
     "devDependencies": {
       ...
-      "@hanreev/types-ol": "^2.0.3",
+      "@hanreev/types-ol": "^2.0.4",
       "@types/ol": "file:node_modules/@hanreev/types-ol/ol",
       ...
     }
@@ -156,6 +156,9 @@ Configuration is located at `jsdoc/conf.json`
 
 ## Changelog
 
+- **v2.0.4**
+  - Fix optional parameters in function type. Ex: third parameter of `{function(*, Array<*>, string=): (Node|undefined)}`
+  - Test files fixes
 - **v2.0.3**
   - OpenLayers 5.3.3 source
   - Members and methods sorting

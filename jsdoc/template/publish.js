@@ -558,7 +558,7 @@ function parseFunctionType(type, _module) {
         name = 'this';
         p = p.replace(/^this:\s?/, '');
       }
-      if (p.match(/^\?.+$/))
+      if (p.match(/^\?.+$/) || p.endsWith('='))
         name += '?';
       return `${name}: ` + (p.split(/\s?\|\s?/).map(parse).filter(t => t != 'undefined').join(' | ') || 'any');
     }).filter(p => !!p).join(', ');

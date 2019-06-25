@@ -47,7 +47,7 @@ export enum DrawEventType {
     DRAWSTART = 'drawstart',
     DRAWEND = 'drawend',
 }
-export type GeometryFunction = ((param0: SketchCoordType, param1: SimpleGeometry) => SimpleGeometry);
+export type GeometryFunction = ((param0: SketchCoordType, param1?: SimpleGeometry) => SimpleGeometry);
 export type LineCoordType = Coordinate[];
 export interface Options {
     type: GeometryType;

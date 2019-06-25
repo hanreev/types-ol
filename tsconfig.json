@@ -1,9 +1,6 @@
 {
   "compilerOptions": {
-    "allowJs": true,
-    "allowSyntheticDefaultImports": true,
     "baseUrl": "./",
-    "checkJs": true,
     "forceConsistentCasingInFileNames": true,
     "lib": [
       "dom",
@@ -27,9 +24,6 @@
   },
   "include": [
     "test/**/*.ts",
-    "@types/**/*.d.ts",
-    "*.ts",
-    "jsdoc/**/*.js",
-    "*.js"
+    "@types/**/*.d.ts"
   ]
 }
