@@ -7,7 +7,7 @@ interface DeclarationConfig {
 
 interface ModuleImports {
     names: string[];
-    imported: string[];
+    imported: { [key: string]: string };
     expressions: string[];
 }
 
@@ -99,47 +99,45 @@ interface Doclet {
     setMemberof: (parent: string) => void;
 }
 
+interface TypeLiteral {
+    type: string;
+    optional?: boolean;
+}
+
 interface TypeNameExpression {
     name: string;
-    type?: 'NameExpression';
+    type: 'NameExpression';
+    optional?: boolean;
+    reservedWord?: boolean;
 }
 
-interface TypeAllLiteral {
-    type?: 'AllLiteral';
-}
-
-interface TypeNullLiteral {
-    type?: 'NullLiteral';
-}
-
-interface TypeUndefinedLiteral {
-    type?: 'UndefinedLiteral';
-}
-
-interface TypeFunctionLiteral {
-    type?: 'FunctionType';
+interface TypeFunction {
+    type: 'FunctionType';
+    params: ParsedType[];
+    this?: ParsedType;
+    result?: ParsedType;
+    optional?: boolean;
 }
 
 interface TypeApplication {
-    type?: 'TypeApplication';
+    type: 'TypeApplication';
     expression: TypeNameExpression;
-    applications: (
-        TypeNameExpression |
-        TypeAllLiteral |
-        TypeNullLiteral |
-        TypeUndefinedLiteral |
-        TypeFunctionLiteral |
-        TypeApplication
-    )[];
+    applications: ParsedType[];
+    optional?: boolean;
+}
+
+interface TypeUnion {
+    type: 'TypeUnion';
+    elements?: ParsedType[];
+    optional?: boolean;
 }
 
 type ParsedType = (
+    TypeLiteral |
     TypeApplication |
     TypeNameExpression |
-    TypeAllLiteral |
-    TypeNullLiteral |
-    TypeUndefinedLiteral |
-    TypeFunctionLiteral
+    TypeFunction |
+    TypeUnion
 );
 
 type DocletParser = (p0: Doclet, p1: Doclet) => string;

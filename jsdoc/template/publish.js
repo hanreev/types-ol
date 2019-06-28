@@ -107,7 +107,7 @@ function registerImport(_module, val) {
   /** @type {ModuleImports} */
   const _imports = MODULE_IMPORTS[_module.name] || {
     names: [],
-    imported: [],
+    imported: {},
     expressions: [],
   };
 
@@ -281,37 +281,38 @@ function sortImports(expressions, _module, maxLineLength = 120) {
   // Relative import ol modules
   expressions = relativeImport(expressions, _module);
 
-  expressions.forEach(expression => {
-    /** @type {RegExpMatchArray} */
-    const match = expression.match(/^import (?:([^{]+?),\s?)?(.+?) from ['"](.+?)['"];?$/);
-    if (!match)
-      return logger.error('sortImports -- Invalid expression:', expression);
+  expressions.filter(expression => expression.search(/= require/) == -1)
+    .forEach(expression => {
+      /** @type {RegExpMatchArray} */
+      const match = expression.match(/^import (?:([^{]+?),\s?)?(.+?) from ['"](.+?)['"];?$/);
+      if (!match)
+        return logger.error('sortImports -- Invalid expression:', expression);
 
-    let importDefault = match[1] && match[1].trim();
-    let importMembers = match[2];
-    const moduleName = match[3];
+      let importDefault = match[1] && match[1].trim();
+      let importMembers = match[2];
+      const moduleName = match[3];
 
-    if (/{.+}/.test(importMembers)) {
-      importMembers = importMembers.replace(/{\s?(.+?)\s?}/, '$1');
-    } else {
-      importDefault = importMembers;
-      importMembers = undefined;
-    }
+      if (/{.+}/.test(importMembers)) {
+        importMembers = importMembers.replace(/{\s?(.+?)\s?}/, '$1');
+      } else {
+        importDefault = importMembers;
+        importMembers = undefined;
+      }
 
-    /** @type {ImportMap} */
-    const map = {
-      default: importDefault,
-      members: importMembers ? importMembers.split(/,\s?/).sort(sortFn) : [],
-    };
+      /** @type {ImportMap} */
+      const map = {
+        default: importDefault,
+        members: importMembers ? importMembers.split(/,\s?/).sort(sortFn) : [],
+      };
 
-    if (!importMap[moduleName]) {
-      importMap[moduleName] = map;
-    } else {
-      importMap[moduleName].default = importMap[moduleName].default || map.default;
-      importMap[moduleName].members = importMap[moduleName].members.concat(map.members);
-    }
+      if (!importMap[moduleName]) {
+        importMap[moduleName] = map;
+      } else {
+        importMap[moduleName].default = importMap[moduleName].default || map.default;
+        importMap[moduleName].members = importMap[moduleName].members.concat(map.members);
+      }
 
-  });
+    });
 
   return Object.keys(importMap).sort(sortFn).map(moduleName => formatExpression(moduleName));
 }
@@ -321,7 +322,7 @@ function sortImports(expressions, _module, maxLineLength = 120) {
  * @param {Doclet} _module
  * @returns {string}
  */
-function stringifyType(parsedType, _module) {
+function stringifyType(parsedType, _module, undefinedLiteral = true) {
   let suffix = '';
   let typeStr = (/** @type {TypeApplication} */ (parsedType)).expression ?
     (/** @type {TypeApplication} */ (parsedType)).expression.name :
@@ -341,6 +342,7 @@ function stringifyType(parsedType, _module) {
       const t = stringifyType(app, _module);
       return t == 'undefined' ? 'any' : t;
     });
+
     switch (typeStr) {
       case 'Array':
         typeStr = applications[0] + '[]';
@@ -361,30 +363,44 @@ function stringifyType(parsedType, _module) {
         typeStr += `<${applications.join(', ')}>`;
         break;
     }
+  } else if (parsedType.type == 'FunctionType') {
+    const functionType = (/** @type {TypeFunction} */ (parsedType));
+    let params = [];
+    let returnType = 'void';
+
+    if (functionType.params)
+      params = functionType.params.map((param, i) => {
+        let name = `p${i}`;
+        if (param.optional) name += '?';
+        return `${name}: ${stringifyType(param, _module, false)}`
+      });
+
+    if (functionType.this)
+      params.unshift('this: ' + stringifyType(functionType.this, _module, false));
+
+    if (functionType.result && (/** @type {TypeNameExpression} */ (functionType.result)).name != 'void')
+      returnType = stringifyType(functionType.result, _module);
+
+    typeStr = `(${params.join(', ')}) => ${returnType == 'undefined' ? 'void' : returnType}`;
+  } else if (parsedType.type == 'TypeUnion') {
+    const unionType = (/** @type {TypeUnion} */ (parsedType));
+    const union = unionType.elements.map(t => stringifyType(t, _module)).filter(t => ['void', 'undefined'].indexOf(t) == -1);
+    typeStr = union.join(' | ');
+    if (union.length > 1)
+      typeStr = `(${typeStr})`;
   } else {
     typeStr += suffix;
   }
 
   if (!typeStr)
-    switch (parsedType.type) {
-      case 'FunctionType':
-        typeStr = 'Function';
-        break;
-
-      case 'NullLiteral':
-      case 'UndefinedLiteral':
-        typeStr = 'undefined';
-        break;
-
-      default:
-        typeStr = 'any';
-        break;
-    }
+    typeStr = 'any';
 
   if (typeStr == 'Array')
     typeStr = 'any[]';
   else if (typeStr == 'Object')
     typeStr = 'object';
+  else if (typeStr == 'undefined' && !undefinedLiteral)
+    typeStr = 'any';
 
   return typeStr;
 }
@@ -400,60 +416,26 @@ function parseFunctionType(type, _module) {
 
   let params = '';
   let returnType = 'void';
-  let genericTypes = [];
-
-  /** @param {string} t */
-  const parse = t => {
-    t = t.replace(/[()]/g, '');
-
-    if (t.startsWith('function'))
-      return parseFunctionType(t, _module);
-
-    try {
-      /** @type {ParsedType} */
-      let parsedType = catharsis.parse(t, { jsdoc: true });
-
-      // FIXME: Patch
-      if (_module.name == 'ol/PluggableMap' && (/** @type {TypeNameExpression} */ (parsedType)).name == 'FrameState')
-        parsedType = Object.assign({}, parsedType, { name: 'module:ol/PluggableMap~FrameState' });
-
-      let typeStr = (/** @type {TypeApplication} */ (parsedType)).expression ?
-        (/** @type {TypeApplication} */ (parsedType)).expression.name :
-        (/** @type {TypeNameExpression} */ (parsedType)).name;
-
-      if (typeStr in GENERIC_TYPES)
-        genericTypes = genericTypes.concat(GENERIC_TYPES[typeStr].split(/,\s?/));
-
-      t = stringifyType(parsedType, _module);
-    } catch (error) {
-      logger.error('parseFunctionType --', t);
-      logger.error(error);
-    }
-
-    return t;
-  };
-
-  const match = type.match(/^function\((.+?)\)(: ?(.+?))?$/);
-  if (match) {
-    params = match[1].split(/,\s?/).map((p, i) => {
-      let name = `p${i}`;
-      if (p.startsWith('this:')) {
-        name = 'this';
-        p = p.replace(/^this:\s?/, '');
-      }
-      if (p.match(/^\?.+$/) || p.endsWith('='))
-        name += '?';
-      return `${name}: ` + (p.split(/\s?\|\s?/).map(parse).filter(t => t != 'undefined').join(' | ') || 'any');
-    }).filter(p => !!p).join(', ');
-
-    if (match[3])
-      returnType = match[3].split(/\s?\|\s?/).map(parse).filter(t => t != 'undefined').join(' | ') || 'void';
-  }
-
   let expression = `(${params}) => ${returnType}`;
-  if (genericTypes.length)
-    expression = `<${Array.from(new Set(genericTypes)).join(', ')}>` + expression;
-  // Wrap arrow function in braces
+
+  /** @type {TypeFunction} */
+  let parsedType;
+  let loopCounter = 0;
+
+  do {
+    try {
+      parsedType = catharsis.parse(type, { jsdoc: true });
+    } catch (error) {
+      type = type.replace(/\)$/, '');
+    }
+    loopCounter++;
+  } while (!parsedType && loopCounter < 3);
+
+  if (parsedType)
+    expression = stringifyType(parsedType, _module);
+  else
+    logger.error('parseFunctionType --', type, _module.name);
+
   return `(${expression})`;
 }
 
@@ -482,7 +464,7 @@ function getType(doclet, _module) {
     let prefix = '';
 
     if (_module.name == 'ol/source/Raster' && type == 'RasterOperationType')
-      return '\'pixel\' | \'image\'';
+      return `'pixel' | 'image'`;
 
     if (type.startsWith('typeof:')) {
       prefix = 'typeof ';
@@ -500,8 +482,7 @@ function getType(doclet, _module) {
         parsedType = catharsis.parse(type, { jsdoc: true });
         type = stringifyType(parsedType, _module);
       } catch (error) {
-        logger.error('getType --', doclet.longname, type);
-        logger.error(error);
+        logger.error('getType --', doclet.longname || _module.longname, type);
       }
 
     return prefix + type;

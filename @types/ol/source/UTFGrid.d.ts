@@ -11,7 +11,7 @@ import { Config } from './TileJSON';
 
 export class CustomTile extends Tile {
     constructor(tileCoord: TileCoord, state: TileState, src: string, extent: Extent, preemptive: boolean, jsonp: boolean);
-    forDataAtCoordinate<T>(coordinate: Coordinate, callback: ((this: T, p1: any) => void), opt_this?: T, opt_request?: boolean): void;
+    forDataAtCoordinate<T>(coordinate: Coordinate, callback: ((this: T, p0: any) => void), opt_this?: T, opt_request?: boolean): void;
     getData(coordinate: Coordinate): any;
     getImage(): HTMLImageElement;
 }

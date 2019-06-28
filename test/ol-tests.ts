@@ -1,8 +1,11 @@
-import { Collection, Map, View } from 'ol';
+import { Collection, Map, MapBrowserEvent, PluggableMap, View } from 'ol';
+import { unByKey } from 'ol/Observable';
 import {
-  FullScreen, MousePosition, OverviewMap, ScaleLine, ZoomSlider, ZoomToExtent, defaults as defaultControls
+  Control, FullScreen, MousePosition, OverviewMap, ScaleLine, ZoomSlider, ZoomToExtent, defaults as defaultControls
 } from 'ol/control';
+import { Options as ControlOptions } from 'ol/control/Control';
 import { toStringXY } from 'ol/coordinate';
+import { EventsKey } from 'ol/events';
 import { applyTransform } from 'ol/extent';
 import { GeoJSON, MVT } from 'ol/format';
 import GeometryType from 'ol/geom/GeometryType';
@@ -15,7 +18,6 @@ import { Circle, Fill, Stroke, Style } from 'ol/style';
 import { StyleFunction } from 'ol/style/Style';
 
 import proj4 = require('proj4');
-
 /**
  * ==================================================
  * # Styles
@@ -235,8 +237,6 @@ const projSpec = {
   name: 'Batavia (Jakarta)'
 };
 
-console.log(proj4);
-
 proj4.defs(projSpec.code, projSpec.proj4);
 register(proj4);
 
@@ -247,5 +247,64 @@ proj.setExtent(extent);
 const newView = new View({
   projection: proj
 });
-map.setView(newView);
-newView.fit(extent);
+
+setTimeout(() => {
+  map.setView(newView);
+  newView.fit(extent);
+}, 5000);
+
+/**
+ * ==================================================
+ * # Custom Control
+ * ==================================================
+ */
+
+interface CustomControlOptions extends ControlOptions {
+  name?: string;
+}
+
+class CustomControl extends Control {
+  element: HTMLElement;
+  name: string;
+  mapViewport?: HTMLElement;
+  private readonly _boundListener: (e: Event) => void;
+  private readonly _eventKeys: EventsKey[];
+
+  constructor(options: CustomControlOptions = {}) {
+    options.element = document.createElement('div');
+    options.element.className = 'ol-custom-control ol-unselectable ol-control';
+    super(options);
+    this.name = options.name || this.constructor.name;
+    this._boundListener = this._listener.bind(this);
+    this._eventKeys = [];
+  }
+
+  // Override
+  setMap(map: PluggableMap) {
+    super.setMap(map);
+    unByKey(this._eventKeys);
+    this._eventKeys.splice(0);
+
+    if (this.mapViewport)
+      this.mapViewport.removeEventListener('click', this._boundListener);
+
+    this.mapViewport = map ? map.getViewport() : undefined;
+
+    if (!this.mapViewport) return;
+
+    this.mapViewport.addEventListener('click', this._boundListener);
+    const view = map.getView();
+    this._eventKeys.push(
+      view.on('change:center', evt => {
+        console.log(evt.oldValue, view.getCenter());
+      })
+    );
+  }
+
+  private _listener(evt: MouseEvent) {
+    const mapEvent = new MapBrowserEvent(evt.type, this.getMap(), evt);
+    console.log(mapEvent);
+  }
+}
+
+map.addControl(new CustomControl());

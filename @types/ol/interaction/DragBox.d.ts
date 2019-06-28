@@ -44,11 +44,11 @@ export enum DragBoxEventType {
     BOXDRAG = 'boxdrag',
     BOXEND = 'boxend',
 }
-export type EndCondition = ((this: any, p1: MapBrowserEvent, p2: Pixel, p3: Pixel) => boolean);
+export type EndCondition = ((this: any, p0: MapBrowserEvent, p1: Pixel, p2: Pixel) => boolean);
 export interface Options {
     className?: string;
     condition?: Condition;
     minArea?: number;
     boxEndCondition?: EndCondition;
-    onBoxEnd: ((this: DragBox, p1: MapBrowserEvent) => void);
+    onBoxEnd: ((this: DragBox, p0: MapBrowserEvent) => void);
 }
