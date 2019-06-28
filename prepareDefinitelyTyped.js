@@ -39,7 +39,6 @@ const header = `// Type definitions for ol ${olVersion}
 `;
 
 const srcPath = path.resolve(__dirname, '@types', 'ol');
-const testSrcPath = path.resolve(__dirname, 'test');
 const dtPath = path.resolve(__dirname, 'DefinitelyTyped');
 const destPath = path.join(dtPath, 'types', 'ol');
 
@@ -54,25 +53,16 @@ fs.mkdirpSync(destPath);
 console.log('# Copying definition files');
 fs.copySync(srcPath, destPath);
 
-// Copy test files
-console.log('# Copying test files');
-fs.copySync(testSrcPath, path.join(destPath, 'test'));
-
-// Copy test files
-console.log('# Writing ol-tests.ts file');
-const testContent = glob.sync(path.join(destPath, 'test', '*.ts')).map(testPath => {
-  const relPath = path.relative(destPath, testPath).replace(/\\/g, '/');
-  return `import './${relPath}';`;
-}).join('\n') + '\n';
-fs.writeFileSync(path.join(destPath, 'ol-tests.ts'), testContent);
-
 console.log('# Generating tsconfig.json and tslint.json');
 // Append .d.ts path to tsconfig files
-['*.d.ts', '*[!.d].ts'].forEach(ext => {
-  glob.sync(path.join(destPath, '**', ext)).forEach(dtsPath => {
-    configs.tsconfig.files.push(path.relative(destPath, dtsPath).replace(/\\/g, '/'));
-  });
+glob.sync(path.join(destPath, '**', '*.d.ts')).forEach(dtsPath => {
+  configs.tsconfig.files.push(path.relative(destPath, dtsPath).replace(/\\/g, '/'));
 });
+
+// Copy test files
+console.log('# Copying test files');
+fs.copyFileSync(path.resolve('test', 'ol-tests.ts'), path.join(destPath, 'ol-tests.ts'));
+configs.tsconfig.files.push('ol-tests.ts');
 
 // Write tsconfig.json and tslint.json
 for (const key in configs)
@@ -96,6 +86,8 @@ process.chdir(dtPath);
 fs.writeFileSync('package.json', JSON.stringify(dtPackageJson, null, 4));
 childProcess.execSync('yarn add -D dtslint', { stdio: 'inherit' });
 childProcess.execSync('yarn lint ol', { stdio: 'inherit' });
+
+console.log('# Cleanup DefinitelyTyped directory');
 fs.readdirSync(dtPath).forEach(filename => filename != 'types' && fs.removeSync(filename));
 process.chdir(__dirname);
 

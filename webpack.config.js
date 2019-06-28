@@ -12,8 +12,7 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, 'test-out'),
-    filename: '[name].js',
-    libraryTarget: 'commonjs2'
+    filename: '[name].js'
   },
   target: 'web',
   mode: 'none',
