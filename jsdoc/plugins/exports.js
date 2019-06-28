@@ -4,8 +4,10 @@ const path = require('path');
 
 const moduleRoot = path.resolve(env.conf.typescript.moduleRoot);
 
+/** @type {Object<string, ModuleExports>} */
 const MODULE_EXPORTS = {};
 
+/** @type {Object<string, string>} */
 const SOURCE_OVERRIDES = {};
 
 const shaderSource = `
@@ -38,6 +40,9 @@ shaderModules.forEach(moduleName => {
   SOURCE_OVERRIDES[filename] = `/**\n * @module ${moduleName}\n */\n${shaderSource}`;
 });
 
+/**
+ * @param {Doclet} doclet
+ */
 function remapExports(doclet) {
   const filename = path.join(doclet.meta.path, doclet.meta.filename);
 
@@ -63,14 +68,20 @@ function remapExports(doclet) {
     });
 }
 
+/**
+ * @param {Doclet|DocletParam|DocletProp|DocletReturns} doclet
+ * @param {string} [comment]
+ * @param {boolean} [isReturn]
+ */
 function extractFunctionDefinition(doclet, comment, isReturn = false) {
   if (!doclet.type)
     return;
 
-  comment = comment || doclet.comment;
+  comment = comment || (/** @type {Doclet} */ (doclet)).comment;
   comment = comment.replace(/^ *\*\/?( +)?/gm, '');
 
   const regex = isReturn ? /@return {(?:.+\|\s?)?(function.+?)}/gs : /{(?:.+\|\s?)?(function.+?)}\s+\[?(\w+)\]?/gs;
+  /** @type {RegExpMatchArray} */
   let match;
 
   doclet.type.names = doclet.type.names.map(type => {
@@ -88,7 +99,7 @@ function extractFunctionDefinition(doclet, comment, isReturn = false) {
 
 exports.handlers = {
 
-  newDoclet: e => {
+  newDoclet: (/** @type {NewDocletEvent} */ e) => {
     const doclet = e.doclet;
 
     if (doclet.kind == 'module')
@@ -108,10 +119,11 @@ exports.handlers = {
       (doclet.yields || doclet.returns).forEach(r => extractFunctionDefinition(r, doclet.comment, true));
   },
 
-  beforeParse: e => {
+  beforeParse: (/** @type {BeforeParseEvent} */ e) => {
     if (e.filename in SOURCE_OVERRIDES)
       e.source = SOURCE_OVERRIDES[e.filename];
 
+    /** @type {ModuleExports} */
     const _exports = {
       default: null,
       exports: [],
@@ -120,6 +132,7 @@ exports.handlers = {
     const exportRegex = /^export\s([^{]+?)\s(.+?)[(\s;]/gm;
     const multipleExportRegex = /^export\s{(.+?)};/gm;
     const reExportRegex = /^export\s{.+?}\sfrom.+;/gm;
+    /** @type {RegExpMatchArray} */
     let match;
 
     do {

@@ -7,7 +7,7 @@ exports.defineTags = dictionary => {
     mustHaveValue: false,
     canHaveType: false,
     canHaveName: false,
-    onTagged: doclet => {
+    onTagged: (/** @type {Doclet} */ doclet) => {
       includeTypes(doclet);
       doclet.stability = 'stable';
     }
@@ -20,11 +20,16 @@ exports.defineTags = dictionary => {
  * from the documentation.
  */
 
+/** @type {Array<Doclet>} */
 const api = [];
+/** @type {Object<string, Doclet>} */
 const classes = {};
+/** @type {Object<string, boolean>} */
 const types = {};
+/** @type {Object<string, boolean>} */
 const modules = {};
 
+/** @type {Object<string, Array<string>>} */
 const force_include_members = {
   'module:ol/css': [],
   'module:ol/format/GMLBase': ['GMLNS'],
@@ -33,6 +38,8 @@ const force_include_members = {
   'module:ol/interaction/DragBox': ['DragBoxEvent', 'DragBoxEventType'],
   'module:ol/interaction/Draw': ['DrawEvent', 'DrawEventType'],
   'module:ol/interaction/Select': ['SelectEvent', 'SelectEventType'],
+  'module:ol/proj/epsg3857': [],
+  'module:ol/proj/epsg4326': [],
   'module:ol/render/replay': [],
   'module:ol/reproj/common': [],
   'module:ol/source/common': [],
@@ -43,9 +50,13 @@ const force_include_members = {
   'module:ol/util': ['VERSION'],
 };
 
+/**
+ * @param {Doclet} doclet
+ */
 function includeAugments(doclet) {
   const augments = doclet.augments;
   if (augments) {
+    /** @type {Doclet} */
     let cls;
     for (let i = augments.length - 1; i >= 0; --i) {
       cls = classes[augments[i]];
@@ -74,6 +85,9 @@ function includeAugments(doclet) {
   }
 }
 
+/**
+ * @param {Doclet} item
+ */
 function extractTypes(item) {
   item.type.names.forEach(type => {
     const match = type.match(/^(.*<)?([^>]*)>?$/);
@@ -84,6 +98,9 @@ function extractTypes(item) {
   });
 }
 
+/**
+ * @param {Doclet} doclet
+ */
 function includeTypes(doclet) {
   if (doclet.params)
     doclet.params.forEach(extractTypes);
@@ -100,7 +117,7 @@ function includeTypes(doclet) {
 
 exports.handlers = {
 
-  newDoclet: e => {
+  newDoclet: (/** @type {NewDocletEvent} */ e) => {
     const doclet = e.doclet;
     if (doclet.stability) {
       modules[doclet.longname.split(/[~.]/).shift()] = true;
@@ -119,7 +136,7 @@ exports.handlers = {
       doclet.setMemberof(doclet.longname);
   },
 
-  parseComplete: e => {
+  parseComplete: (/** @type {ParseCompleteEvent} */ e) => {
     const doclets = e.doclets;
     for (let i = doclets.length - 1; i >= 0; --i) {
       const doclet = doclets[i];
