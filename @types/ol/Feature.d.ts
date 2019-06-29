@@ -3,7 +3,7 @@ import Event from './events/Event';
 import Geometry from './geom/Geometry';
 import BaseObject, { ObjectEvent } from './Object';
 import RenderFeature from './render/Feature';
-import Style, { StyleLike, StyleFunction } from './style/Style';
+import Style, { StyleFunction, StyleLike } from './style/Style';
 
 export type FeatureClass = Feature | RenderFeature;
 export type FeatureLike = Feature | RenderFeature;

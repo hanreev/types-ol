@@ -302,7 +302,7 @@ function sortImports(expressions, _module, maxLineLength = 120) {
       /** @type {ImportMap} */
       const map = {
         default: importDefault,
-        members: importMembers ? importMembers.split(/,\s?/).sort(sortFn) : [],
+        members: importMembers ? importMembers.split(/,\s?/) : [],
       };
 
       if (!importMap[moduleName]) {
@@ -312,6 +312,7 @@ function sortImports(expressions, _module, maxLineLength = 120) {
         importMap[moduleName].members = importMap[moduleName].members.concat(map.members);
       }
 
+      importMap[moduleName].members = importMap[moduleName].members.sort(sortFn);
     });
 
   return Object.keys(importMap).sort(sortFn).map(moduleName => formatExpression(moduleName));

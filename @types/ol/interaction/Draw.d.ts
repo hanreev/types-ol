@@ -9,7 +9,7 @@ import SimpleGeometry from '../geom/SimpleGeometry';
 import VectorLayer from '../layer/Vector';
 import { ObjectEvent } from '../Object';
 import VectorSource from '../source/Vector';
-import { StyleLike, StyleFunction } from '../style/Style';
+import { StyleFunction, StyleLike } from '../style/Style';
 import PointerInteraction from './Pointer';
 
 export type GeometryFunction = ((p0: SketchCoordType, p1?: SimpleGeometry) => SimpleGeometry);

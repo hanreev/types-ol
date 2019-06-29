@@ -1,6 +1,6 @@
 import {
-    GeometryObject,
     GeometryCollection,
+    GeometryObject,
     LineString,
     MultiLineString,
     MultiPoint,

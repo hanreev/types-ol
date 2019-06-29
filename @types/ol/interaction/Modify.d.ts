@@ -10,7 +10,7 @@ import VectorLayer from '../layer/Vector';
 import MapBrowserEvent from '../MapBrowserEvent';
 import { ObjectEvent } from '../Object';
 import VectorSource from '../source/Vector';
-import { StyleLike, StyleFunction } from '../style/Style';
+import { StyleFunction, StyleLike } from '../style/Style';
 import PointerInteraction from './Pointer';
 
 export interface Options {

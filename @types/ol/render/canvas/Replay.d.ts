@@ -4,7 +4,7 @@ import Feature from '../../Feature';
 import Geometry from '../../geom/Geometry';
 import SimpleGeometry from '../../geom/SimpleGeometry';
 import { Transform } from '../../transform';
-import { FillStrokeState, DeclutterGroup } from '../canvas';
+import { DeclutterGroup, FillStrokeState } from '../canvas';
 import RenderFeature from '../Feature';
 import VectorContext from '../VectorContext';
 

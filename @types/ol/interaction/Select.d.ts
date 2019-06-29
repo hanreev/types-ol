@@ -7,7 +7,7 @@ import Layer from '../layer/Layer';
 import VectorLayer from '../layer/Vector';
 import MapBrowserEvent from '../MapBrowserEvent';
 import { ObjectEvent } from '../Object';
-import { StyleLike, StyleFunction } from '../style/Style';
+import { StyleFunction, StyleLike } from '../style/Style';
 import Interaction from './Interaction';
 
 export type FilterFunction = ((p0: FeatureLike, p1: Layer) => boolean);

@@ -1,4 +1,4 @@
-import { TRUE, FALSE } from '../functions';
+import { FALSE, TRUE } from '../functions';
 import MapBrowserEvent from '../MapBrowserEvent';
 
 export type Condition = ((this: any, p0: MapBrowserEvent) => boolean);
