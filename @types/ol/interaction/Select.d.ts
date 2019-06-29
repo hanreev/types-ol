@@ -7,7 +7,7 @@ import Layer from '../layer/Layer';
 import VectorLayer from '../layer/Vector';
 import MapBrowserEvent from '../MapBrowserEvent';
 import { ObjectEvent } from '../Object';
-import { StyleFunction, StyleLike } from '../style/Style';
+import { StyleLike, StyleFunction } from '../style/Style';
 import Interaction from './Interaction';
 
 export type FilterFunction = ((p0: FeatureLike, p1: Layer) => boolean);
@@ -23,6 +23,9 @@ export interface Options {
     filter?: FilterFunction;
     wrapX?: boolean;
     hitTolerance?: number;
+}
+export enum SelectEventType {
+    SELECT = 'select',
 }
 export default class Select extends Interaction {
     constructor(opt_options?: Options);
@@ -52,7 +55,4 @@ export class SelectEvent extends Event {
     deselected: Feature[];
     mapBrowserEvent: MapBrowserEvent;
     selected: Feature[];
-}
-export enum SelectEventType {
-    SELECT = 'select',
 }

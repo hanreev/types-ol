@@ -22,9 +22,6 @@ import { ProjectionLike } from '../proj';
 import { ReadOptions, WriteOptions } from './Feature';
 import JSONFeature from './JSONFeature';
 
-export default class GeoJSON extends JSONFeature {
-    constructor(opt_options?: Options);
-}
 export type GeoJSONFeature = Feature;
 export type GeoJSONFeatureCollection = FeatureCollection;
 export type GeoJSONGeometry = Geometry;
@@ -41,4 +38,7 @@ export interface Options {
     featureProjection?: ProjectionLike;
     geometryName?: string;
     extractGeometryName?: boolean;
+}
+export default class GeoJSON extends JSONFeature {
+    constructor(opt_options?: Options);
 }

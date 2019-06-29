@@ -12,10 +12,6 @@ import TileRange from '../TileRange';
 import Source, { AttributionLike } from './Source';
 import State from './State';
 
-export class TileSourceEvent extends Event {
-    constructor();
-    tile: Tile;
-}
 export interface Options {
     attributions?: AttributionLike;
     attributionsCollapsible?: boolean;
@@ -59,4 +55,8 @@ export default class TileSource extends Source {
     on(type: 'propertychange', listener: (evt: ObjectEvent) => void): EventsKey;
     once(type: 'propertychange', listener: (evt: ObjectEvent) => void): EventsKey;
     un(type: 'propertychange', listener: (evt: ObjectEvent) => void): void;
+}
+export class TileSourceEvent extends Event {
+    constructor();
+    tile: Tile;
 }

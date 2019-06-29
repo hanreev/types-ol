@@ -8,7 +8,6 @@ import PluggableMap, { FrameState } from '../PluggableMap';
 import EventType from '../render/EventType';
 import LayerRenderer from './Layer';
 
-export function sortByZIndex(state1: State, state2: State): number;
 export default class MapRenderer extends Disposable {
     constructor(map: PluggableMap);
     protected calculateMatrices2D(frameState: FrameState): void;
@@ -26,3 +25,4 @@ export default class MapRenderer extends Disposable {
     removeLayerRenderers(): void;
     renderFrame(frameState: FrameState): void;
 }
+export function sortByZIndex(state1: State, state2: State): number;

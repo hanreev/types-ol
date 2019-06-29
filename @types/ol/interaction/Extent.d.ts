@@ -3,9 +3,16 @@ import { EventsKey } from '../events';
 import Event from '../events/Event';
 import { Extent } from '../extent';
 import { ObjectEvent } from '../Object';
-import { StyleFunction, StyleLike } from '../style/Style';
+import { StyleLike, StyleFunction } from '../style/Style';
 import PointerInteraction from './Pointer';
 
+export interface Options {
+    extent?: Extent;
+    boxStyle?: StyleLike;
+    pixelTolerance?: number;
+    pointerStyle?: StyleLike;
+    wrapX?: boolean;
+}
 export default class ExtentInteraction extends PointerInteraction {
     constructor(opt_options?: Options);
     getExtent(): Extent;
@@ -22,11 +29,4 @@ export default class ExtentInteraction extends PointerInteraction {
     on(type: 'propertychange', listener: (evt: ObjectEvent) => void): EventsKey;
     once(type: 'propertychange', listener: (evt: ObjectEvent) => void): EventsKey;
     un(type: 'propertychange', listener: (evt: ObjectEvent) => void): void;
-}
-export interface Options {
-    extent?: Extent;
-    boxStyle?: StyleLike;
-    pixelTolerance?: number;
-    pointerStyle?: StyleLike;
-    wrapX?: boolean;
 }

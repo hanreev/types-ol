@@ -1,3 +1,8 @@
+export interface NodeStackItem {
+    node: Node;
+}
+export type Parser = ((p0: Element, p1: any[]) => void);
+export type Serializer = ((p0: Element, p1: any, p2: any[]) => void);
 export function createElementNS(namespaceURI: string, qualifiedName: string): Element;
 export function getAllTextContent(node: Node, normalizeWhitespace: boolean): string;
 export function getAttributeNS(node: Element, namespaceURI: string, name: string): string;
@@ -17,8 +22,3 @@ export function parseNode(parsersNS: { [key: string]: { [key: string]: Parser } 
 export function pushParseAndPop<T>(object: T, parsersNS: { [key: string]: { [key: string]: Parser } }, node: Element, objectStack: any[], opt_this?: any): T;
 export function pushSerializeAndPop<O, T>(object: O, serializersNS: { [key: string]: { [key: string]: Serializer } }, nodeFactory: ((this: T, p0: any, p1: any[], p2: string) => Node), values: any[], objectStack: any[], opt_keys?: string[], opt_this?: T): O;
 export function serialize<T>(serializersNS: { [key: string]: { [key: string]: Serializer } }, nodeFactory: ((this: T, p0: any, p1: any[], p2: string) => Node), values: any[], objectStack: any[], opt_keys?: string[], opt_this?: T): void;
-export interface NodeStackItem {
-    node: Node;
-}
-export type Parser = ((p0: Element, p1: any[]) => void);
-export type Serializer = ((p0: Element, p1: any, p2: any[]) => void);

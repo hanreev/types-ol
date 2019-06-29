@@ -4,6 +4,7 @@ import Relationship from './extent/Relationship';
 import { TransformFunction } from './proj';
 import { Size } from './size';
 
+export type Extent = number[];
 export function applyTransform(extent: Extent, transformFn: TransformFunction, opt_extent?: Extent): Extent;
 export function boundingExtent(coordinates: Coordinate[]): Extent;
 export function buffer(extent: Extent, value: number, opt_extent?: Extent): Extent;
@@ -48,4 +49,3 @@ export function intersectsSegment(extent: Extent, start: Coordinate, end: Coordi
 export function isEmpty(extent: Extent): boolean;
 export function returnOrUpdate(extent: Extent, opt_extent?: Extent): Extent;
 export function scaleFromCenter(extent: Extent, value: number): void;
-export type Extent = number[];

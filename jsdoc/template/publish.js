@@ -815,6 +815,15 @@ function processModule(doclet) {
   find({
     kind: ['class', 'member', 'function', 'typedef', 'enum', 'constant'],
     memberof: doclet.longname
+  }).sort((a, b) => {
+    if (a.kind != b.kind)
+      for (const kind of ['typedef', 'enum', 'constant', 'class', 'function'])
+        if (a.kind == kind)
+          return -1;
+        else if (b.kind == kind)
+          return 1;
+
+    return a.name < b.name ? -1 : a.name > b.name ? 1 : 0;
   }).forEach(item => {
     const processorName = item.isEnum ? 'enum' : item.kind == 'member' ? 'constant' : item.kind;
     let child = PROCESSORS[processorName](item, doclet);

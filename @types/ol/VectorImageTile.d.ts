@@ -10,7 +10,6 @@ import TileGrid from './tilegrid/TileGrid';
 import TileState from './TileState';
 import VectorTile from './VectorTile';
 
-export function defaultLoadFunction(tile: VectorTile, url: string): void;
 export interface ReplayState {
     dirty: boolean;
     renderedRenderOrder: OrderFunction;
@@ -24,3 +23,4 @@ export default class VectorImageTile extends Tile {
     getReplayState(layer: Layer): ReplayState;
     getTile(tileKey: string): VectorTile;
 }
+export function defaultLoadFunction(tile: VectorTile, url: string): void;

@@ -3,9 +3,10 @@ import Event from './events/Event';
 import Geometry from './geom/Geometry';
 import BaseObject, { ObjectEvent } from './Object';
 import RenderFeature from './render/Feature';
-import Style, { StyleFunction, StyleLike } from './style/Style';
+import Style, { StyleLike, StyleFunction } from './style/Style';
 
-export function createStyleFunction(obj: StyleFunction | Style[] | Style): StyleFunction;
+export type FeatureClass = Feature | RenderFeature;
+export type FeatureLike = Feature | RenderFeature;
 export default class Feature extends BaseObject {
     constructor(opt_geometryOrProperties?: Geometry | { [key: string]: any });
     clone(): Feature;
@@ -31,5 +32,4 @@ export default class Feature extends BaseObject {
     once(type: 'propertychange', listener: (evt: ObjectEvent) => void): EventsKey;
     un(type: 'propertychange', listener: (evt: ObjectEvent) => void): void;
 }
-export type FeatureClass = Feature | RenderFeature;
-export type FeatureLike = Feature | RenderFeature;
+export function createStyleFunction(obj: StyleFunction | Style[] | Style): StyleFunction;

@@ -68,6 +68,7 @@ export interface MapOptionsInternal {
     overlays: Collection<Overlay>;
     values: { [key: string]: any };
 }
+export type PostRenderFunction = ((p0: PluggableMap, p1: FrameState) => boolean);
 export default class PluggableMap extends BaseObject {
     constructor(options: MapOptions);
     protected controls: Collection<Control>;
@@ -172,4 +173,3 @@ export default class PluggableMap extends BaseObject {
     once(type: 'singleclick', listener: (evt: MapBrowserEvent) => void): EventsKey;
     un(type: 'singleclick', listener: (evt: MapBrowserEvent) => void): void;
 }
-export type PostRenderFunction = ((p0: PluggableMap, p1: FrameState) => boolean);

@@ -8,6 +8,19 @@ import Projection from '../proj/Projection';
 import { Size } from '../size';
 import ImageSource, { ImageSourceEvent } from './Image';
 
+export interface Options {
+    url?: string;
+    crossOrigin?: string;
+    displayDpi?: number;
+    metersPerUnit?: number;
+    hidpi?: boolean;
+    useOverlay?: boolean;
+    projection?: ProjectionLike;
+    ratio?: number;
+    resolutions?: number[];
+    imageLoadFunction?: LoadFunction;
+    params?: any;
+}
 export default class ImageMapGuide extends ImageSource {
     constructor(options: Options);
     getImageLoadFunction(): LoadFunction;
@@ -33,17 +46,4 @@ export default class ImageMapGuide extends ImageSource {
     on(type: 'propertychange', listener: (evt: ObjectEvent) => void): EventsKey;
     once(type: 'propertychange', listener: (evt: ObjectEvent) => void): EventsKey;
     un(type: 'propertychange', listener: (evt: ObjectEvent) => void): void;
-}
-export interface Options {
-    url?: string;
-    crossOrigin?: string;
-    displayDpi?: number;
-    metersPerUnit?: number;
-    hidpi?: boolean;
-    useOverlay?: boolean;
-    projection?: ProjectionLike;
-    ratio?: number;
-    resolutions?: number[];
-    imageLoadFunction?: LoadFunction;
-    params?: any;
 }
