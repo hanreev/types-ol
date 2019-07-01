@@ -14,62 +14,61 @@ const tileSizeMtrs = getWidth(projection.getExtent()) / tileSizePixels;
 const matrixIds: string[] = [];
 const resolutions = [];
 for (let i = 0; i <= 14; i++) {
-  matrixIds[i] = i.toString();
-  resolutions[i] = tileSizeMtrs / Math.pow(2, i);
+    matrixIds[i] = i.toString();
+    resolutions[i] = tileSizeMtrs / Math.pow(2, i);
 }
 const tileGrid = new WMTSTileGrid({
-  origin: getTopLeft(projection.getExtent()),
-  resolutions,
-  matrixIds
+    origin: getTopLeft(projection.getExtent()),
+    resolutions,
+    matrixIds,
 });
 
 const scalgoToken = 'CC5BF28A7D96B320C7DFBFD1236B5BEB';
 
 const wmtsSource = new WMTS({
-  url: 'http://ts2.scalgo.com/olpatch/wmts?token=' + scalgoToken,
-  layer: 'SRTM_4_1:SRTM_4_1_flooded_sealevels',
-  format: 'image/png',
-  matrixSet: 'EPSG:3857',
-  attributions: [
-    '<a href="http://scalgo.com">SCALGO</a>',
-    '<a href="http://www.cgiar-csi.org/data/' +
-    'srtm-90m-digital-elevation-database-v4-1">CGIAR-CSI SRTM</a>'
-  ],
-  tileGrid,
-  style: 'default',
-  dimensions: {
-    threshold: 100
-  }
+    url: 'http://ts2.scalgo.com/olpatch/wmts?token=' + scalgoToken,
+    layer: 'SRTM_4_1:SRTM_4_1_flooded_sealevels',
+    format: 'image/png',
+    matrixSet: 'EPSG:3857',
+    attributions: [
+        '<a href="http://scalgo.com">SCALGO</a>',
+        '<a href="http://www.cgiar-csi.org/data/' + 'srtm-90m-digital-elevation-database-v4-1">CGIAR-CSI SRTM</a>',
+    ],
+    tileGrid,
+    style: 'default',
+    dimensions: {
+        threshold: 100,
+    },
 });
 
 const map = new Map({
-  target: 'map',
-  view: new View({
-    projection,
-    center: [-9871995, 3566245],
-    zoom: 6
-  }),
-  layers: [
-    new TileLayer({
-      source: new OSM()
+    target: 'map',
+    view: new View({
+        projection,
+        center: [-9871995, 3566245],
+        zoom: 6,
     }),
-    new TileLayer({
-      opacity: 0.5,
-      source: wmtsSource
-    })
-  ]
+    layers: [
+        new TileLayer({
+            source: new OSM(),
+        }),
+        new TileLayer({
+            opacity: 0.5,
+            source: wmtsSource,
+        }),
+    ],
 });
 
 const updateSourceDimension = (source: WMTS, sliderVal: string | number) => {
-  source.updateDimensions({ threshold: sliderVal });
-  const theinfoEl = document.getElementById('theinfo');
-  if (theinfoEl)
-    theinfoEl.innerHTML = sliderVal + ' meters';
+    source.updateDimensions({ threshold: sliderVal });
+    const theinfoEl = document.getElementById('theinfo');
+    if (theinfoEl) theinfoEl.innerHTML = sliderVal + ' meters';
 };
 
 updateSourceDimension(wmtsSource, 10);
 
 const sliderEl = document.getElementById('slider');
-sliderEl && sliderEl.addEventListener('input', function() {
-  updateSourceDimension(wmtsSource, (this as HTMLInputElement).value);
-});
+sliderEl &&
+    sliderEl.addEventListener('input', function() {
+        updateSourceDimension(wmtsSource, (this as HTMLInputElement).value);
+    });

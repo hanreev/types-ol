@@ -15,24 +15,28 @@ const layer = hiDPI ? 'bmaphidpi' : 'geolandbasemap';
 const tilePixelRatio = hiDPI ? 2 : 1;
 
 const map = new Map({
-  target: 'map',
-  view: new View({
-    center: [1823849, 6143760],
-    zoom: 11
-  })
+    target: 'map',
+    view: new View({
+        center: [1823849, 6143760],
+        zoom: 11,
+    }),
 });
 
-fetch(capabilitiesUrl).then((response) => {
-  return response.text();
-}).then((text) => {
-  const result = new WMTSCapabilities().read(text);
-  const options = optionsFromCapabilities(result, {
-    layer,
-    matrixSet: 'google3857',
-    style: 'normal'
-  });
-  options.tilePixelRatio = tilePixelRatio;
-  map.addLayer(new TileLayer({
-    source: new WMTS((options))
-  }));
-});
+fetch(capabilitiesUrl)
+    .then(response => {
+        return response.text();
+    })
+    .then(text => {
+        const result = new WMTSCapabilities().read(text);
+        const options = optionsFromCapabilities(result, {
+            layer,
+            matrixSet: 'google3857',
+            style: 'normal',
+        });
+        options.tilePixelRatio = tilePixelRatio;
+        map.addLayer(
+            new TileLayer({
+                source: new WMTS(options),
+            })
+        );
+    });

@@ -8,13 +8,13 @@ const vectorContext = toContext(canvas.getContext('2d') as CanvasRenderingContex
 const fill = new Fill({ color: 'blue' });
 const stroke = new Stroke({ color: 'black' });
 const style = new Style({
-  fill,
-  stroke,
-  image: new CircleStyle({
-    radius: 10,
     fill,
-    stroke
-  })
+    stroke,
+    image: new CircleStyle({
+        radius: 10,
+        fill,
+        stroke,
+    }),
 });
 vectorContext.setStyle(style);
 

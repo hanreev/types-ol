@@ -11,41 +11,43 @@ import VectorSource from 'ol/source/Vector';
 declare var jsts: any;
 
 const source = new VectorSource();
-fetch('data/geojson/roads-seoul.geojson').then(response => {
-  return response.json();
-}).then((json: any) => {
-  const format = new GeoJSON();
-  const features = format.readFeatures(json, { featureProjection: 'EPSG:3857' });
+fetch('data/geojson/roads-seoul.geojson')
+    .then(response => {
+        return response.json();
+    })
+    .then((json: any) => {
+        const format = new GeoJSON();
+        const features = format.readFeatures(json, { featureProjection: 'EPSG:3857' });
 
-  const parser = new jsts.io.OL3Parser();
-  parser.inject(Point, LineString, LinearRing, Polygon, MultiPoint, MultiLineString, MultiPolygon);
+        const parser = new jsts.io.OL3Parser();
+        parser.inject(Point, LineString, LinearRing, Polygon, MultiPoint, MultiLineString, MultiPolygon);
 
-  for (const feature of features) {
-    // convert the OpenLayers geometry to a JSTS geometry
-    const jstsGeom = parser.read(feature.getGeometry());
+        for (const feature of features) {
+            // convert the OpenLayers geometry to a JSTS geometry
+            const jstsGeom = parser.read(feature.getGeometry());
 
-    // create a buffer of 40 meters around each line
-    const buffered = jstsGeom.buffer(40);
+            // create a buffer of 40 meters around each line
+            const buffered = jstsGeom.buffer(40);
 
-    // convert back from JSTS and replace the geometry on the feature
-    feature.setGeometry(parser.write(buffered));
-  }
+            // convert back from JSTS and replace the geometry on the feature
+            feature.setGeometry(parser.write(buffered));
+        }
 
-  source.addFeatures(features);
-});
+        source.addFeatures(features);
+    });
 const vectorLayer = new VectorLayer({
-  source
+    source,
 });
 
 const rasterLayer = new TileLayer({
-  source: new OSM()
+    source: new OSM(),
 });
 
 const map = new Map({
-  layers: [rasterLayer, vectorLayer],
-  target: document.getElementById('map') as HTMLElement,
-  view: new View({
-    center: fromLonLat([126.979293, 37.528787]),
-    zoom: 15
-  })
+    layers: [rasterLayer, vectorLayer],
+    target: document.getElementById('map') as HTMLElement,
+    view: new View({
+        center: fromLonLat([126.979293, 37.528787]),
+        zoom: 15,
+    }),
 });

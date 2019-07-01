@@ -6,20 +6,20 @@ import View from 'ol/View';
 
 const osmSource = new OSM();
 const map = new Map({
-  layers: [
-    new TileLayer({
-      source: osmSource
+    layers: [
+        new TileLayer({
+            source: osmSource,
+        }),
+        new TileLayer({
+            source: new TileDebug({
+                projection: 'EPSG:3857',
+                tileGrid: osmSource.getTileGrid(),
+            }),
+        }),
+    ],
+    target: 'map',
+    view: new View({
+        center: fromLonLat([-0.1275, 51.507222]),
+        zoom: 10,
     }),
-    new TileLayer({
-      source: new TileDebug({
-        projection: 'EPSG:3857',
-        tileGrid: osmSource.getTileGrid()
-      })
-    })
-  ],
-  target: 'map',
-  view: new View({
-    center: fromLonLat([-0.1275, 51.507222]),
-    zoom: 10
-  })
 });

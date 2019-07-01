@@ -5,17 +5,15 @@ import TileLayer from 'ol/layer/Tile';
 import OSM from 'ol/source/OSM';
 
 const map = new Map({
-  controls: defaultControls().extend([
-    new OverviewMap()
-  ]),
-  layers: [
-    new TileLayer({
-      source: new OSM()
-    })
-  ],
-  target: 'map',
-  view: new View({
-    center: [500000, 6000000],
-    zoom: 7
-  })
+    controls: defaultControls().extend([new OverviewMap()]),
+    layers: [
+        new TileLayer({
+            source: new OSM(),
+        }),
+    ],
+    target: 'map',
+    view: new View({
+        center: [500000, 6000000],
+        zoom: 7,
+    }),
 });

@@ -12,62 +12,62 @@ const count = 20000;
 const features = new Array(count);
 const e = 4500000;
 for (let i = 0; i < count; ++i) {
-  const coordinates = [2 * e * Math.random() - e, 2 * e * Math.random() - e];
-  features[i] = new Feature(new Point(coordinates));
+    const coordinates = [2 * e * Math.random() - e, 2 * e * Math.random() - e];
+    features[i] = new Feature(new Point(coordinates));
 }
 
 const source = new VectorSource({
-  features
+    features,
 });
 
 const clusterSource = new Cluster({
-  distance: parseInt(distance.value, 10),
-  source
+    distance: parseInt(distance.value, 10),
+    source,
 });
 
 const styleCache: { [key: number]: Style } = {};
 const clusters = new VectorLayer({
-  source: clusterSource,
-  style: (feature) => {
-    const size = feature.get('features').length as number;
-    let style = styleCache[size];
-    if (!style) {
-      style = new Style({
-        image: new CircleStyle({
-          radius: 10,
-          stroke: new Stroke({
-            color: '#fff'
-          }),
-          fill: new Fill({
-            color: '#3399CC'
-          })
-        }),
-        text: new Text({
-          text: size.toString(),
-          fill: new Fill({
-            color: '#fff'
-          })
-        })
-      });
-      styleCache[size] = style;
-    }
-    return style;
-  }
+    source: clusterSource,
+    style: feature => {
+        const size = feature.get('features').length as number;
+        let style = styleCache[size];
+        if (!style) {
+            style = new Style({
+                image: new CircleStyle({
+                    radius: 10,
+                    stroke: new Stroke({
+                        color: '#fff',
+                    }),
+                    fill: new Fill({
+                        color: '#3399CC',
+                    }),
+                }),
+                text: new Text({
+                    text: size.toString(),
+                    fill: new Fill({
+                        color: '#fff',
+                    }),
+                }),
+            });
+            styleCache[size] = style;
+        }
+        return style;
+    },
 });
 
 const raster = new TileLayer({
-  source: new OSM()
+    source: new OSM(),
 });
 
 const map = new Map({
-  layers: [raster, clusters],
-  target: 'map',
-  view: new View({
-    center: [0, 0],
-    zoom: 2
-  })
+    layers: [raster, clusters],
+    target: 'map',
+    view: new View({
+        center: [0, 0],
+        zoom: 2,
+    }),
 });
 
 distance.addEventListener('input', () => {
-  clusterSource.setDistance(parseInt(distance.value, 10));
+    clusterSource.setDistance(parseInt(distance.value, 10));
 });

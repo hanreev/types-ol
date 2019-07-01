@@ -23,7 +23,9 @@ childProcess.execSync('yarn lint', { stdio: 'inherit' });
 
 // Test
 console.log('# Testing definitions');
-childProcess.execSync('yarn lint-test && yarn test', { stdio: 'inherit' });
+childProcess.execSync('yarn format-test', { stdio: 'inherit' });
+childProcess.execSync('yarn lint-test', { stdio: 'inherit' });
+childProcess.execSync('yarn test', { stdio: 'inherit' });
 
 // Copy
 console.log('# Emitting definitions to output directory');

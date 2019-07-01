@@ -10,27 +10,27 @@ import Static from 'ol/source/ImageStatic';
 // the image extent in pixels.
 const extent = [0, 0, 1024, 968];
 const projection = new Projection({
-  code: 'xkcd-image',
-  units: 'pixels',
-  extent
+    code: 'xkcd-image',
+    units: 'pixels',
+    extent,
 });
 
 const map = new Map({
-  layers: [
-    new ImageLayer({
-      source: new Static({
-        attributions: '© <a href="http://xkcd.com/license.html">xkcd</a>',
-        url: 'https://imgs.xkcd.com/comics/online_communities.png',
+    layers: [
+        new ImageLayer({
+            source: new Static({
+                attributions: '© <a href="http://xkcd.com/license.html">xkcd</a>',
+                url: 'https://imgs.xkcd.com/comics/online_communities.png',
+                projection,
+                imageExtent: extent,
+            }),
+        }),
+    ],
+    target: 'map',
+    view: new View({
         projection,
-        imageExtent: extent
-      })
-    })
-  ],
-  target: 'map',
-  view: new View({
-    projection,
-    center: getCenter(extent),
-    zoom: 2,
-    maxZoom: 8
-  })
+        center: getCenter(extent),
+        zoom: 2,
+        maxZoom: 8,
+    }),
 });

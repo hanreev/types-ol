@@ -7,36 +7,36 @@ import TileLayer from 'ol/layer/Tile';
 import OSM from 'ol/source/OSM';
 
 const mousePositionControl = new MousePosition({
-  coordinateFormat: createStringXY(4),
-  projection: 'EPSG:4326',
-  // comment the following two lines to have the mouse position
-  // be placed within the map.
-  className: 'custom-mouse-position',
-  target: document.getElementById('mouse-position') as HTMLElement,
-  undefinedHTML: '&nbsp;'
+    coordinateFormat: createStringXY(4),
+    projection: 'EPSG:4326',
+    // comment the following two lines to have the mouse position
+    // be placed within the map.
+    className: 'custom-mouse-position',
+    target: document.getElementById('mouse-position') as HTMLElement,
+    undefinedHTML: '&nbsp;',
 });
 
 const map = new Map({
-  controls: defaultControls().extend([mousePositionControl]),
-  layers: [
-    new TileLayer({
-      source: new OSM()
-    })
-  ],
-  target: 'map',
-  view: new View({
-    center: [0, 0],
-    zoom: 2
-  })
+    controls: defaultControls().extend([mousePositionControl]),
+    layers: [
+        new TileLayer({
+            source: new OSM(),
+        }),
+    ],
+    target: 'map',
+    view: new View({
+        center: [0, 0],
+        zoom: 2,
+    }),
 });
 
 const projectionSelect = document.getElementById('projection') as HTMLSelectElement;
-projectionSelect.addEventListener('change', (event) => {
-  mousePositionControl.setProjection((event.target as HTMLSelectElement).value);
+projectionSelect.addEventListener('change', event => {
+    mousePositionControl.setProjection((event.target as HTMLSelectElement).value);
 });
 
 const precisionInput = document.getElementById('precision') as HTMLInputElement;
-precisionInput.addEventListener('change', (event) => {
-  const format = createStringXY((event.target as HTMLInputElement).valueAsNumber);
-  mousePositionControl.setCoordinateFormat(format);
+precisionInput.addEventListener('change', event => {
+    const format = createStringXY((event.target as HTMLInputElement).valueAsNumber);
+    mousePositionControl.setCoordinateFormat(format);
 });

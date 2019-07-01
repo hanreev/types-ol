@@ -8,18 +8,18 @@ const source = new OSM();
 const layer = new TileLayer();
 
 const map = new Map({
-  layers: [layer],
-  target: 'map',
-  view: new View({
-    center: [0, 0],
-    zoom: 2
-  })
+    layers: [layer],
+    target: 'map',
+    view: new View({
+        center: [0, 0],
+        zoom: 2,
+    }),
 });
 
 (document.getElementById('set-source') as HTMLElement).onclick = () => {
-  layer.setSource(source);
+    layer.setSource(source);
 };
 
 (document.getElementById('unset-source') as HTMLElement).onclick = () => {
-  layer.setSource(null as any);
+    layer.setSource(null as any);
 };

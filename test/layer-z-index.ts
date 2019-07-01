@@ -11,51 +11,51 @@ import { StyleLike } from 'ol/style/Style';
 const stroke = new Stroke({ color: 'black', width: 1 });
 
 const styles = {
-  square: new Style({
-    image: new RegularShape({
-      fill: new Fill({ color: 'blue' }),
-      stroke,
-      points: 4,
-      radius: 80,
-      angle: Math.PI / 4
-    })
-  }),
-  triangle: new Style({
-    image: new RegularShape({
-      fill: new Fill({ color: 'red' }),
-      stroke,
-      points: 3,
-      radius: 80,
-      rotation: Math.PI / 4,
-      angle: 0
-    })
-  }),
-  star: new Style({
-    image: new RegularShape({
-      fill: new Fill({ color: 'green' }),
-      stroke,
-      points: 5,
-      radius: 80,
-      radius2: 4,
-      angle: 0
-    })
-  })
+    square: new Style({
+        image: new RegularShape({
+            fill: new Fill({ color: 'blue' }),
+            stroke,
+            points: 4,
+            radius: 80,
+            angle: Math.PI / 4,
+        }),
+    }),
+    triangle: new Style({
+        image: new RegularShape({
+            fill: new Fill({ color: 'red' }),
+            stroke,
+            points: 3,
+            radius: 80,
+            rotation: Math.PI / 4,
+            angle: 0,
+        }),
+    }),
+    star: new Style({
+        image: new RegularShape({
+            fill: new Fill({ color: 'green' }),
+            stroke,
+            points: 5,
+            radius: 80,
+            radius2: 4,
+            angle: 0,
+        }),
+    }),
 };
 
 function createLayer(coordinates: Coordinate, style: StyleLike, zIndex: number) {
-  const feature = new Feature(new Point(coordinates));
-  feature.setStyle(style);
+    const feature = new Feature(new Point(coordinates));
+    feature.setStyle(style);
 
-  const source = new VectorSource({
-    features: [feature]
-  });
+    const source = new VectorSource({
+        features: [feature],
+    });
 
-  const vectorLayer = new VectorLayer({
-    source
-  });
-  vectorLayer.setZIndex(zIndex);
+    const vectorLayer = new VectorLayer({
+        source,
+    });
+    vectorLayer.setZIndex(zIndex);
 
-  return vectorLayer;
+    return vectorLayer;
 }
 
 const layer0 = createLayer([40, 40], styles['star'], 0);
@@ -67,22 +67,22 @@ layers.push(layer1);
 layers.push(layer2);
 
 const map = new Map({
-  layers,
-  target: 'map',
-  view: new View({
-    center: [0, 0],
-    zoom: 18
-  })
+    layers,
+    target: 'map',
+    view: new View({
+        center: [0, 0],
+        zoom: 18,
+    }),
 });
 
 layer0.setMap(map);
 
 function bindInputs(id: number, layer: VectorLayer) {
-  const idxInput = document.getElementById('idx' + id) as HTMLInputElement;
-  idxInput.onchange = () => {
-    layer.setZIndex(parseInt(idxInput.value, 10) || 0);
-  };
-  idxInput.value = String(layer.getZIndex());
+    const idxInput = document.getElementById('idx' + id) as HTMLInputElement;
+    idxInput.onchange = () => {
+        layer.setZIndex(parseInt(idxInput.value, 10) || 0);
+    };
+    idxInput.value = String(layer.getZIndex());
 }
 bindInputs(1, layer1);
 bindInputs(2, layer2);

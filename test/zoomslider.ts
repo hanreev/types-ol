@@ -6,21 +6,21 @@ import TileLayer from 'ol/layer/Tile';
 import OSM from 'ol/source/OSM';
 
 function createMap(divId: string): PluggableMap {
-  const source = new OSM();
-  const layer = new TileLayer({
-    source
-  });
-  const map = new Map({
-    layers: [layer],
-    target: divId,
-    view: new View({
-      center: [0, 0],
-      zoom: 2
-    })
-  });
-  const zoomslider = new ZoomSlider();
-  map.addControl(zoomslider);
-  return map;
+    const source = new OSM();
+    const layer = new TileLayer({
+        source,
+    });
+    const map = new Map({
+        layers: [layer],
+        target: divId,
+        view: new View({
+            center: [0, 0],
+            zoom: 2,
+        }),
+    });
+    const zoomslider = new ZoomSlider();
+    map.addControl(zoomslider);
+    return map;
 }
 
 const map1 = createMap('map1');

@@ -8,24 +8,22 @@ import View from 'ol/View';
 const scaleLineControl = new ScaleLine();
 
 const map = new Map({
-  controls: defaultControls().extend([
-    scaleLineControl
-  ]),
-  layers: [
-    new TileLayer({
-      source: new OSM()
-    })
-  ],
-  target: 'map',
-  view: new View({
-    center: [0, 0],
-    zoom: 2
-  })
+    controls: defaultControls().extend([scaleLineControl]),
+    layers: [
+        new TileLayer({
+            source: new OSM(),
+        }),
+    ],
+    target: 'map',
+    view: new View({
+        center: [0, 0],
+        zoom: 2,
+    }),
 });
 
 const unitsSelect = document.getElementById('units') as HTMLSelectElement;
 function onChange() {
-  scaleLineControl.setUnits(unitsSelect.value as Units);
+    scaleLineControl.setUnits(unitsSelect.value as Units);
 }
 unitsSelect.addEventListener('change', onChange);
 onChange();

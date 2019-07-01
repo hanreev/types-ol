@@ -73,7 +73,7 @@ function processTestFile(srcPath) {
 glob.sync(path.join(srcDir, '*.js')).forEach(processTestFile);
 
 console.log('# Formatting test files');
-childProcess.execSync('yarn tsfmt -r --useTsconfig tsconfig.test.json', { stdio: 'ignore' });
+childProcess.execSync('yarn format-test', { stdio: 'inherit' });
 
 console.log('# Linting test files');
 childProcess.execSync('yarn lint-test', { stdio: 'inherit' });

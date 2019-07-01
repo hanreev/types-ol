@@ -8,30 +8,32 @@ import View from 'ol/View';
 const parser = new WMTSCapabilities();
 let map;
 
-fetch('data/WMTSCapabilities.xml').then((response) => {
-  return response.text();
-}).then((text) => {
-  const result = parser.read(text);
-  const options = optionsFromCapabilities(result, {
-    layer: 'layer-7328',
-    matrixSet: 'EPSG:3857'
-  });
-
-  map = new Map({
-    layers: [
-      new TileLayer({
-        source: new OSM(),
-        opacity: 0.7
-      }),
-      new TileLayer({
-        opacity: 1,
-        source: new WMTS((options))
-      })
-    ],
-    target: 'map',
-    view: new View({
-      center: [19412406.33, -5050500.21],
-      zoom: 5
+fetch('data/WMTSCapabilities.xml')
+    .then(response => {
+        return response.text();
     })
-  });
-});
+    .then(text => {
+        const result = parser.read(text);
+        const options = optionsFromCapabilities(result, {
+            layer: 'layer-7328',
+            matrixSet: 'EPSG:3857',
+        });
+
+        map = new Map({
+            layers: [
+                new TileLayer({
+                    source: new OSM(),
+                    opacity: 0.7,
+                }),
+                new TileLayer({
+                    opacity: 1,
+                    source: new WMTS(options),
+                }),
+            ],
+            target: 'map',
+            view: new View({
+                center: [19412406.33, -5050500.21],
+                zoom: 5,
+            }),
+        });
+    });
