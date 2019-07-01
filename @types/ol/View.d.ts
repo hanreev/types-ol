@@ -24,8 +24,8 @@ export interface Animation {
     start: number;
     duration: number;
     complete: boolean;
-    easing: ((p0: number) => number);
-    callback: ((p0: boolean) => void);
+    easing: (p0: number) => number;
+    callback: (p0: boolean) => void;
 }
 export interface AnimationOptions {
     center?: Coordinate;
@@ -34,7 +34,7 @@ export interface AnimationOptions {
     rotation?: number;
     anchor?: Coordinate;
     duration?: number;
-    easing?: ((p0: number) => number);
+    easing?: (p0: number) => number;
 }
 export interface Constraints {
     center: Type;
@@ -49,8 +49,8 @@ export interface FitOptions {
     minResolution?: number;
     maxZoom?: number;
     duration?: number;
-    easing?: ((p0: number) => number);
-    callback?: ((p0: boolean) => void);
+    easing?: (p0: number) => number;
+    callback?: (p0: boolean) => void;
 }
 export interface State {
     center: Coordinate;
@@ -100,13 +100,13 @@ export default class View extends BaseObject {
     getProjection(): Projection;
     getResolution(): number;
     getResolutionForExtent(extent: Extent, opt_size?: Size): number;
-    getResolutionForValueFunction(opt_power?: number): ((p0: number) => number);
+    getResolutionForValueFunction(opt_power?: number): (p0: number) => number;
     getResolutionForZoom(zoom: number): number;
     getResolutions(): number[];
     getRotation(): number;
     getState(pixelRatio: number): State;
     getUpdatedOptions_(newOptions: ViewOptions): ViewOptions;
-    getValueForResolutionFunction(opt_power?: number): ((p0: number) => number);
+    getValueForResolutionFunction(opt_power?: number): (p0: number) => number;
     getZoom(): number;
     getZoomForResolution(resolution: number): number;
     isDef(): boolean;
@@ -119,9 +119,9 @@ export default class View extends BaseObject {
     setRotation(rotation: number): void;
     setZoom(zoom: number): void;
     updateAnimations_(): void;
-    on(type: string | string[], listener: ((p0: any) => void)): EventsKey | EventsKey[];
-    once(type: string | string[], listener: ((p0: any) => void)): EventsKey | EventsKey[];
-    un(type: string | string[], listener: ((p0: any) => void)): void;
+    on(type: string | string[], listener: (p0: any) => void): EventsKey | EventsKey[];
+    once(type: string | string[], listener: (p0: any) => void): EventsKey | EventsKey[];
+    un(type: string | string[], listener: (p0: any) => void): void;
     on(type: 'change', listener: (evt: Event) => void): EventsKey;
     once(type: 'change', listener: (evt: Event) => void): EventsKey;
     un(type: 'change', listener: (evt: Event) => void): void;

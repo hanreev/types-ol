@@ -144,7 +144,7 @@ exports.handlers = {
       if (doclet.longname in force_include_members)
         doclet.force_include_members = force_include_members[doclet.longname];
 
-      if (doclet.memberof == 'module:ol/render/replay' && doclet.name == 'TEXT_ALIGN')
+      if (doclet.longname == 'module:ol/render/replay~TEXT_ALIGN')
         doclet.properties = [
           { name: 'left', defaultvalue: '0', kind: 'member', memberof: doclet.longname },
           { name: 'end', defaultvalue: '0', kind: 'member', memberof: doclet.longname },
@@ -158,6 +158,16 @@ exports.handlers = {
           { name: 'ideographic', defaultvalue: '0.8', kind: 'member', memberof: doclet.longname },
           { name: 'bottom', defaultvalue: '1', kind: 'member', memberof: doclet.longname },
         ];
+
+      if (doclet.longname == 'module:ol/css~getFontFamilies') {
+        doclet.kind = 'function';
+        doclet.params = [
+          { name: 'font', type: { names: ['string'] } }
+        ];
+        doclet.returns = [
+          { type: { names: ['Array<string>', 'null'] } }
+        ];
+      }
 
       if (doclet.stability) {
         if (doclet.kind == 'class')

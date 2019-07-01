@@ -46,7 +46,6 @@ const ANY_GENERIC_TYPES = [
 /** @type {Object<string, string>} */
 const TYPE_PATCHES = {
   'module:ol/Collection.CollectionEvent#element': 'T',
-  'module:ol/css~getFontFamilies': 'function(string): (Array<string>|null)',
   'module:ol/events/condition~always': 'typeof:module:ol/functions.TRUE',
   'module:ol/events/condition~never': 'typeof:module:ol/functions.FALSE',
   'module:ol/format/GML~GML': 'module:ol/format/GML3~GML3',

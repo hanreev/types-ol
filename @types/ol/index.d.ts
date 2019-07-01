@@ -29,4 +29,4 @@ export { default as WebGLMap } from './WebGLMap';
 export { VERSION } from './util';
 
 export function getUid(obj: any): string;
-export function inherits(childCtor: (() => void), parentCtor: (() => void)): void;
+export function inherits(childCtor: () => void, parentCtor: () => void): void;

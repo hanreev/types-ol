@@ -32,4 +32,8 @@ export default class FeatureFormat {
     writeFeatures(features: Feature[], opt_options?: WriteOptions): string;
     writeGeometry(geometry: Geometry, opt_options?: WriteOptions): string;
 }
-export function transformWithOptions(geometry: Geometry | Extent, write: boolean, opt_options?: WriteOptions | ReadOptions): Geometry | Extent;
+export function transformWithOptions(
+    geometry: Geometry | Extent,
+    write: boolean,
+    opt_options?: WriteOptions | ReadOptions
+): Geometry | Extent;
