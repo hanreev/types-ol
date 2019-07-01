@@ -1,6 +1,7 @@
 import {
     Feature,
     FeatureCollection,
+    GeoJSON as GeoJSON_1,
     Geometry,
     GeometryCollection,
     LineString,
@@ -30,7 +31,7 @@ export type GeoJSONLineString = LineString;
 export type GeoJSONMultiLineString = MultiLineString;
 export type GeoJSONMultiPoint = MultiPoint;
 export type GeoJSONMultiPolygon = MultiPolygon;
-export type GeoJSONObject = GeoJSON;
+export type GeoJSONObject = GeoJSON_1;
 export type GeoJSONPoint = Point;
 export type GeoJSONPolygon = Polygon;
 export interface Options {

@@ -35,7 +35,7 @@ There are several ways to use this package. Please choose one:
     ...
     "devDependencies": {
       ...
-      "@hanreev/types-ol": "^2.0.5",
+      "@hanreev/types-ol": "^2.0.6",
       "@types/ol": "file:node_modules/@hanreev/types-ol/ol",
       ...
     }
@@ -70,29 +70,6 @@ There are several ways to use this package. Please choose one:
     }
   }
   ```
-
-- Using `compilerOptions.typeRoots` and `compilerOptions.types` in `tsconfig.json`
-
-  ```js
-  // file: tsconfig.json
-
-  {
-    "compilerOptions": {
-      ...
-      "baseUrl": "./",
-      "typeRoots": [
-        "node_modules/@types",
-        "node_modules/@hanreev/types-ol"
-      ],
-      "types": [
-        "ol",
-        ...
-      ],
-      ...
-    }
-  }
-  ```
-  
 
 
 
@@ -156,11 +133,14 @@ Configuration is located at `jsdoc/conf.json`
 
 ## Changelog
 
+- **v2.0.6**
+  - Fix external import with same member name--e.g., `GeoJSON` from `geojson` module in `ol/format/GeoJSON`
+  - Order module members by kind
 - **v2.0.5**
   - Fix anonymous function parameters type
   - Fix union types
 - **v2.0.4**
-  - Fix optional parameters in function type. Ex: third parameter of `{function(*, Array<*>, string=): (Node|undefined)}`
+  - Fix optional parameters in function type--e.g., third parameter of `{function(*, Array<*>, string=): (Node|undefined)}`
   - Test files fixes
 - **v2.0.3**
   - OpenLayers 5.3.3 source

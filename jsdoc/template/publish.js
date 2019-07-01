@@ -148,7 +148,7 @@ function registerImport(_module, val) {
 
   let doclet = find({ longname: val })[0];
 
-  if (!doclet) {
+  if (!doclet && moduleName.startsWith('ol')) {
     doclet = find({ name: importName, memberof: _module.longname })[0];
     if (doclet)
       return importName;
@@ -373,7 +373,7 @@ function stringifyType(parsedType, _module, undefinedLiteral = true) {
       params = functionType.params.map((param, i) => {
         let name = `p${i}`;
         if (param.optional) name += '?';
-        return `${name}: ${stringifyType(param, _module, false)}`
+        return `${name}: ${stringifyType(param, _module, false)}`;
       });
 
     if (functionType.this)
