@@ -1,12 +1,12 @@
 export function linearRingIsClockwise(flatCoordinates: number[], offset: number, end: number, stride: number): boolean;
-export function linearRingIsOriented(
+export function linearRingsAreOriented(
     flatCoordinates: number[],
     offset: number,
     ends: number[],
     stride: number,
     opt_right?: boolean
 ): boolean;
-export function linearRingsAreOriented(
+export function linearRingssAreOriented(
     flatCoordinates: number[],
     offset: number,
     endss: number[][],

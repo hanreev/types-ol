@@ -16,7 +16,15 @@ const declarationConfig = env.conf.typescript.declaration;
 let data;
 
 /** @type {Object<string, ModuleImports>} */
-const MODULE_IMPORTS = {};
+const MODULE_IMPORTS = {
+  'ol/layer/Layer': {
+    names: ['SourceType'],
+    imported: {
+      'ol/source/Source~Source': 'SourceType',
+    },
+    expressions: [`import SourceType from 'ol/source/Source';`],
+  },
+};
 
 /** @type {Object<string, ModuleExports>} */
 const MODULE_EXPORTS = {};
@@ -25,15 +33,11 @@ const MODULE_EXPORTS = {};
 const MODULE_CHILDREN = {};
 
 /** @type {string[]} */
-const EXTERNAL_MODULE_WHITELIST = [
-  'arcgis-rest-api',
-  'geojson',
-  'topojson-specification',
-];
+const EXTERNAL_MODULE_WHITELIST = ['arcgis-rest-api', 'geojson', 'pbf', 'topojson-specification'];
 
 /** @type {Object<string, string>} */
 const GENERIC_TYPES = {
-  'module:ol/Collection.CollectionEvent': 'T'
+  'module:ol/Collection.CollectionEvent': 'T',
 };
 
 /** @type {string[]} */
@@ -43,13 +47,23 @@ const ANY_GENERIC_TYPES = [
   'module:ol/structs/RBush~RBush',
 ];
 
+/** @type {string[]} */
+const GENERIC_TYPE_BLACKLIST = [
+  'module:ol/Feature~Feature',
+  'module:ol/layer/Layer~Layer',
+  'module:ol/layer/BaseVector~BaseVectorLayer',
+  'module:ol/source/Vector.VectorSourceEvent',
+  'module:ol/source/Vector~VectorSource',
+];
+
 /** @type {Object<string, string>} */
 const TYPE_PATCHES = {
   'module:ol/Collection.CollectionEvent#element': 'T',
   'module:ol/events/condition~always': 'typeof:module:ol/functions.TRUE',
   'module:ol/events/condition~never': 'typeof:module:ol/functions.FALSE',
   'module:ol/format/GML~GML': 'module:ol/format/GML3~GML3',
-  'module:ol/source/Cluster~Cluster#geometryFunction': 'function(module:ol/Feature~Feature): module:ol/geom/Point~Point',
+  'module:ol/source/Cluster~Cluster#geometryFunction':
+    'function(module:ol/Feature~Feature): module:ol/geom/Point~Point',
   'module:ol/style/IconImageCache~shared': 'module:ol/style/IconImageCache~IconImageCache',
 };
 
@@ -71,6 +85,7 @@ const PROPERTY_TYPE_PATCHES = {
 /** @type {Object<string, string[]>} */
 const IMPORT_PATCHES = {
   'module:ol/control': ['module:ol/control/util~DefaultsOptions'],
+  'module:ol/Feature': ['module:ol/geom/Geometry'],
   'module:ol/geom/LinearRing': ['module:ol/geom/GeometryLayout~GeometryLayout'],
   'module:ol/geom/LineString': ['module:ol/geom/GeometryLayout~GeometryLayout'],
   'module:ol/geom/MultiLineString': ['module:ol/geom/GeometryLayout~GeometryLayout'],
@@ -93,15 +108,28 @@ function find(spec) {
 }
 
 /**
+ * @param {string} name
+ * @param {Array<string>} names
+ * @param {number} [counter=0]
+ * @param {string} sep
+ * @returns {string}
+ */
+function getAvailableName(name, names, counter = 1, sep = '_') {
+  let availableName = name;
+  while (names.indexOf(availableName) != -1) {
+    availableName = name + sep + counter;
+    counter++;
+  }
+  return availableName;
+}
+
+/**
  * @param {Doclet} _module
  * @param {string} val
  * @returns {string}
  */
 function registerImport(_module, val) {
-  if (!val.startsWith('module:'))
-    return val;
-
-  const value = val.replace(/^module:/, '');
+  if (!val.startsWith('module:')) return val;
 
   /** @type {ModuleImports} */
   const _imports = MODULE_IMPORTS[_module.name] || {
@@ -109,6 +137,15 @@ function registerImport(_module, val) {
     imported: {},
     expressions: [],
   };
+
+  if (val == 'module:ol/format/pbf') {
+    if (_imports.imported['pbf']) return _imports.imported['pbf'];
+    const alias = getAvailableName('PBF', _imports.names);
+    _imports.names.push(alias);
+    _imports.imported['pbf'] = alias;
+    _imports.expressions.push(`import ${alias} = require('pbf');`);
+    return alias;
+  }
 
   /** @type {boolean} */
   let isDefault;
@@ -119,6 +156,8 @@ function registerImport(_module, val) {
   /** @type {string} */
   let importName;
   let temp;
+
+  const value = val.replace(/^module:/, '');
 
   if (value.indexOf('.') != -1) {
     isDefault = false;
@@ -136,21 +175,17 @@ function registerImport(_module, val) {
     importName = value.split('/').pop();
   }
 
-  if (!moduleName.startsWith('ol'))
-    isDefault = false;
+  if (!moduleName.startsWith('ol')) isDefault = false;
 
-  if (_module.name == value || _module.name == moduleName || importName == 'EventTarget')
-    return importName;
+  if (_module.name == value || _module.name == moduleName || importName == 'EventTarget') return importName;
 
-  if (_imports.imported[value])
-    return _imports.imported[value];
+  if (_imports.imported[value]) return _imports.imported[value];
 
   let doclet = find({ longname: val })[0];
 
   if (!doclet && moduleName.startsWith('ol')) {
     doclet = find({ name: importName, memberof: _module.longname })[0];
-    if (doclet)
-      return importName;
+    if (doclet) return importName;
   }
 
   if (!doclet && moduleName.startsWith('ol')) {
@@ -159,8 +194,7 @@ function registerImport(_module, val) {
       temp = splits[0].split('/');
       temp[temp.length - 1] = splits[1];
       doclet = find({ longname: temp.join('/') })[0];
-      if (doclet)
-        return registerImport(_module, doclet.longname);
+      if (doclet) return registerImport(_module, doclet.longname);
     }
   }
 
@@ -185,7 +219,8 @@ function registerImport(_module, val) {
   let expression = availableImportName;
   const _exports = MODULE_EXPORTS[moduleName];
   if ((_exports && _exports.default != importName && _exports.default != `module:${moduleName}`) || !isDefault)
-    expression = importName == availableImportName ? `{ ${importName} }` : `{ ${importName} as ${availableImportName} }`;
+    expression =
+      importName == availableImportName ? `{ ${importName} }` : `{ ${importName} as ${availableImportName} }`;
   _imports.expressions.push(`import ${expression} from '${moduleName}';`);
   MODULE_IMPORTS[_module.name] = _imports;
 
@@ -198,31 +233,25 @@ function registerImport(_module, val) {
  * @returns {string[]}
  */
 function relativeImport(expressions, _module) {
-  if (!Array.isArray(expressions))
-    return logger.error('relativeImport -- Invalid argument:', expressions);
+  if (!Array.isArray(expressions)) return logger.error('relativeImport -- Invalid argument:', expressions);
 
-  if (declarationConfig.mode == 'single')
-    return expressions;
+  if (declarationConfig.mode == 'single') return expressions;
 
   const moduleDirname = _module.name == 'ol' ? 'ol' : path.dirname(_module.name);
 
   return expressions.map(expression => {
     const match = expression.match(/^((import|export)\s.+?\sfrom\s['"])(.+?)(['"];)$/);
 
-    if (!match)
-      return expression;
+    if (!match) return expression;
 
     let fromPath = match[3];
 
-    if (!fromPath.startsWith('ol'))
-      return expression;
+    if (!fromPath.startsWith('ol')) return expression;
 
     fromPath = path.relative(moduleDirname, fromPath).replace(/\\/g, '/');
 
-    if (!fromPath)
-      fromPath = '../' + path.basename(moduleDirname);
-    else if (!fromPath.startsWith('.'))
-      fromPath = './' + fromPath;
+    if (!fromPath) fromPath = '../' + path.basename(moduleDirname);
+    else if (!fromPath.startsWith('.')) fromPath = './' + fromPath;
 
     return match[1] + fromPath + match[4];
   });
@@ -235,8 +264,7 @@ function relativeImport(expressions, _module) {
  * @returns {string[]}
  */
 function sortImports(expressions, _module, maxLineLength = 120) {
-  if (!Array.isArray(expressions))
-    return logger.error('sortImports -- Invalid argument:', expressions);
+  if (!Array.isArray(expressions)) return logger.error('sortImports -- Invalid argument:', expressions);
 
   /**
    * @typedef ImportMap
@@ -253,39 +281,45 @@ function sortImports(expressions, _module, maxLineLength = 120) {
    * @returns {number}
    */
   const sortFn = (a, b) => {
-    a = a.toLowerCase().replace(/^\.\//, 'zz').replace(/^\.\.\//, 'za');
-    b = b.toLowerCase().replace(/^\.\//, 'zz').replace(/^\.\.\//, 'za');
+    a = a
+      .toLowerCase()
+      .replace(/^\.\//, 'zz')
+      .replace(/^\.\.\//, 'za');
+    b = b
+      .toLowerCase()
+      .replace(/^\.\//, 'zz')
+      .replace(/^\.\.\//, 'za');
     return a < b ? -1 : a > b ? 1 : 0;
   };
 
+  /**
+   * @param {string} moduleName
+   * @param {boolean} [multiLine=false]
+   * @returns {string}
+   */
   const formatExpression = (moduleName, multiLine = false) => {
     const map = importMap[moduleName];
     let expression = 'import ';
-    if (map.default)
-      expression += map.default;
+    if (map.default) expression += map.default;
     if (map.members && map.members.length) {
-      if (map.default)
-        expression += ', ';
-      if (multiLine)
-        expression += `{\n${map.members.join(',\n')}\n}`;
-      else
-        expression += `{ ${map.members.join(', ')} }`;
+      if (map.default) expression += ', ';
+      if (multiLine) expression += `{\n${map.members.join(',\n')}\n}`;
+      else expression += `{ ${map.members.join(', ')} }`;
     }
     expression += ` from '${moduleName}';`;
-    if (!multiLine && expression.length > maxLineLength)
-      return formatExpression(moduleName, true);
+    if (!multiLine && expression.length > maxLineLength) return formatExpression(moduleName, true);
     return expression;
   };
 
   // Relative import ol modules
   expressions = relativeImport(expressions, _module);
 
-  expressions.filter(expression => expression.search(/= require/) == -1)
+  expressions
+    .filter(expression => expression.search(/=\s?require/) == -1)
     .forEach(expression => {
       /** @type {RegExpMatchArray} */
       const match = expression.match(/^import (?:([^{]+?),\s?)?(.+?) from ['"](.+?)['"];?$/);
-      if (!match)
-        return logger.error('sortImports -- Invalid expression:', expression);
+      if (!match) return logger.error('sortImports -- Invalid expression:', expression);
 
       let importDefault = match[1] && match[1].trim();
       let importMembers = match[2];
@@ -314,7 +348,10 @@ function sortImports(expressions, _module, maxLineLength = 120) {
       importMap[moduleName].members = importMap[moduleName].members.sort(sortFn);
     });
 
-  return Object.keys(importMap).sort(sortFn).map(moduleName => formatExpression(moduleName));
+  return Object.keys(importMap)
+    .sort(sortFn)
+    .map(moduleName => formatExpression(moduleName))
+    .concat(expressions.filter(expression => expression.search(/=\s?require/) != -1));
 }
 
 /**
@@ -324,21 +361,21 @@ function sortImports(expressions, _module, maxLineLength = 120) {
  */
 function stringifyType(parsedType, _module, undefinedLiteral = true) {
   let suffix = '';
-  let typeStr = (/** @type {TypeApplication} */ (parsedType)).expression ?
-    (/** @type {TypeApplication} */ (parsedType)).expression.name :
-    (/** @type {TypeNameExpression} */ (parsedType)).name;
+  let typeStr = /** @type {TypeApplication} */ (parsedType).expression
+    ? /** @type {TypeApplication} */ (parsedType).expression.name
+    : /** @type {TypeNameExpression} */ (parsedType).name;
 
-  if (typeStr in GENERIC_TYPES)
-    suffix = `<${GENERIC_TYPES[typeStr]}>`;
+  const useGenericType = GENERIC_TYPE_BLACKLIST.indexOf(typeStr) == -1;
+
+  if (useGenericType && typeStr in GENERIC_TYPES) suffix = `<${getGenericType(typeStr)}>`;
 
   if (typeStr && typeStr.startsWith('module:')) {
-    if (_module)
-      typeStr = registerImport(_module, typeStr);
+    if (_module) typeStr = registerImport(_module, typeStr);
     typeStr = typeStr.split('~')[1] || typeStr.split('.')[1] || typeStr.split('/').pop();
   }
 
   if (parsedType.type == 'TypeApplication') {
-    const applications = (/** @type {TypeApplication} */ (parsedType)).applications.map(app => {
+    const applications = /** @type {TypeApplication} */ (parsedType).applications.map(app => {
       const t = stringifyType(app, _module);
       return t == 'undefined' ? 'any' : t;
     });
@@ -351,8 +388,7 @@ function stringifyType(parsedType, _module, undefinedLiteral = true) {
       case 'Object':
         if (applications[0] != 'number' && applications[0] != 'string')
           typeStr = `{ [key in ${applications[0]}]: ${applications[1]} }`;
-        else
-          typeStr = `{ [key: ${applications[0]}]: ${applications[1]} }`;
+        else typeStr = `{ [key: ${applications[0]}]: ${applications[1]} }`;
         break;
 
       case 'Class':
@@ -360,11 +396,11 @@ function stringifyType(parsedType, _module, undefinedLiteral = true) {
         break;
 
       default:
-        typeStr += `<${applications.join(', ')}>`;
+        if (useGenericType) typeStr += `<${applications.join(', ')}>`;
         break;
     }
   } else if (parsedType.type == 'FunctionType') {
-    const functionType = (/** @type {TypeFunction} */ (parsedType));
+    const functionType = /** @type {TypeFunction} */ (parsedType);
     let params = [];
     let returnType = 'void';
 
@@ -375,32 +411,28 @@ function stringifyType(parsedType, _module, undefinedLiteral = true) {
         return `${name}: ${stringifyType(param, _module, false)}`;
       });
 
-    if (functionType.this)
-      params.unshift('this: ' + stringifyType(functionType.this, _module, false));
+    if (functionType.this) params.unshift('this: ' + stringifyType(functionType.this, _module, false));
 
-    if (functionType.result && (/** @type {TypeNameExpression} */ (functionType.result)).name != 'void')
+    if (functionType.result && /** @type {TypeNameExpression} */ (functionType.result).name != 'void')
       returnType = stringifyType(functionType.result, _module);
 
     typeStr = `(${params.join(', ')}) => ${returnType == 'undefined' ? 'void' : returnType}`;
   } else if (parsedType.type == 'TypeUnion') {
-    const unionType = (/** @type {TypeUnion} */ (parsedType));
-    const union = unionType.elements.map(t => stringifyType(t, _module)).filter(t => ['void', 'undefined'].indexOf(t) == -1);
+    const unionType = /** @type {TypeUnion} */ (parsedType);
+    const union = unionType.elements
+      .map(t => stringifyType(t, _module))
+      .filter(t => ['void', 'undefined'].indexOf(t) == -1);
     typeStr = union.join(' | ');
-    if (union.length > 1)
-      typeStr = `(${typeStr})`;
+    if (union.length > 1) typeStr = `(${typeStr})`;
   } else {
     typeStr += suffix;
   }
 
-  if (!typeStr)
-    typeStr = 'any';
+  if (!typeStr) typeStr = 'any';
 
-  if (typeStr == 'Array')
-    typeStr = 'any[]';
-  else if (typeStr == 'Object')
-    typeStr = 'object';
-  else if (typeStr == 'undefined' && !undefinedLiteral)
-    typeStr = 'any';
+  if (typeStr == 'Array') typeStr = 'any[]';
+  else if (typeStr == 'Object') typeStr = 'object';
+  else if (typeStr == 'undefined' && !undefinedLiteral) typeStr = 'any';
 
   return typeStr;
 }
@@ -411,8 +443,7 @@ function stringifyType(parsedType, _module, undefinedLiteral = true) {
  * @returns {string}
  */
 function parseFunctionType(type, _module) {
-  if (!type.startsWith('function'))
-    return;
+  if (!type.startsWith('function')) return;
 
   let params = '';
   let returnType = 'void';
@@ -431,10 +462,8 @@ function parseFunctionType(type, _module) {
     loopCounter++;
   } while (!parsedType && loopCounter < 3);
 
-  if (parsedType)
-    expression = stringifyType(parsedType, _module);
-  else
-    logger.error('parseFunctionType --', type, _module.name);
+  if (parsedType) expression = stringifyType(parsedType, _module);
+  else logger.error('parseFunctionType --', type, _module.name);
 
   return `(${expression})`;
 }
@@ -458,41 +487,38 @@ function getType(doclet, _module) {
       return 'any';
     }
 
-  let types = doclet.type.names.map(type => {
-    /** @type {ParsedType} */
-    let parsedType;
-    let prefix = '';
+  let types = doclet.type.names
+    .map(type => {
+      /** @type {ParsedType} */
+      let parsedType;
+      let prefix = '';
 
-    if (_module.name == 'ol/source/Raster' && type == 'RasterOperationType')
-      return `'pixel' | 'image'`;
+      if (_module.name == 'ol/source/Raster' && type == 'RasterOperationType') return `'pixel' | 'image'`;
 
-    if (type.startsWith('typeof:')) {
-      prefix = 'typeof ';
-      type = type.replace(/^typeof:/, '');
-    }
-
-    const objRegex = /^\[ '(.+)' \](\..+)$/;
-    if (objRegex.test(type))
-      type = type.replace(objRegex, '$1$2');
-
-    if (type.startsWith('function'))
-      type = parseFunctionType(type, _module);
-    else
-      try {
-        parsedType = catharsis.parse(type, { jsdoc: true });
-        type = stringifyType(parsedType, _module);
-      } catch (error) {
-        logger.error('getType --', doclet.longname || _module.longname, type);
+      if (type.startsWith('typeof:')) {
+        prefix = 'typeof ';
+        type = type.replace(/^typeof:/, '');
       }
 
-    return prefix + type;
-  }).filter(t => t != 'undefined');
+      const objRegex = /^\[ '(.+)' \](\..+)$/;
+      if (objRegex.test(type)) type = type.replace(objRegex, '$1$2');
 
-  if (types.length > 1 && types.indexOf('any') != -1)
-    types = types.filter(t => t != 'any');
+      if (type.startsWith('function')) type = parseFunctionType(type, _module);
+      else
+        try {
+          parsedType = catharsis.parse(type, { jsdoc: true });
+          type = stringifyType(parsedType, _module);
+        } catch (error) {
+          logger.error('getType --', doclet.longname || _module.longname, type);
+        }
 
-  if (types.length == 1 && types[0] == 'object')
-    types[0] = 'any';
+      return prefix + type;
+    })
+    .filter(t => t != 'undefined');
+
+  if (types.length > 1 && types.indexOf('any') != -1) types = types.filter(t => t != 'any');
+
+  if (types.length == 1 && types[0] == 'object') types[0] = 'any';
 
   return types.join(' | ') || 'any';
 }
@@ -503,7 +529,7 @@ function getReturnType(doclet, _module) {
 
   if (doclet.yields || doclet.returns)
     (doclet.yields || doclet.returns).forEach(r => {
-      returnTypes.push(getType((/** @type {Doclet} */ (r)), _module));
+      returnTypes.push(getType(/** @type {Doclet} */ (r), _module));
     });
 
   return returnTypes.join(' | ') || 'void';
@@ -511,27 +537,26 @@ function getReturnType(doclet, _module) {
 
 /** @type {DocletParser} */
 function getParams(doclet, _module) {
-  if (!doclet.params)
-    return '';
+  if (!doclet.params) return '';
 
-  return doclet.params.filter(param => param.name.indexOf('.') == -1)
+  return doclet.params
+    .filter(param => param.name.indexOf('.') == -1)
     .map(param => {
       let name = param.name;
-      let paramType = getType((/** @type {Doclet} */ (param)), _module);
+      let paramType = getType(/** @type {Doclet} */ (param), _module);
 
-      if (param.optional && !param.defaultValue)
-        name += '?';
+      if (param.optional && !param.defaultValue) name += '?';
 
       if (param.variable) {
         name = '...' + name;
-        if (paramType.indexOf('|') != -1)
-          paramType = `(${paramType})`;
+        if (paramType.indexOf('|') != -1) paramType = `(${paramType})`;
         paramType += '[]';
       }
 
       const paramStr = `${name}: ${paramType}`;
       return param.defaultValue ? `${paramStr} = ${param.defaultValue}` : paramStr;
-    }).join(', ');
+    })
+    .join(', ');
 }
 
 /**
@@ -552,8 +577,7 @@ function declaration(doclet, decl, _module) {
       } else {
         prefix = 'export default ';
       }
-    else if (_module.exports.exports.indexOf(doclet.name) != -1)
-      prefix = 'export ';
+    else if (_module.exports.exports.indexOf(doclet.name) != -1) prefix = 'export ';
 
   return prefix + decl + suffix;
 }
@@ -564,54 +588,50 @@ const PROCESSORS = {
     const children = [];
     let name = doclet.name;
 
-    if (doclet.longname in GENERIC_TYPES)
-      name += `<${GENERIC_TYPES[doclet.longname]}>`;
+    if (doclet.longname in GENERIC_TYPES) name += `<${getGenericType(doclet.longname, false)}>`;
 
     if (doclet.augments && doclet.augments.length) {
       const augment = doclet.augments[0];
       let augmentName = registerImport(_module, augment);
       augmentName = augment.split('~')[1] || augment.split('/').pop();
       if (augment in GENERIC_TYPES)
-        if (ANY_GENERIC_TYPES.indexOf(augment) != -1)
-          augmentName += '<any>';
-        else
-          augmentName += `<${GENERIC_TYPES[augment]}>`;
+        if (ANY_GENERIC_TYPES.indexOf(augment) != -1) augmentName += '<any>';
+        else augmentName += `<${getGenericType(augment)}>`;
       name += ` extends ${augmentName}`;
     }
 
-    if (!doclet._hideConstructor)
-      children.push(`constructor(${getParams(doclet, _module)});`);
+    if (!doclet._hideConstructor) children.push(`constructor(${getParams(doclet, _module)});`);
 
     data({
       kind: ['member', 'constant', 'function'],
       inheritdoc: { '!is': true },
       inherited: { '!is': true },
-      memberof: doclet.longname
-    }).order('access, kind desc, name').get().forEach(child => {
-      // Remove non alphanumeric from member name
-      child.name = child.name.replace(/\W/g, '');
-      const processorName = child.kind == 'function' ? 'method' : child.kind == 'constant' ? 'member' : child.kind;
-      children.push(PROCESSORS[processorName](child, _module));
-    });
+      memberof: doclet.longname,
+    })
+      .order('access, kind desc, name')
+      .get()
+      .forEach(child => {
+        // Remove non alphanumeric from member name
+        child.name = child.name.replace(/\W/g, '');
+        const processorName = child.kind == 'function' ? 'method' : child.kind == 'constant' ? 'member' : child.kind;
+        children.push(PROCESSORS[processorName](child, _module));
+      });
 
     /**
      * @param {string} eventType
      * @param {string} fireType
      */
     const addFire = (eventType, fireType) => {
-      if (fireType.startsWith('ol'))
-        fireType = 'module:' + fireType;
+      if (fireType.startsWith('ol')) fireType = 'module:' + fireType;
 
-      let genericType = GENERIC_TYPES[fireType];
-      if (genericType && genericType == GENERIC_TYPES[doclet.longname])
-        genericType = null;
+      let genericType = getGenericType(fireType);
+      if (genericType && genericType == getGenericType(doclet.longname)) genericType = null;
 
-      fireType = getType(/** @type {Doclet} */({ type: { names: [fireType || 'undefined'] } }), _module);
+      fireType = getType(/** @type {Doclet} */ ({ type: { names: [fireType || 'undefined'] } }), _module);
 
       ['on', 'once', 'un'].forEach(fireMethod => {
         const returnType = fireMethod == 'un' ? 'void' : 'EventsKey';
-        if (genericType)
-          fireMethod += `<${genericType}>`;
+        if (genericType) fireMethod += `<${genericType}>`;
         children.push(`${fireMethod}(type: '${eventType}', listener: (evt: ${fireType}) => void): ${returnType};`);
       });
     };
@@ -624,48 +644,49 @@ const PROCESSORS = {
         find({
           name: ['on', 'once', 'un'],
           kind: 'function',
-          memberof: 'module:ol/Observable~Observable'
+          memberof: 'module:ol/Observable~Observable',
         }).forEach(method => {
           children.push(PROCESSORS.method(method, _module));
         });
 
       // Add per event observsable method
-      doclet.fires.sort((a, b) => {
-        const aMatch = a.match(/^(.*?)([#~.])?event:(.+?)$/);
-        const bMatch = b.match(/^(.*?)([#~.])?event:(.+?)$/);
-        if (aMatch && bMatch)
-          return aMatch[3] < bMatch[3] ? -1 : aMatch[3] > bMatch[3] ? 1 : 0;
-        return 0;
-      }).forEach(fire => {
-        let eventType;
-        let fireType;
-        const match = fire.match(/^(.*?)([#~.])?event:(.+?)$/);
-        if (match) {
-          fireType = match[1];
-          eventType = match[3];
-          switch (match[2]) {
-            case '.':
-            case '~':
-              try {
-                const fireTypeDoclet = data({ name: eventType, memberof: fireType }).first();
-                const eventTypeDoclet = data({ name: eventType + 'Type', memberof: fireType }).first();
-                eventTypeDoclet.properties.forEach(prop => {
-                  addFire(prop.defaultvalue, fireTypeDoclet.longname);
-                });
-              } catch (error) {
-                logger.error('Fires process failed --', doclet.longname, fire);
-                return;
-              }
-              break;
+      doclet.fires
+        .sort((a, b) => {
+          const aMatch = a.match(/^(.*?)([#~.])?event:(.+?)$/);
+          const bMatch = b.match(/^(.*?)([#~.])?event:(.+?)$/);
+          if (aMatch && bMatch) return aMatch[3] < bMatch[3] ? -1 : aMatch[3] > bMatch[3] ? 1 : 0;
+          return 0;
+        })
+        .forEach(fire => {
+          let eventType;
+          let fireType;
+          const match = fire.match(/^(.*?)([#~.])?event:(.+?)$/);
+          if (match) {
+            fireType = match[1];
+            eventType = match[3];
+            switch (match[2]) {
+              case '.':
+              case '~':
+                try {
+                  const fireTypeDoclet = data({ name: eventType, memberof: fireType }).first();
+                  const eventTypeDoclet = data({ name: eventType + 'Type', memberof: fireType }).first();
+                  eventTypeDoclet.properties.forEach(prop => {
+                    addFire(prop.defaultvalue, fireTypeDoclet.longname);
+                  });
+                } catch (error) {
+                  logger.error('Fires process failed --', doclet.longname, fire);
+                  return;
+                }
+                break;
 
-            default:
-              addFire(eventType, fireType);
-              break;
+              default:
+                addFire(eventType, fireType);
+                break;
+            }
+          } else {
+            logger.error('Fires process failed --', doclet.longname, fire);
           }
-        } else {
-          logger.error('Fires process failed --', doclet.longname, fire);
-        }
-      });
+        });
     }
 
     const decl = `class ${name} {\n${children.join('\n')}\n}`;
@@ -694,8 +715,7 @@ const PROCESSORS = {
     const prefix = doclet.scope == 'instance' && doclet.access ? `${doclet.access} ` : '';
     let name = doclet.name;
 
-    if (doclet.longname in GENERIC_TYPES)
-      name += `<${GENERIC_TYPES[doclet.longname]}>`;
+    if (doclet.longname in GENERIC_TYPES) name += `<${getGenericType(doclet.longname, doclet.kind != 'function')}>`;
 
     const params = getParams(doclet, _module);
     const returnType = getReturnType(doclet, _module);
@@ -705,8 +725,7 @@ const PROCESSORS = {
       const superDoclet = find({ longname: doclet.overrides })[0];
       if (superDoclet) {
         const superDecl = PROCESSORS.method(superDoclet, _module, false);
-        if (superDecl != decl)
-          decl += '\n' + superDecl;
+        if (superDecl != decl) decl += '\n' + superDecl;
       }
     }
 
@@ -717,10 +736,12 @@ const PROCESSORS = {
   function: (doclet, _module) => {
     // FIXME: Patch module:ol/obj.getValues
     if (doclet.longname == 'module:ol/obj.getValues')
-      return ['string', 'number'].map(t => {
-        const decl = `function ${doclet.name}<V>(obj: { [key: ${t}]: V }): V[];`;
-        return declaration(doclet, decl, _module);
-      }).join('\n');
+      return ['string', 'number']
+        .map(t => {
+          const decl = `function ${doclet.name}<V>(obj: { [key: ${t}]: V }): V[];`;
+          return declaration(doclet, decl, _module);
+        })
+        .join('\n');
 
     const decl = 'function ' + PROCESSORS.method(doclet, _module);
     return declaration(doclet, decl, _module);
@@ -737,20 +758,17 @@ const PROCESSORS = {
         let name = prop.name;
 
         // Prevent duplicate property
-        if (addedProps.indexOf(name) != -1)
-          return;
+        if (addedProps.indexOf(name) != -1) return;
 
         addedProps.push(name);
 
-        if (prop.optional || (doclet.name == 'Options' && prop.name == 'projection'))
-          name += '?';
+        if (prop.optional || (doclet.name == 'Options' && prop.name == 'projection')) name += '?';
 
-        children.push(`${name}: ${getType((/** @type {Doclet} */ (prop)), _module)};`);
+        children.push(`${name}: ${getType(/** @type {Doclet} */ (prop), _module)};`);
       });
 
       let name = doclet.name;
-      if (doclet.longname in GENERIC_TYPES)
-        name += `<${GENERIC_TYPES[doclet.longname]}>`;
+      if (doclet.longname in GENERIC_TYPES) name += `<${getGenericType(doclet.longname)}>`;
 
       decl = `interface ${name} {\n${children.join('\n')}\n}`;
     } else {
@@ -783,8 +801,7 @@ const PROCESSORS = {
         }
         return `${prop.name} = ${value},`;
       });
-    else
-      logger.warn('Empty enum --', doclet.longname);
+    else logger.warn('Empty enum --', doclet.longname);
     const decl = `enum ${name}{\n${children.join('\n')}\n}`;
     return declaration(doclet, decl, _module);
   },
@@ -797,8 +814,7 @@ function processModule(doclet) {
   let children = [];
 
   if (doclet.longname in IMPORT_PATCHES)
-    for (const importName of IMPORT_PATCHES[doclet.longname])
-      registerImport(doclet, importName);
+    for (const importName of IMPORT_PATCHES[doclet.longname]) registerImport(doclet, importName);
 
   // Remove class duplicates
   const classes = new Set();
@@ -814,28 +830,26 @@ function processModule(doclet) {
 
   find({
     kind: ['class', 'member', 'function', 'typedef', 'enum', 'constant'],
-    memberof: doclet.longname
-  }).sort((a, b) => {
-    if (a.kind != b.kind)
-      for (const kind of ['typedef', 'enum', 'constant', 'class', 'function'])
-        if (a.kind == kind)
-          return -1;
-        else if (b.kind == kind)
-          return 1;
+    memberof: doclet.longname,
+  })
+    .sort((a, b) => {
+      if (a.kind != b.kind)
+        for (const kind of ['typedef', 'enum', 'constant', 'class', 'function'])
+          if (a.kind == kind) return -1;
+          else if (b.kind == kind) return 1;
 
-    return a.name < b.name ? -1 : a.name > b.name ? 1 : 0;
-  }).forEach(item => {
-    const processorName = item.isEnum ? 'enum' : item.kind == 'member' ? 'constant' : item.kind;
-    let child = PROCESSORS[processorName](item, doclet);
+      return a.name < b.name ? -1 : a.name > b.name ? 1 : 0;
+    })
+    .forEach(item => {
+      const processorName = item.isEnum ? 'enum' : item.kind == 'member' ? 'constant' : item.kind;
+      let child = PROCESSORS[processorName](item, doclet);
 
-    if (child.indexOf('export') == -1)
-      return;
+      if (child.indexOf('export') == -1) return;
 
-    children.push(child);
-  });
+      children.push(child);
+    });
 
-  if (MEMBER_PATCHES[doclet.longname])
-    children = children.concat(MEMBER_PATCHES[doclet.longname]);
+  if (MEMBER_PATCHES[doclet.longname]) children = children.concat(MEMBER_PATCHES[doclet.longname]);
 
   MODULE_CHILDREN[doclet.name] = children;
 
@@ -855,38 +869,37 @@ function generateDeclaration(doclet, emitOutput = true) {
 
   let content = '';
 
-  if (_imports && _imports.expressions.length)
-    content += _imports.expressions.join('\n') + '\n';
+  if (_imports && _imports.expressions.length) content += _imports.expressions.join('\n') + '\n';
 
   let reExports = [];
   if (_exports && _exports.reExports.length) {
     _exports.reExports.forEach(x => {
       const match = x.match(/^(export\s{)(.+?)(}\sfrom\s['"])(.+?)(['"];)$/);
       if (match && match[2].indexOf(' as ') == -1) {
-        const names = match[2].split(/,\s?/).map(name => {
-          name = name.trim();
-          const isDuplicate = find({ name, memberof: doclet.longname }).length > 0;
-          const isInvalid = !find({ name, memberof: `module:${match[4]}` }).length;
+        const names = match[2]
+          .split(/,\s?/)
+          .map(name => {
+            name = name.trim();
+            const isDuplicate = find({ name, memberof: doclet.longname }).length > 0;
+            const isInvalid = !find({ name, memberof: `module:${match[4]}` }).length;
 
-          if (!isDuplicate && isInvalid)
-            logger.warn('Removed export --', name, 'in', doclet.longname, '--', x);
+            if (!isDuplicate && isInvalid) logger.warn('Removed export --', name, 'in', doclet.longname, '--', x);
 
-          if (isDuplicate || isInvalid)
-            return undefined;
+            if (isDuplicate || isInvalid) return undefined;
 
-          return name;
-        }).filter(x => x != undefined).join(', ');
+            return name;
+          })
+          .filter(x => x != undefined)
+          .join(', ');
 
-        if (names)
-          reExports.push(match[1] + ` ${names.trim()} ` + match[3] + match[4] + match[5]);
+        if (names) reExports.push(match[1] + ` ${names.trim()} ` + match[3] + match[4] + match[5]);
       } else {
         reExports.push(x);
       }
     });
     reExports = relativeImport(reExports, doclet);
     MODULE_EXPORTS[doclet.name].reExports = reExports;
-    if (_imports && _imports.expressions.length)
-      content += '\n';
+    if (_imports && _imports.expressions.length) content += '\n';
     content += reExports.join('\n') + '\n';
   }
 
@@ -896,17 +909,14 @@ function generateDeclaration(doclet, emitOutput = true) {
   }
 
   if (children.length) {
-    if ((_imports && _imports.expressions.length) || reExports.length)
-      content += '\n';
+    if ((_imports && _imports.expressions.length) || reExports.length) content += '\n';
     content += children.join('\n') + '\n';
   }
 
   if (emitOutput) {
     let outoutPath = path.resolve(outDir, doclet.name);
-    if (doclet.name == 'ol')
-      outoutPath = path.join(outoutPath, 'index.d.ts');
-    else
-      outoutPath += '.d.ts';
+    if (doclet.name == 'ol') outoutPath = path.join(outoutPath, 'index.d.ts');
+    else outoutPath += '.d.ts';
     fs.mkdirpSync(path.dirname(outoutPath));
     fs.writeFileSync(outoutPath, content);
   }
@@ -914,12 +924,34 @@ function generateDeclaration(doclet, emitOutput = true) {
   return `declare module '${doclet.name}' {\n${content}}`;
 }
 
+/**
+ * @param {string} key
+ * @param {boolean} [trim=true]
+ * @returns {string}
+ */
+function getGenericType(key, trim = true) {
+  if (ANY_GENERIC_TYPES.indexOf(key) != -1 && trim) return 'any';
+
+  let genericType = GENERIC_TYPES[key];
+  if (!genericType) return;
+  if (trim)
+    genericType = genericType
+      .split(',')
+      .map(t => {
+        t = t.replace(/^(\w+)\s?(extends|=)\s?\w+$/, '$1').trim();
+        return t;
+      })
+      .join(', ');
+
+  return genericType;
+}
+
 function extractGenericTypes(initial = true, strict = false) {
   if (initial)
     find({ tags: { isArray: true } }).forEach(doclet => {
+      if (GENERIC_TYPE_BLACKLIST.indexOf(doclet.longname) != -1) return;
       const template = doclet.tags.find(tag => tag.title == 'template');
-      if (template)
-        GENERIC_TYPES[doclet.longname] = template.value.split(/,\s?/).join(', ');
+      if (template) GENERIC_TYPES[doclet.longname] = template.value.split(/,\s?/).join(', ');
     });
 
   if (!strict) return;
@@ -927,70 +959,67 @@ function extractGenericTypes(initial = true, strict = false) {
   find({ kind: 'class' }).forEach(doclet => {
     let genericTypes = [];
 
-    if (doclet.longname in GENERIC_TYPES)
-      genericTypes = GENERIC_TYPES[doclet.longname].split(/,\s?/);
+    if (doclet.longname in GENERIC_TYPES) genericTypes = GENERIC_TYPES[doclet.longname].split(/,\s?/);
 
     if (doclet.augments && doclet.augments.length) {
       const augment = doclet.augments[0];
-      if (augment in GENERIC_TYPES)
-        genericTypes = genericTypes.concat(GENERIC_TYPES[augment].split(/,\s?/));
+      if (augment in GENERIC_TYPES) genericTypes = genericTypes.concat(GENERIC_TYPES[augment].split(/,\s?/));
     }
 
     find({ kind: ['member', 'constant'], memberof: doclet.longname }).forEach(member => {
       if (!member.type) return;
       member.type.names.forEach(type => {
-        if (type in GENERIC_TYPES)
-          genericTypes = genericTypes.concat(GENERIC_TYPES[type].split(/,\s?/));
+        if (type in GENERIC_TYPES) genericTypes = genericTypes.concat(GENERIC_TYPES[type].split(/,\s?/));
       });
     });
 
-    if (genericTypes.length)
-      GENERIC_TYPES[doclet.longname] = Array.from(new Set(genericTypes)).join(', ');
+    if (genericTypes.length) GENERIC_TYPES[doclet.longname] = Array.from(new Set(genericTypes)).join(', ');
   });
 
   find({ kind: 'typedef', properties: { isArray: true } }).forEach(doclet => {
     let genericTypes = [];
 
-    if (doclet.longname in GENERIC_TYPES)
-      genericTypes = GENERIC_TYPES[doclet.longname].split(/,\s?/);
+    if (doclet.longname in GENERIC_TYPES) genericTypes = GENERIC_TYPES[doclet.longname].split(/,\s?/);
 
     doclet.properties.forEach(prop => {
       prop.type.names.forEach(type => {
-        if (type in GENERIC_TYPES)
-          genericTypes = genericTypes.concat(GENERIC_TYPES[type].split(/,\s?/));
+        if (type in GENERIC_TYPES) genericTypes = genericTypes.concat(GENERIC_TYPES[type].split(/,\s?/));
       });
     });
 
-    if (genericTypes.length)
-      GENERIC_TYPES[doclet.longname] = Array.from(new Set(genericTypes)).join(', ');
+    if (genericTypes.length) GENERIC_TYPES[doclet.longname] = Array.from(new Set(genericTypes)).join(', ');
   });
 
-  data(
-    { kind: ['function', 'class'] },
-    [{ params: { isArray: true } }, { returns: { isArray: true } }, { yields: { isArray: true } }]
-  ).get().forEach((/** @type {Doclet} */ doclet) => {
-    let genericTypes = [];
+  data({ kind: ['function', 'class'] }, [
+    { params: { isArray: true } },
+    { returns: { isArray: true } },
+    { yields: { isArray: true } },
+  ])
+    .get()
+    .forEach((/** @type {Doclet} */ doclet) => {
+      let genericTypes = [];
 
-    if (doclet.longname in GENERIC_TYPES)
-      genericTypes = GENERIC_TYPES[doclet.longname].split(/,\s?/);
+      if (doclet.longname in GENERIC_TYPES) genericTypes = GENERIC_TYPES[doclet.longname].split(/,\s?/);
 
-    const merged = ((/** @type {Doclet[]} */ (doclet.params)) || [])
-      .concat((/** @type {Doclet[]} */ (doclet.yields)) || (/** @type {Doclet[]} */ (doclet.returns)) || []);
+      const merged = /** @type {Doclet[]} */ (doclet.params || []).concat(
+        /** @type {Doclet[]} */ (doclet.yields) || /** @type {Doclet[]} */ (doclet.returns) || []
+      );
 
-    merged.forEach(d => {
-      if (!d.type) return;
-      d.type.names.forEach(type => {
-        if (type in GENERIC_TYPES)
-          genericTypes = genericTypes.concat(GENERIC_TYPES[type].split(/,\s?/));
+      merged.forEach(d => {
+        if (!d.type) return;
+        d.type.names.forEach(type => {
+          if (type in GENERIC_TYPES) genericTypes = genericTypes.concat(GENERIC_TYPES[type].split(/,\s?/));
+        });
       });
-    });
 
-    if (genericTypes.length)
-      GENERIC_TYPES[doclet.longname] = Array.from(new Set(genericTypes)).join(', ');
-  });
+      if (genericTypes.length) GENERIC_TYPES[doclet.longname] = Array.from(new Set(genericTypes)).join(', ');
+    });
 }
 
-exports.publish = (taffyData) => {
+/**
+ * @param {*} taffyData
+ */
+exports.publish = taffyData => {
   data = taffyData;
   data = helper.prune(data);
   data.sort('longname, version, since');
@@ -1012,8 +1041,7 @@ exports.publish = (taffyData) => {
 
     if (doclet && doclet.params)
       doclet.params = doclet.params.map(param => {
-        if (param.name == paramName)
-          param.type.names = PARAM_TYPE_PATCHES[longname];
+        if (param.name == paramName) param.type.names = PARAM_TYPE_PATCHES[longname];
         return param;
       });
   }
@@ -1022,8 +1050,7 @@ exports.publish = (taffyData) => {
     const doclet = data({ longname }).first();
     if (!(doclet && doclet.properties)) continue;
     doclet.properties = doclet.properties.map(prop => {
-      if (prop.name in PROPERTY_TYPE_PATCHES[longname])
-        prop.type.names = PROPERTY_TYPE_PATCHES[longname][prop.name];
+      if (prop.name in PROPERTY_TYPE_PATCHES[longname]) prop.type.names = PROPERTY_TYPE_PATCHES[longname][prop.name];
       return prop;
     });
   }
@@ -1036,8 +1063,7 @@ exports.publish = (taffyData) => {
   if (declarationConfig.strictGenericTypes) {
     ANY_GENERIC_TYPES.splice(0);
     extractGenericTypes(true, true);
-    for (let i = 0; i < 2; ++i)
-      extractGenericTypes(false, true);
+    for (let i = 0; i < 2; ++i) extractGenericTypes(false, true);
   } else {
     extractGenericTypes();
   }
@@ -1052,8 +1078,7 @@ exports.publish = (taffyData) => {
 
     if (doclet.force_include_members)
       doclet.force_include_members.forEach(memberName => {
-        if (doclet.exports.exports.indexOf(memberName) == -1)
-          doclet.exports.exports.push(memberName);
+        if (doclet.exports.exports.indexOf(memberName) == -1) doclet.exports.exports.push(memberName);
       });
 
     MODULE_EXPORTS[doclet.name] = doclet.exports;

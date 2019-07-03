@@ -19,10 +19,9 @@ export default class TileGrid {
     protected maxZoom: number;
     protected minZoom: number;
     forEachTileCoord(extent: Extent, zoom: number, callback: (p0: TileCoord) => void): void;
-    forEachTileCoordParentTileRange<T>(
+    forEachTileCoordParentTileRange(
         tileCoord: TileCoord,
-        callback: (this: T, p0: number, p1: TileRange) => boolean,
-        opt_this?: T,
+        callback: (p0: number, p1: TileRange) => boolean,
         opt_tileRange?: TileRange,
         opt_extent?: Extent
     ): boolean;

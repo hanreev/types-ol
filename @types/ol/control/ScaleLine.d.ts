@@ -10,6 +10,9 @@ export interface Options {
     render?: (p0: MapEvent) => void;
     target?: HTMLElement | string;
     units?: Units | string;
+    bar?: boolean;
+    steps?: number;
+    text?: boolean;
 }
 export enum Units {
     DEGREES = 'degrees',
@@ -20,6 +23,9 @@ export enum Units {
 }
 export default class ScaleLine extends Control {
     constructor(opt_options?: Options);
+    createMarker(position: string, i: number): string;
+    createStepText(i: number, width: number, isLast: boolean, scale: number, suffix: string): string;
+    getScaleForResolution(): number;
     getUnits(): Units;
     setUnits(units: Units): void;
     on(type: string | string[], listener: (p0: any) => void): EventsKey | EventsKey[];
@@ -31,6 +37,9 @@ export default class ScaleLine extends Control {
     on(type: 'change:units', listener: (evt: ObjectEvent) => void): EventsKey;
     once(type: 'change:units', listener: (evt: ObjectEvent) => void): EventsKey;
     un(type: 'change:units', listener: (evt: ObjectEvent) => void): void;
+    on(type: 'error', listener: (evt: Event) => void): EventsKey;
+    once(type: 'error', listener: (evt: Event) => void): EventsKey;
+    un(type: 'error', listener: (evt: Event) => void): void;
     on(type: 'propertychange', listener: (evt: ObjectEvent) => void): EventsKey;
     once(type: 'propertychange', listener: (evt: ObjectEvent) => void): EventsKey;
     un(type: 'propertychange', listener: (evt: ObjectEvent) => void): void;

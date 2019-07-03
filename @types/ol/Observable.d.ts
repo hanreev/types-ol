@@ -12,5 +12,8 @@ export default class Observable extends Target {
     on(type: 'change', listener: (evt: Event) => void): EventsKey;
     once(type: 'change', listener: (evt: Event) => void): EventsKey;
     un(type: 'change', listener: (evt: Event) => void): void;
+    on(type: 'error', listener: (evt: Event) => void): EventsKey;
+    once(type: 'error', listener: (evt: Event) => void): EventsKey;
+    un(type: 'error', listener: (evt: Event) => void): void;
 }
 export function unByKey(key: EventsKey | EventsKey[]): void;

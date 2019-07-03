@@ -1,5 +1,6 @@
 declare enum EventType {
     CHANGE = 'change',
+    ERROR = 'error',
     CLEAR = 'clear',
     CONTEXTMENU = 'contextmenu',
     CLICK = 'click',
@@ -7,7 +8,6 @@ declare enum EventType {
     DRAGENTER = 'dragenter',
     DRAGOVER = 'dragover',
     DROP = 'drop',
-    ERROR = 'error',
     KEYDOWN = 'keydown',
     KEYPRESS = 'keypress',
     LOAD = 'load',

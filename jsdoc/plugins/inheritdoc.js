@@ -10,31 +10,26 @@ exports.defineTags = dictionary => {
     canHaveName: false,
     onTagged: doclet => {
       doclet.inheritdoc = true;
-    }
+    },
   });
 };
 
 const lookup = {};
 const incompleteByClass = {};
-const keepKeys = ['comment', 'meta', 'name', 'memberof', 'longname', 'augment',
-  'stability'];
+const keepKeys = ['comment', 'meta', 'name', 'memberof', 'longname', 'augment', 'stability'];
 
 exports.handlers = {
-
   newDoclet: e => {
     const doclet = e.doclet;
     let incompletes;
-    if (!(doclet.longname in lookup))
-      lookup[doclet.longname] = [];
+    if (!(doclet.longname in lookup)) lookup[doclet.longname] = [];
 
     lookup[doclet.longname].push(doclet);
     if (doclet.inheritdoc) {
-      if (!(doclet.memberof in incompleteByClass))
-        incompleteByClass[doclet.memberof] = [];
+      if (!(doclet.memberof in incompleteByClass)) incompleteByClass[doclet.memberof] = [];
 
       incompletes = incompleteByClass[doclet.memberof];
-      if (incompletes.indexOf(doclet.name) == -1)
-        incompletes.push(doclet.name);
+      if (incompletes.indexOf(doclet.name) == -1) incompletes.push(doclet.name);
     }
   },
 
@@ -44,8 +39,7 @@ exports.handlers = {
     const doclets = e.doclets;
     for (i = doclets.length - 1; i >= 0; --i) {
       doclet = doclets[i];
-      if (doclet.augments)
-        ancestors = [].concat(doclet.augments);
+      if (doclet.augments) ancestors = [].concat(doclet.augments);
 
       incompletes = incompleteByClass[doclet.longname];
       if (ancestors && incompletes) {
@@ -55,8 +49,7 @@ exports.handlers = {
           if (candidates)
             for (k = candidates.length - 1; k >= 0; --k) {
               candidate = candidates[k];
-              if (candidate.augments)
-                ancestors = ancestors.concat(candidate.augments);
+              if (candidate.augments) ancestors = ancestors.concat(candidate.augments);
             }
         }
         // walk through all inheritDoc members
@@ -67,8 +60,7 @@ exports.handlers = {
             // get the incomplete doclet that needs to be augmented
             for (k = candidates.length - 1; k >= 0; --k) {
               incompleteDoclet = candidates[k];
-              if (incompleteDoclet.inheritdoc)
-                break;
+              if (incompleteDoclet.inheritdoc) break;
             }
           // find the documented ancestor
           for (k = ancestors.length - 1; k >= 0; --k) {
@@ -81,8 +73,7 @@ exports.handlers = {
                   if (stability) {
                     incompleteDoclet.stability = stability;
                     for (key in candidate)
-                      if (candidate.hasOwnProperty(key) &&
-                        keepKeys.indexOf(key) == -1)
+                      if (candidate.hasOwnProperty(key) && keepKeys.indexOf(key) == -1)
                         incompleteDoclet[key] = candidate[key];
                     // We have found a matching parent doc and applied it so we
                     // don't want to ignore this doclet anymore.
@@ -96,6 +87,5 @@ exports.handlers = {
         }
       }
     }
-  }
-
+  },
 };

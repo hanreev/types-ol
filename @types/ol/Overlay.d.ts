@@ -81,6 +81,9 @@ export default class Overlay extends BaseObject {
     on(type: 'change:positioning', listener: (evt: ObjectEvent) => void): EventsKey;
     once(type: 'change:positioning', listener: (evt: ObjectEvent) => void): EventsKey;
     un(type: 'change:positioning', listener: (evt: ObjectEvent) => void): void;
+    on(type: 'error', listener: (evt: Event) => void): EventsKey;
+    once(type: 'error', listener: (evt: Event) => void): EventsKey;
+    un(type: 'error', listener: (evt: Event) => void): void;
     on(type: 'propertychange', listener: (evt: ObjectEvent) => void): EventsKey;
     once(type: 'propertychange', listener: (evt: ObjectEvent) => void): EventsKey;
     un(type: 'propertychange', listener: (evt: ObjectEvent) => void): void;

@@ -50,6 +50,7 @@ export default class VectorSource extends Source {
     removeFeature(feature: Feature): void;
     removeLoadedExtent(extent: Extent): void;
     setLoader(loader: FeatureLoader): void;
+    setUrl(url: string | FeatureUrlFunction): void;
     on(type: string | string[], listener: (p0: any) => void): EventsKey | EventsKey[];
     once(type: string | string[], listener: (p0: any) => void): EventsKey | EventsKey[];
     un(type: string | string[], listener: (p0: any) => void): void;
@@ -65,6 +66,9 @@ export default class VectorSource extends Source {
     on(type: 'clear', listener: (evt: VectorSourceEvent) => void): EventsKey;
     once(type: 'clear', listener: (evt: VectorSourceEvent) => void): EventsKey;
     un(type: 'clear', listener: (evt: VectorSourceEvent) => void): void;
+    on(type: 'error', listener: (evt: Event) => void): EventsKey;
+    once(type: 'error', listener: (evt: Event) => void): EventsKey;
+    un(type: 'error', listener: (evt: Event) => void): void;
     on(type: 'propertychange', listener: (evt: ObjectEvent) => void): EventsKey;
     once(type: 'propertychange', listener: (evt: ObjectEvent) => void): EventsKey;
     un(type: 'propertychange', listener: (evt: ObjectEvent) => void): void;

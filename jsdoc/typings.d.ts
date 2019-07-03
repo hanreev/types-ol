@@ -132,16 +132,9 @@ interface TypeUnion {
     optional?: boolean;
 }
 
-type ParsedType = (
-    TypeLiteral |
-    TypeApplication |
-    TypeNameExpression |
-    TypeFunction |
-    TypeUnion
-);
+type ParsedType = TypeLiteral | TypeApplication | TypeNameExpression | TypeFunction | TypeUnion;
 
 type DocletParser = (p0: Doclet, p1: Doclet) => string;
-
 
 // JSDoc
 

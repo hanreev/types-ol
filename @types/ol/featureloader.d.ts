@@ -9,7 +9,7 @@ export type FeatureUrlFunction = (p0: Extent, p1: number, p2: Projection) => str
 export function loadFeaturesXhr(
     url: string | FeatureUrlFunction,
     format: FeatureFormat,
-    success: (() => void) | (() => void),
-    failure: ((this: VectorSource) => void) | (() => void)
+    success: () => void,
+    failure: (this: VectorSource) => void
 ): FeatureLoader;
 export function xhr(url: string | FeatureUrlFunction, format: FeatureFormat): FeatureLoader;

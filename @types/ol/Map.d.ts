@@ -32,6 +32,9 @@ export default class Map extends PluggableMap {
     on(type: 'dblclick', listener: (evt: MapBrowserEvent) => void): EventsKey;
     once(type: 'dblclick', listener: (evt: MapBrowserEvent) => void): EventsKey;
     un(type: 'dblclick', listener: (evt: MapBrowserEvent) => void): void;
+    on(type: 'error', listener: (evt: Event) => void): EventsKey;
+    once(type: 'error', listener: (evt: Event) => void): EventsKey;
+    un(type: 'error', listener: (evt: Event) => void): void;
     on(type: 'moveend', listener: (evt: MapEvent) => void): EventsKey;
     once(type: 'moveend', listener: (evt: MapEvent) => void): EventsKey;
     un(type: 'moveend', listener: (evt: MapEvent) => void): void;

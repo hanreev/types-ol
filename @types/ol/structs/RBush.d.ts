@@ -10,9 +10,9 @@ export interface Entry {
 export default class RBush<T> {
     constructor(opt_maxEntries?: number);
     clear(): void;
-    concat(rbush: RBush<T>): void;
-    forEach<S>(callback: (this: S, p0: T) => void, opt_this?: S): any;
-    forEachInExtent<S>(extent: Extent, callback: (this: S, p0: T) => void, opt_this?: S): any;
+    concat(rbush: RBush<any>): void;
+    forEach(callback: (p0: T) => void): any;
+    forEachInExtent(extent: Extent, callback: (p0: T) => void): any;
     getAll(): T[];
     getExtent(opt_extent?: Extent): Extent;
     getInExtent(extent: Extent): T[];

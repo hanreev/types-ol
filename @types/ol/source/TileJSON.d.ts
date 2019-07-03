@@ -1,6 +1,7 @@
 import { EventsKey } from '../events';
 import Event from '../events/Event';
 import { ObjectEvent } from '../Object';
+import { Size } from '../size';
 import { LoadFunction } from '../Tile';
 import { AttributionLike } from './Source';
 import { TileSourceEvent } from './Tile';
@@ -29,6 +30,7 @@ export interface Options {
     reprojectionErrorThreshold?: number;
     tileJSON?: Config;
     tileLoadFunction?: LoadFunction;
+    tileSize?: number | Size;
     url?: string;
     wrapX?: boolean;
     transition?: number;
@@ -44,6 +46,9 @@ export default class TileJSON extends TileImage {
     on(type: 'change', listener: (evt: Event) => void): EventsKey;
     once(type: 'change', listener: (evt: Event) => void): EventsKey;
     un(type: 'change', listener: (evt: Event) => void): void;
+    on(type: 'error', listener: (evt: Event) => void): EventsKey;
+    once(type: 'error', listener: (evt: Event) => void): EventsKey;
+    un(type: 'error', listener: (evt: Event) => void): void;
     on(type: 'propertychange', listener: (evt: ObjectEvent) => void): EventsKey;
     once(type: 'propertychange', listener: (evt: ObjectEvent) => void): EventsKey;
     un(type: 'propertychange', listener: (evt: ObjectEvent) => void): void;

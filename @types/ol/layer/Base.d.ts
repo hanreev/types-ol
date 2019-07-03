@@ -1,12 +1,12 @@
 import { EventsKey } from '../events';
 import Event from '../events/Event';
 import { Extent } from '../extent';
-import LayerType from '../LayerType';
 import BaseObject, { ObjectEvent } from '../Object';
 import State_1 from '../source/State';
 import Layer, { State } from './Layer';
 
 export interface Options {
+    className?: string;
     opacity?: number;
     visible?: boolean;
     extent?: Extent;
@@ -16,15 +16,15 @@ export interface Options {
 }
 export default class BaseLayer extends BaseObject {
     constructor(options: Options);
+    getClassName(): string;
     getExtent(): Extent;
     getLayersArray(opt_array?: Layer[]): Layer[];
-    getLayerState(): State;
+    getLayerState(opt_managed?: boolean): State;
     getLayerStatesArray(opt_states?: State[]): State[];
     getMaxResolution(): number;
     getMinResolution(): number;
     getOpacity(): number;
     getSourceState(): State_1;
-    getType(): LayerType;
     getVisible(): boolean;
     getZIndex(): number;
     setExtent(extent: Extent): void;
@@ -57,6 +57,9 @@ export default class BaseLayer extends BaseObject {
     on(type: 'change:zIndex', listener: (evt: ObjectEvent) => void): EventsKey;
     once(type: 'change:zIndex', listener: (evt: ObjectEvent) => void): EventsKey;
     un(type: 'change:zIndex', listener: (evt: ObjectEvent) => void): void;
+    on(type: 'error', listener: (evt: Event) => void): EventsKey;
+    once(type: 'error', listener: (evt: Event) => void): EventsKey;
+    un(type: 'error', listener: (evt: Event) => void): void;
     on(type: 'propertychange', listener: (evt: ObjectEvent) => void): EventsKey;
     once(type: 'propertychange', listener: (evt: ObjectEvent) => void): EventsKey;
     un(type: 'propertychange', listener: (evt: ObjectEvent) => void): void;

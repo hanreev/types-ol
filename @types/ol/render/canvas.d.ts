@@ -1,8 +1,8 @@
 import { ColorLike } from '../colorlike';
-import LRUCache from '../structs/LRUCache';
 import Fill from '../style/Fill';
 import Stroke from '../style/Stroke';
 import { Transform } from '../transform';
+import LabelCache from './canvas/LabelCache';
 
 export type DeclutterGroup = any[];
 export interface FillState {
@@ -48,7 +48,7 @@ export interface TextState {
     scale?: number;
     padding?: number[];
 }
-export const labelCache: LRUCache<HTMLCanvasElement>;
+export const labelCache: LabelCache;
 export function drawImage(
     context: CanvasRenderingContext2D,
     transform: Transform,
@@ -62,7 +62,9 @@ export function drawImage(
     y: number,
     scale: number
 ): void;
+export function measureAndCacheTextWidth(font: string, text: string, cache: { [key: string]: number }): number;
 export function measureTextWidth(font: string, text: string): number;
+export function measureTextWidths(font: string, lines: string[], widths: number[]): number;
 export function rotateAtOffset(
     context: CanvasRenderingContext2D,
     rotation: number,

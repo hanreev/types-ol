@@ -22,7 +22,7 @@ export interface Options {
     url?: string;
     wrapX?: boolean;
     transition?: number;
-    urls: string[];
+    urls?: string[];
 }
 export default class TileArcGISRest extends TileImage {
     constructor(opt_options?: Options);
@@ -34,6 +34,9 @@ export default class TileArcGISRest extends TileImage {
     on(type: 'change', listener: (evt: Event) => void): EventsKey;
     once(type: 'change', listener: (evt: Event) => void): EventsKey;
     un(type: 'change', listener: (evt: Event) => void): void;
+    on(type: 'error', listener: (evt: Event) => void): EventsKey;
+    once(type: 'error', listener: (evt: Event) => void): EventsKey;
+    un(type: 'error', listener: (evt: Event) => void): void;
     on(type: 'propertychange', listener: (evt: ObjectEvent) => void): EventsKey;
     once(type: 'propertychange', listener: (evt: ObjectEvent) => void): EventsKey;
     un(type: 'propertychange', listener: (evt: ObjectEvent) => void): void;

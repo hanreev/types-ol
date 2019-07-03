@@ -18,6 +18,7 @@ export interface Options {
     cacheSize?: number;
     crossOrigin?: string;
     projection?: ProjectionLike;
+    tilePixelRatio?: number;
     reprojectionErrorThreshold?: number;
     url?: string;
     tierSizeCalculation?: string;
@@ -25,9 +26,11 @@ export interface Options {
     extent?: Extent;
     transition?: number;
     tileSize?: number;
+    zDirection?: number;
 }
 export class CustomTile extends ImageTile {
     constructor(
+        tilePixelRatio: number,
         tileGrid: TileGrid,
         tileCoord: TileCoord,
         state: TileState,
@@ -45,6 +48,9 @@ export default class Zoomify extends TileImage {
     on(type: 'change', listener: (evt: Event) => void): EventsKey;
     once(type: 'change', listener: (evt: Event) => void): EventsKey;
     un(type: 'change', listener: (evt: Event) => void): void;
+    on(type: 'error', listener: (evt: Event) => void): EventsKey;
+    once(type: 'error', listener: (evt: Event) => void): EventsKey;
+    un(type: 'error', listener: (evt: Event) => void): void;
     on(type: 'propertychange', listener: (evt: ObjectEvent) => void): EventsKey;
     once(type: 'propertychange', listener: (evt: ObjectEvent) => void): EventsKey;
     un(type: 'propertychange', listener: (evt: ObjectEvent) => void): void;

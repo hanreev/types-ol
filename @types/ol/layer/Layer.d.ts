@@ -2,9 +2,10 @@ import { EventsKey } from '../events';
 import Event from '../events/Event';
 import { Extent } from '../extent';
 import { ObjectEvent } from '../Object';
-import PluggableMap from '../PluggableMap';
+import PluggableMap, { FrameState } from '../PluggableMap';
 import RenderEvent from '../render/Event';
-import Source from '../source/Source';
+import LayerRenderer from '../renderer/Layer';
+import SourceType from '../source/Source';
 import State_1 from '../source/State';
 import BaseLayer from './Base';
 
@@ -15,15 +16,18 @@ export interface Options {
     zIndex?: number;
     minResolution?: number;
     maxResolution?: number;
-    source?: Source;
+    source?: SourceType;
     map?: PluggableMap;
+    render?: RenderFunction;
 }
+export type RenderFunction = (p0: FrameState) => HTMLElement;
 export interface State {
     layer: BaseLayer;
     opacity: number;
     sourceState: State_1;
     visible: boolean;
     managed: boolean;
+    hasOverlay: boolean;
     extent?: Extent;
     zIndex: number;
     maxResolution: number;
@@ -31,9 +35,13 @@ export interface State {
 }
 export default class Layer extends BaseLayer {
     constructor(options: Options);
-    getSource(): Source;
+    protected createRenderer(): LayerRenderer;
+    getRenderer(): LayerRenderer;
+    getSource(): SourceType;
+    hasRenderer(): boolean;
+    render(frameState: FrameState, target: HTMLElement): HTMLElement;
     setMap(map: PluggableMap): void;
-    setSource(source: Source): void;
+    setSource(source: SourceType): void;
     on(type: string | string[], listener: (p0: any) => void): EventsKey | EventsKey[];
     once(type: string | string[], listener: (p0: any) => void): EventsKey | EventsKey[];
     un(type: string | string[], listener: (p0: any) => void): void;
@@ -61,20 +69,17 @@ export default class Layer extends BaseLayer {
     on(type: 'change:zIndex', listener: (evt: ObjectEvent) => void): EventsKey;
     once(type: 'change:zIndex', listener: (evt: ObjectEvent) => void): EventsKey;
     un(type: 'change:zIndex', listener: (evt: ObjectEvent) => void): void;
-    on(type: 'postcompose', listener: (evt: RenderEvent) => void): EventsKey;
-    once(type: 'postcompose', listener: (evt: RenderEvent) => void): EventsKey;
-    un(type: 'postcompose', listener: (evt: RenderEvent) => void): void;
-    on(type: 'precompose', listener: (evt: RenderEvent) => void): EventsKey;
-    once(type: 'precompose', listener: (evt: RenderEvent) => void): EventsKey;
-    un(type: 'precompose', listener: (evt: RenderEvent) => void): void;
+    on(type: 'error', listener: (evt: Event) => void): EventsKey;
+    once(type: 'error', listener: (evt: Event) => void): EventsKey;
+    un(type: 'error', listener: (evt: Event) => void): void;
+    on(type: 'postrender', listener: (evt: RenderEvent) => void): EventsKey;
+    once(type: 'postrender', listener: (evt: RenderEvent) => void): EventsKey;
+    un(type: 'postrender', listener: (evt: RenderEvent) => void): void;
+    on(type: 'prerender', listener: (evt: RenderEvent) => void): EventsKey;
+    once(type: 'prerender', listener: (evt: RenderEvent) => void): EventsKey;
+    un(type: 'prerender', listener: (evt: RenderEvent) => void): void;
     on(type: 'propertychange', listener: (evt: ObjectEvent) => void): EventsKey;
     once(type: 'propertychange', listener: (evt: ObjectEvent) => void): EventsKey;
     un(type: 'propertychange', listener: (evt: ObjectEvent) => void): void;
-    on(type: 'render', listener: (evt: RenderEvent) => void): EventsKey;
-    once(type: 'render', listener: (evt: RenderEvent) => void): EventsKey;
-    un(type: 'render', listener: (evt: RenderEvent) => void): void;
-    on(type: 'rendercomplete', listener: (evt: RenderEvent) => void): EventsKey;
-    once(type: 'rendercomplete', listener: (evt: RenderEvent) => void): EventsKey;
-    un(type: 'rendercomplete', listener: (evt: RenderEvent) => void): void;
 }
 export function visibleAtResolution(layerState: State, resolution: number): boolean;

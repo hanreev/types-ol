@@ -2,14 +2,16 @@ import Collection from '../Collection';
 import { Coordinate } from '../coordinate';
 import { EventsKey } from '../events';
 import Event from '../events/Event';
-import Feature from '../Feature';
+import Feature, { FeatureLike } from '../Feature';
 import Layer from '../layer/Layer';
 import { ObjectEvent } from '../Object';
 import PointerInteraction from './Pointer';
 
+export type FilterFunction = (p0: FeatureLike, p1: Layer) => boolean;
 export interface Options {
     features?: Collection<Feature>;
     layers?: Layer[] | ((p0: Layer) => boolean);
+    filter?: FilterFunction;
     hitTolerance?: number;
 }
 export default class Translate extends PointerInteraction {
@@ -25,6 +27,9 @@ export default class Translate extends PointerInteraction {
     on(type: 'change:active', listener: (evt: ObjectEvent) => void): EventsKey;
     once(type: 'change:active', listener: (evt: ObjectEvent) => void): EventsKey;
     un(type: 'change:active', listener: (evt: ObjectEvent) => void): void;
+    on(type: 'error', listener: (evt: Event) => void): EventsKey;
+    once(type: 'error', listener: (evt: Event) => void): EventsKey;
+    un(type: 'error', listener: (evt: Event) => void): void;
     on(type: 'propertychange', listener: (evt: ObjectEvent) => void): EventsKey;
     once(type: 'propertychange', listener: (evt: ObjectEvent) => void): EventsKey;
     un(type: 'propertychange', listener: (evt: ObjectEvent) => void): void;

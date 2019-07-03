@@ -29,12 +29,7 @@ export class CustomTile extends Tile {
         preemptive: boolean,
         jsonp: boolean
     );
-    forDataAtCoordinate<T>(
-        coordinate: Coordinate,
-        callback: (this: T, p0: any) => void,
-        opt_this?: T,
-        opt_request?: boolean
-    ): void;
+    forDataAtCoordinate(coordinate: Coordinate, callback: (p0: any) => void, opt_request?: boolean): void;
     getData(coordinate: Coordinate): any;
     getImage(): HTMLImageElement;
 }
@@ -55,6 +50,9 @@ export default class UTFGrid extends TileSource {
     on(type: 'change', listener: (evt: Event) => void): EventsKey;
     once(type: 'change', listener: (evt: Event) => void): EventsKey;
     un(type: 'change', listener: (evt: Event) => void): void;
+    on(type: 'error', listener: (evt: Event) => void): EventsKey;
+    once(type: 'error', listener: (evt: Event) => void): EventsKey;
+    un(type: 'error', listener: (evt: Event) => void): void;
     on(type: 'propertychange', listener: (evt: ObjectEvent) => void): EventsKey;
     once(type: 'propertychange', listener: (evt: ObjectEvent) => void): EventsKey;
     un(type: 'propertychange', listener: (evt: ObjectEvent) => void): void;

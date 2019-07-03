@@ -13,7 +13,6 @@ export interface Options {
 export default class Stroke {
     constructor(opt_options?: Options);
     clone(): Stroke;
-    getChecksum(): string;
     getColor(): Color | ColorLike;
     getLineCap(): string;
     getLineDash(): number[];

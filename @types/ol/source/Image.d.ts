@@ -37,12 +37,24 @@ export default class ImageSource extends Source {
     on(type: 'change', listener: (evt: Event) => void): EventsKey;
     once(type: 'change', listener: (evt: Event) => void): EventsKey;
     un(type: 'change', listener: (evt: Event) => void): void;
+    on(type: 'error', listener: (evt: Event) => void): EventsKey;
+    once(type: 'error', listener: (evt: Event) => void): EventsKey;
+    un(type: 'error', listener: (evt: Event) => void): void;
+    on(type: 'imageloadend', listener: (evt: ImageSourceEvent) => void): EventsKey;
+    once(type: 'imageloadend', listener: (evt: ImageSourceEvent) => void): EventsKey;
+    un(type: 'imageloadend', listener: (evt: ImageSourceEvent) => void): void;
+    on(type: 'imageloaderror', listener: (evt: ImageSourceEvent) => void): EventsKey;
+    once(type: 'imageloaderror', listener: (evt: ImageSourceEvent) => void): EventsKey;
+    un(type: 'imageloaderror', listener: (evt: ImageSourceEvent) => void): void;
+    on(type: 'imageloadstart', listener: (evt: ImageSourceEvent) => void): EventsKey;
+    once(type: 'imageloadstart', listener: (evt: ImageSourceEvent) => void): EventsKey;
+    un(type: 'imageloadstart', listener: (evt: ImageSourceEvent) => void): void;
     on(type: 'propertychange', listener: (evt: ObjectEvent) => void): EventsKey;
     once(type: 'propertychange', listener: (evt: ObjectEvent) => void): EventsKey;
     un(type: 'propertychange', listener: (evt: ObjectEvent) => void): void;
 }
 export class ImageSourceEvent extends Event {
-    constructor(type: string, image: ImageWrapper);
+    constructor();
     image: ImageWrapper;
 }
 export function defaultImageLoadFunction(image: ImageWrapper, src: string): void;

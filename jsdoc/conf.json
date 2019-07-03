@@ -1,42 +1,40 @@
 {
-  "opts": {
-    "recurse": true,
-    "template": "jsdoc/template"
-  },
-  "tags": {
-    "allowUnknownTags": true
-  },
-  "source": {
-    "includePattern": ".+\\.js$",
-    "excludePattern": "(^|\\/|\\\\)_",
-    "include": [
-      "openlayers/src/ol"
-    ]
-  },
-  "plugins": [
-    "jsdoc/plugins/markdown",
-    "jsdoc-plugin-typescript",
-    "jsdoc/plugins/inline-options",
-    "jsdoc/plugins/inheritdoc",
-    "jsdoc/plugins/events",
-    "jsdoc/plugins/observable",
-    "jsdoc/plugins/api",
-    "jsdoc/plugins/exports"
-  ],
-  "typescript": {
-    "moduleRoot": "openlayers/src",
-    "declaration": {
-      "mode": "multiple",
-      "strictGenericTypes": false
-    }
-  },
-  "templates": {
-    "cleverLinks": true,
-    "monospaceLinks": true,
-    "default": {
-      "outputSourceFiles": false
+    "opts": {
+        "recurse": true,
+        "template": "jsdoc/template"
     },
-    "applicationName": "OpenLayers"
-  },
-  "jsVersion": 180
+    "tags": {
+        "allowUnknownTags": true
+    },
+    "source": {
+        "includePattern": ".+\\.js$",
+        "excludePattern": "(^|\\/|\\\\)_",
+        "include": ["openlayers/src/ol"]
+    },
+    "plugins": [
+        "jsdoc/plugins/markdown",
+        "jsdoc-plugin-typescript",
+        "jsdoc/plugins/inline-options",
+        "jsdoc/plugins/inheritdoc",
+        "jsdoc/plugins/events",
+        "jsdoc/plugins/observable",
+        "jsdoc/plugins/api",
+        "jsdoc/plugins/exports"
+    ],
+    "typescript": {
+        "moduleRoot": "openlayers/src",
+        "declaration": {
+            "mode": "multiple",
+            "strictGenericTypes": false
+        }
+    },
+    "templates": {
+        "cleverLinks": true,
+        "monospaceLinks": true,
+        "default": {
+            "outputSourceFiles": false
+        },
+        "applicationName": "OpenLayers"
+    },
+    "jsVersion": 180
 }

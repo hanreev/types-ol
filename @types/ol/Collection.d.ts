@@ -31,6 +31,9 @@ export default class Collection<T> extends BaseObject {
     on(type: 'change:length', listener: (evt: ObjectEvent) => void): EventsKey;
     once(type: 'change:length', listener: (evt: ObjectEvent) => void): EventsKey;
     un(type: 'change:length', listener: (evt: ObjectEvent) => void): void;
+    on(type: 'error', listener: (evt: Event) => void): EventsKey;
+    once(type: 'error', listener: (evt: Event) => void): EventsKey;
+    un(type: 'error', listener: (evt: Event) => void): void;
     on(type: 'propertychange', listener: (evt: ObjectEvent) => void): EventsKey;
     once(type: 'propertychange', listener: (evt: ObjectEvent) => void): EventsKey;
     un(type: 'propertychange', listener: (evt: ObjectEvent) => void): void;
@@ -41,4 +44,5 @@ export default class Collection<T> extends BaseObject {
 export class CollectionEvent<T> extends Event {
     constructor();
     element: T;
+    index: number;
 }

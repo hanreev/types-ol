@@ -13,8 +13,8 @@ export default class LRUCache<T> extends Target {
     canExpireCache(): boolean;
     clear(): void;
     containsKey(key: string): boolean;
-    forEach<S>(f: (this: S, p0: T, p1: string, p2: LRUCache<T>) => void, opt_this?: S): void;
-    get(key: string): T;
+    forEach(f: (p0: T, p1: string, p2: LRUCache<any>) => void): void;
+    get(key: string, opt_options?: any): T;
     getCount(): number;
     getKeys(): string[];
     getValues(): T[];
@@ -22,7 +22,6 @@ export default class LRUCache<T> extends Target {
     peekLast(): T;
     peekLastKey(): string;
     pop(): T;
-    prune(): void;
     remove(key: string): T;
     replace(key: string, value: T): void;
     set(key: string, value: T): void;
@@ -33,4 +32,7 @@ export default class LRUCache<T> extends Target {
     on(type: 'change', listener: (evt: Event) => void): EventsKey;
     once(type: 'change', listener: (evt: Event) => void): EventsKey;
     un(type: 'change', listener: (evt: Event) => void): void;
+    on(type: 'error', listener: (evt: Event) => void): EventsKey;
+    once(type: 'error', listener: (evt: Event) => void): EventsKey;
+    un(type: 'error', listener: (evt: Event) => void): void;
 }

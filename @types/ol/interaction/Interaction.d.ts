@@ -25,29 +25,12 @@ export default class Interaction extends BaseObject {
     on(type: 'change:active', listener: (evt: ObjectEvent) => void): EventsKey;
     once(type: 'change:active', listener: (evt: ObjectEvent) => void): EventsKey;
     un(type: 'change:active', listener: (evt: ObjectEvent) => void): void;
+    on(type: 'error', listener: (evt: Event) => void): EventsKey;
+    once(type: 'error', listener: (evt: Event) => void): EventsKey;
+    un(type: 'error', listener: (evt: Event) => void): void;
     on(type: 'propertychange', listener: (evt: ObjectEvent) => void): EventsKey;
     once(type: 'propertychange', listener: (evt: ObjectEvent) => void): EventsKey;
     un(type: 'propertychange', listener: (evt: ObjectEvent) => void): void;
 }
 export function pan(view: View, delta: Coordinate, opt_duration?: number): void;
-export function rotate(view: View, rotation: number, opt_anchor?: Coordinate, opt_duration?: number): void;
-export function rotateWithoutConstraints(
-    view: View,
-    rotation: number,
-    opt_anchor?: Coordinate,
-    opt_duration?: number
-): void;
-export function zoom(
-    view: View,
-    resolution: number,
-    opt_anchor?: Coordinate,
-    opt_duration?: number,
-    opt_direction?: number
-): void;
 export function zoomByDelta(view: View, delta: number, opt_anchor?: Coordinate, opt_duration?: number): void;
-export function zoomWithoutConstraints(
-    view: View,
-    resolution: number,
-    opt_anchor?: Coordinate,
-    opt_duration?: number
-): void;

@@ -6,7 +6,6 @@ import { ObjectEvent } from '../Object';
 import RenderEvent from '../render/Event';
 import VectorSource from '../source/Vector';
 import VectorLayer from './Vector';
-import VectorRenderType from './VectorRenderType';
 
 export interface Options {
     opacity?: number;
@@ -18,9 +17,7 @@ export interface Options {
     gradient?: string[];
     radius?: number;
     blur?: number;
-    shadow?: number;
     weight?: string | ((p0: Feature) => number);
-    renderMode?: VectorRenderType | string;
     source?: VectorSource;
 }
 export default class Heatmap extends VectorLayer {
@@ -67,18 +64,24 @@ export default class Heatmap extends VectorLayer {
     on(type: 'change:zIndex', listener: (evt: ObjectEvent) => void): EventsKey;
     once(type: 'change:zIndex', listener: (evt: ObjectEvent) => void): EventsKey;
     un(type: 'change:zIndex', listener: (evt: ObjectEvent) => void): void;
+    on(type: 'error', listener: (evt: Event) => void): EventsKey;
+    once(type: 'error', listener: (evt: Event) => void): EventsKey;
+    un(type: 'error', listener: (evt: Event) => void): void;
     on(type: 'postcompose', listener: (evt: RenderEvent) => void): EventsKey;
     once(type: 'postcompose', listener: (evt: RenderEvent) => void): EventsKey;
     un(type: 'postcompose', listener: (evt: RenderEvent) => void): void;
+    on(type: 'postrender', listener: (evt: RenderEvent) => void): EventsKey;
+    once(type: 'postrender', listener: (evt: RenderEvent) => void): EventsKey;
+    un(type: 'postrender', listener: (evt: RenderEvent) => void): void;
     on(type: 'precompose', listener: (evt: RenderEvent) => void): EventsKey;
     once(type: 'precompose', listener: (evt: RenderEvent) => void): EventsKey;
     un(type: 'precompose', listener: (evt: RenderEvent) => void): void;
+    on(type: 'prerender', listener: (evt: RenderEvent) => void): EventsKey;
+    once(type: 'prerender', listener: (evt: RenderEvent) => void): EventsKey;
+    un(type: 'prerender', listener: (evt: RenderEvent) => void): void;
     on(type: 'propertychange', listener: (evt: ObjectEvent) => void): EventsKey;
     once(type: 'propertychange', listener: (evt: ObjectEvent) => void): EventsKey;
     un(type: 'propertychange', listener: (evt: ObjectEvent) => void): void;
-    on(type: 'render', listener: (evt: RenderEvent) => void): EventsKey;
-    once(type: 'render', listener: (evt: RenderEvent) => void): EventsKey;
-    un(type: 'render', listener: (evt: RenderEvent) => void): void;
     on(type: 'rendercomplete', listener: (evt: RenderEvent) => void): EventsKey;
     once(type: 'rendercomplete', listener: (evt: RenderEvent) => void): EventsKey;
     un(type: 'rendercomplete', listener: (evt: RenderEvent) => void): void;

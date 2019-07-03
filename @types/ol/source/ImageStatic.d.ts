@@ -5,7 +5,7 @@ import { LoadFunction } from '../Image';
 import { ObjectEvent } from '../Object';
 import { ProjectionLike } from '../proj';
 import { Size } from '../size';
-import ImageSource from './Image';
+import ImageSource, { ImageSourceEvent } from './Image';
 import { AttributionLike } from './Source';
 
 export interface Options {
@@ -27,6 +27,18 @@ export default class Static extends ImageSource {
     on(type: 'change', listener: (evt: Event) => void): EventsKey;
     once(type: 'change', listener: (evt: Event) => void): EventsKey;
     un(type: 'change', listener: (evt: Event) => void): void;
+    on(type: 'error', listener: (evt: Event) => void): EventsKey;
+    once(type: 'error', listener: (evt: Event) => void): EventsKey;
+    un(type: 'error', listener: (evt: Event) => void): void;
+    on(type: 'imageloadend', listener: (evt: ImageSourceEvent) => void): EventsKey;
+    once(type: 'imageloadend', listener: (evt: ImageSourceEvent) => void): EventsKey;
+    un(type: 'imageloadend', listener: (evt: ImageSourceEvent) => void): void;
+    on(type: 'imageloaderror', listener: (evt: ImageSourceEvent) => void): EventsKey;
+    once(type: 'imageloaderror', listener: (evt: ImageSourceEvent) => void): EventsKey;
+    un(type: 'imageloaderror', listener: (evt: ImageSourceEvent) => void): void;
+    on(type: 'imageloadstart', listener: (evt: ImageSourceEvent) => void): EventsKey;
+    once(type: 'imageloadstart', listener: (evt: ImageSourceEvent) => void): EventsKey;
+    un(type: 'imageloadstart', listener: (evt: ImageSourceEvent) => void): void;
     on(type: 'propertychange', listener: (evt: ObjectEvent) => void): EventsKey;
     once(type: 'propertychange', listener: (evt: ObjectEvent) => void): EventsKey;
     un(type: 'propertychange', listener: (evt: ObjectEvent) => void): void;

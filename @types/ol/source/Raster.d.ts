@@ -4,10 +4,8 @@ import { Extent } from '../extent';
 import Layer, { State } from '../layer/Layer';
 import { ObjectEvent } from '../Object';
 import { FrameState } from '../PluggableMap';
-import CanvasLayerRenderer from '../renderer/canvas/Layer';
-import ImageSource from './Image';
+import ImageSource, { ImageSourceEvent } from './Image';
 import Source from './Source';
-import TileSource from './Tile';
 
 export type Operation = (p0: number[][] | ImageData[], p1: object) => number[] | ImageData;
 export interface Options {
@@ -32,12 +30,24 @@ export default class RasterSource extends ImageSource {
     on(type: 'change', listener: (evt: Event) => void): EventsKey;
     once(type: 'change', listener: (evt: Event) => void): EventsKey;
     un(type: 'change', listener: (evt: Event) => void): void;
+    on(type: 'error', listener: (evt: Event) => void): EventsKey;
+    once(type: 'error', listener: (evt: Event) => void): EventsKey;
+    un(type: 'error', listener: (evt: Event) => void): void;
+    on(type: 'imageloadend', listener: (evt: ImageSourceEvent) => void): EventsKey;
+    once(type: 'imageloadend', listener: (evt: ImageSourceEvent) => void): EventsKey;
+    un(type: 'imageloadend', listener: (evt: ImageSourceEvent) => void): void;
+    on(type: 'imageloaderror', listener: (evt: ImageSourceEvent) => void): EventsKey;
+    once(type: 'imageloaderror', listener: (evt: ImageSourceEvent) => void): EventsKey;
+    un(type: 'imageloaderror', listener: (evt: ImageSourceEvent) => void): void;
+    on(type: 'imageloadstart', listener: (evt: ImageSourceEvent) => void): EventsKey;
+    once(type: 'imageloadstart', listener: (evt: ImageSourceEvent) => void): EventsKey;
+    un(type: 'imageloadstart', listener: (evt: ImageSourceEvent) => void): void;
     on(type: 'propertychange', listener: (evt: ObjectEvent) => void): EventsKey;
     once(type: 'propertychange', listener: (evt: ObjectEvent) => void): EventsKey;
     un(type: 'propertychange', listener: (evt: ObjectEvent) => void): void;
 }
 export class RasterSourceEvent extends Event {
-    constructor(type: string, frameState: FrameState, data: any);
+    constructor();
     data: any;
     extent: Extent;
     resolution: number;

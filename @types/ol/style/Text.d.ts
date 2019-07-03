@@ -51,6 +51,7 @@ export default class Text {
     setOverflow(overflow: boolean): void;
     setPadding(padding: number[]): void;
     setPlacement(placement: TextPlacement | string): void;
+    setRotateWithView(rotateWithView: boolean): void;
     setRotation(rotation: number): void;
     setScale(scale: number): void;
     setStroke(stroke: Stroke): void;

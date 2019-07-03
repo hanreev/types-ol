@@ -44,7 +44,6 @@ export interface Constraints {
 export interface FitOptions {
     size?: Size;
     padding?: number[];
-    constrainResolution?: boolean;
     nearest?: boolean;
     minResolution?: number;
     maxZoom?: number;
@@ -64,10 +63,15 @@ export interface ViewOptions {
     constrainRotation?: boolean | number;
     enableRotation?: boolean;
     extent?: Extent;
+    constrainOnlyCenter?: boolean;
+    smoothExtentConstraint?: boolean;
     maxResolution?: number;
     minResolution?: number;
     maxZoom?: number;
     minZoom?: number;
+    multiWorld?: boolean;
+    constrainResolution?: boolean;
+    smoothResolutionConstraint?: boolean;
     projection?: ProjectionLike;
     resolution?: number;
     resolutions?: number[];
@@ -77,19 +81,25 @@ export interface ViewOptions {
 }
 export default class View extends BaseObject {
     constructor(opt_options?: ViewOptions);
+    adjustCenter(deltaCoordinates: Coordinate): void;
+    adjustResolution(ratio: number, opt_anchor?: Coordinate): void;
+    adjustRotation(delta: number, opt_anchor?: Coordinate): void;
+    adjustZoom(delta: number, opt_anchor?: Coordinate): void;
     animate(...var_args: (AnimationOptions | ((p0: boolean) => void))[]): void;
     applyOptions_(options: ViewOptions): void;
+    beginInteraction(): void;
     calculateCenterRotate(rotation: number, anchor: Coordinate): Coordinate;
     calculateCenterZoom(resolution: number, anchor: Coordinate): Coordinate;
     calculateExtent(opt_size?: Size): Extent;
     cancelAnimations(): void;
     centerOn(coordinate: Coordinate, size: Size, position: Pixel): void;
-    constrainCenter(center: Coordinate): Coordinate;
-    constrainResolution(resolution: number, opt_delta?: number, opt_direction?: number): number;
-    constrainRotation(rotation: number, opt_delta?: number): number;
+    endInteraction(opt_duration?: number, opt_resolutionDirection?: number, opt_anchor?: Coordinate): void;
     fit(geometryOrExtent: SimpleGeometry | Extent, opt_options?: FitOptions): void;
     getAnimating(): boolean;
     getCenter(): Coordinate;
+    getConstrainedCenter(targetCenter: Coordinate, opt_targetResolution?: number): Coordinate;
+    getConstrainedResolution(targetResolution: number, opt_direction?: number): number;
+    getConstrainedZoom(targetZoom: number, opt_direction?: number): number;
     getConstraints(): Constraints;
     getHints(opt_hints?: number[]): number[];
     getInteracting(): boolean;
@@ -110,8 +120,9 @@ export default class View extends BaseObject {
     getZoom(): number;
     getZoomForResolution(resolution: number): number;
     isDef(): boolean;
-    rotate(rotation: number, opt_anchor?: Coordinate): void;
+    resolveConstraints(opt_duration?: number, opt_resolutionDirection?: number, opt_anchor?: Coordinate): void;
     setCenter(center: Coordinate): void;
+    setConstrainResolution(enabled: boolean): void;
     setHint(hint: ViewHint, delta: number): number;
     setMaxZoom(zoom: number): void;
     setMinZoom(zoom: number): void;
@@ -125,6 +136,12 @@ export default class View extends BaseObject {
     on(type: 'change', listener: (evt: Event) => void): EventsKey;
     once(type: 'change', listener: (evt: Event) => void): EventsKey;
     un(type: 'change', listener: (evt: Event) => void): void;
+    on(type: 'change:adjustResolution', listener: (evt: ObjectEvent) => void): EventsKey;
+    once(type: 'change:adjustResolution', listener: (evt: ObjectEvent) => void): EventsKey;
+    un(type: 'change:adjustResolution', listener: (evt: ObjectEvent) => void): void;
+    on(type: 'change:adjustRotation', listener: (evt: ObjectEvent) => void): EventsKey;
+    once(type: 'change:adjustRotation', listener: (evt: ObjectEvent) => void): EventsKey;
+    un(type: 'change:adjustRotation', listener: (evt: ObjectEvent) => void): void;
     on(type: 'change:center', listener: (evt: ObjectEvent) => void): EventsKey;
     once(type: 'change:center', listener: (evt: ObjectEvent) => void): EventsKey;
     un(type: 'change:center', listener: (evt: ObjectEvent) => void): void;
@@ -134,6 +151,9 @@ export default class View extends BaseObject {
     on(type: 'change:rotation', listener: (evt: ObjectEvent) => void): EventsKey;
     once(type: 'change:rotation', listener: (evt: ObjectEvent) => void): EventsKey;
     un(type: 'change:rotation', listener: (evt: ObjectEvent) => void): void;
+    on(type: 'error', listener: (evt: Event) => void): EventsKey;
+    once(type: 'error', listener: (evt: Event) => void): EventsKey;
+    un(type: 'error', listener: (evt: Event) => void): void;
     on(type: 'propertychange', listener: (evt: ObjectEvent) => void): EventsKey;
     once(type: 'propertychange', listener: (evt: ObjectEvent) => void): EventsKey;
     un(type: 'propertychange', listener: (evt: ObjectEvent) => void): void;

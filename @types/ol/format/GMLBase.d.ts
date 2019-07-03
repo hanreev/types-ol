@@ -1,3 +1,4 @@
+import { Extent } from '../extent';
 import Feature from '../Feature';
 import Geometry from '../geom/Geometry';
 import LinearRing from '../geom/LinearRing';
@@ -35,7 +36,7 @@ export default class GMLBase extends XMLFeature {
     readFeatureElement(node: Element, objectStack: any[]): Feature;
     readFeatureElementInternal(node: Element, objectStack: any[], asFeature: boolean): Feature | object;
     readFeaturesInternal(node: Element, objectStack: any[]): Feature[];
-    readGeometryElement(node: Element, objectStack: any[]): Geometry;
+    readGeometryElement(node: Element, objectStack: any[]): Geometry | Extent;
     readLinearRing(node: Element, objectStack: any[]): LinearRing;
     readLineString(node: Element, objectStack: any[]): LineString;
     readMultiLineString(node: Element, objectStack: any[]): MultiLineString;

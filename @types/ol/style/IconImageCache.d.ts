@@ -4,6 +4,7 @@ import IconImage from './IconImage';
 export const shared: IconImageCache;
 export default class IconImageCache {
     constructor();
+    canExpireCache(): boolean;
     clear(): void;
     expire(): void;
     get(src: string, crossOrigin: string, color: Color): IconImage;

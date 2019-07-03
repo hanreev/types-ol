@@ -22,7 +22,6 @@ export default class FeatureFormat {
     protected defaultFeatureProjection: Projection;
     protected adaptOptions(options: WriteOptions | ReadOptions): WriteOptions | ReadOptions;
     protected getReadOptions(source: Document | Node | object | string, opt_options?: ReadOptions): ReadOptions;
-    getLastExtent(): Extent;
     getType(): FormatType;
     readFeature(source: Document | Node | object | string, opt_options?: ReadOptions): FeatureLike;
     readFeatures(source: Document | Node | ArrayBuffer | object | string, opt_options?: ReadOptions): FeatureLike[];
@@ -32,8 +31,9 @@ export default class FeatureFormat {
     writeFeatures(features: Feature[], opt_options?: WriteOptions): string;
     writeGeometry(geometry: Geometry, opt_options?: WriteOptions): string;
 }
-export function transformWithOptions(
-    geometry: Geometry | Extent,
+export function transformExtentWithOptions(extent: Extent, opt_options?: ReadOptions): Extent;
+export function transformGeometryWithOptions(
+    geometry: Geometry,
     write: boolean,
     opt_options?: WriteOptions | ReadOptions
-): Geometry | Extent;
+): Geometry;

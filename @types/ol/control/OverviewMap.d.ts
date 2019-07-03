@@ -2,9 +2,11 @@ import Collection from '../Collection';
 import { EventsKey } from '../events';
 import Event from '../events/Event';
 import Layer from '../layer/Layer';
+import MapBrowserEvent from '../MapBrowserEvent';
 import MapEvent from '../MapEvent';
 import { ObjectEvent } from '../Object';
 import PluggableMap from '../PluggableMap';
+import RenderEvent from '../render/Event';
 import View from '../View';
 import Control from './Control';
 
@@ -33,6 +35,9 @@ export default class OverviewMap extends Control {
     on(type: 'change', listener: (evt: Event) => void): EventsKey;
     once(type: 'change', listener: (evt: Event) => void): EventsKey;
     un(type: 'change', listener: (evt: Event) => void): void;
+    on(type: 'error', listener: (evt: Event) => void): EventsKey;
+    once(type: 'error', listener: (evt: Event) => void): EventsKey;
+    un(type: 'error', listener: (evt: Event) => void): void;
     on(type: 'propertychange', listener: (evt: ObjectEvent) => void): EventsKey;
     once(type: 'propertychange', listener: (evt: ObjectEvent) => void): EventsKey;
     un(type: 'propertychange', listener: (evt: ObjectEvent) => void): void;

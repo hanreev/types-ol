@@ -1,15 +1,14 @@
 import { EventsKey } from '../events';
 import Event from '../events/Event';
 import { Extent } from '../extent';
-import LayerType from '../LayerType';
 import { ObjectEvent } from '../Object';
 import PluggableMap from '../PluggableMap';
 import { OrderFunction } from '../render';
 import RenderEvent from '../render/Event';
-import VectorSource from '../source/Vector';
+import LayerRenderer from '../renderer/Layer';
 import VectorTile from '../source/VectorTile';
 import { StyleLike } from '../style/Style';
-import VectorLayer from './Vector';
+import BaseVectorLayer from './BaseVector';
 import VectorTileRenderType from './VectorTileRenderType';
 
 export interface Options {
@@ -31,12 +30,11 @@ export interface Options {
     preload?: number;
     useInterimTilesOnError?: boolean;
 }
-export default class VectorTileLayer extends VectorLayer {
+export default class VectorTileLayer extends BaseVectorLayer {
     constructor(opt_options?: Options);
-    protected type: LayerType;
+    protected createRenderer(): LayerRenderer;
     getPreload(): number;
-    getSource(): VectorTile;
-    getSource(): VectorSource;
+    getRenderMode(): VectorTileRenderType;
     getUseInterimTilesOnError(): boolean;
     setPreload(preload: number): void;
     setUseInterimTilesOnError(useInterimTilesOnError: boolean): void;
@@ -73,19 +71,16 @@ export default class VectorTileLayer extends VectorLayer {
     on(type: 'change:zIndex', listener: (evt: ObjectEvent) => void): EventsKey;
     once(type: 'change:zIndex', listener: (evt: ObjectEvent) => void): EventsKey;
     un(type: 'change:zIndex', listener: (evt: ObjectEvent) => void): void;
-    on(type: 'postcompose', listener: (evt: RenderEvent) => void): EventsKey;
-    once(type: 'postcompose', listener: (evt: RenderEvent) => void): EventsKey;
-    un(type: 'postcompose', listener: (evt: RenderEvent) => void): void;
-    on(type: 'precompose', listener: (evt: RenderEvent) => void): EventsKey;
-    once(type: 'precompose', listener: (evt: RenderEvent) => void): EventsKey;
-    un(type: 'precompose', listener: (evt: RenderEvent) => void): void;
+    on(type: 'error', listener: (evt: Event) => void): EventsKey;
+    once(type: 'error', listener: (evt: Event) => void): EventsKey;
+    un(type: 'error', listener: (evt: Event) => void): void;
+    on(type: 'postrender', listener: (evt: RenderEvent) => void): EventsKey;
+    once(type: 'postrender', listener: (evt: RenderEvent) => void): EventsKey;
+    un(type: 'postrender', listener: (evt: RenderEvent) => void): void;
+    on(type: 'prerender', listener: (evt: RenderEvent) => void): EventsKey;
+    once(type: 'prerender', listener: (evt: RenderEvent) => void): EventsKey;
+    un(type: 'prerender', listener: (evt: RenderEvent) => void): void;
     on(type: 'propertychange', listener: (evt: ObjectEvent) => void): EventsKey;
     once(type: 'propertychange', listener: (evt: ObjectEvent) => void): EventsKey;
     un(type: 'propertychange', listener: (evt: ObjectEvent) => void): void;
-    on(type: 'render', listener: (evt: RenderEvent) => void): EventsKey;
-    once(type: 'render', listener: (evt: RenderEvent) => void): EventsKey;
-    un(type: 'render', listener: (evt: RenderEvent) => void): void;
-    on(type: 'rendercomplete', listener: (evt: RenderEvent) => void): EventsKey;
-    once(type: 'rendercomplete', listener: (evt: RenderEvent) => void): EventsKey;
-    un(type: 'rendercomplete', listener: (evt: RenderEvent) => void): void;
 }

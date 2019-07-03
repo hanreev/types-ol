@@ -31,6 +31,9 @@ export default class ImageArcGISRest extends ImageSource {
     on(type: 'change', listener: (evt: Event) => void): EventsKey;
     once(type: 'change', listener: (evt: Event) => void): EventsKey;
     un(type: 'change', listener: (evt: Event) => void): void;
+    on(type: 'error', listener: (evt: Event) => void): EventsKey;
+    once(type: 'error', listener: (evt: Event) => void): EventsKey;
+    un(type: 'error', listener: (evt: Event) => void): void;
     on(type: 'imageloadend', listener: (evt: ImageSourceEvent) => void): EventsKey;
     once(type: 'imageloadend', listener: (evt: ImageSourceEvent) => void): EventsKey;
     un(type: 'imageloadend', listener: (evt: ImageSourceEvent) => void): void;

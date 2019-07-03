@@ -2,6 +2,7 @@ import { EventsKey } from '../events';
 import { Condition } from '../events/condition';
 import Event from '../events/Event';
 import Kinetic from '../Kinetic';
+import MapBrowserPointerEvent from '../MapBrowserPointerEvent';
 import { ObjectEvent } from '../Object';
 import PointerInteraction from './Pointer';
 
@@ -20,6 +21,9 @@ export default class DragPan extends PointerInteraction {
     on(type: 'change:active', listener: (evt: ObjectEvent) => void): EventsKey;
     once(type: 'change:active', listener: (evt: ObjectEvent) => void): EventsKey;
     un(type: 'change:active', listener: (evt: ObjectEvent) => void): void;
+    on(type: 'error', listener: (evt: Event) => void): EventsKey;
+    once(type: 'error', listener: (evt: Event) => void): EventsKey;
+    un(type: 'error', listener: (evt: Event) => void): void;
     on(type: 'propertychange', listener: (evt: ObjectEvent) => void): EventsKey;
     once(type: 'propertychange', listener: (evt: ObjectEvent) => void): EventsKey;
     un(type: 'propertychange', listener: (evt: ObjectEvent) => void): void;

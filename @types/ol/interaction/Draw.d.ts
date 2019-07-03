@@ -5,6 +5,7 @@ import { Condition } from '../events/condition';
 import Event from '../events/Event';
 import Feature from '../Feature';
 import GeometryType from '../geom/GeometryType';
+import LineString from '../geom/LineString';
 import SimpleGeometry from '../geom/SimpleGeometry';
 import VectorLayer from '../layer/Vector';
 import { ObjectEvent } from '../Object';
@@ -61,6 +62,9 @@ export default class Draw extends PointerInteraction {
     on(type: 'drawstart', listener: (evt: DrawEvent) => void): EventsKey;
     once(type: 'drawstart', listener: (evt: DrawEvent) => void): EventsKey;
     un(type: 'drawstart', listener: (evt: DrawEvent) => void): void;
+    on(type: 'error', listener: (evt: Event) => void): EventsKey;
+    once(type: 'error', listener: (evt: Event) => void): EventsKey;
+    un(type: 'error', listener: (evt: Event) => void): void;
     on(type: 'propertychange', listener: (evt: ObjectEvent) => void): EventsKey;
     once(type: 'propertychange', listener: (evt: ObjectEvent) => void): EventsKey;
     un(type: 'propertychange', listener: (evt: ObjectEvent) => void): void;

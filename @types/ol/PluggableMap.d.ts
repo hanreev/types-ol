@@ -19,13 +19,16 @@ import MapRenderer from './renderer/Map';
 import { Size } from './size';
 import Tile from './Tile';
 import TileQueue from './TileQueue';
-import TileRange from './TileRange';
 import { Transform } from './transform';
 import View, { State } from './View';
 
 export interface AtPixelOptions {
-    layerFilter: (p0: Layer) => boolean;
+    layerFilter?: (p0: Layer) => boolean;
     hitTolerance?: number;
+}
+export interface DeclutterItems {
+    items: any[];
+    opacity: number;
 }
 export interface FrameState {
     pixelRatio: number;
@@ -34,16 +37,17 @@ export interface FrameState {
     animate: boolean;
     coordinateToPixelTransform: Transform;
     extent: Extent;
+    declutterItems: DeclutterItems[];
     focus: Coordinate;
     index: number;
-    layerStates: { [key: string]: State_1 };
     layerStatesArray: State_1[];
+    layerIndex: number;
     pixelToCoordinateTransform: Transform;
     postRenderFunctions: PostRenderFunction[];
     size: Size;
     skippedFeatureUids: { [key: string]: boolean };
     tileQueue: TileQueue;
-    usedTiles: { [key: string]: { [key: string]: TileRange } };
+    usedTiles: { [key: string]: { [key: string]: boolean } };
     viewHints: number[];
     wantedTiles: { [key: string]: { [key: string]: boolean } };
 }
@@ -54,8 +58,6 @@ export interface MapOptions {
     keyboardEventTarget?: HTMLElement | Document | string;
     layers?: BaseLayer[] | Collection<BaseLayer> | LayerGroup;
     maxTilesLoading?: number;
-    loadTilesWhileAnimating?: boolean;
-    loadTilesWhileInteracting?: boolean;
     moveTolerance?: number;
     overlays?: Collection<Overlay> | Overlay[];
     target?: HTMLElement | string;
@@ -68,7 +70,7 @@ export interface MapOptionsInternal {
     overlays: Collection<Overlay>;
     values: { [key: string]: any };
 }
-export type PostRenderFunction = (p0: PluggableMap, p1: FrameState) => boolean;
+export type PostRenderFunction = (p0: PluggableMap, p1: FrameState) => any;
 export default class PluggableMap extends BaseObject {
     constructor(options: MapOptions);
     protected controls: Collection<Control>;
@@ -97,6 +99,7 @@ export default class PluggableMap extends BaseObject {
     getInteractions(): Collection<Interaction>;
     getLayerGroup(): LayerGroup;
     getLayers(): Collection<BaseLayer>;
+    getLoading(): boolean;
     getOverlayById(id: string | number): Overlay;
     getOverlayContainer(): HTMLElement;
     getOverlayContainerStopEvent(): HTMLElement;
@@ -111,8 +114,9 @@ export default class PluggableMap extends BaseObject {
     getViewport(): HTMLElement;
     handleBrowserEvent(browserEvent: Event, opt_type?: string): void;
     handleMapBrowserEvent(mapBrowserEvent: MapBrowserEvent): void;
-    hasFeatureAtPixel<U>(pixel: Pixel, opt_options?: AtPixelOptions): boolean;
+    hasFeatureAtPixel(pixel: Pixel, opt_options?: AtPixelOptions): boolean;
     isRendered(): boolean;
+    redrawText(): void;
     removeControl(control: Control): Control;
     removeInteraction(interaction: Interaction): Interaction;
     removeLayer(layer: BaseLayer): BaseLayer;
@@ -150,6 +154,9 @@ export default class PluggableMap extends BaseObject {
     on(type: 'dblclick', listener: (evt: MapBrowserEvent) => void): EventsKey;
     once(type: 'dblclick', listener: (evt: MapBrowserEvent) => void): EventsKey;
     un(type: 'dblclick', listener: (evt: MapBrowserEvent) => void): void;
+    on(type: 'error', listener: (evt: Event) => void): EventsKey;
+    once(type: 'error', listener: (evt: Event) => void): EventsKey;
+    un(type: 'error', listener: (evt: Event) => void): void;
     on(type: 'moveend', listener: (evt: MapEvent) => void): EventsKey;
     once(type: 'moveend', listener: (evt: MapEvent) => void): EventsKey;
     un(type: 'moveend', listener: (evt: MapEvent) => void): void;
