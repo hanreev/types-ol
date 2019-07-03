@@ -32,20 +32,20 @@
     "dependencies": {
         "@types/arcgis-rest-api": "^10.4.4",
         "@types/geojson": "^7946.0.7",
+        "@types/pbf": "^3.0.1",
         "@types/topojson-specification": "^1.0.1"
     },
     "devDependencies": {
         "@types/fs-extra": "^8.0.0",
         "@types/glob": "^7.1.1",
         "@types/node": "^10.14.10",
-        "@types/pbf": "^3.0.1",
         "@types/proj4": "^2.5.0",
         "dtslint": "^0.8.0",
         "fs-extra": "^8.1.0",
         "husky": "^3.0.0",
         "jsdoc": "3.5.5",
         "jsdoc-plugin-typescript": "^1.0.8",
-        "ol": "^5.3.3",
+        "ol": "^6.0.0-beta.11",
         "prettier": "^1.18.2",
         "pretty-quick": "^1.11.1",
         "proj4": "^2.5.0",
