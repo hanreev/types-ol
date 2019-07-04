@@ -85,6 +85,7 @@ interface Doclet {
     memberof?: string;
     meta?: DocletMeta;
     observables?: any[];
+    observable?: string;
     overrides?: string;
     params?: DocletParam[];
     properties?: DocletProp[];
@@ -96,6 +97,7 @@ interface Doclet {
     undocumented?: boolean;
     yields?: DocletReturns[];
     _hideConstructor?: boolean;
+    inheritdoc?: boolean;
     setMemberof: (parent: string) => void;
 }
 
@@ -132,16 +134,9 @@ interface TypeUnion {
     optional?: boolean;
 }
 
-type ParsedType = (
-    TypeLiteral |
-    TypeApplication |
-    TypeNameExpression |
-    TypeFunction |
-    TypeUnion
-);
+type ParsedType = TypeLiteral | TypeApplication | TypeNameExpression | TypeFunction | TypeUnion;
 
 type DocletParser = (p0: Doclet, p1: Doclet) => string;
-
 
 // JSDoc
 

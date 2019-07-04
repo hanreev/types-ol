@@ -9,9 +9,7 @@
   "source": {
     "includePattern": ".+\\.js$",
     "excludePattern": "(^|\\/|\\\\)_",
-    "include": [
-      "openlayers/src/ol"
-    ]
+    "include": ["openlayers/src/ol"]
   },
   "plugins": [
     "jsdoc/plugins/markdown",

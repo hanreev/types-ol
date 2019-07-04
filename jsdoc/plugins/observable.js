@@ -2,13 +2,17 @@ const classes = {};
 const observables = {};
 
 exports.handlers = {
-
+  /**
+   * @param {NewDocletEvent} e
+   */
   newDoclet: e => {
     const doclet = e.doclet;
-    if (doclet.kind == 'class' && !(doclet.longname in classes))
-      classes[doclet.longname] = doclet;
+    if (doclet.kind == 'class' && !(doclet.longname in classes)) classes[doclet.longname] = doclet;
   },
 
+  /**
+   * @param {ParseCompleteEvent} e
+   */
   parseComplete: e => {
     const doclets = e.doclets;
     let cls, doclet, event, i, ii, observable;
@@ -20,13 +24,11 @@ exports.handlers = {
         name = name.substr(0, 1).toLowerCase() + name.substr(1);
         const key = doclet.longname.split('#')[0] + '#' + name;
         doclet.observable = key;
-        if (!observables[key])
-          observables[key] = {};
+        if (!observables[key]) observables[key] = {};
 
         observable = observables[key];
         observable.name = name;
-        observable.readonly = typeof observable.readonly == 'boolean' ?
-          observable.readonly : true;
+        observable.readonly = typeof observable.readonly == 'boolean' ? observable.readonly : true;
         if (doclet.name.indexOf('get') === 0) {
           observable.type = doclet.returns[0].type;
           observable.description = doclet.returns[0].description;
@@ -34,26 +36,20 @@ exports.handlers = {
           observable.readonly = false;
         }
 
-        if (doclet.stability)
-          observable.stability = doclet.stability;
+        if (doclet.stability) observable.stability = doclet.stability;
 
-        if (!cls.observables)
-          cls.observables = [];
+        if (!cls.observables) cls.observables = [];
 
         observable = observables[doclet.observable];
-        if (observable.type && cls.observables.indexOf(observable) == -1)
-          cls.observables.push(observable);
+        if (observable.type && cls.observables.indexOf(observable) == -1) cls.observables.push(observable);
 
-        if (!cls.fires)
-          cls.fires = [];
+        if (!cls.fires) cls.fires = [];
 
         event = 'module:ol/Object.ObjectEvent#event:change:' + name;
-        if (cls.fires.indexOf(event) == -1)
-          cls.fires.push(event);
+        if (cls.fires.indexOf(event) == -1) cls.fires.push(event);
       }
     }
-  }
-
+  },
 };
 
 exports.defineTags = dictionary => {
@@ -63,6 +59,6 @@ exports.defineTags = dictionary => {
     canHaveName: false,
     onTagged: doclet => {
       doclet.observable = '';
-    }
+    },
   });
 };

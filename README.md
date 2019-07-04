@@ -1,9 +1,6 @@
-OpenLayers TypeScript Declaration
-=================================
+# OpenLayers TypeScript Declaration
 
 This project contains TypeScript declaration for [OpenLayers](https://openlayers.org/) `v5.3.3` that includes all documented API and protected class members and methods.
-
-
 
 ## Installation
 
@@ -17,7 +14,8 @@ npm i -D @hanreev/types-ol
 yarn add -D @hanreev/types-ol
 ```
 
-
+> **Note:**
+> For OpenLayers v6 beta use version 3 of this package `@hanreev/types-ol@beta`
 
 ## Usage
 
@@ -25,12 +23,13 @@ There are several ways to use this package. Please choose one:
 
 - Install as `@types/ol`. This will simulate `@types/ol` installation from `node_modules/@hanreev/types-ol/ol` directory.  
   **Why?**
+
   - TypeScript compiler will look for types in `node_modules/@types` by default.
   - If you're using [Visual Studio Code](https://code.visualstudio.com/), its IntelliSense will only recognize types from `node_modules/@types`.
 
   ```js
   // file: package.json
-  
+
   {
     ...
     "devDependencies": {
@@ -51,11 +50,12 @@ There are several ways to use this package. Please choose one:
   # Yarn
   yarn install
   ```
-  > ***Note:***  
+
+  > **_Note:_**  
   > This package must be installed first before adding `"@types/ol": "file:node_modules/@hanreev/types-ol/ol"` in `package.json`.
 
 - Using `compilerOptions.paths` in `tsconfig.json`
-  
+
   ```js
   // file: tsconfig.json
 
@@ -70,8 +70,6 @@ There are several ways to use this package. Please choose one:
     }
   }
   ```
-
-
 
 ## Configuring and Building TypeScript declaration files
 
@@ -98,7 +96,9 @@ Configuration is located at `jsdoc/conf.json`
   ...
 }
 ```
+
 - Install all dependencies
+
   ```bash
   # NPM
   npm i
@@ -106,30 +106,29 @@ Configuration is located at `jsdoc/conf.json`
   # Yarn
   yarn install
   ```
-- Run build 
+
+- Run build
+
   ```bash
   # NPM
   npm run build-format && npm run lint
-  
+
   # Yarn
   yarn build-format && yarn lint
   ```
+
 - Run test
+
   ```bash
   # NPM
   npm run lint-test && npm run test
-  
+
   # Yarn
   yarn lint-test && yarn test
   ```
 
-
-
-
-> ***Note:***  
+> **_Note:_**  
 > Some declaration was patched manually. If you found any error please [create a new issue](https://github.com/hanreev/types-ol/issues).
-
-
 
 ## Changelog
 
@@ -161,13 +160,11 @@ Configuration is located at `jsdoc/conf.json`
     - `unified-signatures`
 - **v1.0.2**
   - Sort imports
-  - NPM compatibility as `@types/ol` 
+  - NPM compatibility as `@types/ol`
 - **v1.0.1**
   - Fix `ol/MapBrowserEventType` module
 - **v1.0.0**
   - Initial release
-
-
 
 ## License
 

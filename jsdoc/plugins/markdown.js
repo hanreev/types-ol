@@ -10,17 +10,7 @@
 const marked = require('marked');
 const format = require('util').format;
 
-const tags = [
-  'author',
-  'classdesc',
-  'description',
-  'exceptions',
-  'params',
-  'properties',
-  'returns',
-  'see',
-  'summary'
-];
+const tags = ['author', 'classdesc', 'description', 'exceptions', 'params', 'properties', 'returns', 'see', 'summary'];
 
 const hasOwnProp = Object.prototype.hasOwnProperty;
 
@@ -30,29 +20,25 @@ const markedRenderer = new marked.Renderer();
 markedRenderer.code = (code, language) => {
   const langClass = language ? ' lang-' + language : '';
 
-  return format('<pre class="prettyprint source%s"><code>%s</code></pre>',
-    langClass, escapeCode(code));
+  return format('<pre class="prettyprint source%s"><code>%s</code></pre>', langClass, escapeCode(code));
 };
 
 function escapeCode(source) {
-  return source.replace(/</g, '&lt;')
+  return source
+    .replace(/</g, '&lt;')
     .replace(/"/g, '&quot;')
     .replace(/'/g, '&#39;');
 }
 
 function escapeUnderscoresAndTildes(source) {
   return source.replace(/\{@[^}\r\n]+\}/g, wholeMatch => {
-    return wholeMatch
-      .replace(/(^|[^\\])_/g, '$1\\_')
-      .replace('~', '&tilde;');
+    return wholeMatch.replace(/(^|[^\\])_/g, '$1\\_').replace('~', '&tilde;');
   });
 }
 
 function unencodeQuotesAndTildes(source) {
   return source.replace(/\{@[^}\r\n]+\}/g, wholeMatch => {
-    return wholeMatch
-      .replace(/&quot;/g, '"')
-      .replace(/&tilde;/g, '~');
+    return wholeMatch.replace(/&quot;/g, '"').replace(/&tilde;/g, '~');
   });
 }
 
@@ -63,7 +49,7 @@ function parse(source) {
 
   result = marked(source, { renderer: markedRenderer })
     .replace(/\s+$/, '')
-    .replace(/&#39;/g, '\'');
+    .replace(/&#39;/g, "'");
 
   result = unencodeQuotesAndTildes(result);
 
@@ -74,19 +60,16 @@ function shouldProcessString(tagName, text) {
   let shouldProcess = true;
 
   // we only want to process `@author` and `@see` tags that contain Markdown links
-  if ((tagName === 'author' || tagName === 'see') && text.indexOf('[') === -1)
-    shouldProcess = false;
+  if ((tagName === 'author' || tagName === 'see') && text.indexOf('[') === -1) shouldProcess = false;
 
   return shouldProcess;
 }
 
 function process(doclet) {
   tags.forEach(tag => {
-    if (!hasOwnProp.call(doclet, tag))
-      return;
+    if (!hasOwnProp.call(doclet, tag)) return;
 
-    if (typeof doclet[tag] === 'string' && shouldProcessString(tag, doclet[tag]))
-      doclet[tag] = parse(doclet[tag]);
+    if (typeof doclet[tag] === 'string' && shouldProcessString(tag, doclet[tag])) doclet[tag] = parse(doclet[tag]);
     else if (Array.isArray(doclet[tag]))
       doclet[tag].forEach((value, index, original) => {
         const inner = {};
@@ -95,13 +78,12 @@ function process(doclet) {
         process(inner);
         original[index] = inner[tag];
       });
-    else if (doclet[tag])
-      process(doclet[tag]);
+    else if (doclet[tag]) process(doclet[tag]);
   });
 }
 
 exports.handlers = {
   newDoclet: e => {
     process(e.doclet);
-  }
+  },
 };

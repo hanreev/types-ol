@@ -40,6 +40,7 @@ const src = require(packageJsonPath);
 delete src.scripts;
 delete src.devDependencies;
 delete src.files;
+delete src.husky;
 
 fs.writeFileSync(packageJsonDestPath, JSON.stringify(src, null, 4));
 

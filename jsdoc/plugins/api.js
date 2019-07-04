@@ -10,7 +10,7 @@ exports.defineTags = dictionary => {
     onTagged: (/** @type {Doclet} */ doclet) => {
       includeTypes(doclet);
       doclet.stability = 'stable';
-    }
+    },
   });
 };
 
@@ -63,21 +63,17 @@ function includeAugments(doclet) {
       if (cls) {
         includeAugments(cls);
         if (cls.fires) {
-          if (!doclet.fires)
-            doclet.fires = [];
+          if (!doclet.fires) doclet.fires = [];
 
           cls.fires.forEach(f => {
-            if (doclet.fires.indexOf(f) == -1)
-              doclet.fires.push(f);
+            if (doclet.fires.indexOf(f) == -1) doclet.fires.push(f);
           });
         }
         if (cls.observables) {
-          if (!doclet.observables)
-            doclet.observables = [];
+          if (!doclet.observables) doclet.observables = [];
 
           cls.observables.forEach(f => {
-            if (doclet.observables.indexOf(f) == -1)
-              doclet.observables.push(f);
+            if (doclet.observables.indexOf(f) == -1) doclet.observables.push(f);
           });
         }
       }
@@ -102,21 +98,16 @@ function extractTypes(item) {
  * @param {Doclet} doclet
  */
 function includeTypes(doclet) {
-  if (doclet.params)
-    doclet.params.forEach(extractTypes);
+  if (doclet.params) doclet.params.forEach(extractTypes);
 
-  if (doclet.returns)
-    doclet.returns.forEach(extractTypes);
+  if (doclet.returns) doclet.returns.forEach(extractTypes);
 
-  if (doclet.properties)
-    doclet.properties.forEach(extractTypes);
+  if (doclet.properties) doclet.properties.forEach(extractTypes);
 
-  if (doclet.type && doclet.meta.code.type == 'MemberExpression')
-    extractTypes(doclet);
+  if (doclet.type && doclet.meta.code.type == 'MemberExpression') extractTypes(doclet);
 }
 
 exports.handlers = {
-
   newDoclet: (/** @type {NewDocletEvent} */ e) => {
     const doclet = e.doclet;
     if (doclet.stability) {
@@ -126,14 +117,11 @@ exports.handlers = {
 
     if (doclet.kind == 'class') {
       modules[doclet.longname.split(/[~.]/).shift()] = true;
-      if (!(doclet.longname in classes))
-        classes[doclet.longname] = doclet;
-      else if ('augments' in doclet)
-        classes[doclet.longname].augments = doclet.augments;
+      if (!(doclet.longname in classes)) classes[doclet.longname] = doclet;
+      else if ('augments' in doclet) classes[doclet.longname].augments = doclet.augments;
     }
 
-    if (doclet.name === doclet.longname && !doclet.memberof)
-      doclet.setMemberof(doclet.longname);
+    if (doclet.name === doclet.longname && !doclet.memberof) doclet.setMemberof(doclet.longname);
   },
 
   parseComplete: (/** @type {ParseCompleteEvent} */ e) => {
@@ -161,23 +149,16 @@ exports.handlers = {
 
       if (doclet.longname == 'module:ol/css~getFontFamilies') {
         doclet.kind = 'function';
-        doclet.params = [
-          { name: 'font', type: { names: ['string'] } }
-        ];
-        doclet.returns = [
-          { type: { names: ['Array<string>', 'null'] } }
-        ];
+        doclet.params = [{ name: 'font', type: { names: ['string'] } }];
+        doclet.returns = [{ type: { names: ['Array<string>', 'null'] } }];
       }
 
       if (doclet.stability) {
-        if (doclet.kind == 'class')
-          includeAugments(doclet);
+        if (doclet.kind == 'class') includeAugments(doclet);
 
-        if (doclet.fires)
-          doclet.fires.sort((a, b) => a.split(/#?event:/)[1] < b.split(/#?event:/)[1] ? -1 : 1);
+        if (doclet.fires) doclet.fires.sort((a, b) => (a.split(/#?event:/)[1] < b.split(/#?event:/)[1] ? -1 : 1));
 
-        if (doclet.observables)
-          doclet.observables.sort((a, b) => a.name < b.name ? -1 : 1);
+        if (doclet.observables) doclet.observables.sort((a, b) => (a.name < b.name ? -1 : 1));
         // Always document namespaces and items with stability annotation
         continue;
       }
@@ -186,26 +167,26 @@ exports.handlers = {
         // Document all modules that are referenced by the API
         continue;
 
-      if (doclet.isEnum || doclet.kind == 'typedef' || doclet.kind == 'function')
-        continue;
+      if (doclet.isEnum || doclet.kind == 'typedef' || doclet.kind == 'function') continue;
 
       // FIXME: PATCHES
       if (doclet.memberof in force_include_members)
         if (force_include_members[doclet.memberof].length) {
-          if (force_include_members[doclet.memberof].indexOf(doclet.name) != -1)
-            continue;
+          if (force_include_members[doclet.memberof].indexOf(doclet.name) != -1) continue;
         } else {
           continue;
         }
 
       if (doclet.kind == 'class') {
         includeAugments(doclet);
-      } else if (doclet.undocumented !== false && !doclet._hideConstructor && !(doclet.kind == 'typedef' && doclet.longname in types)) {
-        if (doclet.access == 'protected')
-          continue;
+      } else if (
+        doclet.undocumented !== false &&
+        !doclet._hideConstructor &&
+        !(doclet.kind == 'typedef' && doclet.longname in types)
+      ) {
+        if (doclet.access == 'protected') continue;
         doclet.undocumented = true;
       }
     }
-  }
-
+  },
 };

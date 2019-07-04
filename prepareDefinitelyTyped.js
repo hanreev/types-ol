@@ -3,31 +3,26 @@ const path = require('path');
 const glob = require('glob');
 const childProcess = require('child_process');
 
-const olVersion = require('./openlayers/package.json').version.replace(/^(\d+)\.(\d+)(\.\d+)?$/, '$1.$2');
+const olVersion = require('./openlayers/package.json').version.replace(/^(\d+)\.(\d+)(\..+)?$/, '$1.$2');
 
 const configs = {
   tsconfig: {
     compilerOptions: {
       baseUrl: '../',
       forceConsistentCasingInFileNames: true,
-      lib: [
-        'es6',
-        'dom'
-      ],
+      lib: ['es6', 'dom'],
       module: 'commonjs',
       noEmit: true,
       noImplicitAny: true,
       noImplicitThis: true,
       strictFunctionTypes: true,
       strictNullChecks: true,
-      typeRoots: [
-        '../'
-      ],
-      types: []
+      typeRoots: ['../'],
+      types: [],
     },
-    files: []
+    files: [],
   },
-  tslint: require('./tslint.json')
+  tslint: require('./tslint.json'),
 };
 
 const header = `// Type definitions for ol ${olVersion}
@@ -65,8 +60,7 @@ fs.copyFileSync(path.resolve('test', 'ol-tests.ts'), path.join(destPath, 'ol-tes
 configs.tsconfig.files.push('ol-tests.ts');
 
 // Write tsconfig.json and tslint.json
-for (const key in configs)
-  fs.writeFileSync(path.join(destPath, key + '.json'), JSON.stringify(configs[key], null, 4));
+for (const key in configs) fs.writeFileSync(path.join(destPath, key + '.json'), JSON.stringify(configs[key], null, 4));
 
 // Prepend DefinitelyTyped header to index.d.ts
 console.log('# Adding DefinitelyTyped header');
@@ -79,8 +73,8 @@ const dtPackageJson = {
   name: 'DefinitelyTyped',
   version: '1.0.0',
   scripts: {
-    lint: 'dtslint types'
-  }
+    lint: 'dtslint types',
+  },
 };
 process.chdir(dtPath);
 fs.writeFileSync('package.json', JSON.stringify(dtPackageJson, null, 4));

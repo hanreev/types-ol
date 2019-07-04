@@ -6,20 +6,18 @@
 const properties = {};
 
 exports.handlers = {
-
   /**
    * Collects all typedefs, keyed by longname
-   * @param {Object} e Event object.
+   * @param {NewDocletEvent} e Event object.
    */
   newDoclet: e => {
-    if (e.doclet.kind == 'typedef' && e.doclet.properties)
-      properties[e.doclet.longname] = e.doclet.properties;
+    if (e.doclet.kind == 'typedef' && e.doclet.properties) properties[e.doclet.longname] = e.doclet.properties;
   },
 
   /**
    * Adds `options.*` params for options that match the longname of one of the
    * collected typedefs.
-   * @param {Object} e Event object.
+   * @param {ParseCompleteEvent} e Event object.
    */
   parseComplete: e => {
     const doclets = e.doclets;
@@ -33,16 +31,18 @@ exports.handlers = {
             const type = param.type.names[0];
             if (type in properties) {
               param.type.names[0] = type;
-              params.push.apply(params, properties[type].map(p => {
-                const property = Object.assign({}, p);
-                property.name = `${param.name}.${property.name}`;
-                return property;
-              }));
+              params.push.apply(
+                params,
+                properties[type].map(p => {
+                  const property = Object.assign({}, p);
+                  property.name = `${param.name}.${property.name}`;
+                  return property;
+                })
+              );
             }
           }
         }
       }
     }
-  }
-
+  },
 };
