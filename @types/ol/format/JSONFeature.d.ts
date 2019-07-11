@@ -5,10 +5,10 @@ import FeatureFormat, { ReadOptions, WriteOptions } from './Feature';
 
 export default class JSONFeature extends FeatureFormat {
     constructor();
-    protected readFeatureFromObject(object: any, opt_options?: ReadOptions): Feature;
-    protected readFeaturesFromObject(object: any, opt_options?: ReadOptions): Feature[];
-    protected readGeometryFromObject(object: any, opt_options?: ReadOptions): Geometry;
-    protected readProjectionFromObject(object: any): Projection;
+    readFeatureFromObject(object: any, opt_options?: ReadOptions): Feature;
+    readFeaturesFromObject(object: any, opt_options?: ReadOptions): Feature[];
+    readGeometryFromObject(object: any, opt_options?: ReadOptions): Geometry;
+    readProjectionFromObject(object: any): Projection;
     readFeature(source: ArrayBuffer | Document | Node | object | string, opt_options?: ReadOptions): Feature;
     readFeature(source: Document | Node | object | string, opt_options?: ReadOptions): FeatureLike;
     readFeatures(source: ArrayBuffer | Document | Node | object | string, opt_options?: ReadOptions): Feature[];
