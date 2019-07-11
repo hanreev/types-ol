@@ -1,10 +1,22 @@
 # OpenLayers TypeScript Declaration
 
+**_Definitions from this project will be syncronized with official [@types/ol](https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/ol) package._**
+
 This project contains TypeScript declaration for [OpenLayers](https://openlayers.org/) `v5.3.3` that includes all documented API and protected class members and methods.
 
 ## Installation
 
-Definitions from this project will be syncronized with official [@types/ol](https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/ol) repository.
+### Official package
+
+```bash
+# NPM
+npm i -D @types/ol
+
+# Yarn
+yarn add -D @types/ol
+```
+
+### This project package
 
 ```bash
 # NPM
