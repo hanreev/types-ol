@@ -7,39 +7,6 @@ const moduleRoot = path.resolve(env.conf.typescript.moduleRoot);
 /** @type {Object<string, ModuleExports>} */
 const MODULE_EXPORTS = {};
 
-/** @type {Object<string, string>} */
-const SOURCE_OVERRIDES = {};
-
-const shaderSource = `
-/**
- * @const
- * @type {module:ol/webgl/Fragment~WebGLFragment}
- * @api
- */
-export const fragment = null;
-
-/**
- * @const
- * @type {module:ol/webgl/Vertex~WebGLVertex}
- * @api
- */
-export const vertex = null;
-`;
-
-const shaderModules = [
-  'ol/render/webgl/circlereplay/defaultshader',
-  'ol/render/webgl/linestringreplay/defaultshader',
-  'ol/render/webgl/polygonreplay/defaultshader',
-  'ol/render/webgl/texturereplay/defaultshader',
-  'ol/renderer/webgl/defaultmapshader',
-  'ol/renderer/webgl/tilelayershader',
-];
-
-shaderModules.forEach(moduleName => {
-  const filename = path.resolve(moduleRoot, `${moduleName}.js`);
-  SOURCE_OVERRIDES[filename] = `/**\n * @module ${moduleName}\n */\n${shaderSource}`;
-});
-
 /**
  * @param {Doclet} doclet
  */
@@ -113,8 +80,6 @@ exports.handlers = {
   },
 
   beforeParse: (/** @type {BeforeParseEvent} */ e) => {
-    if (e.filename in SOURCE_OVERRIDES) e.source = SOURCE_OVERRIDES[e.filename];
-
     /** @type {ModuleExports} */
     const _exports = {
       default: null,

@@ -2,8 +2,10 @@ const fs = require('fs-extra');
 const path = require('path');
 const childProcess = require('child_process');
 
-const srcPath = path.resolve(__dirname, '@types', 'ol');
-const destPath = path.resolve(__dirname, 'ol');
+const BASE_DIR = process.cwd();
+
+const srcPath = path.resolve(BASE_DIR, '@types', 'ol');
+const destPath = path.resolve(BASE_DIR, 'ol');
 
 console.log('# Preparing definitions before publishing to npmjs');
 
@@ -33,7 +35,7 @@ fs.copySync(srcPath, destPath);
 
 // Add package.json
 console.log('# Copying package.json');
-const packageJsonPath = path.resolve(__dirname, 'package.json');
+const packageJsonPath = path.resolve(BASE_DIR, 'package.json');
 const packageJsonDestPath = path.join(destPath, 'package.json');
 
 const src = require(packageJsonPath);

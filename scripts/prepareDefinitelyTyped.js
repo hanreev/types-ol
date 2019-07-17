@@ -3,7 +3,12 @@ const path = require('path');
 const glob = require('glob');
 const childProcess = require('child_process');
 
-const olVersion = require('./openlayers/package.json').version.replace(/^(\d+)\.(\d+)(\..+)?$/, '$1.$2');
+const BASE_DIR = process.cwd();
+
+const olVersion = require(path.join(BASE_DIR, '/openlayers/package.json')).version.replace(
+  /^(\d+)\.(\d+)(\..+)?$/,
+  '$1.$2'
+);
 
 const configs = {
   tsconfig: {
@@ -22,7 +27,7 @@ const configs = {
     },
     files: [],
   },
-  tslint: require('./tslint.json'),
+  tslint: require(path.join(BASE_DIR, '/tslint.json')),
 };
 
 const header = `// Type definitions for ol ${olVersion}
@@ -33,8 +38,8 @@ const header = `// Type definitions for ol ${olVersion}
 
 `;
 
-const srcPath = path.resolve(__dirname, '@types', 'ol');
-const dtPath = path.resolve(__dirname, 'DefinitelyTyped');
+const srcPath = path.resolve(BASE_DIR, '@types', 'ol');
+const dtPath = path.resolve(BASE_DIR, 'DefinitelyTyped');
 const destPath = path.join(dtPath, 'types', 'ol');
 
 console.log('# Preparing definitions for DefinitelyTyped');
@@ -83,6 +88,6 @@ childProcess.execSync('yarn lint ol', { stdio: 'inherit' });
 
 console.log('# Cleanup DefinitelyTyped directory');
 fs.readdirSync(dtPath).forEach(filename => filename != 'types' && fs.removeSync(filename));
-process.chdir(__dirname);
+process.chdir(BASE_DIR);
 
 console.log('# DONE');

@@ -1,5 +1,6 @@
 const path = require('path');
 const glob = require('glob');
+const NoEmitPlugin = require('no-emit-webpack-plugin');
 
 module.exports = {
   entry: () => {
@@ -11,13 +12,13 @@ module.exports = {
     return entries;
   },
   output: {
-    path: path.resolve(__dirname, 'test-out'),
-    filename: '[name].js'
+    path: path.resolve(__dirname, 'test'),
+    filename: '[name].js',
   },
   target: 'web',
   mode: 'none',
   resolve: {
-    extensions: ['.js', '.ts']
+    extensions: ['.js', '.ts'],
   },
   module: {
     rules: [
@@ -28,10 +29,11 @@ module.exports = {
           compilerOptions: {
             allowJs: false,
             checkJs: false,
-            noEmit: false
-          }
-        }
-      }
-    ]
-  }
+            noEmit: false,
+          },
+        },
+      },
+    ],
+  },
+  plugins: [new NoEmitPlugin()],
 };
