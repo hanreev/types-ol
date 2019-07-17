@@ -66,6 +66,11 @@ interface DocletMeta {
     };
 }
 
+interface DocletGenericType {
+    name: string;
+    type?: DocletType;
+}
+
 interface Doclet {
     ___id: string;
     kind: string;
@@ -98,7 +103,8 @@ interface Doclet {
     yields?: DocletReturns[];
     _hideConstructor?: boolean;
     inheritdoc?: boolean;
-    setMemberof: (parent: string) => void;
+    genericTypes?: DocletGenericType[];
+    setMemberof(parent: string): void;
 }
 
 interface TypeLiteral {
@@ -139,6 +145,18 @@ type ParsedType = TypeLiteral | TypeApplication | TypeNameExpression | TypeFunct
 type DocletParser = (p0: Doclet, p1: Doclet) => string;
 
 // JSDoc
+
+interface TagValue {
+    type?: DocletType;
+    description?: string;
+}
+
+interface Tag<T = TagValue> {
+    originalTitle: string;
+    title: string;
+    text: string;
+    value: T;
+}
 
 interface BeforeParseEvent {
     filename: string;

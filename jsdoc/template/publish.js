@@ -27,7 +27,7 @@ const MODULE_CHILDREN = {};
 /** @type {string[]} */
 const EXTERNAL_MODULE_WHITELIST = ['arcgis-rest-api', 'geojson', 'topojson-specification'];
 
-/** @type {Object<string, string>} */
+/** @type {Object<string, DocletGenericType[]>} */
 const GENERIC_TYPES = {};
 
 /** @type {string[]} */
@@ -313,12 +313,11 @@ function sortImports(expressions, _module, maxLineLength = 120) {
  * @returns {string}
  */
 function stringifyType(parsedType, _module, undefinedLiteral = true) {
-  let suffix = '';
   let typeStr = /** @type {TypeApplication} */ (parsedType).expression
     ? /** @type {TypeApplication} */ (parsedType).expression.name
     : /** @type {TypeNameExpression} */ (parsedType).name;
 
-  if (typeStr in GENERIC_TYPES) suffix = `<${GENERIC_TYPES[typeStr]}>`;
+  let suffix = getGenericType(typeStr, _module);
 
   if (typeStr && typeStr.startsWith('module:')) {
     if (_module) typeStr = registerImport(_module, typeStr);
@@ -539,7 +538,7 @@ const PROCESSORS = {
     const children = [];
     let name = doclet.name;
 
-    if (doclet.longname in GENERIC_TYPES) name += `<${GENERIC_TYPES[doclet.longname]}>`;
+    name += getGenericType(doclet.longname, _module, true, true);
 
     if (doclet.augments && doclet.augments.length) {
       const augment = doclet.augments[0];
@@ -547,7 +546,7 @@ const PROCESSORS = {
       augmentName = augment.split('~')[1] || augment.split('/').pop();
       if (augment in GENERIC_TYPES)
         if (ANY_GENERIC_TYPES.indexOf(augment) != -1) augmentName += '<any>';
-        else augmentName += `<${GENERIC_TYPES[augment]}>`;
+        else augmentName += getGenericType(augment, _module);
       name += ` extends ${augmentName}`;
     }
 
@@ -575,8 +574,8 @@ const PROCESSORS = {
     const addFire = (eventType, fireType) => {
       if (fireType.startsWith('ol')) fireType = 'module:' + fireType;
 
-      let genericType = GENERIC_TYPES[fireType];
-      if (genericType && genericType == GENERIC_TYPES[doclet.longname]) genericType = null;
+      let genericType = getGenericType(fireType, _module, false);
+      if (genericType && genericType == getGenericType(doclet.longname, _module, false)) genericType = null;
 
       fireType = getType(/** @type {Doclet} */ ({ type: { names: [fireType || 'undefined'] } }), _module);
 
@@ -666,7 +665,7 @@ const PROCESSORS = {
     const prefix = doclet.scope == 'instance' && doclet.access ? `${doclet.access} ` : '';
     let name = doclet.name;
 
-    if (doclet.longname in GENERIC_TYPES) name += `<${GENERIC_TYPES[doclet.longname]}>`;
+    name += getGenericType(doclet.longname, _module);
 
     const params = getParams(doclet, _module);
     const returnType = getReturnType(doclet, _module);
@@ -719,7 +718,7 @@ const PROCESSORS = {
       });
 
       let name = doclet.name;
-      if (doclet.longname in GENERIC_TYPES) name += `<${GENERIC_TYPES[doclet.longname]}>`;
+      name += getGenericType(doclet.longname, _module);
 
       decl = `interface ${name} {\n${children.join('\n')}\n}`;
     } else {
@@ -877,45 +876,51 @@ function generateDeclaration(doclet, emitOutput = true) {
 
 function extractGenericTypes(initial = true, strict = false) {
   if (initial)
-    find({ tags: { isArray: true } }).forEach(doclet => {
-      const template = doclet.tags.find(tag => tag.title == 'template');
-      if (template) GENERIC_TYPES[doclet.longname] = template.value.split(/,\s?/).join(', ');
+    find({ genericTypes: { isArray: true } }).forEach(doclet => {
+      GENERIC_TYPES[doclet.longname] = doclet.genericTypes;
     });
 
   if (!strict) return;
 
   find({ kind: 'class' }).forEach(doclet => {
+    /** @type {DocletGenericType[]} */
     let genericTypes = [];
 
-    if (doclet.longname in GENERIC_TYPES) genericTypes = GENERIC_TYPES[doclet.longname].split(/,\s?/);
+    if (doclet.longname in GENERIC_TYPES) genericTypes = GENERIC_TYPES[doclet.longname];
 
     if (doclet.augments && doclet.augments.length) {
       const augment = doclet.augments[0];
-      if (augment in GENERIC_TYPES) genericTypes = genericTypes.concat(GENERIC_TYPES[augment].split(/,\s?/));
+      if (augment in GENERIC_TYPES) genericTypes = genericTypes.concat(GENERIC_TYPES[augment]);
     }
 
     find({ kind: ['member', 'constant'], memberof: doclet.longname }).forEach(member => {
       if (!member.type) return;
       member.type.names.forEach(type => {
-        if (type in GENERIC_TYPES) genericTypes = genericTypes.concat(GENERIC_TYPES[type].split(/,\s?/));
+        if (type in GENERIC_TYPES) genericTypes = genericTypes.concat(GENERIC_TYPES[type]);
       });
     });
 
-    if (genericTypes.length) GENERIC_TYPES[doclet.longname] = Array.from(new Set(genericTypes)).join(', ');
+    if (genericTypes.length)
+      GENERIC_TYPES[doclet.longname] = Array.from(new Set(genericTypes.map(gt => gt.name))).map(name => {
+        const duplicates = genericTypes.filter(gt => gt.name === name);
+        if (duplicates.length > 1) return duplicates.reduce((p, c) => (p.type ? p : c));
+        return duplicates[0];
+      });
   });
 
   find({ kind: 'typedef', properties: { isArray: true } }).forEach(doclet => {
+    /** @type {DocletGenericType[]} */
     let genericTypes = [];
 
-    if (doclet.longname in GENERIC_TYPES) genericTypes = GENERIC_TYPES[doclet.longname].split(/,\s?/);
+    if (doclet.longname in GENERIC_TYPES) genericTypes = GENERIC_TYPES[doclet.longname];
 
     doclet.properties.forEach(prop => {
       prop.type.names.forEach(type => {
-        if (type in GENERIC_TYPES) genericTypes = genericTypes.concat(GENERIC_TYPES[type].split(/,\s?/));
+        if (type in GENERIC_TYPES) genericTypes = genericTypes.concat(GENERIC_TYPES[type]);
       });
     });
 
-    if (genericTypes.length) GENERIC_TYPES[doclet.longname] = Array.from(new Set(genericTypes)).join(', ');
+    if (genericTypes.length) GENERIC_TYPES[doclet.longname] = Array.from(new Set(genericTypes));
   });
 
   data({ kind: ['function', 'class'] }, [
@@ -925,9 +930,10 @@ function extractGenericTypes(initial = true, strict = false) {
   ])
     .get()
     .forEach((/** @type {Doclet} */ doclet) => {
+      /** @type {DocletGenericType[]} */
       let genericTypes = [];
 
-      if (doclet.longname in GENERIC_TYPES) genericTypes = GENERIC_TYPES[doclet.longname].split(/,\s?/);
+      if (doclet.longname in GENERIC_TYPES) genericTypes = GENERIC_TYPES[doclet.longname];
 
       const merged = /** @type {Doclet[]} */ (doclet.params || []).concat(
         /** @type {Doclet[]} */ (doclet.yields) || /** @type {Doclet[]} */ (doclet.returns) || []
@@ -936,12 +942,37 @@ function extractGenericTypes(initial = true, strict = false) {
       merged.forEach(d => {
         if (!d.type) return;
         d.type.names.forEach(type => {
-          if (type in GENERIC_TYPES) genericTypes = genericTypes.concat(GENERIC_TYPES[type].split(/,\s?/));
+          if (type in GENERIC_TYPES) genericTypes = genericTypes.concat(GENERIC_TYPES[type]);
         });
       });
 
-      if (genericTypes.length) GENERIC_TYPES[doclet.longname] = Array.from(new Set(genericTypes)).join(', ');
+      if (genericTypes.length)
+        GENERIC_TYPES[doclet.longname] = Array.from(new Set(genericTypes.map(gt => gt.name))).map(name => {
+          const duplicates = genericTypes.filter(gt => gt.name === name);
+          if (duplicates.length > 1) return duplicates.reduce((p, c) => (p.type ? p : c));
+          return duplicates[0];
+        });
     });
+}
+
+/**
+ * @param {string} key
+ * @param {Doclet} _module
+ * @param {boolean} [includeBracket]
+ * @param {boolean} [includeType]
+ * @returns {string}
+ */
+function getGenericType(key, _module, includeBracket = true, includeType = false) {
+  if (!(key in GENERIC_TYPES)) return '';
+  const genericTypes = GENERIC_TYPES[key]
+    .map(gType => {
+      let type;
+      if (includeType && gType.type) type = getType(/** @type {Doclet} */ (gType), _module);
+      return type ? `${gType.name} = ${type}` : gType.name;
+    })
+    .join(', ');
+
+  return includeBracket ? `<${genericTypes}>` : genericTypes;
 }
 
 /**

@@ -19,7 +19,8 @@
     "jsdoc/plugins/events",
     "jsdoc/plugins/observable",
     "jsdoc/plugins/api",
-    "jsdoc/plugins/exports"
+    "jsdoc/plugins/exports",
+    "jsdoc/plugins/template"
   ],
   "typescript": {
     "moduleRoot": "openlayers/src",
