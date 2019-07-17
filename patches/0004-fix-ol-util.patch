@@ -1,0 +1,47 @@
+From 4e285a9392d203f1834fc53b914b9caebec04b07 Mon Sep 17 00:00:00 2001
+From: "Rifa'i M. Hanif" <hanreev@gmail.com>
+Date: Wed, 17 Jul 2019 17:56:39 +0700
+Subject: [PATCH 1/2] fix ol/util
+
+---
+ src/ol/util.js | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/src/ol/util.js b/src/ol/util.js
+index 855c4ab80..0eb4a723a 100644
+--- a/src/ol/util.js
++++ b/src/ol/util.js
+@@ -4,6 +4,7 @@
+ 
+ /**
+  * @return {?} Any return.
++ * @api
+  */
+ export function abstract() {
+   return /** @type {?} */ ((function() {
+@@ -30,7 +31,6 @@ export function abstract() {
+  *
+  * @param {!Function} childCtor Child constructor.
+  * @param {!Function} parentCtor Parent constructor.
+- * @function module:ol.inherits
+  * @deprecated
+  * @api
+  */
+@@ -53,7 +53,6 @@ let uidCounter_ = 0;
+  *
+  * @param {Object} obj The object to get the unique ID for.
+  * @return {string} The unique ID for the object.
+- * @function module:ol.getUid
+  * @api
+  */
+ export function getUid(obj) {
+@@ -63,5 +62,6 @@ export function getUid(obj) {
+ /**
+  * OpenLayers version.
+  * @type {string}
++ * @api
+  */
+ export const VERSION = 'latest';
+-- 
+2.22.0
+

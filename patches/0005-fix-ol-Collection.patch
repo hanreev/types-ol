@@ -1,0 +1,34 @@
+From e9eb1f396031d515b6faafff4a2ffe2fa5b7bda0 Mon Sep 17 00:00:00 2001
+From: "Rifa'i M. Hanif" <hanreev@gmail.com>
+Date: Wed, 17 Jul 2019 17:56:53 +0700
+Subject: [PATCH 2/2] fix ol/Collection
+
+---
+ src/ol/Collection.js | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+diff --git a/src/ol/Collection.js b/src/ol/Collection.js
+index 5e0630f95..d074a849b 100644
+--- a/src/ol/Collection.js
++++ b/src/ol/Collection.js
+@@ -20,6 +20,8 @@ const Property = {
+  * @classdesc
+  * Events emitted by {@link module:ol/Collection~Collection} instances are instances of this
+  * type.
++ * @template T
++ * @api
+  */
+ export class CollectionEvent extends Event {
+ 
+@@ -32,7 +34,7 @@ export class CollectionEvent extends Event {
+ 
+     /**
+      * The element that is added to or removed from the collection.
+-     * @type {*}
++     * @type {T}
+      * @api
+      */
+     this.element = opt_element;
+-- 
+2.22.0
+

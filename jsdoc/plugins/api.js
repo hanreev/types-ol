@@ -34,7 +34,6 @@ const modules = {};
 
 /** @type {Object<string, Array<string>>} */
 const force_include_members = {
-  'module:ol/css': [],
   'module:ol/format/GMLBase': ['GMLNS'],
   'module:ol/format/IGC': ['IGCZ'],
   'module:ol/interaction/DragAndDrop': ['DragAndDropEvent', 'DragAndDropEventType'],
@@ -50,7 +49,6 @@ const force_include_members = {
   'module:ol/source/Raster': ['RasterSourceEvent'],
   'module:ol/source/Vector': ['VectorSourceEvent'],
   'module:ol/tilegrid/common': [],
-  'module:ol/util': ['VERSION'],
 };
 
 /**
@@ -140,27 +138,6 @@ exports.handlers = {
 
       if (doclet.longname in force_include_members)
         doclet.force_include_members = force_include_members[doclet.longname];
-
-      if (doclet.longname == 'module:ol/render/replay~TEXT_ALIGN')
-        doclet.properties = [
-          { name: 'left', defaultvalue: '0', kind: 'member', memberof: doclet.longname },
-          { name: 'end', defaultvalue: '0', kind: 'member', memberof: doclet.longname },
-          { name: 'center', defaultvalue: '0.5', kind: 'member', memberof: doclet.longname },
-          { name: 'right', defaultvalue: '1', kind: 'member', memberof: doclet.longname },
-          { name: 'start', defaultvalue: '1', kind: 'member', memberof: doclet.longname },
-          { name: 'top', defaultvalue: '0', kind: 'member', memberof: doclet.longname },
-          { name: 'middle', defaultvalue: '0.5', kind: 'member', memberof: doclet.longname },
-          { name: 'hanging', defaultvalue: '0.2', kind: 'member', memberof: doclet.longname },
-          { name: 'alphabetic', defaultvalue: '0.8', kind: 'member', memberof: doclet.longname },
-          { name: 'ideographic', defaultvalue: '0.8', kind: 'member', memberof: doclet.longname },
-          { name: 'bottom', defaultvalue: '1', kind: 'member', memberof: doclet.longname },
-        ];
-
-      if (doclet.longname == 'module:ol/css~getFontFamilies') {
-        doclet.kind = 'function';
-        doclet.params = [{ name: 'font', type: { names: ['string'] } }];
-        doclet.returns = [{ type: { names: ['Array<string>', 'null'] } }];
-      }
 
       if (doclet.stability) {
         if (doclet.kind == 'class') includeAugments(doclet);

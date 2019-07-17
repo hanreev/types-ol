@@ -1,0 +1,24 @@
+From ad11eaa3f26a60e6ba94bcb1f0c62ec6fad1d967 Mon Sep 17 00:00:00 2001
+From: "Rifa'i M. Hanif" <hanreev@gmail.com>
+Date: Wed, 17 Jul 2019 18:10:04 +0700
+Subject: [PATCH] fix ol/control/util
+
+---
+ src/ol/control/util.js | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/src/ol/control/util.js b/src/ol/control/util.js
+index c8ea795c2..8daf30eb4 100644
+--- a/src/ol/control/util.js
++++ b/src/ol/control/util.js
+@@ -36,7 +36,6 @@ import Zoom from './Zoom.js';
+  * Defaults options.
+  * @return {Collection<import("./Control.js").default>}
+  * Controls.
+- * @function module:ol/control.defaults
+  * @api
+  */
+ export function defaults(opt_options) {
+-- 
+2.22.0
+

@@ -28,9 +28,7 @@ const MODULE_CHILDREN = {};
 const EXTERNAL_MODULE_WHITELIST = ['arcgis-rest-api', 'geojson', 'topojson-specification'];
 
 /** @type {Object<string, string>} */
-const GENERIC_TYPES = {
-  'module:ol/Collection.CollectionEvent': 'T',
-};
+const GENERIC_TYPES = {};
 
 /** @type {string[]} */
 const ANY_GENERIC_TYPES = [
@@ -41,7 +39,6 @@ const ANY_GENERIC_TYPES = [
 
 /** @type {Object<string, string>} */
 const TYPE_PATCHES = {
-  'module:ol/Collection.CollectionEvent#element': 'T',
   'module:ol/events/condition~always': 'typeof:module:ol/functions.TRUE',
   'module:ol/events/condition~never': 'typeof:module:ol/functions.FALSE',
   'module:ol/format/GML~GML': 'module:ol/format/GML3~GML3',

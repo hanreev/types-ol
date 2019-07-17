@@ -1,0 +1,45 @@
+From 07a97a120936eb2ae509b6ab654a45a19eb7b7b4 Mon Sep 17 00:00:00 2001
+From: "Rifa'i M. Hanif" <hanreev@gmail.com>
+Date: Wed, 17 Jul 2019 17:08:01 +0700
+Subject: [PATCH] fix ol/render/replay~TEXT_ALIGN
+
+---
+ src/ol/render/replay.js | 25 +++++++++++++------------
+ 1 file changed, 13 insertions(+), 12 deletions(-)
+
+diff --git a/src/ol/render/replay.js b/src/ol/render/replay.js
+index fbb15a69f..81cce0fb0 100644
+--- a/src/ol/render/replay.js
++++ b/src/ol/render/replay.js
+@@ -21,15 +21,16 @@ export const ORDER = [
+  * @const
+  * @enum {number}
+  */
+-export const TEXT_ALIGN = {};
+-TEXT_ALIGN['left'] = 0;
+-TEXT_ALIGN['end'] = 0;
+-TEXT_ALIGN['center'] = 0.5;
+-TEXT_ALIGN['right'] = 1;
+-TEXT_ALIGN['start'] = 1;
+-TEXT_ALIGN['top'] = 0;
+-TEXT_ALIGN['middle'] = 0.5;
+-TEXT_ALIGN['hanging'] = 0.2;
+-TEXT_ALIGN['alphabetic'] = 0.8;
+-TEXT_ALIGN['ideographic'] = 0.8;
+-TEXT_ALIGN['bottom'] = 1;
++export const TEXT_ALIGN = {
++  left: 0,
++  end: 0,
++  center: 0.5,
++  right: 1,
++  start: 1,
++  top: 0,
++  middle: 0.5,
++  hanging: 0.2,
++  alphabetic: 0.8,
++  ideographic: 0.8,
++  bottom: 1
++};
+-- 
+2.22.0
+
