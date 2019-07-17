@@ -3,6 +3,9 @@
  * Inlines option params from typedefs
  */
 
+/**
+ * @type {Object<string, DocletProp[]>}
+ */
 const properties = {};
 
 exports.handlers = {
@@ -10,7 +13,7 @@ exports.handlers = {
    * Collects all typedefs, keyed by longname
    * @param {NewDocletEvent} e Event object.
    */
-  newDoclet: e => {
+  newDoclet(e) {
     if (e.doclet.kind == 'typedef' && e.doclet.properties) properties[e.doclet.longname] = e.doclet.properties;
   },
 
@@ -19,7 +22,7 @@ exports.handlers = {
    * collected typedefs.
    * @param {ParseCompleteEvent} e Event object.
    */
-  parseComplete: e => {
+  parseComplete(e) {
     const doclets = e.doclets;
     for (let i = 0, ii = doclets.length; i < ii; ++i) {
       const doclet = doclets[i];

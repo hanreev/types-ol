@@ -7,7 +7,10 @@ exports.defineTags = dictionary => {
     mustHaveValue: false,
     canHaveType: false,
     canHaveName: false,
-    onTagged: (/** @type {Doclet} */ doclet) => {
+    /**
+     * @param {Doclet} doclet
+     */
+    onTagged(doclet) {
       includeTypes(doclet);
       doclet.stability = 'stable';
     },
@@ -108,7 +111,10 @@ function includeTypes(doclet) {
 }
 
 exports.handlers = {
-  newDoclet: (/** @type {NewDocletEvent} */ e) => {
+  /**
+   * @param {NewDocletEvent} e
+   */
+  newDoclet(e) {
     const doclet = e.doclet;
     if (doclet.stability) {
       modules[doclet.longname.split(/[~.]/).shift()] = true;
@@ -124,7 +130,10 @@ exports.handlers = {
     if (doclet.name === doclet.longname && !doclet.memberof) doclet.setMemberof(doclet.longname);
   },
 
-  parseComplete: (/** @type {ParseCompleteEvent} */ e) => {
+  /**
+   * @param {ParseCompleteEvent} e
+   */
+  parseComplete(e) {
     const doclets = e.doclets;
     for (let i = doclets.length - 1; i >= 0; --i) {
       const doclet = doclets[i];

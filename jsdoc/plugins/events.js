@@ -1,7 +1,10 @@
 const events = {};
 
 exports.handlers = {
-  newDoclet: (/** @type {NewDocletEvent} */ e) => {
+  /**
+   * @param {NewDocletEvent} e
+   */
+  newDoclet(e) {
     const doclet = e.doclet;
     if (doclet.kind !== 'event') return;
 
@@ -10,7 +13,10 @@ exports.handlers = {
     events[cls].push(doclet.longname);
   },
 
-  parseComplete: (/** @type {ParseCompleteEvent} */ e) => {
+  /**
+   * @param {ParseCompleteEvent} e
+   */
+  parseComplete(e) {
     const doclets = e.doclets;
     for (let i = 0, ii = doclets.length - 1; i < ii; ++i) {
       const doclet = doclets[i];

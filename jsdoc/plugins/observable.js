@@ -1,3 +1,21 @@
+/**
+ * Define an @observable tag
+ * @param {Object} dictionary The tag dictionary.
+ */
+exports.defineTags = dictionary => {
+  dictionary.defineTag('observable', {
+    mustNotHaveValue: true,
+    canHaveType: false,
+    canHaveName: false,
+    /**
+     * @param {Doclet} doclet
+     */
+    onTagged(doclet) {
+      doclet.observable = '';
+    },
+  });
+};
+
 const classes = {};
 const observables = {};
 
@@ -5,7 +23,7 @@ exports.handlers = {
   /**
    * @param {NewDocletEvent} e
    */
-  newDoclet: e => {
+  newDoclet(e) {
     const doclet = e.doclet;
     if (doclet.kind == 'class' && !(doclet.longname in classes)) classes[doclet.longname] = doclet;
   },
@@ -13,7 +31,7 @@ exports.handlers = {
   /**
    * @param {ParseCompleteEvent} e
    */
-  parseComplete: e => {
+  parseComplete(e) {
     const doclets = e.doclets;
     let cls, doclet, event, i, ii, observable;
     for (i = 0, ii = doclets.length - 1; i < ii; ++i) {
@@ -50,15 +68,4 @@ exports.handlers = {
       }
     }
   },
-};
-
-exports.defineTags = dictionary => {
-  dictionary.defineTag('observable', {
-    mustNotHaveValue: true,
-    canHaveType: false,
-    canHaveName: false,
-    onTagged: doclet => {
-      doclet.observable = '';
-    },
-  });
 };

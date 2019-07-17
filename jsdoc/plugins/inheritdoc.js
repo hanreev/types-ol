@@ -4,12 +4,19 @@
  * documentation of the method that inherits the documentation.
  */
 
+/**
+ * Define an @inheritDoc tag
+ * @param {Object} dictionary The tag dictionary.
+ */
 exports.defineTags = dictionary => {
   dictionary.defineTag('inheritDoc', {
     mustHaveValue: false,
     canHaveType: false,
     canHaveName: false,
-    onTagged: doclet => {
+    /**
+     * @param {Doclet} doclet
+     */
+    onTagged(doclet) {
       doclet.inheritdoc = true;
     },
   });
@@ -20,7 +27,10 @@ const incompleteByClass = {};
 const keepKeys = ['comment', 'meta', 'name', 'memberof', 'longname', 'augment', 'stability'];
 
 exports.handlers = {
-  newDoclet: (/** @type {NewDocletEvent} */ e) => {
+  /**
+   * @param {NewDocletEvent} e
+   */
+  newDoclet(e) {
     const doclet = e.doclet;
     let incompletes;
     if (!(doclet.longname in lookup)) lookup[doclet.longname] = [];
@@ -34,7 +44,10 @@ exports.handlers = {
     }
   },
 
-  parseComplete: (/** @type {ParseCompleteEvent} */ e) => {
+  /**
+   * @param {ParseCompleteEvent} e
+   */
+  parseComplete(e) {
     let ancestors, candidate, candidates, doclet, i, j, k, l, key;
     let incompleteDoclet, stability, incomplete, incompletes;
     const doclets = e.doclets;

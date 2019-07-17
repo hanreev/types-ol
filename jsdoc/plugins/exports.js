@@ -61,7 +61,10 @@ function extractFunctionDefinition(doclet, comment, isReturn = false) {
 }
 
 exports.handlers = {
-  newDoclet: (/** @type {NewDocletEvent} */ e) => {
+  /**
+   * @param {NewDocletEvent} e
+   */
+  newDoclet(e) {
     const doclet = e.doclet;
 
     if (doclet.kind == 'module') remapExports(doclet);
@@ -79,7 +82,10 @@ exports.handlers = {
       (doclet.yields || doclet.returns).forEach(r => extractFunctionDefinition(r, doclet.comment, true));
   },
 
-  beforeParse: (/** @type {BeforeParseEvent} */ e) => {
+  /**
+   * @param {BeforeParseEvent} e
+   */
+  beforeParse(e) {
     /** @type {ModuleExports} */
     const _exports = {
       default: null,

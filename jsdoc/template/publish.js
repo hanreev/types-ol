@@ -538,7 +538,7 @@ function declaration(doclet, decl, _module) {
 
 const PROCESSORS = {
   /** @type {DocletParser} */
-  class: (doclet, _module) => {
+  class(doclet, _module) {
     const children = [];
     let name = doclet.name;
 
@@ -648,13 +648,13 @@ const PROCESSORS = {
   },
 
   /** @type {DocletParser} */
-  member: (doclet, _module) => {
+  member(doclet, _module) {
     const prefix = doclet.access ? `${doclet.access} ` : '';
     return prefix + `${doclet.name}: ${getType(doclet, _module)};`;
   },
 
   /** @type {DocletParser} */
-  constant: (doclet, _module) => {
+  constant(doclet, _module) {
     const decl = `const ${doclet.name}: ${getType(doclet, _module)};`;
     return declaration(doclet, decl, _module);
   },
@@ -665,7 +665,7 @@ const PROCESSORS = {
    * @param {boolean} lookupOverrides
    * @returns {string}
    */
-  method: (doclet, _module, lookupOverrides = true) => {
+  method(doclet, _module, lookupOverrides = true) {
     const prefix = doclet.scope == 'instance' && doclet.access ? `${doclet.access} ` : '';
     let name = doclet.name;
 
@@ -687,7 +687,7 @@ const PROCESSORS = {
   },
 
   /** @type {DocletParser} */
-  function: (doclet, _module) => {
+  function(doclet, _module) {
     // FIXME: Patch module:ol/obj.getValues
     if (doclet.longname == 'module:ol/obj.getValues')
       return ['string', 'number']
@@ -702,7 +702,7 @@ const PROCESSORS = {
   },
 
   /** @type {DocletParser} */
-  typedef: (doclet, _module) => {
+  typedef(doclet, _module) {
     let decl;
     const children = [];
     const addedProps = [];
@@ -734,7 +734,7 @@ const PROCESSORS = {
   },
 
   /** @type {DocletParser} */
-  enum: (doclet, _module) => {
+  enum(doclet, _module) {
     const name = registerImport(_module, doclet.name) + ' ';
     const type = getType(doclet, _module);
     const etDoclet = data({ name: 'module:ol/events/EventType', isEnum: true }).first();
