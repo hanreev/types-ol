@@ -22,7 +22,7 @@ if (!patches.length) {
 
 console.log('# Checkout openlayers v5.3.3');
 process.chdir(olDir);
-childProcess.execSync('git reset --hard HEAD', { stdio: 'inherit' });
+childProcess.execSync('git checkout -- .', { stdio: 'inherit' });
 childProcess.execSync('git checkout v5.3.3', { stdio: 'inherit' });
 
 console.log('# ===== APPLYING PATCHES =====');
