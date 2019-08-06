@@ -6,7 +6,7 @@ import { Size } from '../size';
 export default class IconImage extends Target {
     constructor(
         image: HTMLImageElement | HTMLCanvasElement,
-        src: string,
+        src: string | undefined,
         size: Size,
         crossOrigin: string,
         imageState: ImageState,

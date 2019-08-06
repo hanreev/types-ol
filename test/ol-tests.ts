@@ -1,4 +1,4 @@
-import { Collection, Map, MapBrowserEvent, PluggableMap, View } from 'ol';
+import { Collection, Map, MapBrowserEvent, Overlay, PluggableMap, View } from 'ol';
 import { unByKey } from 'ol/Observable';
 import {
     Control,
@@ -18,7 +18,7 @@ import { GeoJSON, MVT } from 'ol/format';
 import GeometryType from 'ol/geom/GeometryType';
 import { Draw, Modify, Select, defaults as defaultInteractions } from 'ol/interaction';
 import { Tile as TileLayer, Vector as VectorLayer, VectorTile as VectorTileLayer } from 'ol/layer';
-import { get as getProjection, getTransform } from 'ol/proj';
+import { fromLonLat, get as getProjection, getTransform } from 'ol/proj';
 import { register } from 'ol/proj/proj4';
 import { OSM, Vector as VectorSource, VectorTile as VectorTileSource } from 'ol/source';
 import { Circle, Fill, Stroke, Style } from 'ol/style';
@@ -302,3 +302,21 @@ class CustomControl extends Control {
 }
 
 map.addControl(new CustomControl());
+
+/**
+ * ==================================================
+ * # Overlay
+ * ==================================================
+ */
+
+const overlay = new Overlay({
+    position: fromLonLat([0, 0]),
+    element: document.createElement('div'),
+});
+
+map.addOverlay(overlay);
+
+map.on('click', evt => {
+    if (overlay.getPosition() === undefined) overlay.setPosition(evt.coordinate);
+    else overlay.setPosition(undefined);
+});

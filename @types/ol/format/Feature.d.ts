@@ -20,7 +20,7 @@ export default class FeatureFormat {
     constructor();
     protected dataProjection: Projection;
     protected defaultFeatureProjection: Projection;
-    protected adaptOptions(options: WriteOptions | ReadOptions): WriteOptions | ReadOptions;
+    protected adaptOptions(options: WriteOptions | ReadOptions | undefined): WriteOptions | ReadOptions;
     protected getReadOptions(source: Document | Node | object | string, opt_options?: ReadOptions): ReadOptions;
     getLastExtent(): Extent;
     getType(): FormatType;

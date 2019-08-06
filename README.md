@@ -144,6 +144,8 @@ Configuration is located at `jsdoc/conf.json`
 
 ## Changelog
 
+- **v2.0.7**
+  - Add unified `undefined` parameter type--e.g., `ol/Overlay~Overlay#setPosition` method can accept either coordinate or `undefined`
 - **v2.0.6**
   - Fix external import with same member name--e.g., `GeoJSON` from `geojson` module in `ol/format/GeoJSON`
   - Order module members by kind

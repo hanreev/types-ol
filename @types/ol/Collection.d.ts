@@ -9,7 +9,7 @@ export default class Collection<T> extends BaseObject {
     constructor(opt_array?: T[], opt_options?: Options);
     clear(): void;
     extend(arr: T[]): Collection<T>;
-    forEach(f: (p0: T, p1: number, p2: T[]) => void): void;
+    forEach(f: (p0: T, p1: number, p2: T[]) => any): void;
     getArray(): T[];
     getLength(): number;
     insertAt(index: number, elem: T): void;

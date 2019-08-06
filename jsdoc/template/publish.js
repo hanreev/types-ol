@@ -374,6 +374,10 @@ function stringifyType(parsedType, _module, undefinedLiteral = true) {
       .filter(t => ['void', 'undefined'].indexOf(t) == -1);
     typeStr = union.join(' | ');
     if (union.length > 1) typeStr = `(${typeStr})`;
+  } else if (parsedType.type == 'UndefinedLiteral') {
+    typeStr = 'undefined';
+  } else if (['UnknownLiteral', 'AllLiteral'].indexOf(parsedType.type) != -1) {
+    typeStr = 'any';
   } else {
     typeStr += suffix;
   }
@@ -428,7 +432,7 @@ function parseConstFunctionType(doclet, _module) {
 }
 
 /** @type {DocletParser} */
-function getType(doclet, _module) {
+function getType(doclet, _module, undefinedLiteral = false) {
   if (!doclet.type)
     if (doclet.params || doclet.yields || doclet.returns) {
       return parseConstFunctionType(doclet, _module);
@@ -437,34 +441,34 @@ function getType(doclet, _module) {
       return 'any';
     }
 
-  let types = doclet.type.names
-    .map(type => {
-      /** @type {ParsedType} */
-      let parsedType;
-      let prefix = '';
+  let types = doclet.type.names.map(type => {
+    /** @type {ParsedType} */
+    let parsedType;
+    let prefix = '';
 
-      if (_module.name == 'ol/source/Raster' && type == 'RasterOperationType') return `'pixel' | 'image'`;
+    if (_module.name == 'ol/source/Raster' && type == 'RasterOperationType') return `'pixel' | 'image'`;
 
-      if (type.startsWith('typeof:')) {
-        prefix = 'typeof ';
-        type = type.replace(/^typeof:/, '');
+    if (type.startsWith('typeof:')) {
+      prefix = 'typeof ';
+      type = type.replace(/^typeof:/, '');
+    }
+
+    const objRegex = /^\[ '(.+)' \](\..+)$/;
+    if (objRegex.test(type)) type = type.replace(objRegex, '$1$2');
+
+    if (type.startsWith('function')) type = parseFunctionType(type, _module);
+    else
+      try {
+        parsedType = catharsis.parse(type, { jsdoc: true });
+        type = stringifyType(parsedType, _module);
+      } catch (error) {
+        logger.error('getType --', doclet.longname || _module.longname, type);
       }
 
-      const objRegex = /^\[ '(.+)' \](\..+)$/;
-      if (objRegex.test(type)) type = type.replace(objRegex, '$1$2');
+    return prefix + type;
+  });
 
-      if (type.startsWith('function')) type = parseFunctionType(type, _module);
-      else
-        try {
-          parsedType = catharsis.parse(type, { jsdoc: true });
-          type = stringifyType(parsedType, _module);
-        } catch (error) {
-          logger.error('getType --', doclet.longname || _module.longname, type);
-        }
-
-      return prefix + type;
-    })
-    .filter(t => t != 'undefined');
+  if (!undefinedLiteral) types = types.filter(t => t != 'undefined');
 
   if (types.length > 1 && types.indexOf('any') != -1) types = types.filter(t => t != 'any');
 
@@ -493,7 +497,7 @@ function getParams(doclet, _module) {
     .filter(param => param.name.indexOf('.') == -1)
     .map(param => {
       let name = param.name;
-      let paramType = getType(/** @type {Doclet} */ (param), _module);
+      let paramType = getType(/** @type {Doclet} */ (param), _module, true);
 
       if (param.optional && !param.defaultValue) name += '?';
 

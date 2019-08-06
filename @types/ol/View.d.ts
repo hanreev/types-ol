@@ -84,9 +84,9 @@ export default class View extends BaseObject {
     calculateExtent(opt_size?: Size): Extent;
     cancelAnimations(): void;
     centerOn(coordinate: Coordinate, size: Size, position: Pixel): void;
-    constrainCenter(center: Coordinate): Coordinate;
-    constrainResolution(resolution: number, opt_delta?: number, opt_direction?: number): number;
-    constrainRotation(rotation: number, opt_delta?: number): number;
+    constrainCenter(center: Coordinate | undefined): Coordinate;
+    constrainResolution(resolution: number | undefined, opt_delta?: number, opt_direction?: number): number;
+    constrainRotation(rotation: number | undefined, opt_delta?: number): number;
     fit(geometryOrExtent: SimpleGeometry | Extent, opt_options?: FitOptions): void;
     getAnimating(): boolean;
     getCenter(): Coordinate;
@@ -111,11 +111,11 @@ export default class View extends BaseObject {
     getZoomForResolution(resolution: number): number;
     isDef(): boolean;
     rotate(rotation: number, opt_anchor?: Coordinate): void;
-    setCenter(center: Coordinate): void;
+    setCenter(center: Coordinate | undefined): void;
     setHint(hint: ViewHint, delta: number): number;
     setMaxZoom(zoom: number): void;
     setMinZoom(zoom: number): void;
-    setResolution(resolution: number): void;
+    setResolution(resolution: number | undefined): void;
     setRotation(rotation: number): void;
     setZoom(zoom: number): void;
     updateAnimations_(): void;

@@ -8,7 +8,7 @@ export default class RenderFeature {
         flatCoordinates: number[],
         ends: number[] | number[][],
         properties: { [key: string]: any },
-        id: number | string
+        id: number | string | undefined
     );
     get(key: string): any;
     getExtent(): Extent;

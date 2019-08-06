@@ -23,7 +23,7 @@ export default class ImageArcGISRest extends ImageSource {
     getParams(): any;
     getUrl(): string;
     setImageLoadFunction(imageLoadFunction: LoadFunction): void;
-    setUrl(url: string): void;
+    setUrl(url: string | undefined): void;
     updateParams(params: any): void;
     on(type: string | string[], listener: (p0: any) => void): EventsKey | EventsKey[];
     once(type: string | string[], listener: (p0: any) => void): EventsKey | EventsKey[];

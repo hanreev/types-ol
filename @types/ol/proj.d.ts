@@ -23,7 +23,7 @@ export function addProjection(projection: Projection): void;
 export function addProjections(projections: Projection[]): void;
 export function clearAllProjections(): void;
 export function cloneTransform(input: number[], opt_output?: number[], opt_dimension?: number): number[];
-export function createProjection(projection: Projection | string, defaultCode: string): Projection;
+export function createProjection(projection: Projection | string | undefined, defaultCode: string): Projection;
 export function createTransformFromCoordinateTransform(
     coordTransform: (p0: Coordinate) => Coordinate
 ): TransformFunction;

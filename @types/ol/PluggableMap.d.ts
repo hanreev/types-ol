@@ -120,8 +120,8 @@ export default class PluggableMap extends BaseObject {
     render(): void;
     renderSync(): void;
     setLayerGroup(layerGroup: LayerGroup): void;
-    setSize(size: Size): void;
-    setTarget(target: HTMLElement | string): void;
+    setSize(size: Size | undefined): void;
+    setTarget(target: HTMLElement | string | undefined): void;
     setView(view: View): void;
     skipFeature(feature: Feature): void;
     unskipFeature(feature: Feature): void;

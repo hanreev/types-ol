@@ -27,7 +27,7 @@ export default class BaseLayer extends BaseObject {
     getType(): LayerType;
     getVisible(): boolean;
     getZIndex(): number;
-    setExtent(extent: Extent): void;
+    setExtent(extent: Extent | undefined): void;
     setMaxResolution(maxResolution: number): void;
     setMinResolution(minResolution: number): void;
     setOpacity(opacity: number): void;

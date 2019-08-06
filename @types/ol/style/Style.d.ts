@@ -36,10 +36,10 @@ export default class Style {
     setFill(fill: Fill): void;
     setGeometry(geometry: string | Geometry | GeometryFunction): void;
     setImage(image: ImageStyle): void;
-    setRenderer(renderer: RenderFunction): void;
+    setRenderer(renderer: RenderFunction | undefined): void;
     setStroke(stroke: Stroke): void;
     setText(text: Text): void;
-    setZIndex(zIndex: number): void;
+    setZIndex(zIndex: number | undefined): void;
 }
 export function createDefaultStyle(feature: FeatureLike, resolution: number): Style[];
 export function createEditingStyle(): { [key in GeometryType]: Style[] };

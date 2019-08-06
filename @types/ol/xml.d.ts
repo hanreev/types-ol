@@ -8,7 +8,7 @@ export function getAllTextContent(node: Node, normalizeWhitespace: boolean): str
 export function getAttributeNS(node: Element, namespaceURI: string, name: string): string;
 export function isDocument(object: any): boolean;
 export function makeArrayExtender<T>(valueReader: (this: T, p0: Node, p1: any[]) => any[], opt_this?: T): Parser;
-export function makeArrayPusher<T>(valueReader: (this: T, p0: Element, p1: any[]) => void, opt_this?: T): Parser;
+export function makeArrayPusher<T>(valueReader: (this: T, p0: Element, p1: any[]) => any, opt_this?: T): Parser;
 export function makeArraySerializer<T, V>(
     nodeWriter: (this: T, p0: Element, p1: V, p2: any[]) => void,
     opt_this?: T
@@ -18,16 +18,16 @@ export function makeChildAppender<T, V>(
     opt_this?: T
 ): Serializer;
 export function makeObjectPropertyPusher<T>(
-    valueReader: (this: T, p0: Element, p1: any[]) => void,
+    valueReader: (this: T, p0: Element, p1: any[]) => any,
     opt_property?: string,
     opt_this?: T
 ): Parser;
 export function makeObjectPropertySetter<T>(
-    valueReader: (this: T, p0: Element, p1: any[]) => void,
+    valueReader: (this: T, p0: Element, p1: any[]) => any,
     opt_property?: string,
     opt_this?: T
 ): Parser;
-export function makeReplacer<T>(valueReader: (this: T, p0: Node, p1: any[]) => void, opt_this?: T): Parser;
+export function makeReplacer<T>(valueReader: (this: T, p0: Node, p1: any[]) => any, opt_this?: T): Parser;
 export function makeSequence<V>(object: { [key: string]: V }, orderedKeys: string[]): V[];
 export function makeSimpleNodeFactory(
     opt_nodeName?: string,

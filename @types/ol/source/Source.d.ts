@@ -25,7 +25,7 @@ export default class Source extends BaseObject {
     getState(): State;
     getWrapX(): boolean;
     refresh(): void;
-    setAttributions(attributions: AttributionLike): void;
+    setAttributions(attributions: AttributionLike | undefined): void;
     on(type: string | string[], listener: (p0: any) => void): EventsKey | EventsKey[];
     once(type: string | string[], listener: (p0: any) => void): EventsKey | EventsKey[];
     un(type: string | string[], listener: (p0: any) => void): void;

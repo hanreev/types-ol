@@ -68,7 +68,7 @@ export default class WFS extends XMLFeature {
     readTransactionResponse(source: Document | Element | object | string): TransactionResponse;
     readTransactionResponseFromDocument(doc: Document): TransactionResponse;
     readTransactionResponseFromNode(node: Element): TransactionResponse;
-    setFeatureType(featureType: string[] | string): void;
+    setFeatureType(featureType: string[] | string | undefined): void;
     writeGetFeature(options: WriteGetFeatureOptions): Node;
     writeTransaction(
         inserts: Feature[],

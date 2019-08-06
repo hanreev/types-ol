@@ -13,7 +13,7 @@ export default class LRUCache<T> extends Target {
     canExpireCache(): boolean;
     clear(): void;
     containsKey(key: string): boolean;
-    forEach<S>(f: (this: S, p0: T, p1: string, p2: LRUCache<T>) => void, opt_this?: S): void;
+    forEach<S>(f: (this: S, p0: T, p1: string, p2: LRUCache<T>) => any, opt_this?: S): void;
     get(key: string): T;
     getCount(): number;
     getKeys(): string[];

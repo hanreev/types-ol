@@ -12,7 +12,7 @@ export default class SimpleGeometry extends Geometry {
     protected layout: GeometryLayout;
     protected stride: number;
     protected getSimplifiedGeometryInternal(squaredTolerance: number): SimpleGeometry;
-    protected setLayout(layout: GeometryLayout, coordinates: any[], nesting: number): void;
+    protected setLayout(layout: GeometryLayout | undefined, coordinates: any[], nesting: number): void;
     getCoordinates(): any[];
     getFirstCoordinate(): Coordinate;
     getFlatCoordinates(): number[];
