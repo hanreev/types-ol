@@ -1,8 +1,14 @@
 # OpenLayers TypeScript Definition
 
+
+
 > <h3 align="center">Definitions from this project will be syncronized with official <a href="https://www.npmjs.com/package/@types/ol">@types/ol</a> package.</h3>
 
+
+
 This project contains TypeScript definition for [OpenLayers](https://openlayers.org/) `v5.3.3` that includes all documented API and protected class members and methods.
+
+
 
 ## Installation
 
@@ -26,8 +32,10 @@ npm i -D @hanreev/types-ol
 yarn add -D @hanreev/types-ol
 ```
 
-> **_Note:_**
+> ***Note:***
 > For OpenLayers v6 beta use version 3 of this package `@hanreev/types-ol@beta`
+
+
 
 ## Usage
 
@@ -83,6 +91,8 @@ There are several ways to use this package. Please choose one:
   }
   ```
 
+
+
 ## Configuring and Building TypeScript definition files
 
 Configuration is located at `jsdoc/conf.json`
@@ -100,8 +110,8 @@ Configuration is located at `jsdoc/conf.json`
   ...
   "typescript": {
     "moduleRoot": "openlayers/src", // openlayers source
-    "definition": {
-      "mode": "multiple", // "single" will generate all definitions in single index.d.ts file.
+    "declaration": {
+      "mode": "multiple", // "single" will generate all declarations in single index.d.ts file.
       "strictGenericTypes": false // set to true to extract classes generic type from super class, members and methods.
     }
   },
@@ -140,7 +150,9 @@ Configuration is located at `jsdoc/conf.json`
   ```
 
 > **_Note:_**  
-> Some definition was patched manually. If you found any error please [create a new issue](https://github.com/hanreev/types-ol/issues).
+> Some declaration was patched manually. If you found any error please [create a new issue](https://github.com/hanreev/types-ol/issues).
+
+
 
 ## Changelog
 
@@ -163,7 +175,7 @@ Configuration is located at `jsdoc/conf.json`
   - Use relative import path for `ol` modules ([no-self-import](https://github.com/microsoft/dtslint/blob/master/docs/no-self-import.md))
 - **v2.0.1**
   - Refactor definition filenames
-  - Remove module definition ([no-declare-current-package](https://github.com/microsoft/dtslint/blob/master/docs/no-declare-current-package.md))
+  - Remove module declaration ([no-declare-current-package](https://github.com/microsoft/dtslint/blob/master/docs/no-declare-current-package.md))
   - [DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped) standard. These [dtslint](https://github.com/microsoft/dtslint) rules are ignored:
     - `adjacent-overload-signatures`
     - `array-type`
@@ -179,6 +191,8 @@ Configuration is located at `jsdoc/conf.json`
   - Fix `ol/MapBrowserEventType` module
 - **v1.0.0**
   - Initial release
+
+
 
 ## License
 
