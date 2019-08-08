@@ -9,4 +9,4 @@ export function linearFindNearest(arr: number[], target: number, direction: numb
 export function numberSafeCompareFunction(a: any, b: any): number;
 export function remove<VALUE>(arr: VALUE[], obj: VALUE): boolean;
 export function reverseSubArray(arr: any[], begin: number, end: number): void;
-export function stableSort(arr: any[], compareFnc: () => void): void;
+export function stableSort(arr: any[], compareFnc: (p0: any, p1: any) => number): void;

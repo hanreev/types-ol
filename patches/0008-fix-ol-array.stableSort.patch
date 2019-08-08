@@ -1,0 +1,25 @@
+From ab1f351d3a2b80ee0e6e2804b66195e5500e90c1 Mon Sep 17 00:00:00 2001
+From: "Rifa'i M. Hanif" <hanreev@gmail.com>
+Date: Thu, 8 Aug 2019 08:27:52 +0700
+Subject: [PATCH 1/1] fix ol/array.stableSort
+
+---
+ src/ol/array.js | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/ol/array.js b/src/ol/array.js
+index bb9796c09..e8e892a3d 100644
+--- a/src/ol/array.js
++++ b/src/ol/array.js
+@@ -197,7 +197,7 @@ export function equals(arr1, arr2) {
+  * Sort the passed array such that the relative order of equal elements is preverved.
+  * See https://en.wikipedia.org/wiki/Sorting_algorithm#Stability for details.
+  * @param {Array<*>} arr The array to sort (modifies original).
+- * @param {!function(*, *): number} compareFnc Comparison function.
++ * @param {function(*, *): number} compareFnc Comparison function.
+  * @api
+  */
+ export function stableSort(arr, compareFnc) {
+-- 
+2.17.1
+

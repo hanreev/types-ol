@@ -48,10 +48,7 @@ const TYPE_PATCHES = {
 };
 
 /** @type {Object<string, string[]>} */
-const PARAM_TYPE_PATCHES = {
-  // 'module:ol/layer/Tile~TileLayer': ['opt_options', 'module:ol/layer/Tile~Options'],
-  // 'module:ol/layer/VectorTile~VectorTileLayer': ['opt_options', 'module:ol/layer/VectorTile~Options'],
-};
+const PARAM_TYPE_PATCHES = {};
 
 /** @type {Object<string, Object<string, string[]>>} */
 const PROPERTY_TYPE_PATCHES = {
