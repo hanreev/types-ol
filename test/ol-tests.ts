@@ -1,5 +1,6 @@
 import { Collection, Map, MapBrowserEvent, Overlay, PluggableMap, View } from 'ol';
 import { unByKey } from 'ol/Observable';
+import { stableSort } from 'ol/array';
 import {
     Control,
     FullScreen,
@@ -320,3 +321,15 @@ map.on('click', evt => {
     if (overlay.getPosition() === undefined) overlay.setPosition(evt.coordinate);
     else overlay.setPosition(undefined);
 });
+
+/**
+ * ==================================================
+ * # ol/array.stableSort
+ * ==================================================
+ */
+
+const arr = Array(10)
+    .fill(0)
+    .map((_, i) => i);
+
+stableSort(arr, (a: number, b: number) => (a < b ? 1 : a > b ? -1 : 0));

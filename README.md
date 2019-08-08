@@ -1,6 +1,6 @@
 # OpenLayers TypeScript Declaration
 
-**_Definitions from this project will be syncronized with official [@types/ol](https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/ol) package._**
+> <h3 align="center">Definitions from this project will be syncronized with official <a href="https://www.npmjs.com/package/@types/ol">@types/ol</a> package.</h3>
 
 This project contains TypeScript declaration for [OpenLayers](https://openlayers.org/) `v5.3.3` that includes all documented API and protected class members and methods.
 
@@ -46,7 +46,7 @@ There are several ways to use this package. Please choose one:
     ...
     "devDependencies": {
       ...
-      "@hanreev/types-ol": "^2.0.6",
+      "@hanreev/types-ol": "^2.0.7",
       "@types/ol": "file:node_modules/@hanreev/types-ol/ol",
       ...
     }
