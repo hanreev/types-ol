@@ -9,8 +9,8 @@ const logger = require('jsdoc/lib/jsdoc/util/logger');
 
 const outDir = path.resolve(env.opts.destination);
 
-/** @type {DeclarationConfig} */
-const declarationConfig = env.conf.typescript.declaration;
+/** @type {DefinitionConfig} */
+const definitionConfig = env.conf.typescript.definition;
 
 /** @type {*} */
 let data;
@@ -186,7 +186,7 @@ function registerImport(_module, val) {
 function relativeImport(expressions, _module) {
   if (!Array.isArray(expressions)) return logger.error('relativeImport -- Invalid argument:', expressions);
 
-  if (declarationConfig.mode == 'single') return expressions;
+  if (definitionConfig.mode == 'single') return expressions;
 
   const moduleDirname = _module.name == 'ol' ? 'ol' : path.dirname(_module.name);
 
@@ -516,14 +516,14 @@ function getParams(doclet, _module) {
  * @param {Doclet} _module
  * @returns {string}
  */
-function declaration(doclet, decl, _module) {
+function definition(doclet, decl, _module) {
   let prefix = '';
   let suffix = '';
 
   if (_module && _module.exports)
     if (doclet.name == _module.exports.default)
       if (doclet.isEnum || doclet.kind == 'constant') {
-        prefix = declarationConfig.mode == 'single' ? '' : 'declare ';
+        prefix = definitionConfig.mode == 'single' ? '' : 'declare ';
         suffix = `\n\nexport default ${registerImport(_module, doclet.name)};`;
       } else {
         prefix = 'export default ';
@@ -641,7 +641,7 @@ const PROCESSORS = {
     }
 
     const decl = `class ${name} {\n${children.join('\n')}\n}`;
-    return declaration(doclet, decl, _module);
+    return definition(doclet, decl, _module);
   },
 
   /** @type {DocletParser} */
@@ -653,7 +653,7 @@ const PROCESSORS = {
   /** @type {DocletParser} */
   constant(doclet, _module) {
     const decl = `const ${doclet.name}: ${getType(doclet, _module)};`;
-    return declaration(doclet, decl, _module);
+    return definition(doclet, decl, _module);
   },
 
   /**
@@ -690,12 +690,12 @@ const PROCESSORS = {
       return ['string', 'number']
         .map(t => {
           const decl = `function ${doclet.name}<V>(obj: { [key: ${t}]: V }): V[];`;
-          return declaration(doclet, decl, _module);
+          return definition(doclet, decl, _module);
         })
         .join('\n');
 
     const decl = 'function ' + PROCESSORS.method(doclet, _module);
-    return declaration(doclet, decl, _module);
+    return definition(doclet, decl, _module);
   },
 
   /** @type {DocletParser} */
@@ -754,7 +754,7 @@ const PROCESSORS = {
       });
     else logger.warn('Empty enum --', doclet.longname);
     const decl = `enum ${name}{\n${children.join('\n')}\n}`;
-    return declaration(doclet, decl, _module);
+    return definition(doclet, decl, _module);
   },
 };
 
@@ -813,7 +813,7 @@ function processModule(doclet) {
  * @param {boolean} emitOutput
  * @returns {string}
  */
-function generateDeclaration(doclet, emitOutput = true) {
+function generateDefinition(doclet, emitOutput = true) {
   const children = MODULE_CHILDREN[doclet.name];
   const _imports = MODULE_IMPORTS[doclet.name];
   const _exports = MODULE_EXPORTS[doclet.name];
@@ -1023,7 +1023,7 @@ exports.publish = taffyData => {
    * Repetation is needed because some generic types are added from parameters and members
    */
 
-  if (declarationConfig.strictGenericTypes) {
+  if (definitionConfig.strictGenericTypes) {
     ANY_GENERIC_TYPES.splice(0);
     extractGenericTypes(true, true);
     for (let i = 0; i < 2; ++i) extractGenericTypes(false, true);
@@ -1054,22 +1054,22 @@ exports.publish = taffyData => {
   fs.removeSync(outDir);
 
   /**
-   * Emit declaration files
+   * Emit definition files
    */
-  if (declarationConfig.mode == 'single') {
+  if (definitionConfig.mode == 'single') {
     /**
-     * Generate single declaration file
+     * Generate single definition file
      */
     const content = members.modules
-      .map((/** @type {Doclet} */ doclet) => generateDeclaration(doclet, false))
+      .map((/** @type {Doclet} */ doclet) => generateDefinition(doclet, false))
       .join('\n\n');
     const outputPath = path.resolve(outDir, 'ol', 'index.d.ts');
     fs.mkdirpSync(path.dirname(outputPath));
     fs.writeFileSync(outputPath, content);
   } else {
     /**
-     * Generate multiple declaration files
+     * Generate multiple definition files
      */
-    members.modules.forEach((/** @type {Doclet} */ doclet) => generateDeclaration(doclet));
+    members.modules.forEach((/** @type {Doclet} */ doclet) => generateDefinition(doclet));
   }
 };

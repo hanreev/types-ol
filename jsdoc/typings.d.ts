@@ -1,6 +1,6 @@
 declare var env: any;
 
-interface DeclarationConfig {
+interface DefinitionConfig {
     mode?: 'single' | 'multiple';
     strictGenericTypes?: boolean;
 }
