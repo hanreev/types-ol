@@ -33,14 +33,5 @@ export default class WebGLReplayGroup extends ReplayGroup {
         opacity: number,
         skippedFeaturesHash: { [key: string]: boolean }
     ): boolean;
-    replay(
-        context: WebGLContext,
-        center: Coordinate,
-        resolution: number,
-        rotation: number,
-        size: Size,
-        pixelRatio: number,
-        opacity: number,
-        skippedFeaturesHash: { [key: string]: boolean }
-    ): void;
+    replay(context: WebGLContext, center: Coordinate, resolution: number, rotation: number, size: Size, pixelRatio: number, opacity: number, skippedFeaturesHash: { [key: string]: boolean }): void;
 }

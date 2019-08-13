@@ -5,10 +5,7 @@ const childProcess = require('child_process');
 
 const BASE_DIR = process.cwd();
 
-const olVersion = require(path.join(BASE_DIR, '/openlayers/package.json')).version.replace(
-  /^(\d+)\.(\d+)(\..+)?$/,
-  '$1.$2'
-);
+const olVersion = require(path.join(BASE_DIR, '/openlayers/package.json')).version.replace(/^(\d+)\.(\d+)(\..+)?$/, '$1.$2');
 
 const configs = {
   tsconfig: {
@@ -80,10 +77,13 @@ const dtPackageJson = {
   scripts: {
     lint: 'dtslint types',
   },
+  dependencies: {
+    dtslint: 'latest',
+  },
 };
 process.chdir(dtPath);
 fs.writeFileSync('package.json', JSON.stringify(dtPackageJson, null, 4));
-childProcess.execSync('yarn add -D dtslint', { stdio: 'inherit' });
+childProcess.execSync('yarn install', { stdio: 'inherit' });
 childProcess.execSync('yarn lint ol', { stdio: 'inherit' });
 
 console.log('# Cleanup DefinitelyTyped directory');

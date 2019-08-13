@@ -36,13 +36,7 @@ export default class MapRenderer extends Disposable {
         thisArg2: U
     ): T;
     getMap(): PluggableMap;
-    hasFeatureAtCoordinate<U>(
-        coordinate: Coordinate,
-        frameState: FrameState,
-        hitTolerance: number,
-        layerFilter: (this: U, p0: Layer) => boolean,
-        thisArg: U
-    ): boolean;
+    hasFeatureAtCoordinate<U>(coordinate: Coordinate, frameState: FrameState, hitTolerance: number, layerFilter: (this: U, p0: Layer) => boolean, thisArg: U): boolean;
     registerLayerRenderers(constructors: LayerRenderer[]): void;
     removeLayerRenderers(): void;
     renderFrame(frameState: FrameState): void;

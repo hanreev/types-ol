@@ -79,16 +79,8 @@ export default class PluggableMap extends BaseObject {
     addLayer(layer: BaseLayer): void;
     addOverlay(overlay: Overlay): void;
     createRenderer(): MapRenderer;
-    forEachFeatureAtPixel<S, T>(
-        pixel: Pixel,
-        callback: (this: S, p0: FeatureLike, p1: Layer) => T,
-        opt_options?: AtPixelOptions
-    ): T;
-    forEachLayerAtPixel<S, T>(
-        pixel: Pixel,
-        callback: (this: S, p0: Layer, p1: Uint8ClampedArray | Uint8Array) => T,
-        opt_options?: AtPixelOptions
-    ): T;
+    forEachFeatureAtPixel<S, T>(pixel: Pixel, callback: (this: S, p0: FeatureLike, p1: Layer) => T, opt_options?: AtPixelOptions): T;
+    forEachLayerAtPixel<S, T>(pixel: Pixel, callback: (this: S, p0: Layer, p1: Uint8ClampedArray | Uint8Array) => T, opt_options?: AtPixelOptions): T;
     getControls(): Collection<Control>;
     getCoordinateFromPixel(pixel: Pixel): Coordinate;
     getEventCoordinate(event: Event): Coordinate;
