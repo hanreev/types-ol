@@ -84,7 +84,8 @@ There are several ways to use this package. Please choose one:
       ...
       "baseUrl": "./",
       "paths": {
-        "ol": ["node_modules/@hanreev/types-ol/ol"]
+        "ol": ["node_modules/@hanreev/types-ol/ol"],
+        "ol/*": ["node_modules/@hanreev/types-ol/ol/*"]
       },
       ...
     }

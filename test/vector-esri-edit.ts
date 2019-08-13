@@ -106,7 +106,7 @@ selected.on('add', evt => {
 
 selected.on('remove', evt => {
     const feature = evt.element;
-    const fid = feature.getId();
+    const fid = feature.getId()!;
     if (dirty[fid] === true) {
         const payload =
             '[' +

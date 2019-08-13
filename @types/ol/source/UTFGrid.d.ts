@@ -31,7 +31,7 @@ export default class UTFGrid extends TileSource {
     protected handleTileJSONError(): void;
     protected handleTileJSONResponse(tileJSON: Config): void;
     forDataAtCoordinateAndResolution(coordinate: Coordinate, resolution: number, callback: (p0: any) => void, opt_request?: boolean): void;
-    getTemplate(): string;
+    getTemplate(): string | undefined;
     on(type: string | string[], listener: (p0: any) => void): EventsKey | EventsKey[];
     once(type: string | string[], listener: (p0: any) => void): EventsKey | EventsKey[];
     un(type: string | string[], listener: (p0: any) => void): void;

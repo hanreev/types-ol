@@ -20,7 +20,7 @@ export default class CanvasReplayGroup extends ReplayGroup {
         skippedFeaturesHash: { [key: string]: boolean },
         callback: (p0: Feature | RenderFeature) => T,
         declutterReplays: { [key: string]: DeclutterGroup }
-    ): T;
+    ): T | undefined;
     getClipCoords(transform: Transform): number[];
     getReplays(): { [key: string]: { [key in ReplayType]: CanvasReplay } };
     hasReplays(replays: ReplayType[]): boolean;

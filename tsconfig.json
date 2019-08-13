@@ -9,7 +9,8 @@
     "noImplicitAny": true,
     "noImplicitThis": true,
     "paths": {
-      "*": ["@types/*", "node_modules/@types/*"]
+      "ol": ["@types/ol"],
+      "ol/*": ["@types/ol/*"]
     },
     "resolveJsonModule": true,
     "strictFunctionTypes": true,

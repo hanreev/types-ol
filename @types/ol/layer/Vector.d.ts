@@ -34,13 +34,13 @@ export default class VectorLayer extends Layer {
     constructor(opt_options?: Options);
     protected type: LayerType;
     getDeclutter(): boolean;
-    getRenderBuffer(): number;
+    getRenderBuffer(): number | undefined;
     getRenderMode(): VectorRenderType | string;
-    getRenderOrder(): (p0: Feature, p1: Feature) => number;
+    getRenderOrder(): (p0: Feature, p1: Feature) => number | null | undefined;
     getSource(): VectorSource;
     getSource(): Source;
     getStyle(): StyleLike;
-    getStyleFunction(): StyleFunction;
+    getStyleFunction(): StyleFunction | undefined;
     getUpdateWhileAnimating(): boolean;
     getUpdateWhileInteracting(): boolean;
     setDeclutter(declutter: boolean): void;

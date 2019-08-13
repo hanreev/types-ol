@@ -19,8 +19,8 @@ export default class WebGLReplayGroup extends ReplayGroup {
         pixelRatio: number,
         opacity: number,
         skippedFeaturesHash: { [key: string]: boolean },
-        callback: (p0: Feature | RenderFeature) => T
-    ): T;
+        callback: (p0: Feature | RenderFeature) => T | undefined
+    ): T | undefined;
     getDeleteResourcesFunction(context: WebGLContext): () => void;
     hasFeatureAtCoordinate(
         coordinate: Coordinate,

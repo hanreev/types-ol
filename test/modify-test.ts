@@ -50,7 +50,7 @@ const styleFunction = (() => {
         image,
     });
     return (feature => {
-        return styles[feature.getGeometry().getType()] || styles['default'];
+        return styles[feature.getGeometry()!.getType()] || styles['default'];
     }) as StyleFunction;
 })();
 
@@ -213,7 +213,7 @@ const overlayStyle = (() => {
     styles['GeometryCollection'] = (styles['Polygon'] as Style[]).concat(styles['Point'] as Style[]);
 
     return (feature => {
-        return styles[feature.getGeometry().getType()];
+        return styles[feature.getGeometry()!.getType()];
     }) as StyleFunction;
 })();
 
@@ -231,7 +231,7 @@ const modify = new Modify({
             .getArray()
             .every(feature => {
                 return !!feature
-                    .getGeometry()
+                    .getGeometry()!
                     .getType()
                     .match(/Polygon/);
             });

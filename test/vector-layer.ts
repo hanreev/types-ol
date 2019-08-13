@@ -76,7 +76,7 @@ const featureOverlay = new VectorLayer({
     },
 });
 
-let highlight: FeatureLike;
+let highlight: FeatureLike | undefined;
 const displayFeatureInfo = (pixel: Pixel) => {
     // tslint:disable-next-line: no-shadowed-variable
     const feature = map.forEachFeatureAtPixel(pixel, feature => {

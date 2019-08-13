@@ -63,7 +63,7 @@ const displaySnap = (coordinate: Coordinate) => {
         point = null;
         line = null;
     } else {
-        const geometry = closestFeature.getGeometry();
+        const geometry = closestFeature.getGeometry()!;
         const closestPoint = geometry.getClosestPoint(coordinate);
         if (point === null) {
             point = new Point(closestPoint);

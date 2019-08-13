@@ -41,7 +41,7 @@ export default class CanvasReplay extends VectorContext {
         skippedFeaturesHash: { [key: string]: boolean },
         opt_featureCallback?: () => void,
         opt_hitExtent?: Extent
-    ): T;
+    ): T | undefined;
     replayImage_(
         context: CanvasRenderingContext2D,
         x: number,

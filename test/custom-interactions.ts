@@ -1,5 +1,5 @@
 import { MapBrowserEvent } from 'ol';
-import Feature, { FeatureLike } from 'ol/Feature';
+import Feature from 'ol/Feature';
 import Map from 'ol/Map';
 import View from 'ol/View';
 import { LineString, Point, Polygon } from 'ol/geom';
@@ -41,7 +41,7 @@ class Drag extends PointerInteraction {
             const deltaX = evt.coordinate[0] - this.coordinate_[0];
             const deltaY = evt.coordinate[1] - this.coordinate_[1];
 
-            const geometry = this.feature_.getGeometry();
+            const geometry = this.feature_.getGeometry()!;
             geometry.translate(deltaX, deltaY);
 
             this.coordinate_[0] = evt.coordinate[0];

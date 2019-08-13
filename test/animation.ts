@@ -117,7 +117,7 @@ onClick('bounce-to-istanbul', () => {
 
 onClick('spin-to-rome', () => {
     // Rotation animation takes the shortest arc, so animate in two parts
-    const center = view.getCenter();
+    const center = view.getCenter()!;
     view.animate(
         {
             center: [center[0] + (rome[0] - center[0]) / 2, center[1] + (rome[1] - center[1]) / 2],
@@ -134,7 +134,7 @@ onClick('spin-to-rome', () => {
 
 function flyTo(location: number[], done: (arg0: boolean) => void) {
     const duration = 2000;
-    const zoom = view.getZoom();
+    const zoom = view.getZoom()!;
     let parts = 2;
     let called = false;
     function callback(complete: boolean) {

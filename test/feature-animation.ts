@@ -49,7 +49,7 @@ function flash(feature: Feature) {
     function animate(event: RenderEvent) {
         const vectorContext = event.vectorContext;
         const frameState = event.frameState;
-        const flashGeom = feature.getGeometry().clone();
+        const flashGeom = feature.getGeometry()!.clone();
         const elapsed = frameState.time - start;
         const elapsedRatio = elapsed / duration;
         // radius will be 5 at start and 30 at end.
