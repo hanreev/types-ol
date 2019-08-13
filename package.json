@@ -1,6 +1,6 @@
 {
   "name": "@hanreev/types-ol",
-  "version": "2.0.7",
+  "version": "2.0.8",
   "description": "OpenLayers 5+ TypeScript declaration",
   "author": "Rifa'i M. Hanif <hanreev@gmail.com>",
   "repository": {
@@ -20,9 +20,9 @@
   "license": "MIT",
   "scripts": {
     "apply-patches": "node scripts/applyPatches.js",
-    "build": "npm run apply-patches && npm run build-definition",
+    "build": "yarn apply-patches && yarn build-definition",
     "build-definition": "jsdoc -c jsdoc/conf.json -P openlayers/package.json -d @types",
-    "build-format": "npm run build && npm run format",
+    "build-format": "yarn build && yarn format",
     "format": "prettier --write prettier --write \"@types/**/*.ts\"",
     "format-test": "prettier --write prettier --write \"test/**/*.ts\"",
     "lint": "tsc -p tsconfig.lint.json --pretty && tslint -p tsconfig.lint.json",

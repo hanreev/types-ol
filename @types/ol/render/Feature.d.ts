@@ -11,12 +11,12 @@ export default class RenderFeature {
     getFlatMidpoint(): number[];
     getFlatMidpoints(): number[];
     getGeometry(): RenderFeature;
-    getId(): number | string | undefined;
+    getId(): number | string;
     getOrientedFlatCoordinates(): number[];
     getProperties(): { [key: string]: any };
     getSimplifiedGeometry(squaredTolerance: number): RenderFeature;
     getStride(): number;
-    getStyleFunction(): undefined;
+    getStyleFunction(): any;
     getType(): GeometryType;
     transform(source: ProjectionLike, destination: ProjectionLike): void;
 }

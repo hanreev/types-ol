@@ -48,12 +48,12 @@ export default class Overlay extends BaseObject {
     protected setVisible(visible: boolean): void;
     protected updatePixelPosition(): void;
     protected updateRenderedPosition(pixel: Pixel, mapSize: Size | undefined): void;
-    getElement(): HTMLElement | undefined;
-    getId(): number | string | undefined;
-    getMap(): PluggableMap | undefined;
+    getElement(): HTMLElement;
+    getId(): number | string;
+    getMap(): PluggableMap;
     getOffset(): number[];
     getOptions(): Options;
-    getPosition(): Coordinate | undefined;
+    getPosition(): Coordinate;
     getPositioning(): OverlayPositioning;
     setElement(element: HTMLElement | undefined): void;
     setMap(map: PluggableMap | undefined): void;

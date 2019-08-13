@@ -19,8 +19,8 @@ export default class MousePosition extends Control {
     constructor(opt_options?: Options);
     protected handleMouseMove(event: Event): void;
     protected handleMouseOut(event: Event): void;
-    getCoordinateFormat(): CoordinateFormat | undefined;
-    getProjection(): Projection | undefined;
+    getCoordinateFormat(): CoordinateFormat;
+    getProjection(): Projection;
     setCoordinateFormat(format: CoordinateFormat): void;
     setProjection(projection: ProjectionLike): void;
     on(type: string | string[], listener: (p0: any) => void): EventsKey | EventsKey[];

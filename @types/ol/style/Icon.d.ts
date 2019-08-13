@@ -27,6 +27,6 @@ export default class Icon extends ImageStyle {
     clone(): Icon;
     clone(): ImageStyle;
     getColor(): Color;
-    getSrc(): string | undefined;
+    getSrc(): string;
     setAnchor(anchor: number[]): void;
 }

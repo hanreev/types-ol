@@ -10,11 +10,11 @@ export type FeatureLike = Feature | RenderFeature;
 export default class Feature extends BaseObject {
     constructor(opt_geometryOrProperties?: Geometry | { [key: string]: any });
     clone(): Feature;
-    getGeometry(): Geometry | undefined;
+    getGeometry(): Geometry;
     getGeometryName(): string;
-    getId(): number | string | undefined;
-    getStyle(): StyleLike | null;
-    getStyleFunction(): StyleFunction | undefined;
+    getId(): number | string;
+    getStyle(): StyleLike;
+    getStyleFunction(): StyleFunction;
     setGeometry(geometry: Geometry | undefined): void;
     setGeometryName(name: string): void;
     setId(id: number | string | undefined): void;

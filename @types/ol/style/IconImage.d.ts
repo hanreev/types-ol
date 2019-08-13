@@ -9,7 +9,7 @@ export default class IconImage extends Target {
     getImage(pixelRatio: number): HTMLImageElement | HTMLCanvasElement;
     getImageState(): ImageState;
     getSize(): Size;
-    getSrc(): string | undefined;
+    getSrc(): string;
     load(): void;
 }
 export function get(image: HTMLImageElement | HTMLCanvasElement, src: string, size: Size, crossOrigin: string, imageState: ImageState, color: Color): IconImage;

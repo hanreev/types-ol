@@ -1,3 +1,8 @@
+[![Build Status](https://travis-ci.org/hanreev/types-ol.svg?branch=master)](https://travis-ci.org/hanreev/types-ol)
+[![npm version](https://badge.fury.io/js/%40hanreev%2Ftypes-ol.svg)](https://badge.fury.io/js/%40hanreev%2Ftypes-ol)
+
+
+
 # OpenLayers TypeScript Definition
 
 
@@ -54,7 +59,7 @@ There are several ways to use this package. Please choose one:
     ...
     "devDependencies": {
       ...
-      "@hanreev/types-ol": "^2.0.7",
+      "@hanreev/types-ol": "^2.0.8",
       "@types/ol": "file:node_modules/@hanreev/types-ol/ol",
       ...
     }

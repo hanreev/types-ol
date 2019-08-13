@@ -27,7 +27,7 @@
     "definition": {
       "mode": "multiple",
       "strictGenericTypes": false,
-      "strictReturnTypes": true
+      "strictReturnTypes": false
     }
   },
   "templates": {
