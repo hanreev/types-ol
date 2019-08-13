@@ -1,0 +1,13 @@
+language: node_js
+node_js:
+  - '8'
+
+notifications:
+  email: false
+
+before_script:
+  - git clone --branch v5.3.3 --single-branch https://github.com/openlayers/openlayers
+
+script:
+  - yarn prepare-npm
+  - yarn prepare-dt
