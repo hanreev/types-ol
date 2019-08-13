@@ -113,6 +113,7 @@ Configuration is located at `jsdoc/conf.json`
     "declaration": {
       "mode": "multiple", // "single" will generate all declarations in single index.d.ts file.
       "strictGenericTypes": false // set to true to extract classes generic type from super class, members and methods.
+      "strictReturnTypes": false // set to true to include undefined and null return.
     }
   },
   ...

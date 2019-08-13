@@ -31,19 +31,14 @@ const EXTERNAL_MODULE_WHITELIST = ['arcgis-rest-api', 'geojson', 'topojson-speci
 const GENERIC_TYPES = {};
 
 /** @type {string[]} */
-const ANY_GENERIC_TYPES = [
-  'module:ol/structs/LRUCache~LRUCache',
-  'module:ol/structs/PriorityQueue~PriorityQueue',
-  'module:ol/structs/RBush~RBush',
-];
+const ANY_GENERIC_TYPES = ['module:ol/structs/LRUCache~LRUCache', 'module:ol/structs/PriorityQueue~PriorityQueue', 'module:ol/structs/RBush~RBush'];
 
 /** @type {Object<string, string>} */
 const TYPE_PATCHES = {
   'module:ol/events/condition~always': 'typeof:module:ol/functions.TRUE',
   'module:ol/events/condition~never': 'typeof:module:ol/functions.FALSE',
   'module:ol/format/GML~GML': 'module:ol/format/GML3~GML3',
-  'module:ol/source/Cluster~Cluster#geometryFunction':
-    'function(module:ol/Feature~Feature): module:ol/geom/Point~Point',
+  'module:ol/source/Cluster~Cluster#geometryFunction': 'function(module:ol/Feature~Feature): module:ol/geom/Point~Point',
   'module:ol/style/IconImageCache~shared': 'module:ol/style/IconImageCache~IconImageCache',
 };
 
@@ -149,8 +144,7 @@ function registerImport(_module, val) {
     }
   }
 
-  if (!doclet && EXTERNAL_MODULE_WHITELIST.indexOf(moduleName) == -1)
-    logger.warn('Invalid import or external module --', val, 'in', _module.name);
+  if (!doclet && EXTERNAL_MODULE_WHITELIST.indexOf(moduleName) == -1) logger.warn('Invalid import or external module --', val, 'in', _module.name);
 
   let counter = 1;
   let availableImportName = importName;
@@ -170,8 +164,7 @@ function registerImport(_module, val) {
   let expression = availableImportName;
   const _exports = MODULE_EXPORTS[moduleName];
   if ((_exports && _exports.default != importName && _exports.default != `module:${moduleName}`) || !isDefault)
-    expression =
-      importName == availableImportName ? `{ ${importName} }` : `{ ${importName} as ${availableImportName} }`;
+    expression = importName == availableImportName ? `{ ${importName} }` : `{ ${importName} as ${availableImportName} }`;
   _imports.expressions.push(`import ${expression} from '${moduleName}';`);
   MODULE_IMPORTS[_module.name] = _imports;
 
@@ -311,9 +304,7 @@ function sortImports(expressions, _module, maxLineLength = 120) {
  * @returns {string}
  */
 function stringifyType(parsedType, _module, undefinedLiteral = true, nullLiteral = true) {
-  let typeStr = /** @type {TypeApplication} */ (parsedType).expression
-    ? /** @type {TypeApplication} */ (parsedType).expression.name
-    : /** @type {TypeNameExpression} */ (parsedType).name;
+  let typeStr = /** @type {TypeApplication} */ (parsedType).expression ? /** @type {TypeApplication} */ (parsedType).expression.name : /** @type {TypeNameExpression} */ (parsedType).name;
 
   let suffix = getGenericType(typeStr, _module);
 
@@ -334,8 +325,7 @@ function stringifyType(parsedType, _module, undefinedLiteral = true, nullLiteral
         break;
 
       case 'Object':
-        if (applications[0] != 'number' && applications[0] != 'string')
-          typeStr = `{ [key in ${applications[0]}]: ${applications[1]} }`;
+        if (applications[0] != 'number' && applications[0] != 'string') typeStr = `{ [key in ${applications[0]}]: ${applications[1]} }`;
         else typeStr = `{ [key: ${applications[0]}]: ${applications[1]} }`;
         break;
 
@@ -348,6 +338,7 @@ function stringifyType(parsedType, _module, undefinedLiteral = true, nullLiteral
         break;
     }
   } else if (parsedType.type == 'FunctionType') {
+    const strictReturn = definitionConfig.strictReturnTypes;
     const functionType = /** @type {TypeFunction} */ (parsedType);
     let params = [];
     let returnType = 'void';
@@ -361,8 +352,7 @@ function stringifyType(parsedType, _module, undefinedLiteral = true, nullLiteral
 
     if (functionType.this) params.unshift('this: ' + stringifyType(functionType.this, _module));
 
-    if (functionType.result && /** @type {TypeNameExpression} */ (functionType.result).name != 'void')
-      returnType = stringifyType(functionType.result, _module, false, false);
+    if (functionType.result && /** @type {TypeNameExpression} */ (functionType.result).name != 'void') returnType = stringifyType(functionType.result, _module, strictReturn, strictReturn);
 
     typeStr = `(${params.join(', ')}) => ${returnType == 'undefined' ? 'void' : returnType}`;
   } else if (parsedType.type == 'TypeUnion') {
@@ -490,11 +480,12 @@ function getType(doclet, _module, undefinedLiteral = false, nullLiteral = false)
 
 /** @type {DocletParser} */
 function getReturnType(doclet, _module) {
+  const strictReturn = definitionConfig.strictReturnTypes;
   const returnTypes = [];
 
   if (doclet.yields || doclet.returns)
     (doclet.yields || doclet.returns).forEach(r => {
-      returnTypes.push(getType(/** @type {Doclet} */ (r), _module));
+      returnTypes.push(getType(/** @type {Doclet} */ (r), _module, strictReturn, strictReturn));
     });
 
   return returnTypes.join(' | ') || 'void';
@@ -778,8 +769,7 @@ const PROCESSORS = {
 function processModule(doclet) {
   let children = [];
 
-  if (doclet.longname in IMPORT_PATCHES)
-    for (const importName of IMPORT_PATCHES[doclet.longname]) registerImport(doclet, importName);
+  if (doclet.longname in IMPORT_PATCHES) for (const importName of IMPORT_PATCHES[doclet.longname]) registerImport(doclet, importName);
 
   // Remove class duplicates
   const classes = new Set();
@@ -818,8 +808,7 @@ function processModule(doclet) {
 
   MODULE_CHILDREN[doclet.name] = children;
 
-  if (doclet.name in MODULE_IMPORTS)
-    MODULE_IMPORTS[doclet.name].expressions = sortImports(MODULE_IMPORTS[doclet.name].expressions, doclet);
+  if (doclet.name in MODULE_IMPORTS) MODULE_IMPORTS[doclet.name].expressions = sortImports(MODULE_IMPORTS[doclet.name].expressions, doclet);
 }
 
 /**
@@ -938,11 +927,7 @@ function extractGenericTypes(initial = true, strict = false) {
     if (genericTypes.length) GENERIC_TYPES[doclet.longname] = Array.from(new Set(genericTypes));
   });
 
-  data({ kind: ['function', 'class'] }, [
-    { params: { isArray: true } },
-    { returns: { isArray: true } },
-    { yields: { isArray: true } },
-  ])
+  data({ kind: ['function', 'class'] }, [{ params: { isArray: true } }, { returns: { isArray: true } }, { yields: { isArray: true } }])
     .get()
     .forEach((/** @type {Doclet} */ doclet) => {
       /** @type {DocletGenericType[]} */
@@ -950,9 +935,7 @@ function extractGenericTypes(initial = true, strict = false) {
 
       if (doclet.longname in GENERIC_TYPES) genericTypes = GENERIC_TYPES[doclet.longname];
 
-      const merged = /** @type {Doclet[]} */ (doclet.params || []).concat(
-        /** @type {Doclet[]} */ (doclet.yields) || /** @type {Doclet[]} */ (doclet.returns) || []
-      );
+      const merged = /** @type {Doclet[]} */ (doclet.params || []).concat(/** @type {Doclet[]} */ (doclet.yields) || /** @type {Doclet[]} */ (doclet.returns) || []);
 
       merged.forEach(d => {
         if (!d.type) return;
@@ -1074,9 +1057,7 @@ exports.publish = taffyData => {
     /**
      * Generate single definition file
      */
-    const content = members.modules
-      .map((/** @type {Doclet} */ doclet) => generateDefinition(doclet, false))
-      .join('\n\n');
+    const content = members.modules.map((/** @type {Doclet} */ doclet) => generateDefinition(doclet, false)).join('\n\n');
     const outputPath = path.resolve(outDir, 'ol', 'index.d.ts');
     fs.mkdirpSync(path.dirname(outputPath));
     fs.writeFileSync(outputPath, content);

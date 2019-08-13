@@ -5,7 +5,9 @@ const childProcess = require('child_process');
 
 const BASE_DIR = process.cwd();
 
-const olVersion = require(path.join(BASE_DIR, '/openlayers/package.json')).version.replace(/^(\d+)\.(\d+)(\..+)?$/, '$1.$2');
+const jsdocConfig = require(path.resolve(BASE_DIR, 'jsdoc', 'conf.json'));
+const olDir = path.resolve(jsdocConfig.typescript.moduleRoot, '..');
+const olVersion = require(path.resolve(olDir, 'package.json')).version.replace(/^(\d+)\.(\d+)(\..+)?$/, '$1.$2');
 
 const configs = {
   tsconfig: {
@@ -24,7 +26,7 @@ const configs = {
     },
     files: [],
   },
-  tslint: require(path.join(BASE_DIR, '/tslint.json')),
+  tslint: require(path.join(BASE_DIR, 'tslint.json')),
 };
 
 const header = `// Type definitions for ol ${olVersion}

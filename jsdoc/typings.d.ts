@@ -3,6 +3,7 @@ declare var env: any;
 interface DefinitionConfig {
     mode?: 'single' | 'multiple';
     strictGenericTypes?: boolean;
+    strictReturnTypes?: boolean;
 }
 
 interface ModuleImports {

@@ -9,5 +9,5 @@
     "noEmit": true,
     "target": "es2015"
   },
-  "include": ["**/*.js"]
+  "include": ["**/*"]
 }

@@ -5,8 +5,9 @@ const childProcess = require('child_process');
 
 const BASE_DIR = process.cwd();
 
+const jsdocConfig = require(path.resolve(BASE_DIR, 'jsdoc', 'conf.json'));
+const olDir = path.resolve(jsdocConfig.typescript.moduleRoot, '..');
 const patchesDir = path.resolve(BASE_DIR, 'patches');
-const olDir = path.resolve(BASE_DIR, 'openlayers');
 
 if (!(fs.existsSync(patchesDir) && fs.existsSync(olDir))) {
   console.log('# ERROR:', '"patches" directory or "openlayers" directory does not exist');
