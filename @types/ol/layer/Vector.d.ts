@@ -9,7 +9,7 @@ import { OrderFunction } from '../render';
 import RenderEvent from '../render/Event';
 import Source from '../source/Source';
 import VectorSource from '../source/Vector';
-import Style, { StyleFunction, StyleLike } from '../style/Style';
+import { StyleFunction, StyleLike } from '../style/Style';
 import Layer from './Layer';
 import VectorRenderType from './VectorRenderType';
 
@@ -39,13 +39,13 @@ export default class VectorLayer extends Layer {
     getRenderOrder(): (p0: Feature, p1: Feature) => number | null | undefined;
     getSource(): VectorSource;
     getSource(): Source;
-    getStyle(): StyleLike;
+    getStyle(): StyleLike | null | undefined;
     getStyleFunction(): StyleFunction | undefined;
     getUpdateWhileAnimating(): boolean;
     getUpdateWhileInteracting(): boolean;
     setDeclutter(declutter: boolean): void;
     setRenderOrder(renderOrder: OrderFunction | null | undefined): void;
-    setStyle(style: Style | Style[] | StyleFunction | null | undefined): void;
+    setStyle(style: StyleLike | null | undefined): void;
     on(type: string | string[], listener: (p0: any) => void): EventsKey | EventsKey[];
     once(type: string | string[], listener: (p0: any) => void): EventsKey | EventsKey[];
     un(type: string | string[], listener: (p0: any) => void): void;
