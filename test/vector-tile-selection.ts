@@ -15,9 +15,7 @@ const vtLayer = new VectorTileLayer({
     declutter: true,
     source: new VectorTileSource({
         format: new MVT(),
-        url:
-            'https://ahocevar.com/geoserver/gwc/service/tms/1.0.0/' +
-            'ne:ne_10m_admin_0_countries@EPSG%3A900913@pbf/{z}/{x}/{-y}.pbf',
+        url: 'https://ahocevar.com/geoserver/gwc/service/tms/1.0.0/' + 'ne:ne_10m_admin_0_countries@EPSG%3A900913@pbf/{z}/{x}/{-y}.pbf',
     }),
     style: feature => {
         const selected = !!selection[feature.get(idProp)];

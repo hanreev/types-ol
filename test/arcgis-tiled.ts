@@ -3,8 +3,7 @@ import View from 'ol/View';
 import TileLayer from 'ol/layer/Tile';
 import { OSM, TileArcGISRest } from 'ol/source';
 
-const url =
-    'https://sampleserver1.arcgisonline.com/ArcGIS/rest/services/' + 'Specialty/ESRI_StateCityHighway_USA/MapServer';
+const url = 'https://sampleserver1.arcgisonline.com/ArcGIS/rest/services/' + 'Specialty/ESRI_StateCityHighway_USA/MapServer';
 
 const layers = [
     new TileLayer({

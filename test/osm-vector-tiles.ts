@@ -61,8 +61,7 @@ const map = new Map({
     layers: [
         new VectorTileLayer({
             source: new VectorTileSource({
-                attributions:
-                    '&copy; OpenStreetMap contributors, Who’s On First, ' + 'Natural Earth, and openstreetmapdata.com',
+                attributions: '&copy; OpenStreetMap contributors, Who’s On First, ' + 'Natural Earth, and openstreetmapdata.com',
                 format: new TopoJSON({
                     layerName: 'layer',
                     layers: ['water', 'roads', 'buildings'],

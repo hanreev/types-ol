@@ -41,10 +41,7 @@ const ign_source = new WMTS({
     projection: 'EPSG:3857',
     tileGrid,
     style: 'normal',
-    attributions:
-        '<a href="http://www.geoportail.fr/" target="_blank">' +
-        '<img src="https://api.ign.fr/geoportail/api/js/latest/' +
-        'theme/geoportal/img/logo_gp.gif"></a>',
+    attributions: '<a href="http://www.geoportail.fr/" target="_blank">' + '<img src="https://api.ign.fr/geoportail/api/js/latest/' + 'theme/geoportal/img/logo_gp.gif"></a>',
 });
 
 const ign = new TileLayer({

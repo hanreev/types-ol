@@ -12,8 +12,7 @@ import { createXYZ } from 'ol/tilegrid';
 
 declare var $: any;
 
-const serviceUrl =
-    'https://services.arcgis.com/rOo16HdIMeOBI4Mb/arcgis/rest/' + 'services/PDX_Pedestrian_Districts/FeatureServer/';
+const serviceUrl = 'https://services.arcgis.com/rOo16HdIMeOBI4Mb/arcgis/rest/' + 'services/PDX_Pedestrian_Districts/FeatureServer/';
 const layer = '0';
 
 const esrijsonFormat = new EsriJSON();
@@ -25,17 +24,7 @@ const vectorSource = new VectorSource({
             layer +
             '/query/?f=json&' +
             'returnGeometry=true&spatialRel=esriSpatialRelIntersects&geometry=' +
-            encodeURIComponent(
-                '{"xmin":' +
-                    extent[0] +
-                    ',"ymin":' +
-                    extent[1] +
-                    ',"xmax":' +
-                    extent[2] +
-                    ',"ymax":' +
-                    extent[3] +
-                    ',"spatialReference":{"wkid":102100}}'
-            ) +
+            encodeURIComponent('{"xmin":' + extent[0] + ',"ymin":' + extent[1] + ',"xmax":' + extent[2] + ',"ymax":' + extent[3] + ',"spatialReference":{"wkid":102100}}') +
             '&geometryType=esriGeometryEnvelope&inSR=102100&outFields=*' +
             '&outSR=102100';
         $.ajax({
@@ -69,9 +58,7 @@ const vector = new VectorLayer({
 
 const raster = new TileLayer({
     source: new XYZ({
-        attributions:
-            'Tiles © <a href="https://services.arcgisonline.com/ArcGIS/' +
-            'rest/services/World_Topo_Map/MapServer">ArcGIS</a>',
+        attributions: 'Tiles © <a href="https://services.arcgisonline.com/ArcGIS/' + 'rest/services/World_Topo_Map/MapServer">ArcGIS</a>',
         url: 'https://server.arcgisonline.com/ArcGIS/rest/services/' + 'World_Topo_Map/MapServer/tile/{z}/{y}/{x}',
     }),
 });

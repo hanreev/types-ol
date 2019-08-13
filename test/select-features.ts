@@ -81,13 +81,7 @@ const changeInteraction = () => {
         map.addInteraction(select);
         select.on('select', e => {
             (document.getElementById('status') as HTMLElement).innerHTML =
-                '&nbsp;' +
-                e.target.getFeatures().getLength() +
-                ' selected features (last operation selected ' +
-                e.selected.length +
-                ' and deselected ' +
-                e.deselected.length +
-                ' features)';
+                '&nbsp;' + e.target.getFeatures().getLength() + ' selected features (last operation selected ' + e.selected.length + ' and deselected ' + e.deselected.length + ' features)';
         });
     }
 };

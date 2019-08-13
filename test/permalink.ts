@@ -43,15 +43,7 @@ const updatePermalink = () => {
     }
 
     const center_ = view.getCenter();
-    const hash =
-        '#map=' +
-        view.getZoom() +
-        '/' +
-        Math.round(center_[0] * 100) / 100 +
-        '/' +
-        Math.round(center_[1] * 100) / 100 +
-        '/' +
-        view.getRotation();
+    const hash = '#map=' + view.getZoom() + '/' + Math.round(center_[0] * 100) / 100 + '/' + Math.round(center_[1] * 100) / 100 + '/' + view.getRotation();
     const state = {
         zoom: view.getZoom(),
         center_: view.getCenter(),

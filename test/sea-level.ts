@@ -38,9 +38,7 @@ const map = new Map({
     layers: [
         new TileLayer({
             source: new XYZ({
-                url:
-                    'https://api.mapbox.com/styles/v1/tschaub/ciutc102t00c62js5fqd47kqw/tiles/256/{z}/{x}/{y}?access_token=' +
-                    key,
+                url: 'https://api.mapbox.com/styles/v1/tschaub/ciutc102t00c62js5fqd47kqw/tiles/256/{z}/{x}/{y}?access_token=' + key,
             }),
         }),
         new ImageLayer({

@@ -30,10 +30,7 @@ const wmtsSource = new WMTS({
     layer: 'SRTM_4_1:SRTM_4_1_flooded_sealevels',
     format: 'image/png',
     matrixSet: 'EPSG:3857',
-    attributions: [
-        '<a href="http://scalgo.com">SCALGO</a>',
-        '<a href="http://www.cgiar-csi.org/data/' + 'srtm-90m-digital-elevation-database-v4-1">CGIAR-CSI SRTM</a>',
-    ],
+    attributions: ['<a href="http://scalgo.com">SCALGO</a>', '<a href="http://www.cgiar-csi.org/data/' + 'srtm-90m-digital-elevation-database-v4-1">CGIAR-CSI SRTM</a>'],
     tileGrid,
     style: 'default',
     dimensions: {

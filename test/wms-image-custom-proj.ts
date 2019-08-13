@@ -23,9 +23,7 @@ import * as proj4 from 'proj4';
 
 proj4.defs(
     'EPSG:21781',
-    '+proj=somerc +lat_0=46.95240555555556 +lon_0=7.439583333333333 +k_0=1 ' +
-        '+x_0=600000 +y_0=200000 +ellps=bessel ' +
-        '+towgs84=660.077,13.551,369.344,2.484,1.783,2.939,5.66 +units=m +no_defs'
+    '+proj=somerc +lat_0=46.95240555555556 +lon_0=7.439583333333333 +k_0=1 ' + '+x_0=600000 +y_0=200000 +ellps=bessel ' + '+towgs84=660.077,13.551,369.344,2.484,1.783,2.939,5.66 +units=m +no_defs'
 );
 register(proj4);
 
@@ -41,9 +39,7 @@ const layers = [
         source: new ImageWMS({
             url: 'https://wms.geo.admin.ch/',
             crossOrigin: 'anonymous',
-            attributions:
-                '© <a href="http://www.geo.admin.ch/internet/geoportal/' +
-                'en/home.html">Pixelmap 1:1000000 / geo.admin.ch</a>',
+            attributions: '© <a href="http://www.geo.admin.ch/internet/geoportal/' + 'en/home.html">Pixelmap 1:1000000 / geo.admin.ch</a>',
             params: {
                 LAYERS: 'ch.swisstopo.pixelkarte-farbe-pk1000.noscale',
                 FORMAT: 'image/jpeg',
@@ -56,9 +52,7 @@ const layers = [
         source: new ImageWMS({
             url: 'https://wms.geo.admin.ch/',
             crossOrigin: 'anonymous',
-            attributions:
-                '© <a href="http://www.geo.admin.ch/internet/geoportal/' +
-                'en/home.html">National parks / geo.admin.ch</a>',
+            attributions: '© <a href="http://www.geo.admin.ch/internet/geoportal/' + 'en/home.html">National parks / geo.admin.ch</a>',
             params: { LAYERS: 'ch.bafu.schutzgebiete-paerke_nationaler_bedeutung' },
             serverType: 'mapserver',
         }),

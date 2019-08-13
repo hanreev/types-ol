@@ -27,13 +27,7 @@ const map = new Map({
 d3.json('data/topojson/us.json', (error: any, us: any) => {
     const features = topojson.feature(us, us.objects.counties);
 
-    const canvasFunction = (
-        extent: number[],
-        resolution: number,
-        pixelRatio: number,
-        size: number[],
-        projection: Projection
-    ): HTMLCanvasElement => {
+    const canvasFunction = (extent: number[], resolution: number, pixelRatio: number, size: number[], projection: Projection): HTMLCanvasElement => {
         const canvasWidth = size[0];
         const canvasHeight = size[1];
 

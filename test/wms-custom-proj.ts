@@ -42,9 +42,7 @@ const layers = [
         source: new TileWMS({
             url: 'https://wms.geo.admin.ch/',
             crossOrigin: 'anonymous',
-            attributions:
-                '© <a href="http://www.geo.admin.ch/internet/geoportal/' +
-                'en/home.html">Pixelmap 1:1000000 / geo.admin.ch</a>',
+            attributions: '© <a href="http://www.geo.admin.ch/internet/geoportal/' + 'en/home.html">Pixelmap 1:1000000 / geo.admin.ch</a>',
             params: {
                 LAYERS: 'ch.swisstopo.pixelkarte-farbe-pk1000.noscale',
                 FORMAT: 'image/jpeg',
@@ -57,9 +55,7 @@ const layers = [
         source: new TileWMS({
             url: 'https://wms.geo.admin.ch/',
             crossOrigin: 'anonymous',
-            attributions:
-                '© <a href="http://www.geo.admin.ch/internet/geoportal/' +
-                'en/home.html">National parks / geo.admin.ch</a>',
+            attributions: '© <a href="http://www.geo.admin.ch/internet/geoportal/' + 'en/home.html">National parks / geo.admin.ch</a>',
             params: { LAYERS: 'ch.bafu.schutzgebiete-paerke_nationaler_bedeutung' },
             serverType: 'mapserver',
         }),
@@ -97,12 +93,7 @@ function WGStoCHy(lat: number, lng: number) {
     const lng_aux = (lng - 26782.5) / 10000;
 
     // Process Y
-    const y =
-        600072.37 +
-        211455.93 * lng_aux -
-        10938.51 * lng_aux * lat_aux -
-        0.36 * lng_aux * Math.pow(lat_aux, 2) -
-        44.54 * Math.pow(lng_aux, 3);
+    const y = 600072.37 + 211455.93 * lng_aux - 10938.51 * lng_aux * lat_aux - 0.36 * lng_aux * Math.pow(lat_aux, 2) - 44.54 * Math.pow(lng_aux, 3);
 
     return y;
 }
@@ -122,13 +113,7 @@ function WGStoCHx(lat: number, lng: number) {
     const lng_aux = (lng - 26782.5) / 10000;
 
     // Process X
-    const x =
-        200147.07 +
-        308807.95 * lat_aux +
-        3745.25 * Math.pow(lng_aux, 2) +
-        76.63 * Math.pow(lat_aux, 2) -
-        194.56 * Math.pow(lng_aux, 2) * lat_aux +
-        119.79 * Math.pow(lat_aux, 3);
+    const x = 200147.07 + 308807.95 * lat_aux + 3745.25 * Math.pow(lng_aux, 2) + 76.63 * Math.pow(lat_aux, 2) - 194.56 * Math.pow(lng_aux, 2) * lat_aux + 119.79 * Math.pow(lat_aux, 3);
 
     return x;
 }
@@ -141,13 +126,7 @@ function CHtoWGSlat(y: number, x: number) {
     const x_aux = (x - 200000) / 1000000;
 
     // Process lat
-    let lat =
-        16.9023892 +
-        3.238272 * x_aux -
-        0.270978 * Math.pow(y_aux, 2) -
-        0.002528 * Math.pow(x_aux, 2) -
-        0.0447 * Math.pow(y_aux, 2) * x_aux -
-        0.014 * Math.pow(x_aux, 3);
+    let lat = 16.9023892 + 3.238272 * x_aux - 0.270978 * Math.pow(y_aux, 2) - 0.002528 * Math.pow(x_aux, 2) - 0.0447 * Math.pow(y_aux, 2) * x_aux - 0.014 * Math.pow(x_aux, 3);
 
     // Unit 10000" to 1 " and converts seconds to degrees (dec)
     lat = (lat * 100) / 36;
@@ -163,12 +142,7 @@ function CHtoWGSlng(y: number, x: number) {
     const x_aux = (x - 200000) / 1000000;
 
     // Process long
-    let lng =
-        2.6779094 +
-        4.728982 * y_aux +
-        0.791484 * y_aux * x_aux +
-        0.1306 * y_aux * Math.pow(x_aux, 2) -
-        0.0436 * Math.pow(y_aux, 3);
+    let lng = 2.6779094 + 4.728982 * y_aux + 0.791484 * y_aux * x_aux + 0.1306 * y_aux * Math.pow(x_aux, 2) - 0.0436 * Math.pow(y_aux, 3);
 
     // Unit 10000" to 1 " and converts seconds to degrees (dec)
     lng = (lng * 100) / 36;
