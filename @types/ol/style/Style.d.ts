@@ -36,7 +36,7 @@ export default class Style {
     setFill(fill: Fill): void;
     setGeometry(geometry: string | Geometry | GeometryFunction): void;
     setImage(image: ImageStyle): void;
-    setRenderer(renderer: RenderFunction | undefined): void;
+    setRenderer(renderer: RenderFunction | null): void;
     setStroke(stroke: Stroke): void;
     setText(text: Text): void;
     setZIndex(zIndex: number | undefined): void;

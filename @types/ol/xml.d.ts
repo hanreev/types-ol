@@ -55,7 +55,7 @@ export function pushParseAndPop<T>(
 export function pushSerializeAndPop<O, T>(
     object: O,
     serializersNS: { [key: string]: { [key: string]: Serializer } },
-    nodeFactory: (this: T, p0: any, p1: any[], p2: string) => Node,
+    nodeFactory: (this: T, p0: any, p1: any[], p2: string | undefined) => Node,
     values: any[],
     objectStack: any[],
     opt_keys?: string[],
@@ -63,7 +63,7 @@ export function pushSerializeAndPop<O, T>(
 ): O;
 export function serialize<T>(
     serializersNS: { [key: string]: { [key: string]: Serializer } },
-    nodeFactory: (this: T, p0: any, p1: any[], p2: string) => Node,
+    nodeFactory: (this: T, p0: any, p1: any[], p2: string | undefined) => Node,
     values: any[],
     objectStack: any[],
     opt_keys?: string[],

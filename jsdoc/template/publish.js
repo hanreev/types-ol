@@ -307,9 +307,10 @@ function sortImports(expressions, _module, maxLineLength = 120) {
 /**
  * @param {ParsedType} parsedType
  * @param {Doclet} _module
+ * @param {boolean} [undefinedLiteral]
  * @returns {string}
  */
-function stringifyType(parsedType, _module, undefinedLiteral = true) {
+function stringifyType(parsedType, _module, undefinedLiteral = true, nullLiteral = true) {
   let typeStr = /** @type {TypeApplication} */ (parsedType).expression
     ? /** @type {TypeApplication} */ (parsedType).expression.name
     : /** @type {TypeNameExpression} */ (parsedType).name;
@@ -355,22 +356,27 @@ function stringifyType(parsedType, _module, undefinedLiteral = true) {
       params = functionType.params.map((param, i) => {
         let name = `p${i}`;
         if (param.optional) name += '?';
-        return `${name}: ${stringifyType(param, _module, false)}`;
+        return `${name}: ${stringifyType(param, _module)}`;
       });
 
-    if (functionType.this) params.unshift('this: ' + stringifyType(functionType.this, _module, false));
+    if (functionType.this) params.unshift('this: ' + stringifyType(functionType.this, _module));
 
     if (functionType.result && /** @type {TypeNameExpression} */ (functionType.result).name != 'void')
-      returnType = stringifyType(functionType.result, _module);
+      returnType = stringifyType(functionType.result, _module, false, false);
 
     typeStr = `(${params.join(', ')}) => ${returnType == 'undefined' ? 'void' : returnType}`;
   } else if (parsedType.type == 'TypeUnion') {
     const unionType = /** @type {TypeUnion} */ (parsedType);
-    const union = unionType.elements
-      .map(t => stringifyType(t, _module))
-      .filter(t => ['void', 'undefined'].indexOf(t) == -1);
+    let union = unionType.elements.map(t => stringifyType(t, _module));
+
+    if (!undefinedLiteral) union = union.filter(t => t != 'undefined');
+    if (!nullLiteral) union = union.filter(t => t != 'null');
+    if (union.length > 1) union = union.filter(t => t != 'void');
+
     typeStr = union.join(' | ');
     if (union.length > 1) typeStr = `(${typeStr})`;
+  } else if (parsedType.type == 'NullLiteral') {
+    typeStr = 'null';
   } else if (parsedType.type == 'UndefinedLiteral') {
     typeStr = 'undefined';
   } else if (['UnknownLiteral', 'AllLiteral'].indexOf(parsedType.type) != -1) {
@@ -428,8 +434,14 @@ function parseConstFunctionType(doclet, _module) {
   return `((${params}) => ${returnType})`;
 }
 
-/** @type {DocletParser} */
-function getType(doclet, _module, undefinedLiteral = false) {
+/**
+ *
+ * @param {Doclet} doclet
+ * @param {Doclet} _module
+ * @param {boolean} [undefinedLiteral]
+ * @param {boolean} [nullLiteral]
+ */
+function getType(doclet, _module, undefinedLiteral = false, nullLiteral = false) {
   if (!doclet.type)
     if (doclet.params || doclet.yields || doclet.returns) {
       return parseConstFunctionType(doclet, _module);
@@ -457,7 +469,7 @@ function getType(doclet, _module, undefinedLiteral = false) {
     else
       try {
         parsedType = catharsis.parse(type, { jsdoc: true });
-        type = stringifyType(parsedType, _module);
+        type = stringifyType(parsedType, _module, undefinedLiteral, nullLiteral);
       } catch (error) {
         logger.error('getType --', doclet.longname || _module.longname, type);
       }
@@ -466,6 +478,8 @@ function getType(doclet, _module, undefinedLiteral = false) {
   });
 
   if (!undefinedLiteral) types = types.filter(t => t != 'undefined');
+
+  if (!nullLiteral) types = types.filter(t => t != 'null');
 
   if (types.length > 1 && types.indexOf('any') != -1) types = types.filter(t => t != 'any');
 
@@ -494,7 +508,7 @@ function getParams(doclet, _module) {
     .filter(param => param.name.indexOf('.') == -1)
     .map(param => {
       let name = param.name;
-      let paramType = getType(/** @type {Doclet} */ (param), _module, true);
+      let paramType = getType(/** @type {Doclet} */ (param), _module, true, true);
 
       if (param.optional && !param.defaultValue) name += '?';
 

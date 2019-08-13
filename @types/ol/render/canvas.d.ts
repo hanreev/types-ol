@@ -51,7 +51,7 @@ export interface TextState {
 export const labelCache: LRUCache<HTMLCanvasElement>;
 export function drawImage(
     context: CanvasRenderingContext2D,
-    transform: Transform | undefined,
+    transform: Transform | null,
     opacity: number,
     image: HTMLImageElement | HTMLCanvasElement | HTMLVideoElement,
     originX: number,

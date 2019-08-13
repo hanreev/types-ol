@@ -42,7 +42,7 @@ export default class CanvasReplayGroup extends ReplayGroup {
         opt_declutterReplays?: { [key: string]: DeclutterGroup }
     ): void;
 }
-export function getCircleArray(radius: number): boolean[][];
+export function getCircleArray(radius: number): (boolean | undefined)[][];
 export function replayDeclutter(
     declutterReplays: { [key: string]: any[] },
     context: CanvasRenderingContext2D,

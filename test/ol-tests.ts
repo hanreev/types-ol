@@ -161,7 +161,7 @@ const layers = [osmLayer, vectorLayer, vectorTileLayer];
 const controls = defaultControls().extend([
     new FullScreen(),
     new MousePosition({
-        coordinateFormat: coord => toStringXY(coord, 8),
+        coordinateFormat: coord => toStringXY(coord!, 8),
         undefinedHTML: '',
     }),
     new OverviewMap({

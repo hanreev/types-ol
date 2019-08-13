@@ -44,8 +44,8 @@ export default class VectorLayer extends Layer {
     getUpdateWhileAnimating(): boolean;
     getUpdateWhileInteracting(): boolean;
     setDeclutter(declutter: boolean): void;
-    setRenderOrder(renderOrder: OrderFunction | undefined | undefined): void;
-    setStyle(style: Style | Style[] | StyleFunction | undefined | undefined): void;
+    setRenderOrder(renderOrder: OrderFunction | null | undefined): void;
+    setStyle(style: Style | Style[] | StyleFunction | null | undefined): void;
     on(type: string | string[], listener: (p0: any) => void): EventsKey | EventsKey[];
     once(type: string | string[], listener: (p0: any) => void): EventsKey | EventsKey[];
     un(type: string | string[], listener: (p0: any) => void): void;
