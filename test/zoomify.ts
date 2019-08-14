@@ -6,8 +6,9 @@ import Zoomify from 'ol/source/Zoomify';
 const imgWidth = 9911;
 const imgHeight = 6100;
 
-const zoomifyUrl = 'http://vips.vtech.fr/cgi-bin/iipsrv.fcgi?zoomify=' + '/mnt/MD1/AD00/plan_CHU-4HD-01/FOND.TIF/';
-const iipUrl = 'http://vips.vtech.fr/cgi-bin/iipsrv.fcgi?FIF=' + '/mnt/MD1/AD00/plan_CHU-4HD-01/FOND.TIF' + '&JTL={z},{tileIndex}';
+const zoomifyUrl = 'http://vips.vtech.fr/cgi-bin/iipsrv.fcgi?zoomify=/mnt/MD1/AD00/plan_CHU-4HD-01/FOND.TIF/';
+const iipUrl =
+    'http://vips.vtech.fr/cgi-bin/iipsrv.fcgi?FIF=/mnt/MD1/AD00/plan_CHU-4HD-01/FOND.TIF' + '&JTL={z},{tileIndex}';
 
 const layer = new TileLayer({
     source: new Zoomify({
@@ -43,7 +44,7 @@ control.addEventListener('change', event => {
                 url: iipUrl,
                 size: [imgWidth, imgHeight],
                 crossOrigin: 'anonymous',
-            })
+            }),
         );
     } else if (value === 'zoomify') {
         layer.setSource(
@@ -51,7 +52,7 @@ control.addEventListener('change', event => {
                 url: zoomifyUrl,
                 size: [imgWidth, imgHeight],
                 crossOrigin: 'anonymous',
-            })
+            }),
         );
     }
 });

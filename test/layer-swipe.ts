@@ -45,5 +45,5 @@ swipe.addEventListener(
     () => {
         map.render();
     },
-    false
+    false,
 );

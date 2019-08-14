@@ -109,7 +109,11 @@ class ExampleDrawClass {
     }
 
     setActive(active: boolean) {
-        const type = (optionsForm.elements['draw-type' as any] as HTMLInputElement).value as 'Point' | 'LineString' | 'Polygon' | 'Circle';
+        const type = (optionsForm.elements['draw-type' as any] as HTMLInputElement).value as
+            | 'Point'
+            | 'LineString'
+            | 'Polygon'
+            | 'Circle';
         if (active) {
             if (this.activeType) this[this.activeType].setActive(false);
             this[type].setActive(true);

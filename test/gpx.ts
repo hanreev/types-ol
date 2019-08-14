@@ -48,7 +48,7 @@ const vector = new VectorLayer({
         format: new GPX(),
     }),
     style: feature => {
-        return style[feature.getGeometry()!.getType()];
+        return style[feature.getGeometry().getType()];
     },
 });
 

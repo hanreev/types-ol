@@ -70,7 +70,7 @@ for (i = 0; i < featureCount; ++i) {
     feature.setStyle(
         new Style({
             image: icons[i % (iconCount - 1)],
-        })
+        }),
     );
     features[i] = feature;
 }

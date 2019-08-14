@@ -24,7 +24,12 @@ if (!WEBGL) {
 
     const fragmentShaderSource = ['precision mediump float;', 'void main() {', '}'].join('');
 
-    const vertexShaderSource = ['attribute vec2 a_position;', 'void main() {', '  gl_Position = vec4(a_position, 0, 1);', '}'].join('');
+    const vertexShaderSource = [
+        'attribute vec2 a_position;',
+        'void main() {',
+        '  gl_Position = vec4(a_position, 0, 1);',
+        '}',
+    ].join('');
 
     osm.on('precompose', event => {
         const context = event.glContext;
@@ -110,7 +115,7 @@ if (!WEBGL) {
                 0.75,
                 1.0,
             ]),
-            gl.STATIC_DRAW
+            gl.STATIC_DRAW,
         );
 
         gl.enableVertexAttribArray(positionLocation);

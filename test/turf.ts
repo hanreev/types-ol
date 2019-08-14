@@ -30,11 +30,11 @@ fetch('data/geojson/roads-seoul.geojson')
 
             // convert the generated point to a OpenLayers feature
             const marker = format.readFeature(turfPoint);
-            marker.getGeometry()!.transform('EPSG:4326', 'EPSG:3857');
+            marker.getGeometry().transform('EPSG:4326', 'EPSG:3857');
             source.addFeature(marker);
         }
 
-        street.getGeometry()!.transform('EPSG:4326', 'EPSG:3857');
+        street.getGeometry().transform('EPSG:4326', 'EPSG:3857');
         source.addFeature(street);
     });
 const vectorLayer = new VectorLayer({

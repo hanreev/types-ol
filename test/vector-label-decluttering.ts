@@ -17,7 +17,7 @@ const map = new Map({
 
 const labelStyle = new Style({
     geometry: feature => {
-        let geometry = feature.getGeometry()!;
+        let geometry = feature.getGeometry();
         if (geometry.getType() === 'MultiPolygon') {
             // Only render label for the widest polygon of a multipolygon
             const polygons = (geometry as MultiPolygon).getPolygons();

@@ -59,7 +59,7 @@ for (const info of symbolInfo) {
                 // by passing the atlas manager to the symbol,
                 // the symbol will be added to an atlas
                 atlasManager,
-            })
+            }),
         );
 
         // star symbol
@@ -77,7 +77,7 @@ for (const info of symbolInfo) {
                     width: 1,
                 }),
                 atlasManager,
-            })
+            }),
         );
     }
 }
@@ -93,7 +93,7 @@ for (let i = 0; i < featureCount; ++i) {
     feature.setStyle(
         new Style({
             image: symbols[i % symbolCount],
-        })
+        }),
     );
     features[i] = feature;
 }

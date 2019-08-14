@@ -26,5 +26,5 @@ teleportButton &&
             const target = map.getTarget() === 'map1' ? 'map2' : 'map1';
             map.setTarget(target);
         },
-        false
+        false,
     );

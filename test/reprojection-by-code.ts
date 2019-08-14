@@ -35,7 +35,7 @@ function setProjection(code: string, name: string, proj4def: string | proj4.Proj
                 projection: 'EPSG:3857',
                 center: [0, 0],
                 zoom: 1,
-            })
+            }),
         );
         return;
     }

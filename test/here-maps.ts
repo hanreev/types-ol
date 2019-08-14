@@ -50,7 +50,10 @@ const hereLayers = [
         app_code: appCode,
     },
 ];
-const urlTpl = 'https://{1-4}.{base}.maps.cit.api.here.com' + '/{type}/2.1/maptile/newest/{scheme}/{z}/{x}/{y}/256/png' + '?app_id={app_id}&app_code={app_code}';
+const urlTpl =
+    'https://{1-4}.{base}.maps.cit.api.here.com' +
+    '/{type}/2.1/maptile/newest/{scheme}/{z}/{x}/{y}/256/png' +
+    '?app_id={app_id}&app_code={app_code}';
 const layers: Layer[] = [];
 for (const layerDesc of hereLayers) {
     layers.push(
@@ -59,9 +62,13 @@ for (const layerDesc of hereLayers) {
             preload: Infinity,
             source: new XYZ({
                 url: createUrl(urlTpl, layerDesc),
-                attributions: 'Map Tiles &copy; ' + new Date().getFullYear() + ' ' + '<a href="http://developer.here.com">HERE</a>',
+                attributions:
+                    'Map Tiles &copy; ' +
+                    new Date().getFullYear() +
+                    ' ' +
+                    '<a href="http://developer.here.com">HERE</a>',
             }),
-        })
+        }),
     );
 }
 

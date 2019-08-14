@@ -57,7 +57,7 @@ zoomtoswitzerlandbest.addEventListener(
         const polygon = feature.getGeometry() as SimpleGeometry;
         view.fit(polygon, { padding: [170, 50, 30, 150], constrainResolution: false });
     },
-    false
+    false,
 );
 
 const zoomtoswitzerlandconstrained = document.getElementById('zoomtoswitzerlandconstrained') as HTMLElement;
@@ -68,7 +68,7 @@ zoomtoswitzerlandconstrained.addEventListener(
         const polygon = feature.getGeometry() as SimpleGeometry;
         view.fit(polygon, { padding: [170, 50, 30, 150] });
     },
-    false
+    false,
 );
 
 const zoomtoswitzerlandnearest = document.getElementById('zoomtoswitzerlandnearest') as HTMLElement;
@@ -79,7 +79,7 @@ zoomtoswitzerlandnearest.addEventListener(
         const polygon = feature.getGeometry() as SimpleGeometry;
         view.fit(polygon, { padding: [170, 50, 30, 150], nearest: true });
     },
-    false
+    false,
 );
 
 const zoomtolausanne = document.getElementById('zoomtolausanne') as HTMLElement;
@@ -90,7 +90,7 @@ zoomtolausanne.addEventListener(
         const point = feature.getGeometry() as SimpleGeometry;
         view.fit(point, { padding: [170, 50, 30, 150], minResolution: 50 });
     },
-    false
+    false,
 );
 
 const centerlausanne = document.getElementById('centerlausanne') as HTMLElement;
@@ -99,8 +99,8 @@ centerlausanne.addEventListener(
     () => {
         const feature = source.getFeatures()[1];
         const point = feature.getGeometry() as Point;
-        const size = map.getSize()!;
+        const size = map.getSize();
         view.centerOn(point.getCoordinates(), size, [570, 500]);
     },
-    false
+    false,
 );

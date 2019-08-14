@@ -96,8 +96,8 @@ fetch(url)
                             type: 'FeatureCollection',
                             features: data ? data.features : [],
                         },
-                        replacer
-                    )
+                        replacer,
+                    ),
                 );
                 tile.setLoader(() => {
                     tile.setFeatures(features as Feature[]);

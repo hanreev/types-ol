@@ -42,7 +42,7 @@ const styleFunction = (feature: FeatureLike) => {
                     rotateWithView: true,
                     rotation: -rotation,
                 }),
-            })
+            }),
         );
     });
 
@@ -66,5 +66,5 @@ map.addInteraction(
     new Draw({
         source,
         type: GeometryType.LINE_STRING,
-    })
+    }),
 );

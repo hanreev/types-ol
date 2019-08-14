@@ -30,19 +30,37 @@ export default class WebGLReplay extends VectorContext {
         skippedFeaturesHash: { [key: string]: boolean },
         featureCallback: (p0: Feature | RenderFeature) => T,
         oneByOne: boolean,
-        opt_hitExtent?: Extent
+        opt_hitExtent?: Extent,
     ): T;
-    protected drawHitDetectionReplayAll<T>(gl: WebGLRenderingContext, context: WebGLContext, skippedFeaturesHash: { [key: string]: boolean }, featureCallback: (p0: Feature | RenderFeature) => T): T;
+    protected drawHitDetectionReplayAll<T>(
+        gl: WebGLRenderingContext,
+        context: WebGLContext,
+        skippedFeaturesHash: { [key: string]: boolean },
+        featureCallback: (p0: Feature | RenderFeature) => T,
+    ): T;
     protected drawHitDetectionReplayOneByOne<T>(
         gl: WebGLRenderingContext,
         context: WebGLContext,
         skippedFeaturesHash: { [key: string]: boolean },
         featureCallback: (p0: Feature | RenderFeature) => T,
-        opt_hitExtent?: Extent
+        opt_hitExtent?: Extent,
     ): T;
-    protected drawReplay(gl: WebGLRenderingContext, context: WebGLContext, skippedFeaturesHash: { [key: string]: boolean }, hitDetection: boolean): void;
-    protected setUpProgram(gl: WebGLRenderingContext, context: WebGLContext, size: Size, pixelRatio: number): Locations | Locations_1 | Locations_2 | Locations_3;
-    protected shutDownProgram(gl: WebGLRenderingContext, locations: Locations | Locations_1 | Locations_2 | Locations_3): void;
+    protected drawReplay(
+        gl: WebGLRenderingContext,
+        context: WebGLContext,
+        skippedFeaturesHash: { [key: string]: boolean },
+        hitDetection: boolean,
+    ): void;
+    protected setUpProgram(
+        gl: WebGLRenderingContext,
+        context: WebGLContext,
+        size: Size,
+        pixelRatio: number,
+    ): Locations | Locations_1 | Locations_2 | Locations_3;
+    protected shutDownProgram(
+        gl: WebGLRenderingContext,
+        locations: Locations | Locations_1 | Locations_2 | Locations_3,
+    ): void;
     protected maxExtent: Extent;
     finish(context: WebGLContext): void;
     getDeleteResourcesFunction(context: WebGLContext): () => void;
@@ -57,6 +75,6 @@ export default class WebGLReplay extends VectorContext {
         skippedFeaturesHash: { [key: string]: boolean },
         featureCallback: (p0: Feature | RenderFeature) => T,
         oneByOne: boolean,
-        opt_hitExtent?: Extent
+        opt_hitExtent?: Extent,
     ): T;
 }

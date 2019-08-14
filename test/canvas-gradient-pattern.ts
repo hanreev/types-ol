@@ -59,7 +59,7 @@ const style = new Style({
 });
 
 const getStackedStyle = (feature: FeatureLike) => {
-    const id = feature.getId()!;
+    const id = feature.getId();
     fill.setColor(id > 'J' ? gradient : (pattern as CanvasPattern));
     return style;
 };

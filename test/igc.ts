@@ -36,7 +36,13 @@ const styleFunction = (feature: FeatureLike) => {
 
 const vectorSource = new VectorSource();
 
-const igcUrls = ['data/igc/Clement-Latour.igc', 'data/igc/Damien-de-Baenst.igc', 'data/igc/Sylvain-Dhonneur.igc', 'data/igc/Tom-Payne.igc', 'data/igc/Ulrich-Prinz.igc'];
+const igcUrls = [
+    'data/igc/Clement-Latour.igc',
+    'data/igc/Damien-de-Baenst.igc',
+    'data/igc/Sylvain-Dhonneur.igc',
+    'data/igc/Tom-Payne.igc',
+    'data/igc/Ulrich-Prinz.igc',
+];
 
 function get(url: string, callback: (p0: string) => void) {
     const client = new XMLHttpRequest();
@@ -72,7 +78,9 @@ const map = new Map({
         new TileLayer({
             source: new OSM({
                 attributions: ['All maps © <a href="https://www.opencyclemap.org/">OpenCycleMap</a>', ATTRIBUTION],
-                url: 'https://{a-c}.tile.thunderforest.com/cycle/{z}/{x}/{y}.png' + '?apikey=0e6fc415256d4fbb9b5166a718591d71',
+                url:
+                    'https://{a-c}.tile.thunderforest.com/cycle/{z}/{x}/{y}.png' +
+                    '?apikey=0e6fc415256d4fbb9b5166a718591d71',
             }),
         }),
         new VectorLayer({
@@ -97,7 +105,7 @@ const displaySnap = (coordinate: Coordinate) => {
         line = null as any;
         info.innerHTML = '&nbsp;';
     } else {
-        const geometry = closestFeature.getGeometry()!;
+        const geometry = closestFeature.getGeometry();
         const closestPoint = geometry.getClosestPoint(coordinate);
         if (point === null) {
             point = new Point(closestPoint);

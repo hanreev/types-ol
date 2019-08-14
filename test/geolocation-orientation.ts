@@ -54,7 +54,7 @@ let deltaMean = 500; // the geolocation sampling period mean in ms
 
 // Listen to position changes
 geolocation.on('change', () => {
-    const position = geolocation.getPosition()!;
+    const position = geolocation.getPosition();
     const accuracy = geolocation.getAccuracy();
     const heading = geolocation.getHeading() || 0;
     const speed = geolocation.getSpeed() || 0;
@@ -124,10 +124,13 @@ function addPosition(position: number[], heading: number, m: number, speed: numb
 // recenters the view by putting the given coordinates at 3/4 from the top or
 // the screen
 function getCenterWithHeading(position: number[], rotation: number, resolution: number) {
-    const size = map.getSize()!;
+    const size = map.getSize();
     const height = size[1];
 
-    return [position[0] - (Math.sin(rotation) * height * resolution * 1) / 4, position[1] + (Math.cos(rotation) * height * resolution * 1) / 4];
+    return [
+        position[0] - (Math.sin(rotation) * height * resolution * 1) / 4,
+        position[1] + (Math.cos(rotation) * height * resolution * 1) / 4,
+    ];
 }
 
 let previousM = 0;
@@ -139,7 +142,7 @@ function updateView() {
     // interpolate position along positions LineString
     const c = positions.getCoordinateAtM(m, true);
     if (c) {
-        view.setCenter(getCenterWithHeading(c, -c[2], view.getResolution()!));
+        view.setCenter(getCenterWithHeading(c, -c[2], view.getResolution()));
         view.setRotation(-c[2]);
         marker.setPosition(c);
     }
@@ -157,7 +160,7 @@ geolocateBtn.addEventListener(
 
         disableButtons();
     },
-    false
+    false,
 );
 
 // simulate device move
@@ -199,7 +202,7 @@ simulateBtn.addEventListener(
 
         disableButtons();
     },
-    false
+    false,
 );
 
 function simulatePositionChange(position: any) {

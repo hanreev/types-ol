@@ -26,7 +26,7 @@ class Drag extends PointerInteraction {
                 // tslint:disable-next-line: no-shadowed-variable
                 feature => {
                     return feature;
-                }
+                },
             );
 
             if (feature) {
@@ -41,7 +41,7 @@ class Drag extends PointerInteraction {
             const deltaX = evt.coordinate[0] - this.coordinate_[0];
             const deltaY = evt.coordinate[1] - this.coordinate_[1];
 
-            const geometry = this.feature_.getGeometry()!;
+            const geometry = this.feature_.getGeometry();
             geometry.translate(deltaX, deltaY);
 
             this.coordinate_[0] = evt.coordinate[0];
@@ -57,7 +57,7 @@ class Drag extends PointerInteraction {
                     // tslint:disable-next-line: no-shadowed-variable
                     feature => {
                         return feature;
-                    }
+                    },
                 );
                 const element = evt.map.getTargetElement();
                 if (feature) {

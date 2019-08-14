@@ -94,12 +94,16 @@ let draw: Draw; // global so we can remove it later
 
 const formatLength = (line: LineString) => {
     const length = getLength(line);
-    return length > 100 ? Math.round((length / 1000) * 100) / 100 + ' ' + 'km' : Math.round(length * 100) / 100 + ' ' + 'm';
+    return length > 100
+        ? Math.round((length / 1000) * 100) / 100 + ' ' + 'km'
+        : Math.round(length * 100) / 100 + ' ' + 'm';
 };
 
 const formatArea = (polygon: Polygon) => {
     const area = getArea(polygon);
-    return area > 10000 ? Math.round((area / 1000000) * 100) / 100 + ' ' + 'km<sup>2</sup>' : Math.round(area * 100) / 100 + ' ' + 'm<sup>2</sup>';
+    return area > 10000
+        ? Math.round((area / 1000000) * 100) / 100 + ' ' + 'km<sup>2</sup>'
+        : Math.round(area * 100) / 100 + ' ' + 'm<sup>2</sup>';
 };
 
 function addInteraction() {
@@ -139,7 +143,7 @@ function addInteraction() {
 
         let tooltipCoord = (evt as any).coordinate;
 
-        listener = sketch.getGeometry()!.on('change', ev => {
+        listener = sketch.getGeometry().on('change', ev => {
             const geom = ev.target;
             let output;
             if (geom instanceof Polygon) {

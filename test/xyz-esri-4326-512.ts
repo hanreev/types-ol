@@ -6,7 +6,8 @@ import XYZ from 'ol/source/XYZ';
 // The tile size supported by the ArcGIS tile service.
 const tileSize = 512;
 
-const urlTemplate = 'https://services.arcgisonline.com/arcgis/rest/services/' + 'ESRI_Imagery_World_2D/MapServer/tile/{z}/{y}/{x}';
+const urlTemplate =
+    'https://services.arcgisonline.com/arcgis/rest/services/' + 'ESRI_Imagery_World_2D/MapServer/tile/{z}/{y}/{x}';
 
 const map = new Map({
     target: 'map',

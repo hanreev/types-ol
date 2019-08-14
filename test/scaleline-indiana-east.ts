@@ -17,7 +17,7 @@ proj4.defs(
         'PARAMETER["scale_factor",0.999966666667],' +
         'PARAMETER["central_meridian",-85.66666666666670],' +
         'PARAMETER["latitude_of_origin",37.50000000000000],' +
-        'UNIT["Foot_US",0.30480060960122]]'
+        'UNIT["Foot_US",0.30480060960122]]',
 );
 register(proj4);
 

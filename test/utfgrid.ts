@@ -44,7 +44,7 @@ const infoOverlay = new Overlay({
 map.addOverlay(infoOverlay);
 
 const displayCountryInfo = (coordinate: Coordinate) => {
-    const viewResolution = view.getResolution()!;
+    const viewResolution = view.getResolution();
     gridSource.forDataAtCoordinateAndResolution(coordinate, viewResolution, data => {
         // If you want to use the template from the TileJSON,
         //  load the mustache.js library separately and call

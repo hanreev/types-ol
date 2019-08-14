@@ -27,7 +27,7 @@ rome.setStyle(
             crossOrigin: 'anonymous',
             src: 'data/dot.png',
         }),
-    })
+    }),
 );
 
 london.setStyle(
@@ -37,7 +37,7 @@ london.setStyle(
             crossOrigin: 'anonymous',
             src: 'data/dot.png',
         }),
-    })
+    }),
 );
 
 madrid.setStyle(
@@ -47,7 +47,7 @@ madrid.setStyle(
             crossOrigin: 'anonymous',
             src: 'data/dot.png',
         }),
-    })
+    }),
 );
 
 const vectorSource = new VectorSource({

@@ -49,7 +49,7 @@ map.on('singleclick', e => {
         {
             hitTolerance,
             layerFilter: () => true,
-        }
+        },
     );
     if (hit) {
         style.getStroke().setColor('green');

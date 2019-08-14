@@ -27,7 +27,7 @@ const map = new Map({
 
 map.on('singleclick', evt => {
     (document.getElementById('info') as HTMLElement).innerHTML = '';
-    const viewResolution = view.getResolution()!;
+    const viewResolution = view.getResolution();
     const url = wmsSource.getGetFeatureInfoUrl(evt.coordinate, viewResolution, 'EPSG:3857', {
         INFO_FORMAT: 'text/html',
     });

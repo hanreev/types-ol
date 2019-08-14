@@ -18,7 +18,7 @@ for (let i = 0, j = styles.length; i < j; ++i) {
                 // "no photos at this zoom level" tiles
                 // maxZoom: 19
             }),
-        })
+        }),
     );
 }
 const map = new Map({
