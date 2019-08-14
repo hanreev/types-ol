@@ -17,7 +17,7 @@ fs.removeSync(destPath);
 console.log('# Rebuilding definitions');
 childProcess.execSync('yarn build', { stdio: 'inherit' });
 console.log('# Formatting definitions');
-childProcess.execSync('yarn format', { stdio: 'inherit' });
+childProcess.execSync('yarn format', { stdio: 'ignore' });
 
 // Lint
 console.log('# Linting definitions');
@@ -25,9 +25,9 @@ childProcess.execSync('yarn lint', { stdio: 'inherit' });
 
 // Test
 console.log('# Testing definitions');
-childProcess.execSync('yarn format-test', { stdio: 'inherit' });
+childProcess.execSync('yarn format-test', { stdio: 'ignore' });
 childProcess.execSync('yarn lint-test', { stdio: 'inherit' });
-childProcess.execSync('yarn test', { stdio: 'inherit' });
+childProcess.execSync('yarn test', { stdio: 'ignore' });
 
 // Copy
 console.log('# Emitting definitions to output directory');

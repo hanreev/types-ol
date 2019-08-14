@@ -15,11 +15,15 @@ if (!fs.existsSync(patchesDir)) {
   process.exit(1);
 }
 
-if (!jsdocConfig.typescript.definition.strictReturnTypes) {
-  const testsPatch = path.join(patchesDir, 'internal', 'non-strict-tests.patch');
+if (jsdocConfig.typescript.definition.strictReturnTypes) {
+  const testsPatch = path.join(patchesDir, 'internal', 'strict-tests.patch');
   if (fs.existsSync(testsPatch)) {
-    console.log(`# "strictReturnTypes" is disabled in "${path.relative(BASE_DIR, jsdocConfigPath)}". Applying "${path.basename(testsPatch)}"`);
-    childProcess.execSync(`git checkout test`);
+    console.log(
+      `# "strictReturnTypes" is enabled in "${path.relative(BASE_DIR, jsdocConfigPath)}". Applying "${path.basename(
+        testsPatch,
+      )}"`,
+    );
+    childProcess.execSync(`git checkout HEAD test`);
     childProcess.execSync(`git apply "${testsPatch}"`);
   }
 }
@@ -48,4 +52,4 @@ for (const patch of patches) {
 }
 process.chdir(BASE_DIR);
 
-console.log('# DONE');
+console.log('# All patches has been applied');

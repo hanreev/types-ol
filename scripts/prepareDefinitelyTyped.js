@@ -35,6 +35,8 @@ const header = `// Type definitions for ol ${olVersion}
 // Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
 // TypeScript Version: 2.4
 
+// These definitions was generated using jsdoc. See https://github.com/hanreev/types-ol
+
 `;
 
 const srcPath = path.resolve(BASE_DIR, '@types', 'ol');
