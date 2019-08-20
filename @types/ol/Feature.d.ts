@@ -7,10 +7,10 @@ import Style, { StyleFunction, StyleLike } from './style/Style';
 
 export type FeatureClass = Feature | RenderFeature;
 export type FeatureLike = Feature | RenderFeature;
-export default class Feature extends BaseObject {
-    constructor(opt_geometryOrProperties?: Geometry | { [key: string]: any });
-    clone(): Feature;
-    getGeometry(): Geometry;
+export default class Feature<T extends Geometry = Geometry> extends BaseObject {
+    constructor(opt_geometryOrProperties?: T | { [key: string]: any });
+    clone(): Feature<T>;
+    getGeometry(): T;
     getGeometryName(): string;
     getId(): number | string;
     getStyle(): StyleLike;
