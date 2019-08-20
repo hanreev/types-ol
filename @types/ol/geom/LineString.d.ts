@@ -7,6 +7,7 @@ import SimpleGeometry from './SimpleGeometry';
 
 export default class LineString extends SimpleGeometry {
     constructor(coordinates: Coordinate[] | number[], opt_layout?: GeometryLayout);
+    clone(): LineString;
     appendCoordinate(coordinate: Coordinate): void;
     forEachSegment<T, S>(callback: (this: S, p0: Coordinate, p1: Coordinate) => T): T | boolean;
     getCoordinateAt(fraction: number, opt_dest?: Coordinate): Coordinate;

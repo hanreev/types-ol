@@ -6,14 +6,14 @@ import BaseObject, { ObjectEvent } from '../Object';
 import { ProjectionLike, TransformFunction } from '../proj';
 import GeometryType from './GeometryType';
 
-export default class Geometry extends BaseObject {
+export default abstract class Geometry extends BaseObject {
     constructor();
     protected simplifiedGeometryCache: { [key: string]: Geometry };
     protected simplifiedGeometryMaxMinSquaredTolerance: number;
     protected simplifiedGeometryRevision: number;
     protected computeExtent(extent: Extent): Extent;
     applyTransform(transformFn: TransformFunction): void;
-    clone(): Geometry;
+    abstract clone(): Geometry;
     closestPointXY(x: number, y: number, closestPoint: Coordinate, minSquaredDistance: number): number;
     containsXY(x: number, y: number): boolean;
     getClosestPoint(point: Coordinate, opt_closestPoint?: Coordinate): Coordinate;

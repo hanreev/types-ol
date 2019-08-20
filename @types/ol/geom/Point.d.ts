@@ -7,6 +7,7 @@ import SimpleGeometry from './SimpleGeometry';
 
 export default class Point extends SimpleGeometry {
     constructor(coordinates: Coordinate, opt_layout?: GeometryLayout);
+    clone(): Point;
     on(type: string | string[], listener: (p0: any) => void): EventsKey | EventsKey[];
     once(type: string | string[], listener: (p0: any) => void): EventsKey | EventsKey[];
     un(type: string | string[], listener: (p0: any) => void): void;

@@ -7,6 +7,7 @@ import SimpleGeometry from './SimpleGeometry';
 
 export default class LinearRing extends SimpleGeometry {
     constructor(coordinates: Coordinate[] | number[], opt_layout?: GeometryLayout);
+    clone(): LinearRing;
     getArea(): number;
     on(type: string | string[], listener: (p0: any) => void): EventsKey | EventsKey[];
     once(type: string | string[], listener: (p0: any) => void): EventsKey | EventsKey[];

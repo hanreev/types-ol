@@ -11,6 +11,7 @@ import SimpleGeometry from './SimpleGeometry';
 
 export default class Polygon extends SimpleGeometry {
     constructor(coordinates: Coordinate[][] | number[], opt_layout?: GeometryLayout, opt_ends?: number[]);
+    clone(): Polygon;
     appendLinearRing(linearRing: LinearRing): void;
     getArea(): number;
     getEnds(): number[];

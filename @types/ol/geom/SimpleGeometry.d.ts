@@ -6,7 +6,7 @@ import { Transform } from '../transform';
 import Geometry from './Geometry';
 import GeometryLayout from './GeometryLayout';
 
-export default class SimpleGeometry extends Geometry {
+export default abstract class SimpleGeometry extends Geometry {
     constructor();
     protected flatCoordinates: number[];
     protected layout: GeometryLayout;

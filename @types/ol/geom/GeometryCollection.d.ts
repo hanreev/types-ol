@@ -5,6 +5,7 @@ import Geometry from './Geometry';
 
 export default class GeometryCollection extends Geometry {
     constructor(opt_geometries?: Geometry[]);
+    clone(): GeometryCollection;
     getGeometries(): Geometry[];
     getGeometriesArray(): Geometry[];
     isEmpty(): boolean;

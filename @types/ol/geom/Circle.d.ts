@@ -9,6 +9,7 @@ import SimpleGeometry from './SimpleGeometry';
 
 export default class Circle extends SimpleGeometry {
     constructor(center: Coordinate, opt_radius?: number, opt_layout?: GeometryLayout);
+    clone(): Circle;
     getCenter(): Coordinate;
     getRadius(): number;
     setCenter(center: Coordinate): void;

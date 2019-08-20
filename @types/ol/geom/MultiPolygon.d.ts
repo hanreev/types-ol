@@ -13,6 +13,7 @@ export default class MultiPolygon extends SimpleGeometry {
         opt_layout?: GeometryLayout,
         opt_endss?: number[][],
     );
+    clone(): MultiPolygon;
     appendPolygon(polygon: Polygon): void;
     getArea(): number;
     getEndss(): number[][];

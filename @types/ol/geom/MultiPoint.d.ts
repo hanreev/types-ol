@@ -8,6 +8,7 @@ import SimpleGeometry from './SimpleGeometry';
 
 export default class MultiPoint extends SimpleGeometry {
     constructor(coordinates: Coordinate[] | number[], opt_layout?: GeometryLayout);
+    clone(): MultiPoint;
     appendPoint(point: Point): void;
     getPoint(index: number): Point;
     getPoints(): Point[];

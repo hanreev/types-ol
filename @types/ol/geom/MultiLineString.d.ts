@@ -12,6 +12,7 @@ export default class MultiLineString extends SimpleGeometry {
         opt_layout?: GeometryLayout,
         opt_ends?: number[],
     );
+    clone(): MultiLineString;
     appendLineString(lineString: LineString): void;
     getCoordinateAtM(m: number, opt_extrapolate?: boolean, opt_interpolate?: boolean): Coordinate;
     getEnds(): number[];
