@@ -13,7 +13,7 @@ import { StyleFunction, StyleLike } from '../style/Style';
 import Layer from './Layer';
 import VectorRenderType from './VectorRenderType';
 
-export interface Options {
+export interface Options<T> {
     opacity?: number;
     visible?: boolean;
     extent?: Extent;
@@ -23,22 +23,20 @@ export interface Options {
     renderOrder?: OrderFunction;
     renderBuffer?: number;
     renderMode?: VectorRenderType | string;
-    source?: VectorSource;
+    source?: T;
     map?: PluggableMap;
     declutter?: boolean;
     style?: StyleLike;
     updateWhileAnimating?: boolean;
     updateWhileInteracting?: boolean;
 }
-export default class VectorLayer extends Layer {
-    constructor(opt_options?: Options);
+export default class VectorLayer<T extends Source = VectorSource> extends Layer<T> {
+    constructor(opt_options?: Options<T>);
     protected type: LayerType;
     getDeclutter(): boolean;
     getRenderBuffer(): number;
     getRenderMode(): VectorRenderType | string;
     getRenderOrder(): (p0: Feature, p1: Feature) => number;
-    getSource(): VectorSource;
-    getSource(): Source;
     getStyle(): StyleLike;
     getStyleFunction(): StyleFunction;
     getUpdateWhileAnimating(): boolean;

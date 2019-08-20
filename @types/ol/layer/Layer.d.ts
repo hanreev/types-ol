@@ -7,6 +7,7 @@ import RenderEvent from '../render/Event';
 import Source from '../source/Source';
 import State_1 from '../source/State';
 import BaseLayer from './Base';
+import VectorSource from 'ol/source/Vector';
 
 export interface Options {
     opacity?: number;
@@ -29,9 +30,9 @@ export interface State {
     maxResolution: number;
     minResolution: number;
 }
-export default class Layer extends BaseLayer {
+export default class Layer<T extends Source = Source> extends BaseLayer {
     constructor(options: Options);
-    getSource(): Source;
+    getSource(): T;
     setMap(map: PluggableMap): void;
     setSource(source: Source): void;
     on(type: string | string[], listener: (p0: any) => void): EventsKey | EventsKey[];
