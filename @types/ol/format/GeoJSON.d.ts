@@ -22,6 +22,7 @@ import Polygon_1 from '../geom/Polygon';
 import { ProjectionLike } from '../proj';
 import { ReadOptions, WriteOptions } from './Feature';
 import JSONFeature from './JSONFeature';
+import Projection from 'ol/proj/Projection';
 
 export type GeoJSONFeature = Feature;
 export type GeoJSONFeatureCollection = FeatureCollection;
@@ -42,4 +43,12 @@ export interface Options {
 }
 export default class GeoJSON extends JSONFeature {
     constructor(opt_options?: Options);
+
+    readFeatureFromObject(object: object, opt_options?: ReadOptions): Feature;
+    readFeaturesFromObject(object: object, opt_options?: ReadOptions): Feature[];
+    readGeometryFromObject(object: object, opt_options?: ReadOptions): Geometry;
+    readProjectionFromObject(object: object): Projection;
+    writeFeatureObject(feature: Feature, opt_options?: WriteOptions): object;
+    writeFeaturesObject(features: Feature[], opt_options?: WriteOptions): object;
+    writeGeometryObject(geometry: Geometry, opt_options?: WriteOptions): object;
 }

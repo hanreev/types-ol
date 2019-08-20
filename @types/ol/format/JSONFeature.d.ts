@@ -18,9 +18,6 @@ export default class JSONFeature extends FeatureFormat {
     readProjection(source: ArrayBuffer | Document | Node | object | string): Projection;
     readProjection(source: Document | Node | object | string): Projection;
     writeFeature(feature: Feature, opt_options?: WriteOptions): string;
-    writeFeatureObject(feature: Feature, opt_options?: WriteOptions): any;
     writeFeatures(features: Feature[], opt_options?: WriteOptions): string;
-    writeFeaturesObject(features: Feature[], opt_options?: WriteOptions): any;
     writeGeometry(geometry: Geometry, opt_options?: WriteOptions): string;
-    writeGeometryObject(geometry: Geometry, opt_options?: WriteOptions): any;
 }
