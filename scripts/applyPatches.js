@@ -40,10 +40,10 @@ if (!patches.length) {
   process.exit();
 }
 
-console.log('# Checkout openlayers v5.3.3');
+console.log('# Checkout openlayers v6.0.1');
 process.chdir(olDir);
 childProcess.execSync('git checkout -- .', { stdio: 'inherit' });
-childProcess.execSync('git checkout v5.3.3', { stdio: 'inherit' });
+childProcess.execSync('git checkout v6.0.1', { stdio: 'inherit' });
 
 console.log('# ===== APPLYING PATCHES =====');
 for (const patch of patches) {

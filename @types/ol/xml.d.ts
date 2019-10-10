@@ -28,7 +28,7 @@ export function makeObjectPropertySetter<T>(
     opt_this?: T,
 ): Parser;
 export function makeReplacer<T>(valueReader: (this: T, p0: Node, p1: any[]) => any, opt_this?: T): Parser;
-export function makeSequence<V>(object: { [key: string]: V }, orderedKeys: string[]): V[];
+export function makeSequence(object: { [key: string]: any }, orderedKeys: string[]): any[];
 export function makeSimpleNodeFactory(
     opt_nodeName?: string,
     opt_namespaceURI?: string,

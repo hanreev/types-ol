@@ -1,6 +1,6 @@
 import { Extent } from '../extent';
 import GeometryType from '../geom/GeometryType';
-import { ProjectionLike } from '../proj';
+import { ProjectionLike, TransformFunction } from '../proj';
 
 export default class RenderFeature {
     constructor(
@@ -24,5 +24,6 @@ export default class RenderFeature {
     getStride(): number;
     getStyleFunction(): any;
     getType(): GeometryType;
+    simplifyTransformed(squaredTolerance: number, opt_transform?: TransformFunction): RenderFeature;
     transform(source: ProjectionLike, destination: ProjectionLike): void;
 }

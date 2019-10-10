@@ -1,0 +1,13 @@
+diff --git a/src/ol/util.js b/src/ol/util.js
+index 3621b949c..dcecfa7c6 100644
+--- a/src/ol/util.js
++++ b/src/ol/util.js
+@@ -33,6 +33,8 @@ export function getUid(obj) {
+ 
+ /**
+  * OpenLayers version.
++ *
+  * @type {string}
++ * @api
+  */
+ export const VERSION = 'latest';

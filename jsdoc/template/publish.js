@@ -15,6 +15,8 @@ const definitionConfig = env.conf.typescript.definition;
 /** @type {*} */
 let data;
 
+let GTTypeOnly = true;
+
 /** @type {Object<string, ModuleImports>} */
 const MODULE_IMPORTS = {};
 
@@ -31,19 +33,48 @@ const EXTERNAL_MODULE_WHITELIST = ['arcgis-rest-api', 'geojson', 'topojson-speci
 const GENERIC_TYPES = {};
 
 /** @type {string[]} */
-const ANY_GENERIC_TYPES = ['module:ol/structs/LRUCache~LRUCache', 'module:ol/structs/PriorityQueue~PriorityQueue', 'module:ol/structs/RBush~RBush'];
+const ANY_GENERIC_TYPES = [
+  'module:ol/structs/LRUCache~LRUCache',
+  'module:ol/structs/PriorityQueue~PriorityQueue',
+  'module:ol/structs/RBush~RBush',
+];
 
-/** @type {Object<string, string>} */
+/** @type {Object<string, Array<string>>} */
 const TYPE_PATCHES = {
-  'module:ol/events/condition~always': 'typeof:module:ol/functions.TRUE',
-  'module:ol/events/condition~never': 'typeof:module:ol/functions.FALSE',
-  'module:ol/format/GML~GML': 'module:ol/format/GML3~GML3',
-  'module:ol/source/Cluster~Cluster#geometryFunction': 'function(module:ol/Feature~Feature): module:ol/geom/Point~Point',
-  'module:ol/style/IconImageCache~shared': 'module:ol/style/IconImageCache~IconImageCache',
+  //  'module:ol/events/condition~always': ['typeof:module:ol/functions.TRUE'],
+  //  'module:ol/events/condition~never': ['typeof:module:ol/functions.FALSE'],
+  //  'module:ol/format/GML~GML': ['module:ol/format/GML3~GML3'],
+  //  'module:ol/source/Cluster~Cluster#geometryFunction':
+  //    ['function(module:ol/Feature~Feature): module:ol/geom/Point~Point'],
+  //  'module:ol/style/IconImageCache~shared': ['module:ol/style/IconImageCache~IconImageCache'],
+  'module:ol/format/IIIFInfo~ImageInformationResponse': [
+    'Object<string,string|number|Array<number|string|module:ol/format/IIIFInfo~IiifProfile>|Object<string, number>|module:ol/format/IIIFInfo~TileInfo>',
+  ],
+  'module:ol/format/IIIFInfo~Versions': ['string'],
 };
 
 /** @type {Object<string, string[]>} */
-const PARAM_TYPE_PATCHES = {};
+const PARAM_TYPE_PATCHES = {
+  'module:ol/format/IIIFInfo~IIIFInfo': ['imageInfo', 'string', 'module:ol/format/IIIFInfo~ImageInformationResponse'],
+  'module:ol/format/IIIFInfo~IIIFInfo#getComplianceLevelEntryFromProfile': [
+    'version',
+    'module:ol/format/IIIFInfo~Versions',
+  ],
+  'module:ol/format/IIIFInfo~IIIFInfo#getComplianceLevelFromProfile': ['version', 'module:ol/format/IIIFInfo~Versions'],
+  'module:ol/format/IIIFInfo~IIIFInfo#setImageInfo': [
+    'imageInfo',
+    'string',
+    'module:ol/format/IIIFInfo~ImageInformationResponse',
+  ],
+};
+
+/** @type {Object<string, Array<string>>} */
+const RETURN_TYPE_PATCHES = {
+  'module:ol/format/IIIFInfo~IIIFInfo#getComplianceLevelEntryFromProfile': ['string'],
+  'module:ol/format/IIIFInfo~IIIFInfo#getComplianceLevelFromProfile': ['string'],
+  'module:ol/format/IIIFInfo~IIIFInfo#getImageApiVersion': ['module:ol/format/IIIFInfo~Versions'],
+  'module:ol/format/IIIFInfo~IIIFInfo#getTileSourceOptions': ['module:ol/source/IIIF~Options'],
+};
 
 /** @type {Object<string, Object<string, string[]>>} */
 const PROPERTY_TYPE_PATCHES = {
@@ -56,15 +87,15 @@ const PROPERTY_TYPE_PATCHES = {
 
 /** @type {Object<string, string[]>} */
 const IMPORT_PATCHES = {
-  'module:ol/control': ['module:ol/control/util~DefaultsOptions'],
-  'module:ol/geom/LinearRing': ['module:ol/geom/GeometryLayout~GeometryLayout'],
-  'module:ol/geom/LineString': ['module:ol/geom/GeometryLayout~GeometryLayout'],
-  'module:ol/geom/MultiLineString': ['module:ol/geom/GeometryLayout~GeometryLayout'],
-  'module:ol/geom/MultiPolygon': ['module:ol/geom/GeometryLayout~GeometryLayout'],
-  'module:ol/geom/Polygon': ['module:ol/geom/GeometryLayout~GeometryLayout'],
-  'module:ol/proj': ['module:ol/proj/Units~Units'],
-  'module:ol/source/Cluster': ['module:ol/geom/Point~Point'],
-  'module:ol/tilegrid': ['module:ol/extent/Corner~Corner'],
+  //  'module:ol/control': ['module:ol/control/util~DefaultsOptions'],
+  //  'module:ol/geom/LinearRing': ['module:ol/geom/GeometryLayout~GeometryLayout'],
+  //  'module:ol/geom/LineString': ['module:ol/geom/GeometryLayout~GeometryLayout'],
+  //  'module:ol/geom/MultiLineString': ['module:ol/geom/GeometryLayout~GeometryLayout'],
+  //  'module:ol/geom/MultiPolygon': ['module:ol/geom/GeometryLayout~GeometryLayout'],
+  //  'module:ol/geom/Polygon': ['module:ol/geom/GeometryLayout~GeometryLayout'],
+  //  'module:ol/proj': ['module:ol/proj/Units~Units'],
+  //  'module:ol/source/Cluster': ['module:ol/geom/Point~Point'],
+  //  'module:ol/tilegrid': ['module:ol/extent/Corner~Corner'],
 };
 
 /** @type {Object<string, string[]>} */
@@ -85,6 +116,12 @@ function find(spec) {
  */
 function registerImport(_module, val) {
   if (!val.startsWith('module:')) return val;
+
+  // FIXME: wrong EventTarget parsing
+  if (val == 'module:ol/events/Event~BaseEventTarget') return 'EventTarget';
+
+  // FIXME: wrong PBF parsing
+  if (_module.longname == 'module:ol/format/MVT' && val == 'module:ol/format/pbf') return '';
 
   const value = val.replace(/^module:/, '');
 
@@ -144,7 +181,8 @@ function registerImport(_module, val) {
     }
   }
 
-  if (!doclet && EXTERNAL_MODULE_WHITELIST.indexOf(moduleName) == -1) logger.warn('Invalid import or external module --', val, 'in', _module.name);
+  if (!doclet && EXTERNAL_MODULE_WHITELIST.indexOf(moduleName) == -1)
+    logger.warn('Invalid import or external module --', val, 'in', _module.name);
 
   let counter = 1;
   let availableImportName = importName;
@@ -164,7 +202,8 @@ function registerImport(_module, val) {
   let expression = availableImportName;
   const _exports = MODULE_EXPORTS[moduleName];
   if ((_exports && _exports.default != importName && _exports.default != `module:${moduleName}`) || !isDefault)
-    expression = importName == availableImportName ? `{ ${importName} }` : `{ ${importName} as ${availableImportName} }`;
+    expression =
+      importName == availableImportName ? `{ ${importName} }` : `{ ${importName} as ${availableImportName} }`;
   _imports.expressions.push(`import ${expression} from '${moduleName}';`);
   MODULE_IMPORTS[_module.name] = _imports;
 
@@ -304,7 +343,9 @@ function sortImports(expressions, _module, maxLineLength = 120) {
  * @returns {string}
  */
 function stringifyType(parsedType, _module, undefinedLiteral = true, nullLiteral = true) {
-  let typeStr = /** @type {TypeApplication} */ (parsedType).expression ? /** @type {TypeApplication} */ (parsedType).expression.name : /** @type {TypeNameExpression} */ (parsedType).name;
+  let typeStr = /** @type {TypeApplication} */ (parsedType).expression
+    ? /** @type {TypeApplication} */ (parsedType).expression.name
+    : /** @type {TypeNameExpression} */ (parsedType).name;
 
   let suffix = getGenericType(typeStr, _module);
 
@@ -325,7 +366,8 @@ function stringifyType(parsedType, _module, undefinedLiteral = true, nullLiteral
         break;
 
       case 'Object':
-        if (applications[0] != 'number' && applications[0] != 'string') typeStr = `{ [key in ${applications[0]}]: ${applications[1]} }`;
+        if (applications[0] != 'number' && applications[0] != 'string')
+          typeStr = `{ [key in ${applications[0]}]: ${applications[1]} }`;
         else typeStr = `{ [key: ${applications[0]}]: ${applications[1]} }`;
         break;
 
@@ -352,7 +394,8 @@ function stringifyType(parsedType, _module, undefinedLiteral = true, nullLiteral
 
     if (functionType.this) params.unshift('this: ' + stringifyType(functionType.this, _module));
 
-    if (functionType.result && /** @type {TypeNameExpression} */ (functionType.result).name != 'void') returnType = stringifyType(functionType.result, _module, strictReturn, strictReturn);
+    if (functionType.result && /** @type {TypeNameExpression} */ (functionType.result).name != 'void')
+      returnType = stringifyType(functionType.result, _module, strictReturn, strictReturn);
 
     typeStr = `(${params.join(', ')}) => ${returnType == 'undefined' ? 'void' : returnType}`;
   } else if (parsedType.type == 'TypeUnion') {
@@ -444,6 +487,8 @@ function getType(doclet, _module, undefinedLiteral = false, nullLiteral = false)
     /** @type {ParsedType} */
     let parsedType;
     let prefix = '';
+
+    if (type == 'module:ol/format/IIIFInfostring') console.log(doclet);
 
     if (_module.name == 'ol/source/Raster' && type == 'RasterOperationType') return `'pixel' | 'image'`;
 
@@ -769,7 +814,8 @@ const PROCESSORS = {
 function processModule(doclet) {
   let children = [];
 
-  if (doclet.longname in IMPORT_PATCHES) for (const importName of IMPORT_PATCHES[doclet.longname]) registerImport(doclet, importName);
+  if (doclet.longname in IMPORT_PATCHES)
+    for (const importName of IMPORT_PATCHES[doclet.longname]) registerImport(doclet, importName);
 
   // Remove class duplicates
   const classes = new Set();
@@ -808,7 +854,8 @@ function processModule(doclet) {
 
   MODULE_CHILDREN[doclet.name] = children;
 
-  if (doclet.name in MODULE_IMPORTS) MODULE_IMPORTS[doclet.name].expressions = sortImports(MODULE_IMPORTS[doclet.name].expressions, doclet);
+  if (doclet.name in MODULE_IMPORTS)
+    MODULE_IMPORTS[doclet.name].expressions = sortImports(MODULE_IMPORTS[doclet.name].expressions, doclet);
 }
 
 /**
@@ -927,7 +974,11 @@ function extractGenericTypes(initial = true, strict = false) {
     if (genericTypes.length) GENERIC_TYPES[doclet.longname] = Array.from(new Set(genericTypes));
   });
 
-  data({ kind: ['function', 'class'] }, [{ params: { isArray: true } }, { returns: { isArray: true } }, { yields: { isArray: true } }])
+  data({ kind: ['function', 'class'] }, [
+    { params: { isArray: true } },
+    { returns: { isArray: true } },
+    { yields: { isArray: true } },
+  ])
     .get()
     .forEach((/** @type {Doclet} */ doclet) => {
       /** @type {DocletGenericType[]} */
@@ -935,7 +986,9 @@ function extractGenericTypes(initial = true, strict = false) {
 
       if (doclet.longname in GENERIC_TYPES) genericTypes = GENERIC_TYPES[doclet.longname];
 
-      const merged = /** @type {Doclet[]} */ (doclet.params || []).concat(/** @type {Doclet[]} */ (doclet.yields) || /** @type {Doclet[]} */ (doclet.returns) || []);
+      const merged = /** @type {Doclet[]} */ (doclet.params || []).concat(
+        /** @type {Doclet[]} */ (doclet.yields) || /** @type {Doclet[]} */ (doclet.returns) || [],
+      );
 
       merged.forEach(d => {
         if (!d.type) return;
@@ -965,8 +1018,13 @@ function getGenericType(key, _module, includeBracket = true, includeType = false
   const genericTypes = GENERIC_TYPES[key]
     .map(gType => {
       let type;
-      if (includeType && gType.type) type = getType(/** @type {Doclet} */ (gType), _module);
-      return type ? `${gType.name} = ${type}` : gType.name;
+      if ((includeType || GTTypeOnly) && gType.type) type = getType(/** @type {Doclet} */ (gType), _module);
+      if (type) {
+        if (GTTypeOnly) return type;
+        if (includeType) return `${gType.name} extends ${type}`;
+      }
+
+      return gType.name;
     })
     .join(', ');
 
@@ -990,7 +1048,7 @@ exports.publish = taffyData => {
     /** @type {Doclet} */
     const doclet = data({ longname }).first();
     if (!doclet) continue;
-    doclet.type = { names: [TYPE_PATCHES[longname]] };
+    doclet.type = { names: TYPE_PATCHES[longname] };
   }
 
   for (const longname in PARAM_TYPE_PATCHES) {
@@ -1003,6 +1061,17 @@ exports.publish = taffyData => {
         if (param.name == paramName) param.type.names = PARAM_TYPE_PATCHES[longname];
         return param;
       });
+  }
+
+  for (const longname in RETURN_TYPE_PATCHES) {
+    /** @type {Doclet} */
+    const doclet = data({ longname }).first();
+    if (!doclet) continue;
+    doclet.returns = RETURN_TYPE_PATCHES[longname].map(types => {
+      return {
+        type: { names: [types] },
+      };
+    });
   }
 
   for (const longname in PROPERTY_TYPE_PATCHES) {
@@ -1057,7 +1126,9 @@ exports.publish = taffyData => {
     /**
      * Generate single definition file
      */
-    const content = members.modules.map((/** @type {Doclet} */ doclet) => generateDefinition(doclet, false)).join('\n\n');
+    const content = members.modules
+      .map((/** @type {Doclet} */ doclet) => generateDefinition(doclet, false))
+      .join('\n\n');
     const outputPath = path.resolve(outDir, 'ol', 'index.d.ts');
     fs.mkdirpSync(path.dirname(outputPath));
     fs.writeFileSync(outputPath, content);

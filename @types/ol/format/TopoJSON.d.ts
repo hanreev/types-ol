@@ -11,6 +11,7 @@ import {
 } from 'topojson-specification';
 import { Coordinate } from '../coordinate';
 import Feature from '../Feature';
+import Geometry from '../geom/Geometry';
 import LineString_1 from '../geom/LineString';
 import MultiLineString_1 from '../geom/MultiLineString';
 import MultiPoint_1 from '../geom/MultiPoint';

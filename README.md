@@ -11,8 +11,15 @@
 
 
 
-This project contains TypeScript definition for [OpenLayers](https://openlayers.org/) `v5.3.3` that includes all documented API and protected class members and methods.
+This project contains TypeScript definition for [OpenLayers](https://openlayers.org/) `v6.0.1` that includes all documented API and protected class members and methods.
+Check `v5.3.x` branch for [OpenLayers](https://openlayers.org/) `v5.3.x` definitions.
 
+
+
+## OpenLayers v6 Progress
+
+### TODO
+- Fix Generic Types
 
 
 ## Installation
@@ -36,9 +43,6 @@ npm i -D @hanreev/types-ol
 # Yarn
 yarn add -D @hanreev/types-ol
 ```
-
-> ***Note:***
-> For OpenLayers v6 beta use version 3 of this package `@hanreev/types-ol@beta`
 
 
 

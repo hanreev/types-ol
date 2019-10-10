@@ -1,5 +1,4 @@
-import { EventsKey } from '../events';
-import Event from '../events/Event';
+import BaseEvent from '../events/Event';
 import ImageState from '../ImageState';
 import { Size } from '../size';
 
@@ -24,13 +23,11 @@ export default class ImageStyle {
     getRotation(): number;
     getScale(): number;
     getSize(): Size;
-    getSnapToPixel(): boolean;
-    listenImageChange<T>(listener: (this: T, p0: Event) => void, thisArg: T): EventsKey;
+    listenImageChange<T>(listener: (p0: BaseEvent) => void): void;
     load(): void;
     setOpacity(opacity: number): void;
     setRotateWithView(rotateWithView: boolean): void;
     setRotation(rotation: number): void;
     setScale(scale: number): void;
-    setSnapToPixel(snapToPixel: boolean): void;
-    unlistenImageChange<T>(listener: (this: T, p0: Event) => void, thisArg: T): void;
+    unlistenImageChange<T>(listener: (p0: BaseEvent) => void): void;
 }

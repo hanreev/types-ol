@@ -1,5 +1,5 @@
 import { EventsKey } from '../events';
-import Event from '../events/Event';
+import BaseEvent from '../events/Event';
 import { ObjectEvent } from '../Object';
 import { ProjectionLike } from '../proj';
 import { LoadFunction, UrlFunction } from '../Tile';
@@ -24,13 +24,14 @@ export interface Options {
     wrapX?: boolean;
     transition?: number;
     key?: string;
+    zDirection?: number;
 }
 export default class UrlTile extends TileSource {
     constructor(options: Options);
     protected tileLoadFunction: LoadFunction;
     protected tileUrlFunction: UrlFunction;
     protected urls: string[];
-    protected handleTileChange(event: Event): void;
+    protected handleTileChange(event: BaseEvent): void;
     getTileLoadFunction(): LoadFunction;
     getTileUrlFunction(): UrlFunction;
     getUrls(): string[];
@@ -38,12 +39,15 @@ export default class UrlTile extends TileSource {
     setTileUrlFunction(tileUrlFunction: UrlFunction, key?: string): void;
     setUrl(url: string): void;
     setUrls(urls: string[]): void;
-    on(type: string | string[], listener: (p0: any) => void): EventsKey | EventsKey[];
-    once(type: string | string[], listener: (p0: any) => void): EventsKey | EventsKey[];
-    un(type: string | string[], listener: (p0: any) => void): void;
-    on(type: 'change', listener: (evt: Event) => void): EventsKey;
-    once(type: 'change', listener: (evt: Event) => void): EventsKey;
-    un(type: 'change', listener: (evt: Event) => void): void;
+    on(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
+    once(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
+    un(type: string | string[], listener: (p0: any) => any): void;
+    on(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
+    once(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
+    un(type: 'change', listener: (evt: BaseEvent) => void): void;
+    on(type: 'error', listener: (evt: BaseEvent) => void): EventsKey;
+    once(type: 'error', listener: (evt: BaseEvent) => void): EventsKey;
+    un(type: 'error', listener: (evt: BaseEvent) => void): void;
     on(type: 'propertychange', listener: (evt: ObjectEvent) => void): EventsKey;
     once(type: 'propertychange', listener: (evt: ObjectEvent) => void): EventsKey;
     un(type: 'propertychange', listener: (evt: ObjectEvent) => void): void;

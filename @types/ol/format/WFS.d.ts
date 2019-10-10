@@ -1,5 +1,6 @@
 import { Extent } from '../extent';
 import Feature from '../Feature';
+import Geometry from '../geom/Geometry';
 import Bbox from './filter/Bbox';
 import ComparisonBinary from './filter/ComparisonBinary';
 import Contains from './filter/Contains';
@@ -71,9 +72,9 @@ export default class WFS extends XMLFeature {
     setFeatureType(featureType: string[] | string | undefined): void;
     writeGetFeature(options: WriteGetFeatureOptions): Node;
     writeTransaction(
-        inserts: Feature[],
-        updates: Feature[],
-        deletes: Feature[],
+        inserts: Feature<GeomType>[],
+        updates: Feature<GeomType>[],
+        deletes: Feature<GeomType>[],
         options: WriteTransactionOptions,
     ): Node;
 }

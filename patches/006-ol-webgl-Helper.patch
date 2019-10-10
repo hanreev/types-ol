@@ -1,0 +1,19 @@
+diff --git a/src/ol/webgl/Helper.js b/src/ol/webgl/Helper.js
+index 517edac2b..8792c0b45 100644
+--- a/src/ol/webgl/Helper.js
++++ b/src/ol/webgl/Helper.js
+@@ -51,10 +51,10 @@ export const DefaultUniform = {
+  * @enum {number}
+  */
+ export const AttributeType = {
+-  UNSIGNED_BYTE: UNSIGNED_BYTE,
+-  UNSIGNED_SHORT: UNSIGNED_SHORT,
+-  UNSIGNED_INT: UNSIGNED_INT,
+-  FLOAT: FLOAT
++  UNSIGNED_BYTE: 0x1401,
++  UNSIGNED_SHORT: 0x1403,
++  UNSIGNED_INT: 0x1405,
++  FLOAT: 0x1406
+ };
+ 
+ /**

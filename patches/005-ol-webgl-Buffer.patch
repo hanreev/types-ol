@@ -1,0 +1,17 @@
+diff --git a/src/ol/webgl/Buffer.js b/src/ol/webgl/Buffer.js
+index 517f9fb7e..e19998b68 100644
+--- a/src/ol/webgl/Buffer.js
++++ b/src/ol/webgl/Buffer.js
+@@ -11,9 +11,9 @@ import {assert} from '../asserts.js';
+  * @enum {number}
+  */
+ export const BufferUsage = {
+-  STATIC_DRAW: STATIC_DRAW,
+-  STREAM_DRAW: STREAM_DRAW,
+-  DYNAMIC_DRAW: DYNAMIC_DRAW
++  STATIC_DRAW: 0x88E4,
++  STREAM_DRAW: 0x88E0,
++  DYNAMIC_DRAW: 0x88E8
+ };
+ 
+ /**

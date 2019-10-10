@@ -1,0 +1,73 @@
+diff --git a/src/ol/css.js b/src/ol/css.js
+index c855fae7e..744f9b3e9 100644
+--- a/src/ol/css.js
++++ b/src/ol/css.js
+@@ -13,6 +13,7 @@
+ /**
+  * The CSS class for hidden feature.
+  *
++ * @api
+  * @const
+  * @type {string}
+  */
+@@ -22,6 +23,7 @@ export const CLASS_HIDDEN = 'ol-hidden';
+ /**
+  * The CSS class that we'll give the DOM elements to have them selectable.
+  *
++ * @api
+  * @const
+  * @type {string}
+  */
+@@ -31,6 +33,7 @@ export const CLASS_SELECTABLE = 'ol-selectable';
+ /**
+  * The CSS class that we'll give the DOM elements to have them unselectable.
+  *
++ * @api
+  * @const
+  * @type {string}
+  */
+@@ -40,6 +43,7 @@ export const CLASS_UNSELECTABLE = 'ol-unselectable';
+ /**
+  * The CSS class for unsupported feature.
+  *
++ * @api
+  * @const
+  * @type {string}
+  */
+@@ -49,6 +53,7 @@ export const CLASS_UNSUPPORTED = 'ol-unsupported';
+ /**
+  * The CSS class for controls.
+  *
++ * @api
+  * @const
+  * @type {string}
+  */
+@@ -59,6 +64,7 @@ export const CLASS_CONTROL = 'ol-control';
+  * The CSS class that we'll give the DOM elements that are collapsed, i.e.
+  * to those elements which usually can be expanded.
+  *
++ * @api
+  * @const
+  * @type {string}
+  */
+@@ -68,7 +74,10 @@ export const CLASS_COLLAPSED = 'ol-collapsed';
+ /**
+  * Get the list of font families from a font spec.  Note that this doesn't work
+  * for font families that have commas in them.
+- * @param {string} The CSS font property.
++ *
++ * @api
++ * @function
++ * @param {string} font The CSS font property.
+  * @return {FontParameters} The font families (or null if the input spec is invalid).
+  */
+ export const getFontParameters = (function() {
+@@ -80,7 +89,7 @@ export const getFontParameters = (function() {
+    * @type {Object<string, FontParameters>}
+    */
+   const cache = {};
+-  return function(font) {
++  return function(/** @type {string} */ font) {
+     if (!style) {
+       style = document.createElement('div').style;
+     }

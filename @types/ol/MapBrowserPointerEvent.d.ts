@@ -1,6 +1,5 @@
 import MapBrowserEvent from './MapBrowserEvent';
 import PluggableMap, { FrameState } from './PluggableMap';
-import PointerEvent from './pointer/PointerEvent';
 
 export default class MapBrowserPointerEvent extends MapBrowserEvent {
     constructor(

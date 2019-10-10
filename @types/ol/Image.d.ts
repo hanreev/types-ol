@@ -15,3 +15,8 @@ export default class ImageWrapper extends ImageBase {
     protected state: ImageState;
     setImage(image: HTMLCanvasElement | HTMLImageElement | HTMLVideoElement): void;
 }
+export function listenImage(
+    image: HTMLCanvasElement | HTMLImageElement | HTMLVideoElement,
+    loadHandler: () => any,
+    errorHandler: () => any,
+): () => void;
