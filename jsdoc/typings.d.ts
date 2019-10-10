@@ -85,8 +85,9 @@ interface Doclet {
     exports?: ModuleExports;
     fires?: string[];
     force_include_members?: string[];
-    inheritDoc?: boolean;
+    inheritdoc?: boolean;
     inherited?: boolean;
+    inherits?: string;
     isEnum?: boolean;
     memberof?: string;
     meta?: DocletMeta;
@@ -103,7 +104,7 @@ interface Doclet {
     undocumented?: boolean;
     yields?: DocletReturns[];
     _hideConstructor?: boolean;
-    inheritdoc?: boolean;
+    virtual?: boolean;
     genericTypes?: DocletGenericType[];
     setMemberof(parent: string): void;
 }

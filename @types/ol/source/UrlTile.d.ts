@@ -2,7 +2,8 @@ import { EventsKey } from '../events';
 import BaseEvent from '../events/Event';
 import { ObjectEvent } from '../Object';
 import { ProjectionLike } from '../proj';
-import { LoadFunction, UrlFunction } from '../Tile';
+import Projection from '../proj/Projection';
+import Tile, { LoadFunction, UrlFunction } from '../Tile';
 import TileGrid from '../tilegrid/TileGrid';
 import { AttributionLike } from './Source';
 import State from './State';
@@ -32,6 +33,7 @@ export default class UrlTile extends TileSource {
     protected tileUrlFunction: UrlFunction;
     protected urls: string[];
     protected handleTileChange(event: BaseEvent): void;
+    getTile(z: number, x: number, y: number, pixelRatio: number, projection: Projection): Tile;
     getTileLoadFunction(): LoadFunction;
     getTileUrlFunction(): UrlFunction;
     getUrls(): string[];
@@ -39,6 +41,7 @@ export default class UrlTile extends TileSource {
     setTileUrlFunction(tileUrlFunction: UrlFunction, key?: string): void;
     setUrl(url: string): void;
     setUrls(urls: string[]): void;
+    useTile(z: number, x: number, y: number, projection: Projection): void;
     on(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
     once(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
     un(type: string | string[], listener: (p0: any) => any): void;

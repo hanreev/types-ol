@@ -22,9 +22,9 @@ export default class Collection<T> extends BaseObject {
     on(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
     once(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
     un(type: string | string[], listener: (p0: any) => any): void;
-    on(type: 'add', listener: (evt: CollectionEvent) => void): EventsKey;
-    once(type: 'add', listener: (evt: CollectionEvent) => void): EventsKey;
-    un(type: 'add', listener: (evt: CollectionEvent) => void): void;
+    on(type: 'add', listener: (evt: CollectionEvent<T>) => void): EventsKey;
+    once(type: 'add', listener: (evt: CollectionEvent<T>) => void): EventsKey;
+    un(type: 'add', listener: (evt: CollectionEvent<T>) => void): void;
     on(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
     once(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
     un(type: 'change', listener: (evt: BaseEvent) => void): void;
@@ -37,12 +37,12 @@ export default class Collection<T> extends BaseObject {
     on(type: 'propertychange', listener: (evt: ObjectEvent) => void): EventsKey;
     once(type: 'propertychange', listener: (evt: ObjectEvent) => void): EventsKey;
     un(type: 'propertychange', listener: (evt: ObjectEvent) => void): void;
-    on(type: 'remove', listener: (evt: CollectionEvent) => void): EventsKey;
-    once(type: 'remove', listener: (evt: CollectionEvent) => void): EventsKey;
-    un(type: 'remove', listener: (evt: CollectionEvent) => void): void;
+    on(type: 'remove', listener: (evt: CollectionEvent<T>) => void): EventsKey;
+    once(type: 'remove', listener: (evt: CollectionEvent<T>) => void): EventsKey;
+    un(type: 'remove', listener: (evt: CollectionEvent<T>) => void): void;
 }
-export class CollectionEvent extends BaseEvent {
+export class CollectionEvent<T> extends BaseEvent {
     constructor();
-    element: any;
+    element: T;
     index: number;
 }

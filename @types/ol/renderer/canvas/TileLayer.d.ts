@@ -1,17 +1,21 @@
+import { Coordinate } from '../../coordinate';
 import { EventsKey } from '../../events';
 import BaseEvent from '../../events/Event';
 import { Extent } from '../../extent';
+import { FeatureLike } from '../../Feature';
 import ImageTile from '../../ImageTile';
+import Layer from '../../layer/Layer';
 import TileLayer from '../../layer/Tile';
 import VectorTileLayer from '../../layer/VectorTile';
 import { FrameState } from '../../PluggableMap';
 import Projection from '../../proj/Projection';
+import Source from '../../source/Source';
 import TileSource from '../../source/Tile';
 import Tile from '../../Tile';
 import TileGrid from '../../tilegrid/TileGrid';
 import CanvasLayerRenderer from './Layer';
 
-export default class CanvasTileLayerRenderer extends CanvasLayerRenderer<LayerType> {
+export default class CanvasTileLayerRenderer extends CanvasLayerRenderer<Layer<Source>> {
     constructor(tileLayer: TileLayer | VectorTileLayer);
     protected renderedRevision: number;
     protected renderedTiles: Tile[];
@@ -46,9 +50,18 @@ export default class CanvasTileLayerRenderer extends CanvasLayerRenderer<LayerTy
         transition: boolean,
         opacity: number,
     ): void;
+    forEachFeatureAtCoordinate<T>(
+        coordinate: Coordinate,
+        frameState: FrameState,
+        hitTolerance: number,
+        callback: (p0: FeatureLike, p1: Layer<Source>) => T,
+        declutteredFeatures: FeatureLike[],
+    ): T | void;
     getLayer(): TileLayer | VectorTileLayer;
-    getLayer(): LayerType;
     getTile(z: number, x: number, y: number, frameState: FrameState): Tile;
+    handleFontsChanged(): void;
+    prepareFrame(frameState: FrameState): boolean;
+    renderFrame(frameState: FrameState, target: HTMLElement): HTMLElement;
     on(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
     once(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
     un(type: string | string[], listener: (p0: any) => any): void;

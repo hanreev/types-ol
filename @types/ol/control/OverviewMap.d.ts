@@ -7,6 +7,7 @@ import MapEvent from '../MapEvent';
 import { ObjectEvent } from '../Object';
 import PluggableMap from '../PluggableMap';
 import RenderEvent from '../render/Event';
+import MapRenderer from '../renderer/Map';
 import Source from '../source/Source';
 import View from '../View';
 import Control from './Control';

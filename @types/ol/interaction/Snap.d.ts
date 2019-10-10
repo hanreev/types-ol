@@ -28,8 +28,8 @@ export interface SegmentData {
 }
 export default class Snap extends PointerInteraction {
     constructor(opt_options?: Options);
-    addFeature(feature: Feature<GeomType>, opt_listen?: boolean): void;
-    removeFeature(feature: Feature<GeomType>, opt_unlisten?: boolean): void;
+    addFeature(feature: Feature<Geometry>, opt_listen?: boolean): void;
+    removeFeature(feature: Feature<Geometry>, opt_unlisten?: boolean): void;
     snapTo(pixel: Pixel, pixelCoordinate: Coordinate, map: PluggableMap): Result;
     on(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
     once(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];

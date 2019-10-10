@@ -1,0 +1,29 @@
+diff --git a/src/ol/Collection.js b/src/ol/Collection.js
+index d84f62311..42d881d16 100644
+--- a/src/ol/Collection.js
++++ b/src/ol/Collection.js
+@@ -20,11 +20,14 @@ const Property = {
+  * @classdesc
+  * Events emitted by {@link module:ol/Collection~Collection} instances are instances of this
+  * type.
++ *
++ * @template T
++ * @api
+  */
+ export class CollectionEvent extends Event {
+ 
+   /**
+-   * @param {CollectionEventType} type Type.
++   * @param {import("./CollectionEventType.js").default} type Type.
+    * @param {*=} opt_element Element.
+    * @param {number} opt_index The index of the added or removed element.
+    */
+@@ -33,7 +36,7 @@ export class CollectionEvent extends Event {
+ 
+     /**
+      * The element that is added to or removed from the collection.
+-     * @type {*}
++     * @type {T}
+      * @api
+      */
+     this.element = opt_element;

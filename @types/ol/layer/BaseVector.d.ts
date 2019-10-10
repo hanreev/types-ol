@@ -7,6 +7,7 @@ import { ObjectEvent } from '../Object';
 import PluggableMap from '../PluggableMap';
 import { OrderFunction } from '../render';
 import RenderEvent from '../render/Event';
+import Source from '../source/Source';
 import VectorSource from '../source/Vector';
 import VectorTile from '../source/VectorTile';
 import Style, { StyleFunction, StyleLike } from '../style/Style';
@@ -29,13 +30,13 @@ export interface Options {
     updateWhileAnimating?: boolean;
     updateWhileInteracting?: boolean;
 }
-export default class BaseVectorLayer<VectorSourceType extends VectorSource<GeomType> | VectorTile> extends Layer<
-    SourceType
-> {
+export default class BaseVectorLayer<
+    VectorSourceType extends VectorSource<GeomType> | VectorTile = VectorSource<GeomType> | VectorTile
+> extends Layer<Source> {
     constructor(opt_options?: Options);
     getDeclutter(): boolean;
     getRenderBuffer(): number;
-    getRenderOrder(): (p0: Feature<GeomType>, p1: Feature<GeomType>) => number;
+    getRenderOrder(): (p0: Feature<Geometry>, p1: Feature<Geometry>) => number;
     getStyle(): StyleLike;
     getStyleFunction(): StyleFunction;
     getUpdateWhileAnimating(): boolean;

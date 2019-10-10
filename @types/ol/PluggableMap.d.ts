@@ -83,12 +83,12 @@ export default class PluggableMap extends BaseObject {
     createRenderer(): MapRenderer;
     forEachFeatureAtPixel<S, T>(
         pixel: Pixel,
-        callback: (this: S, p0: FeatureLike, p1: Layer<SourceType>) => T,
+        callback: (this: S, p0: FeatureLike, p1: Layer<Source>) => T,
         opt_options?: AtPixelOptions,
     ): T;
     forEachLayerAtPixel<S, T>(
         pixel: Pixel,
-        callback: (this: S, p0: Layer<SourceType>, p1: Uint8ClampedArray | Uint8Array) => T,
+        callback: (this: S, p0: Layer<Source>, p1: Uint8ClampedArray | Uint8Array) => T,
         opt_options?: AtPixelOptions,
     ): T;
     getControls(): Collection<Control>;

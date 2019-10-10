@@ -3,11 +3,13 @@ import BaseEvent from '../events/Event';
 import { ObjectEvent } from '../Object';
 import RenderEvent from '../render/Event';
 import LayerRenderer from '../renderer/Layer';
+import Source from '../source/Source';
 import BaseTileLayer, { Options } from './BaseTile';
+import Layer from './Layer';
 
 export default class TileLayer extends BaseTileLayer {
     constructor(opt_options?: Options);
-    protected createRenderer(): LayerRenderer<LayerType>;
+    protected createRenderer(): LayerRenderer<Layer<Source>>;
     on(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
     once(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
     un(type: string | string[], listener: (p0: any) => any): void;

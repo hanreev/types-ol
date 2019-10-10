@@ -71,8 +71,8 @@ export default class Draw extends PointerInteraction {
     un(type: 'propertychange', listener: (evt: ObjectEvent) => void): void;
 }
 export class DrawEvent extends BaseEvent {
-    constructor(type: DrawEventType, feature: Feature<GeomType>);
-    feature: Feature<GeomType>;
+    constructor(type: DrawEventType, feature: Feature<Geometry>);
+    feature: Feature<Geometry>;
 }
 export function createBox(): GeometryFunction;
 export function createRegularPolygon(opt_sides?: number, opt_angle?: number): GeometryFunction;

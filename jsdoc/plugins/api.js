@@ -39,6 +39,7 @@ const force_include_members = {
   'module:ol/interaction/DragAndDrop': ['DragAndDropEvent', 'DragAndDropEventType'],
   'module:ol/interaction/DragBox': ['DragBoxEvent', 'DragBoxEventType'],
   'module:ol/interaction/Draw': ['DrawEvent', 'DrawEventType'],
+  'module:ol/interaction/Extent': ['ExtentEvent'],
   'module:ol/interaction/Select': ['SelectEvent', 'SelectEventType'],
   'module:ol/proj/epsg3857': [],
   'module:ol/proj/epsg4326': [],

@@ -5,6 +5,7 @@ import { ObjectEvent } from '../Object';
 import PluggableMap from '../PluggableMap';
 import RenderEvent from '../render/Event';
 import ImageSource from '../source/Image';
+import Source from '../source/Source';
 import Layer from './Layer';
 
 export interface Options {
@@ -18,7 +19,7 @@ export interface Options {
     map?: PluggableMap;
     source?: ImageSource;
 }
-export default class BaseImageLayer extends Layer<SourceType> {
+export default class BaseImageLayer extends Layer<Source> {
     constructor(opt_options?: Options);
     on(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
     once(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];

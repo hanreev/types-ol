@@ -30,7 +30,7 @@ export enum SelectEventType {
 }
 export default class Select extends Interaction {
     constructor(opt_options?: Options);
-    getFeatures(): Collection<Feature<GeomType>>;
+    getFeatures(): Collection<Feature<Geometry>>;
     getHitTolerance(): number;
     getLayer(feature: FeatureLike): VectorLayer;
     setHitTolerance(hitTolerance: number): void;
@@ -56,11 +56,11 @@ export default class Select extends Interaction {
 export class SelectEvent extends BaseEvent {
     constructor(
         type: SelectEventType,
-        selected: Feature<GeomType>[],
-        deselected: Feature<GeomType>[],
+        selected: Feature<Geometry>[],
+        deselected: Feature<Geometry>[],
         mapBrowserEvent: MapBrowserEvent,
     );
-    deselected: Feature<GeomType>[];
+    deselected: Feature<Geometry>[];
     mapBrowserEvent: MapBrowserEvent;
-    selected: Feature<GeomType>[];
+    selected: Feature<Geometry>[];
 }

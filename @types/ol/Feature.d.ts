@@ -7,9 +7,9 @@ import Style, { StyleFunction, StyleLike } from './style/Style';
 
 export type FeatureClass = Feature<Geometry> | RenderFeature;
 export type FeatureLike = Feature<Geometry> | RenderFeature;
-export default class Feature<GeomType extends Geometry> extends BaseObject {
+export default class Feature<GeomType extends Geometry = Geometry> extends BaseObject {
     constructor(opt_geometryOrProperties?: GeomType | { [key: string]: any });
-    clone(): Feature<GeomType>;
+    clone(): Feature<Geometry>;
     getGeometry(): GeomType;
     getGeometryName(): string;
     getId(): number | string;

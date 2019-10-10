@@ -6,7 +6,7 @@ import { ObjectEvent } from '../Object';
 import { ProjectionLike } from '../proj';
 import Projection from '../proj/Projection';
 import { Size } from '../size';
-import { LoadFunction, UrlFunction } from '../Tile';
+import Tile, { LoadFunction, UrlFunction } from '../Tile';
 import TileGrid from '../tilegrid/TileGrid';
 import VectorRenderTile from '../VectorRenderTile';
 import VectorTile_1 from '../VectorTile';
@@ -44,6 +44,7 @@ export default class VectorTile extends UrlTile {
     clear(): void;
     getOverlaps(): boolean;
     getSourceTiles(pixelRatio: number, projection: Projection, tile: VectorRenderTile): VectorTile_1[];
+    getTile(z: number, x: number, y: number, pixelRatio: number, projection: Projection): Tile;
     removeSourceTiles(tile: VectorRenderTile): void;
     on(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
     once(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];

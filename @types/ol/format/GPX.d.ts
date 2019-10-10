@@ -3,6 +3,7 @@ import Feature from '../Feature';
 import Geometry from '../geom/Geometry';
 import GeometryLayout from '../geom/GeometryLayout';
 import LineString from '../geom/LineString';
+import { ReadOptions } from './Feature';
 import XMLFeature from './XMLFeature';
 
 export interface LayoutOptions {
@@ -14,4 +15,5 @@ export interface Options {
 }
 export default class GPX extends XMLFeature {
     constructor(opt_options?: Options);
+    protected readFeaturesFromNode(node: Node, opt_options?: ReadOptions): Feature<Geometry>[];
 }

@@ -1,9 +1,11 @@
 import { EventsKey } from '../events';
 import BaseEvent from '../events/Event';
 import { Extent } from '../extent';
+import ImageBase from '../ImageBase';
 import Layer, { State } from '../layer/Layer';
 import { ObjectEvent } from '../Object';
 import { FrameState } from '../PluggableMap';
+import Projection from '../proj/Projection';
 import ImageSource, { ImageSourceEvent } from './Image';
 import Source from './Source';
 
@@ -17,6 +19,12 @@ export interface Options {
 }
 export default class RasterSource extends ImageSource {
     constructor(options: Options);
+    protected getImageInternal(
+        extent: Extent,
+        resolution: number,
+        pixelRatio: number,
+        projection: Projection,
+    ): ImageBase;
     setOperation(operation: Operation, opt_lib?: any): void;
     on(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
     once(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];

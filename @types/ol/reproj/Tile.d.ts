@@ -19,4 +19,5 @@ export default class ReprojTile extends Tile {
         opt_renderEdges?: boolean,
     );
     getImage(): HTMLCanvasElement;
+    load(): void;
 }

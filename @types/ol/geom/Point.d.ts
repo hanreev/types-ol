@@ -1,12 +1,23 @@
 import { Coordinate } from '../coordinate';
 import { EventsKey } from '../events';
 import BaseEvent from '../events/Event';
+import { Extent } from '../extent';
 import { ObjectEvent } from '../Object';
+import { TransformFunction } from '../proj';
+import Geometry from './Geometry';
 import GeometryLayout from './GeometryLayout';
+import GeometryType from './GeometryType';
 import SimpleGeometry from './SimpleGeometry';
 
 export default class Point extends SimpleGeometry {
     constructor(coordinates: Coordinate, opt_layout?: GeometryLayout);
+    clone(): Geometry;
+    closestPointXY(x: number, y: number, closestPoint: Coordinate, minSquaredDistance: number): number;
+    getCoordinates(): any[];
+    getType(): GeometryType;
+    intersectsExtent(extent: Extent): boolean;
+    setCoordinates(coordinates: any[], opt_layout?: GeometryLayout): void;
+    simplifyTransformed(squaredTolerance: number, opt_transform?: TransformFunction): Geometry;
     on(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
     once(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
     un(type: string | string[], listener: (p0: any) => any): void;

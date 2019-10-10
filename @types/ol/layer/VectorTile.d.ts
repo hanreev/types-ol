@@ -1,14 +1,18 @@
 import { EventsKey } from '../events';
 import BaseEvent from '../events/Event';
 import { Extent } from '../extent';
+import Geometry from '../geom/Geometry';
 import { ObjectEvent } from '../Object';
 import PluggableMap from '../PluggableMap';
 import { OrderFunction } from '../render';
 import RenderEvent from '../render/Event';
 import LayerRenderer from '../renderer/Layer';
+import Source from '../source/Source';
+import VectorSource from '../source/Vector';
 import VectorTile from '../source/VectorTile';
 import { StyleLike } from '../style/Style';
 import BaseVectorLayer from './BaseVector';
+import Layer from './Layer';
 import VectorTileRenderType from './VectorTileRenderType';
 
 export interface Options {
@@ -31,9 +35,9 @@ export interface Options {
     preload?: number;
     useInterimTilesOnError?: boolean;
 }
-export default class VectorTileLayer extends BaseVectorLayer<VectorSourceType> {
+export default class VectorTileLayer extends BaseVectorLayer<VectorSource<Geometry> | VectorTile> {
     constructor(opt_options?: Options);
-    protected createRenderer(): LayerRenderer<LayerType>;
+    protected createRenderer(): LayerRenderer<Layer<Source>>;
     getPreload(): number;
     getRenderMode(): VectorTileRenderType;
     getUseInterimTilesOnError(): boolean;

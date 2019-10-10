@@ -1,5 +1,6 @@
 import Layer from './layer/Layer';
 import { OrderFunction } from './render';
+import Source from './source/Source';
 import Tile from './Tile';
 import { TileCoord } from './tilecoord';
 import TileGrid from './tilegrid/TileGrid';
@@ -25,8 +26,9 @@ export default class VectorRenderTile extends Tile {
         getSourceTiles: (p0: VectorRenderTile) => VectorTile[],
         removeSourceTiles: (p0: VectorRenderTile) => void,
     );
-    getContext(layer: Layer<SourceType>): CanvasRenderingContext2D;
-    getImage(layer: Layer<SourceType>): HTMLCanvasElement;
-    getReplayState(layer: Layer<SourceType>): ReplayState;
-    hasContext(layer: Layer<SourceType>): boolean;
+    getContext(layer: Layer<Source>): CanvasRenderingContext2D;
+    getImage(layer: Layer<Source>): HTMLCanvasElement;
+    getReplayState(layer: Layer<Source>): ReplayState;
+    hasContext(layer: Layer<Source>): boolean;
+    load(): void;
 }

@@ -48,7 +48,7 @@ export default class Translate extends PointerInteraction {
 }
 export class TranslateEvent extends BaseEvent {
     constructor();
-    features: Collection<Feature<GeomType>>;
+    features: Collection<Feature<Geometry>>;
     mapBrowserEvent: MapBrowserEvent;
     coordinate: Coordinate;
     startCoordinate: Coordinate;

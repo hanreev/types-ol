@@ -1,6 +1,7 @@
 import { Coordinate } from './coordinate';
 import { Extent } from './extent';
 import Projection from './proj/Projection';
+import Units from './proj/Units';
 
 export type ProjectionLike = Projection | string;
 export type TransformFunction = (p0: number[], p1?: number[], p2?: number) => number[];

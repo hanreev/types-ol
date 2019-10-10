@@ -1,0 +1,128 @@
+diff --git a/src/ol/geom/Circle.js b/src/ol/geom/Circle.js
+index 25010f9ed..c5feac88c 100644
+--- a/src/ol/geom/Circle.js
++++ b/src/ol/geom/Circle.js
+@@ -237,6 +237,11 @@ class Circle extends SimpleGeometry {
+     this.changed();
+   }
+ 
++  /**
++   * @inheritDoc
++   */
++  simplifyTransformed(squaredTolerance, opt_transform) {}
++
+ }
+ 
+ 
+diff --git a/src/ol/geom/LineString.js b/src/ol/geom/LineString.js
+index e8928c7d2..a63c1eb6f 100644
+--- a/src/ol/geom/LineString.js
++++ b/src/ol/geom/LineString.js
+@@ -237,6 +237,11 @@ class LineString extends SimpleGeometry {
+       this.flatCoordinates, 0, coordinates, this.stride);
+     this.changed();
+   }
++
++  /**
++   * @inheritDoc
++   */
++  simplifyTransformed(squaredTolerance, opt_transform) {}
+ }
+ 
+ 
+diff --git a/src/ol/geom/LinearRing.js b/src/ol/geom/LinearRing.js
+index 40f99071a..680baf2f4 100644
+--- a/src/ol/geom/LinearRing.js
++++ b/src/ol/geom/LinearRing.js
+@@ -138,6 +138,11 @@ class LinearRing extends SimpleGeometry {
+       this.flatCoordinates, 0, coordinates, this.stride);
+     this.changed();
+   }
++
++  /**
++   * @inheritDoc
++   */
++  simplifyTransformed(squaredTolerance, opt_transform) {}
+ }
+ 
+ 
+diff --git a/src/ol/geom/MultiLineString.js b/src/ol/geom/MultiLineString.js
+index 449338bf1..fc61a6776 100644
+--- a/src/ol/geom/MultiLineString.js
++++ b/src/ol/geom/MultiLineString.js
+@@ -269,6 +269,11 @@ class MultiLineString extends SimpleGeometry {
+     this.flatCoordinates.length = ends.length === 0 ? 0 : ends[ends.length - 1];
+     this.changed();
+   }
++
++  /**
++   * @inheritDoc
++   */
++  simplifyTransformed(squaredTolerance, opt_transform) {}
+ }
+ 
+ 
+diff --git a/src/ol/geom/MultiPoint.js b/src/ol/geom/MultiPoint.js
+index e433e51bf..ae8625b33 100644
+--- a/src/ol/geom/MultiPoint.js
++++ b/src/ol/geom/MultiPoint.js
+@@ -165,6 +165,11 @@ class MultiPoint extends SimpleGeometry {
+       this.flatCoordinates, 0, coordinates, this.stride);
+     this.changed();
+   }
++
++  /**
++   * @inheritDoc
++   */
++  simplifyTransformed(squaredTolerance, opt_transform) {}
+ }
+ 
+ 
+diff --git a/src/ol/geom/MultiPolygon.js b/src/ol/geom/MultiPolygon.js
+index ca9eb29b7..56b0c1d1d 100644
+--- a/src/ol/geom/MultiPolygon.js
++++ b/src/ol/geom/MultiPolygon.js
+@@ -371,6 +371,11 @@ class MultiPolygon extends SimpleGeometry {
+     }
+     this.changed();
+   }
++
++  /**
++   * @inheritDoc
++   */
++  simplifyTransformed(squaredTolerance, opt_transform) {}
+ }
+ 
+ 
+diff --git a/src/ol/geom/Point.js b/src/ol/geom/Point.js
+index 92b27d6a0..831e19f8c 100644
+--- a/src/ol/geom/Point.js
++++ b/src/ol/geom/Point.js
+@@ -99,6 +99,11 @@ class Point extends SimpleGeometry {
+       this.flatCoordinates, 0, coordinates, this.stride);
+     this.changed();
+   }
++
++  /**
++   * @inheritDoc
++   */
++  simplifyTransformed(squaredTolerance, opt_transform) {}
+ }
+ 
+ 
+diff --git a/src/ol/geom/Polygon.js b/src/ol/geom/Polygon.js
+index 24d0f17d8..f27c37e5d 100644
+--- a/src/ol/geom/Polygon.js
++++ b/src/ol/geom/Polygon.js
+@@ -327,6 +327,11 @@ class Polygon extends SimpleGeometry {
+     this.flatCoordinates.length = ends.length === 0 ? 0 : ends[ends.length - 1];
+     this.changed();
+   }
++
++  /**
++   * @inheritDoc
++   */
++  simplifyTransformed(squaredTolerance, opt_transform) {}
+ }
+ 
+ 

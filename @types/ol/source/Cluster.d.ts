@@ -14,17 +14,17 @@ export interface Options {
     source: VectorSource<Geometry>;
     wrapX?: boolean;
 }
-export default class Cluster extends VectorSource<GeomType> {
+export default class Cluster extends VectorSource<Geometry> {
     constructor(options: Options);
     protected distance: number;
-    protected features: Feature<GeomType>[];
-    protected geometryFunction: (feature: Feature<GeomType>) => Point;
+    protected features: Feature<Geometry>[];
+    protected geometryFunction: (feature: Feature<Geometry>) => Point;
     protected resolution: number;
-    protected source: VectorSource<GeomType>;
+    protected source: VectorSource<Geometry>;
     protected cluster(): void;
-    protected createCluster(features: Feature<GeomType>[]): Feature<GeomType>;
+    protected createCluster(features: Feature<Geometry>[]): Feature<Geometry>;
     getDistance(): number;
-    getSource(): VectorSource<GeomType>;
+    getSource(): VectorSource<Geometry>;
     setDistance(distance: number): void;
     on(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
     once(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];

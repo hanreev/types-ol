@@ -2,6 +2,7 @@ import { EventsKey } from '../events';
 import BaseEvent from '../events/Event';
 import { Extent } from '../extent';
 import BaseObject, { ObjectEvent } from '../Object';
+import Source from '../source/Source';
 import State_1 from '../source/State';
 import Layer, { State } from './Layer';
 
@@ -20,7 +21,7 @@ export default class BaseLayer extends BaseObject {
     constructor(options: Options);
     getClassName(): string;
     getExtent(): Extent;
-    getLayersArray(opt_array?: Layer<SourceType>[]): Layer<SourceType>[];
+    getLayersArray(opt_array?: Layer<Source>[]): Layer<Source>[];
     getLayerState(opt_managed?: boolean): State;
     getLayerStatesArray(opt_states?: State[]): State[];
     getMaxResolution(): number;

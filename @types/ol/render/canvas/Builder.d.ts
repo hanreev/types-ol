@@ -1,7 +1,6 @@
 import { Extent } from '../../extent';
 import { FeatureLike } from '../../Feature';
 import Geometry from '../../geom/Geometry';
-import SimpleGeometry from '../../geom/SimpleGeometry';
 import { FillState, FillStrokeState, StrokeState, TextState } from '../canvas';
 import RenderFeature from '../Feature';
 import VectorContext from '../VectorContext';
@@ -40,7 +39,6 @@ export default class CanvasBuilder extends VectorContext {
     createFill(state: FillStrokeState): any[];
     createStroke(state: FillStrokeState): any[];
     drawCustom(): void;
-    drawCustom(geometry: SimpleGeometry, feature: FeatureLike, renderer: () => void): void;
     drawCustomCoordinates_(
         flatCoordinates: number[],
         offset: number,

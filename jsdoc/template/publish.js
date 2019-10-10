@@ -88,14 +88,15 @@ const PROPERTY_TYPE_PATCHES = {
 /** @type {Object<string, string[]>} */
 const IMPORT_PATCHES = {
   //  'module:ol/control': ['module:ol/control/util~DefaultsOptions'],
-  //  'module:ol/geom/LinearRing': ['module:ol/geom/GeometryLayout~GeometryLayout'],
-  //  'module:ol/geom/LineString': ['module:ol/geom/GeometryLayout~GeometryLayout'],
-  //  'module:ol/geom/MultiLineString': ['module:ol/geom/GeometryLayout~GeometryLayout'],
-  //  'module:ol/geom/MultiPolygon': ['module:ol/geom/GeometryLayout~GeometryLayout'],
-  //  'module:ol/geom/Polygon': ['module:ol/geom/GeometryLayout~GeometryLayout'],
-  //  'module:ol/proj': ['module:ol/proj/Units~Units'],
+  'module:ol/geom/LinearRing': ['module:ol/geom/GeometryLayout~GeometryLayout'],
+  'module:ol/geom/LineString': ['module:ol/geom/GeometryLayout~GeometryLayout'],
+  'module:ol/geom/MultiLineString': ['module:ol/geom/GeometryLayout~GeometryLayout'],
+  'module:ol/geom/MultiPolygon': ['module:ol/geom/GeometryLayout~GeometryLayout'],
+  'module:ol/geom/Polygon': ['module:ol/geom/GeometryLayout~GeometryLayout'],
+  'module:ol/proj': ['module:ol/proj/Units~Units'],
   //  'module:ol/source/Cluster': ['module:ol/geom/Point~Point'],
-  //  'module:ol/tilegrid': ['module:ol/extent/Corner~Corner'],
+  'module:ol/tilegrid': ['module:ol/extent/Corner~Corner'],
+  'module:ol/format/MVT': ['module:ol/format/Feature~WriteOptions'],
 };
 
 /** @type {Object<string, string[]>} */
@@ -589,7 +590,9 @@ const PROCESSORS = {
     const children = [];
     let name = doclet.name;
 
+    GTTypeOnly = false;
     name += getGenericType(doclet.longname, _module, true, true);
+    GTTypeOnly = true;
 
     if (doclet.augments && doclet.augments.length) {
       const augment = doclet.augments[0];
@@ -615,7 +618,8 @@ const PROCESSORS = {
         // Remove non alphanumeric from member name
         child.name = child.name.replace(/\W/g, '');
         const processorName = child.kind == 'function' ? 'method' : child.kind == 'constant' ? 'member' : child.kind;
-        children.push(PROCESSORS[processorName](child, _module));
+        if (processorName == 'method') children.push(PROCESSORS.method(child, _module, doclet.virtual));
+        else children.push(PROCESSORS[processorName](child, _module));
       });
 
     /**
@@ -690,7 +694,8 @@ const PROCESSORS = {
         });
     }
 
-    const decl = `class ${name} {\n${children.join('\n')}\n}`;
+    const prefix = doclet.virtual ? 'abstract ' : '';
+    const decl = `${prefix}class ${name} {\n${children.join('\n')}\n}`;
     return definition(doclet, decl, _module);
   },
 
@@ -712,23 +717,17 @@ const PROCESSORS = {
    * @param {boolean} lookupOverrides
    * @returns {string}
    */
-  method(doclet, _module, lookupOverrides = true) {
-    const prefix = doclet.scope == 'instance' && doclet.access ? `${doclet.access} ` : '';
+  method(doclet, _module, abstractClass = false) {
+    let prefix = doclet.scope == 'instance' && doclet.access ? `${doclet.access} ` : '';
     let name = doclet.name;
+
+    if (abstractClass && doclet.virtual) prefix += 'abstract ';
 
     name += getGenericType(doclet.longname, _module);
 
     const params = getParams(doclet, _module);
     const returnType = getReturnType(doclet, _module);
     let decl = prefix + `${name}(${params}): ${returnType};`;
-
-    if (lookupOverrides && doclet.overrides) {
-      const superDoclet = find({ longname: doclet.overrides })[0];
-      if (superDoclet) {
-        const superDecl = PROCESSORS.method(superDoclet, _module, false);
-        if (superDecl != decl) decl += '\n' + superDecl;
-      }
-    }
 
     return decl;
   },
@@ -1021,7 +1020,7 @@ function getGenericType(key, _module, includeBracket = true, includeType = false
       if ((includeType || GTTypeOnly) && gType.type) type = getType(/** @type {Doclet} */ (gType), _module);
       if (type) {
         if (GTTypeOnly) return type;
-        if (includeType) return `${gType.name} extends ${type}`;
+        if (includeType) return `${gType.name} extends ${type} = ${type}`;
       }
 
       return gType.name;
@@ -1040,6 +1039,15 @@ exports.publish = taffyData => {
   data.sort('longname, version, since');
 
   const members = helper.getMembers(data);
+
+  data({
+    inherited: true,
+  })
+    .get()
+    .forEach((/** @type {Doclet} */ doclet) => {
+      const ancestor = data({ longname: doclet.overrides }).first();
+      if (ancestor && ancestor.virtual) doclet.inherited = false;
+    });
 
   /**
    * Patching types

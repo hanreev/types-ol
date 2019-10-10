@@ -2,8 +2,10 @@ import { EventsKey } from '../events';
 import BaseEvent from '../events/Event';
 import { Extent } from '../extent';
 import { LoadFunction } from '../Image';
+import ImageBase from '../ImageBase';
 import { ObjectEvent } from '../Object';
 import { ProjectionLike } from '../proj';
+import Projection from '../proj/Projection';
 import { Size } from '../size';
 import ImageSource, { ImageSourceEvent } from './Image';
 import { AttributionLike } from './Source';
@@ -19,6 +21,12 @@ export interface Options {
 }
 export default class Static extends ImageSource {
     constructor(options: Options);
+    protected getImageInternal(
+        extent: Extent,
+        resolution: number,
+        pixelRatio: number,
+        projection: Projection,
+    ): ImageBase;
     getImageExtent(): Extent;
     getUrl(): string;
     on(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];

@@ -3,7 +3,10 @@ import { EventsKey } from '../events';
 import BaseEvent from '../events/Event';
 import { Extent } from '../extent';
 import { ObjectEvent } from '../Object';
+import Source from '../source/Source';
+import State_1 from '../source/State';
 import BaseLayer from './Base';
+import Layer, { State } from './Layer';
 
 export interface Options {
     opacity?: number;
@@ -19,6 +22,9 @@ export interface Options {
 export default class LayerGroup extends BaseLayer {
     constructor(opt_options?: Options);
     getLayers(): Collection<BaseLayer>;
+    getLayersArray(opt_array?: Layer<Source>[]): Layer<Source>[];
+    getLayerStatesArray(opt_states?: State[]): State[];
+    getSourceState(): State_1;
     setLayers(layers: Collection<BaseLayer>): void;
     on(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
     once(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];

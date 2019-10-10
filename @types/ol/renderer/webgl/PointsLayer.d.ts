@@ -1,9 +1,12 @@
+import { Coordinate } from '../../coordinate';
 import { EventsKey } from '../../events';
 import BaseEvent from '../../events/Event';
-import Feature from '../../Feature';
+import Feature, { FeatureLike } from '../../Feature';
 import Geometry from '../../geom/Geometry';
 import Layer from '../../layer/Layer';
+import { Pixel } from '../../pixel';
 import { FrameState } from '../../PluggableMap';
+import Source from '../../source/Source';
 import { UniformValue } from '../../webgl/Helper';
 import WebGLLayerRenderer, { PostProcessesOptions } from './Layer';
 
@@ -20,8 +23,19 @@ export interface Options {
     uniforms?: { [key: string]: UniformValue };
     postProcesses?: PostProcessesOptions[];
 }
-export default class WebGLPointsLayerRenderer extends WebGLLayerRenderer<LayerType> {
-    constructor(layer: Layer<SourceType>, options: Options);
+export default class WebGLPointsLayerRenderer extends WebGLLayerRenderer<Layer<Source>> {
+    constructor(layer: Layer<Source>, options: Options);
+    forEachFeatureAtCoordinate<T>(
+        coordinate: Coordinate,
+        frameState: FrameState,
+        hitTolerance: number,
+        callback: (p0: FeatureLike, p1: Layer<Source>) => T,
+        declutteredFeatures: FeatureLike[],
+    ): T | void;
+    getDataAtPixel(pixel: Pixel, frameState: FrameState, hitTolerance: number): Uint8ClampedArray | Uint8Array;
+    handleFontsChanged(): void;
+    prepareFrame(frameState: FrameState): boolean;
+    renderFrame(frameState: FrameState, target: HTMLElement): HTMLElement;
     renderHitDetection(frameState: FrameState): void;
     on(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
     once(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];

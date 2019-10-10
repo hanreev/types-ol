@@ -12,4 +12,5 @@ export default class ImageTile extends Tile {
         opt_options?: Options,
     );
     getImage(): HTMLCanvasElement | HTMLImageElement | HTMLVideoElement;
+    load(): void;
 }

@@ -43,7 +43,7 @@ export class DragAndDropEvent extends BaseEvent {
     constructor(
         type: DragAndDropEventType,
         file: File,
-        opt_features?: Feature<GeomType>[],
+        opt_features?: Feature<Geometry>[],
         opt_projection?: Projection,
     );
     features: FeatureLike[];

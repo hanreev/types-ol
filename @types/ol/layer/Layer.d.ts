@@ -37,11 +37,14 @@ export interface State {
     minZoom: number;
     maxZoom: number;
 }
-export default class Layer<SourceType extends Source> extends BaseLayer {
+export default class Layer<SourceType extends Source = Source> extends BaseLayer {
     constructor(options: Options);
-    protected createRenderer(): LayerRenderer<LayerType>;
-    getRenderer(): LayerRenderer<LayerType>;
+    protected createRenderer(): LayerRenderer<Layer<Source>>;
+    getLayersArray(opt_array?: Layer<Source>[]): Layer<Source>[];
+    getLayerStatesArray(opt_states?: State[]): State[];
+    getRenderer(): LayerRenderer<Layer<Source>>;
     getSource(): SourceType;
+    getSourceState(): State_1;
     hasRenderer(): boolean;
     render(frameState: FrameState, target: HTMLElement): HTMLElement;
     setMap(map: PluggableMap): void;

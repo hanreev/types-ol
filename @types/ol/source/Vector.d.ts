@@ -23,7 +23,7 @@ export interface Options {
     useSpatialIndex?: boolean;
     wrapX?: boolean;
 }
-export default class VectorSource<GeomType extends Geometry> extends Source {
+export default class VectorSource<GeomType extends Geometry = Geometry> extends Source {
     constructor(opt_options?: Options);
     protected addFeatureInternal(feature: Feature<GeomType>): void;
     protected addFeaturesInternal(features: Feature<GeomType>[]): void;
@@ -45,6 +45,7 @@ export default class VectorSource<GeomType extends Geometry> extends Source {
     getFeaturesInExtent(extent: Extent): Feature<GeomType>[];
     getFormat(): FeatureFormat;
     getOverlaps(): boolean;
+    getResolutions(): number[];
     getUrl(): string | FeatureUrlFunction;
     hasFeature(feature: Feature<GeomType>): boolean;
     isEmpty(): boolean;
@@ -78,7 +79,7 @@ export default class VectorSource<GeomType extends Geometry> extends Source {
     once(type: 'removefeature', listener: (evt: VectorSourceEvent<Geometry>) => void): EventsKey;
     un(type: 'removefeature', listener: (evt: VectorSourceEvent<Geometry>) => void): void;
 }
-export class VectorSourceEvent<GeomType extends Geometry> extends BaseEvent {
+export class VectorSourceEvent<GeomType extends Geometry = Geometry> extends BaseEvent {
     constructor();
     feature: Feature<GeomType>;
 }

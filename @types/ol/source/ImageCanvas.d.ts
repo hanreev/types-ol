@@ -1,6 +1,7 @@
 import { EventsKey } from '../events';
 import BaseEvent from '../events/Event';
 import { Extent } from '../extent';
+import ImageBase from '../ImageBase';
 import ImageCanvas from '../ImageCanvas';
 import { ObjectEvent } from '../Object';
 import { ProjectionLike } from '../proj';
@@ -28,6 +29,12 @@ export interface Options {
 }
 export default class ImageCanvasSource extends ImageSource {
     constructor(opt_options?: Options);
+    protected getImageInternal(
+        extent: Extent,
+        resolution: number,
+        pixelRatio: number,
+        projection: Projection,
+    ): ImageBase;
     on(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
     once(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
     un(type: string | string[], listener: (p0: any) => any): void;

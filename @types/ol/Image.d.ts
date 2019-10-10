@@ -13,6 +13,8 @@ export default class ImageWrapper extends ImageBase {
         imageLoadFunction: LoadFunction,
     );
     protected state: ImageState;
+    getImage(): HTMLCanvasElement | HTMLImageElement | HTMLVideoElement;
+    load(): void;
     setImage(image: HTMLCanvasElement | HTMLImageElement | HTMLVideoElement): void;
 }
 export function listenImage(

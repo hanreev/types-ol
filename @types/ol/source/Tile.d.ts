@@ -26,7 +26,7 @@ export interface Options {
     key?: string;
     zDirection?: number;
 }
-export default class TileSource extends Source {
+export default abstract class TileSource extends Source {
     constructor(options: Options);
     protected tileCache: TileCache;
     protected tileGrid: TileGrid;
@@ -46,13 +46,14 @@ export default class TileSource extends Source {
     ): boolean;
     getGutterForProjection(projection: Projection): number;
     getOpaque(projection: Projection): boolean;
-    getTile(z: number, x: number, y: number, pixelRatio: number, projection: Projection): Tile;
+    getResolutions(): number[];
+    abstract getTile(z: number, x: number, y: number, pixelRatio: number, projection: Projection): Tile;
     getTileCoordForTileUrlFunction(tileCoord: TileCoord, opt_projection?: Projection): TileCoord;
     getTileGrid(): TileGrid;
     getTileGridForProjection(projection: Projection): TileGrid;
     getTilePixelRatio(pixelRatio: number): number;
     getTilePixelSize(z: number, pixelRatio: number, projection: Projection): Size;
-    useTile(z: number, x: number, y: number, projection: Projection): void;
+    abstract useTile(z: number, x: number, y: number, projection: Projection): void;
     on(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
     once(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
     un(type: string | string[], listener: (p0: any) => any): void;

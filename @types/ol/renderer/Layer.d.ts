@@ -8,11 +8,12 @@ import Observable from '../Observable';
 import { Pixel } from '../pixel';
 import { FrameState } from '../PluggableMap';
 import Projection from '../proj/Projection';
+import Source from '../source/Source';
 import TileSource from '../source/Tile';
 import Tile from '../Tile';
 import TileRange from '../TileRange';
 
-export default class LayerRenderer<LayerType extends Layer<SourceType>> extends Observable {
+export default class LayerRenderer<LayerType extends Layer<SourceType> = Layer<SourceType>> extends Observable {
     constructor(layer: LayerType);
     protected createLoadedTileFinder(
         source: TileSource,
@@ -25,7 +26,7 @@ export default class LayerRenderer<LayerType extends Layer<SourceType>> extends 
         coordinate: Coordinate,
         frameState: FrameState,
         hitTolerance: number,
-        callback: (p0: FeatureLike, p1: Layer<SourceType>) => T,
+        callback: (p0: FeatureLike, p1: Layer<Source>) => T,
         declutteredFeatures: FeatureLike[],
     ): T | void;
     getDataAtPixel(pixel: Pixel, frameState: FrameState, hitTolerance: number): Uint8ClampedArray | Uint8Array;

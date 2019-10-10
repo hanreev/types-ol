@@ -1,13 +1,18 @@
 import { EventsKey } from '../events';
 import BaseEvent from '../events/Event';
+import Geometry from '../geom/Geometry';
 import { ObjectEvent } from '../Object';
 import RenderEvent from '../render/Event';
 import LayerRenderer from '../renderer/Layer';
+import Source from '../source/Source';
+import VectorSource from '../source/Vector';
+import VectorTile from '../source/VectorTile';
 import BaseVectorLayer, { Options } from './BaseVector';
+import Layer from './Layer';
 
-export default class VectorLayer extends BaseVectorLayer<VectorSourceType> {
+export default class VectorLayer extends BaseVectorLayer<VectorSource<Geometry> | VectorTile> {
     constructor(opt_options?: Options);
-    protected createRenderer(): LayerRenderer<LayerType>;
+    protected createRenderer(): LayerRenderer<Layer<Source>>;
     on(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
     once(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
     un(type: string | string[], listener: (p0: any) => any): void;

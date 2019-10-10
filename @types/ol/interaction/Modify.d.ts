@@ -61,6 +61,6 @@ export default class Modify extends PointerInteraction {
 }
 export class ModifyEvent extends BaseEvent {
     constructor();
-    features: Collection<Feature<GeomType>>;
+    features: Collection<Feature<Geometry>>;
     mapBrowserEvent: MapBrowserEvent;
 }

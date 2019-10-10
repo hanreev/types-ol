@@ -20,10 +20,10 @@ export enum ImageSourceEventType {
     IMAGELOADEND = 'imageloadend',
     IMAGELOADERROR = 'imageloaderror',
 }
-export default class ImageSource extends Source {
+export default abstract class ImageSource extends Source {
     constructor(options: Options);
     protected findNearestResolution(resolution: number): number;
-    protected getImageInternal(
+    protected abstract getImageInternal(
         extent: Extent,
         resolution: number,
         pixelRatio: number,
@@ -31,6 +31,7 @@ export default class ImageSource extends Source {
     ): ImageBase;
     protected handleImageChange(event: BaseEvent): void;
     getImage(extent: Extent, resolution: number, pixelRatio: number, projection: Projection): ImageBase;
+    getResolutions(): number[];
     on(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
     once(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
     un(type: string | string[], listener: (p0: any) => any): void;

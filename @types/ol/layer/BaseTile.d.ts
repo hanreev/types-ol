@@ -4,6 +4,7 @@ import { Extent } from '../extent';
 import { ObjectEvent } from '../Object';
 import PluggableMap from '../PluggableMap';
 import RenderEvent from '../render/Event';
+import Source from '../source/Source';
 import TileSource from '../source/Tile';
 import Layer from './Layer';
 
@@ -20,7 +21,7 @@ export interface Options {
     map?: PluggableMap;
     useInterimTilesOnError?: boolean;
 }
-export default class BaseTileLayer extends Layer<SourceType> {
+export default class BaseTileLayer extends Layer<Source> {
     constructor(opt_options?: Options);
     getPreload(): number;
     getUseInterimTilesOnError(): boolean;

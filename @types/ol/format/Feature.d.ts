@@ -16,20 +16,23 @@ export interface WriteOptions {
     rightHanded?: boolean;
     decimals?: number;
 }
-export default class FeatureFormat {
+export default abstract class FeatureFormat {
     constructor();
     protected dataProjection: Projection;
     protected defaultFeatureProjection: Projection;
     protected adaptOptions(options: WriteOptions | ReadOptions | undefined): WriteOptions | ReadOptions;
     protected getReadOptions(source: Document | Node | object | string, opt_options?: ReadOptions): ReadOptions;
-    getType(): FormatType;
-    readFeature(source: Document | Node | object | string, opt_options?: ReadOptions): FeatureLike;
-    readFeatures(source: Document | Node | ArrayBuffer | object | string, opt_options?: ReadOptions): FeatureLike[];
-    readGeometry(source: Document | Node | object | string, opt_options?: ReadOptions): Geometry;
-    readProjection(source: Document | Node | object | string): Projection;
-    writeFeature(feature: Feature<GeomType>, opt_options?: WriteOptions): string;
-    writeFeatures(features: Feature<GeomType>[], opt_options?: WriteOptions): string;
-    writeGeometry(geometry: Geometry, opt_options?: WriteOptions): string;
+    abstract getType(): FormatType;
+    abstract readFeature(source: Document | Node | object | string, opt_options?: ReadOptions): FeatureLike;
+    abstract readFeatures(
+        source: Document | Node | ArrayBuffer | object | string,
+        opt_options?: ReadOptions,
+    ): FeatureLike[];
+    abstract readGeometry(source: Document | Node | object | string, opt_options?: ReadOptions): Geometry;
+    abstract readProjection(source: Document | Node | object | string): Projection;
+    abstract writeFeature(feature: Feature<Geometry>, opt_options?: WriteOptions): string;
+    abstract writeFeatures(features: Feature<Geometry>[], opt_options?: WriteOptions): string;
+    abstract writeGeometry(geometry: Geometry, opt_options?: WriteOptions): string;
 }
 export function transformExtentWithOptions(extent: Extent, opt_options?: ReadOptions): Extent;
 export function transformGeometryWithOptions(

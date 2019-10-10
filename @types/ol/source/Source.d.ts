@@ -15,13 +15,13 @@ export interface Options {
     state?: State;
     wrapX?: boolean;
 }
-export default class Source extends BaseObject {
+export default abstract class Source extends BaseObject {
     constructor(options: Options);
     protected setState(state: State): void;
     getAttributions(): Attribution;
     getAttributionsCollapsible(): boolean;
     getProjection(): Projection;
-    getResolutions(): number[];
+    abstract getResolutions(): number[];
     getState(): State;
     getWrapX(): boolean;
     refresh(): void;

@@ -2,6 +2,7 @@ import { EventsKey } from '../events';
 import BaseEvent from '../events/Event';
 import { Extent } from '../extent';
 import { LoadFunction } from '../Image';
+import ImageBase from '../ImageBase';
 import { ObjectEvent } from '../Object';
 import { ProjectionLike } from '../proj';
 import Projection from '../proj/Projection';
@@ -23,6 +24,12 @@ export interface Options {
 }
 export default class ImageMapGuide extends ImageSource {
     constructor(options: Options);
+    protected getImageInternal(
+        extent: Extent,
+        resolution: number,
+        pixelRatio: number,
+        projection: Projection,
+    ): ImageBase;
     getImageLoadFunction(): LoadFunction;
     getParams(): any;
     getUrl(

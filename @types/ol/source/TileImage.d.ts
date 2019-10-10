@@ -41,6 +41,7 @@ export default class TileImage extends UrlTile {
     protected tileGridForProjection: { [key: string]: TileGrid };
     protected getTileInternal(z: number, x: number, y: number, pixelRatio: number, projection: Projection): Tile;
     getGutter(): number;
+    getTile(z: number, x: number, y: number, pixelRatio: number, projection: Projection): Tile;
     setRenderReprojectionEdges(render: boolean): void;
     setTileGridForProjection(projection: ProjectionLike, tilegrid: TileGrid): void;
     on(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];

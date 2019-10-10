@@ -19,11 +19,11 @@ import RenderFeature from './Feature';
 
 export default class VectorContext {
     constructor();
-    drawCircle(circleGeometry: Circle, feature: Feature<GeomType>): void;
+    drawCircle(circleGeometry: Circle, feature: Feature<Geometry>): void;
     drawCustom(geometry: SimpleGeometry, feature: FeatureLike, renderer: () => void): void;
-    drawFeature(feature: Feature<GeomType>, style: Style): void;
+    drawFeature(feature: Feature<Geometry>, style: Style): void;
     drawGeometry(geometry: Geometry): void;
-    drawGeometryCollection(geometryCollectionGeometry: GeometryCollection, feature: Feature<GeomType>): void;
+    drawGeometryCollection(geometryCollectionGeometry: GeometryCollection, feature: Feature<Geometry>): void;
     drawLineString(lineStringGeometry: LineString | RenderFeature, feature: FeatureLike): void;
     drawMultiLineString(multiLineStringGeometry: MultiLineString | RenderFeature, feature: FeatureLike): void;
     drawMultiPoint(multiPointGeometry: MultiPoint | RenderFeature, feature: FeatureLike): void;

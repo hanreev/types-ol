@@ -5,9 +5,11 @@ import MapEvent from './MapEvent';
 import { ObjectEvent } from './Object';
 import PluggableMap, { MapOptions } from './PluggableMap';
 import RenderEvent from './render/Event';
+import MapRenderer from './renderer/Map';
 
 export default class Map extends PluggableMap {
     constructor(options: MapOptions);
+    createRenderer(): MapRenderer;
     on(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
     once(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
     un(type: string | string[], listener: (p0: any) => any): void;
