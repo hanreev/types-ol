@@ -74,9 +74,6 @@ for (const layerDesc of hereLayers) {
 
 const map = new Map({
     layers,
-    // Improve user experience by loading tiles while dragging/zooming. Will make
-    // zooming choppy on mobile or slow devices.
-    loadTilesWhileInteracting: true,
     target: 'map',
     view: new View({
         center: [921371.9389, 6358337.7609],

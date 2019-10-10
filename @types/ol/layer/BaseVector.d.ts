@@ -7,10 +7,9 @@ import { ObjectEvent } from '../Object';
 import PluggableMap from '../PluggableMap';
 import { OrderFunction } from '../render';
 import RenderEvent from '../render/Event';
-import Source from '../source/Source';
 import VectorSource from '../source/Vector';
 import VectorTile from '../source/VectorTile';
-import Style, { StyleFunction, StyleLike } from '../style/Style';
+import { StyleFunction, StyleLike } from '../style/Style';
 import Layer from './Layer';
 
 export interface Options {
@@ -31,8 +30,8 @@ export interface Options {
     updateWhileInteracting?: boolean;
 }
 export default class BaseVectorLayer<
-    VectorSourceType extends VectorSource<GeomType> | VectorTile = VectorSource<GeomType> | VectorTile
-> extends Layer<Source> {
+    VectorSourceType extends VectorSource | VectorTile = VectorSource | VectorTile
+> extends Layer<VectorSourceType> {
     constructor(opt_options?: Options);
     getDeclutter(): boolean;
     getRenderBuffer(): number;
@@ -42,10 +41,10 @@ export default class BaseVectorLayer<
     getUpdateWhileAnimating(): boolean;
     getUpdateWhileInteracting(): boolean;
     setRenderOrder(renderOrder: OrderFunction | null | undefined): void;
-    setStyle(style: Style | Style[] | StyleFunction | null | undefined): void;
-    on(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
-    once(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
-    un(type: string | string[], listener: (p0: any) => any): void;
+    setStyle(style: StyleLike | null | undefined): void;
+    on(type: string | string[], listener: (p0: any) => void): EventsKey | EventsKey[];
+    once(type: string | string[], listener: (p0: any) => void): EventsKey | EventsKey[];
+    un(type: string | string[], listener: (p0: any) => void): void;
     on(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
     once(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
     un(type: 'change', listener: (evt: BaseEvent) => void): void;

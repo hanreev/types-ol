@@ -1,4 +1,4 @@
-import Graticule from 'ol/Graticule';
+import { Graticule } from 'ol';
 import Map from 'ol/Map';
 import View from 'ol/View';
 import GeoJSON from 'ol/format/GeoJSON';
@@ -28,6 +28,7 @@ const map = new Map({
                 format: new GeoJSON(),
             }),
         }),
+        new Graticule(),
     ],
     target: 'map',
     view: new View({
@@ -36,8 +37,4 @@ const map = new Map({
         resolutions: [65536, 32768, 16384, 8192, 4096, 2048],
         zoom: 0,
     }),
-});
-
-const gracticule = new Graticule({
-    map,
 });

@@ -4,7 +4,6 @@ import { Extent } from '../extent';
 import { ObjectEvent } from '../Object';
 import PluggableMap from '../PluggableMap';
 import RenderEvent from '../render/Event';
-import Source from '../source/Source';
 import TileSource from '../source/Tile';
 import Layer from './Layer';
 
@@ -21,15 +20,15 @@ export interface Options {
     map?: PluggableMap;
     useInterimTilesOnError?: boolean;
 }
-export default class BaseTileLayer extends Layer<Source> {
+export default class BaseTileLayer extends Layer<TileSource> {
     constructor(opt_options?: Options);
     getPreload(): number;
     getUseInterimTilesOnError(): boolean;
     setPreload(preload: number): void;
     setUseInterimTilesOnError(useInterimTilesOnError: boolean): void;
-    on(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
-    once(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
-    un(type: string | string[], listener: (p0: any) => any): void;
+    on(type: string | string[], listener: (p0: any) => void): EventsKey | EventsKey[];
+    once(type: string | string[], listener: (p0: any) => void): EventsKey | EventsKey[];
+    un(type: string | string[], listener: (p0: any) => void): void;
     on(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
     once(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
     un(type: 'change', listener: (evt: BaseEvent) => void): void;

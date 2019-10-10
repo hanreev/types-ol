@@ -1,6 +1,6 @@
-import Graticule from 'ol/Graticule';
 import Map from 'ol/Map';
 import View from 'ol/View';
+import Graticule from 'ol/layer/Graticule';
 import TileLayer from 'ol/layer/Tile';
 import { fromLonLat } from 'ol/proj';
 import OSM from 'ol/source/OSM';

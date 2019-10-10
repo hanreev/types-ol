@@ -598,9 +598,19 @@ const PROCESSORS = {
       const augment = doclet.augments[0];
       let augmentName = registerImport(_module, augment);
       augmentName = augment.split('~')[1] || augment.split('/').pop();
-      if (augment in GENERIC_TYPES)
-        if (ANY_GENERIC_TYPES.indexOf(augment) != -1) augmentName += '<any>';
-        else augmentName += getGenericType(augment, _module);
+      if (augment in GENERIC_TYPES) if (ANY_GENERIC_TYPES.indexOf(augment) != -1) augmentName += '<any>';
+      // else augmentName += getGenericType(augment, _module);
+
+      // FIXME: Generic Type patches
+      if (doclet.longname == 'module:ol/layer/BaseImage~BaseImageLayer') augmentName += '<ImageSource>';
+      if (doclet.longname == 'module:ol/layer/BaseTile~BaseTileLayer') augmentName += '<TileSource>';
+      if (doclet.longname == 'module:ol/layer/BaseVector~BaseVectorLayer') augmentName += '<VectorSourceType>';
+      if (doclet.longname == 'module:ol/layer/Vector~VectorLayer') {
+        const gt = registerImport(_module, 'module:ol/source/Vector~VectorSource');
+        augmentName += `<${gt}>`;
+      }
+      if (doclet.longname == 'module:ol/layer/VectorTile~VectorTileLayer') augmentName += '<VectorTile>';
+
       name += ` extends ${augmentName}`;
     }
 
@@ -636,7 +646,7 @@ const PROCESSORS = {
 
       ['on', 'once', 'un'].forEach(fireMethod => {
         const returnType = fireMethod == 'un' ? 'void' : 'EventsKey';
-        if (genericType) fireMethod += `<${genericType}>`;
+        // if (genericType) fireMethod += `<${genericType}>`;
         children.push(`${fireMethod}(type: '${eventType}', listener: (evt: ${fireType}) => void): ${returnType};`);
       });
     };
@@ -1020,7 +1030,10 @@ function getGenericType(key, _module, includeBracket = true, includeType = false
       if ((includeType || GTTypeOnly) && gType.type) type = getType(/** @type {Doclet} */ (gType), _module);
       if (type) {
         if (GTTypeOnly) return type;
-        if (includeType) return `${gType.name} extends ${type} = ${type}`;
+        if (includeType) {
+          type = type.replace(/<.+>/, '');
+          return `${gType.name} extends ${type} = ${type}`;
+        }
       }
 
       return gType.name;

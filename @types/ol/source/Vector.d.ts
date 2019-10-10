@@ -54,9 +54,9 @@ export default class VectorSource<GeomType extends Geometry = Geometry> extends 
     removeLoadedExtent(extent: Extent): void;
     setLoader(loader: FeatureLoader): void;
     setUrl(url: string | FeatureUrlFunction): void;
-    on(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
-    once(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
-    un(type: string | string[], listener: (p0: any) => any): void;
+    on(type: string | string[], listener: (p0: any) => void): EventsKey | EventsKey[];
+    once(type: string | string[], listener: (p0: any) => void): EventsKey | EventsKey[];
+    un(type: string | string[], listener: (p0: any) => void): void;
     on(type: 'addfeature', listener: (evt: VectorSourceEvent<Geometry>) => void): EventsKey;
     once(type: 'addfeature', listener: (evt: VectorSourceEvent<Geometry>) => void): EventsKey;
     un(type: 'addfeature', listener: (evt: VectorSourceEvent<Geometry>) => void): void;

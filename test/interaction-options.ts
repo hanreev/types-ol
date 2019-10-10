@@ -6,7 +6,6 @@ import OSM from 'ol/source/OSM';
 
 const map = new Map({
     interactions: defaultInteractions({
-        constrainResolution: true,
         onFocusOnly: true,
     }),
     layers: [

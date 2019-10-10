@@ -6,6 +6,7 @@ import IGC from 'ol/format/IGC';
 import { LineString, Point } from 'ol/geom';
 import SimpleGeometry from 'ol/geom/SimpleGeometry';
 import { Tile as TileLayer, Vector as VectorLayer } from 'ol/layer';
+import { getVectorContext } from 'ol/render';
 import OSM, { ATTRIBUTION } from 'ol/source/OSM';
 import VectorSource from 'ol/source/Vector';
 import { Circle as CircleStyle, Fill, Stroke, Style } from 'ol/style';
@@ -149,7 +150,7 @@ const style = new Style({
     }),
 });
 map.on('postcompose', evt => {
-    const vectorContext = evt.vectorContext;
+    const vectorContext = getVectorContext(evt);
     vectorContext.setStyle(style);
     if (point !== null) {
         vectorContext.drawGeometry(point);

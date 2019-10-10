@@ -1,6 +1,6 @@
 import Feature, { FeatureLike } from 'ol/Feature';
+import Map from 'ol/Map';
 import View from 'ol/View';
-import Map from 'ol/WebGLMap';
 import Point from 'ol/geom/Point';
 import VectorLayer from 'ol/layer/Vector';
 import VectorSource from 'ol/source/Vector';

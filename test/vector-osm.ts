@@ -102,10 +102,10 @@ const vectorSource = new VectorSource({
 const vector = new VectorLayer({
     source: vectorSource,
     style: feature => {
-        for (const key in styles) {
+        for (const key of Object.keys(styles)) {
             const value = feature.get(key);
             if (value !== undefined) {
-                for (const regexp in styles[key]) {
+                for (const regexp of Object.keys(styles[key])) {
                     if (new RegExp(regexp).test(value)) {
                         return styles[key][regexp];
                     }

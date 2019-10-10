@@ -34,7 +34,6 @@ dragAndDropInteraction.on('addfeatures', event => {
     });
     map.addLayer(
         new VectorLayer({
-            renderMode: 'image',
             source: vectorSource,
         }),
     );

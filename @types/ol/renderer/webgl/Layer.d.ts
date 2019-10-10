@@ -33,9 +33,7 @@ export interface WebGLWorkerGenerateBuffersMessage {
 export enum WebGLWorkerMessageType {
     GENERATE_BUFFERS = 'GENERATE_BUFFERS',
 }
-export default class WebGLLayerRenderer<LayerType extends Layer<SourceType> = Layer<SourceType>> extends LayerRenderer<
-    Layer<Source>
-> {
+export default class WebGLLayerRenderer<LayerType extends Layer = Layer> extends LayerRenderer {
     constructor(layer: LayerType, opt_options?: Options);
     protected helper: WebGLHelper;
     forEachFeatureAtCoordinate<T>(
@@ -50,9 +48,9 @@ export default class WebGLLayerRenderer<LayerType extends Layer<SourceType> = La
     handleFontsChanged(): void;
     prepareFrame(frameState: FrameState): boolean;
     renderFrame(frameState: FrameState, target: HTMLElement): HTMLElement;
-    on(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
-    once(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
-    un(type: string | string[], listener: (p0: any) => any): void;
+    on(type: string | string[], listener: (p0: any) => void): EventsKey | EventsKey[];
+    once(type: string | string[], listener: (p0: any) => void): EventsKey | EventsKey[];
+    un(type: string | string[], listener: (p0: any) => void): void;
     on(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
     once(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
     un(type: 'change', listener: (evt: BaseEvent) => void): void;

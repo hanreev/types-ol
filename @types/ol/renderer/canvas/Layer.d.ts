@@ -10,9 +10,7 @@ import Source from '../../source/Source';
 import { Transform } from '../../transform';
 import LayerRenderer from '../Layer';
 
-export default abstract class CanvasLayerRenderer<
-    LayerType extends Layer<SourceType> = Layer<SourceType>
-> extends LayerRenderer<Layer<Source>> {
+export default abstract class CanvasLayerRenderer<LayerType extends Layer = Layer> extends LayerRenderer {
     constructor(layer: LayerType);
     protected container: HTMLElement;
     protected context: CanvasRenderingContext2D;
@@ -36,9 +34,9 @@ export default abstract class CanvasLayerRenderer<
     abstract prepareFrame(frameState: FrameState): boolean;
     abstract renderFrame(frameState: FrameState, target: HTMLElement): HTMLElement;
     useContainer(target: HTMLElement, transform: Transform, opacity: number): void;
-    on(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
-    once(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
-    un(type: string | string[], listener: (p0: any) => any): void;
+    on(type: string | string[], listener: (p0: any) => void): EventsKey | EventsKey[];
+    once(type: string | string[], listener: (p0: any) => void): EventsKey | EventsKey[];
+    un(type: string | string[], listener: (p0: any) => void): void;
     on(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
     once(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
     un(type: 'change', listener: (evt: BaseEvent) => void): void;

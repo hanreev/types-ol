@@ -6,6 +6,7 @@ import { easeOut } from 'ol/easing';
 import Point from 'ol/geom/Point';
 import { Tile as TileLayer, Vector as VectorLayer } from 'ol/layer';
 import { fromLonLat } from 'ol/proj';
+import { getVectorContext } from 'ol/render';
 import RenderEvent from 'ol/render/Event';
 import { OSM, Vector as VectorSource } from 'ol/source';
 import { Circle as CircleStyle, Stroke, Style } from 'ol/style';
@@ -47,7 +48,7 @@ function flash(feature: Feature) {
     const listenerKey = map.on('postcompose', animate);
 
     function animate(event: RenderEvent) {
-        const vectorContext = event.vectorContext;
+        const vectorContext = getVectorContext(event);
         const frameState = event.frameState;
         const flashGeom = feature.getGeometry().clone();
         const elapsed = frameState.time - start;

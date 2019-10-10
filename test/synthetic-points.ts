@@ -4,6 +4,7 @@ import View from 'ol/View';
 import { Coordinate } from 'ol/coordinate';
 import { LineString, Point } from 'ol/geom';
 import VectorLayer from 'ol/layer/Vector';
+import { getVectorContext } from 'ol/render';
 import VectorSource from 'ol/source/Vector';
 import { Circle as CircleStyle, Fill, Stroke, Style } from 'ol/style';
 
@@ -103,8 +104,8 @@ const style = new Style({
     }),
 });
 
-map.on('postcompose', evt => {
-    const vectorContext = evt.vectorContext;
+vector.on('postrender', evt => {
+    const vectorContext = getVectorContext(evt);
     vectorContext.setStyle(style);
     if (point !== null) {
         vectorContext.drawGeometry(point);

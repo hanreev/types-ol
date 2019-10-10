@@ -1,4 +1,3 @@
-import { Feature, VectorTile } from 'ol';
 import Map from 'ol/Map';
 import View from 'ol/View';
 import GeoJSON from 'ol/format/GeoJSON';
@@ -54,11 +53,6 @@ const replacer = (key: string, value: any) => {
     }
 };
 
-const tilePixels = new Projection({
-    code: 'TILE_PIXELS',
-    units: 'tile-pixels',
-});
-
 const map = new Map({
     layers: [
         new TileLayer({
@@ -83,26 +77,24 @@ fetch(url)
             debug: 1,
         });
         const vectorSource = new VectorTileSource({
-            format: new GeoJSON(),
-            tileLoadFunction: tile_ => {
-                const tile = tile_ as VectorTile;
-                const format = tile.getFormat();
-                const tileCoord = tile.getTileCoord();
-                const data = tileIndex.getTile(tileCoord[0], tileCoord[1], -tileCoord[2] - 1);
-
-                const features = format.readFeatures(
-                    JSON.stringify(
-                        {
-                            type: 'FeatureCollection',
-                            features: data ? data.features : [],
-                        },
-                        replacer,
-                    ),
+            format: new GeoJSON({
+                // Data returned from geojson-vt is in tile pixel units
+                dataProjection: new Projection({
+                    code: 'TILE_PIXELS',
+                    units: 'tile-pixels',
+                    extent: [0, 0, 4096, 4096],
+                }),
+            }),
+            tileUrlFunction: tileCoord => {
+                const data = tileIndex.getTile(tileCoord[0], tileCoord[1], tileCoord[2]);
+                const geojson = JSON.stringify(
+                    {
+                        type: 'FeatureCollection',
+                        features: data ? data.features : [],
+                    },
+                    replacer,
                 );
-                tile.setLoader(() => {
-                    tile.setFeatures(features as Feature[]);
-                    tile.setProjection(tilePixels);
-                });
+                return 'data:application/json;charset=UTF-8,' + geojson;
             },
             url: 'data:', // arbitrary url, we don't use it in the tileLoadFunction
         });

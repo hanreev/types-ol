@@ -2,7 +2,6 @@ import Feature from 'ol/Feature';
 import Map from 'ol/Map';
 import View from 'ol/View';
 import LineString from 'ol/geom/LineString';
-import SimpleGeometry from 'ol/geom/SimpleGeometry';
 import VectorLayer from 'ol/layer/Vector';
 import VectorSource from 'ol/source/Vector';
 
@@ -37,7 +36,7 @@ const map = new Map({
 });
 
 function makeFractal(depth: number) {
-    const geometry = triangle.clone() as SimpleGeometry;
+    const geometry = triangle.clone() as LineString;
     const graph = coordsToGraph(geometry.getCoordinates());
     for (let i = 0; i < depth; ++i) {
         let node = graph;

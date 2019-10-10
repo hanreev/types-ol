@@ -123,7 +123,7 @@ const controls: { [key: string]: HTMLInputElement } = {};
 
 raster.on('beforeoperations', (event: RasterSourceEvent) => {
     const data = event.data;
-    for (const id in controls) {
+    for (const id of Object.keys(controls)) {
         data[id] = Number(controls[id].value);
     }
 });

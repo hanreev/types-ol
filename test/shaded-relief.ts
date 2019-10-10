@@ -153,7 +153,7 @@ raster.on('beforeoperations', event => {
     // the event.data object will be passed to operations
     const data = event.data;
     data.resolution = event.resolution;
-    for (const id in controls) {
+    for (const id of Object.keys(controls)) {
         data[id] = Number(controls[id].value);
     }
 });

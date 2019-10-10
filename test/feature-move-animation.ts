@@ -5,6 +5,7 @@ import Polyline from 'ol/format/Polyline';
 import { LineString } from 'ol/geom';
 import Point from 'ol/geom/Point';
 import { Tile as TileLayer, Vector as VectorLayer } from 'ol/layer';
+import { getVectorContext } from 'ol/render';
 import RenderEvent from 'ol/render/Event';
 import BingMaps from 'ol/source/BingMaps';
 import VectorSource from 'ol/source/Vector';
@@ -128,7 +129,6 @@ const vectorLayer = new VectorLayer({
 const center = [-5639523.95, -3501274.52];
 const map = new Map({
     target: document.getElementById('map') as HTMLElement,
-    loadTilesWhileAnimating: true,
     view: new View({
         center,
         zoom: 10,
@@ -147,7 +147,7 @@ const map = new Map({
 });
 
 const moveFeature = (event: RenderEvent) => {
-    const vectorContext = event.vectorContext;
+    const vectorContext = getVectorContext(event);
     const frameState = event.frameState;
 
     if (animating) {

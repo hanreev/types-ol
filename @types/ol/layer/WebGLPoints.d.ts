@@ -4,7 +4,6 @@ import { Extent } from '../extent';
 import Geometry from '../geom/Geometry';
 import { ObjectEvent } from '../Object';
 import RenderEvent from '../render/Event';
-import Source from '../source/Source';
 import VectorSource from '../source/Vector';
 import { LiteralStyle } from '../style/LiteralStyle';
 import Layer from './Layer';
@@ -20,11 +19,11 @@ export interface Options {
     maxResolution?: number;
     source?: VectorSource<Geometry>;
 }
-export default class WebGLPointsLayer extends Layer<Source> {
+export default class WebGLPointsLayer extends Layer {
     constructor(options: Options);
-    on(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
-    once(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
-    un(type: string | string[], listener: (p0: any) => any): void;
+    on(type: string | string[], listener: (p0: any) => void): EventsKey | EventsKey[];
+    once(type: string | string[], listener: (p0: any) => void): EventsKey | EventsKey[];
+    un(type: string | string[], listener: (p0: any) => void): void;
     on(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
     once(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
     un(type: 'change', listener: (evt: BaseEvent) => void): void;

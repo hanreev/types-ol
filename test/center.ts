@@ -55,7 +55,7 @@ zoomtoswitzerlandbest.addEventListener(
     () => {
         const feature = source.getFeatures()[0];
         const polygon = feature.getGeometry() as SimpleGeometry;
-        view.fit(polygon, { padding: [170, 50, 30, 150], constrainResolution: false });
+        view.fit(polygon, { padding: [170, 50, 30, 150] });
     },
     false,
 );

@@ -40,6 +40,6 @@ gn.init().then(() => {
         center[0] -= resolution * gamma * 25;
         center[1] += resolution * beta * 25;
 
-        view.setCenter(view.constrainCenter(center));
+        view.setCenter(center);
     });
 });

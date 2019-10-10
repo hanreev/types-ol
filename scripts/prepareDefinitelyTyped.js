@@ -33,7 +33,7 @@ const header = `// Type definitions for ol ${olVersion}
 // Project: https://github.com/openlayers/openlayers, https://openlayers.org
 // Definitions by: Rifa'i M. Hanif <https://github.com/hanreev>
 // Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
-// TypeScript Version: 2.4
+// TypeScript Version: 3.1
 
 // These definitions was generated using jsdoc. See https://github.com/hanreev/types-ol
 

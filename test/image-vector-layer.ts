@@ -20,7 +20,6 @@ const style = new Style({
 const map = new Map({
     layers: [
         new VectorLayer({
-            renderMode: 'image',
             source: new VectorSource({
                 url: 'data/geojson/countries.geojson',
                 format: new GeoJSON(),

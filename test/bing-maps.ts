@@ -23,9 +23,6 @@ for (let i = 0, j = styles.length; i < j; ++i) {
 }
 const map = new Map({
     layers,
-    // Improve user experience by loading tiles while dragging/zooming. Will make
-    // zooming choppy on mobile or slow devices.
-    loadTilesWhileInteracting: true,
     target: 'map',
     view: new View({
         center: [-6655.5402445057125, 6709968.258934638],

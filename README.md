@@ -63,7 +63,7 @@ There are several ways to use this package. Please choose one:
     ...
     "devDependencies": {
       ...
-      "@hanreev/types-ol": "^2.0.8",
+      "@hanreev/types-ol": "^3.0.0",
       "@types/ol": "file:node_modules/@hanreev/types-ol/ol",
       ...
     }
@@ -167,6 +167,11 @@ Configuration is located at `jsdoc/conf.json`
 
 ## Changelog
 
+- **v3.0.0**
+  - OpenLayers v6
+- **v2.0.8**
+  - nullable parameter types
+  - fix `ol/Feature.setStyle` and `ol/layer/Vector.setStyle`
 - **v2.0.7**
   - Add unified `undefined` parameter type--e.g., `ol/Overlay~Overlay#setPosition` method can accept either coordinate or `undefined`
 - **v2.0.6**

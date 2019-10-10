@@ -1,0 +1,21 @@
+diff --git a/src/ol/renderer/canvas/ImageLayer.js b/src/ol/renderer/canvas/ImageLayer.js
+index 4a59dfa48..af0022bb6 100644
+--- a/src/ol/renderer/canvas/ImageLayer.js
++++ b/src/ol/renderer/canvas/ImageLayer.js
+@@ -171,6 +171,16 @@ class CanvasImageLayerRenderer extends CanvasLayerRenderer {
+ 
+   }
+ 
++  /**
++   * @inheritDoc
++   */
++  forEachFeatureAtCoordinate(coordinate, frameState, hitTolerance, callback, declutteredFeatures) {}
++
++  /**
++   * @inheritDoc
++   */
++  handleFontsChanged() {}
++
+ }
+ 
+ 

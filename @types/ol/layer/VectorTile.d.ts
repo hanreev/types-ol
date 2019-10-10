@@ -1,14 +1,12 @@
 import { EventsKey } from '../events';
 import BaseEvent from '../events/Event';
 import { Extent } from '../extent';
-import Geometry from '../geom/Geometry';
 import { ObjectEvent } from '../Object';
 import PluggableMap from '../PluggableMap';
 import { OrderFunction } from '../render';
 import RenderEvent from '../render/Event';
 import LayerRenderer from '../renderer/Layer';
 import Source from '../source/Source';
-import VectorSource from '../source/Vector';
 import VectorTile from '../source/VectorTile';
 import { StyleLike } from '../style/Style';
 import BaseVectorLayer from './BaseVector';
@@ -35,7 +33,7 @@ export interface Options {
     preload?: number;
     useInterimTilesOnError?: boolean;
 }
-export default class VectorTileLayer extends BaseVectorLayer<VectorSource<Geometry> | VectorTile> {
+export default class VectorTileLayer extends BaseVectorLayer<VectorTile> {
     constructor(opt_options?: Options);
     protected createRenderer(): LayerRenderer<Layer<Source>>;
     getPreload(): number;
@@ -43,9 +41,9 @@ export default class VectorTileLayer extends BaseVectorLayer<VectorSource<Geomet
     getUseInterimTilesOnError(): boolean;
     setPreload(preload: number): void;
     setUseInterimTilesOnError(useInterimTilesOnError: boolean): void;
-    on(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
-    once(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
-    un(type: string | string[], listener: (p0: any) => any): void;
+    on(type: string | string[], listener: (p0: any) => void): EventsKey | EventsKey[];
+    once(type: string | string[], listener: (p0: any) => void): EventsKey | EventsKey[];
+    un(type: string | string[], listener: (p0: any) => void): void;
     on(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
     once(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
     un(type: 'change', listener: (evt: BaseEvent) => void): void;

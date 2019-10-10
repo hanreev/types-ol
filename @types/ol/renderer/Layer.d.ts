@@ -13,7 +13,7 @@ import TileSource from '../source/Tile';
 import Tile from '../Tile';
 import TileRange from '../TileRange';
 
-export default class LayerRenderer<LayerType extends Layer<SourceType> = Layer<SourceType>> extends Observable {
+export default class LayerRenderer<LayerType extends Layer = Layer> extends Observable {
     constructor(layer: LayerType);
     protected createLoadedTileFinder(
         source: TileSource,
@@ -35,9 +35,9 @@ export default class LayerRenderer<LayerType extends Layer<SourceType> = Layer<S
     loadedTileCallback(tiles: { [key: number]: { [key: string]: Tile } }, zoom: number, tile: Tile): void;
     prepareFrame(frameState: FrameState): boolean;
     renderFrame(frameState: FrameState, target: HTMLElement): HTMLElement;
-    on(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
-    once(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
-    un(type: string | string[], listener: (p0: any) => any): void;
+    on(type: string | string[], listener: (p0: any) => void): EventsKey | EventsKey[];
+    once(type: string | string[], listener: (p0: any) => void): EventsKey | EventsKey[];
+    un(type: string | string[], listener: (p0: any) => void): void;
     on(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
     once(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
     un(type: 'change', listener: (evt: BaseEvent) => void): void;

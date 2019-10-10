@@ -1,7 +1,7 @@
 import Map from 'ol/Map';
 import View from 'ol/View';
 import GeoJSON from 'ol/format/GeoJSON';
-import { defaults as defaultInteractions, Modify, Select } from 'ol/interaction';
+import { Modify, Select, defaults as defaultInteractions } from 'ol/interaction';
 import { Tile as TileLayer, Vector as VectorLayer } from 'ol/layer';
 import { OSM, Vector as VectorSource } from 'ol/source';
 
@@ -17,9 +17,7 @@ const vector = new VectorLayer({
     }),
 });
 
-const select = new Select({
-    wrapX: false,
-});
+const select = new Select();
 
 const modify = new Modify({
     features: select.getFeatures(),

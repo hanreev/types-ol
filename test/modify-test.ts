@@ -213,7 +213,7 @@ const overlayStyle = (() => {
     ];
     styles['MultiPoint'] = styles['Point'];
 
-    styles['GeometryCollection'] = (styles['Polygon'] as Style[]).concat(styles['Point'] as Style[]);
+    styles['GeometryCollection'] = styles['Polygon'].concat(styles['Point']);
 
     return (feature => {
         return styles[feature.getGeometry().getType()];

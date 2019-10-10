@@ -4,6 +4,7 @@ import View from 'ol/View';
 import LineString from 'ol/geom/LineString';
 import SimpleGeometry from 'ol/geom/SimpleGeometry';
 import { Tile as TileLayer, Vector as VectorLayer } from 'ol/layer';
+import { getVectorContext } from 'ol/render';
 import RenderEvent from 'ol/render/Event';
 import Stamen from 'ol/source/Stamen';
 import VectorSource from 'ol/source/Vector';
@@ -88,7 +89,7 @@ map.addLayer(flightsLayer);
 
 const pointsPerMs = 0.1;
 function animateFlights(event: RenderEvent) {
-    const vectorContext = event.vectorContext;
+    const vectorContext = getVectorContext(event);
     const frameState = event.frameState;
     vectorContext.setStyle(style);
 
