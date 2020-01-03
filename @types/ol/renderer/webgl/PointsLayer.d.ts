@@ -12,7 +12,12 @@ import WebGLLayerRenderer, { PostProcessesOptions } from './Layer';
 
 export interface CustomAttribute {
     name: string;
-    callback: (p0: Feature<Geometry>) => number;
+    callback: (p0: Feature<Geometry>, p1: { [key: string]: any }) => number;
+}
+export interface FeatureCacheItem {
+    feature: Feature<Geometry>;
+    properties: { [key: string]: any };
+    geometry: Geometry;
 }
 export interface Options {
     attributes?: CustomAttribute[];

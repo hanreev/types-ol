@@ -18,10 +18,10 @@ export default class MultiPolygon extends SimpleGeometry {
         opt_endss?: number[][],
     );
     appendPolygon(polygon: Polygon): void;
-    clone(): Geometry;
+    clone(): MultiPolygon;
     closestPointXY(x: number, y: number, closestPoint: Coordinate, minSquaredDistance: number): number;
     getArea(): number;
-    getCoordinates(): any[];
+    getCoordinates(opt_right?: boolean): Coordinate[][][];
     getEndss(): number[][];
     getFlatInteriorPoints(): number[];
     getInteriorPoints(): MultiPoint;
@@ -30,7 +30,7 @@ export default class MultiPolygon extends SimpleGeometry {
     getPolygons(): Polygon[];
     getType(): GeometryType;
     intersectsExtent(extent: Extent): boolean;
-    setCoordinates(coordinates: any[], opt_layout?: GeometryLayout): void;
+    setCoordinates(coordinates: Coordinate[][][], opt_layout?: GeometryLayout): void;
     simplifyTransformed(squaredTolerance: number, opt_transform?: TransformFunction): Geometry;
     on(type: string | string[], listener: (p0: any) => void): EventsKey | EventsKey[];
     once(type: string | string[], listener: (p0: any) => void): EventsKey | EventsKey[];

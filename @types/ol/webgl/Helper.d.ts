@@ -35,6 +35,9 @@ export enum DefaultUniform {
     PROJECTION_MATRIX = 'u_projectionMatrix',
     OFFSET_SCALE_MATRIX = 'u_offsetScaleMatrix',
     OFFSET_ROTATION_MATRIX = 'u_offsetRotateMatrix',
+    TIME = 'u_time',
+    ZOOM = 'u_zoom',
+    RESOLUTION = 'u_resolution',
 }
 export enum ShaderType {
     FRAGMENT_SHADER = 35632,

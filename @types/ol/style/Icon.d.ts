@@ -31,7 +31,7 @@ export default class Icon extends ImageStyle {
     getColor(): Color;
     getHitDetectionImage(pixelRatio: number): HTMLCanvasElement | HTMLVideoElement | HTMLImageElement;
     getHitDetectionImageSize(): Size;
-    getImage(pixelRatio: number): HTMLCanvasElement | HTMLVideoElement | HTMLImageElement;
+    getImage(pixelRatio: number): HTMLImageElement | HTMLCanvasElement;
     getImageSize(): Size;
     getImageState(): ImageState;
     getOrigin(): number[];

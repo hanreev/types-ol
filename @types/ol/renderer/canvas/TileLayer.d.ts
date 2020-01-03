@@ -17,6 +17,8 @@ import CanvasLayerRenderer from './Layer';
 
 export default class CanvasTileLayerRenderer extends CanvasLayerRenderer {
     constructor(tileLayer: TileLayer | VectorTileLayer);
+    protected renderedPixelRatio: number;
+    protected renderedProjection: Projection;
     protected renderedRevision: number;
     protected renderedTiles: Tile[];
     protected tmpExtent: Extent;

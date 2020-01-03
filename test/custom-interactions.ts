@@ -97,9 +97,24 @@ class Drag extends PointerInteraction {
 
 const pointFeature = new Feature(new Point([0, 0]));
 
-const lineFeature = new Feature(new LineString([[-1e7, 1e6], [-1e6, 3e6]]));
+const lineFeature = new Feature(
+    new LineString([
+        [-1e7, 1e6],
+        [-1e6, 3e6],
+    ]),
+);
 
-const polygonFeature = new Feature(new Polygon([[[-3e6, -1e6], [-3e6, 1e6], [-1e6, 1e6], [-1e6, -1e6], [-3e6, -1e6]]]));
+const polygonFeature = new Feature(
+    new Polygon([
+        [
+            [-3e6, -1e6],
+            [-3e6, 1e6],
+            [-1e6, 1e6],
+            [-1e6, -1e6],
+            [-3e6, -1e6],
+        ],
+    ]),
+);
 
 const map = new Map({
     interactions: defaultInteractions().extend([new Drag()]),

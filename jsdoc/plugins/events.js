@@ -24,7 +24,7 @@ exports.handlers = {
         if (doclet.kind == 'class') {
           const fires = [];
           for (let j = 0, jj = doclet.fires.length; j < jj; ++j) {
-            let event = doclet.fires[j].replace('event:', '');
+            const event = doclet.fires[j].replace('event:', '');
             if (events[event]) fires.push.apply(fires, events[event]);
             else if (doclet.fires[j] !== 'event:ObjectEvent') fires.push(doclet.fires[j]);
           }

@@ -17,17 +17,17 @@ export default class MultiLineString extends SimpleGeometry {
         opt_ends?: number[],
     );
     appendLineString(lineString: LineString): void;
-    clone(): Geometry;
+    clone(): MultiLineString;
     closestPointXY(x: number, y: number, closestPoint: Coordinate, minSquaredDistance: number): number;
     getCoordinateAtM(m: number, opt_extrapolate?: boolean, opt_interpolate?: boolean): Coordinate;
-    getCoordinates(): any[];
+    getCoordinates(): Coordinate[][];
     getEnds(): number[];
     getFlatMidpoints(): number[];
     getLineString(index: number): LineString;
     getLineStrings(): LineString[];
     getType(): GeometryType;
     intersectsExtent(extent: Extent): boolean;
-    setCoordinates(coordinates: any[], opt_layout?: GeometryLayout): void;
+    setCoordinates(coordinates: Coordinate[][], opt_layout?: GeometryLayout): void;
     simplifyTransformed(squaredTolerance: number, opt_transform?: TransformFunction): Geometry;
     on(type: string | string[], listener: (p0: any) => void): EventsKey | EventsKey[];
     once(type: string | string[], listener: (p0: any) => void): EventsKey | EventsKey[];

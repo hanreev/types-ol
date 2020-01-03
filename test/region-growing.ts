@@ -63,7 +63,12 @@ function growRegion(inputs: number[][] | ImageData[], data: any) {
 function next4Edges(edge: any[]) {
     const x = edge[0];
     const y = edge[1];
-    return [[x + 1, y], [x - 1, y], [x, y + 1], [x, y - 1]];
+    return [
+        [x + 1, y],
+        [x - 1, y],
+        [x, y + 1],
+        [x, y - 1],
+    ];
 }
 
 const key = 'As1HiMj1PvLPlqc_gtM7AqZfBL8ZL3VrjaS3zIb22Uvb9WKhuJObROC-qUpa81U5';

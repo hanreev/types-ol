@@ -74,21 +74,32 @@ const geojsonObject = {
             type: 'Feature',
             geometry: {
                 type: 'MultiPoint',
-                coordinates: [[-2e6, 0], [0, -2e6]],
+                coordinates: [
+                    [-2e6, 0],
+                    [0, -2e6],
+                ],
             },
         },
         {
             type: 'Feature',
             geometry: {
                 type: 'LineString',
-                coordinates: [[4e6, -2e6], [8e6, 2e6], [9e6, 2e6]],
+                coordinates: [
+                    [4e6, -2e6],
+                    [8e6, 2e6],
+                    [9e6, 2e6],
+                ],
             },
         },
         {
             type: 'Feature',
             geometry: {
                 type: 'LineString',
-                coordinates: [[4e6, -2e6], [8e6, 2e6], [8e6, 3e6]],
+                coordinates: [
+                    [4e6, -2e6],
+                    [8e6, 2e6],
+                    [8e6, 3e6],
+                ],
             },
         },
         {
@@ -96,8 +107,18 @@ const geojsonObject = {
             geometry: {
                 type: 'Polygon',
                 coordinates: [
-                    [[-5e6, -1e6], [-4e6, 1e6], [-3e6, -1e6], [-5e6, -1e6]],
-                    [[-4.5e6, -0.5e6], [-3.5e6, -0.5e6], [-4e6, 0.5e6], [-4.5e6, -0.5e6]],
+                    [
+                        [-5e6, -1e6],
+                        [-4e6, 1e6],
+                        [-3e6, -1e6],
+                        [-5e6, -1e6],
+                    ],
+                    [
+                        [-4.5e6, -0.5e6],
+                        [-3.5e6, -0.5e6],
+                        [-4e6, 0.5e6],
+                        [-4.5e6, -0.5e6],
+                    ],
                 ],
             },
         },
@@ -106,11 +127,30 @@ const geojsonObject = {
             geometry: {
                 type: 'MultiLineString',
                 coordinates: [
-                    [[-1e6, -7.5e5], [-1e6, 7.5e5]],
-                    [[-1e6, -7.5e5], [-1e6, 7.5e5], [-5e5, 0], [-1e6, -7.5e5]],
-                    [[1e6, -7.5e5], [15e5, 0], [15e5, 0], [1e6, 7.5e5]],
-                    [[-7.5e5, -1e6], [7.5e5, -1e6]],
-                    [[-7.5e5, 1e6], [7.5e5, 1e6]],
+                    [
+                        [-1e6, -7.5e5],
+                        [-1e6, 7.5e5],
+                    ],
+                    [
+                        [-1e6, -7.5e5],
+                        [-1e6, 7.5e5],
+                        [-5e5, 0],
+                        [-1e6, -7.5e5],
+                    ],
+                    [
+                        [1e6, -7.5e5],
+                        [15e5, 0],
+                        [15e5, 0],
+                        [1e6, 7.5e5],
+                    ],
+                    [
+                        [-7.5e5, -1e6],
+                        [7.5e5, -1e6],
+                    ],
+                    [
+                        [-7.5e5, 1e6],
+                        [7.5e5, 1e6],
+                    ],
                 ],
             },
         },
@@ -119,9 +159,33 @@ const geojsonObject = {
             geometry: {
                 type: 'MultiPolygon',
                 coordinates: [
-                    [[[-5e6, 6e6], [-5e6, 8e6], [-3e6, 8e6], [-3e6, 6e6], [-5e6, 6e6]]],
-                    [[[-3e6, 6e6], [-2e6, 8e6], [0, 8e6], [0, 6e6], [-3e6, 6e6]]],
-                    [[[1e6, 6e6], [1e6, 8e6], [3e6, 8e6], [3e6, 6e6], [1e6, 6e6]]],
+                    [
+                        [
+                            [-5e6, 6e6],
+                            [-5e6, 8e6],
+                            [-3e6, 8e6],
+                            [-3e6, 6e6],
+                            [-5e6, 6e6],
+                        ],
+                    ],
+                    [
+                        [
+                            [-3e6, 6e6],
+                            [-2e6, 8e6],
+                            [0, 8e6],
+                            [0, 6e6],
+                            [-3e6, 6e6],
+                        ],
+                    ],
+                    [
+                        [
+                            [1e6, 6e6],
+                            [1e6, 8e6],
+                            [3e6, 8e6],
+                            [3e6, 6e6],
+                            [1e6, 6e6],
+                        ],
+                    ],
                 ],
             },
         },
@@ -132,7 +196,10 @@ const geojsonObject = {
                 geometries: [
                     {
                         type: 'LineString',
-                        coordinates: [[-5e6, -5e6], [0, -5e6]],
+                        coordinates: [
+                            [-5e6, -5e6],
+                            [0, -5e6],
+                        ],
                     },
                     {
                         type: 'Point',
@@ -140,7 +207,14 @@ const geojsonObject = {
                     },
                     {
                         type: 'Polygon',
-                        coordinates: [[[1e6, -6e6], [2e6, -4e6], [3e6, -6e6], [1e6, -6e6]]],
+                        coordinates: [
+                            [
+                                [1e6, -6e6],
+                                [2e6, -4e6],
+                                [3e6, -6e6],
+                                [1e6, -6e6],
+                            ],
+                        ],
                     },
                 ],
             },

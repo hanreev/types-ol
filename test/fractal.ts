@@ -16,7 +16,12 @@ const sin30 = Math.sin(Math.PI / 6);
 const rise = radius * sin30;
 const run = radius * cos30;
 
-const triangle = new LineString([[0, radius], [run, -rise], [-run, -rise], [0, radius]]);
+const triangle = new LineString([
+    [0, radius],
+    [run, -rise],
+    [-run, -rise],
+    [0, radius],
+]);
 
 const feature = new Feature(triangle);
 
@@ -36,7 +41,7 @@ const map = new Map({
 });
 
 function makeFractal(depth: number) {
-    const geometry = triangle.clone() as LineString;
+    const geometry = triangle.clone();
     const graph = coordsToGraph(geometry.getCoordinates());
     for (let i = 0; i < depth; ++i) {
         let node = graph;

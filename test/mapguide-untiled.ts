@@ -1,11 +1,12 @@
 import Map from 'ol/Map';
 import View from 'ol/View';
+import { Extent } from 'ol/extent';
 import ImageLayer from 'ol/layer/Image';
 import ImageMapGuide from 'ol/source/ImageMapGuide';
 
 const mdf = 'Library://Public/Samples/Sheboygan/Maps/Sheboygan.MapDefinition';
 const agentUrl = 'http://www.buoyshark.com/mapguide/mapagent/mapagent.fcgi?';
-const bounds = [-87.865114442365922, 43.665065564837931, -87.595394059497067, 43.823852564430069];
+const bounds: Extent = [-87.865114442365922, 43.665065564837931, -87.595394059497067, 43.823852564430069];
 const map = new Map({
     layers: [
         new ImageLayer({

@@ -4,7 +4,7 @@ import Relationship from './extent/Relationship';
 import { TransformFunction } from './proj';
 import { Size } from './size';
 
-export type Extent = number[];
+export type Extent = [number, number, number, number];
 export function applyTransform(extent: Extent, transformFn: TransformFunction, opt_extent?: Extent): Extent;
 export function boundingExtent(coordinates: Coordinate[]): Extent;
 export function buffer(extent: Extent, value: number, opt_extent?: Extent): Extent;

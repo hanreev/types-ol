@@ -18,6 +18,7 @@ export interface Options {
     minResolution?: number;
     maxResolution?: number;
     source?: VectorSource<Geometry>;
+    disableHitDetection?: boolean;
 }
 export default class WebGLPointsLayer extends Layer {
     constructor(options: Options);

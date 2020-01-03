@@ -11,7 +11,7 @@ export default class GeometryCollection extends Geometry {
     constructor(opt_geometries?: Geometry[]);
     protected computeExtent(extent: Extent): Extent;
     applyTransform(transformFn: TransformFunction): void;
-    clone(): Geometry;
+    clone(): GeometryCollection;
     closestPointXY(x: number, y: number, closestPoint: Coordinate, minSquaredDistance: number): number;
     getGeometries(): Geometry[];
     getGeometriesArray(): Geometry[];

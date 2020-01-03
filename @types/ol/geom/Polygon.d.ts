@@ -15,10 +15,10 @@ import SimpleGeometry from './SimpleGeometry';
 export default class Polygon extends SimpleGeometry {
     constructor(coordinates: Coordinate[][] | number[], opt_layout?: GeometryLayout, opt_ends?: number[]);
     appendLinearRing(linearRing: LinearRing): void;
-    clone(): Geometry;
+    clone(): Polygon;
     closestPointXY(x: number, y: number, closestPoint: Coordinate, minSquaredDistance: number): number;
     getArea(): number;
-    getCoordinates(): any[];
+    getCoordinates(opt_right?: boolean): Coordinate[][];
     getEnds(): number[];
     getFlatInteriorPoint(): number[];
     getInteriorPoint(): Point;
@@ -28,7 +28,7 @@ export default class Polygon extends SimpleGeometry {
     getOrientedFlatCoordinates(): number[];
     getType(): GeometryType;
     intersectsExtent(extent: Extent): boolean;
-    setCoordinates(coordinates: any[], opt_layout?: GeometryLayout): void;
+    setCoordinates(coordinates: Coordinate[][], opt_layout?: GeometryLayout): void;
     simplifyTransformed(squaredTolerance: number, opt_transform?: TransformFunction): Geometry;
     on(type: string | string[], listener: (p0: any) => void): EventsKey | EventsKey[];
     once(type: string | string[], listener: (p0: any) => void): EventsKey | EventsKey[];

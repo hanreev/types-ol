@@ -11,7 +11,7 @@ import SimpleGeometry from './SimpleGeometry';
 
 export default class Circle extends SimpleGeometry {
     constructor(center: Coordinate, opt_radius?: number, opt_layout?: GeometryLayout);
-    clone(): Geometry;
+    clone(): Circle;
     closestPointXY(x: number, y: number, closestPoint: Coordinate, minSquaredDistance: number): number;
     getCenter(): Coordinate;
     getCoordinates(): any[];

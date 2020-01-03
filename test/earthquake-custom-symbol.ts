@@ -10,7 +10,15 @@ import VectorSource from 'ol/source/Vector';
 import { Fill, Icon, Stroke, Style } from 'ol/style';
 import { StyleFunction } from 'ol/style/Style';
 
-const symbol = [[0, 0], [4, 2], [6, 0], [10, 5], [6, 3], [4, 5], [0, 0]];
+const symbol = [
+    [0, 0],
+    [4, 2],
+    [6, 0],
+    [10, 5],
+    [6, 3],
+    [4, 5],
+    [0, 0],
+];
 let scale: number;
 const scaleFunction = (coordinate: Coordinate) => {
     return [coordinate[0] * scale, coordinate[1] * scale];

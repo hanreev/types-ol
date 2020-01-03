@@ -48,7 +48,7 @@ export default class GeoJSON extends JSONFeature {
     protected readFeaturesFromObject(object: any, opt_options?: ReadOptions): Feature_1<Geometry_1>[];
     protected readGeometryFromObject(object: any, opt_options?: ReadOptions): Geometry_1;
     protected readProjectionFromObject(object: any): Projection;
-    writeFeatureObject(feature: Feature_1<Geometry_1>, opt_options?: WriteOptions): any;
-    writeFeaturesObject(features: Feature_1<Geometry_1>[], opt_options?: WriteOptions): any;
-    writeGeometryObject(geometry: Geometry_1, opt_options?: WriteOptions): any;
+    writeFeatureObject(feature: Feature_1<Geometry_1>, opt_options?: WriteOptions): GeoJSONFeature;
+    writeFeaturesObject(features: Feature_1<Geometry_1>[], opt_options?: WriteOptions): GeoJSONFeatureCollection;
+    writeGeometryObject(geometry: Geometry_1, opt_options?: WriteOptions): GeoJSONGeometry | GeoJSONGeometryCollection;
 }

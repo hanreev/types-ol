@@ -13,14 +13,14 @@ import SimpleGeometry from './SimpleGeometry';
 export default class MultiPoint extends SimpleGeometry {
     constructor(coordinates: Coordinate[] | number[], opt_layout?: GeometryLayout);
     appendPoint(point: Point): void;
-    clone(): Geometry;
+    clone(): MultiPoint;
     closestPointXY(x: number, y: number, closestPoint: Coordinate, minSquaredDistance: number): number;
-    getCoordinates(): any[];
+    getCoordinates(): Coordinate[];
     getPoint(index: number): Point;
     getPoints(): Point[];
     getType(): GeometryType;
     intersectsExtent(extent: Extent): boolean;
-    setCoordinates(coordinates: any[], opt_layout?: GeometryLayout): void;
+    setCoordinates(coordinates: Coordinate[], opt_layout?: GeometryLayout): void;
     simplifyTransformed(squaredTolerance: number, opt_transform?: TransformFunction): Geometry;
     on(type: string | string[], listener: (p0: any) => void): EventsKey | EventsKey[];
     once(type: string | string[], listener: (p0: any) => void): EventsKey | EventsKey[];

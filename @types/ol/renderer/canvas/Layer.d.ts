@@ -19,9 +19,18 @@ export default abstract class CanvasLayerRenderer<LayerType extends Layer = Laye
     protected renderedResolution: number;
     protected clip(context: CanvasRenderingContext2D, frameState: FrameState, extent: Extent): void;
     protected clipUnrotated(context: CanvasRenderingContext2D, frameState: FrameState, extent: Extent): void;
-    protected getRenderTransform(frameState: FrameState, width: number, height: number, offsetX: number): Transform;
+    protected getRenderTransform(
+        center: Coordinate,
+        resolution: number,
+        rotation: number,
+        pixelRatio: number,
+        width: number,
+        height: number,
+        offsetX: number,
+    ): Transform;
     protected postRender(context: CanvasRenderingContext2D, frameState: FrameState): void;
     protected preRender(context: CanvasRenderingContext2D, frameState: FrameState): void;
+    createTransformString(transform: Transform): string;
     abstract forEachFeatureAtCoordinate<T>(
         coordinate: Coordinate,
         frameState: FrameState,
@@ -33,7 +42,7 @@ export default abstract class CanvasLayerRenderer<LayerType extends Layer = Laye
     abstract handleFontsChanged(): void;
     abstract prepareFrame(frameState: FrameState): boolean;
     abstract renderFrame(frameState: FrameState, target: HTMLElement): HTMLElement;
-    useContainer(target: HTMLElement, transform: Transform, opacity: number): void;
+    useContainer(target: HTMLElement, transform: string, opacity: number): void;
     on(type: string | string[], listener: (p0: any) => void): EventsKey | EventsKey[];
     once(type: string | string[], listener: (p0: any) => void): EventsKey | EventsKey[];
     un(type: string | string[], listener: (p0: any) => void): void;

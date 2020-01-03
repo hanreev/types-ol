@@ -1,5 +1,5 @@
 diff --git a/src/ol/source/Vector.js b/src/ol/source/Vector.js
-index fc2d7f938..f8bfedd79 100644
+index 0d0905e5c..bcf371907 100644
 --- a/src/ol/source/Vector.js
 +++ b/src/ol/source/Vector.js
 @@ -35,13 +35,13 @@ import RBush from '../structs/RBush.js';
@@ -258,16 +258,16 @@ index fc2d7f938..f8bfedd79 100644
     * @api
     */
    getFeaturesAtCoordinate(coordinate) {
-@@ -678,7 +678,7 @@ class VectorSource extends Source {
-    * This method is not available when the source is configured with
-    * `useSpatialIndex` set to `false`.
+@@ -679,7 +679,7 @@ class VectorSource extends Source {
+    * features.
+    *
     * @param {import("../extent.js").Extent} extent Extent.
 -   * @return {Array<import("../Feature.js").default<Geometry>>} Features.
 +   * @return {Array<import("../Feature.js").default<GeomType>>} Features.
     * @api
     */
    getFeaturesInExtent(extent) {
-@@ -692,10 +692,10 @@ class VectorSource extends Source {
+@@ -699,10 +699,10 @@ class VectorSource extends Source {
     * This method is not available when the source is configured with
     * `useSpatialIndex` set to `false`.
     * @param {import("../coordinate.js").Coordinate} coordinate Coordinate.
@@ -280,7 +280,7 @@ index fc2d7f938..f8bfedd79 100644
     * @api
     */
    getClosestFeatureToCoordinate(coordinate, opt_filter) {
-@@ -715,7 +715,7 @@ class VectorSource extends Source {
+@@ -722,7 +722,7 @@ class VectorSource extends Source {
      const filter = opt_filter ? opt_filter : TRUE;
      this.featuresRtree_.forEachInExtent(extent,
        /**
@@ -289,7 +289,7 @@ index fc2d7f938..f8bfedd79 100644
         */
        function(feature) {
          if (filter(feature)) {
-@@ -762,7 +762,7 @@ class VectorSource extends Source {
+@@ -769,7 +769,7 @@ class VectorSource extends Source {
     * `source.getFeatureById(2)` will return a feature with id `'2'` or `2`.
     *
     * @param {string|number} id Feature identifier.
@@ -298,7 +298,7 @@ index fc2d7f938..f8bfedd79 100644
     * @api
     */
    getFeatureById(id) {
-@@ -775,7 +775,7 @@ class VectorSource extends Source {
+@@ -782,7 +782,7 @@ class VectorSource extends Source {
     * Get a feature by its internal unique identifier (using `getUid`).
     *
     * @param {string} uid Feature identifier.
@@ -307,7 +307,7 @@ index fc2d7f938..f8bfedd79 100644
     */
    getFeatureByUid(uid) {
      const feature = this.uidIndex_[uid];
-@@ -818,7 +818,7 @@ class VectorSource extends Source {
+@@ -825,7 +825,7 @@ class VectorSource extends Source {
     * @private
     */
    handleFeatureChange_(event) {
@@ -316,7 +316,7 @@ index fc2d7f938..f8bfedd79 100644
      const featureKey = getUid(feature);
      const geometry = feature.getGeometry();
      if (!geometry) {
-@@ -859,7 +859,7 @@ class VectorSource extends Source {
+@@ -866,7 +866,7 @@ class VectorSource extends Source {
  
    /**
     * Returns true if the feature is contained within the source.
@@ -325,7 +325,7 @@ index fc2d7f938..f8bfedd79 100644
     * @return {boolean} Has feature.
     * @api
     */
-@@ -941,7 +941,7 @@ class VectorSource extends Source {
+@@ -948,7 +948,7 @@ class VectorSource extends Source {
     * Remove a single feature from the source.  If you want to remove all features
     * at once, use the {@link module:ol/source/Vector~VectorSource#clear #clear()} method
     * instead.
@@ -334,7 +334,7 @@ index fc2d7f938..f8bfedd79 100644
     * @api
     */
    removeFeature(feature) {
-@@ -960,7 +960,7 @@ class VectorSource extends Source {
+@@ -967,7 +967,7 @@ class VectorSource extends Source {
  
    /**
     * Remove feature without firing a `change` event.
@@ -343,7 +343,7 @@ index fc2d7f938..f8bfedd79 100644
     * @protected
     */
    removeFeatureInternal(feature) {
-@@ -980,7 +980,7 @@ class VectorSource extends Source {
+@@ -987,7 +987,7 @@ class VectorSource extends Source {
    /**
     * Remove a feature from the id index.  Called internally when the feature id
     * may have changed.

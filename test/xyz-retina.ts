@@ -1,13 +1,14 @@
-import TileLayer from 'ol/layer/Tile';
 import Map from 'ol/Map';
+import View from 'ol/View';
+import { Extent } from 'ol/extent';
+import TileLayer from 'ol/layer/Tile';
 import { transform, transformExtent } from 'ol/proj';
 import OSM from 'ol/source/OSM';
 import XYZ from 'ol/source/XYZ';
-import View from 'ol/View';
 
 const mapMinZoom = 1;
 const mapMaxZoom = 15;
-const mapExtent = [-112.261791, 35.983744, -112.113981, 36.132062];
+const mapExtent: Extent = [-112.261791, 35.983744, -112.113981, 36.132062];
 
 const map = new Map({
     target: 'map',

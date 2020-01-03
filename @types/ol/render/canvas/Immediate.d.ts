@@ -13,4 +13,5 @@ export default class CanvasImmediateRenderer extends VectorContext {
         opt_squaredTolerance?: number,
         opt_userTransform?: TransformFunction,
     );
+    setTransform(transform: Transform): void;
 }

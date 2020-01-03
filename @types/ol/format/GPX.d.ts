@@ -11,7 +11,7 @@ export interface LayoutOptions {
     hasM?: boolean;
 }
 export interface Options {
-    readExtensions?: (p0: Feature, p1: Node) => void;
+    readExtensions?: (p0: Feature<Geometry>, p1: Node) => void;
 }
 export default class GPX extends XMLFeature {
     constructor(opt_options?: Options);

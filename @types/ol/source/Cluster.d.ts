@@ -10,7 +10,7 @@ import VectorSource, { VectorSourceEvent } from './Vector';
 export interface Options {
     attributions?: AttributionLike;
     distance?: number;
-    geometryFunction?: (p0: Feature) => Point;
+    geometryFunction?: (p0: Feature<Geometry>) => Point;
     source: VectorSource<Geometry>;
     wrapX?: boolean;
 }
@@ -24,6 +24,7 @@ export default class Cluster extends VectorSource {
     protected cluster(): void;
     protected createCluster(features: Feature<Geometry>[]): Feature<Geometry>;
     getDistance(): number;
+    getResolutions(): number[];
     getSource(): VectorSource<Geometry>;
     setDistance(distance: number): void;
     on(type: string | string[], listener: (p0: any) => void): EventsKey | EventsKey[];

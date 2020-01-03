@@ -1,6 +1,7 @@
 import Map from 'ol/Map';
 import View from 'ol/View';
 import { ScaleLine, defaults as defaultControls } from 'ol/control';
+import { Extent } from 'ol/extent';
 import ImageLayer from 'ol/layer/Image';
 import { fromLonLat } from 'ol/proj';
 import Projection from 'ol/proj/Projection';
@@ -34,7 +35,7 @@ const projection = new Projection({
     extent: [485869.5728, 76443.1884, 837076.5648, 299941.7864],
 });
 
-const extent = [420000, 30000, 900000, 350000];
+const extent: Extent = [420000, 30000, 900000, 350000];
 const layers = [
     new ImageLayer({
         extent,

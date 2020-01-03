@@ -1,7 +1,10 @@
 import { EventsKey } from '../events';
 import BaseEvent from '../events/Event';
 import { Extent } from '../extent';
+import Feature from '../Feature';
+import Geometry from '../geom/Geometry';
 import { ObjectEvent } from '../Object';
+import { Pixel } from '../pixel';
 import PluggableMap from '../PluggableMap';
 import { OrderFunction } from '../render';
 import RenderEvent from '../render/Event';
@@ -36,6 +39,7 @@ export interface Options {
 export default class VectorTileLayer extends BaseVectorLayer<VectorTile> {
     constructor(opt_options?: Options);
     protected createRenderer(): LayerRenderer<Layer<Source>>;
+    getFeatures(pixel: Pixel): Promise<Feature<Geometry>[]>;
     getPreload(): number;
     getRenderMode(): VectorTileRenderType;
     getUseInterimTilesOnError(): boolean;

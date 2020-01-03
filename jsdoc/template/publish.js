@@ -51,6 +51,7 @@ const TYPE_PATCHES = {
     'Object<string,string|number|Array<number|string|module:ol/format/IIIFInfo~IiifProfile>|Object<string, number>|module:ol/format/IIIFInfo~TileInfo>',
   ],
   'module:ol/format/IIIFInfo~Versions': ['string'],
+  'module:ol/extent~Extent': ['[number, number, number, number]'],
 };
 
 /** @type {Object<string, string[]>} */
@@ -93,8 +94,8 @@ const IMPORT_PATCHES = {
   'module:ol/geom/MultiLineString': ['module:ol/geom/GeometryLayout~GeometryLayout'],
   'module:ol/geom/MultiPolygon': ['module:ol/geom/GeometryLayout~GeometryLayout'],
   'module:ol/geom/Polygon': ['module:ol/geom/GeometryLayout~GeometryLayout'],
-  'module:ol/proj': ['module:ol/proj/Units~Units'],
-  //  'module:ol/source/Cluster': ['module:ol/geom/Point~Point'],
+  // 'module:ol/proj': ['module:ol/proj/Units~Units'],
+  // 'module:ol/source/Cluster': ['module:ol/geom/Point~Point'],
   'module:ol/tilegrid': ['module:ol/extent/Corner~Corner'],
   'module:ol/format/MVT': ['module:ol/format/Feature~WriteOptions'],
 };
@@ -367,7 +368,7 @@ function stringifyType(parsedType, _module, undefinedLiteral = true, nullLiteral
         break;
 
       case 'Object':
-        if (applications[0] != 'number' && applications[0] != 'string')
+        if (['string', 'number'].indexOf(applications[0]) == -1)
           typeStr = `{ [key in ${applications[0]}]: ${applications[1]} }`;
         else typeStr = `{ [key: ${applications[0]}]: ${applications[1]} }`;
         break;
@@ -489,9 +490,11 @@ function getType(doclet, _module, undefinedLiteral = false, nullLiteral = false)
     let parsedType;
     let prefix = '';
 
-    if (type == 'module:ol/format/IIIFInfostring') console.log(doclet);
-
-    if (_module.name == 'ol/source/Raster' && type == 'RasterOperationType') return `'pixel' | 'image'`;
+    if (
+      _module.name == 'ol/source/Raster' &&
+      (type == 'RasterOperationType' || type == 'module:ol/source/Raster~RasterOperationType')
+    )
+      return `'pixel' | 'image'`;
 
     if (type.startsWith('typeof:')) {
       prefix = 'typeof ';
@@ -507,7 +510,9 @@ function getType(doclet, _module, undefinedLiteral = false, nullLiteral = false)
         parsedType = catharsis.parse(type, { jsdoc: true });
         type = stringifyType(parsedType, _module, undefinedLiteral, nullLiteral);
       } catch (error) {
-        logger.error('getType --', doclet.longname || _module.longname, type);
+        if (doclet.longname in TYPE_PATCHES)
+          logger.warn('getType -- [RAW_PATCH]:', doclet.longname || _module.longname, type);
+        else logger.error('getType --', doclet.longname || _module.longname, type);
       }
 
     return prefix + type;
@@ -744,15 +749,6 @@ const PROCESSORS = {
 
   /** @type {DocletParser} */
   function(doclet, _module) {
-    // FIXME: Patch module:ol/obj.getValues
-    if (doclet.longname == 'module:ol/obj.getValues')
-      return ['string', 'number']
-        .map(t => {
-          const decl = `function ${doclet.name}<V>(obj: { [key: ${t}]: V }): V[];`;
-          return definition(doclet, decl, _module);
-        })
-        .join('\n');
-
     const decl = 'function ' + PROCESSORS.method(doclet, _module);
     return definition(doclet, decl, _module);
   },

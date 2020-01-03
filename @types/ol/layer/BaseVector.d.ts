@@ -4,6 +4,7 @@ import { Extent } from '../extent';
 import Feature from '../Feature';
 import Geometry from '../geom/Geometry';
 import { ObjectEvent } from '../Object';
+import { Pixel } from '../pixel';
 import PluggableMap from '../PluggableMap';
 import { OrderFunction } from '../render';
 import RenderEvent from '../render/Event';
@@ -34,6 +35,7 @@ export default class BaseVectorLayer<
 > extends Layer<VectorSourceType> {
     constructor(opt_options?: Options);
     getDeclutter(): boolean;
+    getFeatures(pixel: Pixel): Promise<Feature<Geometry>[]>;
     getRenderBuffer(): number;
     getRenderOrder(): (p0: Feature<Geometry>, p1: Feature<Geometry>) => number;
     getStyle(): StyleLike;

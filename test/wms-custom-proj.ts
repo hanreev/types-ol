@@ -1,6 +1,7 @@
 import Map from 'ol/Map';
 import View from 'ol/View';
 import { ScaleLine, defaults as defaultControls } from 'ol/control';
+import { Extent } from 'ol/extent';
 import TileLayer from 'ol/layer/Tile';
 import { addCoordinateTransforms, addProjection, transform } from 'ol/proj';
 import Projection from 'ol/proj/Projection';
@@ -35,7 +36,7 @@ addCoordinateTransforms(
     },
 );
 
-const extent = [420000, 30000, 900000, 350000];
+const extent: Extent = [420000, 30000, 900000, 350000];
 const layers = [
     new TileLayer({
         extent,

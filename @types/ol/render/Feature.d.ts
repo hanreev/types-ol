@@ -11,6 +11,7 @@ export default class RenderFeature {
         id: number | string | undefined,
     );
     get(key: string): any;
+    getEnds(): number[] | number[][];
     getExtent(): Extent;
     getFlatInteriorPoint(): number[];
     getFlatInteriorPoints(): number[];

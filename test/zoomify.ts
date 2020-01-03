@@ -1,5 +1,6 @@
 import Map from 'ol/Map';
 import View from 'ol/View';
+import { Extent } from 'ol/extent';
 import TileLayer from 'ol/layer/Tile';
 import Zoomify from 'ol/source/Zoomify';
 
@@ -18,7 +19,7 @@ const layer = new TileLayer({
     }),
 });
 
-const extent = [0, -imgHeight, imgWidth, 0];
+const extent: Extent = [0, -imgHeight, imgWidth, 0];
 
 const map = new Map({
     layers: [layer],

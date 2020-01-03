@@ -1,0 +1,13 @@
+diff --git a/src/ol/renderer/webgl/PointsLayer.js b/src/ol/renderer/webgl/PointsLayer.js
+index 868f9b747..1f433efbd 100644
+--- a/src/ol/renderer/webgl/PointsLayer.js
++++ b/src/ol/renderer/webgl/PointsLayer.js
+@@ -35,7 +35,7 @@ import VectorEventType from '../../source/VectorEventType.js';
+  * rebuildBuffers by accessing these objects quicker.
+  * @property {import("../../Feature").default} feature Feature
+  * @property {Object<string, *>} properties Feature properties
+- * @property {import("../../geom").Geometry} geometry Feature geometry
++ * @property {import("../../geom/Geometry").default} geometry Feature geometry
+  */
+ 
+ /**

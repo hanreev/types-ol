@@ -218,7 +218,7 @@ refreshPolygonsEl &&
 function stringDivider(str: string, width: number, spaceReplacer: string): string {
     if (str.length > width) {
         let p = width;
-        while (p > 0 && (str[p] !== ' ' && str[p] !== '-')) {
+        while (p > 0 && str[p] !== ' ' && str[p] !== '-') {
             p--;
         }
         if (p > 0) {

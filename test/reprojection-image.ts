@@ -1,6 +1,6 @@
 import Map from 'ol/Map';
 import View from 'ol/View';
-import { getCenter } from 'ol/extent';
+import { Extent, getCenter } from 'ol/extent';
 import { Image as ImageLayer, Tile as TileLayer } from 'ol/layer';
 import { transform } from 'ol/proj';
 import { register } from 'ol/proj/proj4';
@@ -17,7 +17,7 @@ proj4.defs(
 );
 register(proj4);
 
-const imageExtent = [0, 0, 700000, 1300000];
+const imageExtent: Extent = [0, 0, 700000, 1300000];
 
 const map = new Map({
     layers: [

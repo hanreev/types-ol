@@ -1,7 +1,8 @@
 import { Coordinate } from '../coordinate';
 import { EventsKey } from '../events';
 import BaseEvent from '../events/Event';
-import { FeatureLike } from '../Feature';
+import Feature, { FeatureLike } from '../Feature';
+import Geometry from '../geom/Geometry';
 import ImageBase from '../ImageBase';
 import Layer from '../layer/Layer';
 import Observable from '../Observable';
@@ -30,6 +31,7 @@ export default class LayerRenderer<LayerType extends Layer = Layer> extends Obse
         declutteredFeatures: FeatureLike[],
     ): T | void;
     getDataAtPixel(pixel: Pixel, frameState: FrameState, hitTolerance: number): Uint8ClampedArray | Uint8Array;
+    getFeatures(pixel: Pixel): Promise<Feature<Geometry>[]>;
     getLayer(): LayerType;
     handleFontsChanged(): void;
     loadedTileCallback(tiles: { [key: number]: { [key: string]: Tile } }, zoom: number, tile: Tile): void;

@@ -1,6 +1,6 @@
 import Map from 'ol/Map';
 import View from 'ol/View';
-import { getCenter, getWidth } from 'ol/extent';
+import { createEmpty as createEmptyExtent, getCenter, getWidth } from 'ol/extent';
 import WMTSCapabilities from 'ol/format/WMTSCapabilities';
 import BaseLayer from 'ol/layer/Base';
 import TileLayer from 'ol/layer/Tile';
@@ -184,7 +184,7 @@ function updateViewProjection() {
     if (newProj === getProjection('EPSG:3857')) {
         layers['bng'].setExtent([-1057216, 6405988, 404315, 8759696]);
     } else {
-        layers['bng'].setExtent([]);
+        layers['bng'].setExtent(createEmptyExtent());
     }
 }
 

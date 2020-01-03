@@ -1,6 +1,6 @@
 import Map from 'ol/Map';
 import View from 'ol/View';
-import { getCenter } from 'ol/extent';
+import { Extent, getCenter } from 'ol/extent';
 import GeoJSON from 'ol/format/GeoJSON';
 import { Tile as TileLayer, Vector as VectorLayer } from 'ol/layer';
 import BingMaps from 'ol/source/BingMaps';
@@ -17,7 +17,7 @@ const style = new Style({
     }),
 });
 
-const viewExtent = [1817379, 6139595, 1827851, 6143616];
+const viewExtent: Extent = [1817379, 6139595, 1827851, 6143616];
 const map = new Map({
     layers: [
         new TileLayer({

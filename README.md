@@ -11,7 +11,7 @@
 
 
 
-This project contains TypeScript definition for [OpenLayers](https://openlayers.org/) `v6.0.1` that includes all documented API and protected class members and methods.
+This project contains TypeScript definition for [OpenLayers](https://openlayers.org/) `v6.1.1` that includes all documented API and protected class members and methods.
 Check `v5.3.x` branch for [OpenLayers](https://openlayers.org/) `v5.3.x` definitions.
 
 
@@ -63,7 +63,7 @@ There are several ways to use this package. Please choose one:
     ...
     "devDependencies": {
       ...
-      "@hanreev/types-ol": "^3.0.0",
+      "@hanreev/types-ol": "^3.1.0",
       "@types/ol": "file:node_modules/@hanreev/types-ol/ol",
       ...
     }
@@ -161,12 +161,16 @@ Configuration is located at `jsdoc/conf.json`
   ```
 
 > **_Note:_**  
-> Some declaration was patched manually. If you found any error please [create a new issue](https://github.com/hanreev/types-ol/issues).
+> Some definition was patched manually. If you found any error please [create a new issue](https://github.com/hanreev/types-ol/issues).
 
 
 
 ## Changelog
 
+- **v3.1.0**
+  - Update to OpenLayers v6.1.1
+  - Change `ol/extent.Extent` type from `number[]` to `[number, number, number, number]`
+  - Tools upgrade: `jsdoc@3.6.3` and `jsdoc-plugin-typescript@2.0.5`
 - **v3.0.0**
   - OpenLayers v6
 - **v2.0.8**

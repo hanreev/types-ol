@@ -1,20 +1,9 @@
 import { CustomAttribute } from '../renderer/webgl/PointsLayer';
-import { LiteralSymbolStyle } from '../style/LiteralStyle';
+import { LiteralStyle } from '../style/LiteralStyle';
 import { UniformValue } from './Helper';
 
-export type OperatorValue = any[] | number;
-export interface ShaderParameters {
-    uniforms?: string[];
-    attributes?: string[];
-    varyings?: VaryingDescription[];
-    sizeExpression: string;
-    offsetExpression: string;
-    colorExpression: string;
-    texCoordExpression: string;
-    rotateWithView?: boolean;
-}
 export interface StyleParseResult {
-    params: ShaderParameters;
+    builder: ShaderBuilder;
     uniforms: { [key: string]: UniformValue };
     attributes: CustomAttribute[];
 }
@@ -23,10 +12,23 @@ export interface VaryingDescription {
     type: string;
     expression: string;
 }
-export function formatArray(array: number[]): string;
-export function formatColor(colorArray: number[]): string;
-export function formatNumber(v: number): string;
-export function getSymbolFragmentShader(parameters: ShaderParameters): string;
-export function getSymbolVertexShader(parameters: ShaderParameters): string;
-export function parse(value: OperatorValue, attributes: string[], attributePrefix: string): string;
-export function parseSymbolStyle(style: LiteralSymbolStyle): StyleParseResult;
+export class ShaderBuilder {
+    constructor();
+    addAttribute(name: string): ShaderBuilder;
+    addUniform(name: string): ShaderBuilder;
+    addVarying(name: string, type: 'float' | 'vec2' | 'vec3' | 'vec4', expression: string): ShaderBuilder;
+    getColorExpression(): string;
+    getFragmentDiscardExpression(): string;
+    getOffsetExpression(): string;
+    getSizeExpression(): string;
+    getSymbolFragmentShader(forHitDetection?: boolean): string;
+    getSymbolVertexShader(forHitDetection?: boolean): string;
+    getTextureCoordinateExpression(): string;
+    setColorExpression(expression: string): ShaderBuilder;
+    setFragmentDiscardExpression(expression: string): ShaderBuilder;
+    setSizeExpression(expression: string): ShaderBuilder;
+    setSymbolOffsetExpression(expression: string): ShaderBuilder;
+    setSymbolRotateWithView(rotateWithView: boolean): ShaderBuilder;
+    setTextureCoordinateExpression(expression: string): ShaderBuilder;
+}
+export function parseLiteralStyle(style: LiteralStyle): StyleParseResult;

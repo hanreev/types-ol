@@ -17,7 +17,12 @@ const style = new Style({
     }),
 });
 
-const feature = new Feature(new LineString([[-4000000, 0], [4000000, 0]]));
+const feature = new Feature(
+    new LineString([
+        [-4000000, 0],
+        [4000000, 0],
+    ]),
+);
 
 const vector = new VectorLayer({
     source: new VectorSource({

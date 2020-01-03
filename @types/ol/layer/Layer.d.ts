@@ -1,7 +1,10 @@
 import { EventsKey } from '../events';
 import BaseEvent from '../events/Event';
 import { Extent } from '../extent';
+import Feature from '../Feature';
+import Geometry from '../geom/Geometry';
 import { ObjectEvent } from '../Object';
+import { Pixel } from '../pixel';
 import PluggableMap, { FrameState } from '../PluggableMap';
 import RenderEvent from '../render/Event';
 import LayerRenderer from '../renderer/Layer';
@@ -29,7 +32,6 @@ export interface State {
     sourceState: State_1;
     visible: boolean;
     managed: boolean;
-    hasOverlay: boolean;
     extent?: Extent;
     zIndex: number;
     maxResolution: number;
@@ -40,6 +42,7 @@ export interface State {
 export default class Layer<SourceType extends Source = Source> extends BaseLayer {
     constructor(options: Options);
     protected createRenderer(): LayerRenderer<Layer<Source>>;
+    getFeatures(pixel: Pixel): Promise<Feature<Geometry>[]>;
     getLayersArray(opt_array?: Layer<Source>[]): Layer<Source>[];
     getLayerStatesArray(opt_states?: State[]): State[];
     getRenderer(): LayerRenderer<Layer<Source>>;

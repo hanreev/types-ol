@@ -11,9 +11,9 @@ import SimpleGeometry from './SimpleGeometry';
 
 export default class Point extends SimpleGeometry {
     constructor(coordinates: Coordinate, opt_layout?: GeometryLayout);
-    clone(): Geometry;
+    clone(): Point;
     closestPointXY(x: number, y: number, closestPoint: Coordinate, minSquaredDistance: number): number;
-    getCoordinates(): any[];
+    getCoordinates(): Coordinate;
     getType(): GeometryType;
     intersectsExtent(extent: Extent): boolean;
     setCoordinates(coordinates: any[], opt_layout?: GeometryLayout): void;

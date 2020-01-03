@@ -1,6 +1,6 @@
 import Map from 'ol/Map';
 import View from 'ol/View';
-import { getCenter, getWidth } from 'ol/extent';
+import { Extent, getCenter, getWidth } from 'ol/extent';
 import { Image as ImageLayer, Tile as TileLayer } from 'ol/layer';
 import { fromLonLat, toLonLat } from 'ol/proj';
 import Projection from 'ol/proj/Projection';
@@ -28,7 +28,7 @@ d3.json('data/topojson/us.json', (error: any, us: any) => {
     const features = topojson.feature(us, us.objects.counties);
 
     const canvasFunction = (
-        extent: number[],
+        extent: Extent,
         resolution: number,
         pixelRatio: number,
         size: number[],

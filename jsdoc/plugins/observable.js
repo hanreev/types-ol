@@ -16,8 +16,14 @@ exports.defineTags = dictionary => {
   });
 };
 
+/** @type {Object<string, Doclet>} */
 const classes = {};
+/** @type {Object<string, Object>} */
 const observables = {};
+/** @type {Object<string, Array<string>>} */
+const fires = {};
+/** @type {Object<string, Array>} */
+const clsObservables = {};
 
 exports.handlers = {
   /**
@@ -61,11 +67,23 @@ exports.handlers = {
         observable = observables[doclet.observable];
         if (observable.type && cls.observables.indexOf(observable) == -1) cls.observables.push(observable);
 
+        const tmpObservables = clsObservables[cls.longname] || [];
+        clsObservables[cls.longname] = Array.from(new Set(tmpObservables.concat(cls.observables)));
+
         if (!cls.fires) cls.fires = [];
 
         event = 'module:ol/Object.ObjectEvent#event:change:' + name;
         if (cls.fires.indexOf(event) == -1) cls.fires.push(event);
+
+        const tmpFires = fires[cls.longname] || [];
+        fires[cls.longname] = Array.from(new Set(tmpFires.concat(cls.fires)));
       }
+    }
+
+    for (i = 0, ii = doclets.length - 1; i < ii; ++i) {
+      doclet = doclets[i];
+      if (doclet.longname in fires) doclet.fires = fires[doclet.longname];
+      if (doclet.longname in clsObservables) doclet.observables = clsObservables[doclet.longname];
     }
   },
 };
