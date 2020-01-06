@@ -39,13 +39,13 @@ const header = `// Type definitions for ol ${olVersion}
 // TypeScript Version: 3.1
 // Minimum TypeScript Version: 3.1
 
-// These definitions was generated using jsdoc. See https://github.com/hanreev/types-ol
+// These definitions is generated using jsdoc. See https://github.com/hanreev/types-ol
 
 `;
 
-const srcPath = path.resolve(BASE_DIR, '@types', 'ol');
-const dtPath = path.resolve(BASE_DIR, 'DefinitelyTyped');
-const destPath = path.join(dtPath, 'types', 'ol');
+const SRC_DIR = path.resolve(BASE_DIR, '@types', 'ol');
+const DT_DIR = path.resolve(BASE_DIR, 'DefinitelyTyped');
+const DEST_DIR = path.join(DT_DIR, 'types', 'ol');
 
 /**
  * Prepare DefinitelyTyped
@@ -55,10 +55,10 @@ function prepareDt() {
 
   // Clean
   console.log('# Cleaning output directory');
-  fs.removeSync(dtPath);
-  fs.mkdirpSync(destPath);
+  fs.removeSync(DT_DIR);
+  fs.mkdirpSync(DEST_DIR);
 
-  const dtPackageJson = {
+  const packageJson = {
     name: 'DefinitelyTyped',
     version: '1.0.0',
     license: 'UNLICENSED',
@@ -71,13 +71,13 @@ function prepareDt() {
       'types-publisher': 'github:Microsoft/types-publisher#production',
     },
   };
-  const dtNotNeededPackagesJson = { packages: [] };
-  const gitignorePaths = ['/node_modules', 'yarn.lock', 'yarn-error.log'];
-  process.chdir(dtPath);
-  fs.writeFileSync('package.json', JSON.stringify(dtPackageJson, null, 4), { encoding: 'utf-8' });
-  fs.writeFileSync('notNeededPackages.json', JSON.stringify(dtNotNeededPackagesJson, null, 4), { encoding: 'utf-8' });
-  fs.writeFileSync('.gitignore', gitignorePaths.join('\n'), { encoding: 'utf-8' });
-  process.chdir(dtPath);
+  const notNeededPackagesJson = { packages: [] };
+  const gitignore = ['/node_modules', 'yarn.lock', 'yarn-error.log'];
+
+  process.chdir(DT_DIR);
+  fs.writeFileSync('package.json', JSON.stringify(packageJson, null, 4), { encoding: 'utf-8' });
+  fs.writeFileSync('notNeededPackages.json', JSON.stringify(notNeededPackagesJson, null, 4), { encoding: 'utf-8' });
+  fs.writeFileSync('.gitignore', gitignore.join('\n'), { encoding: 'utf-8' });
   childProcess.execSync('git init', { stdio: 'inherit' });
   childProcess.execSync('git add --all', { stdio: 'inherit' });
   childProcess.execSync('git commit -m initial', { stdio: 'inherit' });
@@ -90,23 +90,23 @@ function prepareDt() {
 function copyDefinitions() {
   // Copy .d.ts files
   console.log('# Copying definition files');
-  fs.copySync(srcPath, destPath);
+  fs.copySync(SRC_DIR, DEST_DIR);
 
   console.log('# Generating tsconfig.json and tslint.json');
 
   // Copy test files
   console.log('# Copying test files');
-  fs.copyFileSync(path.resolve('test', 'ol-tests.ts'), path.join(destPath, 'ol-tests.ts'));
+  fs.copyFileSync(path.resolve('test', 'ol-tests.ts'), path.join(DEST_DIR, 'ol-tests.ts'));
   configs.tsconfig.files.push('ol-tests.ts');
 
   // Write tsconfig.json and tslint.json
   for (const key in configs)
-    fs.writeFileSync(path.join(destPath, key + '.json'), JSON.stringify(configs[key], null, 4), { encoding: 'utf-8' });
+    fs.writeFileSync(path.join(DEST_DIR, key + '.json'), JSON.stringify(configs[key], null, 4), { encoding: 'utf-8' });
 
   // Prepend DefinitelyTyped header to index.d.ts
   console.log('# Adding DefinitelyTyped header');
-  const indexPath = path.join(destPath, 'index.d.ts');
-  fs.writeFileSync(indexPath, header + fs.readFileSync(indexPath, 'utf-8'));
+  const indexPath = path.join(DEST_DIR, 'index.d.ts');
+  fs.writeFileSync(indexPath, header + fs.readFileSync(indexPath, 'utf-8'), { encoding: 'utf-8' });
 }
 
 /**
@@ -115,27 +115,28 @@ function copyDefinitions() {
 async function writeOtherFiles() {
   console.log('# Listing and writing other files');
 
-  const options = { definitelyTypedPath: dtPath, progress: true, parseInParallel: true };
+  const options = { definitelyTypedPath: DT_DIR, progress: true, parseInParallel: true };
   const dt = await getDefinitelyTyped(options, consoleLogger);
   const dtFs = dt.subDir('types').subDir('ol');
   const entryFiles = configs.tsconfig.files;
-  const { types, tests } = allReferencedFiles(entryFiles, dtFs, 'ol', path.resolve('./DefinitelyTyped/types/ol'));
+  const { types, tests } = allReferencedFiles(entryFiles, dtFs, 'ol', DEST_DIR);
   const usedFiles = new Set([...types.keys(), ...tests.keys(), 'tsconfig.json', 'tslint.json']);
   const otherFiles = new Set();
-  glob.sync(path.join(destPath, '**', '*.d.ts')).forEach(dtsPath => {
-    const dtsRelpath = path.relative(destPath, dtsPath).replace(/\\/g, '/');
-    if (!usedFiles.has(dtsRelpath)) otherFiles.add(dtsRelpath);
+  glob.sync(path.join(DEST_DIR, '**', '*.d.ts')).forEach(dtsPath => {
+    const dtsRelpath = path.relative(DEST_DIR, dtsPath);
+    if (!usedFiles.has(dtsRelpath)) otherFiles.add(dtsRelpath.replace(/\\/g, '/'));
   });
-  fs.writeFileSync(path.join(destPath, 'OTHER_FILES.txt'), Array.from(otherFiles).join('\n'), { encoding: 'utf-8' });
+  fs.writeFileSync(path.join(DEST_DIR, 'OTHER_FILES.txt'), Array.from(otherFiles).join('\n'), { encoding: 'utf-8' });
 }
 
 /**
  * Lint and test
  */
 async function lintAndTest() {
-  console.log('# Linting and testing definitions');
-  process.chdir(dtPath);
   await writeOtherFiles();
+
+  console.log('# Linting and testing definitions');
+  process.chdir(DT_DIR);
   childProcess.execSync('git add --all', { stdio: 'inherit' });
   childProcess.execSync('git commit -m types-ol', { stdio: 'inherit' });
   childProcess.execSync('yarn install', { stdio: 'inherit' });
@@ -143,9 +144,10 @@ async function lintAndTest() {
   childProcess.execSync('yarn test', { stdio: 'inherit' });
 
   console.log('# Cleanup DefinitelyTyped directory');
-  fs.readdirSync(dtPath).forEach(filename => filename != 'types' && fs.removeSync(filename));
+  fs.readdirSync(DT_DIR).forEach(filename => filename != 'types' && fs.removeSync(filename));
   process.chdir(BASE_DIR);
 }
+
 prepareDt();
 copyDefinitions();
 lintAndTest().then(() => {
