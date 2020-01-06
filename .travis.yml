@@ -6,7 +6,7 @@ notifications:
   email: false
 
 before_script:
-  - git clone --branch v6.0.1 --single-branch https://github.com/openlayers/openlayers
+  - git clone --branch v6.1.1 --single-branch https://github.com/openlayers/openlayers
 
 script:
   - yarn prepare-npm
