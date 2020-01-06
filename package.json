@@ -57,6 +57,7 @@
     "ts-loader": "^6.0.4",
     "tslint": "^5.18.0",
     "typescript": "^3.5.2",
+    "types-publisher": "github:Microsoft/types-publisher#production",
     "webpack": "^4.35.2",
     "webpack-cli": "^3.3.5"
   },
