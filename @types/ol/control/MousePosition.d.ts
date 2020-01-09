@@ -16,7 +16,7 @@ export interface Options {
     undefinedHTML?: string;
 }
 export default class MousePosition extends Control {
-    constructor(opt_options?: Options);
+    constructor(opt_options?: Options & { [key: string]: any });
     protected handleMouseMove(event: Event): void;
     protected handleMouseOut(event: Event): void;
     getCoordinateFormat(): CoordinateFormat;

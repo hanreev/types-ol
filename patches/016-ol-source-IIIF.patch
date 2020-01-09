@@ -1,0 +1,13 @@
+diff --git a/src/ol/source/IIIF.js b/src/ol/source/IIIF.js
+index 2fb401467..2616b7a67 100644
+--- a/src/ol/source/IIIF.js
++++ b/src/ol/source/IIIF.js
+@@ -58,7 +58,7 @@ function formatPercentage(percentage) {
+ class IIIF extends TileImage {
+ 
+   /**
+-   * @param {Options} opt_options Tile source options. Use {@link import("../format/IIIFInfo.js").IIIFInfo}
++   * @param {Options} [opt_options] Tile source options. Use {@link import("../format/IIIFInfo.js").IIIFInfo}
+    * to parse Image API service information responses into constructor options.
+    * @api
+    */

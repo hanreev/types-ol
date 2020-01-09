@@ -32,7 +32,7 @@ export interface Options {
     imageRatio?: number;
 }
 export default class VectorImageLayer extends BaseVectorLayer {
-    constructor(opt_options?: Options);
+    constructor(opt_options?: Options & { [key: string]: any });
     protected createRenderer(): LayerRenderer<Layer<Source>>;
     getImageRatio(): number;
     on(type: string | string[], listener: (p0: any) => void): EventsKey | EventsKey[];

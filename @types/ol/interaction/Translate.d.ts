@@ -18,7 +18,7 @@ export interface Options {
     hitTolerance?: number;
 }
 export default class Translate extends PointerInteraction {
-    constructor(opt_options?: Options);
+    constructor(opt_options?: Options & { [key: string]: any });
     getHitTolerance(): number;
     setHitTolerance(hitTolerance: number): void;
     on(type: string | string[], listener: (p0: any) => void): EventsKey | EventsKey[];

@@ -560,6 +560,9 @@ function getParams(doclet, _module) {
         paramType += '[]';
       }
 
+      if (doclet.kind == 'class' && name.includes('opt_options') && isExtendBaseObject(doclet))
+        paramType += '& {[key: string]: any}';
+
       const paramStr = `${name}: ${paramType}`;
       return param.defaultValue ? `${paramStr} = ${param.defaultValue}` : paramStr;
     })
@@ -599,7 +602,7 @@ const PROCESSORS = {
     name += getGenericType(doclet.longname, _module, true, true);
     GTTypeOnly = true;
 
-    if (doclet.augments && doclet.augments.length) {
+    if (Array.isArray(doclet.augments) && doclet.augments.length) {
       const augment = doclet.augments[0];
       let augmentName = registerImport(_module, augment);
       augmentName = augment.split('~')[1] || augment.split('/').pop();
@@ -1037,6 +1040,28 @@ function getGenericType(key, _module, includeBracket = true, includeType = false
     .join(', ');
 
   return includeBracket ? `<${genericTypes}>` : genericTypes;
+}
+
+/**
+ * @param {Doclet} doclet
+ * @returns {boolean}
+ */
+function isExtendBaseObject(doclet) {
+  const baseObjectLongname = 'module:ol/Object~BaseObject';
+
+  if (doclet && doclet.longname == baseObjectLongname) return true;
+
+  let result = false;
+  while (doclet && Array.isArray(doclet.augments) && doclet.augments.length) {
+    const augment = doclet.augments[0];
+    if (augment == baseObjectLongname) {
+      result = true;
+      break;
+    } else {
+      doclet = data({ longname: augment }).first();
+    }
+  }
+  return result;
 }
 
 /**

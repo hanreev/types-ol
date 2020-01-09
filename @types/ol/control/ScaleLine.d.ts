@@ -22,7 +22,7 @@ export enum Units {
     US = 'us',
 }
 export default class ScaleLine extends Control {
-    constructor(opt_options?: Options);
+    constructor(opt_options?: Options & { [key: string]: any });
     createMarker(position: string, i: number): string;
     createStepText(i: number, width: number, isLast: boolean, scale: number, suffix: string): string;
     getScaleForResolution(): number;

@@ -37,7 +37,7 @@ export interface Options {
     useInterimTilesOnError?: boolean;
 }
 export default class VectorTileLayer extends BaseVectorLayer<VectorTile> {
-    constructor(opt_options?: Options);
+    constructor(opt_options?: Options & { [key: string]: any });
     protected createRenderer(): LayerRenderer<Layer<Source>>;
     getFeatures(pixel: Pixel): Promise<Feature<Geometry>[]>;
     getPreload(): number;

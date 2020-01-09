@@ -14,7 +14,7 @@ export interface Options {
     wrapX?: boolean;
 }
 export default class Extent extends PointerInteraction {
-    constructor(opt_options?: Options);
+    constructor(opt_options?: Options & { [key: string]: any });
     getExtent(): Extent_1;
     getExtentInternal(): Extent_1;
     setExtent(extent: Extent_1): void;

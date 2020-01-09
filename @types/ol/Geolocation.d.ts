@@ -12,7 +12,7 @@ export interface Options {
     projection?: ProjectionLike;
 }
 export default class Geolocation extends BaseObject {
-    constructor(opt_options?: Options);
+    constructor(opt_options?: Options & { [key: string]: any });
     getAccuracy(): number;
     getAccuracyGeometry(): Polygon;
     getAltitude(): number;

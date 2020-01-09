@@ -19,7 +19,7 @@ export interface Options {
 }
 export const ATTRIBUTION: string;
 export default class OSM extends XYZ {
-    constructor(opt_options?: Options);
+    constructor(opt_options?: Options & { [key: string]: any });
     on(type: string | string[], listener: (p0: any) => void): EventsKey | EventsKey[];
     once(type: string | string[], listener: (p0: any) => void): EventsKey | EventsKey[];
     un(type: string | string[], listener: (p0: any) => void): void;

@@ -63,7 +63,7 @@ There are several ways to use this package. Please choose one:
     ...
     "devDependencies": {
       ...
-      "@hanreev/types-ol": "^3.1.0",
+      "@hanreev/types-ol": "^3.1.1",
       "@types/ol": "file:node_modules/@hanreev/types-ol/ol",
       ...
     }
@@ -167,6 +167,9 @@ Configuration is located at `jsdoc/conf.json`
 
 ## Changelog
 
+- **v3.1.1**
+  - Set `opt_options` constructor parameter of `ol/source/IIIF~IIIF` as optional.
+  - `ol/Object~BaseObject` derived classes can accept extra options.
 - **v3.1.0**
   - Update to OpenLayers v6.1.1
   - Change `ol/extent.Extent` type from `number[]` to `[number, number, number, number]`

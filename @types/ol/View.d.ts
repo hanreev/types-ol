@@ -80,7 +80,7 @@ export interface ViewOptions {
     zoomFactor?: number;
 }
 export default class View extends BaseObject {
-    constructor(opt_options?: ViewOptions);
+    constructor(opt_options?: ViewOptions & { [key: string]: any });
     adjustCenter(deltaCoordinates: Coordinate): void;
     adjustCenterInternal(deltaCoordinates: Coordinate): void;
     adjustResolution(ratio: number, opt_anchor?: Coordinate): void;

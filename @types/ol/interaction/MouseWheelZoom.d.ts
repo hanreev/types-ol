@@ -16,7 +16,7 @@ export enum Mode {
     WHEEL = 'wheel',
 }
 export default class MouseWheelZoom extends Interaction {
-    constructor(opt_options?: Options);
+    constructor(opt_options?: Options & { [key: string]: any });
     setMouseAnchor(useAnchor: boolean): void;
     on(type: string | string[], listener: (p0: any) => void): EventsKey | EventsKey[];
     once(type: string | string[], listener: (p0: any) => void): EventsKey | EventsKey[];

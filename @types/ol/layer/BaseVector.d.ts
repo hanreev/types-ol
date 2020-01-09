@@ -33,7 +33,7 @@ export interface Options {
 export default class BaseVectorLayer<
     VectorSourceType extends VectorSource | VectorTile = VectorSource | VectorTile
 > extends Layer<VectorSourceType> {
-    constructor(opt_options?: Options);
+    constructor(opt_options?: Options & { [key: string]: any });
     getDeclutter(): boolean;
     getFeatures(pixel: Pixel): Promise<Feature<Geometry>[]>;
     getRenderBuffer(): number;

@@ -21,7 +21,7 @@ export interface Options {
     url?: string;
 }
 export default class ImageArcGISRest extends ImageSource {
-    constructor(opt_options?: Options);
+    constructor(opt_options?: Options & { [key: string]: any });
     protected getImageInternal(
         extent: Extent,
         resolution: number,

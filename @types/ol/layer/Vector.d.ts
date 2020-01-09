@@ -9,7 +9,7 @@ import BaseVectorLayer, { Options } from './BaseVector';
 import Layer from './Layer';
 
 export default class VectorLayer extends BaseVectorLayer<VectorSource> {
-    constructor(opt_options?: Options);
+    constructor(opt_options?: Options & { [key: string]: any });
     protected createRenderer(): LayerRenderer<Layer<Source>>;
     on(type: string | string[], listener: (p0: any) => void): EventsKey | EventsKey[];
     once(type: string | string[], listener: (p0: any) => void): EventsKey | EventsKey[];

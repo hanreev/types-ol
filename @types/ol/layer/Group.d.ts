@@ -20,7 +20,7 @@ export interface Options {
     layers?: BaseLayer[] | Collection<BaseLayer>;
 }
 export default class LayerGroup extends BaseLayer {
-    constructor(opt_options?: Options);
+    constructor(opt_options?: Options & { [key: string]: any });
     getLayers(): Collection<BaseLayer>;
     getLayersArray(opt_array?: Layer<Source>[]): Layer<Source>[];
     getLayerStatesArray(opt_states?: State[]): State[];

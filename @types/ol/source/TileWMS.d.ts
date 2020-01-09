@@ -32,7 +32,7 @@ export interface Options {
     transition?: number;
 }
 export default class TileWMS extends TileImage {
-    constructor(opt_options?: Options);
+    constructor(opt_options?: Options & { [key: string]: any });
     getFeatureInfoUrl(coordinate: Coordinate, resolution: number, projection: ProjectionLike, params: any): string;
     getLegendUrl(resolution?: number, params?: any): string;
     getParams(): any;

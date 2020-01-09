@@ -6,7 +6,7 @@ export interface Options {
     unique?: boolean;
 }
 export default class Collection<T> extends BaseObject {
-    constructor(opt_array?: T[], opt_options?: Options);
+    constructor(opt_array?: T[], opt_options?: Options & { [key: string]: any });
     clear(): void;
     extend(arr: T[]): Collection<T>;
     forEach(f: (p0: T, p1: number, p2: T[]) => any): void;

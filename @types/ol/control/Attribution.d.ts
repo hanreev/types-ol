@@ -15,7 +15,7 @@ export interface Options {
     render?: (p0: MapEvent) => void;
 }
 export default class Attribution extends Control {
-    constructor(opt_options?: Options);
+    constructor(opt_options?: Options & { [key: string]: any });
     getCollapsed(): boolean;
     getCollapsible(): boolean;
     setCollapsed(collapsed: boolean): void;

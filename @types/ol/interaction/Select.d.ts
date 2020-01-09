@@ -29,7 +29,7 @@ export enum SelectEventType {
     SELECT = 'select',
 }
 export default class Select extends Interaction {
-    constructor(opt_options?: Options);
+    constructor(opt_options?: Options & { [key: string]: any });
     getFeatures(): Collection<Feature<Geometry>>;
     getHitTolerance(): number;
     getLayer(feature: FeatureLike): VectorLayer;

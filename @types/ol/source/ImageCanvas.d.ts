@@ -28,7 +28,7 @@ export interface Options {
     state?: State;
 }
 export default class ImageCanvasSource extends ImageSource {
-    constructor(opt_options?: Options);
+    constructor(opt_options?: Options & { [key: string]: any });
     protected getImageInternal(
         extent: Extent,
         resolution: number,

@@ -21,7 +21,7 @@ export interface Options {
     useInterimTilesOnError?: boolean;
 }
 export default class BaseTileLayer extends Layer<TileSource> {
-    constructor(opt_options?: Options);
+    constructor(opt_options?: Options & { [key: string]: any });
     getPreload(): number;
     getUseInterimTilesOnError(): boolean;
     setPreload(preload: number): void;

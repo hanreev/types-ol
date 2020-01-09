@@ -22,7 +22,7 @@ export enum DragBoxEventType {
     BOXEND = 'boxend',
 }
 export default class DragBox extends PointerInteraction {
-    constructor(opt_options?: Options);
+    constructor(opt_options?: Options & { [key: string]: any });
     defaultBoxEndCondition(mapBrowserEvent: MapBrowserEvent, startPixel: Pixel, endPixel: Pixel): boolean;
     getGeometry(): Polygon;
     on(type: string | string[], listener: (p0: any) => void): EventsKey | EventsKey[];

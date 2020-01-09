@@ -23,7 +23,7 @@ export interface Options {
     source?: VectorSource<Geometry>;
 }
 export default class Heatmap extends VectorLayer {
-    constructor(opt_options?: Options);
+    constructor(opt_options?: Options & { [key: string]: any });
     getBlur(): number;
     getGradient(): string[];
     getRadius(): number;

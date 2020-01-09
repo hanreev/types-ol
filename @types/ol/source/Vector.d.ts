@@ -24,7 +24,7 @@ export interface Options {
     wrapX?: boolean;
 }
 export default class VectorSource<GeomType extends Geometry = Geometry> extends Source {
-    constructor(opt_options?: Options);
+    constructor(opt_options?: Options & { [key: string]: any });
     protected addFeatureInternal(feature: Feature<GeomType>): void;
     protected addFeaturesInternal(features: Feature<GeomType>[]): void;
     protected removeFeatureInternal(feature: Feature<GeomType>): void;

@@ -18,6 +18,8 @@ interface ModuleExports {
     default?: string;
 }
 
+type DocletKind = 'function' | 'class' | 'member' | 'method' | 'typedef' | 'enum' | 'constant';
+
 interface DocletType {
     names: string[];
 }
@@ -25,7 +27,7 @@ interface DocletType {
 interface DocletProp {
     name: string;
     description?: string;
-    kind?: string;
+    kind?: DocletKind;
     memberof?: string;
     type?: DocletType;
     optional?: boolean;
@@ -74,7 +76,7 @@ interface DocletGenericType {
 
 interface Doclet {
     ___id: string;
-    kind: string;
+    kind: DocletKind;
     longname: string;
     name: string;
     access?: string;

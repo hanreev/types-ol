@@ -26,7 +26,7 @@ export interface Options {
     view?: View;
 }
 export default class OverviewMap extends Control {
-    constructor(opt_options?: Options);
+    constructor(opt_options?: Options & { [key: string]: any });
     getCollapsed(): boolean;
     getCollapsible(): boolean;
     getOverviewMap(): PluggableMap;

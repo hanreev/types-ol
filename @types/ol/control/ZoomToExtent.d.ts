@@ -12,7 +12,7 @@ export interface Options {
     extent?: Extent;
 }
 export default class ZoomToExtent extends Control {
-    constructor(opt_options?: Options);
+    constructor(opt_options?: Options & { [key: string]: any });
     protected extent: Extent;
     protected handleZoomToExtent(): void;
     on(type: string | string[], listener: (p0: any) => void): EventsKey | EventsKey[];

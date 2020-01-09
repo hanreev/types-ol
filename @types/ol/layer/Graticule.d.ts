@@ -36,7 +36,7 @@ export interface Options {
     wrapX?: boolean;
 }
 export default class Graticule extends VectorLayer {
-    constructor(opt_options?: Options);
+    constructor(opt_options?: Options & { [key: string]: any });
     getMeridians(): LineString[];
     getParallels(): LineString[];
     loaderFunction(extent: Extent, resolution: number, projection: Projection): void;
