@@ -20,7 +20,7 @@ exports.defineTags = dictionary => {
 const classes = {};
 /** @type {Object<string, Object>} */
 const observables = {};
-/** @type {Object<string, Array<string>>} */
+/** @type {Object<string, string[]>} */
 const fires = {};
 /** @type {Object<string, Array>} */
 const clsObservables = {};

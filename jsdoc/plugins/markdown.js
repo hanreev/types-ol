@@ -102,7 +102,7 @@ function process(doclet) {
     if (typeof doclet[tag] === 'string' && shouldProcessString(tag, doclet[tag])) {
       doclet[tag] = parse(doclet[tag]);
     } else if (Array.isArray(doclet[tag])) {
-      /** @type {Array<string>} */
+      /** @type {string[]} */
       const docletTags = doclet[tag];
       docletTags.forEach((value, index, original) => {
         const inner = {};

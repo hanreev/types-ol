@@ -39,43 +39,17 @@ const ANY_GENERIC_TYPES = [
   'module:ol/structs/RBush~RBush',
 ];
 
-/** @type {Object<string, Array<string>>} */
+/** @type {Object<string, string[]>} */
 const TYPE_PATCHES = {
-  //  'module:ol/events/condition~always': ['typeof:module:ol/functions.TRUE'],
-  //  'module:ol/events/condition~never': ['typeof:module:ol/functions.FALSE'],
-  //  'module:ol/format/GML~GML': ['module:ol/format/GML3~GML3'],
-  //  'module:ol/source/Cluster~Cluster#geometryFunction':
-  //    ['function(module:ol/Feature~Feature): module:ol/geom/Point~Point'],
-  //  'module:ol/style/IconImageCache~shared': ['module:ol/style/IconImageCache~IconImageCache'],
-  'module:ol/format/IIIFInfo~ImageInformationResponse': [
-    'Object<string,string|number|Array<number|string|module:ol/format/IIIFInfo~IiifProfile>|Object<string, number>|module:ol/format/IIIFInfo~TileInfo>',
-  ],
-  'module:ol/format/IIIFInfo~Versions': ['string'],
   'module:ol/extent~Extent': ['[number, number, number, number]'],
+  'module:ol/size~Size': ['[number, number]'],
 };
 
 /** @type {Object<string, string[]>} */
-const PARAM_TYPE_PATCHES = {
-  'module:ol/format/IIIFInfo~IIIFInfo': ['imageInfo', 'string', 'module:ol/format/IIIFInfo~ImageInformationResponse'],
-  'module:ol/format/IIIFInfo~IIIFInfo#getComplianceLevelEntryFromProfile': [
-    'version',
-    'module:ol/format/IIIFInfo~Versions',
-  ],
-  'module:ol/format/IIIFInfo~IIIFInfo#getComplianceLevelFromProfile': ['version', 'module:ol/format/IIIFInfo~Versions'],
-  'module:ol/format/IIIFInfo~IIIFInfo#setImageInfo': [
-    'imageInfo',
-    'string',
-    'module:ol/format/IIIFInfo~ImageInformationResponse',
-  ],
-};
+const PARAM_TYPE_PATCHES = {};
 
-/** @type {Object<string, Array<string>>} */
-const RETURN_TYPE_PATCHES = {
-  'module:ol/format/IIIFInfo~IIIFInfo#getComplianceLevelEntryFromProfile': ['string'],
-  'module:ol/format/IIIFInfo~IIIFInfo#getComplianceLevelFromProfile': ['string'],
-  'module:ol/format/IIIFInfo~IIIFInfo#getImageApiVersion': ['module:ol/format/IIIFInfo~Versions'],
-  'module:ol/format/IIIFInfo~IIIFInfo#getTileSourceOptions': ['module:ol/source/IIIF~Options'],
-};
+/** @type {Object<string, string[]>} */
+const RETURN_TYPE_PATCHES = {};
 
 /** @type {Object<string, Object<string, string[]>>} */
 const PROPERTY_TYPE_PATCHES = {
@@ -87,18 +61,7 @@ const PROPERTY_TYPE_PATCHES = {
 };
 
 /** @type {Object<string, string[]>} */
-const IMPORT_PATCHES = {
-  //  'module:ol/control': ['module:ol/control/util~DefaultsOptions'],
-  'module:ol/geom/LinearRing': ['module:ol/geom/GeometryLayout~GeometryLayout'],
-  'module:ol/geom/LineString': ['module:ol/geom/GeometryLayout~GeometryLayout'],
-  'module:ol/geom/MultiLineString': ['module:ol/geom/GeometryLayout~GeometryLayout'],
-  'module:ol/geom/MultiPolygon': ['module:ol/geom/GeometryLayout~GeometryLayout'],
-  'module:ol/geom/Polygon': ['module:ol/geom/GeometryLayout~GeometryLayout'],
-  // 'module:ol/proj': ['module:ol/proj/Units~Units'],
-  // 'module:ol/source/Cluster': ['module:ol/geom/Point~Point'],
-  'module:ol/tilegrid': ['module:ol/extent/Corner~Corner'],
-  'module:ol/format/MVT': ['module:ol/format/Feature~WriteOptions'],
-};
+const IMPORT_PATCHES = {};
 
 /** @type {Object<string, string[]>} */
 const MEMBER_PATCHES = {};
@@ -118,12 +81,6 @@ function find(spec) {
  */
 function registerImport(_module, val) {
   if (!val.startsWith('module:')) return val;
-
-  // FIXME: wrong EventTarget parsing
-  if (val == 'module:ol/events/Event~BaseEventTarget') return 'EventTarget';
-
-  // FIXME: wrong PBF parsing
-  if (_module.longname == 'module:ol/format/MVT' && val == 'module:ol/format/pbf') return '';
 
   const value = val.replace(/^module:/, '');
 
@@ -560,7 +517,12 @@ function getParams(doclet, _module) {
         paramType += '[]';
       }
 
-      if (doclet.kind == 'class' && name.includes('opt_options') && isExtendBaseObject(doclet))
+      if (
+        definitionConfig.extraOptions &&
+        doclet.kind == 'class' &&
+        name.includes('opt_options') &&
+        isExtendBaseObject(doclet)
+      )
         paramType += '& {[key: string]: any}';
 
       const paramStr = `${name}: ${paramType}`;

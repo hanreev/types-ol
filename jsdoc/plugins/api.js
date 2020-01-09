@@ -23,7 +23,7 @@ exports.defineTags = dictionary => {
  * from the documentation.
  */
 
-/** @type {Array<Doclet>} */
+/** @type {Doclet[]} */
 const api = [];
 /** @type {Object<string, Doclet>} */
 const classes = {};
@@ -32,7 +32,7 @@ const types = {};
 /** @type {Object<string, boolean>} */
 const modules = {};
 
-/** @type {Object<string, Array<string>>} */
+/** @type {Object<string, string[]>} */
 const force_include_members = {
   'module:ol/format/GMLBase': ['GMLNS'],
   'module:ol/format/IGC': ['IGCZ'],
@@ -140,21 +140,15 @@ exports.handlers = {
       if (doclet.longname in force_include_members)
         doclet.force_include_members = force_include_members[doclet.longname];
 
+      if (doclet.fires) doclet.fires.sort((a, b) => (a.split(/#?event:/)[1] < b.split(/#?event:/)[1] ? -1 : 1));
+
       if (doclet.stability) {
         if (doclet.kind == 'class') includeAugments(doclet);
-
-        if (doclet.fires) doclet.fires.sort((a, b) => (a.split(/#?event:/)[1] < b.split(/#?event:/)[1] ? -1 : 1));
-
         if (doclet.observables) doclet.observables.sort((a, b) => (a.name < b.name ? -1 : 1));
-        // Always document namespaces and items with stability annotation
         continue;
       }
 
-      if (doclet.kind == 'module')
-        // Document all modules that are referenced by the API
-        continue;
-
-      if (doclet.isEnum || doclet.kind == 'typedef' || doclet.kind == 'function') continue;
+      if (doclet.isEnum || ['module', 'typedef', 'function'].indexOf(doclet.kind) != -1) continue;
 
       // FIXME: PATCHES
       if (doclet.memberof in force_include_members)
@@ -166,11 +160,7 @@ exports.handlers = {
 
       if (doclet.kind == 'class') {
         includeAugments(doclet);
-      } else if (
-        doclet.undocumented !== false &&
-        !doclet._hideConstructor &&
-        !(doclet.kind == 'typedef' && doclet.longname in types)
-      ) {
+      } else if (doclet.undocumented !== false && !doclet._hideConstructor && !(doclet.longname in types)) {
         if (doclet.access == 'protected') continue;
         doclet.undocumented = true;
       }

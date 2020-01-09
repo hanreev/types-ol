@@ -1,5 +1,5 @@
 /**
- * Define an @template tag
+ * Define a @template tag
  * @param {Object} dictionary The tag dictionary.
  */
 exports.defineTags = dictionary => {

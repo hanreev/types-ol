@@ -25,6 +25,7 @@
   "typescript": {
     "moduleRoot": "openlayers/src",
     "definition": {
+      "extraOptions": true,
       "mode": "multiple",
       "strictGenericTypes": false,
       "strictReturnTypes": false

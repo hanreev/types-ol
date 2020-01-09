@@ -1,3 +1,4 @@
+/** @type {Object<string, string[]>} */
 const events = {};
 
 exports.handlers = {

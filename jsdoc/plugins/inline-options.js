@@ -3,9 +3,7 @@
  * Inlines option params from typedefs
  */
 
-/**
- * @type {Object<string, DocletProp[]>}
- */
+/** @type {Object<string, DocletProp[]>} */
 const properties = {};
 
 exports.handlers = {
@@ -40,7 +38,7 @@ exports.handlers = {
                   const property = Object.assign({}, p);
                   property.name = `${param.name}.${property.name}`;
                   return property;
-                })
+                }),
               );
             }
           }

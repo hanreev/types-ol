@@ -1,6 +1,7 @@
 declare var env: any;
 
 interface DefinitionConfig {
+    extraOptions?: boolean;
     mode?: 'single' | 'multiple';
     strictGenericTypes?: boolean;
     strictReturnTypes?: boolean;
@@ -18,7 +19,7 @@ interface ModuleExports {
     default?: string;
 }
 
-type DocletKind = 'function' | 'class' | 'member' | 'method' | 'typedef' | 'enum' | 'constant';
+type DocletKind = 'function' | 'class' | 'member' | 'method' | 'typedef' | 'enum' | 'constant' | 'module' | 'event';
 
 interface DocletType {
     names: string[];

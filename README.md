@@ -121,6 +121,7 @@ Configuration is located at `jsdoc/conf.json`
   "typescript": {
     "moduleRoot": "openlayers/src", // openlayers source
     "declaration": {
+      "extraOptions": true, // BaseObject derivatives can accept extra properties.
       "mode": "multiple", // "single" will generate all declarations in single index.d.ts file.
       "strictGenericTypes": false // set to true to extract classes generic type from super class, members and methods.
       "strictReturnTypes": false // set to true to include undefined and null return.
@@ -170,6 +171,7 @@ Configuration is located at `jsdoc/conf.json`
 - **v3.1.1**
   - Set `opt_options` constructor parameter of `ol/source/IIIF~IIIF` as optional.
   - `ol/Object~BaseObject` derived classes can accept extra options.
+  - Change `ol/size.Size` type from `number[]` to `[number, number]`
 - **v3.1.0**
   - Update to OpenLayers v6.1.1
   - Change `ol/extent.Extent` type from `number[]` to `[number, number, number, number]`
