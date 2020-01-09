@@ -3,10 +3,20 @@ import Map from 'ol/Map';
 import View from 'ol/View';
 import Point from 'ol/geom/Point';
 import VectorLayer from 'ol/layer/Vector';
+import { Size } from 'ol/size';
 import VectorSource from 'ol/source/Vector';
 import { Icon, Style } from 'ol/style';
 
-const iconInfo = [
+export interface IconInfo {
+    offset: Size;
+    opacity: number;
+    rotateWithView: boolean;
+    rotation: number;
+    scale: number;
+    size: Size;
+}
+
+const iconInfo: IconInfo[] = [
     {
         offset: [0, 0],
         opacity: 1.0,

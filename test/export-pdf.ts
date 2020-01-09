@@ -2,6 +2,7 @@ import Map from 'ol/Map';
 import View from 'ol/View';
 import WKT from 'ol/format/WKT';
 import { Tile as TileLayer, Vector as VectorLayer } from 'ol/layer';
+import { Size } from 'ol/size';
 import { OSM, Vector as VectorSource } from 'ol/source';
 
 declare var jsPDF: any;
@@ -72,7 +73,7 @@ exportButton.addEventListener(
         });
 
         // Set print size
-        const printSize = [width, height];
+        const printSize: Size = [width, height];
         map.setSize(printSize);
         map.getView().fit(extent, { size: printSize });
     },
