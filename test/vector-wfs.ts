@@ -10,15 +10,9 @@ import { Stroke, Style } from 'ol/style';
 const vectorSource = new VectorSource({
     format: new GeoJSON(),
     url: extent => {
-        // tslint:disable-next-line: prefer-template
-        return (
-            'https://ahocevar.com/geoserver/wfs?service=WFS&' +
-            'version=1.1.0&request=GetFeature&typename=osm:water_areas&' +
-            'outputFormat=application/json&srsname=EPSG:3857&' +
-            'bbox=' +
-            extent.join(',') +
-            ',EPSG:3857'
-        );
+        return `https://ahocevar.com/geoserver/wfs?service=WFS&version=1.1.0&request=GetFeature&typename=osm:water_areas&outputFormat=application/json&srsname=EPSG:3857&bbox=${extent.join(
+            ',',
+        )},EPSG:3857`;
     },
     strategy: bboxStrategy,
 });

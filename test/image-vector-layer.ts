@@ -59,7 +59,7 @@ const displayFeatureInfo = (pixel: number[]) => {
     });
 
     const info = document.getElementById('info') as HTMLElement;
-    info.innerHTML = feature ? feature.getId() + ': ' + feature.get('name') : '&nbsp;';
+    info.innerHTML = feature ? `${feature.getId()}: ${feature.get('name')}` : '&nbsp;';
 
     if (feature !== highlight) {
         if (highlight) {

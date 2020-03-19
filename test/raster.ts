@@ -141,7 +141,7 @@ function plot(resolution: number, counts: any, threshold: any) {
 
     bar.transition()
         .attr('transform', (value: any, index: any) => {
-            return 'translate(' + index * barWidth + ', ' + (plotHeight - yScale(value)) + ')';
+            return `translate(${index * barWidth}, ${plotHeight - yScale(value)})`;
         })
         .attr('height', yScale);
 
@@ -161,7 +161,7 @@ function plot(resolution: number, counts: any, threshold: any) {
         tip.html(message(counts.min + index * counts.delta, area));
         tip.style('display', 'block');
         tip.transition().style({
-            left: chartRect.left + index * barWidth + barWidth / 2 + 'px',
+            left: `${chartRect.left + index * barWidth + barWidth / 2}px`,
             top: d3.event.y - 60 + 'px',
             opacity: 1,
         });
@@ -178,5 +178,5 @@ function plot(resolution: number, counts: any, threshold: any) {
 
 function message(value: any, area: any) {
     const acres = (area / 4046.86).toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-    return acres + ' acres at<br>' + value.toFixed(2) + ' VGI or above';
+    return `${acres} acres at<br>${value.toFixed(2)} VGI or above`;
 }

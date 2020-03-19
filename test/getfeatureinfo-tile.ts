@@ -32,7 +32,7 @@ map.on('singleclick', evt => {
         INFO_FORMAT: 'text/html',
     });
     if (url) {
-        (document.getElementById('info') as HTMLElement).innerHTML = '<iframe seamless src="' + url + '"></iframe>';
+        (document.getElementById('info') as HTMLElement).innerHTML = `<iframe seamless src="${url}"></iframe>`;
     }
 });
 

@@ -62,11 +62,7 @@ for (const layerDesc of hereLayers) {
             preload: Infinity,
             source: new XYZ({
                 url: createUrl(urlTpl, layerDesc),
-                attributions:
-                    'Map Tiles &copy; ' +
-                    new Date().getFullYear() +
-                    ' ' +
-                    '<a href="http://developer.here.com">HERE</a>',
+                attributions: `Map Tiles &copy; ${new Date().getFullYear()} <a href="http://developer.here.com">HERE</a>`,
             }),
         }),
     );

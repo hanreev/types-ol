@@ -45,6 +45,6 @@ map.on('singleclick', evt => {
     const coordinate = evt.coordinate;
     const hdms = toStringHDMS(toLonLat(coordinate));
 
-    content.innerHTML = '<p>You clicked here:</p><code>' + hdms + '</code>';
+    content.innerHTML = `<p>You clicked here:</p><code>${hdms}</code>`;
     overlay.setPosition(coordinate);
 });

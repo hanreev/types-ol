@@ -98,7 +98,7 @@ const createTextStyle = (feature: FeatureLike, resolution: number, dom: any) => 
         document.getElementsByTagName('head')[0].appendChild(openSans);
         openSansAdded = true;
     }
-    const font = weight + ' ' + size + ' ' + dom.font.value;
+    const font = `${weight} ${size} ${dom.font.value}`;
     const fillColor = dom.color.value;
     const outlineColor = dom.outline.value;
     const outlineWidth = parseInt(dom.outlineWidth.value, 10);

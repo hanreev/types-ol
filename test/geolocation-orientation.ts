@@ -69,11 +69,11 @@ geolocation.on('change', () => {
     }
 
     const html = [
-        'Position: ' + position[0].toFixed(2) + ', ' + position[1].toFixed(2),
+        `Position: ${position[0].toFixed(2)}, ${position[1].toFixed(2)}`,
         'Accuracy: ' + accuracy,
-        'Heading: ' + Math.round(radToDeg(heading)) + '&deg;',
-        'Speed: ' + (speed * 3.6).toFixed(1) + ' km/h',
-        'Delta: ' + Math.round(deltaMean) + 'ms',
+        `Heading: ${Math.round(radToDeg(heading))}&deg;`,
+        `Speed: ${(speed * 3.6).toFixed(1)} km/h`,
+        `Delta: ${Math.round(deltaMean)}ms`,
     ].join('<br />');
     (document.getElementById('info') as HTMLElement).innerHTML = html;
 });

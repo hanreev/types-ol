@@ -58,30 +58,16 @@ const styleCache: { [key: string]: Style } = {
 
 const vectorSource = new VectorSource({
     loader: (extent, resolution, projection) => {
-        const url =
-            serviceUrl +
-            layer +
-            '/query/?f=json&' +
-            'returnGeometry=true&spatialRel=esriSpatialRelIntersects&geometry=' +
-            encodeURIComponent(
-                '{"xmin":' +
-                    extent[0] +
-                    ',"ymin":' +
-                    extent[1] +
-                    ',"xmax":' +
-                    extent[2] +
-                    ',"ymax":' +
-                    extent[3] +
-                    ',"spatialReference":{"wkid":102100}}',
-            ) +
-            '&geometryType=esriGeometryEnvelope&inSR=102100&outFields=*' +
-            '&outSR=102100';
+        const geom = encodeURIComponent(
+            `{"xmin":${extent[0]},"ymin":${extent[1]},"xmax":${extent[2]},"ymax":${extent[3]},"spatialReference":{"wkid":102100}}`,
+        );
+        const url = `${serviceUrl}${layer}/query/?f=json&returnGeometry=true&spatialRel=esriSpatialRelIntersects&geometry=${geom}&geometryType=esriGeometryEnvelope&inSR=102100&outFields=*&outSR=102100`;
         $.ajax({
             url,
             aType: 'jsonp',
             success: (response: any) => {
                 if (response.error) {
-                    alert(response.error.message + '\n' + response.error.details.join('\n'));
+                    alert(`${response.error.message}\n${response.error.details.join('\n')}`);
                 } else {
                     // dataProjection will be read from document
                     const features = esrijsonFormat.readFeatures(response, {

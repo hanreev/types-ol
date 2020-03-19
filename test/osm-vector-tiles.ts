@@ -33,7 +33,7 @@ const roadStyle = (feature: FeatureLike) => {
     const kind = feature.get('kind');
     const railway = feature.get('railway');
     const sort_key = feature.get('sort_key');
-    const styleKey = kind + '/' + railway + '/' + sort_key;
+    const styleKey = `${kind}/${railway}/${sort_key}`;
     let style = roadStyleCache[styleKey];
     if (!style) {
         let color: string;

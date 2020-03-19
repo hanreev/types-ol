@@ -132,7 +132,7 @@ map.on('click', evt => {
         if (features_.length === 1) {
             info.innerHTML = 'Got one butterfly';
         } else if (features_.length > 1) {
-            info.innerHTML = 'Got ' + features_.length + ' butterflies';
+            info.innerHTML = `Got ${features_.length} butterflies`;
         } else {
             info.innerHTML = "Couldn't catch a single butterfly";
         }

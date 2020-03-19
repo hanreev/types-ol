@@ -84,7 +84,7 @@ const displayFeatureInfo = (pixel: Pixel) => {
     });
 
     const info = document.getElementById('info');
-    if (info) info.innerHTML = feature ? feature.getId() + ': ' + feature.get('name') : '&nbsp;';
+    if (info) info.innerHTML = feature ? `${feature.getId()}: ${feature.get('name')}` : '&nbsp;';
 
     if (feature !== highlight) {
         if (highlight) {

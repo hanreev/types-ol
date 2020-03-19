@@ -83,17 +83,7 @@ const vectorSource = new VectorSource({
             });
             vectorSource.addFeatures(features);
         });
-        // tslint:disable-next-line: prefer-template
-        const query =
-            '(node(' +
-            epsg4326Extent[1] +
-            ',' +
-            epsg4326Extent[0] +
-            ',' +
-            epsg4326Extent[3] +
-            ',' +
-            epsg4326Extent[2] +
-            ');rel(bn)->.foo;way(bn);node(w)->.foo;rel(bw););out meta;';
+        const query = `(node(${epsg4326Extent[1]},${epsg4326Extent[0]},${epsg4326Extent[3]},${epsg4326Extent[2]});rel(bn)->.foo;way(bn);node(w)->.foo;rel(bw););out meta;`;
         client.send(query);
     },
     strategy: bboxStrategy,

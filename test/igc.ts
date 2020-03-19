@@ -114,7 +114,7 @@ const displaySnap = (coordinate: Coordinate) => {
             point.setCoordinates(closestPoint);
         }
         const date = new Date(closestPoint[2] * 1000);
-        info.innerHTML = closestFeature.get('PLT') + ' (' + date.toUTCString() + ')';
+        info.innerHTML = `${closestFeature.get('PLT')} (${date.toUTCString()})`;
         const coordinates = [coordinate, [closestPoint[0], closestPoint[1]]];
         if (line === null) {
             line = new LineString(coordinates);

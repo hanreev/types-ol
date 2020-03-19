@@ -57,7 +57,7 @@ map.on('click', evt => {
         placement: 'top',
         animation: false,
         html: true,
-        content: '<p>The location you clicked was:</p><code>' + hdms + '</code>',
+        content: `<p>The location you clicked was:</p><code>${hdms}</code>`,
     });
     $(element).popover('show');
 });

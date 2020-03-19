@@ -53,7 +53,7 @@ map.getLayers().forEach((layer: any, i: any) => {
     bindInputs('#layer' + i, layer);
     if (layer instanceof LayerGroup) {
         layer.getLayers().forEach((sublayer: any, j: any) => {
-            bindInputs('#layer' + i + j, sublayer);
+            bindInputs(`#layer${i}${j}`, sublayer);
         });
     }
 });

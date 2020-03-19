@@ -25,9 +25,7 @@ import { OSM, Vector as VectorSource, VectorTile as VectorTileSource } from 'ol/
 import { Circle, Fill, Stroke, Style } from 'ol/style';
 import { StyleFunction } from 'ol/style/Style';
 
-// proj4 import workaround
-import proj4x = require('proj4');
-const proj4: typeof proj4x = (proj4x as any).default;
+import proj4 = require('proj4');
 
 /**
  * ==================================================
@@ -456,14 +454,3 @@ const arr = Array(10)
     .map((_, i) => i);
 
 stableSort(arr, (a: number, b: number) => (a < b ? 1 : a > b ? -1 : 0));
-
-/**
- * ==================================================
- * ol/Object~BaseObject derivatives extra options
- * ==================================================
- */
-
-const vectorLayer1 = new VectorLayer({
-    source: vectorSource,
-    name: 'My Vector Layer',
-});

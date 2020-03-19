@@ -20,30 +20,16 @@ const esrijsonFormat = new EsriJSON();
 
 const vectorSource = new VectorSource({
     loader: (extent, resolution, projection) => {
-        const url =
-            serviceUrl +
-            layer +
-            '/query/?f=json&' +
-            'returnGeometry=true&spatialRel=esriSpatialRelIntersects&geometry=' +
-            encodeURIComponent(
-                '{"xmin":' +
-                    extent[0] +
-                    ',"ymin":' +
-                    extent[1] +
-                    ',"xmax":' +
-                    extent[2] +
-                    ',"ymax":' +
-                    extent[3] +
-                    ',"spatialReference":{"wkid":102100}}',
-            ) +
-            '&geometryType=esriGeometryEnvelope&inSR=102100&outFields=*' +
-            '&outSR=102100';
+        const geom = encodeURIComponent(
+            `{"xmin":${extent[0]},"ymin":${extent[1]},"xmax":${extent[2]},"ymax":${extent[3]},"spatialReference":{"wkid":102100}}`,
+        );
+        const url = `${serviceUrl}${layer}/query/?f=json&returnGeometry=true&spatialRel=esriSpatialRelIntersects&geometry=${geom}&geometryType=esriGeometryEnvelope&inSR=102100&outFields=*&outSR=102100`;
         $.ajax({
             url,
             dataType: 'jsonp',
             success: (response: any) => {
                 if (response.error) {
-                    alert(response.error.message + '\n' + response.error.details.join('\n'));
+                    alert(`${response.error.message}\n${response.error.details.join('\n')}`);
                 } else {
                     // dataProjection will be read from document
                     const features = esrijsonFormat.readFeatures(response, {
@@ -121,19 +107,17 @@ selected.on('remove', evt => {
     const feature = evt.element;
     const fid = feature.getId();
     if (dirty[fid] === true) {
-        const payload =
-            '[' +
-            esrijsonFormat.writeFeature(feature, {
-                featureProjection: map.getView().getProjection(),
-            }) +
-            ']';
-        const url = serviceUrl + layer + '/updateFeatures';
+        const jsonFeature = esrijsonFormat.writeFeature(feature, {
+            featureProjection: map.getView().getProjection(),
+        });
+        const payload = `[${jsonFeature}]`;
+        const url = `${serviceUrl}${layer}/updateFeatures`;
         $.post(url, { f: 'json', features: payload }).done((data: any) => {
             const result = JSON.parse(data);
             if (result.updateResults && result.updateResults.length > 0) {
                 if (result.updateResults[0].success !== true) {
                     const error = result.updateResults[0].error;
-                    alert(error.description + ' (' + error.code + ')');
+                    alert(`${error.description} (${error.code})`);
                 } else {
                     // tslint:disable-next-line: no-dynamic-delete
                     delete dirty[fid];
@@ -145,13 +129,11 @@ selected.on('remove', evt => {
 
 draw.on('drawend', evt => {
     const feature = evt.feature;
-    const payload =
-        '[' +
-        esrijsonFormat.writeFeature(feature, {
-            featureProjection: map.getView().getProjection(),
-        }) +
-        ']';
-    const url = serviceUrl + layer + '/addFeatures';
+    const jsonFeature = esrijsonFormat.writeFeature(feature, {
+        featureProjection: map.getView().getProjection(),
+    });
+    const payload = `[${jsonFeature}]`;
+    const url = `${serviceUrl}${layer}/addFeatures`;
     $.post(url, { f: 'json', features: payload }).done((data: any) => {
         const result = JSON.parse(data);
         if (result.addResults && result.addResults.length > 0) {
@@ -160,7 +142,7 @@ draw.on('drawend', evt => {
                 vectorSource.clear();
             } else {
                 const error = result.addResults[0].error;
-                alert(error.description + ' (' + error.code + ')');
+                alert(`${error.description} (${error.code})`);
             }
         }
     });

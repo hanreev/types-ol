@@ -40,7 +40,7 @@ function setProjection(code: string, name: string, proj4def: string | proj4.Proj
         return;
     }
 
-    resultSpan.innerHTML = '(' + code + ') ' + name;
+    resultSpan.innerHTML = `(${code}) ${name}`;
 
     const newProjCode = 'EPSG:' + code;
     proj4.defs(newProjCode, proj4def);

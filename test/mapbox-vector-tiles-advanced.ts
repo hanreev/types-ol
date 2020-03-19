@@ -18,11 +18,7 @@ for (let i = 0; i <= 8; ++i) {
 }
 // Calculation of tile urls for zoom levels 1, 3, 5, 7, 9, 11, 13, 15.
 function tileUrlFunction(tileCoord: number[]) {
-    return (
-        'https://{a-d}.tiles.mapbox.com/v4/mapbox.mapbox-streets-v6/' +
-        '{z}/{x}/{y}.vector.pbf?access_token=' +
-        key
-    )
+    return `https://{a-d}.tiles.mapbox.com/v4/mapbox.mapbox-streets-v6/{z}/{x}/{y}.vector.pbf?access_token=${key}`
         .replace('{z}', String(tileCoord[0] * 2 - 1))
         .replace('{x}', String(tileCoord[1]))
         .replace('{y}', String(-tileCoord[2] - 1))
