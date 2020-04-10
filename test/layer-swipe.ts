@@ -1,8 +1,8 @@
-import TileLayer from 'ol/layer/Tile';
 import Map from 'ol/Map';
+import View from 'ol/View';
+import TileLayer from 'ol/layer/Tile';
 import BingMaps from 'ol/source/BingMaps';
 import OSM from 'ol/source/OSM';
-import View from 'ol/View';
 
 const osm = new TileLayer({
     source: new OSM(),
@@ -25,7 +25,7 @@ const map = new Map({
 
 const swipe = document.getElementById('swipe') as HTMLInputElement;
 
-bing.on('precompose', event => {
+bing.on('prerender', event => {
     const ctx = event.context;
     const width = ctx.canvas.width * (swipe.valueAsNumber / 100);
 
@@ -35,7 +35,7 @@ bing.on('precompose', event => {
     ctx.clip();
 });
 
-bing.on('postcompose', event => {
+bing.on('postrender', event => {
     const ctx = event.context;
     ctx.restore();
 });

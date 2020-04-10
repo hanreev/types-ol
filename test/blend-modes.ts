@@ -93,13 +93,13 @@ const resetBlendModeFromSelect = (evt: RenderEvent) => {
 };
 
 const bindLayerListeners = (layer: VectorLayer) => {
-    layer.on('precompose', setBlendModeFromSelect);
-    layer.on('postcompose', resetBlendModeFromSelect);
+    layer.on('prerender', setBlendModeFromSelect);
+    layer.on('postrender', resetBlendModeFromSelect);
 };
 
 const unbindLayerListeners = (layer: VectorLayer) => {
-    layer.un('precompose', setBlendModeFromSelect);
-    layer.un('postcompose', resetBlendModeFromSelect);
+    layer.un('prerender', setBlendModeFromSelect);
+    layer.un('postrender', resetBlendModeFromSelect);
 };
 
 const affectLayerClicked = (event: Event) => {

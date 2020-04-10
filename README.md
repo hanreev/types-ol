@@ -11,7 +11,7 @@
 
 
 
-This project contains TypeScript definition for [OpenLayers](https://openlayers.org/) `v6.2.1` that includes all documented API and protected class members and methods.
+This project contains TypeScript definition for [OpenLayers](https://openlayers.org/) `v6.3.1` that includes all documented API and protected class members and methods.
 Check `v5.3.x` branch for [OpenLayers](https://openlayers.org/) `v5.3.x` definitions.
 
 

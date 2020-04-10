@@ -16,7 +16,7 @@ const map = new Map({
     }),
 });
 
-osm.on('precompose', event => {
+osm.on('prerender', event => {
     const ctx = event.context;
     ctx.save();
     const pixelRatio = event.frameState.pixelRatio;
@@ -38,7 +38,7 @@ osm.on('precompose', event => {
     ctx.translate((-size[0] / 2) * pixelRatio, (-size[1] / 2) * pixelRatio);
 });
 
-osm.on('postcompose', event => {
+osm.on('postrender', event => {
     const ctx = event.context;
     ctx.restore();
 });

@@ -57,9 +57,10 @@ dragBox.on('boxstart', () => {
 
 const infoBox = document.getElementById('info') as HTMLElement;
 
-selectedFeatures.on(['add', 'remove'], () => {
+selectedFeatures.on(['add', 'remove'], _ => {
     const names = selectedFeatures.getArray().map(feature => {
         return feature.get('name');
     });
     infoBox.innerHTML = names.length > 0 ? names.join(', ') : 'No countries selected';
+    return true;
 });

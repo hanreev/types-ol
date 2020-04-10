@@ -1,0 +1,15 @@
+diff --git a/src/ol/control/FullScreen.js b/src/ol/control/FullScreen.js
+index d3741fb8e..a0e3c82a8 100644
+--- a/src/ol/control/FullScreen.js
++++ b/src/ol/control/FullScreen.js
+@@ -61,8 +61,8 @@ const FullScreenEventType = {
+  * The [Fullscreen API](http://www.w3.org/TR/fullscreen/) is used to
+  * toggle the map in full screen mode.
+  *
+- * @fires FullScreenEventType#enterfullscreen
+- * @fires FullScreenEventType#leavefullscreen
++ * @fires module:ol/Object.ObjectEvent#enterfullscreen
++ * @fires module:ol/Object.ObjectEvent#leavefullscreen
+  * @api
+  */
+ class FullScreen extends Control {

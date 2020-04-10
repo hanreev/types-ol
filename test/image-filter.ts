@@ -56,7 +56,7 @@ select.onchange = () => {
     map.render();
 };
 
-imagery.on('postcompose', event => {
+imagery.on('postrender', event => {
     convolve(event.context, selectedKernel);
 });
 

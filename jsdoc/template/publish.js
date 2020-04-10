@@ -363,7 +363,6 @@ function stringifyType(parsedType, _module, undefinedLiteral = true, nullLiteral
 
     if (!undefinedLiteral) union = union.filter(t => t != 'undefined');
     if (!nullLiteral) union = union.filter(t => t != 'null');
-    if (union.length > 1) union = union.filter(t => t != 'void');
 
     typeStr = union.join(' | ');
     if (union.length > 1) typeStr = `(${typeStr})`;
