@@ -10,9 +10,8 @@ import TileGrid from 'ol/tilegrid/TileGrid';
 const projExtent = getProjection('EPSG:3857').getExtent();
 const startResolution = getWidth(projExtent) / 256;
 const resolutions = new Array(22);
-for (let i = 0, ii = resolutions.length; i < ii; ++i) {
-    resolutions[i] = startResolution / Math.pow(2, i);
-}
+for (let i = 0, ii = resolutions.length; i < ii; ++i) resolutions[i] = startResolution / Math.pow(2, i);
+
 const tileGrid = new TileGrid({
     extent: [-13884991, 2870341, -7455066, 6338219],
     resolutions,

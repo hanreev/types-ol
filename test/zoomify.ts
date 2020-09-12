@@ -26,10 +26,7 @@ const map = new Map({
     target: 'map',
     view: new View({
         // adjust zoom levels to those provided by the source
-        resolutions: layer
-            .getSource()
-            .getTileGrid()
-            .getResolutions(),
+        resolutions: layer.getSource().getTileGrid().getResolutions(),
         // constrain the center: center cannot be set outside this extent
         extent,
     }),

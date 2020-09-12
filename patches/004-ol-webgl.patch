@@ -1,8 +1,8 @@
 diff --git a/src/ol/webgl.js b/src/ol/webgl.js
-index 20d6dc25c..a5854c2af 100644
+index c58714339..471774596 100644
 --- a/src/ol/webgl.js
 +++ b/src/ol/webgl.js
-@@ -59,6 +59,7 @@ export const DYNAMIC_DRAW = 0x88E8;
+@@ -53,24 +53,28 @@ export const DYNAMIC_DRAW = 0x88e8;
  /**
   * @const
   * @type {number}
@@ -10,7 +10,6 @@ index 20d6dc25c..a5854c2af 100644
   */
  export const UNSIGNED_BYTE = 0x1401;
  
-@@ -66,6 +67,7 @@ export const UNSIGNED_BYTE = 0x1401;
  /**
   * @const
   * @type {number}
@@ -18,7 +17,6 @@ index 20d6dc25c..a5854c2af 100644
   */
  export const UNSIGNED_SHORT = 0x1403;
  
-@@ -73,6 +75,7 @@ export const UNSIGNED_SHORT = 0x1403;
  /**
   * @const
   * @type {number}
@@ -26,7 +24,6 @@ index 20d6dc25c..a5854c2af 100644
   */
  export const UNSIGNED_INT = 0x1405;
  
-@@ -80,6 +83,7 @@ export const UNSIGNED_INT = 0x1405;
  /**
   * @const
   * @type {number}
@@ -34,15 +31,15 @@ index 20d6dc25c..a5854c2af 100644
   */
  export const FLOAT = 0x1406;
  
-@@ -90,6 +94,7 @@ export const FLOAT = 0x1406;
+@@ -80,6 +84,7 @@ export const FLOAT = 0x1406;
  /**
   * @const
   * @type {Array<string>}
 + * @api
   */
- const CONTEXT_IDS = [
-   'experimental-webgl',
-@@ -103,6 +108,7 @@ const CONTEXT_IDS = [
+ const CONTEXT_IDS = ['experimental-webgl', 'webgl', 'webkit-3d', 'moz-webgl'];
+ 
+@@ -87,6 +92,7 @@ const CONTEXT_IDS = ['experimental-webgl', 'webgl', 'webkit-3d', 'moz-webgl'];
   * @param {HTMLCanvasElement} canvas Canvas.
   * @param {Object=} opt_attributes Attributes.
   * @return {WebGLRenderingContext} WebGL rendering context.
@@ -50,7 +47,7 @@ index 20d6dc25c..a5854c2af 100644
   */
  export function getContext(canvas, opt_attributes) {
    const ii = CONTEXT_IDS.length;
-@@ -126,6 +132,7 @@ let supportedExtensions;
+@@ -110,6 +116,7 @@ let supportedExtensions;
  
  /**
   * @return {Array<string>} List of supported WebGL extensions.

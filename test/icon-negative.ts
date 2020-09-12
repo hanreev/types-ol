@@ -45,10 +45,7 @@ const map = new Map({
 const selectStyle: { [key: string]: Style } = {};
 const select = new Select({
     style: (feature: any) => {
-        const image = feature
-            .get('style')
-            .getImage()
-            .getImage();
+        const image = feature.get('style').getImage().getImage();
         if (!selectStyle[image.src]) {
             const canvas = document.createElement('canvas');
             const context = canvas.getContext('2d') as CanvasRenderingContext2D;

@@ -3,11 +3,21 @@ import BaseEvent from '../events/Event';
 import { Extent } from '../extent';
 import { ObjectEvent } from '../Object';
 import PluggableMap from '../PluggableMap';
+import { OrderFunction } from '../render';
 import RenderEvent from '../render/Event';
-import TileSource from '../source/Tile';
-import Layer from './Layer';
+import VectorTileLayer from './VectorTile';
+import VectorTileRenderType from './VectorTileRenderType';
 
+export interface LayerObject {
+    id: string;
+    source: string;
+}
 export interface Options {
+    styleUrl: string;
+    accessToken: string;
+    source?: string;
+    layers?: string[];
+    declutter?: boolean;
     className?: string;
     opacity?: number;
     visible?: boolean;
@@ -17,17 +27,33 @@ export interface Options {
     maxResolution?: number;
     minZoom?: number;
     maxZoom?: number;
-    preload?: number;
-    source?: TileSource;
+    renderOrder?: OrderFunction;
+    renderBuffer?: number;
+    renderMode?: VectorTileRenderType | string;
     map?: PluggableMap;
+    updateWhileAnimating?: boolean;
+    updateWhileInteracting?: boolean;
+    preload?: number;
     useInterimTilesOnError?: boolean;
 }
-export default class BaseTileLayer extends Layer<TileSource> {
-    constructor(opt_options?: Options & { [key: string]: any });
-    getPreload(): number;
-    getUseInterimTilesOnError(): boolean;
-    setPreload(preload: number): void;
-    setUseInterimTilesOnError(useInterimTilesOnError: boolean): void;
+export interface SourceObject {
+    url: string;
+    type: SourceType;
+}
+export interface StyleObject {
+    sources: { [key: string]: SourceObject };
+    sprite: string;
+    glyphs: string;
+    layers: LayerObject[];
+}
+export enum SourceType {
+    VECTOR = 'vector',
+}
+export default class MapboxVectorLayer extends VectorTileLayer {
+    constructor(options: Options);
+    protected fetchStyle(styleUrl: string): void;
+    protected handleError(error: Error): void;
+    protected onStyleLoad(style: StyleObject): void;
     on(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
     once(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
     un(type: string | string[], listener: (p0: any) => any): void;

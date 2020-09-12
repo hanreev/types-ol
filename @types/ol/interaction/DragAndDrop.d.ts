@@ -1,9 +1,10 @@
-import { EventsKey, ListenerFunction } from '../events';
+import { EventsKey } from '../events';
 import BaseEvent from '../events/Event';
 import Feature, { FeatureLike } from '../Feature';
 import FeatureFormat from '../format/Feature';
 import Geometry from '../geom/Geometry';
 import { ObjectEvent } from '../Object';
+import PluggableMap from '../PluggableMap';
 import { ProjectionLike } from '../proj';
 import Projection from '../proj/Projection';
 import VectorSource from '../source/Vector';
@@ -20,7 +21,11 @@ export enum DragAndDropEventType {
 }
 export default class DragAndDrop extends Interaction {
     constructor(opt_options?: Options & { [key: string]: any });
-    on(type: string | string[], listener: ListenerFunction): EventsKey | EventsKey[];
+    handleDrop(event: DragEvent): void;
+    handleStop(event: DragEvent): void;
+    setActive(active: boolean): void;
+    setMap(map: PluggableMap): void;
+    on(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
     once(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
     un(type: string | string[], listener: (p0: any) => any): void;
     on(type: 'addfeatures', listener: (evt: DragAndDropEvent) => void): EventsKey;

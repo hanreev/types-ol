@@ -42,10 +42,7 @@ d3.json('data/topojson/us.json', (error: any, us: any) => {
 
         const context = canvas.node().getContext('2d');
 
-        const d3Projection = d3
-            .geoMercator()
-            .scale(1)
-            .translate([0, 0]);
+        const d3Projection = d3.geoMercator().scale(1).translate([0, 0]);
         let d3Path = d3.geoPath().projection(d3Projection);
 
         const pixelBounds = d3Path.bounds(features);

@@ -1,18 +1,18 @@
 diff --git a/src/ol/Collection.js b/src/ol/Collection.js
-index bf5f0f918..bcb551a84 100644
+index ab11627c3..bfc230806 100644
 --- a/src/ol/Collection.js
 +++ b/src/ol/Collection.js
-@@ -20,6 +20,9 @@ const Property = {
+@@ -18,6 +18,9 @@ const Property = {
   * @classdesc
   * Events emitted by {@link module:ol/Collection~Collection} instances are instances of this
   * type.
 + *
-+ * @api
 + * @template T
++ * @api
   */
  export class CollectionEvent extends Event {
- 
-@@ -33,7 +36,7 @@ export class CollectionEvent extends Event {
+   /**
+@@ -30,7 +33,7 @@ export class CollectionEvent extends Event {
  
      /**
       * The element that is added to or removed from the collection.

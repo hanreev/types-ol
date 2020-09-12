@@ -12,7 +12,6 @@ export { default as Kinetic } from './Kinetic';
 export { default as Map } from './Map';
 export { default as MapBrowserEvent } from './MapBrowserEvent';
 export { default as MapBrowserEventHandler } from './MapBrowserEventHandler';
-export { default as MapBrowserPointerEvent } from './MapBrowserPointerEvent';
 export { default as MapEvent } from './MapEvent';
 export { default as Object } from './Object';
 export { default as Observable } from './Observable';

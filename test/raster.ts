@@ -119,10 +119,7 @@ const chart = d3
 
 const chartRect = chart.node().getBoundingClientRect();
 
-const tip = d3
-    .select(document.body)
-    .append('div')
-    .attr('class', 'tip');
+const tip = d3.select(document.body).append('div').attr('class', 'tip');
 
 function plot(resolution: number, counts: any, threshold: any) {
     const yScale = d3

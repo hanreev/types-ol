@@ -33,13 +33,9 @@ extent.setActive(false);
 // Enable interaction by holding shift
 window.addEventListener('keydown', event => {
     // tslint:disable-next-line: deprecation
-    if (event.keyCode === 16) {
-        extent.setActive(true);
-    }
+    if (event.keyCode === 16) extent.setActive(true);
 });
 window.addEventListener('keyup', event => {
     // tslint:disable-next-line: deprecation
-    if (event.keyCode === 16) {
-        extent.setActive(false);
-    }
+    if (event.keyCode === 16) extent.setActive(false);
 });

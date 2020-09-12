@@ -66,6 +66,13 @@ const IMPORT_PATCHES = {};
 /** @type {Object<string, string[]>} */
 const MEMBER_PATCHES = {};
 
+/** @type {Object<string, string[]>} */
+const PROPERTY_AND_METHOD_PATCHES = {
+  'module:ol/format/GMLBase~GMLBase': [
+    'protected readGeometryFromNode(node: Element, opt_options?: ReadOptions): Geometry;',
+  ],
+};
+
 /**
  * @param {Object<string, *>} spec
  * @returns {Doclet[]}
@@ -364,7 +371,7 @@ function stringifyType(parsedType, _module, undefinedLiteral = true, nullLiteral
     if (!undefinedLiteral) union = union.filter(t => t != 'undefined');
     if (!nullLiteral) union = union.filter(t => t != 'null');
 
-    typeStr = union.join(' | ');
+    typeStr = union.filter(t => t != 'void').join(' | ');
     if (union.length > 1) typeStr = `(${typeStr})`;
   } else if (parsedType.type == 'NullLiteral') {
     typeStr = 'null';
@@ -482,6 +489,7 @@ function getType(doclet, _module, undefinedLiteral = false, nullLiteral = false)
 
   if (types.length == 1 && types[0] == 'object') types[0] = 'any';
 
+  if (types.includes('void') && types.length > 1) types = types.filter(t => t != 'void');
   return types.join(' | ') || 'any';
 }
 
@@ -672,6 +680,8 @@ const PROCESSORS = {
           }
         });
     }
+
+    if (PROPERTY_AND_METHOD_PATCHES[doclet.longname]) children.push(...PROPERTY_AND_METHOD_PATCHES[doclet.longname]);
 
     const prefix = doclet.virtual ? 'abstract ' : '';
     const decl = `${prefix}class ${name} {\n${children.join('\n')}\n}`;

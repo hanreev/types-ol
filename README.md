@@ -11,7 +11,7 @@
 
 
 
-This project contains TypeScript definition for [OpenLayers](https://openlayers.org/) `v6.3.1` that includes all documented API and protected class members and methods.
+This project contains TypeScript definition for [OpenLayers](https://openlayers.org/) `v6.4.3` that includes all documented API and protected class members and methods.
 Check `v5.3.x` branch for [OpenLayers](https://openlayers.org/) `v5.3.x` definitions.
 
 
@@ -57,7 +57,7 @@ There are several ways to use this package. Please choose one:
     ...
     "devDependencies": {
       ...
-      "@hanreev/types-ol": "^3.2.0",
+      "@hanreev/types-ol": "^3.4.0",
       "@types/ol": "file:node_modules/@hanreev/types-ol/ol",
       ...
     }
@@ -161,55 +161,7 @@ Configuration is located at `jsdoc/conf.json`
 
 
 ## Changelog
-
-- **v3.1.1**
-  - Set `opt_options` constructor parameter of `ol/source/IIIF~IIIF` as optional.
-  - `ol/Object~BaseObject` derived classes can accept extra options.
-  - Change `ol/size.Size` type from `number[]` to `[number, number]`
-- **v3.1.0**
-  - Update to OpenLayers v6.1.1
-  - Change `ol/extent.Extent` type from `number[]` to `[number, number, number, number]`
-  - Tools upgrade: `jsdoc@3.6.3` and `jsdoc-plugin-typescript@2.0.5`
-- **v3.0.0**
-  - OpenLayers v6
-- **v2.0.8**
-  - nullable parameter types
-  - fix `ol/Feature.setStyle` and `ol/layer/Vector.setStyle`
-- **v2.0.7**
-  - Add unified `undefined` parameter type--e.g., `ol/Overlay~Overlay#setPosition` method can accept either coordinate or `undefined`
-- **v2.0.6**
-  - Fix external import with same member name--e.g., `GeoJSON` from `geojson` module in `ol/format/GeoJSON`
-  - Order module members by kind
-- **v2.0.5**
-  - Fix anonymous function parameters type
-  - Fix union types
-- **v2.0.4**
-  - Fix optional parameters in function type--e.g., third parameter of `{function(*, Array<*>, string=): (Node|undefined)}`
-  - Test files fixes
-- **v2.0.3**
-  - OpenLayers 5.3.3 source
-  - Members and methods sorting
-- **v2.0.2**
-  - Fix `object` type
-  - Use relative import path for `ol` modules ([no-self-import](https://github.com/microsoft/dtslint/blob/master/docs/no-self-import.md))
-- **v2.0.1**
-  - Refactor definition filenames
-  - Remove module declaration ([no-declare-current-package](https://github.com/microsoft/dtslint/blob/master/docs/no-declare-current-package.md))
-  - [DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped) standard. These [dtslint](https://github.com/microsoft/dtslint) rules are ignored:
-    - `adjacent-overload-signatures`
-    - `array-type`
-    - `max-line-length`
-    - `no-self-import`
-    - `no-unnecessary-class`
-    - `no-unnecessary-generics`
-    - `unified-signatures`
-- **v1.0.2**
-  - Sort imports
-  - NPM compatibility as `@types/ol`
-- **v1.0.1**
-  - Fix `ol/MapBrowserEventType` module
-- **v1.0.0**
-  - Initial release
+[CHANGELOG.md](CHANGELOG.md)
 
 
 

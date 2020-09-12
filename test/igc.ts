@@ -129,7 +129,7 @@ map.on('pointermove', evt => {
     if (evt.dragging) {
         return;
     }
-    const coordinate = map.getEventCoordinate(evt.originalEvent);
+    const coordinate = map.getEventCoordinate(evt.originalEvent as MouseEvent);
     displaySnap(coordinate);
 });
 
@@ -173,7 +173,7 @@ const featureOverlay = new VectorLayer({
     }),
 });
 
-(document.getElementById('time') as HTMLElement).addEventListener('input', function() {
+(document.getElementById('time') as HTMLElement).addEventListener('input', function () {
     const value = parseInt((this as HTMLInputElement).value, 10) / 100;
     const m = time.start + time.duration * value;
     vectorSource.forEachFeature((feature: any) => {

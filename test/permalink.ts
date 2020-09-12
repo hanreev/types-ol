@@ -43,8 +43,9 @@ const updatePermalink = () => {
     }
 
     const center_ = view.getCenter();
-    const hash = `#map=${view.getZoom()}/${Math.round(center_[0] * 100) / 100}/${Math.round(center_[1] * 100) /
-        100}/${view.getRotation()}`;
+    const hash = `#map=${view.getZoom()}/${Math.round(center_[0] * 100) / 100}/${
+        Math.round(center_[1] * 100) / 100
+    }/${view.getRotation()}`;
     const state = {
         zoom: view.getZoom(),
         center_: view.getCenter(),
@@ -58,9 +59,8 @@ map.on('moveend', updatePermalink);
 // restore the view state when navigating through the history, see
 // https://developer.mozilla.org/en-US/docs/Web/API/WindowEventHandlers/onpopstate
 window.addEventListener('popstate', event => {
-    if (event.state === null) {
-        return;
-    }
+    if (event.state === null) return;
+
     map.getView().setCenter(event.state.center);
     map.getView().setZoom(event.state.zoom);
     map.getView().setRotation(event.state.rotation);

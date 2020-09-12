@@ -77,10 +77,7 @@ const displayFeatureInfo = (pixel: any) => {
         return f;
     });
     if (feature) {
-        info.tooltip('hide')
-            .attr('data-original-title', feature.get('name'))
-            .tooltip('fixTitle')
-            .tooltip('show');
+        info.tooltip('hide').attr('data-original-title', feature.get('name')).tooltip('fixTitle').tooltip('show');
     } else {
         info.tooltip('hide');
     }

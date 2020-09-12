@@ -1,5 +1,5 @@
 import { Coordinate } from '../coordinate';
-import { EventsKey, ListenerFunction } from '../events';
+import { EventsKey } from '../events';
 import { Condition } from '../events/condition';
 import BaseEvent from '../events/Event';
 import Polygon from '../geom/Polygon';
@@ -8,13 +8,13 @@ import { ObjectEvent } from '../Object';
 import { Pixel } from '../pixel';
 import PointerInteraction from './Pointer';
 
-export type EndCondition = (this: any, p0: MapBrowserEvent, p1: Pixel, p2: Pixel) => boolean;
+export type EndCondition = (this: any, p0: MapBrowserEvent<UIEvent>, p1: Pixel, p2: Pixel) => boolean;
 export interface Options {
     className?: string;
     condition?: Condition;
     minArea?: number;
     boxEndCondition?: EndCondition;
-    onBoxEnd?: (this: DragBox, p0: MapBrowserEvent) => void;
+    onBoxEnd?: (this: DragBox, p0: MapBrowserEvent<UIEvent>) => void;
 }
 export enum DragBoxEventType {
     BOXSTART = 'boxstart',
@@ -23,9 +23,13 @@ export enum DragBoxEventType {
 }
 export default class DragBox extends PointerInteraction {
     constructor(opt_options?: Options & { [key: string]: any });
-    defaultBoxEndCondition(mapBrowserEvent: MapBrowserEvent, startPixel: Pixel, endPixel: Pixel): boolean;
+    defaultBoxEndCondition(mapBrowserEvent: MapBrowserEvent<UIEvent>, startPixel: Pixel, endPixel: Pixel): boolean;
     getGeometry(): Polygon;
-    on(type: string | string[], listener: ListenerFunction): EventsKey | EventsKey[];
+    handleDownEvent(mapBrowserEvent: MapBrowserEvent<UIEvent>): boolean;
+    handleDragEvent(mapBrowserEvent: MapBrowserEvent<UIEvent>): void;
+    handleUpEvent(mapBrowserEvent: MapBrowserEvent<UIEvent>): boolean;
+    onBoxEnd(event: MapBrowserEvent<UIEvent>): void;
+    on(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
     once(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
     un(type: string | string[], listener: (p0: any) => any): void;
     on(type: 'boxdrag', listener: (evt: DragBoxEvent) => void): EventsKey;
@@ -51,7 +55,7 @@ export default class DragBox extends PointerInteraction {
     un(type: 'propertychange', listener: (evt: ObjectEvent) => void): void;
 }
 export class DragBoxEvent extends BaseEvent {
-    constructor(type: string, coordinate: Coordinate, mapBrowserEvent: MapBrowserEvent);
+    constructor(type: string, coordinate: Coordinate, mapBrowserEvent: MapBrowserEvent<UIEvent>);
     coordinate: Coordinate;
-    mapBrowserEvent: MapBrowserEvent;
+    mapBrowserEvent: MapBrowserEvent<UIEvent>;
 }

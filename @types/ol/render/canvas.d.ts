@@ -1,4 +1,5 @@
 import { ColorLike } from '../colorlike';
+import { Size } from '../size';
 import Fill from '../style/Fill';
 import Stroke from '../style/Stroke';
 import { Transform } from '../transform';
@@ -50,7 +51,7 @@ export interface TextState {
     overflow?: boolean;
     backgroundFill?: Fill;
     backgroundStroke?: Stroke;
-    scale?: number;
+    scale?: Size;
     padding?: number[];
 }
 export const labelCache: any;
@@ -66,7 +67,7 @@ export function drawImageOrLabel(
     h: number,
     x: number,
     y: number,
-    scale: number,
+    scale: Size,
 ): void;
 export function measureAndCacheTextWidth(font: string, text: string, cache: { [key: string]: number }): number;
 export function measureTextWidth(font: string, text: string): number;

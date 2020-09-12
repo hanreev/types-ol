@@ -62,7 +62,7 @@ map.on('pointermove', evt => {
     if (evt.dragging) {
         return;
     }
-    const coordinate = map.getEventCoordinate(evt.originalEvent);
+    const coordinate = map.getEventCoordinate(evt.originalEvent as MouseEvent);
     displayCountryInfo(coordinate);
 });
 

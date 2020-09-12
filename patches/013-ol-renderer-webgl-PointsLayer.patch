@@ -1,8 +1,8 @@
 diff --git a/src/ol/renderer/webgl/PointsLayer.js b/src/ol/renderer/webgl/PointsLayer.js
-index 868f9b747..1f433efbd 100644
+index da3d9dcb1..f77eff190 100644
 --- a/src/ol/renderer/webgl/PointsLayer.js
 +++ b/src/ol/renderer/webgl/PointsLayer.js
-@@ -35,7 +35,7 @@ import VectorEventType from '../../source/VectorEventType.js';
+@@ -39,7 +39,7 @@ import {listen, unlistenByKey} from '../../events.js';
   * rebuildBuffers by accessing these objects quicker.
   * @property {import("../../Feature").default} feature Feature
   * @property {Object<string, *>} properties Feature properties

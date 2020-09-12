@@ -1,5 +1,5 @@
 import { Coordinate } from './coordinate';
-import { EventsKey, ListenerFunction } from './events';
+import { EventsKey } from './events';
 import BaseEvent from './events/Event';
 import Polygon from './geom/Polygon';
 import BaseObject, { ObjectEvent } from './Object';
@@ -13,6 +13,7 @@ export interface Options {
 }
 export default class Geolocation extends BaseObject {
     constructor(opt_options?: Options & { [key: string]: any });
+    disposeInternal(): void;
     getAccuracy(): number;
     getAccuracyGeometry(): Polygon;
     getAltitude(): number;
@@ -26,7 +27,7 @@ export default class Geolocation extends BaseObject {
     setProjection(projection: ProjectionLike): void;
     setTracking(tracking: boolean): void;
     setTrackingOptions(options: PositionOptions): void;
-    on(type: string | string[], listener: ListenerFunction): EventsKey | EventsKey[];
+    on(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
     once(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
     un(type: string | string[], listener: (p0: any) => any): void;
     on(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
