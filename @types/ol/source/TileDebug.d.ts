@@ -15,7 +15,7 @@ export interface Options {
     wrapX?: boolean;
     zDirection?: number;
 }
-export class LabeledTile extends Tile {
+declare class LabeledTile extends Tile {
     constructor(tileCoord: TileCoord, tileSize: Size, text: string);
     getImage(): HTMLCanvasElement;
     load(): void;

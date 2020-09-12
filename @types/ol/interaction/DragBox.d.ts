@@ -16,11 +16,6 @@ export interface Options {
     boxEndCondition?: EndCondition;
     onBoxEnd?: (this: DragBox, p0: MapBrowserEvent<UIEvent>) => void;
 }
-export enum DragBoxEventType {
-    BOXSTART = 'boxstart',
-    BOXDRAG = 'boxdrag',
-    BOXEND = 'boxend',
-}
 export default class DragBox extends PointerInteraction {
     constructor(opt_options?: Options & { [key: string]: any });
     defaultBoxEndCondition(mapBrowserEvent: MapBrowserEvent<UIEvent>, startPixel: Pixel, endPixel: Pixel): boolean;
@@ -54,7 +49,7 @@ export default class DragBox extends PointerInteraction {
     once(type: 'propertychange', listener: (evt: ObjectEvent) => void): EventsKey;
     un(type: 'propertychange', listener: (evt: ObjectEvent) => void): void;
 }
-export class DragBoxEvent extends BaseEvent {
+declare class DragBoxEvent extends BaseEvent {
     constructor(type: string, coordinate: Coordinate, mapBrowserEvent: MapBrowserEvent<UIEvent>);
     coordinate: Coordinate;
     mapBrowserEvent: MapBrowserEvent<UIEvent>;

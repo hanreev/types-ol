@@ -41,7 +41,7 @@ export interface Options {
 export type PointCoordType = Coordinate;
 export type PolyCoordType = Coordinate[][];
 export type SketchCoordType = PointCoordType | LineCoordType | PolyCoordType;
-export enum DrawEventType {
+declare enum DrawEventType {
     DRAWSTART = 'drawstart',
     DRAWEND = 'drawend',
     DRAWABORT = 'drawabort',
@@ -83,7 +83,7 @@ export default class Draw extends PointerInteraction {
     once(type: 'propertychange', listener: (evt: ObjectEvent) => void): EventsKey;
     un(type: 'propertychange', listener: (evt: ObjectEvent) => void): void;
 }
-export class DrawEvent extends BaseEvent {
+declare class DrawEvent extends BaseEvent {
     constructor(type: DrawEventType, feature: Feature<Geometry>);
     feature: Feature<Geometry>;
 }

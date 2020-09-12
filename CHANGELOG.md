@@ -1,5 +1,8 @@
 ## Changelog
 
+- **v3.4.1**
+  - Reflect javascript exports
+  - Add `ol/Geolocation~GeolocationError`
 - **v3.4.0**
   - Update to OpenLayers v6.4.3
 - **v3.3.0**

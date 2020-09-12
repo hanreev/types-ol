@@ -46,7 +46,7 @@ export default class Extent extends PointerInteraction {
     once(type: 'propertychange', listener: (evt: ObjectEvent) => void): EventsKey;
     un(type: 'propertychange', listener: (evt: ObjectEvent) => void): void;
 }
-export class ExtentEvent extends BaseEvent {
+declare class ExtentEvent extends BaseEvent {
     constructor(extent: Extent_1);
     extent: Extent_1;
 }

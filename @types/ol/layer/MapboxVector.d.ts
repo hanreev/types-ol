@@ -46,7 +46,7 @@ export interface StyleObject {
     glyphs: string;
     layers: LayerObject[];
 }
-export enum SourceType {
+declare enum SourceType {
     VECTOR = 'vector',
 }
 export default class MapboxVectorLayer extends VectorTileLayer {

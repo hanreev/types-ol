@@ -34,22 +34,15 @@ const modules = {};
 
 /** @type {Object<string, string[]>} */
 const force_include_members = {
-  'module:ol/format/GMLBase': ['GMLNS'],
   'module:ol/format/IGC': ['IGCZ'],
   'module:ol/interaction/DragAndDrop': ['DragAndDropEvent', 'DragAndDropEventType'],
-  'module:ol/interaction/DragBox': ['DragBoxEvent', 'DragBoxEventType'],
+  'module:ol/interaction/DragBox': ['DragBoxEvent'],
   'module:ol/interaction/Draw': ['DrawEvent', 'DrawEventType'],
   'module:ol/interaction/Extent': ['ExtentEvent'],
   'module:ol/interaction/Select': ['SelectEvent', 'SelectEventType'],
-  'module:ol/proj/epsg3857': [],
-  'module:ol/proj/epsg4326': [],
-  'module:ol/render/replay': [],
-  'module:ol/reproj/common': [],
-  'module:ol/source/common': [],
-  'module:ol/source/Image': ['ImageSourceEvent', 'ImageSourceEventType'],
-  'module:ol/source/Raster': ['RasterSourceEvent'],
-  'module:ol/source/Vector': ['VectorSourceEvent'],
-  'module:ol/tilegrid/common': [],
+  'module:ol/source/TileDebug': ['LabeledTile'],
+  'module:ol/layer/MapboxVector': ['SourceType'],
+  'module:ol/Geolocation': ['GeolocationError'],
 };
 
 /**
@@ -148,15 +141,11 @@ exports.handlers = {
         continue;
       }
 
-      if (doclet.isEnum || ['module', 'typedef', 'function'].indexOf(doclet.kind) != -1) continue;
+      if (doclet.isEnum || ['module', 'typedef', 'function'].includes(doclet.kind)) continue;
 
       // FIXME: PATCHES
-      if (doclet.memberof in force_include_members)
-        if (force_include_members[doclet.memberof].length) {
-          if (force_include_members[doclet.memberof].indexOf(doclet.name) != -1) continue;
-        } else {
-          continue;
-        }
+      if (doclet.memberof in force_include_members && force_include_members[doclet.memberof].includes(doclet.name))
+        continue;
 
       if (doclet.kind == 'class') {
         includeAugments(doclet);

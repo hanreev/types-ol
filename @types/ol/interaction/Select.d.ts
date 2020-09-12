@@ -26,7 +26,7 @@ export interface Options {
     filter?: FilterFunction;
     hitTolerance?: number;
 }
-export enum SelectEventType {
+declare enum SelectEventType {
     SELECT = 'select',
 }
 export default class Select extends Interaction {
@@ -57,7 +57,7 @@ export default class Select extends Interaction {
     once(type: 'select', listener: (evt: SelectEvent) => void): EventsKey;
     un(type: 'select', listener: (evt: SelectEvent) => void): void;
 }
-export class SelectEvent extends BaseEvent {
+declare class SelectEvent extends BaseEvent {
     constructor(
         type: SelectEventType,
         selected: Feature<Geometry>[],

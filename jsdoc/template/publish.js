@@ -824,9 +824,13 @@ function processModule(doclet) {
       const processorName = item.isEnum ? 'enum' : item.kind == 'member' ? 'constant' : item.kind;
       let child = PROCESSORS[processorName](item, doclet);
 
-      if (child.indexOf('export') == -1) return;
+      if (child.indexOf('export') != -1) {
+        children.push(child);
+        return;
+      }
 
-      children.push(child);
+      if (doclet.force_include_members && doclet.force_include_members.includes(item.name))
+        children.push('declare ' + child);
     });
 
   if (MEMBER_PATCHES[doclet.longname]) children = children.concat(MEMBER_PATCHES[doclet.longname]);
@@ -1118,10 +1122,10 @@ exports.publish = taffyData => {
       return find({ name: exportName, memberof: doclet.longname }).length > 0;
     });
 
-    if (doclet.force_include_members)
-      doclet.force_include_members.forEach(memberName => {
-        if (doclet.exports.exports.indexOf(memberName) == -1) doclet.exports.exports.push(memberName);
-      });
+    // if (doclet.force_include_members)
+    //   doclet.force_include_members.forEach(memberName => {
+    //     if (doclet.exports.exports.indexOf(memberName) == -1) doclet.exports.exports.push(memberName);
+    //   });
 
     MODULE_EXPORTS[doclet.name] = doclet.exports;
   });

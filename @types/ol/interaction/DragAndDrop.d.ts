@@ -16,7 +16,7 @@ export interface Options {
     projection?: ProjectionLike;
     target?: HTMLElement;
 }
-export enum DragAndDropEventType {
+declare enum DragAndDropEventType {
     ADD_FEATURES = 'addfeatures',
 }
 export default class DragAndDrop extends Interaction {
@@ -44,7 +44,7 @@ export default class DragAndDrop extends Interaction {
     once(type: 'propertychange', listener: (evt: ObjectEvent) => void): EventsKey;
     un(type: 'propertychange', listener: (evt: ObjectEvent) => void): void;
 }
-export class DragAndDropEvent extends BaseEvent {
+declare class DragAndDropEvent extends BaseEvent {
     constructor(
         type: DragAndDropEventType,
         file: File,

@@ -18,8 +18,8 @@
     "jsdoc/plugins/inheritdoc",
     "jsdoc/plugins/events",
     "jsdoc/plugins/observable",
-    "jsdoc/plugins/api",
     "jsdoc/plugins/exports",
+    "jsdoc/plugins/api",
     "jsdoc/plugins/template"
   ],
   "typescript": {

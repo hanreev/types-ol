@@ -1,0 +1,27 @@
+diff --git a/src/ol/Geolocation.js b/src/ol/Geolocation.js
+index 26f76d229..2b8786967 100644
+--- a/src/ol/Geolocation.js
++++ b/src/ol/Geolocation.js
+@@ -41,11 +41,13 @@ class GeolocationError extends BaseEvent {
+ 
+     /**
+      * @type {number}
++     * @api
+      */
+     this.code = error.code;
+ 
+     /**
+      * @type {string}
++     * @api
+      */
+     this.message = error.message;
+   }
+@@ -81,7 +83,7 @@ class GeolocationError extends BaseEvent {
+  *       window.console.log(geolocation.getPosition());
+  *     });
+  *
+- * @fires module:ol/events/Event~BaseEvent#event:error
++ * @fires GeolocationError#event:error
+  * @api
+  */
+ class Geolocation extends BaseObject {

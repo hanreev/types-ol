@@ -67,7 +67,12 @@ exports.handlers = {
   newDoclet(e) {
     const doclet = e.doclet;
 
-    if (doclet.kind == 'module') remapExports(doclet);
+    if (doclet.kind == 'module') {
+      remapExports(doclet);
+    } else {
+      const filename = path.join(doclet.meta.path, doclet.meta.filename);
+      if (MODULE_EXPORTS[filename].exports.includes(doclet.name)) doclet.stability = 'stable';
+    }
 
     if (doclet.type) extractFunctionDefinition(doclet);
 

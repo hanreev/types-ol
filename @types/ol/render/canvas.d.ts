@@ -1,4 +1,5 @@
 import { ColorLike } from '../colorlike';
+import BaseObject from '../Object';
 import { Size } from '../size';
 import Fill from '../style/Fill';
 import Stroke from '../style/Stroke';
@@ -54,7 +55,23 @@ export interface TextState {
     scale?: Size;
     padding?: number[];
 }
+export const checkedFonts: BaseObject;
+export const defaultFillStyle: ColorLike;
+export const defaultFont: string;
+export const defaultLineCap: CanvasLineCap;
+export const defaultLineDash: number[];
+export const defaultLineDashOffset: number;
+export const defaultLineJoin: CanvasLineJoin;
+export const defaultLineWidth: number;
+export const defaultMiterLimit: number;
+export const defaultPadding: number[];
+export const defaultStrokeStyle: ColorLike;
+export const defaultTextAlign: string;
+export const defaultTextBaseline: string;
 export const labelCache: any;
+export const measureTextHeight: (font: string) => Size;
+export const registerFont: (fontSpec: string) => void;
+export const textHeights: { [key: string]: number };
 export function createTransformString(transform: Transform): string;
 export function drawImageOrLabel(
     context: CanvasRenderingContext2D,
