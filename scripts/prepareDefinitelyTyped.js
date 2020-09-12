@@ -1,10 +1,11 @@
 const fs = require('fs-extra');
 const path = require('path');
-const glob = require('glob');
 const childProcess = require('child_process');
+const glob = require('glob');
 
-const { getDefinitelyTyped, consoleLogger } = require('types-publisher');
-const { allReferencedFiles } = require('types-publisher/bin/lib/module-info');
+const { getDefinitelyTyped } = require('@definitelytyped/definitions-parser');
+const { consoleLogger } = require('@definitelytyped/utils');
+const { allReferencedFiles } = require('@definitelytyped/definitions-parser/dist/lib/module-info');
 
 const BASE_DIR = process.cwd();
 
@@ -64,11 +65,13 @@ function prepareDt() {
     license: 'UNLICENSED',
     scripts: {
       lint: 'dtslint types',
-      test: 'node node_modules/types-publisher/bin/tester/test.js --run-from-definitely-typed',
+      test: 'node node_modules/@definitelytyped/dtslint-runner/dist/index.js --path .',
     },
     dependencies: {
+      '@definitelytyped/definitions-parser': 'latest',
+      '@definitelytyped/dtslint-runner': 'latest',
+      '@definitelytyped/utils': 'latest',
       dtslint: 'latest',
-      'types-publisher': 'github:Microsoft/types-publisher#production',
     },
   };
   const notNeededPackagesJson = { packages: [] };

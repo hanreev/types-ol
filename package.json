@@ -39,6 +39,8 @@
     "@types/topojson-specification": "^1.0.1"
   },
   "devDependencies": {
+    "@definitelytyped/definitions-parser": "latest",
+    "@definitelytyped/utils": "latest",
     "@types/fs-extra": "^8.0.0",
     "@types/glob": "^7.1.1",
     "@types/marked": "^0.7.0",
@@ -56,7 +58,6 @@
     "proj4": "^2.5.0",
     "ts-loader": "^6.0.4",
     "tslint": "^6.1.0",
-    "types-publisher": "github:Microsoft/types-publisher#production",
     "typescript": "^3.8.3",
     "webpack": "^4.35.2",
     "webpack-cli": "^3.3.5"
