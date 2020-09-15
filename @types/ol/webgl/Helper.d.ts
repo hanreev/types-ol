@@ -128,7 +128,7 @@ export default class WebGLHelper extends Disposable {
     /**
      * Will return the last shader compilation errors. If no error happened, will return null;
      */
-    getShaderCompileErrors(): string;
+    getShaderCompileErrors(): string | null;
     /**
      * Will get the location from the shader or the cache
      */

@@ -99,7 +99,7 @@ centerlausanne.addEventListener(
     () => {
         const feature = source.getFeatures()[1];
         const point = feature.getGeometry() as Point;
-        const size = map.getSize();
+        const size = map.getSize()!;
         view.centerOn(point.getCoordinates(), size, [570, 500]);
     },
     false,

@@ -76,7 +76,7 @@ export default class RegularShape extends ImageStyle {
     /**
      * Get the secondary radius for the shape.
      */
-    getRadius2(): number;
+    getRadius2(): number | undefined;
     /**
      * Get the size of the symbolizer (in pixels).
      */

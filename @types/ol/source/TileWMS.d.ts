@@ -37,14 +37,19 @@ export default class TileWMS extends TileImage {
      * projection. Return undefined if the GetFeatureInfo URL cannot be
      * constructed.
      */
-    getFeatureInfoUrl(coordinate: Coordinate, resolution: number, projection: ProjectionLike, params: any): string;
+    getFeatureInfoUrl(
+        coordinate: Coordinate,
+        resolution: number,
+        projection: ProjectionLike,
+        params: any,
+    ): string | undefined;
     getGutter(): number;
     /**
      * Return the GetLegendGraphic URL, optionally optimized for the passed
      * resolution and possibly including any passed specific parameters. Returns
      * undefined if the GetLegendGraphic URL cannot be constructed.
      */
-    getLegendUrl(resolution?: number, params?: any): string;
+    getLegendUrl(resolution?: number, params?: any): string | undefined;
     /**
      * Get the user-provided params, i.e. those passed to the constructor through
      * the "params" option, and possibly updated using the updateParams method.

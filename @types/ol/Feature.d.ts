@@ -19,7 +19,7 @@ export default class Feature<GeomType extends Geometry = Geometry> extends BaseO
      * geometries.  The "default" geometry (the one that is rendered by default) is
      * set when calling {@link module:ol/Feature~Feature#setGeometry}.
      */
-    getGeometry(): GeomType;
+    getGeometry(): GeomType | undefined;
     /**
      * Get the name of the feature's default geometry.  By default, the default
      * geometry is named geometry.
@@ -30,16 +30,16 @@ export default class Feature<GeomType extends Geometry = Geometry> extends BaseO
      * is either set when reading data from a remote source or set explicitly by
      * calling {@link module:ol/Feature~Feature#setId}.
      */
-    getId(): number | string;
+    getId(): number | string | undefined;
     /**
      * Get the feature's style. Will return what was provided to the
      * {@link module:ol/Feature~Feature#setStyle} method.
      */
-    getStyle(): StyleLike;
+    getStyle(): StyleLike | undefined;
     /**
      * Get the feature's style function.
      */
-    getStyleFunction(): StyleFunction;
+    getStyleFunction(): StyleFunction | undefined;
     /**
      * Set the default geometry for the feature.  This will update the property
      * with the name returned by {@link module:ol/Feature~Feature#getGeometryName}.

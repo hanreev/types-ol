@@ -71,21 +71,21 @@ export interface WriteTransactionOptions {
 export default class WFS extends XMLFeature {
     constructor(opt_options?: Options);
     protected readFeaturesFromNode(node: Element, opt_options?: ReadOptions): Feature<Geometry>[];
-    getFeatureType(): string[] | string;
+    getFeatureType(): string[] | string | undefined;
     /**
      * Read feature collection metadata of the source.
      */
-    readFeatureCollectionMetadata(source: Document | Element | object | string): FeatureCollectionMetadata;
-    readFeatureCollectionMetadataFromDocument(doc: Document): FeatureCollectionMetadata;
-    readFeatureCollectionMetadataFromNode(node: Element): FeatureCollectionMetadata;
+    readFeatureCollectionMetadata(source: Document | Element | object | string): FeatureCollectionMetadata | undefined;
+    readFeatureCollectionMetadataFromDocument(doc: Document): FeatureCollectionMetadata | undefined;
+    readFeatureCollectionMetadataFromNode(node: Element): FeatureCollectionMetadata | undefined;
     readProjectionFromDocument(doc: Document): Projection;
     readProjectionFromNode(node: Element): Projection;
     /**
      * Read transaction response of the source.
      */
-    readTransactionResponse(source: Document | Element | object | string): TransactionResponse;
-    readTransactionResponseFromDocument(doc: Document): TransactionResponse;
-    readTransactionResponseFromNode(node: Element): TransactionResponse;
+    readTransactionResponse(source: Document | Element | object | string): TransactionResponse | undefined;
+    readTransactionResponseFromDocument(doc: Document): TransactionResponse | undefined;
+    readTransactionResponseFromNode(node: Element): TransactionResponse | undefined;
     setFeatureType(featureType: string[] | string | undefined): void;
     /**
      * Encode format as WFS GetFeature and return the Node.

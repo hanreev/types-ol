@@ -104,7 +104,7 @@ const styles: { [key: string]: Style } = {
     }),
 };
 
-const styleFunction: StyleFunction = feature => styles[feature.getGeometry().getType()];
+const styleFunction: StyleFunction = feature => styles[feature.getGeometry()!.getType()];
 
 /**
  * ==================================================
@@ -381,10 +381,9 @@ interface CustomControlOptions extends ControlOptions {
 }
 
 class CustomControl extends Control {
-    element: HTMLElement;
     name: string;
     mapViewport?: HTMLElement;
-    private readonly _boundListener: (e: Event) => void;
+    private readonly _boundListener: (e: MouseEvent) => void;
     private readonly _eventKeys: EventsKey[];
 
     constructor(options: CustomControlOptions = {}) {

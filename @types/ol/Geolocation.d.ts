@@ -20,7 +20,7 @@ export default class Geolocation extends BaseObject {
     /**
      * Get the accuracy of the position in meters.
      */
-    getAccuracy(): number;
+    getAccuracy(): number | undefined;
     /**
      * Get a geometry of the position accuracy.
      */
@@ -28,29 +28,29 @@ export default class Geolocation extends BaseObject {
     /**
      * Get the altitude associated with the position.
      */
-    getAltitude(): number;
+    getAltitude(): number | undefined;
     /**
      * Get the altitude accuracy of the position.
      */
-    getAltitudeAccuracy(): number;
+    getAltitudeAccuracy(): number | undefined;
     /**
      * Get the heading as radians clockwise from North.
      * Note: depending on the browser, the heading is only defined if the enableHighAccuracy
      * is set to true in the tracking options.
      */
-    getHeading(): number;
+    getHeading(): number | undefined;
     /**
      * Get the position of the device.
      */
-    getPosition(): Coordinate;
+    getPosition(): Coordinate | undefined;
     /**
      * Get the projection associated with the position.
      */
-    getProjection(): Projection;
+    getProjection(): Projection | undefined;
     /**
      * Get the speed in meters per second.
      */
-    getSpeed(): number;
+    getSpeed(): number | undefined;
     /**
      * Determine if the device location is being tracked.
      */
@@ -59,7 +59,7 @@ export default class Geolocation extends BaseObject {
      * Get the tracking options.
      * See http://www.w3.org/TR/geolocation-API/#position-options.
      */
-    getTrackingOptions(): PositionOptions;
+    getTrackingOptions(): PositionOptions | undefined;
     /**
      * Set the projection to use for transforming the coordinates.
      */

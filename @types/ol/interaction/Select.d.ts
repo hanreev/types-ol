@@ -52,7 +52,7 @@ export default class Select extends Interaction {
      * {@link module:ol/interaction/Select~Select#getFeatures collection}.
      */
     getLayer(feature: FeatureLike): VectorLayer;
-    getStyle(): StyleLike;
+    getStyle(): StyleLike | null;
     /**
      * Handles the {@link module:ol/MapBrowserEvent map browser event} and may change the
      * selected state of features.

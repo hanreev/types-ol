@@ -28,7 +28,7 @@ export default class BaseLayer extends BaseObject {
      * Return the {@link module:ol/extent~Extent extent} of the layer or undefined if it
      * will be visible regardless of extent.
      */
-    getExtent(): Extent;
+    getExtent(): Extent | undefined;
     getLayersArray(opt_array?: Layer<Source>[]): Layer<Source>[];
     /**
      * This method is not meant to be called by layers or layer renderers because the state

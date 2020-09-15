@@ -50,7 +50,7 @@ export default class UrlTile extends TileSource {
      * When a tileUrlFunction is used instead of url or urls,
      * null will be returned.
      */
-    getUrls(): string[];
+    getUrls(): string[] | null;
     /**
      * Set the tile load function of the source.
      */
@@ -67,7 +67,7 @@ export default class UrlTile extends TileSource {
      * Set the URLs to use for requests.
      */
     setUrls(urls: string[]): void;
-    tileUrlFunction(tileCoord: TileCoord, pixelRatio: number, projection: Projection): string;
+    tileUrlFunction(tileCoord: TileCoord, pixelRatio: number, projection: Projection): string | undefined;
     /**
      * Marks a tile coord as being used, without triggering a load.
      */

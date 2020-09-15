@@ -32,7 +32,7 @@ export default class Cluster extends VectorSource {
      * Get the distance in pixels between clusters.
      */
     getDistance(): number;
-    getResolutions(): number[];
+    getResolutions(): number[] | undefined;
     /**
      * Get a reference to the wrapped source.
      */

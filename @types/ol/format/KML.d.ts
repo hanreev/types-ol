@@ -45,9 +45,9 @@ export default class KML extends XMLFeature {
     /**
      * Read the name of the KML.
      */
-    readName(source: Document | Element | string): string;
-    readNameFromDocument(doc: Document): string;
-    readNameFromNode(node: Element): string;
+    readName(source: Document | Element | string): string | undefined;
+    readNameFromDocument(doc: Document): string | undefined;
+    readNameFromNode(node: Element): string | undefined;
     /**
      * Read the network links of the KML.
      */
@@ -90,4 +90,4 @@ export function getDefaultStyleArray(): Style[];
  * Get the default text style (or null if not yet set).
  */
 export function getDefaultTextStyle(): Text;
-export function readFlatCoordinates(node: Node): number[];
+export function readFlatCoordinates(node: Node): number[] | undefined;

@@ -20,7 +20,7 @@ osm.on('prerender', event => {
     const ctx = event.context;
     ctx.save();
     const pixelRatio = event.frameState.pixelRatio;
-    const size = map.getSize();
+    const size = map.getSize()!;
     ctx.translate((size[0] / 2) * pixelRatio, (size[1] / 2) * pixelRatio);
     ctx.scale(3 * pixelRatio, 3 * pixelRatio);
     ctx.translate(-75, -80);

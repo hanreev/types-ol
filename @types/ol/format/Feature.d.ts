@@ -24,11 +24,14 @@ export default abstract class FeatureFormat {
      * Sets the dataProjection on the options, if no dataProjection
      * is set.
      */
-    protected adaptOptions(options: WriteOptions | ReadOptions | undefined): WriteOptions | ReadOptions;
+    protected adaptOptions(options: WriteOptions | ReadOptions | undefined): WriteOptions | ReadOptions | undefined;
     /**
      * Adds the data projection to the read options.
      */
-    protected getReadOptions(source: Document | Element | object | string, opt_options?: ReadOptions): ReadOptions;
+    protected getReadOptions(
+        source: Document | Element | object | string,
+        opt_options?: ReadOptions,
+    ): ReadOptions | undefined;
     abstract getType(): FormatType;
     /**
      * Read a single feature from a source.

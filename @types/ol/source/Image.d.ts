@@ -34,7 +34,7 @@ export default abstract class ImageSource extends Source {
      * Handle image change events.
      */
     protected handleImageChange(event: BaseEvent): void;
-    getContextOptions(): any;
+    getContextOptions(): object | undefined;
     getImage(extent: Extent, resolution: number, pixelRatio: number, projection: Projection): ImageBase;
     getResolutions(): number[];
     on(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];

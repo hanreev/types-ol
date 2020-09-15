@@ -27,8 +27,8 @@ const gn: any = {};
 
 gn.init().then(() => {
     gn.start((event: any) => {
-        const center = view.getCenter();
-        const resolution = view.getResolution();
+        const center = view.getCenter()!;
+        const resolution = view.getResolution()!;
         const alpha = toRadians(event.do.beta);
         const beta = toRadians(event.do.beta);
         const gamma = toRadians(event.do.gamma);

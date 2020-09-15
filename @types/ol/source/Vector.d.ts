@@ -67,14 +67,14 @@ export default class VectorSource<GeomType extends Geometry = Geometry> extends 
      * stop and the function will return the same value.
      * Note: this function only iterate through the feature that have a defined geometry.
      */
-    forEachFeature<T>(callback: (p0: Feature<GeomType>) => T): T;
+    forEachFeature<T>(callback: (p0: Feature<GeomType>) => T): T | undefined;
     /**
      * Iterate through all features whose geometries contain the provided
      * coordinate, calling the callback with each feature.  If the callback returns
      * a "truthy" value, iteration will stop and the function will return the same
      * value.
      */
-    forEachFeatureAtCoordinateDirect<T>(coordinate: Coordinate, callback: (p0: Feature<GeomType>) => T): T;
+    forEachFeatureAtCoordinateDirect<T>(coordinate: Coordinate, callback: (p0: Feature<GeomType>) => T): T | undefined;
     /**
      * Iterate through all features whose bounding box intersects the provided
      * extent (note that the feature's geometry may not intersect the extent),
@@ -85,7 +85,7 @@ export default class VectorSource<GeomType extends Geometry = Geometry> extends 
      * When useSpatialIndex is set to false, this method will loop through all
      * features, equivalent to {@link module:ol/source/Vector~VectorSource#forEachFeature #forEachFeature()}.
      */
-    forEachFeatureInExtent<T>(extent: Extent, callback: (p0: Feature<GeomType>) => T): T;
+    forEachFeatureInExtent<T>(extent: Extent, callback: (p0: Feature<GeomType>) => T): T | undefined;
     /**
      * Iterate through all features whose geometry intersects the provided extent,
      * calling the callback with each feature.  If the callback returns a "truthy"
@@ -93,7 +93,7 @@ export default class VectorSource<GeomType extends Geometry = Geometry> extends 
      * If you only want to test for bounding box intersection, call the
      * {@link module:ol/source/Vector~VectorSource#forEachFeatureInExtent #forEachFeatureInExtent()} method instead.
      */
-    forEachFeatureIntersectingExtent<T>(extent: Extent, callback: (p0: Feature<GeomType>) => T): T;
+    forEachFeatureIntersectingExtent<T>(extent: Extent, callback: (p0: Feature<GeomType>) => T): T | undefined;
     /**
      * Get the closest feature to the provided coordinate.
      * This method is not available when the source is configured with
@@ -141,13 +141,13 @@ export default class VectorSource<GeomType extends Geometry = Geometry> extends 
     /**
      * Get the format associated with this source.
      */
-    getFormat(): FeatureFormat;
+    getFormat(): FeatureFormat | undefined;
     getOverlaps(): boolean;
-    getResolutions(): number[];
+    getResolutions(): number[] | undefined;
     /**
      * Get the url associated with this source.
      */
-    getUrl(): string | FeatureUrlFunction;
+    getUrl(): string | FeatureUrlFunction | undefined;
     /**
      * Returns true if the feature is contained within the source.
      */

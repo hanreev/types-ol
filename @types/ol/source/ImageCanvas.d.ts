@@ -26,7 +26,7 @@ export type FunctionType = (
     p2: number,
     p3: Size,
     p4: Projection,
-) => HTMLCanvasElement;
+) => HTMLCanvasElement | null | undefined;
 export interface Options {
     attributions?: AttributionLike;
     canvasFunction?: FunctionType;

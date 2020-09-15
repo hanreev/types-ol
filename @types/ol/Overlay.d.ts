@@ -67,15 +67,15 @@ export default class Overlay extends BaseObject {
     /**
      * Get the DOM element of this overlay.
      */
-    getElement(): HTMLElement;
+    getElement(): HTMLElement | undefined;
     /**
      * Get the overlay identifier which is set on constructor.
      */
-    getId(): number | string;
+    getId(): number | string | undefined;
     /**
      * Get the map associated with this overlay.
      */
-    getMap(): PluggableMap;
+    getMap(): PluggableMap | undefined;
     /**
      * Get the offset of this overlay.
      */
@@ -87,7 +87,7 @@ export default class Overlay extends BaseObject {
     /**
      * Get the current position of this overlay.
      */
-    getPosition(): Coordinate;
+    getPosition(): Coordinate | undefined;
     /**
      * Get the current positioning of this overlay.
      */

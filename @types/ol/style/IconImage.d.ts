@@ -20,7 +20,7 @@ export default class IconImage extends Target {
      * Get the size of the icon (in pixels).
      */
     getSize(): Size;
-    getSrc(): string;
+    getSrc(): string | undefined;
     /**
      * Load not yet loaded URI.
      */

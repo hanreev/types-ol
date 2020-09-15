@@ -106,7 +106,7 @@ const displaySnap = (coordinate: Coordinate) => {
         line = null as any;
         info.innerHTML = '&nbsp;';
     } else {
-        const geometry = closestFeature.getGeometry();
+        const geometry = closestFeature.getGeometry()!;
         const closestPoint = geometry.getClosestPoint(coordinate);
         if (point === null) {
             point = new Point(closestPoint);

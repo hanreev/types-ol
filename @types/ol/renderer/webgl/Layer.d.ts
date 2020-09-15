@@ -60,7 +60,7 @@ export default class WebGLLayerRenderer<LayerType extends Layer = Layer> extends
     /**
      * Will return the last shader compilation errors. If no error happened, will return null;
      */
-    getShaderCompileErrors(): string;
+    getShaderCompileErrors(): string | null;
     /**
      * Perform action necessary to get the layer rendered after new fonts have loaded
      */

@@ -79,7 +79,7 @@ const styles: { [key: string]: Style } = {
 };
 
 const styleFunction = (feature: FeatureLike) => {
-    return styles[feature.getGeometry().getType()];
+    return styles[feature.getGeometry()!.getType()];
 };
 
 const geojsonObject = {

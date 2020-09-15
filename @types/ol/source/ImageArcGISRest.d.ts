@@ -35,7 +35,7 @@ export default class ImageArcGISRest extends ImageSource {
     /**
      * Return the URL used for this ArcGIS source.
      */
-    getUrl(): string;
+    getUrl(): string | undefined;
     /**
      * Set the image load function of the source.
      */

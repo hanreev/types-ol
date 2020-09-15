@@ -24,11 +24,11 @@ export default class MousePosition extends Control {
      * Return the coordinate format type used to render the current position or
      * undefined.
      */
-    getCoordinateFormat(): CoordinateFormat;
+    getCoordinateFormat(): CoordinateFormat | undefined;
     /**
      * Return the projection that is used to report the mouse position.
      */
-    getProjection(): Projection;
+    getProjection(): Projection | undefined;
     /**
      * Set the coordinate format type used to render the current position.
      */

@@ -119,7 +119,7 @@ export default class PluggableMap extends BaseObject {
         pixel: Pixel,
         callback: (this: S, p0: FeatureLike, p1: Layer<Source>) => T,
         opt_options?: AtPixelOptions,
-    ): T;
+    ): T | undefined;
     /**
      * Detect layers that have a color value at a pixel on the viewport, and
      * execute a callback with each matching layer. Layers included in the
@@ -131,7 +131,7 @@ export default class PluggableMap extends BaseObject {
         pixel: Pixel,
         callback: (this: S, p0: Layer<Source>, p1: Uint8ClampedArray | Uint8Array) => T,
         opt_options?: AtPixelOptions,
-    ): T;
+    ): T | undefined;
     /**
      * Get the map controls. Modifying this collection changes the controls
      * associated with the map.
@@ -220,13 +220,13 @@ export default class PluggableMap extends BaseObject {
     /**
      * Get the size of this map.
      */
-    getSize(): Size;
+    getSize(): Size | undefined;
     /**
      * Get the target in which this map is rendered.
      * Note that this returns what is entered as an option or in setTarget:
      * if that was an element, it returns an element; if a string, it returns that.
      */
-    getTarget(): HTMLElement | string;
+    getTarget(): HTMLElement | string | undefined;
     /**
      * Get the DOM element into which this map is rendered. In contrast to
      * getTarget this method always return an Element, or null if the
@@ -258,19 +258,19 @@ export default class PluggableMap extends BaseObject {
     /**
      * Remove the given control from the map.
      */
-    removeControl(control: Control): Control;
+    removeControl(control: Control): Control | undefined;
     /**
      * Remove the given interaction from the map.
      */
-    removeInteraction(interaction: Interaction): Interaction;
+    removeInteraction(interaction: Interaction): Interaction | undefined;
     /**
      * Removes the given layer from the map.
      */
-    removeLayer(layer: BaseLayer): BaseLayer;
+    removeLayer(layer: BaseLayer): BaseLayer | undefined;
     /**
      * Remove the given overlay from the map.
      */
-    removeOverlay(overlay: Overlay): Overlay;
+    removeOverlay(overlay: Overlay): Overlay | undefined;
     /**
      * Request a map rendering (at the next animation frame).
      */

@@ -54,7 +54,7 @@ let deltaMean = 500; // the geolocation sampling period mean in ms
 
 // Listen to position changes
 geolocation.on('change', () => {
-    const position = geolocation.getPosition();
+    const position = geolocation.getPosition()!;
     const accuracy = geolocation.getAccuracy();
     const heading = geolocation.getHeading() || 0;
     const speed = geolocation.getSpeed() || 0;
@@ -124,7 +124,7 @@ function addPosition(position: number[], heading: number, m: number, speed: numb
 // recenters the view by putting the given coordinates at 3/4 from the top or
 // the screen
 function getCenterWithHeading(position: number[], rotation: number, resolution: number) {
-    const size = map.getSize();
+    const size = map.getSize()!;
     const height = size[1];
 
     return [
@@ -142,7 +142,7 @@ function updateView() {
     // interpolate position along positions LineString
     const c = positions.getCoordinateAtM(m, true);
     if (c) {
-        view.setCenter(getCenterWithHeading(c, -c[2], view.getResolution()));
+        view.setCenter(getCenterWithHeading(c, -c[2], view.getResolution()!));
         view.setRotation(-c[2]);
         marker.setPosition(c);
     }

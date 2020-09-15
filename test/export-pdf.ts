@@ -17,7 +17,7 @@ const feature = format.readFeature(
         '-20.1708984375, 38.814697265625 -35.6396484375, 13.502197265625 ' +
         '-39.1552734375, 10.689697265625 -25.0927734375))',
 );
-feature.getGeometry().transform('EPSG:4326', 'EPSG:3857');
+feature.getGeometry()!.transform('EPSG:4326', 'EPSG:3857');
 
 const vector = new VectorLayer({
     source: new VectorSource({

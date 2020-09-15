@@ -35,17 +35,17 @@ export default abstract class Source extends BaseObject {
      */
     getAttributions(): Attribution;
     getAttributionsCollapsible(): boolean;
-    getContextOptions(): any;
+    getContextOptions(): object | undefined;
     /**
      * Get the projection of the source.
      */
     getProjection(): Projection;
-    abstract getResolutions(): number[];
+    abstract getResolutions(): number[] | undefined;
     /**
      * Get the state of the source, see {@link module:ol/source/State~State} for possible states.
      */
     getState(): State;
-    getWrapX(): boolean;
+    getWrapX(): boolean | undefined;
     /**
      * Refreshes the source. The source will be cleared, and data from the server will be reloaded.
      */

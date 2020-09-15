@@ -141,7 +141,7 @@ function addInteraction() {
 
         let tooltipCoord = (evt as any).coordinate;
 
-        listener = sketch.getGeometry().on('change', ev => {
+        listener = sketch.getGeometry()!.on('change', ev => {
             const geom = ev.target;
             let output;
             if (geom instanceof Polygon) {

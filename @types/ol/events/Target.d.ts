@@ -11,7 +11,7 @@ export default class Target extends Disposable {
      * of this type. The event parameter can either be a string or an
      * Object with a type property.
      */
-    dispatchEvent(event: BaseEvent | string): boolean;
+    dispatchEvent(event: BaseEvent | string): boolean | undefined;
     /**
      * Clean up.
      */
@@ -20,7 +20,7 @@ export default class Target extends Disposable {
      * Get the listeners for a specified event type. Listeners are returned in the
      * order that they will be called in.
      */
-    getListeners(type: string): Listener[];
+    getListeners(type: string): Listener[] | undefined;
     hasListener(opt_type?: string): boolean;
     removeEventListener(type: string, listener: Listener): void;
 }

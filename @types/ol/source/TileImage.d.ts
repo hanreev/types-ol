@@ -47,7 +47,7 @@ export default class TileImage extends UrlTile {
     protected getTileInternal(z: number, x: number, y: number, pixelRatio: number, projection: Projection): Tile;
     canExpireCache(): boolean;
     expireCache(projection: Projection, usedTiles: { [key: string]: boolean }): void;
-    getContextOptions(): any;
+    getContextOptions(): object | undefined;
     getGutter(): number;
     getGutterForProjection(projection: Projection): number;
     getOpaque(projection: Projection): boolean;

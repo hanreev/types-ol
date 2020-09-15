@@ -63,7 +63,7 @@ export default class Icon extends ImageStyle {
     /**
      * Get the image URL.
      */
-    getSrc(): string;
+    getSrc(): string | undefined;
     listenImageChange(listener: (p0: BaseEvent) => void): void;
     /**
      * Load not yet loaded URI.

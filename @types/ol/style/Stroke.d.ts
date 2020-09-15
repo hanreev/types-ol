@@ -23,7 +23,7 @@ export default class Stroke {
     /**
      * Get the line cap type for the stroke.
      */
-    getLineCap(): CanvasLineCap;
+    getLineCap(): CanvasLineCap | undefined;
     /**
      * Get the line dash style for the stroke.
      */
@@ -31,19 +31,19 @@ export default class Stroke {
     /**
      * Get the line dash offset for the stroke.
      */
-    getLineDashOffset(): number;
+    getLineDashOffset(): number | undefined;
     /**
      * Get the line join type for the stroke.
      */
-    getLineJoin(): CanvasLineJoin;
+    getLineJoin(): CanvasLineJoin | undefined;
     /**
      * Get the miter limit for the stroke.
      */
-    getMiterLimit(): number;
+    getMiterLimit(): number | undefined;
     /**
      * Get the stroke width.
      */
-    getWidth(): number;
+    getWidth(): number | undefined;
     /**
      * Set the color.
      */

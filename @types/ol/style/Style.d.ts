@@ -13,7 +13,7 @@ import Text from './Text';
  * A function that takes an {@link module:ol/Feature} as argument and returns an
  * {@link module:ol/geom/Geometry} that will be rendered and styled for the feature.
  */
-export type GeometryFunction = (p0: FeatureLike) => Geometry | RenderFeature;
+export type GeometryFunction = (p0: FeatureLike) => Geometry | RenderFeature | undefined;
 export interface Options {
     geometry?: string | Geometry | GeometryFunction;
     fill?: Fill;
@@ -69,7 +69,7 @@ export default class Style {
      * Get the custom renderer function that was configured with
      * {@link #setRenderer} or the renderer constructor option.
      */
-    getRenderer(): RenderFunction;
+    getRenderer(): RenderFunction | null;
     /**
      * Get the stroke style.
      */
@@ -81,7 +81,7 @@ export default class Style {
     /**
      * Get the z-index for the style.
      */
-    getZIndex(): number;
+    getZIndex(): number | undefined;
     /**
      * Set the fill style.
      */

@@ -40,11 +40,11 @@ export default class Projection {
      * not configured with metersPerUnit or a units identifier, the return is
      * undefined.
      */
-    getMetersPerUnit(): number;
+    getMetersPerUnit(): number | undefined;
     /**
      * Get the custom point resolution function for this projection (if set).
      */
-    getPointResolutionFunc(): (p0: number, p1: Coordinate) => number;
+    getPointResolutionFunc(): (p0: number, p1: Coordinate) => number | undefined;
     /**
      * Get the units of this projection.
      */

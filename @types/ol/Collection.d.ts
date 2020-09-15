@@ -43,7 +43,7 @@ export default class Collection<T> extends BaseObject {
      * Remove the last element of the collection and return it.
      * Return undefined if the collection is empty.
      */
-    pop(): T;
+    pop(): T | undefined;
     /**
      * Insert the provided element at the end of the collection.
      */
@@ -51,12 +51,12 @@ export default class Collection<T> extends BaseObject {
     /**
      * Remove the first occurrence of an element from the collection.
      */
-    remove(elem: T): T;
+    remove(elem: T): T | undefined;
     /**
      * Remove the element at the provided index and return it.
      * Return undefined if the collection does not contain this index.
      */
-    removeAt(index: number): T;
+    removeAt(index: number): T | undefined;
     /**
      * Set the element at the provided index.
      */

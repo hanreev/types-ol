@@ -31,7 +31,10 @@ export function isDocument(object: any): boolean;
  * Make an array extender function for extending the array at the top of the
  * object stack.
  */
-export function makeArrayExtender<T>(valueReader: (this: T, p0: Node, p1: any[]) => any[], opt_this?: T): Parser;
+export function makeArrayExtender<T>(
+    valueReader: (this: T, p0: Node, p1: any[]) => any[] | undefined,
+    opt_this?: T,
+): Parser;
 /**
  * Make an array pusher function for pushing to the array at the top of the
  * object stack.
@@ -95,7 +98,7 @@ export function makeSequence(object: { [key: string]: any }, orderedKeys: string
 export function makeSimpleNodeFactory(
     opt_nodeName?: string,
     opt_namespaceURI?: string,
-): (p0: any, p1: any[], p2?: string) => Node;
+): (p0: any, p1: any[], p2?: string) => Node | undefined;
 /**
  * Create a namespaced structure, using the same values for each namespace.
  * This can be used as a starting point for versioned parsers, when only a few
@@ -132,12 +135,12 @@ export function pushParseAndPop<T>(
 export function pushSerializeAndPop<O, T>(
     object: O,
     serializersNS: { [key: string]: { [key: string]: Serializer } },
-    nodeFactory: (this: T, p0: any, p1: any[], p2: string | undefined) => Node,
+    nodeFactory: (this: T, p0: any, p1: any[], p2: string | undefined) => Node | undefined,
     values: any[],
     objectStack: any[],
     opt_keys?: string[],
     opt_this?: T,
-): O;
+): O | undefined;
 /**
  * Register a Document to use when creating nodes for XML serializations. Can be used
  * to inject a Document where there is no globally available implementation.
@@ -153,7 +156,7 @@ export function registerXMLSerializer(xmlSerializer: XMLSerializer): void;
  */
 export function serialize<T>(
     serializersNS: { [key: string]: { [key: string]: Serializer } },
-    nodeFactory: (this: T, p0: any, p1: any[], p2: string | undefined) => Node,
+    nodeFactory: (this: T, p0: any, p1: any[], p2: string | undefined) => Node | undefined,
     values: any[],
     objectStack: any[],
     opt_keys?: string[],

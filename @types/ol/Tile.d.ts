@@ -23,7 +23,7 @@ export interface Options {
  * and returns a {string} representing the tile URL, or undefined if no tile
  * should be requested for the passed tile coordinate.
  */
-export type UrlFunction = (p0: TileCoord, p1: number, p2: Projection) => string;
+export type UrlFunction = (p0: TileCoord, p1: number, p2: Projection) => string | undefined;
 export default abstract class Tile extends Target {
     constructor(tileCoord: TileCoord, state: TileState, opt_options?: Options);
     protected state: TileState;

@@ -47,17 +47,17 @@ export default class BaseVectorLayer<
      * image.
      */
     getFeatures(pixel: Pixel): Promise<Feature<Geometry>[]>;
-    getRenderBuffer(): number;
-    getRenderOrder(): (p0: Feature<Geometry>, p1: Feature<Geometry>) => number;
+    getRenderBuffer(): number | undefined;
+    getRenderOrder(): (p0: Feature<Geometry>, p1: Feature<Geometry>) => number | null | undefined;
     /**
      * Get the style for features.  This returns whatever was passed to the style
      * option at construction or to the setStyle method.
      */
-    getStyle(): StyleLike;
+    getStyle(): StyleLike | null | undefined;
     /**
      * Get the style function.
      */
-    getStyleFunction(): StyleFunction;
+    getStyleFunction(): StyleFunction | undefined;
     getUpdateWhileAnimating(): boolean;
     getUpdateWhileInteracting(): boolean;
     setRenderOrder(renderOrder: OrderFunction | null | undefined): void;

@@ -2,6 +2,7 @@ import Disposable from '../Disposable';
 import { EventsKey } from '../events';
 import BaseEvent from '../events/Event';
 import { Extent } from '../extent';
+import ImageBase from '../ImageBase';
 import ImageCanvas from '../ImageCanvas';
 import Layer, { State } from '../layer/Layer';
 import { ObjectEvent } from '../Object';
@@ -72,12 +73,17 @@ export class Processor extends Disposable {
 }
 export default class RasterSource extends ImageSource {
     constructor(options: Options);
+    protected getImageInternal(
+        extent: Extent,
+        resolution: number,
+        pixelRatio: number,
+        projection: Projection,
+    ): ImageBase;
     /**
      * Clean up and unregister the worker.
      */
     dispose(): void;
     getImage(extent: Extent, resolution: number, pixelRatio: number, projection: Projection): ImageCanvas;
-    getImageInternal(): any;
     /**
      * Set the operation.
      */

@@ -33,7 +33,7 @@ export default class ExecutorGroup {
         hitTolerance: number,
         callback: (p0: FeatureLike) => T,
         declutteredFeatures: FeatureLike[],
-    ): T;
+    ): T | undefined;
     getClipCoords(transform: Transform): number[];
     hasExecutors(executors: BuilderType[]): boolean;
     isEmpty(): boolean;

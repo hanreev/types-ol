@@ -5,7 +5,7 @@
 export function binarySearch(haystack: any[], needle: any, opt_comparator?: () => void): number;
 export function equals(arr1: any[] | Uint8ClampedArray, arr2: any[] | Uint8ClampedArray): boolean;
 export function extend<VALUE>(arr: VALUE[], data: VALUE[] | VALUE): void;
-export function find<VALUE>(arr: VALUE[], func: (p0: VALUE, p1: number, p2: any) => boolean): VALUE;
+export function find<VALUE>(arr: VALUE[], func: (p0: VALUE, p1: number, p2: any) => boolean): VALUE | null;
 export function findIndex(arr: any[], func: () => void): number;
 /**
  * Whether the array contains the given object.

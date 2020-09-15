@@ -38,7 +38,12 @@ export default class CanvasVectorTileLayerRenderer extends CanvasTileLayerRender
      * Determine whether render should be called.
      */
     prepareFrame(frameState: FrameState): boolean;
-    prepareTile(tile: VectorRenderTile, pixelRatio: number, projection: Projection, queue: boolean): boolean;
+    prepareTile(
+        tile: VectorRenderTile,
+        pixelRatio: number,
+        projection: Projection,
+        queue: boolean,
+    ): boolean | undefined;
     renderFeature(
         feature: FeatureLike,
         squaredTolerance: number,

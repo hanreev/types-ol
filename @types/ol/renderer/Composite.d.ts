@@ -14,7 +14,7 @@ export default class CompositeMapRenderer extends MapRenderer {
         hitTolerance: number,
         callback: (p0: Layer<Source>, p1: Uint8ClampedArray | Uint8Array) => T,
         layerFilter: (p0: Layer<Source>) => boolean,
-    ): T;
+    ): T | undefined;
     /**
      * Render.
      */

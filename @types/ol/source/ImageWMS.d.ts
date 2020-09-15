@@ -30,7 +30,12 @@ export default class ImageWMS extends ImageSource {
      * projection. Return undefined if the GetFeatureInfo URL cannot be
      * constructed.
      */
-    getFeatureInfoUrl(coordinate: Coordinate, resolution: number, projection: ProjectionLike, params: any): string;
+    getFeatureInfoUrl(
+        coordinate: Coordinate,
+        resolution: number,
+        projection: ProjectionLike,
+        params: any,
+    ): string | undefined;
     getImageInternal(extent: Extent, resolution: number, pixelRatio: number, projection: Projection): ImageWrapper;
     /**
      * Return the image load function of the source.
@@ -41,7 +46,7 @@ export default class ImageWMS extends ImageSource {
      * resolution and possibly including any passed specific parameters. Returns
      * undefined if the GetLegendGraphic URL cannot be constructed.
      */
-    getLegendUrl(resolution?: number, params?: any): string;
+    getLegendUrl(resolution?: number, params?: any): string | undefined;
     /**
      * Get the user-provided params, i.e. those passed to the constructor through
      * the "params" option, and possibly updated using the updateParams method.
@@ -50,7 +55,7 @@ export default class ImageWMS extends ImageSource {
     /**
      * Return the URL used for this WMS source.
      */
-    getUrl(): string;
+    getUrl(): string | undefined;
     /**
      * Set the image load function of the source.
      */

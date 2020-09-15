@@ -70,7 +70,7 @@ export default class UTFGrid extends TileSource {
     /**
      * Return the template from TileJSON.
      */
-    getTemplate(): string;
+    getTemplate(): string | undefined;
     getTile(z: number, x: number, y: number, pixelRatio: number, projection: Projection): CustomTile;
     /**
      * Marks a tile coord as being used, without triggering a load.

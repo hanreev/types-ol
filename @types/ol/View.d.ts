@@ -143,8 +143,8 @@ export default class View extends BaseObject {
      * (depending on its constraints).
      */
     beginInteraction(): void;
-    calculateCenterRotate(rotation: number, anchor: Coordinate): Coordinate;
-    calculateCenterZoom(resolution: number, anchor: Coordinate): Coordinate;
+    calculateCenterRotate(rotation: number, anchor: Coordinate): Coordinate | undefined;
+    calculateCenterZoom(resolution: number, anchor: Coordinate): Coordinate | undefined;
     /**
      * Calculate the extent for the current view state and the passed size.
      * The size is the pixel dimensions of the box into which the calculated extent
@@ -187,23 +187,23 @@ export default class View extends BaseObject {
     /**
      * Get the view center.
      */
-    getCenter(): Coordinate;
+    getCenter(): Coordinate | undefined;
     /**
      * Get the view center without transforming to user projection.
      */
-    getCenterInternal(): Coordinate;
+    getCenterInternal(): Coordinate | undefined;
     /**
      * Get a valid position for the view center according to the current constraints.
      */
-    getConstrainedCenter(targetCenter: Coordinate | undefined, opt_targetResolution?: number): Coordinate;
+    getConstrainedCenter(targetCenter: Coordinate | undefined, opt_targetResolution?: number): Coordinate | undefined;
     /**
      * Get a valid resolution according to the current view constraints.
      */
-    getConstrainedResolution(targetResolution: number | undefined, opt_direction?: number): number;
+    getConstrainedResolution(targetResolution: number | undefined, opt_direction?: number): number | undefined;
     /**
      * Get a valid zoom level according to the current view constraints.
      */
-    getConstrainedZoom(targetZoom: number | undefined, opt_direction?: number): number;
+    getConstrainedZoom(targetZoom: number | undefined, opt_direction?: number): number | undefined;
     getConstrainResolution(): boolean;
     getConstraints(): Constraints;
     getHints(opt_hints?: number[]): number[];
@@ -234,7 +234,7 @@ export default class View extends BaseObject {
     /**
      * Get the view resolution.
      */
-    getResolution(): number;
+    getResolution(): number | undefined;
     /**
      * Get the resolution for a provided extent (in map units) and size (in pixels).
      */
@@ -256,7 +256,7 @@ export default class View extends BaseObject {
      * Get the resolutions for the view. This returns the array of resolutions
      * passed to the constructor of the View, or undefined if none were given.
      */
-    getResolutions(): number[];
+    getResolutions(): number[] | undefined;
     /**
      * Get the view rotation.
      */
@@ -279,11 +279,11 @@ export default class View extends BaseObject {
      * if the view does not constrain the resolution, or if an interaction or
      * animation is underway.
      */
-    getZoom(): number;
+    getZoom(): number | undefined;
     /**
      * Get the zoom level for a resolution.
      */
-    getZoomForResolution(resolution: number): number;
+    getZoomForResolution(resolution: number): number | undefined;
     isDef(): boolean;
     /**
      * If any constraints need to be applied, an animation will be triggered.

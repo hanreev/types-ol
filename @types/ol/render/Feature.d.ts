@@ -32,7 +32,7 @@ export default class RenderFeature {
      * Get the feature identifier.  This is a stable identifier for the feature and
      * is set when reading data from a remote source.
      */
-    getId(): number | string;
+    getId(): number | string | undefined;
     getOrientedFlatCoordinates(): number[];
     /**
      * Get the feature properties.
@@ -40,7 +40,7 @@ export default class RenderFeature {
     getProperties(): { [key: string]: any };
     getSimplifiedGeometry(squaredTolerance: number): RenderFeature;
     getStride(): number;
-    getStyleFunction(): any;
+    getStyleFunction(): undefined;
     /**
      * Get the type of this feature's geometry.
      */

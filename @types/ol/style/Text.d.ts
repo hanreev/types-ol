@@ -43,7 +43,7 @@ export default class Text {
     /**
      * Get the font name.
      */
-    getFont(): string;
+    getFont(): string | undefined;
     /**
      * Get the maximum angle between adjacent characters.
      */
@@ -71,15 +71,15 @@ export default class Text {
     /**
      * Determine whether the text rotates with the map.
      */
-    getRotateWithView(): boolean;
+    getRotateWithView(): boolean | undefined;
     /**
      * Get the text rotation.
      */
-    getRotation(): number;
+    getRotation(): number | undefined;
     /**
      * Get the text scale.
      */
-    getScale(): number | Size;
+    getScale(): number | Size | undefined;
     /**
      * Get the symbolizer scale array.
      */
@@ -91,15 +91,15 @@ export default class Text {
     /**
      * Get the text to be rendered.
      */
-    getText(): string;
+    getText(): string | undefined;
     /**
      * Get the text alignment.
      */
-    getTextAlign(): string;
+    getTextAlign(): string | undefined;
     /**
      * Get the text baseline.
      */
-    getTextBaseline(): string;
+    getTextBaseline(): string | undefined;
     /**
      * Set the background fill.
      */

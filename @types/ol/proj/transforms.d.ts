@@ -13,7 +13,7 @@ export function clear(): void;
 /**
  * Get a transform given a source code and a destination code.
  */
-export function get(sourceCode: string, destinationCode: string): TransformFunction;
+export function get(sourceCode: string, destinationCode: string): TransformFunction | undefined;
 /**
  * Unregisters the conversion function to convert coordinates from the source
  * projection to the destination projection.  This method is used to clean up

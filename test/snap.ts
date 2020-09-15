@@ -91,7 +91,7 @@ class ExampleDrawClass {
         type: GeometryType.CIRCLE,
     });
 
-    activeType: 'Point' | 'LineString' | 'Polygon' | 'Circle' | null;
+    activeType: 'Point' | 'LineString' | 'Polygon' | 'Circle' | null = null;
 
     constructor() {
         map.addInteraction(this.Point);
