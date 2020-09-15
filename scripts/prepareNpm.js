@@ -13,11 +13,15 @@ console.log('# Preparing definitions before publishing to npmjs');
 console.log('# Cleaning output directory');
 fs.removeSync(destPath);
 
-// Build
-console.log('# Rebuilding definitions');
-childProcess.execSync('yarn build', { stdio: 'inherit' });
-console.log('# Formatting definitions');
-childProcess.execSync('yarn format', { stdio: 'ignore' });
+if (process.argv.includes('--skip-build') || process.argv.includes('-s')) {
+  console.log('# Build task is skipped');
+} else {
+  // Build
+  console.log('# Rebuilding definitions');
+  childProcess.execSync('yarn build', { stdio: 'inherit' });
+  console.log('# Formatting definitions');
+  childProcess.execSync('yarn format', { stdio: 'ignore' });
+}
 
 // Lint
 console.log('# Linting definitions');
