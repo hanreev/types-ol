@@ -52,6 +52,7 @@
     "jsdoc": "3.6.3",
     "jsdoc-plugin-typescript": "2.0.5",
     "no-emit-webpack-plugin": "^2.0.1",
+    "node-html-parser": "^1.2.20",
     "ol": "^6.4.3",
     "prettier": "latest",
     "pretty-quick": "latest",

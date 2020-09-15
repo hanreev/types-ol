@@ -1957,6 +1957,11 @@ hash.js@^1.0.0, hash.js@^1.0.3:
     inherits "^2.0.3"
     minimalistic-assert "^1.0.1"
 
+he@1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/he/-/he-1.1.1.tgz#93410fd21b009735151f8868c2f271f3427e23fd"
+  integrity sha1-k0EP0hsAlzUVH4howvJx80J+I/0=
+
 hmac-drbg@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/hmac-drbg/-/hmac-drbg-1.0.1.tgz#d2745701025a6c775a6c545793ed502fc0c649a1"
@@ -2778,6 +2783,13 @@ no-emit-webpack-plugin@^2.0.1:
   integrity sha512-wSu18FOMDyRChcYSbAE2YuXrOZnOYrtb/YcEJKWQnSehZ2bUdGltTRVfDlqLOvEj6dACGg3oPzRmCpMGWp91Rg==
   dependencies:
     schema-utils "^0.4.3"
+
+node-html-parser@^1.2.20:
+  version "1.2.20"
+  resolved "https://registry.yarnpkg.com/node-html-parser/-/node-html-parser-1.2.20.tgz#37e9ebc627dbe3ff446eea4ac93e3d254b7c6ee4"
+  integrity sha512-1fUpYjAducDrrBSE0etRUV1tM+wSFTudmrslMXuk35wL/L29E7e1CLQn4CNzFLnqtYpmDlWhkD6VUloyHA0dwA==
+  dependencies:
+    he "1.1.1"
 
 node-libs-browser@^2.2.1:
   version "2.2.1"

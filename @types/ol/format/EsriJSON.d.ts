@@ -53,7 +53,16 @@ export default class EsriJSON extends JSONFeature {
     protected readFeaturesFromObject(object: any, opt_options?: ReadOptions): Feature_1<Geometry_1>[];
     protected readGeometryFromObject(object: EsriJSONGeometry, opt_options?: ReadOptions): Geometry_1;
     protected readProjectionFromObject(object: any): Projection;
+    /**
+     * Encode a feature as a esriJSON Feature object.
+     */
     writeFeatureObject(feature: Feature_1<Geometry_1>, opt_options?: WriteOptions): any;
+    /**
+     * Encode an array of features as a EsriJSON object.
+     */
     writeFeaturesObject(features: Feature_1<Geometry_1>[], opt_options?: WriteOptions): EsriJSONFeatureSet;
+    /**
+     * Encode a geometry as a EsriJSON object.
+     */
     writeGeometryObject(geometry: Geometry_1, opt_options?: WriteOptions): EsriJSONGeometry;
 }

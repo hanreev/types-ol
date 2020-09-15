@@ -9,6 +9,9 @@ import Layer from './Layer';
 
 export default class TileLayer extends BaseTileLayer {
     constructor(opt_options?: Options & { [key: string]: any });
+    /**
+     * Create a renderer for this layer.
+     */
     protected createRenderer(): LayerRenderer<Layer<Source>>;
     on(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
     once(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];

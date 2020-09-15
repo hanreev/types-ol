@@ -4,6 +4,7 @@ const path = require('path');
 const catharsis = require('catharsis');
 
 const fs = require('fs-extra');
+const htmlParser = require('node-html-parser');
 const helper = require('jsdoc/lib/jsdoc/util/templateHelper');
 const logger = require('jsdoc/lib/jsdoc/util/logger');
 
@@ -605,8 +606,11 @@ const PROCESSORS = {
         // Remove non alphanumeric from member name
         child.name = child.name.replace(/\W/g, '');
         const processorName = child.kind == 'function' ? 'method' : child.kind == 'constant' ? 'member' : child.kind;
-        if (processorName == 'method') children.push(PROCESSORS.method(child, _module, doclet.virtual));
-        else children.push(PROCESSORS[processorName](child, _module));
+        /** @type {string} */
+        let childString;
+        if (processorName == 'method') childString = PROCESSORS.method(child, _module, doclet.virtual);
+        else childString = PROCESSORS[processorName](child, _module);
+        children.push(getComment(child) + childString);
       });
 
     /**
@@ -703,7 +707,7 @@ const PROCESSORS = {
   /**
    * @param {Doclet} doclet
    * @param {Doclet} _module
-   * @param {boolean} lookupOverrides
+   * @param {boolean} [abstractClass]
    * @returns {string}
    */
   method(doclet, _module, abstractClass = false) {
@@ -763,6 +767,7 @@ const PROCESSORS = {
   enum(doclet, _module) {
     const name = registerImport(_module, doclet.name) + ' ';
     const type = getType(doclet, _module);
+    /** @type {Doclet} */
     const etDoclet = data({ name: 'module:ol/events/EventType', isEnum: true }).first();
     let children = [];
     if (doclet.properties)
@@ -823,14 +828,12 @@ function processModule(doclet) {
     .forEach(item => {
       const processorName = item.isEnum ? 'enum' : item.kind == 'member' ? 'constant' : item.kind;
       let child = PROCESSORS[processorName](item, doclet);
+      const comment = getComment(item);
 
-      if (child.indexOf('export') != -1) {
-        children.push(child);
-        return;
-      }
+      if (child.indexOf('export ') != -1) return children.push(comment + child);
 
       if (doclet.force_include_members && doclet.force_include_members.includes(item.name))
-        children.push('declare ' + child);
+        children.push(comment + 'declare ' + child);
     });
 
   if (MEMBER_PATCHES[doclet.longname]) children = children.concat(MEMBER_PATCHES[doclet.longname]);
@@ -1156,3 +1159,12 @@ exports.publish = taffyData => {
     members.modules.forEach((/** @type {Doclet} */ doclet) => generateDefinition(doclet));
   }
 };
+
+/**
+ * @param {Doclet} doclet
+ */
+function getComment(doclet) {
+  if (!doclet.description) return '';
+  let description = htmlParser.parse(doclet.description);
+  return '/**\n * ' + description.text.split('\n').join('\n * ') + '\n */\n';
+}

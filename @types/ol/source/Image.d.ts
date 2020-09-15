@@ -30,6 +30,9 @@ export default abstract class ImageSource extends Source {
         pixelRatio: number,
         projection: Projection,
     ): ImageBase;
+    /**
+     * Handle image change events.
+     */
     protected handleImageChange(event: BaseEvent): void;
     getContextOptions(): any;
     getImage(extent: Extent, resolution: number, pixelRatio: number, projection: Projection): ImageBase;
@@ -58,6 +61,13 @@ export default abstract class ImageSource extends Source {
 }
 export class ImageSourceEvent extends BaseEvent {
     constructor();
+    /**
+     * The image related to the event.
+     */
     image: ImageWrapper;
 }
+/**
+ * Default image load function for image sources that use module:ol/Image~Image image
+ * instances.
+ */
 export function defaultImageLoadFunction(image: ImageWrapper, src: string): void;

@@ -13,19 +13,65 @@ export interface Options {
 }
 export default class Geolocation extends BaseObject {
     constructor(opt_options?: Options & { [key: string]: any });
+    /**
+     * Clean up.
+     */
     disposeInternal(): void;
+    /**
+     * Get the accuracy of the position in meters.
+     */
     getAccuracy(): number;
+    /**
+     * Get a geometry of the position accuracy.
+     */
     getAccuracyGeometry(): Polygon;
+    /**
+     * Get the altitude associated with the position.
+     */
     getAltitude(): number;
+    /**
+     * Get the altitude accuracy of the position.
+     */
     getAltitudeAccuracy(): number;
+    /**
+     * Get the heading as radians clockwise from North.
+     * Note: depending on the browser, the heading is only defined if the enableHighAccuracy
+     * is set to true in the tracking options.
+     */
     getHeading(): number;
+    /**
+     * Get the position of the device.
+     */
     getPosition(): Coordinate;
+    /**
+     * Get the projection associated with the position.
+     */
     getProjection(): Projection;
+    /**
+     * Get the speed in meters per second.
+     */
     getSpeed(): number;
+    /**
+     * Determine if the device location is being tracked.
+     */
     getTracking(): boolean;
+    /**
+     * Get the tracking options.
+     * See http://www.w3.org/TR/geolocation-API/#position-options.
+     */
     getTrackingOptions(): PositionOptions;
+    /**
+     * Set the projection to use for transforming the coordinates.
+     */
     setProjection(projection: ProjectionLike): void;
+    /**
+     * Enable or disable tracking.
+     */
     setTracking(tracking: boolean): void;
+    /**
+     * Set the tracking options.
+     * See http://www.w3.org/TR/geolocation-API/#position-options.
+     */
     setTrackingOptions(options: PositionOptions): void;
     on(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
     once(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];

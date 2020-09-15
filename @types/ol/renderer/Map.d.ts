@@ -38,5 +38,8 @@ export default abstract class MapRenderer extends Disposable {
         layerFilter: (this: U, p0: Layer<Source>) => boolean,
         thisArg: U,
     ): boolean;
+    /**
+     * Render.
+     */
     renderFrame(frameState: FrameState): void;
 }

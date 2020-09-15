@@ -38,6 +38,12 @@ export default class ExecutorGroup {
     hasExecutors(executors: BuilderType[]): boolean;
     isEmpty(): boolean;
 }
+/**
+ * This methods creates a circle inside a fitting array. Points inside the
+ * circle are marked by true, points on the outside are undefined.
+ * It uses the midpoint circle algorithm.
+ * A cache is used to increase performance.
+ */
 export function getCircleArray(radius: number): (boolean | undefined)[][];
 export function replayDeclutter(
     declutterReplays: { [key: string]: any[] },

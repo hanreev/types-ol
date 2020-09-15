@@ -15,5 +15,8 @@ export default class CompositeMapRenderer extends MapRenderer {
         callback: (p0: Layer<Source>, p1: Uint8ClampedArray | Uint8Array) => T,
         layerFilter: (p0: Layer<Source>) => boolean,
     ): T;
+    /**
+     * Render.
+     */
     renderFrame(frameState: FrameState): void;
 }

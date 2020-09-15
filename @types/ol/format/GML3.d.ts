@@ -31,9 +31,18 @@ export default class GML3 extends GMLBase {
     writeCurveOrLineString(node: Element, geometry: LineString, objectStack: any[]): void;
     writeEnvelope(node: Element, extent: Extent, objectStack: any[]): void;
     writeFeatureElement(node: Element, feature: Feature<Geometry>, objectStack: any[]): void;
+    /**
+     * Encode an array of features in GML 3.1.1 Simple Features.
+     */
     writeFeatures(features: Feature<Geometry>[], opt_options?: WriteOptions): string;
+    /**
+     * Encode an array of features in the GML 3.1.1 format as an XML node.
+     */
     writeFeaturesNode(features: Feature<Geometry>[], opt_options?: WriteOptions): Element;
     writeGeometryElement(node: Node, geometry: Geometry | Extent, objectStack: any[]): void;
+    /**
+     * Encode a geometry in GML 3.1.1 Simple Features.
+     */
     writeGeometryNode(geometry: Geometry, opt_options?: WriteOptions): Node;
     writeLinearRing(node: Element, geometry: LinearRing, objectStack: any[]): void;
     writeLineStringOrCurveMember(node: Node, line: LineString, objectStack: any[]): void;

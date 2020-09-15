@@ -32,11 +32,31 @@ export interface Options {
 }
 export default class TileWMS extends TileImage {
     constructor(opt_options?: Options & { [key: string]: any });
+    /**
+     * Return the GetFeatureInfo URL for the passed coordinate, resolution, and
+     * projection. Return undefined if the GetFeatureInfo URL cannot be
+     * constructed.
+     */
     getFeatureInfoUrl(coordinate: Coordinate, resolution: number, projection: ProjectionLike, params: any): string;
     getGutter(): number;
+    /**
+     * Return the GetLegendGraphic URL, optionally optimized for the passed
+     * resolution and possibly including any passed specific parameters. Returns
+     * undefined if the GetLegendGraphic URL cannot be constructed.
+     */
     getLegendUrl(resolution?: number, params?: any): string;
+    /**
+     * Get the user-provided params, i.e. those passed to the constructor through
+     * the "params" option, and possibly updated using the updateParams method.
+     */
     getParams(): any;
+    /**
+     * Get the tile pixel ratio for this source.
+     */
     getTilePixelRatio(pixelRatio: number): number;
+    /**
+     * Update the user-provided params.
+     */
     updateParams(params: any): void;
     on(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
     once(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
