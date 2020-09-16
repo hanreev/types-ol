@@ -314,7 +314,7 @@ function stringifyType(parsedType, _module, undefinedLiteral = true, nullLiteral
     ? /** @type {TypeApplication} */ (parsedType).expression.name
     : /** @type {TypeNameExpression} */ (parsedType).name;
 
-  let suffix = getGenericType(typeStr, _module);
+  const suffix = getGenericType(typeStr, _module);
 
   if (typeStr && typeStr.startsWith('module:')) {
     if (_module) typeStr = registerImport(_module, typeStr);
@@ -387,7 +387,7 @@ function stringifyType(parsedType, _module, undefinedLiteral = true, nullLiteral
   if (!typeStr) typeStr = 'any';
 
   if (typeStr == 'Array') typeStr = 'any[]';
-  else if (typeStr == 'Object') typeStr = 'object';
+  else if (typeStr == 'Object') typeStr = '{ [key: string]: any }';
   else if (typeStr == 'undefined' && !undefinedLiteral) typeStr = 'any';
 
   return typeStr;
@@ -401,9 +401,7 @@ function stringifyType(parsedType, _module, undefinedLiteral = true, nullLiteral
 function parseFunctionType(type, _module) {
   if (!type.startsWith('function')) return;
 
-  let params = '';
-  let returnType = 'void';
-  let expression = `(${params}) => ${returnType}`;
+  let expression = '() => void';
 
   /** @type {TypeFunction} */
   let parsedType;
@@ -453,12 +451,6 @@ function getType(doclet, _module, undefinedLiteral = false, nullLiteral = false)
     /** @type {ParsedType} */
     let parsedType;
     let prefix = '';
-
-    if (
-      _module.name == 'ol/source/Raster' &&
-      (type == 'RasterOperationType' || type == 'module:ol/source/Raster~RasterOperationType')
-    )
-      return `'pixel' | 'image'`;
 
     if (type.startsWith('typeof:')) {
       prefix = 'typeof ';
@@ -602,7 +594,7 @@ const PROCESSORS = {
     })
       .order('access, kind desc, name')
       .get()
-      .forEach(child => {
+      .forEach((/** @type {Doclet} */ child) => {
         // Remove non alphanumeric from member name
         child.name = child.name.replace(/\W/g, '');
         const processorName = child.kind == 'function' ? 'method' : child.kind == 'constant' ? 'member' : child.kind;
@@ -664,7 +656,9 @@ const PROCESSORS = {
               case '.':
               case '~':
                 try {
+                  /** @type {Doclet} */
                   const fireTypeDoclet = data({ name: eventType, memberof: fireType }).first();
+                  /** @type {Doclet} */
                   const eventTypeDoclet = data({ name: eventType + 'Type', memberof: fireType }).first();
                   eventTypeDoclet.properties.forEach(prop => {
                     addFire(prop.defaultvalue, fireTypeDoclet.longname);
@@ -720,9 +714,7 @@ const PROCESSORS = {
 
     const params = getParams(doclet, _module);
     const returnType = getReturnType(doclet, _module);
-    let decl = prefix + `${name}(${params}): ${returnType};`;
-
-    return decl;
+    return prefix + `${name}(${params}): ${returnType};`;
   },
 
   /** @type {DocletParser} */
@@ -795,7 +787,7 @@ const PROCESSORS = {
 /**
  * @param {Doclet} doclet
  */
-function processModule(doclet) {
+async function processModule(doclet) {
   let children = [];
 
   if (doclet.longname in IMPORT_PATCHES)
@@ -827,7 +819,7 @@ function processModule(doclet) {
     })
     .forEach(item => {
       const processorName = item.isEnum ? 'enum' : item.kind == 'member' ? 'constant' : item.kind;
-      let child = PROCESSORS[processorName](item, doclet);
+      const child = PROCESSORS[processorName](item, doclet);
       const comment = getComment(item);
 
       if (child.indexOf('export ') != -1) return children.push(comment + child);
@@ -847,9 +839,9 @@ function processModule(doclet) {
 /**
  * @param {Doclet} doclet
  * @param {boolean} emitOutput
- * @returns {string}
+ * @returns {Promise<string>}
  */
-function generateDefinition(doclet, emitOutput = true) {
+async function generateDefinition(doclet, emitOutput = true) {
   const children = MODULE_CHILDREN[doclet.name];
   const _imports = MODULE_IMPORTS[doclet.name];
   const _exports = MODULE_EXPORTS[doclet.name];
@@ -1047,8 +1039,18 @@ function isExtendBaseObject(doclet) {
  */
 exports.publish = taffyData => {
   data = taffyData;
+
+  /** @type {Object<string, DocletParam[]>} */
+  const docletParams = {};
+  find({ params: { isArray: true } }).forEach(doclet => (docletParams[doclet.longname] = doclet.params));
+
   data = helper.prune(data);
   data.sort('longname, version, since');
+
+  find({
+    longname: Object.keys(docletParams),
+    params: { isArray: false },
+  }).forEach(doclet => (doclet.params = docletParams[doclet.longname]));
 
   const members = helper.getMembers(data);
 
@@ -1133,31 +1135,27 @@ exports.publish = taffyData => {
     MODULE_EXPORTS[doclet.name] = doclet.exports;
   });
 
-  // Parse module
-  members.modules.forEach(processModule);
+  Promise.all(members.modules.map((/** @type {Doclet} */ doclet) => processModule(doclet))).then(() => {
+    // Clean output directory
+    fs.removeSync(outDir);
 
-  // Clean output directory
-  fs.removeSync(outDir);
-
-  /**
-   * Emit definition files
-   */
-  if (definitionConfig.mode == 'single') {
     /**
-     * Generate single definition file
+     * Emit definition files
      */
-    const content = members.modules
-      .map((/** @type {Doclet} */ doclet) => generateDefinition(doclet, false))
-      .join('\n\n');
-    const outputPath = path.resolve(outDir, 'ol', 'index.d.ts');
-    fs.mkdirpSync(path.dirname(outputPath));
-    fs.writeFileSync(outputPath, content);
-  } else {
-    /**
-     * Generate multiple definition files
-     */
-    members.modules.forEach((/** @type {Doclet} */ doclet) => generateDefinition(doclet));
-  }
+    if (definitionConfig.mode == 'single')
+      /**
+       * Generate single definition file
+       */
+      Promise.all(members.modules.map((/** @type {Doclet} */ doclet) => generateDefinition(doclet, false))).then(
+        definitions => {
+          const content = definitions.join('\n\n');
+          const outputPath = path.resolve(outDir, 'ol', 'index.d.ts');
+          fs.mkdirpSync(path.dirname(outputPath));
+          fs.writeFileSync(outputPath, content);
+        },
+      );
+    else Promise.all(members.modules.map((/** @type {Doclet} */ doclet) => generateDefinition(doclet))).then();
+  });
 };
 
 /**
@@ -1165,6 +1163,6 @@ exports.publish = taffyData => {
  */
 function getComment(doclet) {
   if (!doclet.description) return '';
-  let description = htmlParser.parse(doclet.description);
+  const description = htmlParser.parse(doclet.description);
   return '/**\n * ' + description.text.split('\n').join('\n * ') + '\n */\n';
 }

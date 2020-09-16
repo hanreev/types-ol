@@ -35,14 +35,17 @@ const modules = {};
 /** @type {Object<string, string[]>} */
 const force_include_members = {
   'module:ol/format/IGC': ['IGCZ'],
+  'module:ol/Geolocation': ['GeolocationError'],
   'module:ol/interaction/DragAndDrop': ['DragAndDropEvent', 'DragAndDropEventType'],
   'module:ol/interaction/DragBox': ['DragBoxEvent'],
   'module:ol/interaction/Draw': ['DrawEvent', 'DrawEventType'],
   'module:ol/interaction/Extent': ['ExtentEvent'],
+  'module:ol/interaction/Modify': ['ModifyEventType'],
   'module:ol/interaction/Select': ['SelectEvent', 'SelectEventType'],
-  'module:ol/source/TileDebug': ['LabeledTile'],
+  'module:ol/interaction/Translate': ['TranslateEventType'],
   'module:ol/layer/MapboxVector': ['SourceType'],
-  'module:ol/Geolocation': ['GeolocationError'],
+  'module:ol/source/Raster': ['RasterOperationType'],
+  'module:ol/source/TileDebug': ['LabeledTile'],
 };
 
 /**

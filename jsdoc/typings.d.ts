@@ -77,9 +77,7 @@ interface DocletGenericType {
 
 interface Doclet {
     ___id: string;
-    kind: DocletKind;
-    longname: string;
-    name: string;
+    _hideConstructor?: boolean;
     access?: string;
     augments?: string[];
     classdesc?: string;
@@ -88,28 +86,31 @@ interface Doclet {
     exports?: ModuleExports;
     fires?: string[];
     force_include_members?: string[];
+    genericTypes?: DocletGenericType[];
+    ignore?: boolean;
     inheritdoc?: boolean;
     inherited?: boolean;
     inherits?: string;
     isEnum?: boolean;
+    kind: DocletKind;
+    longname: string;
     memberof?: string;
     meta?: DocletMeta;
-    observables?: any[];
+    name: string;
     observable?: string;
+    observables?: any[];
     overrides?: string;
     params?: DocletParam[];
     properties?: DocletProp[];
     returns?: DocletReturns[];
     scope?: string;
+    setMemberof(parent: string): void;
     stability?: string;
     tags?: any[];
     type?: DocletType;
     undocumented?: boolean;
-    yields?: DocletReturns[];
-    _hideConstructor?: boolean;
     virtual?: boolean;
-    genericTypes?: DocletGenericType[];
-    setMemberof(parent: string): void;
+    yields?: DocletReturns[];
 }
 
 interface TypeLiteral {

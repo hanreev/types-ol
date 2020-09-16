@@ -1,0 +1,13 @@
+{
+  "rules": {
+    "@typescript-eslint/no-var-requires": "off",
+    "arrow-parens": "off",
+    "indent": [
+      "warn",
+      2,
+      {
+        "SwitchCase": 1
+      }
+    ]
+  }
+}
