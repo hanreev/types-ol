@@ -5,7 +5,7 @@ import { fromLonLat } from 'ol/proj';
 import OSM from 'ol/source/OSM';
 import TileJSON from 'ol/source/TileJSON';
 
-declare var $: any;
+declare let $: any;
 
 const map = new Map({
     layers: [
@@ -51,9 +51,8 @@ function bindInputs(layerid: any, layer: any) {
 }
 map.getLayers().forEach((layer: any, i: any) => {
     bindInputs('#layer' + i, layer);
-    if (layer instanceof LayerGroup) {
+    if (layer instanceof LayerGroup)
         layer.getLayers().forEach((sublayer: any, j: any) => {
             bindInputs(`#layer${i}${j}`, sublayer);
         });
-    }
 });

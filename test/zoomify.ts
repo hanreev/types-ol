@@ -36,7 +36,7 @@ map.getView().fit(extent);
 const control = document.getElementById('zoomifyProtocol') as HTMLElement;
 control.addEventListener('change', event => {
     const value = (event.currentTarget as HTMLInputElement).value;
-    if (value === 'iip') {
+    if (value === 'iip')
         layer.setSource(
             new Zoomify({
                 url: iipUrl,
@@ -44,7 +44,7 @@ control.addEventListener('change', event => {
                 crossOrigin: 'anonymous',
             }),
         );
-    } else if (value === 'zoomify') {
+    else if (value === 'zoomify')
         layer.setSource(
             new Zoomify({
                 url: zoomifyUrl,
@@ -52,5 +52,4 @@ control.addEventListener('change', event => {
                 crossOrigin: 'anonymous',
             }),
         );
-    }
 });

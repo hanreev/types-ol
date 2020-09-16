@@ -67,9 +67,7 @@ raster.on('beforeoperations', event => {
 });
 
 const locations = document.getElementsByClassName('location');
-for (let i = 0, ii = locations.length; i < ii; ++i) {
-    locations[i].addEventListener('click', relocate);
-}
+for (let i = 0, ii = locations.length; i < ii; ++i) locations[i].addEventListener('click', relocate);
 
 function relocate(event: Event) {
     const data = (event.target as HTMLAnchorElement).dataset;

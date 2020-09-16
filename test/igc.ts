@@ -55,12 +55,11 @@ function get(url: string, callback: (p0: string) => void) {
 }
 
 const igcFormat = new IGC();
-for (const igcUrl of igcUrls) {
+for (const igcUrl of igcUrls)
     get(igcUrl, data => {
         const features = igcFormat.readFeatures(data, { featureProjection: 'EPSG:3857' });
         vectorSource.addFeatures(features);
     });
-}
 
 const time = {
     start: Infinity,
@@ -108,27 +107,21 @@ const displaySnap = (coordinate: Coordinate) => {
     } else {
         const geometry = closestFeature.getGeometry()!;
         const closestPoint = geometry.getClosestPoint(coordinate);
-        if (point === null) {
-            point = new Point(closestPoint);
-        } else {
-            point.setCoordinates(closestPoint);
-        }
+        if (point === null) point = new Point(closestPoint);
+        else point.setCoordinates(closestPoint);
+
         const date = new Date(closestPoint[2] * 1000);
         info.innerHTML = `${closestFeature.get('PLT')} (${date.toUTCString()})`;
         const coordinates = [coordinate, [closestPoint[0], closestPoint[1]]];
-        if (line === null) {
-            line = new LineString(coordinates);
-        } else {
-            line.setCoordinates(coordinates);
-        }
+        if (line === null) line = new LineString(coordinates);
+        else line.setCoordinates(coordinates);
     }
     map.render();
 };
 
 map.on('pointermove', evt => {
-    if (evt.dragging) {
-        return;
-    }
+    if (evt.dragging) return;
+
     const coordinate = map.getEventCoordinate(evt.originalEvent as MouseEvent);
     displaySnap(coordinate);
 });
@@ -152,12 +145,9 @@ const style = new Style({
 map.on('postcompose', evt => {
     const vectorContext = getVectorContext(evt);
     vectorContext.setStyle(style);
-    if (point !== null) {
-        vectorContext.drawGeometry(point);
-    }
-    if (line !== null) {
-        vectorContext.drawGeometry(line);
-    }
+    if (point !== null) vectorContext.drawGeometry(point);
+
+    if (line !== null) vectorContext.drawGeometry(line);
 });
 
 const featureOverlay = new VectorLayer({

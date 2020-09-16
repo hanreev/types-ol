@@ -10,7 +10,7 @@ import VectorSource from 'ol/source/Vector';
 import XYZ from 'ol/source/XYZ';
 import { createXYZ } from 'ol/tilegrid';
 
-declare var $: any;
+declare let $: any;
 
 const serviceUrl =
     'https://services.arcgis.com/rOo16HdIMeOBI4Mb/arcgis/rest/' + 'services/PDX_Pedestrian_Districts/FeatureServer/';
@@ -35,9 +35,7 @@ const vectorSource = new VectorSource({
                     const features = esrijsonFormat.readFeatures(response, {
                         featureProjection: projection,
                     });
-                    if (features.length > 0) {
-                        vectorSource.addFeatures(features);
-                    }
+                    if (features.length > 0) vectorSource.addFeatures(features);
                 }
             },
         });
@@ -114,7 +112,7 @@ selected.on('remove', evt => {
         const url = `${serviceUrl}${layer}/updateFeatures`;
         $.post(url, { f: 'json', features: payload }).done((data: any) => {
             const result = JSON.parse(data);
-            if (result.updateResults && result.updateResults.length > 0) {
+            if (result.updateResults && result.updateResults.length > 0)
                 if (result.updateResults[0].success !== true) {
                     const error = result.updateResults[0].error;
                     alert(`${error.description} (${error.code})`);
@@ -122,7 +120,6 @@ selected.on('remove', evt => {
                     // tslint:disable-next-line: no-dynamic-delete
                     delete dirty[fid];
                 }
-            }
         });
     }
 });
@@ -136,7 +133,7 @@ draw.on('drawend', evt => {
     const url = `${serviceUrl}${layer}/addFeatures`;
     $.post(url, { f: 'json', features: payload }).done((data: any) => {
         const result = JSON.parse(data);
-        if (result.addResults && result.addResults.length > 0) {
+        if (result.addResults && result.addResults.length > 0)
             if (result.addResults[0].succes === true) {
                 feature.setId(result.addResults[0]['objectId']);
                 vectorSource.clear();
@@ -144,6 +141,5 @@ draw.on('drawend', evt => {
                 const error = result.addResults[0].error;
                 alert(`${error.description} (${error.code})`);
             }
-        }
     });
 });

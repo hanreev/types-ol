@@ -5,7 +5,7 @@ import { Tile as TileLayer, Vector as VectorLayer } from 'ol/layer';
 import { Size } from 'ol/size';
 import { OSM, Vector as VectorSource } from 'ol/source';
 
-declare var jsPDF: any;
+declare let jsPDF: any;
 
 const raster = new TileLayer({
     source: new OSM(),

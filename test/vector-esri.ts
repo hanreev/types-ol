@@ -10,7 +10,7 @@ import XYZ from 'ol/source/XYZ';
 import { Fill, Stroke, Style } from 'ol/style';
 import { createXYZ } from 'ol/tilegrid';
 
-declare var $: any;
+declare let $: any;
 
 const serviceUrl = 'https://sampleserver3.arcgisonline.com/ArcGIS/rest/services/' + 'Petroleum/KSFields/FeatureServer/';
 const layer = '0';
@@ -73,9 +73,7 @@ const vectorSource = new VectorSource({
                     const features = esrijsonFormat.readFeatures(response, {
                         featureProjection: projection,
                     });
-                    if (features.length > 0) {
-                        vectorSource.addFeatures(features);
-                    }
+                    if (features.length > 0) vectorSource.addFeatures(features);
                 }
             },
         });
@@ -133,9 +131,8 @@ const displayFeatureInfo = (pixel: number[]) => {
 };
 
 map.on('pointermove', evt => {
-    if (evt.dragging) {
-        return;
-    }
+    if (evt.dragging) return;
+
     const pixel = map.getEventPixel(evt.originalEvent);
     displayFeatureInfo(pixel);
 });

@@ -62,20 +62,17 @@ const displayFeatureInfo = (pixel: number[]) => {
     info.innerHTML = feature ? `${feature.getId()}: ${feature.get('name')}` : '&nbsp;';
 
     if (feature !== highlight) {
-        if (highlight) {
-            featureOverlay.getSource().removeFeature(highlight);
-        }
-        if (feature) {
-            featureOverlay.getSource().addFeature(feature as Feature);
-        }
+        if (highlight) featureOverlay.getSource().removeFeature(highlight);
+
+        if (feature) featureOverlay.getSource().addFeature(feature as Feature);
+
         highlight = feature as Feature;
     }
 };
 
 map.on('pointermove', evt => {
-    if (evt.dragging) {
-        return;
-    }
+    if (evt.dragging) return;
+
     const pixel = map.getEventPixel(evt.originalEvent);
     displayFeatureInfo(pixel);
 });

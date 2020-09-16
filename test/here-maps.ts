@@ -55,7 +55,7 @@ const urlTpl =
     '/{type}/2.1/maptile/newest/{scheme}/{z}/{x}/{y}/256/png' +
     '?app_id={app_id}&app_code={app_code}';
 const layers: Layer[] = [];
-for (const layerDesc of hereLayers) {
+for (const layerDesc of hereLayers)
     layers.push(
         new TileLayer({
             visible: false,
@@ -66,7 +66,6 @@ for (const layerDesc of hereLayers) {
             }),
         }),
     );
-}
 
 const map = new Map({
     layers,
@@ -89,9 +88,7 @@ function createUrl(tpl: string, layerDesc: any) {
 const select = document.getElementById('layer-select') as HTMLSelectElement;
 function onChange() {
     const scheme = select.value;
-    for (let j = 0, jj = layers.length; j < jj; ++j) {
-        layers[j].setVisible(hereLayers[j].scheme === scheme);
-    }
+    for (let j = 0, jj = layers.length; j < jj; ++j) layers[j].setVisible(hereLayers[j].scheme === scheme);
 }
 select.addEventListener('change', onChange);
 onChange();

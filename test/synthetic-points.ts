@@ -11,13 +11,12 @@ import { Circle as CircleStyle, Fill, Stroke, Style } from 'ol/style';
 const count = 20000;
 const features = new Array(count);
 const e = 18000000;
-for (let i = 0; i < count; ++i) {
+for (let i = 0; i < count; ++i)
     features[i] = new Feature({
         geometry: new Point([2 * e * Math.random() - e, 2 * e * Math.random() - e]),
         i,
         size: i % 2 ? 10 : 20,
     });
-}
 
 const styles: { [key: string]: Style } = {
     10: new Style({
@@ -66,24 +65,18 @@ const displaySnap = (coordinate: Coordinate) => {
     } else {
         const geometry = closestFeature.getGeometry()!;
         const closestPoint = geometry.getClosestPoint(coordinate);
-        if (point === null) {
-            point = new Point(closestPoint);
-        } else {
-            point.setCoordinates(closestPoint);
-        }
-        if (line === null) {
-            line = new LineString([coordinate, closestPoint]);
-        } else {
-            line.setCoordinates([coordinate, closestPoint]);
-        }
+        if (point === null) point = new Point(closestPoint);
+        else point.setCoordinates(closestPoint);
+
+        if (line === null) line = new LineString([coordinate, closestPoint]);
+        else line.setCoordinates([coordinate, closestPoint]);
     }
     map.render();
 };
 
 map.on('pointermove', evt => {
-    if (evt.dragging) {
-        return;
-    }
+    if (evt.dragging) return;
+
     const coordinate = map.getEventCoordinate(evt.originalEvent as MouseEvent);
     displaySnap(coordinate);
 });
@@ -107,18 +100,14 @@ const style = new Style({
 vector.on('postrender', evt => {
     const vectorContext = getVectorContext(evt);
     vectorContext.setStyle(style);
-    if (point !== null) {
-        vectorContext.drawGeometry(point);
-    }
-    if (line !== null) {
-        vectorContext.drawGeometry(line);
-    }
+    if (point !== null) vectorContext.drawGeometry(point);
+
+    if (line !== null) vectorContext.drawGeometry(line);
 });
 
 map.on('pointermove', evt => {
-    if (evt.dragging) {
-        return;
-    }
+    if (evt.dragging) return;
+
     const pixel = map.getEventPixel(evt.originalEvent);
     const hit = map.hasFeatureAtPixel(pixel);
     (map.getTarget() as HTMLElement).style.cursor = hit ? 'pointer' : '';

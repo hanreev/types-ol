@@ -64,9 +64,7 @@ geolocation.on('change', () => {
 
     const coords = positions.getCoordinates();
     const len = coords.length;
-    if (len >= 2) {
-        deltaMean = (coords[len - 1][3] - coords[0][3]) / (len - 1);
-    }
+    if (len >= 2) deltaMean = (coords[len - 1][3] - coords[0][3]) / (len - 1);
 
     const html = [
         `Position: ${position[0].toFixed(2)}, ${position[1].toFixed(2)}`,
@@ -185,9 +183,8 @@ simulateBtn.addEventListener(
         let prevDate = first.timestamp;
         function geolocate() {
             const position = coordinates.shift();
-            if (!position) {
-                return;
-            }
+            if (!position) return;
+
             const newDate = position.timestamp;
             simulatePositionChange(position);
             window.setTimeout(() => {

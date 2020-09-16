@@ -13,9 +13,8 @@ class Progress {
     }
 
     addLoading() {
-        if (this.loading === 0) {
-            this.show();
-        }
+        if (this.loading === 0) this.show();
+
         ++this.loading;
         this.update();
     }

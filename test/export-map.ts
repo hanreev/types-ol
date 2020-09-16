@@ -4,7 +4,7 @@ import GeoJSON from 'ol/format/GeoJSON';
 import { Tile as TileLayer, Vector as VectorLayer } from 'ol/layer';
 import { OSM, Vector as VectorSource } from 'ol/source';
 
-declare var saveAs: any;
+declare let saveAs: any;
 
 const map = new Map({
     layers: [
@@ -28,13 +28,11 @@ const map = new Map({
 (document.getElementById('export-png') as HTMLElement).addEventListener('click', () => {
     map.once('rendercomplete', (event: any) => {
         const canvas = event.context.canvas;
-        if (navigator.msSaveBlob) {
-            navigator.msSaveBlob(canvas.msToBlob(), 'map.png');
-        } else {
+        if (navigator.msSaveBlob) navigator.msSaveBlob(canvas.msToBlob(), 'map.png');
+        else
             canvas.toBlob((blob: any) => {
                 saveAs(blob, 'map.png');
             });
-        }
     });
     map.renderSync();
 });

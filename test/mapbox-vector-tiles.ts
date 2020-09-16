@@ -5,7 +5,7 @@ import VectorTileLayer from 'ol/layer/VectorTile';
 import VectorTileSource from 'ol/source/VectorTile';
 import { Fill, Icon, Stroke, Style, Text } from 'ol/style';
 
-declare var createMapboxStreetsV6Style: (...args: any[]) => Style;
+declare let createMapboxStreetsV6Style: (...args: any[]) => Style;
 
 const key = 'pk.eyJ1IjoiYWhvY2V2YXIiLCJhIjoiRk1kMWZaSSJ9.E5BkluenyWQMsBLsuByrmg';
 

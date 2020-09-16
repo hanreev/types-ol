@@ -1,4 +1,3 @@
-import { Feature } from 'ol';
 import { FeatureLike } from 'ol/Feature';
 import Map from 'ol/Map';
 import View from 'ol/View';
@@ -8,12 +7,12 @@ import Stamen from 'ol/source/Stamen';
 import VectorSource from 'ol/source/Vector';
 import { Fill, Stroke, Style } from 'ol/style';
 
-declare var $: any;
+declare let $: any;
 
 const styleFunction = (feature: FeatureLike) => {
     let offset = 0;
     const name = feature.get('name'); // e.g. GMT -08:30
-    const match = name.match(/([\-+]\d{2}):(\d{2})$/);
+    const match = name.match(/([-+]\d{2}):(\d{2})$/);
     if (match) {
         const hours = parseInt(match[1], 10);
         const minutes = parseInt(match[2], 10);
@@ -23,9 +22,8 @@ const styleFunction = (feature: FeatureLike) => {
     const local = new Date(date.getTime() + (date.getTimezoneOffset() + offset) * 60000);
     // offset from local noon (in hours)
     let delta = Math.abs(12 - local.getHours() + local.getMinutes() / 60);
-    if (delta > 12) {
-        delta = 24 - delta;
-    }
+    if (delta > 12) delta = 24 - delta;
+
     const opacity = 0.75 * (1 - delta / 12);
     return new Style({
         fill: new Fill({
@@ -76,11 +74,9 @@ const displayFeatureInfo = (pixel: number[]) => {
     const feature = map.forEachFeatureAtPixel(pixel, (f: FeatureLike) => {
         return f;
     });
-    if (feature) {
+    if (feature)
         info.tooltip('hide').attr('data-original-title', feature.get('name')).tooltip('fixTitle').tooltip('show');
-    } else {
-        info.tooltip('hide');
-    }
+    else info.tooltip('hide');
 };
 
 map.on('pointermove', evt => {

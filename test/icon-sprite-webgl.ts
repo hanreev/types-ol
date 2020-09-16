@@ -129,20 +129,15 @@ map.on('click', evt => {
             return false;
         });
 
-        if (features_.length === 1) {
-            info.innerHTML = 'Got one butterfly';
-        } else if (features_.length > 1) {
-            info.innerHTML = `Got ${features_.length} butterflies`;
-        } else {
-            info.innerHTML = "Couldn't catch a single butterfly";
-        }
+        if (features_.length === 1) info.innerHTML = 'Got one butterfly';
+        else if (features_.length > 1) info.innerHTML = `Got ${features_.length} butterflies`;
+        else info.innerHTML = "Couldn't catch a single butterfly";
     }, 1);
 });
 
 map.on('pointermove', evt => {
-    if (evt.dragging) {
-        return;
-    }
+    if (evt.dragging) return;
+
     const pixel = map.getEventPixel(evt.originalEvent);
     const hit = map.hasFeatureAtPixel(pixel);
     (map.getTarget() as HTMLElement).style.cursor = hit ? 'pointer' : '';

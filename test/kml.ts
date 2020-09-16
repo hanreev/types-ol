@@ -38,9 +38,8 @@ const displayFeatureInfo = (pixel: Pixel) => {
     });
     if (features.length > 0) {
         const info = [];
-        for (const f of features) {
-            info.push(f.get('name'));
-        }
+        for (const f of features) info.push(f.get('name'));
+
         (document.getElementById('info') as HTMLElement).innerHTML = info.join(', ') || '(unknown)';
         (map.getTarget() as HTMLElement).style.cursor = 'pointer';
     } else {
@@ -50,9 +49,8 @@ const displayFeatureInfo = (pixel: Pixel) => {
 };
 
 map.on('pointermove', evt => {
-    if (evt.dragging) {
-        return;
-    }
+    if (evt.dragging) return;
+
     const pixel = map.getEventPixel(evt.originalEvent);
     displayFeatureInfo(pixel);
 });

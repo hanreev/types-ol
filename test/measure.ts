@@ -53,18 +53,14 @@ const continuePolygonMsg = 'Click to continue drawing the polygon';
 const continueLineMsg = 'Click to continue drawing the line';
 
 const pointerMoveHandler = (evt: MapBrowserEvent) => {
-    if (evt.dragging) {
-        return;
-    }
+    if (evt.dragging) return;
+
     let helpMsg = 'Click to start drawing';
 
     if (sketch) {
         const geom = sketch.getGeometry();
-        if (geom instanceof Polygon) {
-            helpMsg = continuePolygonMsg;
-        } else if (geom instanceof LineString) {
-            helpMsg = continueLineMsg;
-        }
+        if (geom instanceof Polygon) helpMsg = continuePolygonMsg;
+        else if (geom instanceof LineString) helpMsg = continueLineMsg;
     }
 
     helpTooltipElement.innerHTML = helpMsg;
@@ -169,9 +165,8 @@ function addInteraction() {
 }
 
 function createHelpTooltip() {
-    if (helpTooltipElement) {
-        (helpTooltipElement.parentNode as HTMLElement).removeChild(helpTooltipElement);
-    }
+    if (helpTooltipElement) (helpTooltipElement.parentNode as HTMLElement).removeChild(helpTooltipElement);
+
     helpTooltipElement = document.createElement('div');
     helpTooltipElement.className = 'tooltip hidden';
     helpTooltip = new Overlay({
@@ -183,9 +178,8 @@ function createHelpTooltip() {
 }
 
 function createMeasureTooltip() {
-    if (measureTooltipElement) {
-        (measureTooltipElement.parentNode as HTMLElement).removeChild(measureTooltipElement);
-    }
+    if (measureTooltipElement) (measureTooltipElement.parentNode as HTMLElement).removeChild(measureTooltipElement);
+
     measureTooltipElement = document.createElement('div');
     measureTooltipElement.className = 'tooltip tooltip-measure';
     measureTooltip = new Overlay({

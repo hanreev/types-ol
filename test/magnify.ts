@@ -63,7 +63,7 @@ imagery.on('postrender', event => {
         const sourceData = context.getImageData(originX, originY, size, size).data;
         const dest = context.createImageData(size, size);
         const destData = dest.data;
-        for (let j = 0; j < size; ++j) {
+        for (let j = 0; j < size; ++j)
             for (let i = 0; i < size; ++i) {
                 const dI = i - half;
                 const dJ = j - half;
@@ -81,7 +81,7 @@ imagery.on('postrender', event => {
                 destData[destOffset + 2] = sourceData[sourceOffset + 2];
                 destData[destOffset + 3] = sourceData[sourceOffset + 3];
             }
-        }
+
         context.beginPath();
         context.arc(centerX, centerY, half, 0, 2 * Math.PI);
         context.lineWidth = 3 * pixelRatio;

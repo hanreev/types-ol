@@ -7,7 +7,7 @@ import { Tile as TileLayer, Vector as VectorLayer } from 'ol/layer';
 import { OSM, Vector as VectorSource } from 'ol/source';
 
 // import smooth from 'chaikin-smooth';
-declare var smooth: any;
+declare let smooth: any;
 
 function makeSmooth(path: any[], _numIterations: number) {
     _numIterations = Math.min(Math.max(_numIterations, 1), 10);
@@ -48,9 +48,8 @@ const draw = new Draw({
 map.addInteraction(draw);
 
 draw.on('drawend', event => {
-    if (!shallSmoothen.checked) {
-        return;
-    }
+    if (!shallSmoothen.checked) return;
+
     const feat = event.feature;
     const geometry = feat.getGeometry() as SimpleGeometry;
     const coords = geometry.getCoordinates();

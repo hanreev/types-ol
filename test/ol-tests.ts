@@ -24,7 +24,6 @@ import { register } from 'ol/proj/proj4';
 import { OSM, Vector as VectorSource, VectorTile as VectorTileSource } from 'ol/source';
 import { Circle, Fill, Stroke, Style } from 'ol/style';
 import { StyleFunction } from 'ol/style/Style';
-
 import proj4 = require('proj4');
 
 /**

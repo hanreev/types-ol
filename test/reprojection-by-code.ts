@@ -66,7 +66,7 @@ function search(query: string) {
         })
         .then(json => {
             const results = json['results'];
-            if (results && results.length > 0) {
+            if (results && results.length > 0)
                 for (let i = 0, ii = results.length; i < ii; i++) {
                     const result = results[i];
                     if (result) {
@@ -80,7 +80,7 @@ function search(query: string) {
                         }
                     }
                 }
-            }
+
             setProjection(null as any, null as any, null as any, null as any);
         });
 }
@@ -94,9 +94,7 @@ renderEdgesCheckbox.onchange = () => {
     map.getLayers().forEach(layer => {
         if (layer instanceof TileLayer) {
             const source = layer.getSource();
-            if (source instanceof TileImage) {
-                source.setRenderReprojectionEdges(renderEdgesCheckbox.checked);
-            }
+            if (source instanceof TileImage) source.setRenderReprojectionEdges(renderEdgesCheckbox.checked);
         }
     });
 };

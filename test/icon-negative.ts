@@ -54,9 +54,8 @@ const select = new Select({
             context.drawImage(image, 0, 0, image.width, image.height);
             const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
             const data = imageData.data;
-            for (let i = 0, ii = data.length; i < ii; i = i + (i % 4 === 2 ? 2 : 1)) {
-                data[i] = 255 - data[i];
-            }
+            for (let i = 0, ii = data.length; i < ii; i = i + (i % 4 === 2 ? 2 : 1)) data[i] = 255 - data[i];
+
             context.putImageData(imageData, 0, 0);
             selectStyle[image.src] = createStyle(undefined as any, canvas);
         }

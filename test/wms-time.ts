@@ -46,9 +46,7 @@ function updateInfo() {
 
 function setTime() {
     startDate.setMinutes(startDate.getMinutes() + 15);
-    if (startDate.valueOf() > Date.now()) {
-        startDate = threeHoursAgo();
-    }
+    if (startDate.valueOf() > Date.now()) startDate = threeHoursAgo();
     (layers[1].getSource() as TileWMS).updateParams({ TIME: startDate.toISOString() });
     updateInfo();
 }

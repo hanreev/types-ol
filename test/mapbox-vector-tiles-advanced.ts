@@ -7,15 +7,14 @@ import VectorTileSource from 'ol/source/VectorTile';
 import { Fill, Icon, Stroke, Style, Text } from 'ol/style';
 import TileGrid from 'ol/tilegrid/TileGrid';
 
-declare var createMapboxStreetsV6Style: (...args: any[]) => Style;
+declare let createMapboxStreetsV6Style: (...args: any[]) => Style;
 
 const key = 'pk.eyJ1IjoiYWhvY2V2YXIiLCJhIjoiRk1kMWZaSSJ9.E5BkluenyWQMsBLsuByrmg';
 
 // Calculation of resolutions that match zoom levels 1, 3, 5, 7, 9, 11, 13, 15.
 const resolutions = [];
-for (let i = 0; i <= 8; ++i) {
-    resolutions.push(156543.03392804097 / Math.pow(2, i * 2));
-}
+for (let i = 0; i <= 8; ++i) resolutions.push(156543.03392804097 / Math.pow(2, i * 2));
+
 // Calculation of tile urls for zoom levels 1, 3, 5, 7, 9, 11, 13, 15.
 function tileUrlFunction(tileCoord: number[]) {
     return `https://{a-d}.tiles.mapbox.com/v4/mapbox.mapbox-streets-v6/{z}/{x}/{y}.vector.pbf?access_token=${key}`

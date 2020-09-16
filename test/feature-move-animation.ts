@@ -119,9 +119,8 @@ const vectorLayer = new VectorLayer({
     }),
     style: feature => {
         // hide geoMarker if animation is active
-        if (animating && feature.get('type') === 'geoMarker') {
-            return null as any;
-        }
+        if (animating && feature.get('type') === 'geoMarker') return null as any;
+
         return styles[feature.get('type')];
     },
 });

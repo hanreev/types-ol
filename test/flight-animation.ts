@@ -10,7 +10,7 @@ import Stamen from 'ol/source/Stamen';
 import VectorSource from 'ol/source/Vector';
 import { Stroke, Style } from 'ol/style';
 
-declare var arc: any;
+declare let arc: any;
 
 const map = new Map({
     layers: [
@@ -77,11 +77,8 @@ const flightsLayer = new VectorLayer({
     style: feature => {
         // if the animation is still active for a feature, do not
         // render the feature with the layer style
-        if (feature.get('finished')) {
-            return style;
-        } else {
-            return null as any;
-        }
+        if (feature.get('finished')) return style;
+        else return null as any;
     },
 });
 
@@ -94,16 +91,14 @@ function animateFlights(event: RenderEvent) {
     vectorContext.setStyle(style);
 
     const features = flightsSource.getFeatures();
-    for (const feature of features) {
+    for (const feature of features)
         if (!feature.get('finished')) {
             // only draw the lines for which the animation has not finished yet
             const coords = (feature.getGeometry() as SimpleGeometry).getCoordinates();
             const elapsedTime = frameState.time - feature.get('start');
             const elapsedPoints = elapsedTime * pointsPerMs;
 
-            if (elapsedPoints >= coords.length) {
-                feature.set('finished', true);
-            }
+            if (elapsedPoints >= coords.length) feature.set('finished', true);
 
             const maxIndex = Math.min(elapsedPoints, coords.length);
             const currentLine = new LineString(coords.slice(0, maxIndex));
@@ -111,7 +106,7 @@ function animateFlights(event: RenderEvent) {
             // directly draw the line with the vector context
             vectorContext.drawGeometry(currentLine);
         }
-    }
+
     // tell OpenLayers to continue the animation
     map.render();
 }

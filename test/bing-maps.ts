@@ -6,7 +6,7 @@ import BingMaps from 'ol/source/BingMaps';
 
 const styles = ['Road', 'RoadOnDemand', 'Aerial', 'AerialWithLabels', 'collinsBart', 'ordnanceSurvey'];
 const layers: BaseLayer[] = [];
-for (let i = 0, j = styles.length; i < j; ++i) {
+for (let i = 0, j = styles.length; i < j; ++i)
     layers.push(
         new TileLayer({
             visible: false,
@@ -20,7 +20,7 @@ for (let i = 0, j = styles.length; i < j; ++i) {
             }),
         }),
     );
-}
+
 const map = new Map({
     layers,
     target: 'map',
@@ -33,9 +33,7 @@ const map = new Map({
 const select = document.getElementById('layer-select') as HTMLSelectElement;
 function onChange() {
     const style = select.value;
-    for (let i = 0, j = layers.length; i < j; ++i) {
-        layers[i].setVisible(styles[i] === style);
-    }
+    for (let i = 0, j = layers.length; i < j; ++i) layers[i].setVisible(styles[i] === style);
 }
 select.addEventListener('change', onChange);
 onChange();

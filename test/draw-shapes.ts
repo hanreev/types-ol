@@ -62,11 +62,9 @@ function addInteraction() {
                         newCoordinates.push([center[0] + offsetX, center[1] + offsetY]);
                     }
                     newCoordinates.push(newCoordinates[0].slice());
-                    if (!geometry) {
-                        geometry = new Polygon([newCoordinates]);
-                    } else {
-                        geometry.setCoordinates([newCoordinates]);
-                    }
+                    if (!geometry) geometry = new Polygon([newCoordinates]);
+                    else geometry.setCoordinates([newCoordinates]);
+
                     return geometry;
                 };
                 break;

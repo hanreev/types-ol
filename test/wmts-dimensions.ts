@@ -69,6 +69,6 @@ updateSourceDimension(wmtsSource, 10);
 
 const sliderEl = document.getElementById('slider');
 sliderEl &&
-    sliderEl.addEventListener('input', function() {
+    sliderEl.addEventListener('input', function () {
         updateSourceDimension(wmtsSource, (this as HTMLInputElement).value);
     });

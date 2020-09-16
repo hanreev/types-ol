@@ -3,15 +3,13 @@ import View from 'ol/View';
 import { Image as ImageLayer, Tile as TileLayer } from 'ol/layer';
 import { fromLonLat } from 'ol/proj';
 import BingMaps from 'ol/source/BingMaps';
-import RasterSource from 'ol/source/Raster';
+import RasterSource, { RasterOperationType } from 'ol/source/Raster';
 
 function growRegion(inputs: number[][] | ImageData[], data: any) {
     const image = inputs[0] as ImageData;
     let seed = data.pixel;
     const delta = parseInt(data.delta, 10);
-    if (!seed) {
-        return image;
-    }
+    if (!seed) return image;
 
     seed = seed.map(Math.round);
     const width = image.width;
@@ -40,9 +38,8 @@ function growRegion(inputs: number[][] | ImageData[], data: any) {
                     const cb = inputData[ci + 2];
                     const ca = inputData[ci + 3];
                     // if alpha is zero, carry on
-                    if (ci === 0) {
-                        continue;
-                    }
+                    if (ci === 0) continue;
+
                     if (Math.abs(seedR - cr) < delta && Math.abs(seedG - cg) < delta && Math.abs(seedB - cb) < delta) {
                         outputData[ci] = 255;
                         outputData[ci + 1] = 0;
@@ -79,7 +76,7 @@ const imagery = new TileLayer({
 
 const raster = new RasterSource({
     sources: [imagery.getSource()],
-    operationType: 'image',
+    operationType: RasterOperationType.IMAGE,
     operation: growRegion,
     // Functions in the `lib` object will be available to the operation run in
     // the web worker.
@@ -115,9 +112,7 @@ raster.on('beforeoperations', event => {
     // the event.data object will be passed to operations
     const data = event.data;
     data.delta = thresholdControl.value;
-    if (coordinate) {
-        data.pixel = map.getPixelFromCoordinate(coordinate);
-    }
+    if (coordinate) data.pixel = map.getPixelFromCoordinate(coordinate);
 });
 
 function updateControlValue() {

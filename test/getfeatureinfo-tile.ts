@@ -31,15 +31,12 @@ map.on('singleclick', evt => {
     const url = wmsSource.getFeatureInfoUrl(evt.coordinate, viewResolution, 'EPSG:3857', {
         INFO_FORMAT: 'text/html',
     });
-    if (url) {
-        (document.getElementById('info') as HTMLElement).innerHTML = `<iframe seamless src="${url}"></iframe>`;
-    }
+    if (url) (document.getElementById('info') as HTMLElement).innerHTML = `<iframe seamless src="${url}"></iframe>`;
 });
 
 map.on('pointermove', evt => {
-    if (evt.dragging) {
-        return;
-    }
+    if (evt.dragging) return;
+
     const pixel = map.getEventPixel(evt.originalEvent);
     const hit = map.forEachLayerAtPixel(pixel, () => {
         return true;

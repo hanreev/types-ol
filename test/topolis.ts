@@ -11,8 +11,8 @@ import { Tile as TileLayer, Vector as VectorLayer } from 'ol/layer';
 import { OSM, Vector as VectorSource } from 'ol/source';
 import { Circle as CircleStyle, Fill, Stroke, Style, Text } from 'ol/style';
 
-declare var topolis: any;
-declare var toastr: any;
+declare let topolis: any;
+declare let toastr: any;
 
 const raster = new TileLayer({
     source: new OSM(),
@@ -170,13 +170,11 @@ function onDrawend(e: DrawEvent) {
         if (crossing.lengt === 1 && !start && !end && edgesAtStart.lengt === 0 && edgesAtEnd.lengt === 0) {
             topo.remEdgeNewFace(crossing[0]);
             start = crossing[0].start;
-            if (start.face) {
-                topo.removeIsoNode(start);
-            }
+            if (start.face) topo.removeIsoNode(start);
+
             end = crossing[0].end;
-            if (end.face) {
-                topo.removeIsoNode(end);
-            }
+            if (end.face) topo.removeIsoNode(end);
+
             return;
         }
         if (!start) {

@@ -6,8 +6,8 @@ import { fromLonLat, toLonLat } from 'ol/proj';
 import Projection from 'ol/proj/Projection';
 import { ImageCanvas as ImageCanvasSource, Stamen } from 'ol/source';
 
-declare var d3: any;
-declare var topojson: any;
+declare let d3: any;
+declare let topojson: any;
 
 const map = new Map({
     layers: [
@@ -53,9 +53,8 @@ d3.json('data/topojson/us.json', (error: any, us: any) => {
         const geoBoundsLeftBottom = fromLonLat(geoBounds[0], projection);
         const geoBoundsRightTop = fromLonLat(geoBounds[1], projection);
         let geoBoundsWidth = geoBoundsRightTop[0] - geoBoundsLeftBottom[0];
-        if (geoBoundsWidth < 0) {
-            geoBoundsWidth += getWidth(projection.getExtent());
-        }
+        if (geoBoundsWidth < 0) geoBoundsWidth += getWidth(projection.getExtent());
+
         const geoBoundsHeight = geoBoundsRightTop[1] - geoBoundsLeftBottom[1];
 
         const widthResolution = geoBoundsWidth / pixelBoundsWidth;

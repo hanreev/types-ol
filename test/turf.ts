@@ -5,7 +5,7 @@ import { Tile as TileLayer, Vector as VectorLayer } from 'ol/layer';
 import { fromLonLat } from 'ol/proj';
 import { OSM, Vector as VectorSource } from 'ol/source';
 
-declare var turf: any;
+declare let turf: any;
 
 const source = new VectorSource();
 fetch('data/geojson/roads-seoul.geojson')

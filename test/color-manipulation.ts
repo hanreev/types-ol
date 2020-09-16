@@ -28,9 +28,7 @@ function rgb2hcl(pixel: number[]): number[] {
 
     const c = Math.sqrt(a * a + b * b);
     let h = Math.atan2(b, a);
-    if (h < 0) {
-        h += twoPi;
-    }
+    if (h < 0) h += twoPi;
 
     pixel[0] = h;
     pixel[1] = c;
@@ -89,11 +87,9 @@ const raster = new RasterSource({
         const hcl = rgb2hcl(pixels[0] as number[]);
 
         let h = hcl[0] + (Math.PI * data.hue) / 180;
-        if (h < 0) {
-            h += twoPi;
-        } else if (h > twoPi) {
-            h -= twoPi;
-        }
+        if (h < 0) h += twoPi;
+        else if (h > twoPi) h -= twoPi;
+
         hcl[0] = h;
 
         hcl[1] *= data.chroma / 100;
@@ -123,9 +119,7 @@ const controls: { [key: string]: HTMLInputElement } = {};
 
 raster.on('beforeoperations', (event: RasterSourceEvent) => {
     const data = event.data;
-    for (const id of Object.keys(controls)) {
-        data[id] = Number(controls[id].value);
-    }
+    for (const id of Object.keys(controls)) data[id] = Number(controls[id].value);
 });
 
 const map = new Map({

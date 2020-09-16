@@ -105,18 +105,13 @@ const unbindLayerListeners = (layer: VectorLayer) => {
 const affectLayerClicked = (event: Event) => {
     const that = event.target as HTMLInputElement;
     let layer: VectorLayer;
-    if (that.id === 'affect-red') {
-        layer = redLayer;
-    } else if (that.id === 'affect-green') {
-        layer = greenLayer;
-    } else {
-        layer = blueLayer;
-    }
-    if (that.checked) {
-        bindLayerListeners(layer);
-    } else {
-        unbindLayerListeners(layer);
-    }
+    if (that.id === 'affect-red') layer = redLayer;
+    else if (that.id === 'affect-green') layer = greenLayer;
+    else layer = blueLayer;
+
+    if (that.checked) bindLayerListeners(layer);
+    else unbindLayerListeners(layer);
+
     map.render();
 };
 

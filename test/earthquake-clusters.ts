@@ -4,7 +4,6 @@ import Map from 'ol/Map';
 import View from 'ol/View';
 import { createEmpty, extend, getHeight, getWidth } from 'ol/extent';
 import KML from 'ol/format/KML';
-import { or } from 'ol/format/filter';
 import { Select, defaults as defaultInteractions } from 'ol/interaction';
 import { Tile as TileLayer, Vector as VectorLayer } from 'ol/layer';
 import { Cluster, Stamen, Vector as VectorSource } from 'ol/source';
@@ -61,9 +60,8 @@ const calculateClusterInfo = (resolution: number) => {
         feature = features[i];
         const originalFeatures = feature.get('features');
         const extent = createEmpty();
-        for (const originalFeature of originalFeatures) {
-            extend(extent, originalFeature.getGeometry().getExtent());
-        }
+        for (const originalFeature of originalFeatures) extend(extent, originalFeature.getGeometry().getExtent());
+
         maxFeatureCount = Math.max(maxFeatureCount, originalFeatures.length);
         radius = (0.25 * (getWidth(extent) + getHeight(extent))) / resolution;
         feature.set('radius', radius);

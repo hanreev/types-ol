@@ -22,11 +22,9 @@ let signY = -1;
 // Create a square spiral.
 for (let i = 0; i < count; ++i) {
     delta = (i + 1) * 2500;
-    if (i % 2 === 0) {
-        signY *= -1;
-    } else {
-        signX *= -1;
-    }
+    if (i % 2 === 0) signY *= -1;
+    else signX *= -1;
+
     deltaX = delta * signX;
     deltaY = delta * signY;
     endPoint = [startPoint[0] + deltaX, startPoint[1] + deltaY];

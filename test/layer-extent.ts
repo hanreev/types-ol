@@ -40,8 +40,7 @@ const map = new Map({
     }),
 });
 
-for (const key of Object.keys(extents)) {
+for (const key of Object.keys(extents))
     (document.getElementById(key) as HTMLElement).onclick = event => {
         overlay.setExtent(extents[(event.target as HTMLElement).id]);
     };
-}

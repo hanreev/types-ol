@@ -4,7 +4,7 @@ import { Image as ImageLayer, Tile as TileLayer } from 'ol/layer';
 import BingMaps from 'ol/source/BingMaps';
 import RasterSource from 'ol/source/Raster';
 
-declare var d3: any;
+declare let d3: any;
 
 const minVgi = 0;
 const maxVgi = 0.25;
@@ -62,9 +62,8 @@ raster.set('threshold', 0.1);
 
 function createCounts(min: number, max: number, num: number) {
     const values = new Array(num);
-    for (let i = 0; i < num; ++i) {
-        values[i] = 0;
-    }
+    for (let i = 0; i < num; ++i) values[i] = 0;
+
     return {
         min,
         max,
@@ -152,9 +151,8 @@ function plot(resolution: number, counts: any, threshold: any) {
 
     bar.on('mouseover', (count: any, index: any) => {
         let area = 0;
-        for (let i = counts.values.length - 1; i >= index; --i) {
-            area += resolution * resolution * counts.values[i];
-        }
+        for (let i = counts.values.length - 1; i >= index; --i) area += resolution * resolution * counts.values[i];
+
         tip.html(message(counts.min + index * counts.delta, area));
         tip.style('display', 'block');
         tip.transition().style({

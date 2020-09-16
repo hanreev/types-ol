@@ -51,9 +51,8 @@ const selectAltClick = new Select({
 const selectElement = document.getElementById('type') as HTMLSelectElement;
 
 const changeInteraction = () => {
-    if (select !== null) {
-        map.removeInteraction(select);
-    }
+    if (select !== null) map.removeInteraction(select);
+
     const value = selectElement.value;
     switch (value) {
         case 'singleclick':

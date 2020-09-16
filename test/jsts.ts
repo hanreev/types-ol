@@ -8,7 +8,7 @@ import { fromLonLat } from 'ol/proj';
 import OSM from 'ol/source/OSM';
 import VectorSource from 'ol/source/Vector';
 
-declare var jsts: any;
+declare let jsts: any;
 
 const source = new VectorSource();
 fetch('data/geojson/roads-seoul.geojson')

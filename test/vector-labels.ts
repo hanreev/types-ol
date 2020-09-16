@@ -67,15 +67,11 @@ const getText = (feature: FeatureLike, resolution: number, dom: any) => {
     const maxResolution = dom.maxreso.value;
     let text = feature.get('name');
 
-    if (resolution > maxResolution) {
-        text = '';
-    } else if (type === 'hide') {
-        text = '';
-    } else if (type === 'shorten') {
-        text = text.trunc(12);
-    } else if (type === 'wrap' && (!dom.placement || dom.placement.value !== 'line')) {
+    if (resolution > maxResolution) text = '';
+    else if (type === 'hide') text = '';
+    else if (type === 'shorten') text = text.trunc(12);
+    else if (type === 'wrap' && (!dom.placement || dom.placement.value !== 'line'))
         text = stringDivider(text, 16, '\n');
-    }
 
     return text;
 };
@@ -218,12 +214,10 @@ refreshPolygonsEl &&
 function stringDivider(str: string, width: number, spaceReplacer: string): string {
     if (str.length > width) {
         let p = width;
-        while (p > 0 && str[p] !== ' ' && str[p] !== '-') {
-            p--;
-        }
+        while (p > 0 && str[p] !== ' ' && str[p] !== '-') p--;
+
         if (p > 0) {
-            let left: string;
-            left = str.substring(p, p + 1) === '-' ? str.substring(0, p + 1) : str.substring(0, p);
+            const left = str.substring(p, p + 1) === '-' ? str.substring(0, p + 1) : str.substring(0, p);
             const right = str.substring(p + 1);
             return left + spaceReplacer + stringDivider(right, width, spaceReplacer);
         }

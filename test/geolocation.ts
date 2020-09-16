@@ -34,7 +34,7 @@ function el(id: string) {
     return document.getElementById(id) as HTMLElement;
 }
 
-el('track').addEventListener('change', function() {
+el('track').addEventListener('change', function () {
     geolocation.setTracking((this as HTMLInputElement).checked);
 });
 

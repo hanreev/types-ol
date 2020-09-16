@@ -1,4 +1,3 @@
-import { Feature } from 'ol';
 import { FeatureLike } from 'ol/Feature';
 import Map from 'ol/Map';
 import View from 'ol/View';
@@ -8,7 +7,7 @@ import Stamen from 'ol/source/Stamen';
 import VectorSource from 'ol/source/Vector';
 import { Circle as CircleStyle, Fill, Stroke, Style } from 'ol/style';
 
-declare var $: any;
+declare let $: any;
 
 const styleCache: { [key: string]: Style } = {};
 const styleFunction = (feature: FeatureLike) => {
@@ -76,11 +75,9 @@ const displayFeatureInfo = (pixel: any) => {
     const feature = map.forEachFeatureAtPixel(pixel, (f: FeatureLike) => {
         return f;
     });
-    if (feature) {
+    if (feature)
         info.tooltip('hide').attr('data-original-title', feature.get('name')).tooltip('fixTitle').tooltip('show');
-    } else {
-        info.tooltip('hide');
-    }
+    else info.tooltip('hide');
 };
 
 map.on('pointermove', evt => {

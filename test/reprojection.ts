@@ -134,9 +134,7 @@ layers['grandcanyon'] = new TileLayer({
 
 const startResolution = getWidth(getProjection('EPSG:3857').getExtent()) / 256;
 const resolutions = new Array(22);
-for (let i = 0, ii = resolutions.length; i < ii; ++i) {
-    resolutions[i] = startResolution / Math.pow(2, i);
-}
+for (let i = 0, ii = resolutions.length; i < ii; ++i) resolutions[i] = startResolution / Math.pow(2, i);
 
 layers['states'] = new TileLayer({
     source: new TileWMS({
@@ -181,11 +179,8 @@ function updateViewProjection() {
     map.setView(newView);
 
     // Example how to prevent double occurrence of map by limiting layer extent
-    if (newProj === getProjection('EPSG:3857')) {
-        layers['bng'].setExtent([-1057216, 6405988, 404315, 8759696]);
-    } else {
-        layers['bng'].setExtent(createEmptyExtent());
-    }
+    if (newProj === getProjection('EPSG:3857')) layers['bng'].setExtent([-1057216, 6405988, 404315, 8759696]);
+    else layers['bng'].setExtent(createEmptyExtent());
 }
 
 viewProjSelect.onchange = () => {
@@ -197,9 +192,7 @@ updateViewProjection();
 const updateRenderEdgesOnLayer = (layer: BaseLayer) => {
     if (layer instanceof TileLayer) {
         const source = layer.getSource();
-        if (source instanceof TileImage) {
-            source.setRenderReprojectionEdges(renderEdges);
-        }
+        if (source instanceof TileImage) source.setRenderReprojectionEdges(renderEdges);
     }
 };
 

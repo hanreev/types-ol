@@ -59,9 +59,8 @@ const displayCountryInfo = (coordinate: Coordinate) => {
 };
 
 map.on('pointermove', evt => {
-    if (evt.dragging) {
-        return;
-    }
+    if (evt.dragging) return;
+
     const coordinate = map.getEventCoordinate(evt.originalEvent as MouseEvent);
     displayCountryInfo(coordinate);
 });

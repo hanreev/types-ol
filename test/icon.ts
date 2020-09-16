@@ -11,7 +11,7 @@ import VectorSource from 'ol/source/Vector';
 import { Icon, Style } from 'ol/style';
 import IconAnchorUnits from 'ol/style/IconAnchorUnits';
 
-declare var $: any;
+declare let $: any;
 
 const iconFeature = new Feature({
     geometry: new Point([0, 0]),

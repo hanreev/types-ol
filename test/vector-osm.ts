@@ -8,8 +8,6 @@ import BingMaps from 'ol/source/BingMaps';
 import VectorSource from 'ol/source/Vector';
 import { Circle as CircleStyle, Fill, Stroke, Style } from 'ol/style';
 
-let map: Map;
-
 const styles: { [key: string]: { [key: string]: Style } } = {
     amenity: {
         parking: new Style({
@@ -94,13 +92,9 @@ const vector = new VectorLayer({
     style: feature => {
         for (const key of Object.keys(styles)) {
             const value = feature.get(key);
-            if (value !== undefined) {
-                for (const regexp of Object.keys(styles[key])) {
-                    if (new RegExp(regexp).test(value)) {
-                        return styles[key][regexp];
-                    }
-                }
-            }
+            if (value !== undefined)
+                for (const regexp of Object.keys(styles[key]))
+                    if (new RegExp(regexp).test(value)) return styles[key][regexp];
         }
         return null as any;
     },
@@ -113,7 +107,7 @@ const raster = new TileLayer({
     }),
 });
 
-map = new Map({
+const map = new Map({
     layers: [raster, vector],
     target: document.getElementById('map') as HTMLElement,
     view: new View({

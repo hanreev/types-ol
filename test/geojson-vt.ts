@@ -6,7 +6,7 @@ import Projection from 'ol/proj/Projection';
 import OSM from 'ol/source/OSM';
 import VectorTileSource from 'ol/source/VectorTile';
 
-declare var geojsonvt: any;
+declare let geojsonvt: any;
 
 const replacer = (key: string, value: any) => {
     if (value.geometry) {

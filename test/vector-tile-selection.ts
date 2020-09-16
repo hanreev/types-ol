@@ -55,9 +55,8 @@ map.on('click', event => {
     const feature = features[0];
     const fid = feature.get(idProp);
 
-    if (selectElement.value === 'singleselect') {
-        selection = {};
-    }
+    if (selectElement.value === 'singleselect') selection = {};
+
     // add selected feature to lookup
     selection[fid] = feature;
 

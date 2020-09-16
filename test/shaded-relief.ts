@@ -2,7 +2,7 @@ import Map from 'ol/Map';
 import View from 'ol/View';
 import { Image as ImageLayer, Tile as TileLayer } from 'ol/layer';
 import { OSM, Raster, XYZ } from 'ol/source';
-import { Operation } from 'ol/source/Raster';
+import { Operation, RasterOperationType } from 'ol/source/Raster';
 
 const shade: Operation = (inputs: number[][] | ImageData[], data: any) => {
     const elevationImage = inputs[0] as ImageData;
@@ -82,13 +82,9 @@ const shade: Operation = (inputs: number[][] | ImageData[], data: any) => {
             slope = Math.atan(Math.sqrt(dzdx * dzdx + dzdy * dzdy));
 
             aspect = Math.atan2(dzdy, -dzdx);
-            if (aspect < 0) {
-                aspect = halfPi - aspect;
-            } else if (aspect > halfPi) {
-                aspect = twoPi - aspect + halfPi;
-            } else {
-                aspect = halfPi - aspect;
-            }
+            if (aspect < 0) aspect = halfPi - aspect;
+            else if (aspect > halfPi) aspect = twoPi - aspect + halfPi;
+            else aspect = halfPi - aspect;
 
             cosIncidence = sinSunEl * Math.cos(slope) + cosSunEl * Math.sin(slope) * Math.cos(sunAz - aspect);
 
@@ -112,7 +108,7 @@ const elevation = new XYZ({
 
 const raster = new Raster({
     sources: [elevation],
-    operationType: 'image',
+    operationType: RasterOperationType.IMAGE,
     operation: shade,
 });
 
@@ -153,7 +149,5 @@ raster.on('beforeoperations', event => {
     // the event.data object will be passed to operations
     const data = event.data;
     data.resolution = event.resolution;
-    for (const id of Object.keys(controls)) {
-        data[id] = Number(controls[id].value);
-    }
+    for (const id of Object.keys(controls)) data[id] = Number(controls[id].value);
 });

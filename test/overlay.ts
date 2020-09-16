@@ -7,7 +7,7 @@ import TileLayer from 'ol/layer/Tile';
 import { fromLonLat, toLonLat } from 'ol/proj';
 import OSM from 'ol/source/OSM';
 
-declare var $: any;
+declare let $: any;
 
 const layer = new TileLayer({
     source: new OSM(),

@@ -33,18 +33,16 @@ function normalize(kernel: number[]): number[] {
     const len = kernel.length;
     const normal = new Array(len);
     let sum = 0;
-    for (const k of kernel) {
-        sum += k;
-    }
+    for (const k of kernel) sum += k;
+
     if (sum <= 0) {
         (normal as any).normalized = false;
         sum = 1;
     } else {
         (normal as any).normalized = true;
     }
-    for (let i = 0; i < len; ++i) {
-        normal[i] = kernel[i] / sum;
-    }
+    for (let i = 0; i < len; ++i) normal[i] = kernel[i] / sum;
+
     return normal;
 }
 
@@ -80,7 +78,7 @@ function convolve(context: CanvasRenderingContext2D, kernel: number[]) {
             let g = 0;
             let b = 0;
             let a = 0;
-            for (let kernelY = 0; kernelY < size; ++kernelY) {
+            for (let kernelY = 0; kernelY < size; ++kernelY)
                 for (let kernelX = 0; kernelX < size; ++kernelX) {
                     const weight = kernel[kernelY * size + kernelX];
                     const neighborY = Math.min(height - 1, Math.max(0, pixelY + kernelY - half));
@@ -91,7 +89,7 @@ function convolve(context: CanvasRenderingContext2D, kernel: number[]) {
                     b += inputData[inputIndex + 2] * weight;
                     a += inputData[inputIndex + 3] * weight;
                 }
-            }
+
             const outputIndex = (pixelsAbove + pixelX) * 4;
             outputData[outputIndex] = r;
             outputData[outputIndex + 1] = g;

@@ -30,7 +30,5 @@ const map = new Map({
 
 window.addEventListener('resize', () => {
     const minZoom = getMinZoom();
-    if (minZoom !== view.getMinZoom()) {
-        view.setMinZoom(minZoom);
-    }
+    if (minZoom !== view.getMinZoom()) view.setMinZoom(minZoom);
 });
