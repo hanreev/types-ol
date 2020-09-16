@@ -387,7 +387,7 @@ function stringifyType(parsedType, _module, undefinedLiteral = true, nullLiteral
   if (!typeStr) typeStr = 'any';
 
   if (typeStr == 'Array') typeStr = 'any[]';
-  else if (typeStr == 'Object') typeStr = '{ [key: string]: any }';
+  else if (typeStr == 'Object') typeStr = 'object';
   else if (typeStr == 'undefined' && !undefinedLiteral) typeStr = 'any';
 
   return typeStr;
