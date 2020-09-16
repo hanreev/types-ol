@@ -45,7 +45,7 @@ export default class BaseObject extends Observable {
     un(type: 'propertychange', listener: (evt: ObjectEvent) => void): void;
 }
 export class ObjectEvent extends BaseEvent {
-    constructor();
+    constructor(type: string, key: string, oldValue: any);
     /**
      * The name of the property whose value is changing.
      */

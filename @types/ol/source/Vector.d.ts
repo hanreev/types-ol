@@ -199,7 +199,7 @@ export default class VectorSource<GeomType extends Geometry = Geometry> extends 
     un(type: 'removefeature', listener: (evt: VectorSourceEvent<Geometry>) => void): void;
 }
 export class VectorSourceEvent<GeomType extends Geometry = Geometry> extends BaseEvent {
-    constructor();
+    constructor(type: string, opt_feature?: Feature<GeomType>);
     /**
      * The feature being added or removed.
      */

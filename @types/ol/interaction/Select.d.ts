@@ -10,7 +10,7 @@ import MapBrowserEvent from '../MapBrowserEvent';
 import { ObjectEvent } from '../Object';
 import PluggableMap from '../PluggableMap';
 import Source from '../source/Source';
-import { StyleFunction, StyleLike } from '../style/Style';
+import { StyleLike } from '../style/Style';
 import Interaction from './Interaction';
 
 /**

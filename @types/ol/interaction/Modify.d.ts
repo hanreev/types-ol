@@ -1,5 +1,4 @@
 import Collection from '../Collection';
-import { Coordinate } from '../coordinate';
 import { EventsKey } from '../events';
 import { Condition } from '../events/condition';
 import BaseEvent from '../events/Event';
@@ -11,9 +10,8 @@ import VectorLayer from '../layer/Vector';
 import MapBrowserEvent from '../MapBrowserEvent';
 import { ObjectEvent } from '../Object';
 import PluggableMap from '../PluggableMap';
-import Projection from '../proj/Projection';
 import VectorSource from '../source/Vector';
-import { StyleFunction, StyleLike } from '../style/Style';
+import { StyleLike } from '../style/Style';
 import PointerInteraction from './Pointer';
 
 export interface Options {
@@ -33,6 +31,10 @@ export interface SegmentData {
     index?: number;
     segment: Extent[];
     featureSegments?: SegmentData[];
+}
+declare enum ModifyEventType {
+    MODIFYSTART = 'modifystart',
+    MODIFYEND = 'modifyend',
 }
 export default class Modify extends PointerInteraction {
     constructor(options: Options);
@@ -93,7 +95,11 @@ export default class Modify extends PointerInteraction {
     un(type: 'propertychange', listener: (evt: ObjectEvent) => void): void;
 }
 export class ModifyEvent extends BaseEvent {
-    constructor();
+    constructor(
+        type: ModifyEventType,
+        features: Collection<Feature<Geometry>>,
+        MapBrowserEvent: MapBrowserEvent<UIEvent>,
+    );
     /**
      * The features being modified.
      */

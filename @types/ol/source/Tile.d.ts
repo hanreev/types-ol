@@ -97,7 +97,7 @@ export default abstract class TileSource extends Source {
     un(type: 'propertychange', listener: (evt: ObjectEvent) => void): void;
 }
 export class TileSourceEvent extends BaseEvent {
-    constructor();
+    constructor(type: string, tile: Tile);
     /**
      * The tile related to the event.
      */

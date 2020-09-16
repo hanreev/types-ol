@@ -14,7 +14,7 @@ import { ObjectEvent } from '../Object';
 import PluggableMap from '../PluggableMap';
 import Projection from '../proj/Projection';
 import VectorSource from '../source/Vector';
-import { StyleFunction, StyleLike } from '../style/Style';
+import { StyleLike } from '../style/Style';
 import PointerInteraction from './Pointer';
 
 /**

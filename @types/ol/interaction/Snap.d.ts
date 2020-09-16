@@ -1,4 +1,4 @@
-import Collection, { CollectionEvent } from '../Collection';
+import Collection from '../Collection';
 import { Coordinate } from '../coordinate';
 import { EventsKey } from '../events';
 import BaseEvent from '../events/Event';
@@ -8,7 +8,7 @@ import MapBrowserEvent from '../MapBrowserEvent';
 import { ObjectEvent } from '../Object';
 import { Pixel } from '../pixel';
 import PluggableMap from '../PluggableMap';
-import VectorSource, { VectorSourceEvent } from '../source/Vector';
+import VectorSource from '../source/Vector';
 import PointerInteraction from './Pointer';
 
 export interface Options {

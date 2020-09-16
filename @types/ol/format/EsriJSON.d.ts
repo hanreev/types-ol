@@ -12,14 +12,6 @@ import {
 } from 'arcgis-rest-api';
 import Feature_1 from '../Feature';
 import Geometry_1 from '../geom/Geometry';
-import GeometryLayout from '../geom/GeometryLayout';
-import LineString from '../geom/LineString';
-import MultiLineString from '../geom/MultiLineString';
-import MultiPoint from '../geom/MultiPoint';
-import MultiPolygon from '../geom/MultiPolygon';
-import Point_1 from '../geom/Point';
-import Polygon_1 from '../geom/Polygon';
-import SimpleGeometry from '../geom/SimpleGeometry';
 import Projection from '../proj/Projection';
 import { ReadOptions, WriteOptions } from './Feature';
 import JSONFeature from './JSONFeature';

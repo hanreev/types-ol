@@ -60,7 +60,7 @@ export default abstract class ImageSource extends Source {
     un(type: 'propertychange', listener: (evt: ObjectEvent) => void): void;
 }
 export class ImageSourceEvent extends BaseEvent {
-    constructor();
+    constructor(type: string, image: ImageWrapper);
     /**
      * The image related to the event.
      */

@@ -6,6 +6,13 @@ import BaseObject, { ObjectEvent } from './Object';
 import { ProjectionLike } from './proj';
 import Projection from './proj/Projection';
 
+export interface GeolocationPositionError {
+    code: number;
+    message: string;
+    PERMISSION_DENIED: number;
+    POSITION_UNAVAILABLE: number;
+    TIMEOUT: number;
+}
 export interface Options {
     tracking?: boolean;
     trackingOptions?: PositionOptions;
@@ -120,7 +127,7 @@ export default class Geolocation extends BaseObject {
     un(type: 'propertychange', listener: (evt: ObjectEvent) => void): void;
 }
 declare class GeolocationError extends BaseEvent {
-    constructor(error: PositionError);
+    constructor(error: GeolocationPositionError);
     code: number;
     message: string;
 }

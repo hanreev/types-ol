@@ -13,13 +13,6 @@ import {
 } from 'geojson';
 import Feature_1 from '../Feature';
 import Geometry_1 from '../geom/Geometry';
-import GeometryCollection_1 from '../geom/GeometryCollection';
-import LineString_1 from '../geom/LineString';
-import MultiLineString_1 from '../geom/MultiLineString';
-import MultiPoint_1 from '../geom/MultiPoint';
-import MultiPolygon_1 from '../geom/MultiPolygon';
-import Point_1 from '../geom/Point';
-import Polygon_1 from '../geom/Polygon';
 import { ProjectionLike } from '../proj';
 import Projection from '../proj/Projection';
 import { ReadOptions, WriteOptions } from './Feature';

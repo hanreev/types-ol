@@ -1,3 +1,4 @@
+import CollectionEventType from './CollectionEventType';
 import { EventsKey } from './events';
 import BaseEvent from './events/Event';
 import BaseObject, { ObjectEvent } from './Object';
@@ -84,7 +85,7 @@ export default class Collection<T> extends BaseObject {
     un(type: 'remove', listener: (evt: CollectionEvent<T>) => void): void;
 }
 export class CollectionEvent<T> extends BaseEvent {
-    constructor();
+    constructor(type: CollectionEventType, opt_element?: T, opt_index?: number);
     /**
      * The element that is added to or removed from the collection.
      */

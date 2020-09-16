@@ -4,7 +4,7 @@ import BaseEvent from '../events/Event';
 import { Extent } from '../extent';
 import ImageBase from '../ImageBase';
 import ImageCanvas from '../ImageCanvas';
-import Layer, { State } from '../layer/Layer';
+import Layer from '../layer/Layer';
 import { ObjectEvent } from '../Object';
 import { FrameState } from '../PluggableMap';
 import Projection from '../proj/Projection';
@@ -34,7 +34,7 @@ export interface Options {
     operation?: Operation;
     lib?: any;
     threads?: number;
-    operationType?: 'pixel' | 'image';
+    operationType?: RasterOperationType;
 }
 export interface ProcessorOptions {
     threads: number;
@@ -43,8 +43,15 @@ export interface ProcessorOptions {
     queue: number;
     imageOps?: boolean;
 }
+/**
+ * Raster operation type. Supported values are 'pixel' and 'image'.
+ */
+declare enum RasterOperationType {
+    PIXEL = 'pixel',
+    IMAGE = 'image',
+}
 export class Processor extends Disposable {
-    constructor();
+    constructor(config: ProcessorOptions);
     /**
      * Dispatch a job.
      */
@@ -117,7 +124,7 @@ export default class RasterSource extends ImageSource {
     un(type: 'propertychange', listener: (evt: ObjectEvent) => void): void;
 }
 export class RasterSourceEvent extends BaseEvent {
-    constructor();
+    constructor(type: string, frameState: FrameState, data: any);
     /**
      * An object made available to all operations.  This can be used by operations
      * as a storage object (e.g. for calculating statistics).

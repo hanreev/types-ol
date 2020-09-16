@@ -1,5 +1,3 @@
-import { Coordinate } from '../../coordinate';
-import { TransformFunction } from '../../proj';
 import Projection from '../../proj/Projection';
 
 /**

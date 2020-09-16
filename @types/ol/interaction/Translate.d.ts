@@ -24,6 +24,11 @@ export interface Options {
     filter?: FilterFunction;
     hitTolerance?: number;
 }
+declare enum TranslateEventType {
+    TRANSLATESTART = 'translatestart',
+    TRANSLATING = 'translating',
+    TRANSLATEEND = 'translateend',
+}
 export default class Translate extends PointerInteraction {
     constructor(opt_options?: Options & { [key: string]: any });
     /**
@@ -83,7 +88,13 @@ export default class Translate extends PointerInteraction {
     un(type: 'translating', listener: (evt: TranslateEvent) => void): void;
 }
 export class TranslateEvent extends BaseEvent {
-    constructor();
+    constructor(
+        type: TranslateEventType,
+        features: Collection<Feature<Geometry>>,
+        coordinate: Coordinate,
+        startCoordinate: Coordinate,
+        mapBrowserEvent: MapBrowserEvent<UIEvent>,
+    );
     /**
      * The features being translated.
      */

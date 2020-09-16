@@ -1,4 +1,3 @@
-import { Coordinate } from '../coordinate';
 import { EventsKey } from '../events';
 import { Condition } from '../events/condition';
 import BaseEvent from '../events/Event';
@@ -6,7 +5,7 @@ import { Extent as Extent_1 } from '../extent';
 import MapBrowserEvent from '../MapBrowserEvent';
 import { ObjectEvent } from '../Object';
 import PluggableMap from '../PluggableMap';
-import { StyleFunction, StyleLike } from '../style/Style';
+import { StyleLike } from '../style/Style';
 import PointerInteraction from './Pointer';
 
 export interface Options {

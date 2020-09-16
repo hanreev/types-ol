@@ -3,18 +3,8 @@ import Feature from '../Feature';
 import Geometry from '../geom/Geometry';
 import Projection from '../proj/Projection';
 import { ReadOptions } from './Feature';
-import Bbox from './filter/Bbox';
-import ComparisonBinary from './filter/ComparisonBinary';
-import Contains from './filter/Contains';
-import During from './filter/During';
 import Filter from './filter/Filter';
-import Intersects from './filter/Intersects';
-import IsBetween from './filter/IsBetween';
-import IsLike from './filter/IsLike';
-import IsNull from './filter/IsNull';
-import LogicalNary from './filter/LogicalNary';
-import Not from './filter/Not';
-import Within from './filter/Within';
+
 import GMLBase, { Options as Options_1 } from './GMLBase';
 import XMLFeature from './XMLFeature';
 
