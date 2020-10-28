@@ -95,14 +95,13 @@ function copyDefinitions() {
   console.log('# Copying definition files');
   fs.copySync(SRC_DIR, DEST_DIR);
 
-  console.log('# Generating tsconfig.json and tslint.json');
-
   // Copy test files
   console.log('# Copying test files');
   fs.copyFileSync(path.resolve('test', 'ol-tests.ts'), path.join(DEST_DIR, 'ol-tests.ts'));
   configs.tsconfig.files.push('ol-tests.ts');
 
   // Write tsconfig.json and tslint.json
+  console.log('# Generating tsconfig.json and tslint.json');
   for (const key in configs)
     fs.writeFileSync(path.join(DEST_DIR, key + '.json'), JSON.stringify(configs[key], null, 4), { encoding: 'utf-8' });
 

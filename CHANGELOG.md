@@ -1,5 +1,7 @@
 ## Changelog
 
+- **v3.4.2**
+  - Remove `GeolocationPositionError` (formerly `PositionError`) workaround.
 - **v3.4.1**
   - Reflect javascript exports
   - Add `ol/Geolocation~GeolocationError`
