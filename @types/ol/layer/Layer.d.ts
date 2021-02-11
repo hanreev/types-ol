@@ -8,12 +8,12 @@ import { Pixel } from '../pixel';
 import PluggableMap, { FrameState } from '../PluggableMap';
 import RenderEvent from '../render/Event';
 import LayerRenderer from '../renderer/Layer';
-import Source from '../source/Source';
 import State_1 from '../source/State';
 import { State as State_2 } from '../View';
 import BaseLayer from './Base';
+import Source from '../source/Source';
 
-export interface Options {
+export interface Options<SourceType extends Source> {
     className?: string;
     opacity?: number;
     visible?: boolean;
@@ -23,13 +23,13 @@ export interface Options {
     maxResolution?: number;
     minZoom?: number;
     maxZoom?: number;
-    source?: Source;
+    source?: SourceType;
     map?: PluggableMap;
     render?: RenderFunction;
 }
 export type RenderFunction = (p0: FrameState) => HTMLElement;
 export interface State {
-    layer: Layer<Source>;
+    layer: Layer;
     opacity: number;
     sourceState: State_1;
     visible: boolean;
@@ -42,22 +42,22 @@ export interface State {
     maxZoom: number;
 }
 export default class Layer<SourceType extends Source = Source> extends BaseLayer {
-    constructor(options: Options);
+    constructor(options: Options<SourceType>);
     /**
      * Create a renderer for this layer.
      */
-    protected createRenderer(): LayerRenderer<Layer<Source>>;
+    protected createRenderer(): LayerRenderer<Layer>;
     /**
      * Clean up.
      */
     disposeInternal(): void;
     getFeatures(pixel: Pixel): Promise<Feature<Geometry>[]>;
-    getLayersArray(opt_array?: Layer<Source>[]): Layer<Source>[];
+    getLayersArray(opt_array?: Layer<SourceType>[]): Layer<SourceType>[];
     getLayerStatesArray(opt_states?: State[]): State[];
     /**
      * Get the renderer for this layer.
      */
-    getRenderer(): LayerRenderer<Layer<Source>>;
+    getRenderer(): LayerRenderer<Layer>;
     /**
      * Get the layer source.
      */

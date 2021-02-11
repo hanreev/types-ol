@@ -9,6 +9,7 @@ import RenderEvent from '../render/Event';
 import Stroke from '../style/Stroke';
 import Text from '../style/Text';
 import VectorLayer from './Vector';
+import VectorSource from 'ol/source/Vector';
 
 export interface GraticuleLabelDataType {
     geom: Point;
@@ -37,7 +38,7 @@ export interface Options {
     intervals?: number[];
     wrapX?: boolean;
 }
-export default class Graticule extends VectorLayer {
+export default class Graticule extends VectorLayer<VectorSource> {
     constructor(opt_options?: Options & { [key: string]: any });
     /**
      * Get the list of meridians.  Meridians are lines of equal longitude.

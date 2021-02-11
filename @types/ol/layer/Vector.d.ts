@@ -3,17 +3,16 @@ import BaseEvent from '../events/Event';
 import { ObjectEvent } from '../Object';
 import RenderEvent from '../render/Event';
 import LayerRenderer from '../renderer/Layer';
-import Source from '../source/Source';
 import VectorSource from '../source/Vector';
 import BaseVectorLayer, { Options } from './BaseVector';
 import Layer from './Layer';
 
-export default class VectorLayer extends BaseVectorLayer<VectorSource> {
-    constructor(opt_options?: Options & { [key: string]: any });
+export default class VectorLayer<VectorSourceType extends VectorSource = VectorSource> extends BaseVectorLayer<VectorSourceType> {
+    constructor(opt_options?: Options<VectorSourceType> & { [key: string]: any });
     /**
      * Create a renderer for this layer.
      */
-    createRenderer(): LayerRenderer<Layer<Source>>;
+    createRenderer(): LayerRenderer<Layer>;
     on(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
     once(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
     un(type: string | string[], listener: (p0: any) => any): void;

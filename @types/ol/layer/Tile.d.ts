@@ -3,16 +3,16 @@ import BaseEvent from '../events/Event';
 import { ObjectEvent } from '../Object';
 import RenderEvent from '../render/Event';
 import LayerRenderer from '../renderer/Layer';
-import Source from '../source/Source';
 import BaseTileLayer, { Options } from './BaseTile';
 import Layer from './Layer';
+import TileSource from '../source/Tile';
 
-export default class TileLayer extends BaseTileLayer {
-    constructor(opt_options?: Options & { [key: string]: any });
+export default class TileLayer<TileSourceType extends TileSource = TileSource> extends BaseTileLayer<TileSourceType> {
+    constructor(opt_options?: Options<TileSourceType> & { [key: string]: any });
     /**
      * Create a renderer for this layer.
      */
-    protected createRenderer(): LayerRenderer<Layer<Source>>;
+    protected createRenderer(): LayerRenderer<Layer>;
     on(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
     once(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
     un(type: string | string[], listener: (p0: any) => any): void;

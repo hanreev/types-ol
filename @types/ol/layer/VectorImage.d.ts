@@ -1,19 +1,17 @@
 import { EventsKey } from '../events';
 import BaseEvent from '../events/Event';
 import { Extent } from '../extent';
-import Geometry from '../geom/Geometry';
 import { ObjectEvent } from '../Object';
 import PluggableMap from '../PluggableMap';
 import { OrderFunction } from '../render';
 import RenderEvent from '../render/Event';
 import LayerRenderer from '../renderer/Layer';
-import Source from '../source/Source';
 import VectorSource from '../source/Vector';
 import { StyleLike } from '../style/Style';
 import BaseVectorLayer from './BaseVector';
 import Layer from './Layer';
 
-export interface Options {
+export interface Options<VectorSourceType extends VectorSource> {
     className?: string;
     opacity?: number;
     visible?: boolean;
@@ -25,18 +23,18 @@ export interface Options {
     maxZoom?: number;
     renderOrder?: OrderFunction;
     renderBuffer?: number;
-    source?: VectorSource<Geometry>;
+    source?: VectorSourceType;
     map?: PluggableMap;
     declutter?: boolean;
     style?: StyleLike;
     imageRatio?: number;
 }
-export default class VectorImageLayer extends BaseVectorLayer {
-    constructor(opt_options?: Options & { [key: string]: any });
+export default class VectorImageLayer<VectorSourceType extends VectorSource = VectorSource> extends BaseVectorLayer {
+    constructor(opt_options?: Options<VectorSourceType> & { [key: string]: any });
     /**
      * Create a renderer for this layer.
      */
-    createRenderer(): LayerRenderer<Layer<Source>>;
+    createRenderer(): LayerRenderer<Layer>;
     getImageRatio(): number;
     on(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
     once(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];

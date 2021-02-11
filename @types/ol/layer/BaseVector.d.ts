@@ -13,7 +13,7 @@ import VectorTile from '../source/VectorTile';
 import { StyleFunction, StyleLike } from '../style/Style';
 import Layer from './Layer';
 
-export interface Options {
+export interface Options<VectorSourceType extends VectorSource | VectorTile> {
     className?: string;
     opacity?: number;
     visible?: boolean;
@@ -35,7 +35,7 @@ export interface Options {
 export default class BaseVectorLayer<
     VectorSourceType extends VectorSource | VectorTile = VectorSource | VectorTile
 > extends Layer<VectorSourceType> {
-    constructor(opt_options?: Options & { [key: string]: any });
+    constructor(opt_options?: Options<VectorSourceType> & { [key: string]: any });
     getDeclutter(): boolean;
     /**
      * Get the topmost feature that intersects the given pixel on the viewport. Returns a promise

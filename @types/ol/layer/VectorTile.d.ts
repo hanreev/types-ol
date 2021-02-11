@@ -9,7 +9,6 @@ import PluggableMap from '../PluggableMap';
 import { OrderFunction } from '../render';
 import RenderEvent from '../render/Event';
 import LayerRenderer from '../renderer/Layer';
-import Source from '../source/Source';
 import VectorTile from '../source/VectorTile';
 import { StyleLike } from '../style/Style';
 import BaseVectorLayer from './BaseVector';
@@ -43,7 +42,7 @@ export default class VectorTileLayer extends BaseVectorLayer<VectorTile> {
     /**
      * Create a renderer for this layer.
      */
-    protected createRenderer(): LayerRenderer<Layer<Source>>;
+    protected createRenderer(): LayerRenderer<Layer>;
     /**
      * Get the topmost feature that intersects the given pixel on the viewport. Returns a promise
      * that resolves with an array of features. The array will either contain the topmost feature
