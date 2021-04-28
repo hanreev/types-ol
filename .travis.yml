@@ -1,12 +1,12 @@
 language: node_js
 node_js:
-  - '13'
+  - '14'
 
 notifications:
   email: false
 
 before_script:
-  - git clone --branch v6.4.3 --single-branch https://github.com/openlayers/openlayers
+  - git clone --branch v6.5.0 --single-branch --depth 1 https://github.com/openlayers/openlayers
 
 script:
   - yarn prepare-npm

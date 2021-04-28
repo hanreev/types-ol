@@ -1,12 +1,12 @@
 diff --git a/src/ol/Geolocation.js b/src/ol/Geolocation.js
-index 26f76d229..4ee92484d 100644
+index 7bfbbfe14..c5ec305d6 100644
 --- a/src/ol/Geolocation.js
 +++ b/src/ol/Geolocation.js
 @@ -34,18 +34,20 @@ const Property = {
   */
  class GeolocationError extends BaseEvent {
    /**
--   * @param {PositionError} error error object.
+-   * @param {GeolocationPositionError} error error object.
 +   * @param {*} error error object.
     */
    constructor(error) {

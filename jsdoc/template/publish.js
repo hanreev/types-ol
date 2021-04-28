@@ -28,7 +28,7 @@ const MODULE_EXPORTS = {};
 const MODULE_CHILDREN = {};
 
 /** @type {string[]} */
-const EXTERNAL_MODULE_WHITELIST = ['arcgis-rest-api', 'geojson', 'topojson-specification'];
+const EXTERNAL_MODULE_WHITELIST = ['arcgis-rest-api', 'geojson', 'topojson-specification', 'rbush'];
 
 /** @type {Object<string, DocletGenericType[]>} */
 const GENERIC_TYPES = {};
@@ -153,6 +153,12 @@ function registerImport(_module, val) {
 
   let counter = 1;
   let availableImportName = importName;
+
+  // FIXME: rbush import patch
+  if (moduleName == 'rbush') {
+    isDefault = true;
+    availableImportName = 'RBush';
+  }
 
   if (find({ name: importName, memberof: _module.longname }).length) {
     availableImportName = `${importName}_${counter}`;
@@ -447,10 +453,11 @@ function getType(doclet, _module, undefinedLiteral = false, nullLiteral = false)
       return 'any';
     }
 
-  let types = doclet.type.names.map(type => {
+  let types = doclet.type.names.map(typeName => {
     /** @type {ParsedType} */
     let parsedType;
     let prefix = '';
+    let type = typeName;
 
     if (type.startsWith('typeof:')) {
       prefix = 'typeof ';
@@ -470,6 +477,9 @@ function getType(doclet, _module, undefinedLiteral = false, nullLiteral = false)
           logger.warn('getType -- [RAW_PATCH]:', doclet.longname || _module.longname, type);
         else logger.error('getType --', doclet.longname || _module.longname, type);
       }
+
+    // FIXME: rbush patch
+    if (typeName == 'module:rbush') type += '<any>';
 
     return prefix + type;
   });
@@ -729,6 +739,9 @@ const PROCESSORS = {
     const children = [];
     const addedProps = [];
 
+    let docletName = doclet.name;
+    docletName += getGenericType(doclet.longname, _module);
+
     if (doclet.properties) {
       doclet.properties.forEach(prop => {
         let name = prop.name;
@@ -743,12 +756,9 @@ const PROCESSORS = {
         children.push(`${name}: ${getType(/** @type {Doclet} */ (prop), _module)};`);
       });
 
-      let name = doclet.name;
-      name += getGenericType(doclet.longname, _module);
-
-      decl = `interface ${name} {\n${children.join('\n')}\n}`;
+      decl = `interface ${docletName} {\n${children.join('\n')}\n}`;
     } else {
-      decl = `type ${doclet.name} = ${getType(doclet, _module)};`;
+      decl = `type ${docletName} = ${getType(doclet, _module)};`;
     }
 
     // Always export type

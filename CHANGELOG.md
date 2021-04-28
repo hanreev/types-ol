@@ -1,5 +1,7 @@
 ## Changelog
 
+- **v3.5.0**
+  - Update to OpenLayers v6.5.0
 - **v3.4.2**
   - Remove `GeolocationPositionError` (formerly `PositionError`) workaround.
 - **v3.4.1**

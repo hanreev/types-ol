@@ -1,0 +1,25 @@
+diff --git a/src/ol/render/canvas.js b/src/ol/render/canvas.js
+index 783b8aa05..1ecdb7855 100644
+--- a/src/ol/render/canvas.js
++++ b/src/ol/render/canvas.js
+@@ -282,6 +282,7 @@ export const registerFont = (function () {
+ })();
+ 
+ /**
++ * @function
+  * @param {string} font Font to use for measuring.
+  * @return {import("../size.js").Size} Measurement.
+  */
+diff --git a/src/ol/render/canvas/BuilderGroup.js b/src/ol/render/canvas/BuilderGroup.js
+index 49aa6c44c..4cd5e489a 100644
+--- a/src/ol/render/canvas/BuilderGroup.js
++++ b/src/ol/render/canvas/BuilderGroup.js
+@@ -60,7 +60,7 @@ class BuilderGroup {
+   }
+ 
+   /**
+-   * @return {!Object<string, !Object<import("./BuilderType").default, import("./Builder.js").SerializableInstructions>>} The serializable instructions
++   * @return {!Object<string, !Object<import("./BuilderType").default, import("../canvas.js").SerializableInstructions>>} The serializable instructions
+    */
+   finish() {
+     const builderInstructions = {};
