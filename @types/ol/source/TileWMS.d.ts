@@ -21,7 +21,7 @@ export interface Options {
     hidpi?: boolean;
     projection?: ProjectionLike;
     reprojectionErrorThreshold?: number;
-    tileClass?: ImageTile;
+    tileClass?: typeof ImageTile;
     tileGrid?: TileGrid;
     serverType?: WMSServerType | string;
     tileLoadFunction?: LoadFunction;

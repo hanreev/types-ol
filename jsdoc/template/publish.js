@@ -345,7 +345,7 @@ function stringifyType(parsedType, _module, undefinedLiteral = true, nullLiteral
         break;
 
       case 'Class':
-        typeStr = applications.join(', ');
+        typeStr = applications.map(app => `typeof ${app.replace(/<.+>/, '')}`).join(', ');
         break;
 
       default:
