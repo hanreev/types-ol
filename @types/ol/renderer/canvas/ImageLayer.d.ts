@@ -4,12 +4,13 @@ import BaseEvent from '../../events/Event';
 import ImageBase from '../../ImageBase';
 import ImageLayer from '../../layer/Image';
 import { FrameState } from '../../PluggableMap';
+import ImageSource from '../../source/Image';
 import { HitMatch } from '../Map';
 import { FeatureCallback } from '../vector';
 import CanvasLayerRenderer from './Layer';
 
 export default class CanvasImageLayerRenderer extends CanvasLayerRenderer {
-    constructor(imageLayer: ImageLayer);
+    constructor(imageLayer: ImageLayer<ImageSource>);
     protected image_: ImageBase;
     forEachFeatureAtCoordinate<T>(
         coordinate: Coordinate,

@@ -31,7 +31,7 @@ export interface Options {
     style?: StyleLike;
     imageRatio?: number;
 }
-export default class VectorImageLayer extends BaseVectorLayer {
+export default class VectorImageLayer extends BaseVectorLayer<VectorSource> {
     constructor(opt_options?: Options & { [key: string]: any });
     /**
      * Create a renderer for this layer.

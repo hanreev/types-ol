@@ -4,11 +4,12 @@ import { ObjectEvent } from '../Object';
 import RenderEvent from '../render/Event';
 import LayerRenderer from '../renderer/Layer';
 import Source from '../source/Source';
+import TileSource from '../source/Tile';
 import BaseTileLayer, { Options } from './BaseTile';
 import Layer from './Layer';
 
-export default class TileLayer extends BaseTileLayer {
-    constructor(opt_options?: Options & { [key: string]: any });
+export default class TileLayer<TileSourceType extends TileSource = TileSource> extends BaseTileLayer<TileSourceType> {
+    constructor(opt_options?: Options<TileSourceType> & { [key: string]: any });
     /**
      * Create a renderer for this layer.
      */

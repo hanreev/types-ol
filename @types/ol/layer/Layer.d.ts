@@ -13,7 +13,7 @@ import State_1 from '../source/State';
 import { State as State_2 } from '../View';
 import BaseLayer from './Base';
 
-export interface Options {
+export interface Options<SourceType extends Source = Source> {
     className?: string;
     opacity?: number;
     visible?: boolean;
@@ -23,7 +23,7 @@ export interface Options {
     maxResolution?: number;
     minZoom?: number;
     maxZoom?: number;
-    source?: Source;
+    source?: SourceType;
     map?: PluggableMap;
     render?: RenderFunction;
 }
@@ -42,7 +42,7 @@ export interface State {
     maxZoom: number;
 }
 export default class Layer<SourceType extends Source = Source> extends BaseLayer {
-    constructor(options: Options);
+    constructor(options: Options<SourceType>);
     /**
      * Create a renderer for this layer.
      */

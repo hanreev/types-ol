@@ -1,28 +1,30 @@
 ## Changelog
 
+- **v3.5.3**
+  - Implemented layer generic types
 - **v3.5.2**
   - Fixed nullable properties
 - **v3.5.1**
   - Fixed missing `typeof` type operator
 - **v3.5.0**
-  - Update to OpenLayers v6.5.0
+  - Updated to OpenLayers v6.5.0
 - **v3.4.2**
-  - Remove `GeolocationPositionError` (formerly `PositionError`) workaround.
+  - Removed `GeolocationPositionError` (formerly `PositionError`) workaround.
 - **v3.4.1**
   - Reflect javascript exports
-  - Add `ol/Geolocation~GeolocationError`
+  - Added `ol/Geolocation~GeolocationError`
 - **v3.4.0**
-  - Update to OpenLayers v6.4.3
+  - Updated to OpenLayers v6.4.3
 - **v3.3.0**
-  - Update to OpenLayers v6.3.1
+  - Updated to OpenLayers v6.3.1
 - **v3.2.0**
-  - Update to OpenLayers v6.2.1
+  - Updated to OpenLayers v6.2.1
   - Set `opt_options` constructor parameter of `ol/source/IIIF~IIIF` as optional.
   - `ol/Object~BaseObject` derived classes can accept extra options.
-  - Change `ol/size.Size` type from `number[]` to `[number, number]`
+  - Changed `ol/size.Size` type from `number[]` to `[number, number]`
 - **v3.1.0**
-  - Update to OpenLayers v6.1.1
-  - Change `ol/extent.Extent` type from `number[]` to `[number, number, number, number]`
+  - Updated to OpenLayers v6.1.1
+  - Changed `ol/extent.Extent` type from `number[]` to `[number, number, number, number]`
   - Tools upgrade: `jsdoc@3.6.3` and `jsdoc-plugin-typescript@2.0.5`
 - **v3.0.0**
   - OpenLayers v6

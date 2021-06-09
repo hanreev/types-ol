@@ -10,13 +10,14 @@ import { FrameState } from '../../PluggableMap';
 import { TransformFunction } from '../../proj';
 import BuilderGroup from '../../render/canvas/BuilderGroup';
 import ExecutorGroup from '../../render/canvas/ExecutorGroup';
+import VectorSource from '../../source/Vector';
 import Style from '../../style/Style';
 import { HitMatch } from '../Map';
 import { FeatureCallback } from '../vector';
 import CanvasLayerRenderer from './Layer';
 
 export default class CanvasVectorLayerRenderer extends CanvasLayerRenderer {
-    constructor(vectorLayer: VectorLayer);
+    constructor(vectorLayer: VectorLayer<VectorSource<Geometry>>);
     forEachFeatureAtCoordinate<T>(
         coordinate: Coordinate,
         frameState: FrameState,

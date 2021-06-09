@@ -23,7 +23,7 @@ export interface Options {
     source?: VectorSource<Geometry>;
     disableHitDetection?: boolean;
 }
-export default class WebGLPointsLayer extends Layer {
+export default class WebGLPointsLayer extends Layer<VectorSource> {
     constructor(options: Options);
     /**
      * Create a renderer for this layer.

@@ -7,7 +7,7 @@ import RenderEvent from '../render/Event';
 import TileSource from '../source/Tile';
 import Layer from './Layer';
 
-export interface Options {
+export interface Options<TileSourceType extends TileSource = TileSource> {
     className?: string;
     opacity?: number;
     visible?: boolean;
@@ -18,12 +18,12 @@ export interface Options {
     minZoom?: number;
     maxZoom?: number;
     preload?: number;
-    source?: TileSource;
+    source?: TileSourceType;
     map?: PluggableMap;
     useInterimTilesOnError?: boolean;
 }
-export default class BaseTileLayer extends Layer<TileSource> {
-    constructor(opt_options?: Options & { [key: string]: any });
+export default class BaseTileLayer<TileSourceType extends TileSource = TileSource> extends Layer<TileSourceType> {
+    constructor(opt_options?: Options<TileSourceType> & { [key: string]: any });
     /**
      * Return the level as number to which we will preload tiles up to.
      */

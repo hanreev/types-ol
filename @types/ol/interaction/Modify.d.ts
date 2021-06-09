@@ -44,7 +44,7 @@ export default class Modify extends PointerInteraction {
     /**
      * Get the overlay layer that this interaction renders the modification point or vertex to.
      */
-    getOverlay(): VectorLayer;
+    getOverlay(): VectorLayer<VectorSource<Geometry>>;
     /**
      * Handle pointer down events.
      */

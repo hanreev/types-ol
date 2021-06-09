@@ -7,7 +7,7 @@ import RenderEvent from '../render/Event';
 import ImageSource from '../source/Image';
 import Layer from './Layer';
 
-export interface Options {
+export interface Options<ImageSourceType extends ImageSource = ImageSource> {
     className?: string;
     opacity?: number;
     visible?: boolean;
@@ -18,10 +18,10 @@ export interface Options {
     minZoom?: number;
     maxZoom?: number;
     map?: PluggableMap;
-    source?: ImageSource;
+    source?: ImageSourceType;
 }
-export default class BaseImageLayer extends Layer<ImageSource> {
-    constructor(opt_options?: Options & { [key: string]: any });
+export default class BaseImageLayer<ImageSourceType extends ImageSource = ImageSource> extends Layer<ImageSourceType> {
+    constructor(opt_options?: Options<ImageSourceType> & { [key: string]: any });
     on(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
     once(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
     un(type: string | string[], listener: (p0: any) => any): void;

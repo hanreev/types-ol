@@ -1,0 +1,234 @@
+diff --git a/src/ol/layer/BaseImage.js b/src/ol/layer/BaseImage.js
+index 91307b138..ff5fe96e6 100644
+--- a/src/ol/layer/BaseImage.js
++++ b/src/ol/layer/BaseImage.js
+@@ -26,7 +26,8 @@ import Layer from './Layer.js';
+  * this layer in its layers collection, and the layer will be rendered on top. This is useful for
+  * temporary layers. The standard way to add a layer to a map and have it managed by the map is to
+  * use {@link module:ol/Map#addLayer}.
+- * @property {import("../source/Image.js").default} [source] Source for this layer.
++ * @property {ImageSourceType} [source] Source for this layer.
++ * @template {import("../source/Image.js").default} ImageSourceType
+  */
+ 
+ /**
+@@ -37,12 +38,13 @@ import Layer from './Layer.js';
+  * property on the layer object; for example, setting `title: 'My Title'` in the
+  * options means that `title` is observable, and has get/set accessors.
+  *
+- * @extends {Layer<import("../source/Image.js").default>}
++ * @template {import("../source/Image.js").default} ImageSourceType
++ * @augments Layer<ImageSourceType>
+  * @api
+  */
+ class BaseImageLayer extends Layer {
+   /**
+-   * @param {Options=} opt_options Layer options.
++   * @param {Options<ImageSourceType>=} opt_options Layer options.
+    */
+   constructor(opt_options) {
+     const options = opt_options ? opt_options : {};
+diff --git a/src/ol/layer/BaseTile.js b/src/ol/layer/BaseTile.js
+index 24a41c602..755c2ed11 100644
+--- a/src/ol/layer/BaseTile.js
++++ b/src/ol/layer/BaseTile.js
+@@ -26,12 +26,13 @@ import {assign} from '../obj.js';
+  * be visible.
+  * @property {number} [preload=0] Preload. Load low-resolution tiles up to `preload` levels. `0`
+  * means no preloading.
+- * @property {import("../source/Tile.js").default} [source] Source for this layer.
++ * @property {TileSourceType} [source] Source for this layer.
+  * @property {import("../PluggableMap.js").default} [map] Sets the layer as overlay on a map. The map will not manage
+  * this layer in its layers collection, and the layer will be rendered on top. This is useful for
+  * temporary layers. The standard way to add a layer to a map and have it managed by the map is to
+  * use {@link module:ol/Map#addLayer}.
+  * @property {boolean} [useInterimTilesOnError=true] Use interim tiles on error.
++ * @template {import("../source/Tile.js").default} TileSourceType
+  */
+ 
+ /**
+@@ -42,12 +43,13 @@ import {assign} from '../obj.js';
+  * property on the layer object; for example, setting `title: 'My Title'` in the
+  * options means that `title` is observable, and has get/set accessors.
+  *
+- * @extends {Layer<import("../source/Tile.js").default>}
++ * @template {import("../source/Tile.js").default} TileSourceType
++ * @augments Layer<TileSourceType>
+  * @api
+  */
+ class BaseTileLayer extends Layer {
+   /**
+-   * @param {Options=} opt_options Tile layer options.
++   * @param {Options<TileSourceType>=} opt_options Tile layer options.
+    */
+   constructor(opt_options) {
+     const options = opt_options ? opt_options : {};
+diff --git a/src/ol/layer/BaseVector.js b/src/ol/layer/BaseVector.js
+index 20189f248..63bb2b225 100644
+--- a/src/ol/layer/BaseVector.js
++++ b/src/ol/layer/BaseVector.js
+@@ -34,7 +34,7 @@ import {
+  * @property {number} [renderBuffer=100] The buffer in pixels around the viewport extent used by the
+  * renderer when getting features from the vector source for the rendering or hit-detection.
+  * Recommended value: the size of the largest symbol, line width or label.
+- * @property {import("../source/Vector.js").default} [source] Source.
++ * @property {VectorSourceType} [source] Source.
+  * @property {import("../PluggableMap.js").default} [map] Sets the layer as overlay on a map. The map will not manage
+  * this layer in its layers collection, and the layer will be rendered on top. This is useful for
+  * temporary layers. The standard way to add a layer to a map and have it managed by the map is to
+@@ -53,6 +53,7 @@ import {
+  * batches will be recreated when no animation is active.
+  * @property {boolean} [updateWhileInteracting=false] When set to `true`, feature batches will
+  * be recreated during interactions. See also `updateWhileAnimating`.
++ * @template {import("../source/Vector.js").default|import("../source/VectorTile.js").default} VectorSourceType
+  */
+ 
+ /**
+@@ -71,12 +72,12 @@ const Property = {
+  * options means that `title` is observable, and has get/set accessors.
+  *
+  * @template {import("../source/Vector.js").default|import("../source/VectorTile.js").default} VectorSourceType
+- * @extends {Layer<VectorSourceType>}
++ * @augments Layer<VectorSourceType>
+  * @api
+  */
+ class BaseVectorLayer extends Layer {
+   /**
+-   * @param {Options=} opt_options Options.
++   * @param {Options<VectorSourceType>=} opt_options Options.
+    */
+   constructor(opt_options) {
+     const options = opt_options ? opt_options : {};
+diff --git a/src/ol/layer/Image.js b/src/ol/layer/Image.js
+index dae27d2a5..ecb04b27a 100644
+--- a/src/ol/layer/Image.js
++++ b/src/ol/layer/Image.js
+@@ -12,11 +12,13 @@ import CanvasImageLayerRenderer from '../renderer/canvas/ImageLayer.js';
+  * property on the layer object; for example, setting `title: 'My Title'` in the
+  * options means that `title` is observable, and has get/set accessors.
+  *
++ * @template {import("../source/Image.js").default} ImageSourceType
++ * @augments BaseImageLayer<ImageSourceType>
+  * @api
+  */
+ class ImageLayer extends BaseImageLayer {
+   /**
+-   * @param {import("./BaseImage.js").Options=} opt_options Layer options.
++   * @param {import("./BaseImage.js").Options<ImageSourceType>=} opt_options Layer options.
+    */
+   constructor(opt_options) {
+     super(opt_options);
+diff --git a/src/ol/layer/Layer.js b/src/ol/layer/Layer.js
+index 57fa50d4e..af850509a 100644
+--- a/src/ol/layer/Layer.js
++++ b/src/ol/layer/Layer.js
+@@ -34,12 +34,13 @@ import {listen, unlistenByKey} from '../events.js';
+  * visible.
+  * @property {number} [maxZoom] The maximum view zoom level (inclusive) at which this layer will
+  * be visible.
+- * @property {import("../source/Source.js").default} [source] Source for this layer.  If not provided to the constructor,
++ * @property {SourceType} [source] Source for this layer.  If not provided to the constructor,
+  * the source can be set by calling {@link module:ol/layer/Layer#setSource layer.setSource(source)} after
+  * construction.
+  * @property {import("../PluggableMap.js").default} [map] Map.
+  * @property {RenderFunction} [render] Render function. Takes the frame state as input and is expected to return an
+  * HTML element. Will overwrite the default rendering for the layer.
++ * @template {import("../source/Source.js").default} SourceType
+  */
+ 
+ /**
+@@ -87,7 +88,7 @@ import {listen, unlistenByKey} from '../events.js';
+  */
+ class Layer extends BaseLayer {
+   /**
+-   * @param {Options} options Layer options.
++   * @param {Options<SourceType>} options Layer options.
+    */
+   constructor(options) {
+     const baseOptions = assign({}, options);
+diff --git a/src/ol/layer/Tile.js b/src/ol/layer/Tile.js
+index 565b07f80..9e0e70de2 100644
+--- a/src/ol/layer/Tile.js
++++ b/src/ol/layer/Tile.js
+@@ -12,11 +12,13 @@ import CanvasTileLayerRenderer from '../renderer/canvas/TileLayer.js';
+  * property on the layer object; for example, setting `title: 'My Title'` in the
+  * options means that `title` is observable, and has get/set accessors.
+  *
++ * @template {import("../source/Tile.js").default} TileSourceType
++ * @augments BaseTileLayer<TileSourceType>
+  * @api
+  */
+ class TileLayer extends BaseTileLayer {
+   /**
+-   * @param {import("./BaseTile.js").Options=} opt_options Tile layer options.
++   * @param {import("./BaseTile.js").Options<TileSourceType>=} opt_options Tile layer options.
+    */
+   constructor(opt_options) {
+     super(opt_options);
+diff --git a/src/ol/layer/Vector.js b/src/ol/layer/Vector.js
+index 6092ac9b6..81876dc4e 100644
+--- a/src/ol/layer/Vector.js
++++ b/src/ol/layer/Vector.js
+@@ -11,12 +11,13 @@ import CanvasVectorLayerRenderer from '../renderer/canvas/VectorLayer.js';
+  * property on the layer object; for example, setting `title: 'My Title'` in the
+  * options means that `title` is observable, and has get/set accessors.
+  *
+- * @extends {BaseVectorLayer<import("../source/Vector.js").default>}
++ * @template {import("../source/Vector.js").default} VectorSourceType
++ * @augments BaseVectorLayer<VectorSourceType>
+  * @api
+  */
+ class VectorLayer extends BaseVectorLayer {
+   /**
+-   * @param {import("./BaseVector.js").Options=} opt_options Options.
++   * @param {import("./BaseVector.js").Options<VectorSourceType>=} opt_options Options.
+    */
+   constructor(opt_options) {
+     super(opt_options);
+diff --git a/src/ol/layer/VectorImage.js b/src/ol/layer/VectorImage.js
+index 77c786265..e82eeea88 100644
+--- a/src/ol/layer/VectorImage.js
++++ b/src/ol/layer/VectorImage.js
+@@ -51,6 +51,7 @@ import {assign} from '../obj.js';
+  * property on the layer object; for example, setting `title: 'My Title'` in the
+  * options means that `title` is observable, and has get/set accessors.
+  *
++ * @augments BaseVectorLayer<import("../source/Vector.js").default>
+  * @api
+  */
+ class VectorImageLayer extends BaseVectorLayer {
+diff --git a/src/ol/layer/VectorTile.js b/src/ol/layer/VectorTile.js
+index 527e609bd..a1378ad01 100644
+--- a/src/ol/layer/VectorTile.js
++++ b/src/ol/layer/VectorTile.js
+@@ -76,8 +76,7 @@ import {assign} from '../obj.js';
+  * property on the layer object; for example, setting `title: 'My Title'` in the
+  * options means that `title` is observable, and has get/set accessors.
+  *
+- * @param {Options=} opt_options Options.
+- * @extends {BaseVectorLayer<import("../source/VectorTile.js").default>}
++ * @augments BaseVectorLayer<import("../source/VectorTile.js").default>
+  * @api
+  */
+ class VectorTileLayer extends BaseVectorLayer {
+@@ -91,7 +90,7 @@ class VectorTileLayer extends BaseVectorLayer {
+     delete baseOptions.preload;
+     delete baseOptions.useInterimTilesOnError;
+ 
+-    super(/** @type {import("./BaseVector.js").Options} */ (baseOptions));
++    super(/** @type {import("./BaseVector.js").Options<import("../source/VectorTile.js").default>} */ (baseOptions));
+ 
+     const renderMode = options.renderMode || VectorTileRenderType.HYBRID;
+     assert(
+diff --git a/src/ol/layer/WebGLPoints.js b/src/ol/layer/WebGLPoints.js
+index 68c6d4232..d0977456d 100644
+--- a/src/ol/layer/WebGLPoints.js
++++ b/src/ol/layer/WebGLPoints.js
+@@ -67,6 +67,7 @@ import {parseLiteralStyle} from '../webgl/ShaderBuilder.js';
+  * options means that `title` is observable, and has get/set accessors.
+  *
+  * @fires import("../render/Event.js").RenderEvent
++ * @augments Layer<import("../source/Vector.js").default>
+  */
+ class WebGLPointsLayer extends Layer {
+   /**

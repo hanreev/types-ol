@@ -8,8 +8,10 @@ import VectorSource from '../source/Vector';
 import BaseVectorLayer, { Options } from './BaseVector';
 import Layer from './Layer';
 
-export default class VectorLayer extends BaseVectorLayer<VectorSource> {
-    constructor(opt_options?: Options & { [key: string]: any });
+export default class VectorLayer<
+    VectorSourceType extends VectorSource = VectorSource,
+> extends BaseVectorLayer<VectorSourceType> {
+    constructor(opt_options?: Options<VectorSourceType> & { [key: string]: any });
     /**
      * Create a renderer for this layer.
      */

@@ -3,12 +3,15 @@ import BaseEvent from '../events/Event';
 import { ObjectEvent } from '../Object';
 import RenderEvent from '../render/Event';
 import LayerRenderer from '../renderer/Layer';
+import ImageSource from '../source/Image';
 import Source from '../source/Source';
 import BaseImageLayer, { Options } from './BaseImage';
 import Layer from './Layer';
 
-export default class ImageLayer extends BaseImageLayer {
-    constructor(opt_options?: Options & { [key: string]: any });
+export default class ImageLayer<
+    ImageSourceType extends ImageSource = ImageSource,
+> extends BaseImageLayer<ImageSourceType> {
+    constructor(opt_options?: Options<ImageSourceType> & { [key: string]: any });
     /**
      * Create a renderer for this layer.
      */

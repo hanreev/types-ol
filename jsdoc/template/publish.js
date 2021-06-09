@@ -580,20 +580,24 @@ const PROCESSORS = {
       if (_augment) {
         augmentName = registerImport(_module, _augment);
         const m = /^([^<]+)(.*)$/.exec(augment);
-        if (m) augmentName += m[2];
+        if (m) {
+          let gt = m[2];
+          if (gt.startsWith('<module:')) gt = '<' + registerImport(_module, gt.replace(/<(.+)>/, '$1')) + '>';
+          augmentName += gt;
+        }
       } else if (augment in GENERIC_TYPES && ANY_GENERIC_TYPES.indexOf(augment) != -1) {
         augmentName += '<any>';
       }
 
       // FIXME: Generic Type patches
-      if (doclet.longname == 'module:ol/layer/BaseImage~BaseImageLayer') augmentName += '<ImageSource>';
-      if (doclet.longname == 'module:ol/layer/BaseTile~BaseTileLayer') augmentName += '<TileSource>';
-      if (doclet.longname == 'module:ol/layer/BaseVector~BaseVectorLayer') augmentName += '<VectorSourceType>';
-      if (doclet.longname == 'module:ol/layer/Vector~VectorLayer') {
-        const gt = registerImport(_module, 'module:ol/source/Vector~VectorSource');
-        augmentName += `<${gt}>`;
-      }
-      if (doclet.longname == 'module:ol/layer/VectorTile~VectorTileLayer') augmentName += '<VectorTile>';
+      // if (doclet.longname == 'module:ol/layer/BaseImage~BaseImageLayer') augmentName += '<ImageSource>';
+      // if (doclet.longname == 'module:ol/layer/BaseTile~BaseTileLayer') augmentName += '<TileSource>';
+      // if (doclet.longname == 'module:ol/layer/BaseVector~BaseVectorLayer') augmentName += '<VectorSourceType>';
+      // if (doclet.longname == 'module:ol/layer/Vector~VectorLayer') {
+      //   const gt = registerImport(_module, 'module:ol/source/Vector~VectorSource');
+      //   augmentName += `<${gt}>`;
+      // }
+      // if (doclet.longname == 'module:ol/layer/VectorTile~VectorTileLayer') augmentName += '<VectorTile>';
 
       name += ` extends ${augmentName}`;
     }
@@ -1039,7 +1043,7 @@ function isExtendBaseObject(doclet) {
 
   let result = false;
   while (doclet && Array.isArray(doclet.augments) && doclet.augments.length) {
-    const augment = doclet.augments[0];
+    const augment = doclet.augments.length > 1 ? doclet.augments[1] : doclet.augments[0];
     if (augment == baseObjectLongname) {
       result = true;
       break;

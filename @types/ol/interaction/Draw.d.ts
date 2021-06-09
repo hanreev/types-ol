@@ -95,7 +95,7 @@ export default class Draw extends PointerInteraction {
     /**
      * Get the overlay layer that this interaction renders sketch features to.
      */
-    getOverlay(): VectorLayer;
+    getOverlay(): VectorLayer<VectorSource<Geometry>>;
     /**
      * Handle pointer down events.
      */

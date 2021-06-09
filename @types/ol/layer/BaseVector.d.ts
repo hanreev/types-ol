@@ -1,11 +1,11 @@
-import Feature from '../Feature';
-import { ObjectEvent } from '../Object';
-import PluggableMap, { FrameState } from '../PluggableMap';
 import { EventsKey } from '../events';
 import BaseEvent from '../events/Event';
 import { Extent } from '../extent';
+import Feature from '../Feature';
 import Geometry from '../geom/Geometry';
+import { ObjectEvent } from '../Object';
 import { Pixel } from '../pixel';
+import PluggableMap, { FrameState } from '../PluggableMap';
 import { OrderFunction } from '../render';
 import RenderEvent from '../render/Event';
 import VectorSource from '../source/Vector';
@@ -13,7 +13,7 @@ import VectorTile from '../source/VectorTile';
 import { StyleFunction, StyleLike } from '../style/Style';
 import Layer from './Layer';
 
-export interface Options {
+export interface Options<VectorSourceType extends VectorSource | VectorTile = VectorSource | VectorTile> {
     className?: string;
     opacity?: number;
     visible?: boolean;
@@ -25,7 +25,7 @@ export interface Options {
     maxZoom?: number;
     renderOrder?: OrderFunction;
     renderBuffer?: number;
-    source?: VectorSource<Geometry>;
+    source?: VectorSourceType;
     map?: PluggableMap;
     declutter?: boolean;
     style?: StyleLike | null;
@@ -35,7 +35,7 @@ export interface Options {
 export default class BaseVectorLayer<
     VectorSourceType extends VectorSource | VectorTile = VectorSource | VectorTile,
 > extends Layer<VectorSourceType> {
-    constructor(opt_options?: Options & { [key: string]: any });
+    constructor(opt_options?: Options<VectorSourceType> & { [key: string]: any });
     getDeclutter(): boolean;
     /**
      * Get the topmost feature that intersects the given pixel on the viewport. Returns a promise

@@ -10,6 +10,7 @@ import MapBrowserEvent from '../MapBrowserEvent';
 import { ObjectEvent } from '../Object';
 import PluggableMap from '../PluggableMap';
 import Source from '../source/Source';
+import VectorSource from '../source/Vector';
 import { StyleLike } from '../style/Style';
 import Interaction from './Interaction';
 
@@ -51,7 +52,7 @@ export default class Select extends Interaction {
      * programmatic method like pushing features to
      * {@link module:ol/interaction/Select~Select#getFeatures collection}.
      */
-    getLayer(feature: FeatureLike): VectorLayer;
+    getLayer(feature: FeatureLike): VectorLayer<VectorSource<Geometry>>;
     getStyle(): StyleLike | null;
     /**
      * Handles the {@link module:ol/MapBrowserEvent map browser event} and may change the

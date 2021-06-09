@@ -15,7 +15,7 @@ import { FeatureCallback } from '../vector';
 import CanvasLayerRenderer from './Layer';
 
 export default class CanvasTileLayerRenderer extends CanvasLayerRenderer {
-    constructor(tileLayer: TileLayer | VectorTileLayer);
+    constructor(tileLayer: TileLayer<TileSource> | VectorTileLayer);
     protected renderedPixelRatio: number;
     protected renderedProjection: Projection;
     protected renderedRevision: number;
@@ -72,7 +72,7 @@ export default class CanvasTileLayerRenderer extends CanvasLayerRenderer {
         matches: HitMatch<T>[],
     ): T | undefined;
     getImage(): HTMLCanvasElement;
-    getLayer(): TileLayer | VectorTileLayer;
+    getLayer(): TileLayer<TileSource> | VectorTileLayer;
     getTile(z: number, x: number, y: number, frameState: FrameState): Tile;
     /**
      * Perform action necessary to get the layer rendered after new fonts have loaded
