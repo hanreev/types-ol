@@ -1,5 +1,7 @@
 ## Changelog
 
+- **v3.5.2**
+  - Fixed nullable properties
 - **v3.5.1**
   - Fixed missing `typeof` type operator
 - **v3.5.0**
