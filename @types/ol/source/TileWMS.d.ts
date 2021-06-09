@@ -14,7 +14,7 @@ import WMSServerType from './WMSServerType';
 export interface Options {
     attributions?: AttributionLike;
     cacheSize?: number;
-    crossOrigin?: string;
+    crossOrigin?: null | string;
     imageSmoothing?: boolean;
     params: { [key: string]: any };
     gutter?: number;

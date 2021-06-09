@@ -27,6 +27,7 @@ const swipe = document.getElementById('swipe') as HTMLInputElement;
 
 bing.on('prerender', event => {
     const ctx = event.context;
+    if (!ctx) return;
     const width = ctx.canvas.width * (swipe.valueAsNumber / 100);
 
     ctx.save();
@@ -36,8 +37,7 @@ bing.on('prerender', event => {
 });
 
 bing.on('postrender', event => {
-    const ctx = event.context;
-    ctx.restore();
+    event.context?.restore();
 });
 
 swipe.addEventListener(

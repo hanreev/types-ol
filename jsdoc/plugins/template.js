@@ -7,13 +7,7 @@ exports.defineTags = dictionary => {
     mustHaveValue: true,
     canHaveType: true,
     canHaveName: false,
-    /**
-     * @param {Doclet} doclet
-     * @param {Tag<TagValue>} tag
-     */
-    onTagged(doclet, tag) {
-      addTemplate(doclet, tag);
-    },
+    onTagged: addTemplate,
   });
 };
 

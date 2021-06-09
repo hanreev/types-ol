@@ -16,7 +16,7 @@ export interface Options {
     attributions?: AttributionLike;
     attributionsCollapsible?: boolean;
     cacheSize?: number;
-    crossOrigin?: string;
+    crossOrigin?: null | string;
     imageSmoothing?: boolean;
     opaque?: boolean;
     projection?: ProjectionLike;

@@ -444,7 +444,7 @@ function parseConstFunctionType(doclet, _module) {
  * @param {boolean} [undefinedLiteral]
  * @param {boolean} [nullLiteral]
  */
-function getType(doclet, _module, undefinedLiteral = false, nullLiteral = false) {
+function getType(doclet, _module, undefinedLiteral = false, nullLiteral = true) {
   if (!doclet.type)
     if (doclet.params || doclet.yields || doclet.returns) {
       return parseConstFunctionType(doclet, _module);
@@ -575,11 +575,15 @@ const PROCESSORS = {
     GTTypeOnly = true;
 
     if (Array.isArray(doclet.augments) && doclet.augments.length) {
-      const augment = doclet.augments[0];
+      const [augment, _augment] = doclet.augments;
       let augmentName = registerImport(_module, augment);
-      augmentName = augment.split('~')[1] || augment.split('/').pop();
-      if (augment in GENERIC_TYPES) if (ANY_GENERIC_TYPES.indexOf(augment) != -1) augmentName += '<any>';
-      // else augmentName += getGenericType(augment, _module);
+      if (_augment) {
+        augmentName = registerImport(_module, _augment);
+        const m = /^([^<]+)(.*)$/.exec(augment);
+        if (m) augmentName += m[2];
+      } else if (augment in GENERIC_TYPES && ANY_GENERIC_TYPES.indexOf(augment) != -1) {
+        augmentName += '<any>';
+      }
 
       // FIXME: Generic Type patches
       if (doclet.longname == 'module:ol/layer/BaseImage~BaseImageLayer') augmentName += '<ImageSource>';
@@ -740,7 +744,9 @@ const PROCESSORS = {
     const addedProps = [];
 
     let docletName = doclet.name;
-    docletName += getGenericType(doclet.longname, _module);
+    GTTypeOnly = false;
+    docletName += getGenericType(doclet.longname, _module, true, true);
+    GTTypeOnly = true;
 
     if (doclet.properties) {
       doclet.properties.forEach(prop => {

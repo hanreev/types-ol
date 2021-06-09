@@ -18,6 +18,7 @@ const map = new Map({
 
 osm.on('prerender', event => {
     const ctx = event.context;
+    if (!ctx) return;
     ctx.save();
     const pixelRatio = event.frameState.pixelRatio;
     const size = map.getSize()!;
@@ -39,6 +40,5 @@ osm.on('prerender', event => {
 });
 
 osm.on('postrender', event => {
-    const ctx = event.context;
-    ctx.restore();
+    event.context?.restore();
 });

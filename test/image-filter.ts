@@ -55,7 +55,7 @@ select.onchange = () => {
 };
 
 imagery.on('postrender', event => {
-    convolve(event.context, selectedKernel);
+    if (event.context) convolve(event.context, selectedKernel);
 });
 
 function convolve(context: CanvasRenderingContext2D, kernel: number[]) {

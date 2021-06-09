@@ -53,6 +53,7 @@ container.addEventListener('mouseout', () => {
 imagery.on('postrender', event => {
     if (mousePosition) {
         const context = event.context;
+        if (!context) return;
         const pixelRatio = event.frameState.pixelRatio;
         const half = radius * pixelRatio;
         const centerX = mousePosition[0] * pixelRatio;

@@ -60,6 +60,7 @@ exportButton.addEventListener(
         const extent = map.getView().calculateExtent(size);
 
         map.once('rendercomplete', event => {
+            if (!event.context) return;
             const canvas = event.context.canvas;
             const data = canvas.toDataURL('image/jpeg');
             const pdf = new jsPDF('landscape', undefined, format);

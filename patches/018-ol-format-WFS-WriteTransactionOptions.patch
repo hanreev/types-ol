@@ -1,0 +1,13 @@
+diff --git a/src/ol/format/WFS.js b/src/ol/format/WFS.js
+index f30390fa2..e77146bb1 100644
+--- a/src/ol/format/WFS.js
++++ b/src/ol/format/WFS.js
+@@ -170,7 +170,7 @@ const TRANSACTION_SERIALIZERS = {
+  * @property {string} [handle] Handle.
+  * @property {boolean} [hasZ] Must be set to true if the transaction is for
+  * a 3D layer. This will allow the Z coordinate to be included in the transaction.
+- * @property {Array<Object>} nativeElements Native elements. Currently not supported.
++ * @property {Array<Object>} [nativeElements] Native elements. Currently not supported.
+  * @property {import("./GMLBase.js").Options} [gmlOptions] GML options for the WFS transaction writer.
+  * @property {string} [version='1.1.0'] WFS version to use for the transaction. Can be either `1.0.0`, `1.1.0` or `2.0.0`.
+  */
