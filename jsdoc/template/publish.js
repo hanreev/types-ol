@@ -53,13 +53,7 @@ const PARAM_TYPE_PATCHES = {};
 const RETURN_TYPE_PATCHES = {};
 
 /** @type {Object<string, Object<string, string[]>>} */
-const PROPERTY_TYPE_PATCHES = {
-  'module:ol/control/Attribution~Options': { label: ['string', 'HTMLElement'] },
-  'module:ol/control/FullScreen~Options': {
-    label: ['string', 'Text', 'HTMLElement'],
-    labelActive: ['string', 'Text', 'HTMLElement'],
-  },
-};
+const PROPERTY_TYPE_PATCHES = {};
 
 /** @type {Object<string, string[]>} */
 const IMPORT_PATCHES = {};
@@ -69,6 +63,7 @@ const MEMBER_PATCHES = {};
 
 /** @type {Object<string, string[]>} */
 const PROPERTY_AND_METHOD_PATCHES = {
+  // Fix method override error
   'module:ol/format/GMLBase~GMLBase': [
     'protected readGeometryFromNode(node: Element, opt_options?: ReadOptions): Geometry;',
   ],
