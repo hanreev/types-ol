@@ -1,5 +1,8 @@
 ## Changelog
 
+- **v3.5.4**
+  - Include `void` in union return type
+  - Improve `Observable` events typing
 - **v3.5.3**
   - Implemented layer generic types
 - **v3.5.2**
