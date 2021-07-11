@@ -1,11 +1,10 @@
-import MapBrowserEvent from 'ol/MapBrowserEvent';
-import BaseObject from 'ol/Object';
-import { ObjectEvent } from 'ol/Object';
-import PluggableMap from 'ol/PluggableMap';
-import View from 'ol/View';
-import { Coordinate } from 'ol/coordinate';
-import { EventsKey } from 'ol/events';
-import BaseEvent from 'ol/events/Event';
+import MapBrowserEvent from '../MapBrowserEvent';
+import BaseObject, { ObjectEvent } from '../Object';
+import PluggableMap from '../PluggableMap';
+import View from '../View';
+import { Coordinate } from '../coordinate';
+import { EventsKey, ListenerFunction } from '../events';
+import BaseEvent from '../events/Event';
 
 /**
  * Object literal with config options for interactions.
@@ -37,9 +36,11 @@ export default class Interaction extends BaseObject {
      * the map here.
      */
     setMap(map: PluggableMap): void;
-    on(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
-    once(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
-    un(type: string | string[], listener: (p0: any) => any): void;
+    on(type: string, listener: ListenerFunction): EventsKey;
+    on(type: string[], listener: ListenerFunction): EventsKey[];
+    once(type: string, listener: ListenerFunction): EventsKey;
+    once(type: string[], listener: ListenerFunction): EventsKey[];
+    un(type: string | string[], listener: ListenerFunction): void;
     on(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
     once(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
     un(type: 'change', listener: (evt: BaseEvent) => void): void;

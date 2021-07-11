@@ -1,15 +1,14 @@
-import ImageCanvas from 'ol/ImageCanvas';
-import { ObjectEvent } from 'ol/Object';
-import { EventsKey } from 'ol/events';
-import BaseEvent from 'ol/events/Event';
-import { Extent } from 'ol/extent';
-import { ProjectionLike } from 'ol/proj';
-import Projection from 'ol/proj/Projection';
-import { Size } from 'ol/size';
-import ImageSource from 'ol/source/Image';
-import { ImageSourceEvent } from 'ol/source/Image';
-import { AttributionLike } from 'ol/source/Source';
-import State from 'ol/source/State';
+import ImageCanvas from '../ImageCanvas';
+import { ObjectEvent } from '../Object';
+import { EventsKey, ListenerFunction } from '../events';
+import BaseEvent from '../events/Event';
+import { Extent } from '../extent';
+import { ProjectionLike } from '../proj';
+import Projection from '../proj/Projection';
+import { Size } from '../size';
+import ImageSource, { ImageSourceEvent } from './Image';
+import { AttributionLike } from './Source';
+import State from './State';
 
 /**
  * A function returning the canvas element ({HTMLCanvasElement})
@@ -40,9 +39,11 @@ export interface Options {
 export default class ImageCanvasSource extends ImageSource {
     constructor(opt_options?: Options & { [key: string]: any });
     getImageInternal(extent: Extent, resolution: number, pixelRatio: number, projection: Projection): ImageCanvas;
-    on(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
-    once(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
-    un(type: string | string[], listener: (p0: any) => any): void;
+    on(type: string, listener: ListenerFunction): EventsKey;
+    on(type: string[], listener: ListenerFunction): EventsKey[];
+    once(type: string, listener: ListenerFunction): EventsKey;
+    once(type: string[], listener: ListenerFunction): EventsKey[];
+    un(type: string | string[], listener: ListenerFunction): void;
     on(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
     once(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
     un(type: 'change', listener: (evt: BaseEvent) => void): void;

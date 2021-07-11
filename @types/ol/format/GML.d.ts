@@ -1,4 +1,4 @@
-import { Options } from 'ol/format/GMLBase';
+import { Options } from './GMLBase';
 
 declare const GML: (opt_options?: Options) => void;
 

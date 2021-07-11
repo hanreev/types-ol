@@ -13,7 +13,7 @@ import {
 } from 'ol/control';
 import { Options as ControlOptions } from 'ol/control/Control';
 import { toStringXY } from 'ol/coordinate';
-import { EventsKey } from 'ol/events';
+import { EventsKey, ListenerFunction } from 'ol/events';
 import { applyTransform } from 'ol/extent';
 import { GeoJSON, MVT } from 'ol/format';
 import { WriteTransactionOptions } from 'ol/format/WFS';
@@ -493,3 +493,8 @@ const imageLayer: ImageLayer<ImageWMS> = new ImageLayer<ImageWMS>({ source: new 
 const layerImage: Layer<ImageWMS> = imageLayer;
 const imageWmsSource: ImageWMS = imageLayer.getSource();
 const osmSource: OSM = osmLayer.getSource();
+
+const eventListener: ListenerFunction = event => console.log(event);
+const eventsKeys: EventsKey[] = map.getLayers().on(['add', 'remove'], eventListener);
+eventsKeys.push(map.once('postrender', eventListener));
+map.un('postrender', eventListener);

@@ -1,5 +1,5 @@
-import { Color } from 'ol/color';
-import { ExpressionValue as ExpressionValue_1 } from 'ol/style/expressions';
+import { Color } from '../color';
+import { ExpressionValue as ExpressionValue_1 } from './expressions';
 
 export type ExpressionValue = ExpressionValue_1;
 export interface LiteralStyle {

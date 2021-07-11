@@ -1,9 +1,9 @@
-import MapBrowserEvent from 'ol/MapBrowserEvent';
-import { ObjectEvent } from 'ol/Object';
-import { EventsKey } from 'ol/events';
-import BaseEvent from 'ol/events/Event';
-import { Condition } from 'ol/events/condition';
-import Interaction from 'ol/interaction/Interaction';
+import MapBrowserEvent from '../MapBrowserEvent';
+import { ObjectEvent } from '../Object';
+import { EventsKey, ListenerFunction } from '../events';
+import BaseEvent from '../events/Event';
+import { Condition } from '../events/condition';
+import Interaction from './Interaction';
 
 export interface Options {
     condition?: Condition;
@@ -29,9 +29,11 @@ export default class MouseWheelZoom extends Interaction {
      * Enable or disable using the mouse's location as an anchor when zooming
      */
     setMouseAnchor(useAnchor: boolean): void;
-    on(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
-    once(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
-    un(type: string | string[], listener: (p0: any) => any): void;
+    on(type: string, listener: ListenerFunction): EventsKey;
+    on(type: string[], listener: ListenerFunction): EventsKey[];
+    once(type: string, listener: ListenerFunction): EventsKey;
+    once(type: string[], listener: ListenerFunction): EventsKey[];
+    un(type: string | string[], listener: ListenerFunction): void;
     on(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
     once(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
     un(type: 'change', listener: (evt: BaseEvent) => void): void;

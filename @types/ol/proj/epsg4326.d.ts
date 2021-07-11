@@ -1,5 +1,5 @@
-import { Extent } from 'ol/extent';
-import Projection from 'ol/proj/Projection';
+import { Extent } from '../extent';
+import Projection from './Projection';
 
 /**
  * Extent of the EPSG:4326 projection which is the whole world.

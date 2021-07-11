@@ -1,5 +1,8 @@
-import Projection from 'ol/proj/Projection';
+import Projection from '../../proj/Projection';
 
+/**
+ * Generate a great-circle arcs between two lat/lon points.
+ */
 export function greatCircleArc(
     lon1: number,
     lat1: number,

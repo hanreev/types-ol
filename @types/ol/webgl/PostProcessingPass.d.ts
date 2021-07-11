@@ -1,5 +1,5 @@
-import { FrameState } from 'ol/PluggableMap';
-import { UniformValue } from 'ol/webgl/Helper';
+import { FrameState } from '../PluggableMap';
+import { UniformValue } from './Helper';
 
 export interface Options {
     webGlContext: WebGLRenderingContext;

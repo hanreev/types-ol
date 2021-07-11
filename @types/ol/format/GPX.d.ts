@@ -1,8 +1,7 @@
-import Feature from 'ol/Feature';
-import { ReadOptions } from 'ol/format/Feature';
-import { WriteOptions } from 'ol/format/Feature';
-import XMLFeature from 'ol/format/XMLFeature';
-import Geometry from 'ol/geom/Geometry';
+import Feature from '../Feature';
+import Geometry from '../geom/Geometry';
+import { ReadOptions, WriteOptions } from './Feature';
+import XMLFeature from './XMLFeature';
 
 export interface LayoutOptions {
     hasZ?: boolean;

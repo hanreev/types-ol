@@ -1,4 +1,4 @@
-import { Options } from 'ol/source/IIIF';
+import { Options } from '../source/IIIF';
 
 export interface IiifProfile {
     formats?: string[];

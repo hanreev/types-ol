@@ -1,4 +1,4 @@
-import Filter from 'ol/format/filter/Filter';
+import Filter from './Filter';
 
 export default class Not extends Filter {
     constructor(condition: Filter);

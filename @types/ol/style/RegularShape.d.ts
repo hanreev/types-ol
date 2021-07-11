@@ -1,10 +1,10 @@
-import ImageState from 'ol/ImageState';
-import { ColorLike } from 'ol/colorlike';
-import BaseEvent from 'ol/events/Event';
-import { Size } from 'ol/size';
-import Fill from 'ol/style/Fill';
-import ImageStyle from 'ol/style/Image';
-import Stroke from 'ol/style/Stroke';
+import ImageState from '../ImageState';
+import { ColorLike } from '../colorlike';
+import BaseEvent from '../events/Event';
+import { Size } from '../size';
+import Fill from './Fill';
+import ImageStyle from './Image';
+import Stroke from './Stroke';
 
 /**
  * Specify radius for regular polygons, or radius1 and radius2 for stars.

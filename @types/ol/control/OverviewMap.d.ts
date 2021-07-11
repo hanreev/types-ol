@@ -1,13 +1,13 @@
-import Collection from 'ol/Collection';
-import MapEvent from 'ol/MapEvent';
-import { ObjectEvent } from 'ol/Object';
-import PluggableMap from 'ol/PluggableMap';
-import View from 'ol/View';
-import Control from 'ol/control/Control';
-import { EventsKey } from 'ol/events';
-import BaseEvent from 'ol/events/Event';
-import Layer from 'ol/layer/Layer';
-import Source from 'ol/source/Source';
+import Collection from '../Collection';
+import MapEvent from '../MapEvent';
+import { ObjectEvent } from '../Object';
+import PluggableMap from '../PluggableMap';
+import View from '../View';
+import { EventsKey, ListenerFunction } from '../events';
+import BaseEvent from '../events/Event';
+import Layer from '../layer/Layer';
+import Source from '../source/Source';
+import Control from './Control';
 
 export interface Options {
     className?: string;
@@ -60,9 +60,11 @@ export default class OverviewMap extends Control {
      * Set whether the overview map view should rotate with the main map view.
      */
     setRotateWithView(rotateWithView: boolean): void;
-    on(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
-    once(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
-    un(type: string | string[], listener: (p0: any) => any): void;
+    on(type: string, listener: ListenerFunction): EventsKey;
+    on(type: string[], listener: ListenerFunction): EventsKey[];
+    once(type: string, listener: ListenerFunction): EventsKey;
+    once(type: string[], listener: ListenerFunction): EventsKey[];
+    un(type: string | string[], listener: ListenerFunction): void;
     on(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
     once(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
     un(type: 'change', listener: (evt: BaseEvent) => void): void;

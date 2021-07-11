@@ -1,19 +1,19 @@
-import Feature from 'ol/Feature';
-import ImageBase from 'ol/ImageBase';
-import Observable from 'ol/Observable';
-import { FrameState } from 'ol/PluggableMap';
-import Tile from 'ol/Tile';
-import TileRange from 'ol/TileRange';
-import { Coordinate } from 'ol/coordinate';
-import { EventsKey } from 'ol/events';
-import BaseEvent from 'ol/events/Event';
-import Geometry from 'ol/geom/Geometry';
-import Layer from 'ol/layer/Layer';
-import { Pixel } from 'ol/pixel';
-import Projection from 'ol/proj/Projection';
-import { HitMatch } from 'ol/renderer/Map';
-import { FeatureCallback } from 'ol/renderer/vector';
-import TileSource from 'ol/source/Tile';
+import Feature from '../Feature';
+import ImageBase from '../ImageBase';
+import Observable from '../Observable';
+import { FrameState } from '../PluggableMap';
+import Tile from '../Tile';
+import TileRange from '../TileRange';
+import { Coordinate } from '../coordinate';
+import { EventsKey, ListenerFunction } from '../events';
+import BaseEvent from '../events/Event';
+import Geometry from '../geom/Geometry';
+import Layer from '../layer/Layer';
+import { Pixel } from '../pixel';
+import Projection from '../proj/Projection';
+import TileSource from '../source/Tile';
+import { HitMatch } from './Map';
+import { FeatureCallback } from './vector';
 
 export default class LayerRenderer<LayerType extends Layer = Layer> extends Observable {
     constructor(layer: LayerType);
@@ -58,9 +58,11 @@ export default class LayerRenderer<LayerType extends Layer = Layer> extends Obse
      * Render the layer.
      */
     renderFrame(frameState: FrameState, target: HTMLElement): HTMLElement;
-    on(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
-    once(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
-    un(type: string | string[], listener: (p0: any) => any): void;
+    on(type: string, listener: ListenerFunction): EventsKey;
+    on(type: string[], listener: ListenerFunction): EventsKey[];
+    once(type: string, listener: ListenerFunction): EventsKey;
+    once(type: string[], listener: ListenerFunction): EventsKey[];
+    un(type: string | string[], listener: ListenerFunction): void;
     on(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
     once(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
     un(type: 'change', listener: (evt: BaseEvent) => void): void;

@@ -1,13 +1,12 @@
-import { ObjectEvent } from 'ol/Object';
-import { EventsKey } from 'ol/events';
-import BaseEvent from 'ol/events/Event';
-import BaseImageLayer from 'ol/layer/BaseImage';
-import { Options } from 'ol/layer/BaseImage';
-import Layer from 'ol/layer/Layer';
-import RenderEvent from 'ol/render/Event';
-import LayerRenderer from 'ol/renderer/Layer';
-import ImageSource from 'ol/source/Image';
-import Source from 'ol/source/Source';
+import { ObjectEvent } from '../Object';
+import { EventsKey, ListenerFunction } from '../events';
+import BaseEvent from '../events/Event';
+import RenderEvent from '../render/Event';
+import LayerRenderer from '../renderer/Layer';
+import ImageSource from '../source/Image';
+import Source from '../source/Source';
+import BaseImageLayer, { Options } from './BaseImage';
+import Layer from './Layer';
 
 export default class ImageLayer<
     ImageSourceType extends ImageSource = ImageSource,
@@ -17,9 +16,11 @@ export default class ImageLayer<
      * Create a renderer for this layer.
      */
     createRenderer(): LayerRenderer<Layer<Source>>;
-    on(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
-    once(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
-    un(type: string | string[], listener: (p0: any) => any): void;
+    on(type: string, listener: ListenerFunction): EventsKey;
+    on(type: string[], listener: ListenerFunction): EventsKey[];
+    once(type: string, listener: ListenerFunction): EventsKey;
+    once(type: string[], listener: ListenerFunction): EventsKey[];
+    un(type: string | string[], listener: ListenerFunction): void;
     on(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
     once(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
     un(type: 'change', listener: (evt: BaseEvent) => void): void;

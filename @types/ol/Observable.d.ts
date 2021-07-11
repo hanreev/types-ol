@@ -1,6 +1,6 @@
-import { EventsKey } from 'ol/events';
-import BaseEvent from 'ol/events/Event';
-import Target from 'ol/events/Target';
+import { EventsKey, ListenerFunction } from './events';
+import BaseEvent from './events/Event';
+import Target from './events/Target';
 
 export default class Observable extends Target {
     constructor();
@@ -16,15 +16,15 @@ export default class Observable extends Target {
     /**
      * Listen for a certain type of event.
      */
-    on(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
+    on(type: string | string[], listener: ListenerFunction): EventsKey | EventsKey[];
     /**
      * Listen once for a certain type of event.
      */
-    once(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
+    once(type: string | string[], listener: ListenerFunction): EventsKey | EventsKey[];
     /**
      * Unlisten for a certain type of event.
      */
-    un(type: string | string[], listener: (p0: any) => any): void;
+    un(type: string | string[], listener: ListenerFunction): void;
     on(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
     once(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
     un(type: 'change', listener: (evt: BaseEvent) => void): void;

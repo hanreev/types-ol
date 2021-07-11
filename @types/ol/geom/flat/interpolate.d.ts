@@ -1,4 +1,4 @@
-import { Coordinate } from 'ol/coordinate';
+import { Coordinate } from '../../coordinate';
 
 export function interpolatePoint(
     flatCoordinates: number[],

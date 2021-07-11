@@ -1,10 +1,10 @@
-import { ObjectEvent } from 'ol/Object';
-import { EventsKey } from 'ol/events';
-import BaseEvent from 'ol/events/Event';
-import { ProjectionLike } from 'ol/proj';
-import { AttributionLike } from 'ol/source/Source';
-import { TileSourceEvent } from 'ol/source/Tile';
-import XYZ from 'ol/source/XYZ';
+import { ObjectEvent } from '../Object';
+import { EventsKey, ListenerFunction } from '../events';
+import BaseEvent from '../events/Event';
+import { ProjectionLike } from '../proj';
+import { AttributionLike } from './Source';
+import { TileSourceEvent } from './Tile';
+import XYZ from './XYZ';
 
 export interface CartoDBLayerInfo {
     layergroupid: string;
@@ -37,9 +37,11 @@ export default class CartoDB extends XYZ {
      * Updates the carto db config.
      */
     updateConfig(config: any): void;
-    on(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
-    once(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
-    un(type: string | string[], listener: (p0: any) => any): void;
+    on(type: string, listener: ListenerFunction): EventsKey;
+    on(type: string[], listener: ListenerFunction): EventsKey[];
+    once(type: string, listener: ListenerFunction): EventsKey;
+    once(type: string[], listener: ListenerFunction): EventsKey[];
+    un(type: string | string[], listener: ListenerFunction): void;
     on(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
     once(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
     un(type: 'change', listener: (evt: BaseEvent) => void): void;

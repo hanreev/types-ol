@@ -1,18 +1,16 @@
-import { ObjectEvent } from 'ol/Object';
-import { Options as Options_1 } from 'ol/Tile';
-import Tile from 'ol/Tile';
-import TileCache from 'ol/TileCache';
-import TileRange from 'ol/TileRange';
-import { EventsKey } from 'ol/events';
-import BaseEvent from 'ol/events/Event';
-import { ProjectionLike } from 'ol/proj';
-import Projection from 'ol/proj/Projection';
-import { Size } from 'ol/size';
-import { AttributionLike } from 'ol/source/Source';
-import Source from 'ol/source/Source';
-import State from 'ol/source/State';
-import { TileCoord } from 'ol/tilecoord';
-import TileGrid from 'ol/tilegrid/TileGrid';
+import { ObjectEvent } from '../Object';
+import Tile, { Options as Options_1 } from '../Tile';
+import TileCache from '../TileCache';
+import TileRange from '../TileRange';
+import { EventsKey, ListenerFunction } from '../events';
+import BaseEvent from '../events/Event';
+import { ProjectionLike } from '../proj';
+import Projection from '../proj/Projection';
+import { Size } from '../size';
+import { TileCoord } from '../tilecoord';
+import TileGrid from '../tilegrid/TileGrid';
+import Source, { AttributionLike } from './Source';
+import State from './State';
 
 export interface Options {
     attributions?: AttributionLike;
@@ -85,9 +83,11 @@ export default abstract class TileSource extends Source {
      * Marks a tile coord as being used, without triggering a load.
      */
     abstract useTile(z: number, x: number, y: number, projection: Projection): void;
-    on(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
-    once(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
-    un(type: string | string[], listener: (p0: any) => any): void;
+    on(type: string, listener: ListenerFunction): EventsKey;
+    on(type: string[], listener: ListenerFunction): EventsKey[];
+    once(type: string, listener: ListenerFunction): EventsKey;
+    once(type: string[], listener: ListenerFunction): EventsKey[];
+    un(type: string | string[], listener: ListenerFunction): void;
     on(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
     once(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
     un(type: 'change', listener: (evt: BaseEvent) => void): void;

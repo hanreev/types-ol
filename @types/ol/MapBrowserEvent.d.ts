@@ -1,8 +1,7 @@
-import MapEvent from 'ol/MapEvent';
-import PluggableMap from 'ol/PluggableMap';
-import { FrameState } from 'ol/PluggableMap';
-import { Coordinate } from 'ol/coordinate';
-import { Pixel } from 'ol/pixel';
+import MapEvent from './MapEvent';
+import PluggableMap, { FrameState } from './PluggableMap';
+import { Coordinate } from './coordinate';
+import { Pixel } from './pixel';
 
 export default class MapBrowserEvent<EVENT extends UIEvent = UIEvent> extends MapEvent {
     constructor(

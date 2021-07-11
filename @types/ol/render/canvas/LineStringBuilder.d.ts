@@ -1,11 +1,10 @@
-import { FeatureLike } from 'ol/Feature';
-import { Extent } from 'ol/extent';
-import LineString from 'ol/geom/LineString';
-import MultiLineString from 'ol/geom/MultiLineString';
-import RenderFeature from 'ol/render/Feature';
-import { FillStrokeState } from 'ol/render/canvas';
-import { SerializableInstructions } from 'ol/render/canvas';
-import CanvasBuilder from 'ol/render/canvas/Builder';
+import { FeatureLike } from '../../Feature';
+import { Extent } from '../../extent';
+import LineString from '../../geom/LineString';
+import MultiLineString from '../../geom/MultiLineString';
+import RenderFeature from '../Feature';
+import { FillStrokeState, SerializableInstructions } from '../canvas';
+import CanvasBuilder from './Builder';
 
 export default class CanvasLineStringBuilder extends CanvasBuilder {
     constructor(tolerance: number, maxExtent: Extent, resolution: number, pixelRatio: number);

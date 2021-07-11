@@ -1,12 +1,12 @@
-import MapEvent from 'ol/MapEvent';
-import { ObjectEvent } from 'ol/Object';
-import PluggableMap from 'ol/PluggableMap';
-import Control from 'ol/control/Control';
-import { CoordinateFormat } from 'ol/coordinate';
-import { EventsKey } from 'ol/events';
-import BaseEvent from 'ol/events/Event';
-import { ProjectionLike } from 'ol/proj';
-import Projection from 'ol/proj/Projection';
+import MapEvent from '../MapEvent';
+import { ObjectEvent } from '../Object';
+import PluggableMap from '../PluggableMap';
+import { CoordinateFormat } from '../coordinate';
+import { EventsKey, ListenerFunction } from '../events';
+import BaseEvent from '../events/Event';
+import { ProjectionLike } from '../proj';
+import Projection from '../proj/Projection';
+import Control from './Control';
 
 export interface Options {
     className?: string;
@@ -43,9 +43,11 @@ export default class MousePosition extends Control {
      * Set the projection that is used to report the mouse position.
      */
     setProjection(projection: ProjectionLike): void;
-    on(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
-    once(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
-    un(type: string | string[], listener: (p0: any) => any): void;
+    on(type: string, listener: ListenerFunction): EventsKey;
+    on(type: string[], listener: ListenerFunction): EventsKey[];
+    once(type: string, listener: ListenerFunction): EventsKey;
+    once(type: string[], listener: ListenerFunction): EventsKey[];
+    un(type: string | string[], listener: ListenerFunction): void;
     on(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
     once(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
     un(type: 'change', listener: (evt: BaseEvent) => void): void;

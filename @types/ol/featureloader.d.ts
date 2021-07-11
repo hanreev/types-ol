@@ -1,10 +1,10 @@
-import Feature from 'ol/Feature';
-import VectorTile from 'ol/VectorTile';
-import { Extent } from 'ol/extent';
-import FeatureFormat from 'ol/format/Feature';
-import Geometry from 'ol/geom/Geometry';
-import Projection from 'ol/proj/Projection';
-import VectorSource from 'ol/source/Vector';
+import Feature from './Feature';
+import VectorTile from './VectorTile';
+import { Extent } from './extent';
+import FeatureFormat from './format/Feature';
+import Geometry from './geom/Geometry';
+import Projection from './proj/Projection';
+import VectorSource from './source/Vector';
 
 /**
  * {@link module:ol/source/Vector} sources use a function of this type to

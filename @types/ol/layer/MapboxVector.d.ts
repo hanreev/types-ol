@@ -1,12 +1,12 @@
-import { ObjectEvent } from 'ol/Object';
-import PluggableMap from 'ol/PluggableMap';
-import { EventsKey } from 'ol/events';
-import BaseEvent from 'ol/events/Event';
-import { Extent } from 'ol/extent';
-import VectorTileLayer from 'ol/layer/VectorTile';
-import VectorTileRenderType from 'ol/layer/VectorTileRenderType';
-import { OrderFunction } from 'ol/render';
-import RenderEvent from 'ol/render/Event';
+import { ObjectEvent } from '../Object';
+import PluggableMap from '../PluggableMap';
+import { EventsKey, ListenerFunction } from '../events';
+import BaseEvent from '../events/Event';
+import { Extent } from '../extent';
+import { OrderFunction } from '../render';
+import RenderEvent from '../render/Event';
+import VectorTileLayer from './VectorTile';
+import VectorTileRenderType from './VectorTileRenderType';
 
 export interface LayerObject {
     id: string;
@@ -66,9 +66,11 @@ export default class MapboxVectorLayer extends VectorTileLayer {
      * Handle the loaded style object.
      */
     protected onStyleLoad(style: StyleObject): void;
-    on(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
-    once(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
-    un(type: string | string[], listener: (p0: any) => any): void;
+    on(type: string, listener: ListenerFunction): EventsKey;
+    on(type: string[], listener: ListenerFunction): EventsKey[];
+    once(type: string, listener: ListenerFunction): EventsKey;
+    once(type: string[], listener: ListenerFunction): EventsKey[];
+    un(type: string | string[], listener: ListenerFunction): void;
     on(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
     once(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
     un(type: 'change', listener: (evt: BaseEvent) => void): void;

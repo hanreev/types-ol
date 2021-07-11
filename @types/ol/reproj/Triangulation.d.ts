@@ -1,6 +1,6 @@
-import { Coordinate } from 'ol/coordinate';
-import { Extent } from 'ol/extent';
-import Projection from 'ol/proj/Projection';
+import { Coordinate } from '../coordinate';
+import { Extent } from '../extent';
+import Projection from '../proj/Projection';
 
 /**
  * Single triangle; consists of 3 source points and 3 target points.

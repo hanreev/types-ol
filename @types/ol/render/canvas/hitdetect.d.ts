@@ -1,9 +1,9 @@
-import { FeatureLike } from 'ol/Feature';
-import { Extent } from 'ol/extent';
-import { Pixel } from 'ol/pixel';
-import { Size } from 'ol/size';
-import { StyleFunction } from 'ol/style/Style';
-import { Transform } from 'ol/transform';
+import { FeatureLike } from '../../Feature';
+import { Extent } from '../../extent';
+import { Pixel } from '../../pixel';
+import { Size } from '../../size';
+import { StyleFunction } from '../../style/Style';
+import { Transform } from '../../transform';
 
 export function createHitDetectionImageData(
     size: Size,

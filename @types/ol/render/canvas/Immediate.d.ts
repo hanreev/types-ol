@@ -1,23 +1,23 @@
-import Feature from 'ol/Feature';
-import { Extent } from 'ol/extent';
-import Circle from 'ol/geom/Circle';
-import Geometry from 'ol/geom/Geometry';
-import GeometryCollection from 'ol/geom/GeometryCollection';
-import LineString from 'ol/geom/LineString';
-import MultiLineString from 'ol/geom/MultiLineString';
-import MultiPoint from 'ol/geom/MultiPoint';
-import MultiPolygon from 'ol/geom/MultiPolygon';
-import Point from 'ol/geom/Point';
-import Polygon from 'ol/geom/Polygon';
-import { TransformFunction } from 'ol/proj';
-import RenderFeature from 'ol/render/Feature';
-import VectorContext from 'ol/render/VectorContext';
-import Fill from 'ol/style/Fill';
-import ImageStyle from 'ol/style/Image';
-import Stroke from 'ol/style/Stroke';
-import Style from 'ol/style/Style';
-import Text from 'ol/style/Text';
-import { Transform } from 'ol/transform';
+import Feature from '../../Feature';
+import { Extent } from '../../extent';
+import Circle from '../../geom/Circle';
+import Geometry from '../../geom/Geometry';
+import GeometryCollection from '../../geom/GeometryCollection';
+import LineString from '../../geom/LineString';
+import MultiLineString from '../../geom/MultiLineString';
+import MultiPoint from '../../geom/MultiPoint';
+import MultiPolygon from '../../geom/MultiPolygon';
+import Point from '../../geom/Point';
+import Polygon from '../../geom/Polygon';
+import { TransformFunction } from '../../proj';
+import Fill from '../../style/Fill';
+import ImageStyle from '../../style/Image';
+import Stroke from '../../style/Stroke';
+import Style from '../../style/Style';
+import Text from '../../style/Text';
+import { Transform } from '../../transform';
+import RenderFeature from '../Feature';
+import VectorContext from '../VectorContext';
 
 export default class CanvasImmediateRenderer extends VectorContext {
     constructor(

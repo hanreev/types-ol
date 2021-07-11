@@ -1,14 +1,14 @@
-import { ObjectEvent } from 'ol/Object';
-import Tile from 'ol/Tile';
-import TileState from 'ol/TileState';
-import { Coordinate } from 'ol/coordinate';
-import { EventsKey } from 'ol/events';
-import BaseEvent from 'ol/events/Event';
-import { Extent } from 'ol/extent';
-import Projection from 'ol/proj/Projection';
-import TileSource from 'ol/source/Tile';
-import { Config } from 'ol/source/TileJSON';
-import { TileCoord } from 'ol/tilecoord';
+import { ObjectEvent } from '../Object';
+import Tile from '../Tile';
+import TileState from '../TileState';
+import { Coordinate } from '../coordinate';
+import { EventsKey, ListenerFunction } from '../events';
+import BaseEvent from '../events/Event';
+import { Extent } from '../extent';
+import Projection from '../proj/Projection';
+import { TileCoord } from '../tilecoord';
+import TileSource from './Tile';
+import { Config } from './TileJSON';
 
 export interface Options {
     preemptive?: boolean;
@@ -76,9 +76,11 @@ export default class UTFGrid extends TileSource {
      * Marks a tile coord as being used, without triggering a load.
      */
     useTile(z: number, x: number, y: number): void;
-    on(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
-    once(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
-    un(type: string | string[], listener: (p0: any) => any): void;
+    on(type: string, listener: ListenerFunction): EventsKey;
+    on(type: string[], listener: ListenerFunction): EventsKey[];
+    once(type: string, listener: ListenerFunction): EventsKey;
+    once(type: string[], listener: ListenerFunction): EventsKey[];
+    un(type: string | string[], listener: ListenerFunction): void;
     on(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
     once(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
     un(type: 'change', listener: (evt: BaseEvent) => void): void;

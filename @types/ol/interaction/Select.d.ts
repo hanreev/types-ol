@@ -1,20 +1,25 @@
-import Collection from 'ol/Collection';
-import { FeatureLike } from 'ol/Feature';
-import Feature from 'ol/Feature';
-import MapBrowserEvent from 'ol/MapBrowserEvent';
-import { ObjectEvent } from 'ol/Object';
-import PluggableMap from 'ol/PluggableMap';
-import { EventsKey } from 'ol/events';
-import BaseEvent from 'ol/events/Event';
-import { Condition } from 'ol/events/condition';
-import Geometry from 'ol/geom/Geometry';
-import Interaction from 'ol/interaction/Interaction';
-import Layer from 'ol/layer/Layer';
-import VectorLayer from 'ol/layer/Vector';
-import Source from 'ol/source/Source';
-import VectorSource from 'ol/source/Vector';
-import { StyleLike } from 'ol/style/Style';
+import Collection from '../Collection';
+import Feature, { FeatureLike } from '../Feature';
+import MapBrowserEvent from '../MapBrowserEvent';
+import { ObjectEvent } from '../Object';
+import PluggableMap from '../PluggableMap';
+import { EventsKey, ListenerFunction } from '../events';
+import BaseEvent from '../events/Event';
+import { Condition } from '../events/condition';
+import Geometry from '../geom/Geometry';
+import Layer from '../layer/Layer';
+import VectorLayer from '../layer/Vector';
+import Source from '../source/Source';
+import VectorSource from '../source/Vector';
+import { StyleLike } from '../style/Style';
+import Interaction from './Interaction';
 
+/**
+ * A function that takes an {@link module:ol/Feature} or
+ * {@link module:ol/render/Feature} and an
+ * {@link module:ol/layer/Layer} and returns true if the feature may be
+ * selected or false otherwise.
+ */
 export type FilterFunction = (p0: FeatureLike, p1: Layer<Source>) => boolean;
 export interface Options {
     addCondition?: Condition;
@@ -64,9 +69,11 @@ export default class Select extends Interaction {
      * map, if any. Pass null to just remove the interaction from the current map.
      */
     setMap(map: PluggableMap): void;
-    on(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
-    once(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
-    un(type: string | string[], listener: (p0: any) => any): void;
+    on(type: string, listener: ListenerFunction): EventsKey;
+    on(type: string[], listener: ListenerFunction): EventsKey[];
+    once(type: string, listener: ListenerFunction): EventsKey;
+    once(type: string[], listener: ListenerFunction): EventsKey[];
+    un(type: string | string[], listener: ListenerFunction): void;
     on(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
     once(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
     un(type: 'change', listener: (evt: BaseEvent) => void): void;

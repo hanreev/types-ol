@@ -1,8 +1,8 @@
-import MapEvent from 'ol/MapEvent';
-import { ObjectEvent } from 'ol/Object';
-import Control from 'ol/control/Control';
-import { EventsKey } from 'ol/events';
-import BaseEvent from 'ol/events/Event';
+import MapEvent from '../MapEvent';
+import { ObjectEvent } from '../Object';
+import { EventsKey, ListenerFunction } from '../events';
+import BaseEvent from '../events/Event';
+import Control from './Control';
 
 export interface Options {
     className?: string;
@@ -52,9 +52,11 @@ export default class ScaleLine extends Control {
      * Set the units to use in the scale line.
      */
     setUnits(units: Units): void;
-    on(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
-    once(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
-    un(type: string | string[], listener: (p0: any) => any): void;
+    on(type: string, listener: ListenerFunction): EventsKey;
+    on(type: string[], listener: ListenerFunction): EventsKey[];
+    once(type: string, listener: ListenerFunction): EventsKey;
+    once(type: string[], listener: ListenerFunction): EventsKey[];
+    un(type: string | string[], listener: ListenerFunction): void;
     on(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
     once(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
     un(type: 'change', listener: (evt: BaseEvent) => void): void;

@@ -1,11 +1,11 @@
-import { ObjectEvent } from 'ol/Object';
-import { LoadFunction } from 'ol/Tile';
-import { EventsKey } from 'ol/events';
-import BaseEvent from 'ol/events/Event';
-import { Size } from 'ol/size';
-import { AttributionLike } from 'ol/source/Source';
-import { TileSourceEvent } from 'ol/source/Tile';
-import TileImage from 'ol/source/TileImage';
+import { ObjectEvent } from '../Object';
+import { LoadFunction } from '../Tile';
+import { EventsKey, ListenerFunction } from '../events';
+import BaseEvent from '../events/Event';
+import { Size } from '../size';
+import { AttributionLike } from './Source';
+import { TileSourceEvent } from './Tile';
+import TileImage from './TileImage';
 
 export interface Config {
     name?: string;
@@ -41,9 +41,11 @@ export default class TileJSON extends TileImage {
     protected handleTileJSONError(): void;
     protected handleTileJSONResponse(tileJSON: Config): void;
     getTileJSON(): Config;
-    on(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
-    once(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
-    un(type: string | string[], listener: (p0: any) => any): void;
+    on(type: string, listener: ListenerFunction): EventsKey;
+    on(type: string[], listener: ListenerFunction): EventsKey[];
+    once(type: string, listener: ListenerFunction): EventsKey;
+    once(type: string[], listener: ListenerFunction): EventsKey[];
+    un(type: string | string[], listener: ListenerFunction): void;
     on(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
     once(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
     un(type: 'change', listener: (evt: BaseEvent) => void): void;

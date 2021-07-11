@@ -1,10 +1,10 @@
-import BaseObject from 'ol/Object';
-import { ColorLike } from 'ol/colorlike';
-import { ReplayImageOrLabelArgs } from 'ol/render/canvas/Executor';
-import { Size } from 'ol/size';
-import Fill from 'ol/style/Fill';
-import Stroke from 'ol/style/Stroke';
-import { Transform } from 'ol/transform';
+import BaseObject from '../Object';
+import { ColorLike } from '../colorlike';
+import { Size } from '../size';
+import Fill from '../style/Fill';
+import Stroke from '../style/Stroke';
+import { Transform } from '../transform';
+import { ReplayImageOrLabelArgs } from './canvas/Executor';
 
 export type DeclutterImageWithText = { [key: number]: ReplayImageOrLabelArgs };
 export interface FillState {

@@ -1,21 +1,20 @@
-import { FeatureLike } from 'ol/Feature';
-import { ObjectEvent } from 'ol/Object';
-import { LoadFunction } from 'ol/Tile';
-import { UrlFunction } from 'ol/Tile';
-import VectorRenderTile from 'ol/VectorRenderTile';
-import VectorTile_1 from 'ol/VectorTile';
-import { EventsKey } from 'ol/events';
-import BaseEvent from 'ol/events/Event';
-import { Extent } from 'ol/extent';
-import FeatureFormat from 'ol/format/Feature';
-import { ProjectionLike } from 'ol/proj';
-import Projection from 'ol/proj/Projection';
-import { Size } from 'ol/size';
-import { AttributionLike } from 'ol/source/Source';
-import State from 'ol/source/State';
-import { TileSourceEvent } from 'ol/source/Tile';
-import UrlTile from 'ol/source/UrlTile';
-import TileGrid from 'ol/tilegrid/TileGrid';
+import { FeatureLike } from '../Feature';
+import { ObjectEvent } from '../Object';
+import { LoadFunction, UrlFunction } from '../Tile';
+import VectorRenderTile from '../VectorRenderTile';
+import VectorTile_1 from '../VectorTile';
+import { EventsKey, ListenerFunction } from '../events';
+import BaseEvent from '../events/Event';
+import { Extent } from '../extent';
+import FeatureFormat from '../format/Feature';
+import { ProjectionLike } from '../proj';
+import Projection from '../proj/Projection';
+import { Size } from '../size';
+import TileGrid from '../tilegrid/TileGrid';
+import { AttributionLike } from './Source';
+import State from './State';
+import { TileSourceEvent } from './Tile';
+import UrlTile from './UrlTile';
 
 export interface Options {
     attributions?: AttributionLike;
@@ -69,9 +68,11 @@ export default class VectorTile extends UrlTile {
      * Increases the cache size if needed
      */
     updateCacheSize(tileCount: number, projection: Projection): void;
-    on(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
-    once(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
-    un(type: string | string[], listener: (p0: any) => any): void;
+    on(type: string, listener: ListenerFunction): EventsKey;
+    on(type: string[], listener: ListenerFunction): EventsKey[];
+    once(type: string, listener: ListenerFunction): EventsKey;
+    once(type: string[], listener: ListenerFunction): EventsKey[];
+    un(type: string | string[], listener: ListenerFunction): void;
     on(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
     once(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
     un(type: 'change', listener: (evt: BaseEvent) => void): void;

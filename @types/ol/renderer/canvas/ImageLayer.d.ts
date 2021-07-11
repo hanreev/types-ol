@@ -1,13 +1,13 @@
-import ImageBase from 'ol/ImageBase';
-import { FrameState } from 'ol/PluggableMap';
-import { Coordinate } from 'ol/coordinate';
-import { EventsKey } from 'ol/events';
-import BaseEvent from 'ol/events/Event';
-import ImageLayer from 'ol/layer/Image';
-import { HitMatch } from 'ol/renderer/Map';
-import CanvasLayerRenderer from 'ol/renderer/canvas/Layer';
-import { FeatureCallback } from 'ol/renderer/vector';
-import ImageSource from 'ol/source/Image';
+import ImageBase from '../../ImageBase';
+import { FrameState } from '../../PluggableMap';
+import { Coordinate } from '../../coordinate';
+import { EventsKey, ListenerFunction } from '../../events';
+import BaseEvent from '../../events/Event';
+import ImageLayer from '../../layer/Image';
+import ImageSource from '../../source/Image';
+import { HitMatch } from '../Map';
+import { FeatureCallback } from '../vector';
+import CanvasLayerRenderer from './Layer';
 
 export default class CanvasImageLayerRenderer extends CanvasLayerRenderer {
     constructor(imageLayer: ImageLayer<ImageSource>);
@@ -32,9 +32,11 @@ export default class CanvasImageLayerRenderer extends CanvasLayerRenderer {
      * Render the layer.
      */
     renderFrame(frameState: FrameState, target: HTMLElement): HTMLElement;
-    on(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
-    once(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
-    un(type: string | string[], listener: (p0: any) => any): void;
+    on(type: string, listener: ListenerFunction): EventsKey;
+    on(type: string[], listener: ListenerFunction): EventsKey[];
+    once(type: string, listener: ListenerFunction): EventsKey;
+    once(type: string[], listener: ListenerFunction): EventsKey[];
+    un(type: string | string[], listener: ListenerFunction): void;
     on(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
     once(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
     un(type: 'change', listener: (evt: BaseEvent) => void): void;

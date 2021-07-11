@@ -1,18 +1,18 @@
-import ImageTile from 'ol/ImageTile';
-import { FrameState } from 'ol/PluggableMap';
-import Tile from 'ol/Tile';
-import { Coordinate } from 'ol/coordinate';
-import { EventsKey } from 'ol/events';
-import BaseEvent from 'ol/events/Event';
-import { Extent } from 'ol/extent';
-import TileLayer from 'ol/layer/Tile';
-import VectorTileLayer from 'ol/layer/VectorTile';
-import Projection from 'ol/proj/Projection';
-import { HitMatch } from 'ol/renderer/Map';
-import CanvasLayerRenderer from 'ol/renderer/canvas/Layer';
-import { FeatureCallback } from 'ol/renderer/vector';
-import TileSource from 'ol/source/Tile';
-import TileGrid from 'ol/tilegrid/TileGrid';
+import ImageTile from '../../ImageTile';
+import { FrameState } from '../../PluggableMap';
+import Tile from '../../Tile';
+import { Coordinate } from '../../coordinate';
+import { EventsKey, ListenerFunction } from '../../events';
+import BaseEvent from '../../events/Event';
+import { Extent } from '../../extent';
+import TileLayer from '../../layer/Tile';
+import VectorTileLayer from '../../layer/VectorTile';
+import Projection from '../../proj/Projection';
+import TileSource from '../../source/Tile';
+import TileGrid from '../../tilegrid/TileGrid';
+import { HitMatch } from '../Map';
+import { FeatureCallback } from '../vector';
+import CanvasLayerRenderer from './Layer';
 
 export default class CanvasTileLayerRenderer extends CanvasLayerRenderer {
     constructor(tileLayer: TileLayer<TileSource> | VectorTileLayer);
@@ -87,9 +87,11 @@ export default class CanvasTileLayerRenderer extends CanvasLayerRenderer {
      * Render the layer.
      */
     renderFrame(frameState: FrameState, target: HTMLElement): HTMLElement;
-    on(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
-    once(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
-    un(type: string | string[], listener: (p0: any) => any): void;
+    on(type: string, listener: ListenerFunction): EventsKey;
+    on(type: string[], listener: ListenerFunction): EventsKey[];
+    once(type: string, listener: ListenerFunction): EventsKey;
+    once(type: string[], listener: ListenerFunction): EventsKey[];
+    un(type: string | string[], listener: ListenerFunction): void;
     on(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
     once(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
     un(type: 'change', listener: (evt: BaseEvent) => void): void;

@@ -1,20 +1,20 @@
-import Feature from 'ol/Feature';
-import { ObjectEvent } from 'ol/Object';
-import PluggableMap from 'ol/PluggableMap';
-import { EventsKey } from 'ol/events';
-import BaseEvent from 'ol/events/Event';
-import { Extent } from 'ol/extent';
-import Geometry from 'ol/geom/Geometry';
-import BaseVectorLayer from 'ol/layer/BaseVector';
-import Layer from 'ol/layer/Layer';
-import VectorTileRenderType from 'ol/layer/VectorTileRenderType';
-import { Pixel } from 'ol/pixel';
-import { OrderFunction } from 'ol/render';
-import RenderEvent from 'ol/render/Event';
-import LayerRenderer from 'ol/renderer/Layer';
-import Source from 'ol/source/Source';
-import VectorTile from 'ol/source/VectorTile';
-import { StyleLike } from 'ol/style/Style';
+import Feature from '../Feature';
+import { ObjectEvent } from '../Object';
+import PluggableMap from '../PluggableMap';
+import { EventsKey, ListenerFunction } from '../events';
+import BaseEvent from '../events/Event';
+import { Extent } from '../extent';
+import Geometry from '../geom/Geometry';
+import { Pixel } from '../pixel';
+import { OrderFunction } from '../render';
+import RenderEvent from '../render/Event';
+import LayerRenderer from '../renderer/Layer';
+import Source from '../source/Source';
+import VectorTile from '../source/VectorTile';
+import { StyleLike } from '../style/Style';
+import BaseVectorLayer from './BaseVector';
+import Layer from './Layer';
+import VectorTileRenderType from './VectorTileRenderType';
 
 export interface Options {
     className?: string;
@@ -71,9 +71,11 @@ export default class VectorTileLayer extends BaseVectorLayer<VectorTile> {
      * Set whether we use interim tiles on error.
      */
     setUseInterimTilesOnError(useInterimTilesOnError: boolean): void;
-    on(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
-    once(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
-    un(type: string | string[], listener: (p0: any) => any): void;
+    on(type: string, listener: ListenerFunction): EventsKey;
+    on(type: string[], listener: ListenerFunction): EventsKey[];
+    once(type: string, listener: ListenerFunction): EventsKey;
+    once(type: string[], listener: ListenerFunction): EventsKey[];
+    un(type: string | string[], listener: ListenerFunction): void;
     on(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
     once(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
     un(type: 'change', listener: (evt: BaseEvent) => void): void;

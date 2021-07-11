@@ -1,10 +1,9 @@
-import MapBrowserEvent from 'ol/MapBrowserEvent';
-import { ObjectEvent } from 'ol/Object';
-import { EventsKey } from 'ol/events';
-import BaseEvent from 'ol/events/Event';
-import { Condition } from 'ol/events/condition';
-import DragBox from 'ol/interaction/DragBox';
-import { DragBoxEvent } from 'ol/interaction/DragBox';
+import MapBrowserEvent from '../MapBrowserEvent';
+import { ObjectEvent } from '../Object';
+import { EventsKey, ListenerFunction } from '../events';
+import BaseEvent from '../events/Event';
+import { Condition } from '../events/condition';
+import DragBox, { DragBoxEvent } from './DragBox';
 
 export interface Options {
     className?: string;
@@ -19,9 +18,11 @@ export default class DragZoom extends DragBox {
      * Function to execute just before onboxend is fired
      */
     onBoxEnd(event: MapBrowserEvent<UIEvent>): void;
-    on(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
-    once(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
-    un(type: string | string[], listener: (p0: any) => any): void;
+    on(type: string, listener: ListenerFunction): EventsKey;
+    on(type: string[], listener: ListenerFunction): EventsKey[];
+    once(type: string, listener: ListenerFunction): EventsKey;
+    once(type: string[], listener: ListenerFunction): EventsKey[];
+    un(type: string | string[], listener: ListenerFunction): void;
     on(type: 'boxcancel', listener: (evt: DragBoxEvent) => void): EventsKey;
     once(type: 'boxcancel', listener: (evt: DragBoxEvent) => void): EventsKey;
     un(type: 'boxcancel', listener: (evt: DragBoxEvent) => void): void;

@@ -1,19 +1,20 @@
-import Feature from 'ol/Feature';
-import { ReadOptions } from 'ol/format/Feature';
-import { WriteOptions } from 'ol/format/Feature';
-import JSONFeature from 'ol/format/JSONFeature';
-import Geometry from 'ol/geom/Geometry';
-import { ProjectionLike } from 'ol/proj';
-import Projection from 'ol/proj/Projection';
-import { GeometryObject } from 'topojson-specification';
-import { GeometryCollection } from 'topojson-specification';
-import { LineString } from 'topojson-specification';
-import { MultiLineString } from 'topojson-specification';
-import { MultiPoint } from 'topojson-specification';
-import { MultiPolygon } from 'topojson-specification';
-import { Point } from 'topojson-specification';
-import { Polygon } from 'topojson-specification';
-import { Topology } from 'topojson-specification';
+import Feature from '../Feature';
+import Geometry from '../geom/Geometry';
+import { ProjectionLike } from '../proj';
+import Projection from '../proj/Projection';
+import { ReadOptions, WriteOptions } from './Feature';
+import JSONFeature from './JSONFeature';
+import {
+    GeometryCollection,
+    GeometryObject,
+    LineString,
+    MultiLineString,
+    MultiPoint,
+    MultiPolygon,
+    Point,
+    Polygon,
+    Topology,
+} from 'topojson-specification';
 
 export interface Options {
     dataProjection?: ProjectionLike;

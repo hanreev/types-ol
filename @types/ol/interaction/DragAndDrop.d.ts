@@ -1,15 +1,14 @@
-import Feature from 'ol/Feature';
-import { FeatureLike } from 'ol/Feature';
-import { ObjectEvent } from 'ol/Object';
-import PluggableMap from 'ol/PluggableMap';
-import { EventsKey } from 'ol/events';
-import BaseEvent from 'ol/events/Event';
-import FeatureFormat from 'ol/format/Feature';
-import Geometry from 'ol/geom/Geometry';
-import Interaction from 'ol/interaction/Interaction';
-import { ProjectionLike } from 'ol/proj';
-import Projection from 'ol/proj/Projection';
-import VectorSource from 'ol/source/Vector';
+import Feature, { FeatureLike } from '../Feature';
+import { ObjectEvent } from '../Object';
+import PluggableMap from '../PluggableMap';
+import { EventsKey, ListenerFunction } from '../events';
+import BaseEvent from '../events/Event';
+import FeatureFormat from '../format/Feature';
+import Geometry from '../geom/Geometry';
+import { ProjectionLike } from '../proj';
+import Projection from '../proj/Projection';
+import VectorSource from '../source/Vector';
+import Interaction from './Interaction';
 
 export interface Options {
     formatConstructors?: (typeof FeatureFormat | FeatureFormat)[];
@@ -34,9 +33,11 @@ export default class DragAndDrop extends Interaction {
      * the map here.
      */
     setMap(map: PluggableMap): void;
-    on(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
-    once(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
-    un(type: string | string[], listener: (p0: any) => any): void;
+    on(type: string, listener: ListenerFunction): EventsKey;
+    on(type: string[], listener: ListenerFunction): EventsKey[];
+    once(type: string, listener: ListenerFunction): EventsKey;
+    once(type: string[], listener: ListenerFunction): EventsKey[];
+    un(type: string | string[], listener: ListenerFunction): void;
     on(type: 'addfeatures', listener: (evt: DragAndDropEvent) => void): EventsKey;
     once(type: 'addfeatures', listener: (evt: DragAndDropEvent) => void): EventsKey;
     un(type: 'addfeatures', listener: (evt: DragAndDropEvent) => void): void;

@@ -1,5 +1,5 @@
-import { EventsKey } from 'ol/events';
-import BaseEvent from 'ol/events/Event';
+import { EventsKey, ListenerFunction } from '../events';
+import BaseEvent from '../events/Event';
 
 export interface Entry {
     key_: string;
@@ -37,9 +37,11 @@ export default class LRUCache<T> {
      * Set a maximum number of entries for the cache.
      */
     setSize(size: number): void;
-    on(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
-    once(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
-    un(type: string | string[], listener: (p0: any) => any): void;
+    on(type: string, listener: ListenerFunction): EventsKey;
+    on(type: string[], listener: ListenerFunction): EventsKey[];
+    once(type: string, listener: ListenerFunction): EventsKey;
+    once(type: string[], listener: ListenerFunction): EventsKey[];
+    un(type: string | string[], listener: ListenerFunction): void;
     on(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
     once(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
     un(type: 'change', listener: (evt: BaseEvent) => void): void;

@@ -46,7 +46,7 @@ const TYPE_PATCHES = {
   'module:ol/size~Size': ['[number, number]'],
 };
 
-/** @type {Object<string, string[]>} */
+/** @type {Object<string, Object<string, string[]>>} */
 const PARAM_TYPE_PATCHES = {};
 
 /** @type {Object<string, string[]>} */
@@ -204,6 +204,94 @@ function relativeImport(expressions, _module) {
 
     return match[1] + fromPath + match[4];
   });
+}
+
+/**
+ * @param {string[]} expressions
+ * @param {Doclet} _module
+ * @param {number} [maxLineLength=120]
+ * @returns {string[]}
+ */
+function sortImports(expressions, _module, maxLineLength = 120) {
+  if (!Array.isArray(expressions)) return logger.error('sortImports -- Invalid argument:', expressions);
+
+  /**
+   * @typedef ImportMap
+   * @prop {string} default
+   * @prop {string[]} members
+   */
+
+  /** @type {Object<string, ImportMap>} */
+  const importMap = {};
+
+  /**
+   * @param {string} a
+   * @param {string} b
+   * @returns {number}
+   */
+  const sortFn = (a, b) => {
+    return a < b ? -1 : a > b ? 1 : 0;
+  };
+
+  /**
+   * @param {string} moduleName
+   * @param {boolean} [multiLine=false]
+   */
+  const formatExpression = (moduleName, multiLine = false) => {
+    const map = importMap[moduleName];
+    let expression = 'import ';
+    if (map.default) expression += map.default;
+    if (map.members && map.members.length) {
+      if (map.default) expression += ', ';
+      if (multiLine) expression += `{\n${map.members.join(',\n')}\n}`;
+      else expression += `{ ${map.members.join(', ')} }`;
+    }
+    expression += ` from '${moduleName}';`;
+    if (!multiLine && expression.length > maxLineLength) return formatExpression(moduleName, true);
+    return expression;
+  };
+
+  // Relative import ol modules
+  expressions = relativeImport(expressions, _module);
+
+  expressions
+    .filter(expression => expression.search(/=\s?require/) == -1)
+    .forEach(expression => {
+      /** @type {RegExpMatchArray} */
+      const match = expression.match(/^import (?:([^{]+?),\s?)?(.+?) from ['"](.+?)['"];?$/);
+      if (!match) return logger.error('sortImports -- Invalid expression:', expression);
+
+      let importDefault = match[1] && match[1].trim();
+      let importMembers = match[2];
+      const moduleName = match[3];
+
+      if (/{.+}/.test(importMembers)) {
+        importMembers = importMembers.replace(/{\s?(.+?)\s?}/, '$1');
+      } else {
+        importDefault = importMembers;
+        importMembers = undefined;
+      }
+
+      /** @type {ImportMap} */
+      const map = {
+        default: importDefault,
+        members: importMembers ? importMembers.split(/,\s?/) : [],
+      };
+
+      if (!importMap[moduleName]) {
+        importMap[moduleName] = map;
+      } else {
+        importMap[moduleName].default = importMap[moduleName].default || map.default;
+        importMap[moduleName].members = importMap[moduleName].members.concat(map.members);
+      }
+
+      importMap[moduleName].members = importMap[moduleName].members.sort(sortFn);
+    });
+
+  return Object.keys(importMap)
+    .sort(sortFn)
+    .map(moduleName => formatExpression(moduleName))
+    .concat(expressions.filter(expression => expression.search(/=\s?require/) != -1));
 }
 
 /**
@@ -531,14 +619,16 @@ const PROCESSORS = {
       registerImport(_module, 'module:ol/events~EventsKey');
 
       // Add default observable methods
-      if (doclet.longname != 'module:ol/Observable~Observable')
-        find({
-          name: ['on', 'once', 'un'],
-          kind: 'function',
-          memberof: 'module:ol/Observable~Observable',
-        }).forEach(method => {
-          children.push(PROCESSORS.method(method, _module));
+      if (doclet.longname != 'module:ol/Observable~Observable') {
+        registerImport(_module, 'module:ol/events~ListenerFunction');
+        ['on', 'once'].forEach(fireMethod => {
+          children.push(
+            `${fireMethod}(type: string, listener: ListenerFunction): EventsKey;`,
+            `${fireMethod}(type: string[], listener: ListenerFunction): EventsKey[];`,
+          );
         });
+        children.push(`un(type: string | string[], listener: ListenerFunction): void;`);
+      }
 
       // Add per event observsable method
       doclet.fires
@@ -736,6 +826,9 @@ async function processModule(doclet) {
   if (MEMBER_PATCHES[doclet.longname]) children = children.concat(MEMBER_PATCHES[doclet.longname]);
 
   MODULE_CHILDREN[doclet.name] = children;
+
+  if (doclet.name in MODULE_IMPORTS)
+    MODULE_IMPORTS[doclet.name].expressions = sortImports(MODULE_IMPORTS[doclet.name].expressions, doclet);
 }
 
 /**
@@ -906,11 +999,10 @@ exports.publish = taffyData => {
   for (const longname in PARAM_TYPE_PATCHES) {
     /** @type {Doclet} */
     const doclet = data({ longname }).first();
-    const paramName = PARAM_TYPE_PATCHES[longname].shift();
-
+    const paramTypes = PARAM_TYPE_PATCHES[longname];
     if (doclet && doclet.params)
       doclet.params = doclet.params.map(param => {
-        if (param.name == paramName) param.type.names = PARAM_TYPE_PATCHES[longname];
+        if (param.name in paramTypes) param.type.names = paramTypes[param.name];
         return param;
       });
   }

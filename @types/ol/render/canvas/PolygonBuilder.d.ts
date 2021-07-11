@@ -1,13 +1,12 @@
-import Feature from 'ol/Feature';
-import { FeatureLike } from 'ol/Feature';
-import { Extent } from 'ol/extent';
-import Circle from 'ol/geom/Circle';
-import Geometry from 'ol/geom/Geometry';
-import MultiPolygon from 'ol/geom/MultiPolygon';
-import Polygon from 'ol/geom/Polygon';
-import RenderFeature from 'ol/render/Feature';
-import { SerializableInstructions } from 'ol/render/canvas';
-import CanvasBuilder from 'ol/render/canvas/Builder';
+import Feature, { FeatureLike } from '../../Feature';
+import { Extent } from '../../extent';
+import Circle from '../../geom/Circle';
+import Geometry from '../../geom/Geometry';
+import MultiPolygon from '../../geom/MultiPolygon';
+import Polygon from '../../geom/Polygon';
+import RenderFeature from '../Feature';
+import { SerializableInstructions } from '../canvas';
+import CanvasBuilder from './Builder';
 
 export default class CanvasPolygonBuilder extends CanvasBuilder {
     constructor(tolerance: number, maxExtent: Extent, resolution: number, pixelRatio: number);

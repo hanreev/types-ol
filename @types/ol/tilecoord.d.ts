@@ -1,4 +1,4 @@
-import TileGrid from 'ol/tilegrid/TileGrid';
+import TileGrid from './tilegrid/TileGrid';
 
 /**
  * An array of three numbers representing the location of a tile in a tile

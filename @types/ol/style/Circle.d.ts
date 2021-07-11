@@ -1,7 +1,7 @@
-import { Size } from 'ol/size';
-import Fill from 'ol/style/Fill';
-import RegularShape from 'ol/style/RegularShape';
-import Stroke from 'ol/style/Stroke';
+import { Size } from '../size';
+import Fill from './Fill';
+import RegularShape from './RegularShape';
+import Stroke from './Stroke';
 
 export interface Options {
     fill?: Fill;

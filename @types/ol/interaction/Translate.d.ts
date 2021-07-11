@@ -1,16 +1,15 @@
-import Collection from 'ol/Collection';
-import { FeatureLike } from 'ol/Feature';
-import Feature from 'ol/Feature';
-import MapBrowserEvent from 'ol/MapBrowserEvent';
-import { ObjectEvent } from 'ol/Object';
-import PluggableMap from 'ol/PluggableMap';
-import { Coordinate } from 'ol/coordinate';
-import { EventsKey } from 'ol/events';
-import BaseEvent from 'ol/events/Event';
-import Geometry from 'ol/geom/Geometry';
-import PointerInteraction from 'ol/interaction/Pointer';
-import Layer from 'ol/layer/Layer';
-import Source from 'ol/source/Source';
+import Collection from '../Collection';
+import Feature, { FeatureLike } from '../Feature';
+import MapBrowserEvent from '../MapBrowserEvent';
+import { ObjectEvent } from '../Object';
+import PluggableMap from '../PluggableMap';
+import { Coordinate } from '../coordinate';
+import { EventsKey, ListenerFunction } from '../events';
+import BaseEvent from '../events/Event';
+import Geometry from '../geom/Geometry';
+import Layer from '../layer/Layer';
+import Source from '../source/Source';
+import PointerInteraction from './Pointer';
 
 /**
  * A function that takes an {@link module:ol/Feature} or
@@ -63,9 +62,11 @@ export default class Translate extends PointerInteraction {
      * the map here.
      */
     setMap(map: PluggableMap): void;
-    on(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
-    once(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
-    un(type: string | string[], listener: (p0: any) => any): void;
+    on(type: string, listener: ListenerFunction): EventsKey;
+    on(type: string[], listener: ListenerFunction): EventsKey[];
+    once(type: string, listener: ListenerFunction): EventsKey;
+    once(type: string[], listener: ListenerFunction): EventsKey[];
+    un(type: string | string[], listener: ListenerFunction): void;
     on(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
     once(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
     un(type: 'change', listener: (evt: BaseEvent) => void): void;

@@ -1,18 +1,17 @@
-import Feature from 'ol/Feature';
-import { ObjectEvent } from 'ol/Object';
-import PluggableMap from 'ol/PluggableMap';
-import { FrameState } from 'ol/PluggableMap';
-import { State as State_2 } from 'ol/View';
-import { EventsKey } from 'ol/events';
-import BaseEvent from 'ol/events/Event';
-import { Extent } from 'ol/extent';
-import Geometry from 'ol/geom/Geometry';
-import BaseLayer from 'ol/layer/Base';
-import { Pixel } from 'ol/pixel';
-import RenderEvent from 'ol/render/Event';
-import LayerRenderer from 'ol/renderer/Layer';
-import Source from 'ol/source/Source';
-import State_1 from 'ol/source/State';
+import Feature from '../Feature';
+import { ObjectEvent } from '../Object';
+import PluggableMap, { FrameState } from '../PluggableMap';
+import { State as State_2 } from '../View';
+import { EventsKey, ListenerFunction } from '../events';
+import BaseEvent from '../events/Event';
+import { Extent } from '../extent';
+import Geometry from '../geom/Geometry';
+import { Pixel } from '../pixel';
+import RenderEvent from '../render/Event';
+import LayerRenderer from '../renderer/Layer';
+import Source from '../source/Source';
+import State_1 from '../source/State';
+import BaseLayer from './Base';
 
 export interface Options<SourceType extends Source = Source> {
     className?: string;
@@ -84,9 +83,11 @@ export default class Layer<SourceType extends Source = Source> extends BaseLayer
      * Set the layer source.
      */
     setSource(source: SourceType): void;
-    on(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
-    once(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
-    un(type: string | string[], listener: (p0: any) => any): void;
+    on(type: string, listener: ListenerFunction): EventsKey;
+    on(type: string[], listener: ListenerFunction): EventsKey[];
+    once(type: string, listener: ListenerFunction): EventsKey;
+    once(type: string[], listener: ListenerFunction): EventsKey[];
+    un(type: string | string[], listener: ListenerFunction): void;
     on(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
     once(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
     un(type: 'change', listener: (evt: BaseEvent) => void): void;

@@ -1,13 +1,12 @@
-import BaseObject from 'ol/Object';
-import { ObjectEvent } from 'ol/Object';
-import OverlayPositioning from 'ol/OverlayPositioning';
-import PluggableMap from 'ol/PluggableMap';
-import { Coordinate } from 'ol/coordinate';
-import { EventsKey } from 'ol/events';
-import BaseEvent from 'ol/events/Event';
-import { Extent } from 'ol/extent';
-import { Pixel } from 'ol/pixel';
-import { Size } from 'ol/size';
+import BaseObject, { ObjectEvent } from './Object';
+import OverlayPositioning from './OverlayPositioning';
+import PluggableMap from './PluggableMap';
+import { Coordinate } from './coordinate';
+import { EventsKey, ListenerFunction } from './events';
+import BaseEvent from './events/Event';
+import { Extent } from './extent';
+import { Pixel } from './pixel';
+import { Size } from './size';
 
 export interface Options {
     id?: number | string;
@@ -119,9 +118,11 @@ export default class Overlay extends BaseObject {
      * Set the positioning for this overlay.
      */
     setPositioning(positioning: OverlayPositioning): void;
-    on(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
-    once(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
-    un(type: string | string[], listener: (p0: any) => any): void;
+    on(type: string, listener: ListenerFunction): EventsKey;
+    on(type: string[], listener: ListenerFunction): EventsKey[];
+    once(type: string, listener: ListenerFunction): EventsKey;
+    once(type: string[], listener: ListenerFunction): EventsKey[];
+    un(type: string | string[], listener: ListenerFunction): void;
     on(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
     once(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
     un(type: 'change', listener: (evt: BaseEvent) => void): void;

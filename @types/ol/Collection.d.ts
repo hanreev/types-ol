@@ -1,8 +1,7 @@
-import CollectionEventType from 'ol/CollectionEventType';
-import BaseObject from 'ol/Object';
-import { ObjectEvent } from 'ol/Object';
-import { EventsKey } from 'ol/events';
-import BaseEvent from 'ol/events/Event';
+import CollectionEventType from './CollectionEventType';
+import BaseObject, { ObjectEvent } from './Object';
+import { EventsKey, ListenerFunction } from './events';
+import BaseEvent from './events/Event';
 
 export interface Options {
     unique?: boolean;
@@ -63,9 +62,11 @@ export default class Collection<T> extends BaseObject {
      * Set the element at the provided index.
      */
     setAt(index: number, elem: T): void;
-    on(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
-    once(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
-    un(type: string | string[], listener: (p0: any) => any): void;
+    on(type: string, listener: ListenerFunction): EventsKey;
+    on(type: string[], listener: ListenerFunction): EventsKey[];
+    once(type: string, listener: ListenerFunction): EventsKey;
+    once(type: string[], listener: ListenerFunction): EventsKey[];
+    un(type: string | string[], listener: ListenerFunction): void;
     on(type: 'add', listener: (evt: CollectionEvent<T>) => void): EventsKey;
     once(type: 'add', listener: (evt: CollectionEvent<T>) => void): EventsKey;
     un(type: 'add', listener: (evt: CollectionEvent<T>) => void): void;

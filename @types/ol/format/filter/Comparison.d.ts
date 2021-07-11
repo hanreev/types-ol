@@ -1,4 +1,4 @@
-import Filter from 'ol/format/filter/Filter';
+import Filter from './Filter';
 
 export default abstract class Comparison extends Filter {
     constructor(tagName: string, propertyName: string);

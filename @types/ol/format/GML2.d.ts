@@ -1,15 +1,14 @@
-import Feature from 'ol/Feature';
-import { Extent } from 'ol/extent';
-import GMLBase from 'ol/format/GMLBase';
-import { Options } from 'ol/format/GMLBase';
-import Geometry from 'ol/geom/Geometry';
-import LineString from 'ol/geom/LineString';
-import LinearRing from 'ol/geom/LinearRing';
-import MultiLineString from 'ol/geom/MultiLineString';
-import MultiPoint from 'ol/geom/MultiPoint';
-import MultiPolygon from 'ol/geom/MultiPolygon';
-import Point from 'ol/geom/Point';
-import Polygon from 'ol/geom/Polygon';
+import Feature from '../Feature';
+import { Extent } from '../extent';
+import Geometry from '../geom/Geometry';
+import LineString from '../geom/LineString';
+import LinearRing from '../geom/LinearRing';
+import MultiLineString from '../geom/MultiLineString';
+import MultiPoint from '../geom/MultiPoint';
+import MultiPolygon from '../geom/MultiPolygon';
+import Point from '../geom/Point';
+import Polygon from '../geom/Polygon';
+import GMLBase, { Options } from './GMLBase';
 
 export default class GML2 extends GMLBase {
     constructor(opt_options?: Options);

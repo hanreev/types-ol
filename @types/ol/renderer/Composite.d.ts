@@ -1,10 +1,9 @@
-import PluggableMap from 'ol/PluggableMap';
-import { FrameState } from 'ol/PluggableMap';
-import Layer from 'ol/layer/Layer';
-import { Pixel } from 'ol/pixel';
-import EventType from 'ol/render/EventType';
-import MapRenderer from 'ol/renderer/Map';
-import Source from 'ol/source/Source';
+import PluggableMap, { FrameState } from '../PluggableMap';
+import Layer from '../layer/Layer';
+import { Pixel } from '../pixel';
+import EventType from '../render/EventType';
+import Source from '../source/Source';
+import MapRenderer from './Map';
 
 export default class CompositeMapRenderer extends MapRenderer {
     constructor(map: PluggableMap);

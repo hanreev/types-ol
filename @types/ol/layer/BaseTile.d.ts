@@ -1,11 +1,11 @@
-import { ObjectEvent } from 'ol/Object';
-import PluggableMap from 'ol/PluggableMap';
-import { EventsKey } from 'ol/events';
-import BaseEvent from 'ol/events/Event';
-import { Extent } from 'ol/extent';
-import Layer from 'ol/layer/Layer';
-import RenderEvent from 'ol/render/Event';
-import TileSource from 'ol/source/Tile';
+import { ObjectEvent } from '../Object';
+import PluggableMap from '../PluggableMap';
+import { EventsKey, ListenerFunction } from '../events';
+import BaseEvent from '../events/Event';
+import { Extent } from '../extent';
+import RenderEvent from '../render/Event';
+import TileSource from '../source/Tile';
+import Layer from './Layer';
 
 export interface Options<TileSourceType extends TileSource = TileSource> {
     className?: string;
@@ -40,9 +40,11 @@ export default class BaseTileLayer<TileSourceType extends TileSource = TileSourc
      * Set whether we use interim tiles on error.
      */
     setUseInterimTilesOnError(useInterimTilesOnError: boolean): void;
-    on(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
-    once(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
-    un(type: string | string[], listener: (p0: any) => any): void;
+    on(type: string, listener: ListenerFunction): EventsKey;
+    on(type: string[], listener: ListenerFunction): EventsKey[];
+    once(type: string, listener: ListenerFunction): EventsKey;
+    once(type: string[], listener: ListenerFunction): EventsKey[];
+    un(type: string | string[], listener: ListenerFunction): void;
     on(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
     once(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
     un(type: 'change', listener: (evt: BaseEvent) => void): void;

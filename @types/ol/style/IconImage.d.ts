@@ -1,7 +1,7 @@
-import ImageState from 'ol/ImageState';
-import { Color } from 'ol/color';
-import Target from 'ol/events/Target';
-import { Size } from 'ol/size';
+import ImageState from '../ImageState';
+import { Color } from '../color';
+import Target from '../events/Target';
+import { Size } from '../size';
 
 export default class IconImage extends Target {
     constructor(

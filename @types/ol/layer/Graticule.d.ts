@@ -1,14 +1,14 @@
-import { ObjectEvent } from 'ol/Object';
-import { EventsKey } from 'ol/events';
-import BaseEvent from 'ol/events/Event';
-import { Extent } from 'ol/extent';
-import LineString from 'ol/geom/LineString';
-import Point from 'ol/geom/Point';
-import VectorLayer from 'ol/layer/Vector';
-import Projection from 'ol/proj/Projection';
-import RenderEvent from 'ol/render/Event';
-import Stroke from 'ol/style/Stroke';
-import Text from 'ol/style/Text';
+import { ObjectEvent } from '../Object';
+import { EventsKey, ListenerFunction } from '../events';
+import BaseEvent from '../events/Event';
+import { Extent } from '../extent';
+import LineString from '../geom/LineString';
+import Point from '../geom/Point';
+import Projection from '../proj/Projection';
+import RenderEvent from '../render/Event';
+import Stroke from '../style/Stroke';
+import Text from '../style/Text';
+import VectorLayer from './Vector';
 
 export interface GraticuleLabelDataType {
     geom: Point;
@@ -56,9 +56,11 @@ export default class Graticule extends VectorLayer {
      * resolution.
      */
     strategyFunction(extent: Extent, resolution: number): Extent[];
-    on(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
-    once(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
-    un(type: string | string[], listener: (p0: any) => any): void;
+    on(type: string, listener: ListenerFunction): EventsKey;
+    on(type: string[], listener: ListenerFunction): EventsKey[];
+    once(type: string, listener: ListenerFunction): EventsKey;
+    once(type: string[], listener: ListenerFunction): EventsKey[];
+    un(type: string | string[], listener: ListenerFunction): void;
     on(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
     once(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
     un(type: 'change', listener: (evt: BaseEvent) => void): void;

@@ -1,20 +1,19 @@
-import Feature from 'ol/Feature';
-import { FeatureLike } from 'ol/Feature';
-import { FrameState } from 'ol/PluggableMap';
-import Tile from 'ol/Tile';
-import VectorRenderTile from 'ol/VectorRenderTile';
-import { Coordinate } from 'ol/coordinate';
-import { EventsKey } from 'ol/events';
-import BaseEvent from 'ol/events/Event';
-import Geometry from 'ol/geom/Geometry';
-import VectorTileLayer from 'ol/layer/VectorTile';
-import { Pixel } from 'ol/pixel';
-import Projection from 'ol/proj/Projection';
-import BuilderGroup from 'ol/render/canvas/BuilderGroup';
-import { HitMatch } from 'ol/renderer/Map';
-import CanvasTileLayerRenderer from 'ol/renderer/canvas/TileLayer';
-import { FeatureCallback } from 'ol/renderer/vector';
-import Style from 'ol/style/Style';
+import Feature, { FeatureLike } from '../../Feature';
+import { FrameState } from '../../PluggableMap';
+import Tile from '../../Tile';
+import VectorRenderTile from '../../VectorRenderTile';
+import { Coordinate } from '../../coordinate';
+import { EventsKey, ListenerFunction } from '../../events';
+import BaseEvent from '../../events/Event';
+import Geometry from '../../geom/Geometry';
+import VectorTileLayer from '../../layer/VectorTile';
+import { Pixel } from '../../pixel';
+import Projection from '../../proj/Projection';
+import BuilderGroup from '../../render/canvas/BuilderGroup';
+import Style from '../../style/Style';
+import { HitMatch } from '../Map';
+import { FeatureCallback } from '../vector';
+import CanvasTileLayerRenderer from './TileLayer';
 
 export default class CanvasVectorTileLayerRenderer extends CanvasTileLayerRenderer {
     constructor(layer: VectorTileLayer);
@@ -61,9 +60,11 @@ export default class CanvasVectorTileLayerRenderer extends CanvasTileLayerRender
      */
     renderFrame(frameState: FrameState, target: HTMLElement): HTMLElement;
     renderQueuedTileImages_(hifi: boolean, frameState: FrameState): void;
-    on(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
-    once(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
-    un(type: string | string[], listener: (p0: any) => any): void;
+    on(type: string, listener: ListenerFunction): EventsKey;
+    on(type: string[], listener: ListenerFunction): EventsKey[];
+    once(type: string, listener: ListenerFunction): EventsKey;
+    once(type: string[], listener: ListenerFunction): EventsKey[];
+    un(type: string | string[], listener: ListenerFunction): void;
     on(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
     once(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
     un(type: 'change', listener: (evt: BaseEvent) => void): void;

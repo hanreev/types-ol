@@ -1,7 +1,7 @@
-import { Coordinate } from 'ol/coordinate';
-import { Extent } from 'ol/extent';
-import Projection from 'ol/proj/Projection';
-import Units from 'ol/proj/Units';
+import { Coordinate } from './coordinate';
+import { Extent } from './extent';
+import Projection from './proj/Projection';
+import Units from './proj/Units';
 
 /**
  * A projection as {@link module:ol/proj/Projection}, SRS identifier

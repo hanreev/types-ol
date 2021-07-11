@@ -1,14 +1,14 @@
-import { FrameState } from 'ol/PluggableMap';
-import { Coordinate } from 'ol/coordinate';
-import { EventsKey } from 'ol/events';
-import BaseEvent from 'ol/events/Event';
-import { Extent } from 'ol/extent';
-import Layer from 'ol/layer/Layer';
-import { Pixel } from 'ol/pixel';
-import LayerRenderer from 'ol/renderer/Layer';
-import { HitMatch } from 'ol/renderer/Map';
-import { FeatureCallback } from 'ol/renderer/vector';
-import { Transform } from 'ol/transform';
+import { FrameState } from '../../PluggableMap';
+import { Coordinate } from '../../coordinate';
+import { EventsKey, ListenerFunction } from '../../events';
+import BaseEvent from '../../events/Event';
+import { Extent } from '../../extent';
+import Layer from '../../layer/Layer';
+import { Pixel } from '../../pixel';
+import { Transform } from '../../transform';
+import LayerRenderer from '../Layer';
+import { HitMatch } from '../Map';
+import { FeatureCallback } from '../vector';
 
 export default abstract class CanvasLayerRenderer<LayerType extends Layer = Layer> extends LayerRenderer {
     constructor(layer: LayerType);
@@ -69,9 +69,11 @@ export default abstract class CanvasLayerRenderer<LayerType extends Layer = Laye
      * Get a rendering container from an existing target, if compatible.
      */
     useContainer(target: HTMLElement, transform: string, opacity: number): void;
-    on(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
-    once(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
-    un(type: string | string[], listener: (p0: any) => any): void;
+    on(type: string, listener: ListenerFunction): EventsKey;
+    on(type: string[], listener: ListenerFunction): EventsKey[];
+    once(type: string, listener: ListenerFunction): EventsKey;
+    once(type: string[], listener: ListenerFunction): EventsKey[];
+    un(type: string | string[], listener: ListenerFunction): void;
     on(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
     once(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
     un(type: 'change', listener: (evt: BaseEvent) => void): void;

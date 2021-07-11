@@ -1,6 +1,6 @@
-import ImageState from 'ol/ImageState';
-import Target from 'ol/events/Target';
-import { Extent } from 'ol/extent';
+import ImageState from './ImageState';
+import Target from './events/Target';
+import { Extent } from './extent';
 
 export default abstract class ImageBase extends Target {
     constructor(extent: Extent, resolution: number | undefined, pixelRatio: number, state: ImageState);

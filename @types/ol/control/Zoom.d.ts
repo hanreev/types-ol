@@ -1,7 +1,7 @@
-import { ObjectEvent } from 'ol/Object';
-import Control from 'ol/control/Control';
-import { EventsKey } from 'ol/events';
-import BaseEvent from 'ol/events/Event';
+import { ObjectEvent } from '../Object';
+import { EventsKey, ListenerFunction } from '../events';
+import BaseEvent from '../events/Event';
+import Control from './Control';
 
 export interface Options {
     duration?: number;
@@ -17,9 +17,11 @@ export interface Options {
 }
 export default class Zoom extends Control {
     constructor(opt_options?: Options & { [key: string]: any });
-    on(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
-    once(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
-    un(type: string | string[], listener: (p0: any) => any): void;
+    on(type: string, listener: ListenerFunction): EventsKey;
+    on(type: string[], listener: ListenerFunction): EventsKey[];
+    once(type: string, listener: ListenerFunction): EventsKey;
+    once(type: string[], listener: ListenerFunction): EventsKey[];
+    un(type: string | string[], listener: ListenerFunction): void;
     on(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
     once(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
     un(type: 'change', listener: (evt: BaseEvent) => void): void;

@@ -1,12 +1,12 @@
-import MapBrowserEvent from 'ol/MapBrowserEvent';
-import { ObjectEvent } from 'ol/Object';
-import { Coordinate } from 'ol/coordinate';
-import { EventsKey } from 'ol/events';
-import BaseEvent from 'ol/events/Event';
-import { Condition } from 'ol/events/condition';
-import Polygon from 'ol/geom/Polygon';
-import PointerInteraction from 'ol/interaction/Pointer';
-import { Pixel } from 'ol/pixel';
+import MapBrowserEvent from '../MapBrowserEvent';
+import { ObjectEvent } from '../Object';
+import { Coordinate } from '../coordinate';
+import { EventsKey, ListenerFunction } from '../events';
+import BaseEvent from '../events/Event';
+import { Condition } from '../events/condition';
+import Polygon from '../geom/Polygon';
+import { Pixel } from '../pixel';
+import PointerInteraction from './Pointer';
 
 /**
  * A function that takes a {@link module:ol/MapBrowserEvent} and two
@@ -48,9 +48,11 @@ export default class DragBox extends PointerInteraction {
      * Function to execute just before onboxend is fired
      */
     onBoxEnd(event: MapBrowserEvent<UIEvent>): void;
-    on(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
-    once(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
-    un(type: string | string[], listener: (p0: any) => any): void;
+    on(type: string, listener: ListenerFunction): EventsKey;
+    on(type: string[], listener: ListenerFunction): EventsKey[];
+    once(type: string, listener: ListenerFunction): EventsKey;
+    once(type: string[], listener: ListenerFunction): EventsKey[];
+    un(type: string | string[], listener: ListenerFunction): void;
     on(type: 'boxcancel', listener: (evt: DragBoxEvent) => void): EventsKey;
     once(type: 'boxcancel', listener: (evt: DragBoxEvent) => void): EventsKey;
     un(type: 'boxcancel', listener: (evt: DragBoxEvent) => void): void;

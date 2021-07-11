@@ -1,7 +1,7 @@
-import { Coordinate } from 'ol/coordinate';
-import { Extent } from 'ol/extent';
-import Projection from 'ol/proj/Projection';
-import Triangulation from 'ol/reproj/Triangulation';
+import { Coordinate } from './coordinate';
+import { Extent } from './extent';
+import Projection from './proj/Projection';
+import Triangulation from './reproj/Triangulation';
 
 /**
  * Calculates ideal resolution to use from the source in order to achieve

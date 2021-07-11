@@ -1,16 +1,15 @@
-import Disposable from 'ol/Disposable';
-import ImageBase from 'ol/ImageBase';
-import ImageCanvas from 'ol/ImageCanvas';
-import { ObjectEvent } from 'ol/Object';
-import { FrameState } from 'ol/PluggableMap';
-import { EventsKey } from 'ol/events';
-import BaseEvent from 'ol/events/Event';
-import { Extent } from 'ol/extent';
-import Layer from 'ol/layer/Layer';
-import Projection from 'ol/proj/Projection';
-import ImageSource from 'ol/source/Image';
-import { ImageSourceEvent } from 'ol/source/Image';
-import Source from 'ol/source/Source';
+import Disposable from '../Disposable';
+import ImageBase from '../ImageBase';
+import ImageCanvas from '../ImageCanvas';
+import { ObjectEvent } from '../Object';
+import { FrameState } from '../PluggableMap';
+import { EventsKey, ListenerFunction } from '../events';
+import BaseEvent from '../events/Event';
+import { Extent } from '../extent';
+import Layer from '../layer/Layer';
+import Projection from '../proj/Projection';
+import ImageSource, { ImageSourceEvent } from './Image';
+import Source from './Source';
 
 export interface FauxMessageEvent {
     data: any;
@@ -96,9 +95,11 @@ export default class RasterSource extends ImageSource {
      * Set the operation.
      */
     setOperation(operation: Operation, opt_lib?: any): void;
-    on(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
-    once(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
-    un(type: string | string[], listener: (p0: any) => any): void;
+    on(type: string, listener: ListenerFunction): EventsKey;
+    on(type: string[], listener: ListenerFunction): EventsKey[];
+    once(type: string, listener: ListenerFunction): EventsKey;
+    once(type: string[], listener: ListenerFunction): EventsKey[];
+    un(type: string | string[], listener: ListenerFunction): void;
     on(type: 'afteroperations', listener: (evt: RasterSourceEvent) => void): EventsKey;
     once(type: 'afteroperations', listener: (evt: RasterSourceEvent) => void): EventsKey;
     un(type: 'afteroperations', listener: (evt: RasterSourceEvent) => void): void;

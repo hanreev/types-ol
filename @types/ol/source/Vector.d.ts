@@ -1,17 +1,15 @@
-import Collection from 'ol/Collection';
-import Feature from 'ol/Feature';
-import { ObjectEvent } from 'ol/Object';
-import { Coordinate } from 'ol/coordinate';
-import { EventsKey } from 'ol/events';
-import BaseEvent from 'ol/events/Event';
-import { Extent } from 'ol/extent';
-import { FeatureLoader } from 'ol/featureloader';
-import { FeatureUrlFunction } from 'ol/featureloader';
-import FeatureFormat from 'ol/format/Feature';
-import Geometry from 'ol/geom/Geometry';
-import Projection from 'ol/proj/Projection';
-import { AttributionLike } from 'ol/source/Source';
-import Source from 'ol/source/Source';
+import Collection from '../Collection';
+import Feature from '../Feature';
+import { ObjectEvent } from '../Object';
+import { Coordinate } from '../coordinate';
+import { EventsKey, ListenerFunction } from '../events';
+import BaseEvent from '../events/Event';
+import { Extent } from '../extent';
+import { FeatureLoader, FeatureUrlFunction } from '../featureloader';
+import FeatureFormat from '../format/Feature';
+import Geometry from '../geom/Geometry';
+import Projection from '../proj/Projection';
+import Source, { AttributionLike } from './Source';
 
 /**
  * A function that takes an {@link module:ol/extent~Extent} and a resolution as arguments, and
@@ -175,9 +173,11 @@ export default class VectorSource<GeomType extends Geometry = Geometry> extends 
      * Points the source to a new url. The next render cycle will use the new url.
      */
     setUrl(url: string | FeatureUrlFunction): void;
-    on(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
-    once(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
-    un(type: string | string[], listener: (p0: any) => any): void;
+    on(type: string, listener: ListenerFunction): EventsKey;
+    on(type: string[], listener: ListenerFunction): EventsKey[];
+    once(type: string, listener: ListenerFunction): EventsKey;
+    once(type: string[], listener: ListenerFunction): EventsKey[];
+    un(type: string | string[], listener: ListenerFunction): void;
     on(type: 'addfeature', listener: (evt: VectorSourceEvent<Geometry>) => void): EventsKey;
     once(type: 'addfeature', listener: (evt: VectorSourceEvent<Geometry>) => void): EventsKey;
     un(type: 'addfeature', listener: (evt: VectorSourceEvent<Geometry>) => void): void;

@@ -1,5 +1,5 @@
-import { Color } from 'ol/color';
-import IconImage from 'ol/style/IconImage';
+import { Color } from '../color';
+import IconImage from './IconImage';
 
 /**
  * The {@link module:ol/style/IconImageCache~IconImageCache} for

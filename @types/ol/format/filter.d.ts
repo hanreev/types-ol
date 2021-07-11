@@ -1,25 +1,25 @@
-import { Extent } from 'ol/extent';
-import And from 'ol/format/filter/And';
-import Bbox from 'ol/format/filter/Bbox';
-import Contains from 'ol/format/filter/Contains';
-import DWithin from 'ol/format/filter/DWithin';
-import Disjoint from 'ol/format/filter/Disjoint';
-import During from 'ol/format/filter/During';
-import EqualTo from 'ol/format/filter/EqualTo';
-import Filter from 'ol/format/filter/Filter';
-import GreaterThan from 'ol/format/filter/GreaterThan';
-import GreaterThanOrEqualTo from 'ol/format/filter/GreaterThanOrEqualTo';
-import Intersects from 'ol/format/filter/Intersects';
-import IsBetween from 'ol/format/filter/IsBetween';
-import IsLike from 'ol/format/filter/IsLike';
-import IsNull from 'ol/format/filter/IsNull';
-import LessThan from 'ol/format/filter/LessThan';
-import LessThanOrEqualTo from 'ol/format/filter/LessThanOrEqualTo';
-import Not from 'ol/format/filter/Not';
-import NotEqualTo from 'ol/format/filter/NotEqualTo';
-import Or from 'ol/format/filter/Or';
-import Within from 'ol/format/filter/Within';
-import Geometry from 'ol/geom/Geometry';
+import { Extent } from '../extent';
+import Geometry from '../geom/Geometry';
+import And from './filter/And';
+import Bbox from './filter/Bbox';
+import Contains from './filter/Contains';
+import DWithin from './filter/DWithin';
+import Disjoint from './filter/Disjoint';
+import During from './filter/During';
+import EqualTo from './filter/EqualTo';
+import Filter from './filter/Filter';
+import GreaterThan from './filter/GreaterThan';
+import GreaterThanOrEqualTo from './filter/GreaterThanOrEqualTo';
+import Intersects from './filter/Intersects';
+import IsBetween from './filter/IsBetween';
+import IsLike from './filter/IsLike';
+import IsNull from './filter/IsNull';
+import LessThan from './filter/LessThan';
+import LessThanOrEqualTo from './filter/LessThanOrEqualTo';
+import Not from './filter/Not';
+import NotEqualTo from './filter/NotEqualTo';
+import Or from './filter/Or';
+import Within from './filter/Within';
 
 /**
  * Create a logical <And> operator between two or more filter conditions.

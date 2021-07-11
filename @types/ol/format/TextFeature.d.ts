@@ -1,10 +1,8 @@
-import Feature from 'ol/Feature';
-import FeatureFormat from 'ol/format/Feature';
-import { ReadOptions } from 'ol/format/Feature';
-import { WriteOptions } from 'ol/format/Feature';
-import FormatType from 'ol/format/FormatType';
-import Geometry from 'ol/geom/Geometry';
-import Projection from 'ol/proj/Projection';
+import Feature from '../Feature';
+import Geometry from '../geom/Geometry';
+import Projection from '../proj/Projection';
+import FeatureFormat, { ReadOptions, WriteOptions } from './Feature';
+import FormatType from './FormatType';
 
 export default abstract class TextFeature extends FeatureFormat {
     constructor();

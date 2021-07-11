@@ -1,6 +1,6 @@
-import ImageState from 'ol/ImageState';
-import BaseEvent from 'ol/events/Event';
-import { Size } from 'ol/size';
+import ImageState from '../ImageState';
+import BaseEvent from '../events/Event';
+import { Size } from '../size';
 
 export interface Options {
     opacity: number;

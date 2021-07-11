@@ -1,18 +1,17 @@
-import BaseObject from 'ol/Object';
-import { ObjectEvent } from 'ol/Object';
-import ViewHint from 'ol/ViewHint';
-import { Type } from 'ol/centerconstraint';
-import { Coordinate } from 'ol/coordinate';
-import { EventsKey } from 'ol/events';
-import BaseEvent from 'ol/events/Event';
-import { Extent } from 'ol/extent';
-import SimpleGeometry from 'ol/geom/SimpleGeometry';
-import { Pixel } from 'ol/pixel';
-import { ProjectionLike } from 'ol/proj';
-import Projection from 'ol/proj/Projection';
-import { Type as Type_1 } from 'ol/resolutionconstraint';
-import { Type as Type_2 } from 'ol/rotationconstraint';
-import { Size } from 'ol/size';
+import BaseObject, { ObjectEvent } from './Object';
+import ViewHint from './ViewHint';
+import { Type } from './centerconstraint';
+import { Coordinate } from './coordinate';
+import { EventsKey, ListenerFunction } from './events';
+import BaseEvent from './events/Event';
+import { Extent } from './extent';
+import SimpleGeometry from './geom/SimpleGeometry';
+import { Pixel } from './pixel';
+import { ProjectionLike } from './proj';
+import Projection from './proj/Projection';
+import { Type as Type_1 } from './resolutionconstraint';
+import { Type as Type_2 } from './rotationconstraint';
+import { Size } from './size';
 
 /**
  * An animation configuration
@@ -350,9 +349,11 @@ export default class View extends BaseObject {
      * Update all animations.
      */
     updateAnimations_(): void;
-    on(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
-    once(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
-    un(type: string | string[], listener: (p0: any) => any): void;
+    on(type: string, listener: ListenerFunction): EventsKey;
+    on(type: string[], listener: ListenerFunction): EventsKey[];
+    once(type: string, listener: ListenerFunction): EventsKey;
+    once(type: string[], listener: ListenerFunction): EventsKey[];
+    un(type: string | string[], listener: ListenerFunction): void;
     on(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
     once(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
     un(type: 'change', listener: (evt: BaseEvent) => void): void;

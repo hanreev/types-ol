@@ -1,6 +1,6 @@
-import { Coordinate } from 'ol/coordinate';
-import { Extent } from 'ol/extent';
-import { Size } from 'ol/size';
+import { Coordinate } from './coordinate';
+import { Extent } from './extent';
+import { Size } from './size';
 
 export type Type = (
     p0: Coordinate | undefined,

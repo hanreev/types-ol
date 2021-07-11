@@ -1,17 +1,17 @@
-import { ObjectEvent } from 'ol/Object';
-import PluggableMap from 'ol/PluggableMap';
-import { EventsKey } from 'ol/events';
-import BaseEvent from 'ol/events/Event';
-import { Extent } from 'ol/extent';
-import Geometry from 'ol/geom/Geometry';
-import BaseVectorLayer from 'ol/layer/BaseVector';
-import Layer from 'ol/layer/Layer';
-import { OrderFunction } from 'ol/render';
-import RenderEvent from 'ol/render/Event';
-import LayerRenderer from 'ol/renderer/Layer';
-import Source from 'ol/source/Source';
-import VectorSource from 'ol/source/Vector';
-import { StyleLike } from 'ol/style/Style';
+import { ObjectEvent } from '../Object';
+import PluggableMap from '../PluggableMap';
+import { EventsKey, ListenerFunction } from '../events';
+import BaseEvent from '../events/Event';
+import { Extent } from '../extent';
+import Geometry from '../geom/Geometry';
+import { OrderFunction } from '../render';
+import RenderEvent from '../render/Event';
+import LayerRenderer from '../renderer/Layer';
+import Source from '../source/Source';
+import VectorSource from '../source/Vector';
+import { StyleLike } from '../style/Style';
+import BaseVectorLayer from './BaseVector';
+import Layer from './Layer';
 
 export interface Options {
     className?: string;
@@ -38,9 +38,11 @@ export default class VectorImageLayer extends BaseVectorLayer<VectorSource> {
      */
     createRenderer(): LayerRenderer<Layer<Source>>;
     getImageRatio(): number;
-    on(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
-    once(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
-    un(type: string | string[], listener: (p0: any) => any): void;
+    on(type: string, listener: ListenerFunction): EventsKey;
+    on(type: string[], listener: ListenerFunction): EventsKey[];
+    once(type: string, listener: ListenerFunction): EventsKey;
+    once(type: string[], listener: ListenerFunction): EventsKey[];
+    un(type: string | string[], listener: ListenerFunction): void;
     on(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
     once(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
     un(type: 'change', listener: (evt: BaseEvent) => void): void;

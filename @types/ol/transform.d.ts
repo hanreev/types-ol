@@ -1,5 +1,5 @@
-import { Coordinate } from 'ol/coordinate';
-import { Pixel } from 'ol/pixel';
+import { Coordinate } from './coordinate';
+import { Pixel } from './pixel';
 
 /**
  * An array representing an affine 2d transformation for use with

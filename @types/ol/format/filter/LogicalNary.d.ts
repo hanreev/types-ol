@@ -1,4 +1,4 @@
-import Filter from 'ol/format/filter/Filter';
+import Filter from './Filter';
 
 export default abstract class LogicalNary extends Filter {
     constructor(tagName: string, conditions: Filter[]);

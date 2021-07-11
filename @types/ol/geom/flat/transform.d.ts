@@ -1,4 +1,4 @@
-import { Transform } from 'ol/transform';
+import { Transform } from '../../transform';
 
 export function rotate(
     flatCoordinates: number[],

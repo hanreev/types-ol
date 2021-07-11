@@ -1,12 +1,10 @@
-import BaseObject from 'ol/Object';
-import { ObjectEvent } from 'ol/Object';
-import { Coordinate } from 'ol/coordinate';
-import { EventsKey } from 'ol/events';
-import BaseEvent from 'ol/events/Event';
-import { Extent } from 'ol/extent';
-import GeometryType from 'ol/geom/GeometryType';
-import { TransformFunction } from 'ol/proj';
-import { ProjectionLike } from 'ol/proj';
+import BaseObject, { ObjectEvent } from '../Object';
+import { Coordinate } from '../coordinate';
+import { EventsKey, ListenerFunction } from '../events';
+import BaseEvent from '../events/Event';
+import { Extent } from '../extent';
+import { ProjectionLike, TransformFunction } from '../proj';
+import GeometryType from './GeometryType';
 
 export default abstract class Geometry extends BaseObject {
     constructor();
@@ -88,9 +86,11 @@ export default abstract class Geometry extends BaseObject {
      * instead you want a new geometry, first clone() this geometry.
      */
     abstract translate(deltaX: number, deltaY: number): void;
-    on(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
-    once(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
-    un(type: string | string[], listener: (p0: any) => any): void;
+    on(type: string, listener: ListenerFunction): EventsKey;
+    on(type: string[], listener: ListenerFunction): EventsKey[];
+    once(type: string, listener: ListenerFunction): EventsKey;
+    once(type: string[], listener: ListenerFunction): EventsKey[];
+    un(type: string | string[], listener: ListenerFunction): void;
     on(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
     once(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
     un(type: 'change', listener: (evt: BaseEvent) => void): void;

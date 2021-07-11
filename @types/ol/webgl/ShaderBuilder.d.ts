@@ -1,6 +1,6 @@
-import { CustomAttribute } from 'ol/renderer/webgl/PointsLayer';
-import { LiteralStyle } from 'ol/style/LiteralStyle';
-import { UniformValue } from 'ol/webgl/Helper';
+import { CustomAttribute } from '../renderer/webgl/PointsLayer';
+import { LiteralStyle } from '../style/LiteralStyle';
+import { UniformValue } from './Helper';
 
 export interface StyleParseResult {
     builder: ShaderBuilder;

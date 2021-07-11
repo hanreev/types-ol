@@ -1,4 +1,4 @@
-import { Extent } from 'ol/extent';
+import { Extent } from '../extent';
 
 export interface Entry {
     minX: number;

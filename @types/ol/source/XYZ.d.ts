@@ -1,14 +1,13 @@
-import { ObjectEvent } from 'ol/Object';
-import { LoadFunction } from 'ol/Tile';
-import { UrlFunction } from 'ol/Tile';
-import { EventsKey } from 'ol/events';
-import BaseEvent from 'ol/events/Event';
-import { ProjectionLike } from 'ol/proj';
-import { Size } from 'ol/size';
-import { AttributionLike } from 'ol/source/Source';
-import { TileSourceEvent } from 'ol/source/Tile';
-import TileImage from 'ol/source/TileImage';
-import TileGrid from 'ol/tilegrid/TileGrid';
+import { ObjectEvent } from '../Object';
+import { LoadFunction, UrlFunction } from '../Tile';
+import { EventsKey, ListenerFunction } from '../events';
+import BaseEvent from '../events/Event';
+import { ProjectionLike } from '../proj';
+import { Size } from '../size';
+import TileGrid from '../tilegrid/TileGrid';
+import { AttributionLike } from './Source';
+import { TileSourceEvent } from './Tile';
+import TileImage from './TileImage';
 
 export interface Options {
     attributions?: AttributionLike;
@@ -35,9 +34,11 @@ export interface Options {
 }
 export default class XYZ extends TileImage {
     constructor(opt_options?: Options & { [key: string]: any });
-    on(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
-    once(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
-    un(type: string | string[], listener: (p0: any) => any): void;
+    on(type: string, listener: ListenerFunction): EventsKey;
+    on(type: string[], listener: ListenerFunction): EventsKey[];
+    once(type: string, listener: ListenerFunction): EventsKey;
+    once(type: string[], listener: ListenerFunction): EventsKey[];
+    un(type: string | string[], listener: ListenerFunction): void;
     on(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
     once(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
     un(type: 'change', listener: (evt: BaseEvent) => void): void;

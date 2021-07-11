@@ -1,6 +1,6 @@
-import Observable from 'ol/Observable';
-import { EventsKey } from 'ol/events';
-import BaseEvent from 'ol/events/Event';
+import Observable from './Observable';
+import { EventsKey, ListenerFunction } from './events';
+import BaseEvent from './events/Event';
 
 export default class BaseObject extends Observable {
     constructor(opt_values?: { [key: string]: any });
@@ -35,9 +35,11 @@ export default class BaseObject extends Observable {
      * Unsets a property.
      */
     unset(key: string, opt_silent?: boolean): void;
-    on(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
-    once(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
-    un(type: string | string[], listener: (p0: any) => any): void;
+    on(type: string, listener: ListenerFunction): EventsKey;
+    on(type: string[], listener: ListenerFunction): EventsKey[];
+    once(type: string, listener: ListenerFunction): EventsKey;
+    once(type: string[], listener: ListenerFunction): EventsKey[];
+    un(type: string | string[], listener: ListenerFunction): void;
     on(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
     once(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
     un(type: 'change', listener: (evt: BaseEvent) => void): void;

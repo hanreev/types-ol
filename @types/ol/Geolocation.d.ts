@@ -1,11 +1,10 @@
-import BaseObject from 'ol/Object';
-import { ObjectEvent } from 'ol/Object';
-import { Coordinate } from 'ol/coordinate';
-import { EventsKey } from 'ol/events';
-import BaseEvent from 'ol/events/Event';
-import Polygon from 'ol/geom/Polygon';
-import { ProjectionLike } from 'ol/proj';
-import Projection from 'ol/proj/Projection';
+import BaseObject, { ObjectEvent } from './Object';
+import { Coordinate } from './coordinate';
+import { EventsKey, ListenerFunction } from './events';
+import BaseEvent from './events/Event';
+import Polygon from './geom/Polygon';
+import { ProjectionLike } from './proj';
+import Projection from './proj/Projection';
 
 export interface Options {
     tracking?: boolean;
@@ -74,9 +73,11 @@ export default class Geolocation extends BaseObject {
      * See http://www.w3.org/TR/geolocation-API/#position-options.
      */
     setTrackingOptions(options: PositionOptions): void;
-    on(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
-    once(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
-    un(type: string | string[], listener: (p0: any) => any): void;
+    on(type: string, listener: ListenerFunction): EventsKey;
+    on(type: string[], listener: ListenerFunction): EventsKey[];
+    once(type: string, listener: ListenerFunction): EventsKey;
+    once(type: string[], listener: ListenerFunction): EventsKey[];
+    un(type: string | string[], listener: ListenerFunction): void;
     on(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
     once(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
     un(type: 'change', listener: (evt: BaseEvent) => void): void;

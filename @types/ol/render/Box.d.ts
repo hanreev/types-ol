@@ -1,7 +1,7 @@
-import Disposable from 'ol/Disposable';
-import PluggableMap from 'ol/PluggableMap';
-import Polygon from 'ol/geom/Polygon';
-import { Pixel } from 'ol/pixel';
+import Disposable from '../Disposable';
+import PluggableMap from '../PluggableMap';
+import Polygon from '../geom/Polygon';
+import { Pixel } from '../pixel';
 
 export default class RenderBox extends Disposable {
     constructor(className: string);

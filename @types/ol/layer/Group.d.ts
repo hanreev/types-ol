@@ -1,13 +1,12 @@
-import Collection from 'ol/Collection';
-import { ObjectEvent } from 'ol/Object';
-import { EventsKey } from 'ol/events';
-import BaseEvent from 'ol/events/Event';
-import { Extent } from 'ol/extent';
-import BaseLayer from 'ol/layer/Base';
-import Layer from 'ol/layer/Layer';
-import { State } from 'ol/layer/Layer';
-import Source from 'ol/source/Source';
-import State_1 from 'ol/source/State';
+import Collection from '../Collection';
+import { ObjectEvent } from '../Object';
+import { EventsKey, ListenerFunction } from '../events';
+import BaseEvent from '../events/Event';
+import { Extent } from '../extent';
+import Source from '../source/Source';
+import State_1 from '../source/State';
+import BaseLayer from './Base';
+import Layer, { State } from './Layer';
 
 export interface Options {
     opacity?: number;
@@ -35,9 +34,11 @@ export default class LayerGroup extends BaseLayer {
      * in this group.
      */
     setLayers(layers: Collection<BaseLayer>): void;
-    on(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
-    once(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
-    un(type: string | string[], listener: (p0: any) => any): void;
+    on(type: string, listener: ListenerFunction): EventsKey;
+    on(type: string[], listener: ListenerFunction): EventsKey[];
+    once(type: string, listener: ListenerFunction): EventsKey;
+    once(type: string[], listener: ListenerFunction): EventsKey[];
+    un(type: string | string[], listener: ListenerFunction): void;
     on(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
     once(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
     un(type: 'change', listener: (evt: BaseEvent) => void): void;

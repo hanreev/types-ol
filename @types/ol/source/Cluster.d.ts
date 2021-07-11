@@ -1,14 +1,13 @@
-import Feature from 'ol/Feature';
-import { ObjectEvent } from 'ol/Object';
-import { EventsKey } from 'ol/events';
-import BaseEvent from 'ol/events/Event';
-import { Extent } from 'ol/extent';
-import Geometry from 'ol/geom/Geometry';
-import Point from 'ol/geom/Point';
-import Projection from 'ol/proj/Projection';
-import { AttributionLike } from 'ol/source/Source';
-import VectorSource from 'ol/source/Vector';
-import { VectorSourceEvent } from 'ol/source/Vector';
+import Feature from '../Feature';
+import { ObjectEvent } from '../Object';
+import { EventsKey, ListenerFunction } from '../events';
+import BaseEvent from '../events/Event';
+import { Extent } from '../extent';
+import Geometry from '../geom/Geometry';
+import Point from '../geom/Point';
+import Projection from '../proj/Projection';
+import { AttributionLike } from './Source';
+import VectorSource, { VectorSourceEvent } from './Vector';
 
 export interface Options {
     attributions?: AttributionLike;
@@ -51,9 +50,11 @@ export default class Cluster extends VectorSource {
      * Replace the wrapped source.
      */
     setSource(source: VectorSource<Geometry>): void;
-    on(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
-    once(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
-    un(type: string | string[], listener: (p0: any) => any): void;
+    on(type: string, listener: ListenerFunction): EventsKey;
+    on(type: string[], listener: ListenerFunction): EventsKey[];
+    once(type: string, listener: ListenerFunction): EventsKey;
+    once(type: string[], listener: ListenerFunction): EventsKey[];
+    un(type: string | string[], listener: ListenerFunction): void;
     on(type: 'addfeature', listener: (evt: VectorSourceEvent<Geometry>) => void): EventsKey;
     once(type: 'addfeature', listener: (evt: VectorSourceEvent<Geometry>) => void): EventsKey;
     un(type: 'addfeature', listener: (evt: VectorSourceEvent<Geometry>) => void): void;

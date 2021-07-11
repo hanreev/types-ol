@@ -1,6 +1,6 @@
-import ImageBase from 'ol/ImageBase';
-import ImageState from 'ol/ImageState';
-import { Extent } from 'ol/extent';
+import ImageBase from './ImageBase';
+import ImageState from './ImageState';
+import { Extent } from './extent';
 
 /**
  * A function that takes an {@link module:ol/Image~Image} for the image and a

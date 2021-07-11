@@ -1,15 +1,15 @@
-import ImageTile from 'ol/ImageTile';
-import { ObjectEvent } from 'ol/Object';
-import { LoadFunction } from 'ol/Tile';
-import { Coordinate } from 'ol/coordinate';
-import { EventsKey } from 'ol/events';
-import BaseEvent from 'ol/events/Event';
-import { ProjectionLike } from 'ol/proj';
-import { AttributionLike } from 'ol/source/Source';
-import { TileSourceEvent } from 'ol/source/Tile';
-import TileImage from 'ol/source/TileImage';
-import WMSServerType from 'ol/source/WMSServerType';
-import TileGrid from 'ol/tilegrid/TileGrid';
+import ImageTile from '../ImageTile';
+import { ObjectEvent } from '../Object';
+import { LoadFunction } from '../Tile';
+import { Coordinate } from '../coordinate';
+import { EventsKey, ListenerFunction } from '../events';
+import BaseEvent from '../events/Event';
+import { ProjectionLike } from '../proj';
+import TileGrid from '../tilegrid/TileGrid';
+import { AttributionLike } from './Source';
+import { TileSourceEvent } from './Tile';
+import TileImage from './TileImage';
+import WMSServerType from './WMSServerType';
 
 export interface Options {
     attributions?: AttributionLike;
@@ -63,9 +63,11 @@ export default class TileWMS extends TileImage {
      * Update the user-provided params.
      */
     updateParams(params: any): void;
-    on(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
-    once(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
-    un(type: string | string[], listener: (p0: any) => any): void;
+    on(type: string, listener: ListenerFunction): EventsKey;
+    on(type: string[], listener: ListenerFunction): EventsKey[];
+    once(type: string, listener: ListenerFunction): EventsKey;
+    once(type: string[], listener: ListenerFunction): EventsKey[];
+    un(type: string | string[], listener: ListenerFunction): void;
     on(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
     once(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
     un(type: 'change', listener: (evt: BaseEvent) => void): void;
