@@ -38,7 +38,7 @@ export type RenderFunction = (p0: Coordinate | Coordinate[] | Coordinate[][], p1
  * vector layer can be styled. If the function returns undefined, the
  * feature will not be rendered.
  */
-export type StyleFunction = (p0: FeatureLike, p1: number) => Style | Style[];
+export type StyleFunction = (p0: FeatureLike, p1: number) => Style | Style[] | void;
 /**
  * A {@link Style}, an array of {@link Style}, or a {@link StyleFunction}.
  */

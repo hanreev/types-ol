@@ -14,7 +14,7 @@ export type Listener = ListenerFunction | ListenerObject;
  * Listener function. This function is called with an event object as argument.
  * When the function returns false, event propagation will stop.
  */
-export type ListenerFunction = (p0: Event | BaseEvent) => boolean;
+export type ListenerFunction = (p0: Event | BaseEvent) => void | boolean;
 export interface ListenerObject {
     handleEvent: ListenerFunction;
 }

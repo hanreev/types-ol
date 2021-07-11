@@ -53,7 +53,7 @@ export default abstract class TileSource extends Source {
         projection: Projection,
         z: number,
         tileRange: TileRange,
-        callback: (p0: Tile) => boolean,
+        callback: (p0: Tile) => boolean | void,
     ): boolean;
     getGutterForProjection(projection: Projection): number;
     getOpaque(projection: Projection): boolean;

@@ -78,7 +78,7 @@ export default class CanvasTileLayerRenderer extends CanvasLayerRenderer {
      * Perform action necessary to get the layer rendered after new fonts have loaded
      */
     handleFontsChanged(): void;
-    loadedTileCallback(tiles: { [key: number]: { [key: string]: Tile } }, zoom: number, tile: Tile): boolean;
+    loadedTileCallback(tiles: { [key: number]: { [key: string]: Tile } }, zoom: number, tile: Tile): boolean | void;
     /**
      * Determine whether render should be called.
      */

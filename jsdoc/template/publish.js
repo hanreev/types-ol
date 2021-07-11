@@ -275,7 +275,7 @@ function stringifyType(parsedType, _module, undefinedLiteral = true, nullLiteral
     if (!undefinedLiteral) union = union.filter(t => t != 'undefined');
     if (!nullLiteral) union = union.filter(t => t != 'null');
 
-    typeStr = union.filter(t => t != 'void').join(' | ');
+    typeStr = union.join(' | ');
     if (union.length > 1) typeStr = `(${typeStr})`;
   } else if (parsedType.type == 'NullLiteral') {
     typeStr = 'null';
@@ -389,7 +389,6 @@ function getType(doclet, _module, undefinedLiteral = false, nullLiteral = true) 
 
   if (types.length == 1 && types[0] == 'object') types[0] = 'any';
 
-  if (types.includes('void') && types.length > 1) types = types.filter(t => t != 'void');
   return types.join(' | ') || 'any';
 }
 
@@ -486,16 +485,6 @@ const PROCESSORS = {
         augmentName += '<any>';
       }
 
-      // FIXME: Generic Type patches
-      // if (doclet.longname == 'module:ol/layer/BaseImage~BaseImageLayer') augmentName += '<ImageSource>';
-      // if (doclet.longname == 'module:ol/layer/BaseTile~BaseTileLayer') augmentName += '<TileSource>';
-      // if (doclet.longname == 'module:ol/layer/BaseVector~BaseVectorLayer') augmentName += '<VectorSourceType>';
-      // if (doclet.longname == 'module:ol/layer/Vector~VectorLayer') {
-      //   const gt = registerImport(_module, 'module:ol/source/Vector~VectorSource');
-      //   augmentName += `<${gt}>`;
-      // }
-      // if (doclet.longname == 'module:ol/layer/VectorTile~VectorTileLayer') augmentName += '<VectorTile>';
-
       name += ` extends ${augmentName}`;
     }
 
@@ -534,7 +523,6 @@ const PROCESSORS = {
 
       ['on', 'once', 'un'].forEach(fireMethod => {
         const returnType = fireMethod == 'un' ? 'void' : 'EventsKey';
-        // if (genericType) fireMethod += `<${genericType}>`;
         children.push(`${fireMethod}(type: '${eventType}', listener: (evt: ${fireType}) => void): ${returnType};`);
       });
     };
@@ -868,6 +856,15 @@ function isExtendBaseObject(doclet) {
 }
 
 /**
+ * @param {Doclet} doclet
+ */
+function getComment(doclet) {
+  if (!doclet.description) return '';
+  const description = htmlParser.parse(doclet.description);
+  return '/**\n * ' + description.text.split('\n').join('\n * ') + '\n */\n';
+}
+
+/**
  * @param {*} taffyData
  */
 exports.publish = taffyData => {
@@ -941,7 +938,6 @@ exports.publish = taffyData => {
 
   /**
    * Extract generic types
-   * Repetation is needed because some generic types are added from parameters and members
    */
   find({ genericTypes: { isArray: true } }).forEach(doclet => {
     GENERIC_TYPES[doclet.longname] = doclet.genericTypes;
@@ -955,11 +951,6 @@ exports.publish = taffyData => {
       return find({ name: exportName, memberof: doclet.longname }).length > 0;
     });
 
-    // if (doclet.force_include_members)
-    //   doclet.force_include_members.forEach(memberName => {
-    //     if (doclet.exports.exports.indexOf(memberName) == -1) doclet.exports.exports.push(memberName);
-    //   });
-
     MODULE_EXPORTS[doclet.name] = doclet.exports;
   });
 
@@ -967,18 +958,7 @@ exports.publish = taffyData => {
     // Clean output directory
     fs.removeSync(outDir);
 
-    /**
-     * Emit definition files
-     */
+    // Emit definition files
     Promise.all(members.modules.map((/** @type {Doclet} */ doclet) => generateDefinition(doclet))).then();
   });
 };
-
-/**
- * @param {Doclet} doclet
- */
-function getComment(doclet) {
-  if (!doclet.description) return '';
-  const description = htmlParser.parse(doclet.description);
-  return '/**\n * ' + description.text.split('\n').join('\n * ') + '\n */\n';
-}
