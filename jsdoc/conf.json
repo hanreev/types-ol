@@ -9,9 +9,7 @@
   "source": {
     "includePattern": ".+\\.js$",
     "excludePattern": "(^|\\/|\\\\)_",
-    "include": [
-      "openlayers/src/ol"
-    ]
+    "include": ["openlayers/src/ol"]
   },
   "plugins": [
     "jsdoc/plugins/markdown",
@@ -28,8 +26,6 @@
     "moduleRoot": "openlayers/src",
     "definition": {
       "extraOptions": true,
-      "mode": "multiple",
-      "strictGenericTypes": false,
       "strictReturnTypes": true
     }
   },

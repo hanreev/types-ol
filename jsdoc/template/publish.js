@@ -191,8 +191,6 @@ function registerImport(_module, val) {
 function relativeImport(expressions, _module) {
   if (!Array.isArray(expressions)) return logger.error('relativeImport -- Invalid argument:', expressions);
 
-  if (definitionConfig.mode == 'single') return expressions;
-
   const moduleDirname = _module.name == 'ol' ? 'ol' : path.dirname(_module.name);
 
   return expressions.map(expression => {
@@ -554,7 +552,7 @@ function definition(doclet, decl, _module) {
   if (_module && _module.exports)
     if (doclet.name == _module.exports.default)
       if (doclet.isEnum || doclet.kind == 'constant') {
-        prefix = definitionConfig.mode == 'single' ? '' : 'declare ';
+        prefix = 'declare ';
         suffix = `\n\nexport default ${registerImport(_module, doclet.name)};`;
       } else {
         prefix = 'export default ';
@@ -923,87 +921,6 @@ async function generateDefinition(doclet, emitOutput = true) {
   return `declare module '${doclet.name}' {\n${content}}`;
 }
 
-function extractGenericTypes(initial = true, strict = false) {
-  if (initial)
-    find({ genericTypes: { isArray: true } }).forEach(doclet => {
-      GENERIC_TYPES[doclet.longname] = doclet.genericTypes;
-    });
-
-  if (!strict) return;
-
-  find({ kind: 'class' }).forEach(doclet => {
-    /** @type {DocletGenericType[]} */
-    let genericTypes = [];
-
-    if (doclet.longname in GENERIC_TYPES) genericTypes = GENERIC_TYPES[doclet.longname];
-
-    if (doclet.augments && doclet.augments.length) {
-      const augment = doclet.augments[0];
-      if (augment in GENERIC_TYPES) genericTypes = genericTypes.concat(GENERIC_TYPES[augment]);
-    }
-
-    find({ kind: ['member', 'constant'], memberof: doclet.longname }).forEach(member => {
-      if (!member.type) return;
-      member.type.names.forEach(type => {
-        if (type in GENERIC_TYPES) genericTypes = genericTypes.concat(GENERIC_TYPES[type]);
-      });
-    });
-
-    if (genericTypes.length)
-      GENERIC_TYPES[doclet.longname] = Array.from(new Set(genericTypes.map(gt => gt.name))).map(name => {
-        const duplicates = genericTypes.filter(gt => gt.name === name);
-        if (duplicates.length > 1) return duplicates.reduce((p, c) => (p.type ? p : c));
-        return duplicates[0];
-      });
-  });
-
-  find({ kind: 'typedef', properties: { isArray: true } }).forEach(doclet => {
-    /** @type {DocletGenericType[]} */
-    let genericTypes = [];
-
-    if (doclet.longname in GENERIC_TYPES) genericTypes = GENERIC_TYPES[doclet.longname];
-
-    doclet.properties.forEach(prop => {
-      prop.type.names.forEach(type => {
-        if (type in GENERIC_TYPES) genericTypes = genericTypes.concat(GENERIC_TYPES[type]);
-      });
-    });
-
-    if (genericTypes.length) GENERIC_TYPES[doclet.longname] = Array.from(new Set(genericTypes));
-  });
-
-  data({ kind: ['function', 'class'] }, [
-    { params: { isArray: true } },
-    { returns: { isArray: true } },
-    { yields: { isArray: true } },
-  ])
-    .get()
-    .forEach((/** @type {Doclet} */ doclet) => {
-      /** @type {DocletGenericType[]} */
-      let genericTypes = [];
-
-      if (doclet.longname in GENERIC_TYPES) genericTypes = GENERIC_TYPES[doclet.longname];
-
-      const merged = /** @type {Doclet[]} */ (doclet.params || []).concat(
-        /** @type {Doclet[]} */ (doclet.yields) || /** @type {Doclet[]} */ (doclet.returns) || [],
-      );
-
-      merged.forEach(d => {
-        if (!d.type) return;
-        d.type.names.forEach(type => {
-          if (type in GENERIC_TYPES) genericTypes = genericTypes.concat(GENERIC_TYPES[type]);
-        });
-      });
-
-      if (genericTypes.length)
-        GENERIC_TYPES[doclet.longname] = Array.from(new Set(genericTypes.map(gt => gt.name))).map(name => {
-          const duplicates = genericTypes.filter(gt => gt.name === name);
-          if (duplicates.length > 1) return duplicates.reduce((p, c) => (p.type ? p : c));
-          return duplicates[0];
-        });
-    });
-}
-
 /**
  * @param {string} key
  * @param {Doclet} _module
@@ -1130,14 +1047,9 @@ exports.publish = taffyData => {
    * Extract generic types
    * Repetation is needed because some generic types are added from parameters and members
    */
-
-  if (definitionConfig.strictGenericTypes) {
-    ANY_GENERIC_TYPES.splice(0);
-    extractGenericTypes(true, true);
-    for (let i = 0; i < 2; ++i) extractGenericTypes(false, true);
-  } else {
-    extractGenericTypes();
-  }
+  find({ genericTypes: { isArray: true } }).forEach(doclet => {
+    GENERIC_TYPES[doclet.longname] = doclet.genericTypes;
+  });
 
   /**
    * Update module exports
@@ -1162,19 +1074,7 @@ exports.publish = taffyData => {
     /**
      * Emit definition files
      */
-    if (definitionConfig.mode == 'single')
-      /**
-       * Generate single definition file
-       */
-      Promise.all(members.modules.map((/** @type {Doclet} */ doclet) => generateDefinition(doclet, false))).then(
-        definitions => {
-          const content = definitions.join('\n\n');
-          const outputPath = path.resolve(outDir, 'ol', 'index.d.ts');
-          fs.mkdirpSync(path.dirname(outputPath));
-          fs.writeFileSync(outputPath, content);
-        },
-      );
-    else Promise.all(members.modules.map((/** @type {Doclet} */ doclet) => generateDefinition(doclet))).then();
+    Promise.all(members.modules.map((/** @type {Doclet} */ doclet) => generateDefinition(doclet))).then();
   });
 };
 
