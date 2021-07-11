@@ -1,12 +1,13 @@
-import { Extent } from '../../extent';
-import { FeatureLike } from '../../Feature';
-import Geometry from '../../geom/Geometry';
-import SimpleGeometry from '../../geom/SimpleGeometry';
-import Fill from '../../style/Fill';
-import Stroke from '../../style/Stroke';
-import { FillStrokeState, SerializableInstructions } from '../canvas';
-import RenderFeature from '../Feature';
-import VectorContext from '../VectorContext';
+import { FeatureLike } from 'ol/Feature';
+import { Extent } from 'ol/extent';
+import Geometry from 'ol/geom/Geometry';
+import SimpleGeometry from 'ol/geom/SimpleGeometry';
+import RenderFeature from 'ol/render/Feature';
+import VectorContext from 'ol/render/VectorContext';
+import { FillStrokeState } from 'ol/render/canvas';
+import { SerializableInstructions } from 'ol/render/canvas';
+import Fill from 'ol/style/Fill';
+import Stroke from 'ol/style/Stroke';
 
 export default class CanvasBuilder extends VectorContext {
     constructor(tolerance: number, maxExtent: Extent, resolution: number, pixelRatio: number);

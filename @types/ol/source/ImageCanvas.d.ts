@@ -1,14 +1,15 @@
-import { EventsKey } from '../events';
-import BaseEvent from '../events/Event';
-import { Extent } from '../extent';
-import ImageCanvas from '../ImageCanvas';
-import { ObjectEvent } from '../Object';
-import { ProjectionLike } from '../proj';
-import Projection from '../proj/Projection';
-import { Size } from '../size';
-import ImageSource, { ImageSourceEvent } from './Image';
-import { AttributionLike } from './Source';
-import State from './State';
+import ImageCanvas from 'ol/ImageCanvas';
+import { ObjectEvent } from 'ol/Object';
+import { EventsKey } from 'ol/events';
+import BaseEvent from 'ol/events/Event';
+import { Extent } from 'ol/extent';
+import { ProjectionLike } from 'ol/proj';
+import Projection from 'ol/proj/Projection';
+import { Size } from 'ol/size';
+import ImageSource from 'ol/source/Image';
+import { ImageSourceEvent } from 'ol/source/Image';
+import { AttributionLike } from 'ol/source/Source';
+import State from 'ol/source/State';
 
 /**
  * A function returning the canvas element ({HTMLCanvasElement})

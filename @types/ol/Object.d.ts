@@ -1,6 +1,6 @@
-import { EventsKey } from './events';
-import BaseEvent from './events/Event';
-import Observable from './Observable';
+import Observable from 'ol/Observable';
+import { EventsKey } from 'ol/events';
+import BaseEvent from 'ol/events/Event';
 
 export default class BaseObject extends Observable {
     constructor(opt_values?: { [key: string]: any });

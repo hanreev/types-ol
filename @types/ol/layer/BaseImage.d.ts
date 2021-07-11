@@ -1,11 +1,11 @@
-import { EventsKey } from '../events';
-import BaseEvent from '../events/Event';
-import { Extent } from '../extent';
-import { ObjectEvent } from '../Object';
-import PluggableMap from '../PluggableMap';
-import RenderEvent from '../render/Event';
-import ImageSource from '../source/Image';
-import Layer from './Layer';
+import { ObjectEvent } from 'ol/Object';
+import PluggableMap from 'ol/PluggableMap';
+import { EventsKey } from 'ol/events';
+import BaseEvent from 'ol/events/Event';
+import { Extent } from 'ol/extent';
+import Layer from 'ol/layer/Layer';
+import RenderEvent from 'ol/render/Event';
+import ImageSource from 'ol/source/Image';
 
 export interface Options<ImageSourceType extends ImageSource = ImageSource> {
     className?: string;

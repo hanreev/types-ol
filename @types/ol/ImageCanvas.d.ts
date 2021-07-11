@@ -1,5 +1,5 @@
-import { Extent } from './extent';
-import ImageBase from './ImageBase';
+import ImageBase from 'ol/ImageBase';
+import { Extent } from 'ol/extent';
 
 /**
  * A function that is called to trigger asynchronous canvas drawing.  It is

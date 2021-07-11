@@ -1,8 +1,8 @@
-import Collection from './Collection';
-import { Options } from './control/Attribution';
-import Control from './control/Control';
-import { Options as Options_1 } from './control/Rotate';
-import { Options as Options_2 } from './control/Zoom';
+import Collection from 'ol/Collection';
+import { Options } from 'ol/control/Attribution';
+import Control from 'ol/control/Control';
+import { Options as Options_1 } from 'ol/control/Rotate';
+import { Options as Options_2 } from 'ol/control/Zoom';
 
 export { default as Attribution } from './control/Attribution';
 export { default as Control } from './control/Control';

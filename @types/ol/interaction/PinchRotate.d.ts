@@ -1,8 +1,8 @@
-import { EventsKey } from '../events';
-import BaseEvent from '../events/Event';
-import MapBrowserEvent from '../MapBrowserEvent';
-import { ObjectEvent } from '../Object';
-import PointerInteraction from './Pointer';
+import MapBrowserEvent from 'ol/MapBrowserEvent';
+import { ObjectEvent } from 'ol/Object';
+import { EventsKey } from 'ol/events';
+import BaseEvent from 'ol/events/Event';
+import PointerInteraction from 'ol/interaction/Pointer';
 
 export interface Options {
     duration?: number;

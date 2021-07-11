@@ -1,5 +1,5 @@
-import { TransformFunction } from '../proj';
-import Projection from './Projection';
+import { TransformFunction } from 'ol/proj';
+import Projection from 'ol/proj/Projection';
 
 /**
  * Registers a conversion function to convert coordinates from the source

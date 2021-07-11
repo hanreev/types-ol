@@ -1,13 +1,14 @@
-import { EventsKey } from '../events';
-import BaseEvent from '../events/Event';
-import { Extent } from '../extent';
-import ImageWrapper from '../Image';
-import ImageBase from '../ImageBase';
-import { ObjectEvent } from '../Object';
-import { ProjectionLike } from '../proj';
-import Projection from '../proj/Projection';
-import Source, { AttributionLike } from './Source';
-import State from './State';
+import ImageWrapper from 'ol/Image';
+import ImageBase from 'ol/ImageBase';
+import { ObjectEvent } from 'ol/Object';
+import { EventsKey } from 'ol/events';
+import BaseEvent from 'ol/events/Event';
+import { Extent } from 'ol/extent';
+import { ProjectionLike } from 'ol/proj';
+import Projection from 'ol/proj/Projection';
+import { AttributionLike } from 'ol/source/Source';
+import Source from 'ol/source/Source';
+import State from 'ol/source/State';
 
 export interface Options {
     attributions?: AttributionLike;

@@ -1,12 +1,12 @@
-import { CoordinateFormat } from '../coordinate';
-import { EventsKey } from '../events';
-import BaseEvent from '../events/Event';
-import MapEvent from '../MapEvent';
-import { ObjectEvent } from '../Object';
-import PluggableMap from '../PluggableMap';
-import { ProjectionLike } from '../proj';
-import Projection from '../proj/Projection';
-import Control from './Control';
+import MapEvent from 'ol/MapEvent';
+import { ObjectEvent } from 'ol/Object';
+import PluggableMap from 'ol/PluggableMap';
+import Control from 'ol/control/Control';
+import { CoordinateFormat } from 'ol/coordinate';
+import { EventsKey } from 'ol/events';
+import BaseEvent from 'ol/events/Event';
+import { ProjectionLike } from 'ol/proj';
+import Projection from 'ol/proj/Projection';
 
 export interface Options {
     className?: string;

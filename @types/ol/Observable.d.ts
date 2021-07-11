@@ -1,6 +1,6 @@
-import { EventsKey } from './events';
-import BaseEvent from './events/Event';
-import Target from './events/Target';
+import { EventsKey } from 'ol/events';
+import BaseEvent from 'ol/events/Event';
+import Target from 'ol/events/Target';
 
 export default class Observable extends Target {
     constructor();

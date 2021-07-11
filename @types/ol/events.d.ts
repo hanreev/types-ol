@@ -1,5 +1,5 @@
-import BaseEvent from './events/Event';
-import { EventTargetLike } from './events/Target';
+import BaseEvent from 'ol/events/Event';
+import { EventTargetLike } from 'ol/events/Target';
 
 /**
  * Key to use with {@link module:ol/Observable~Observable#unByKey}.

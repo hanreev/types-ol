@@ -1,15 +1,15 @@
-import { Coordinate } from '../coordinate';
-import { EventsKey } from '../events';
-import BaseEvent from '../events/Event';
-import ImageTile from '../ImageTile';
-import { ObjectEvent } from '../Object';
-import { ProjectionLike } from '../proj';
-import { LoadFunction } from '../Tile';
-import TileGrid from '../tilegrid/TileGrid';
-import { AttributionLike } from './Source';
-import { TileSourceEvent } from './Tile';
-import TileImage from './TileImage';
-import WMSServerType from './WMSServerType';
+import ImageTile from 'ol/ImageTile';
+import { ObjectEvent } from 'ol/Object';
+import { LoadFunction } from 'ol/Tile';
+import { Coordinate } from 'ol/coordinate';
+import { EventsKey } from 'ol/events';
+import BaseEvent from 'ol/events/Event';
+import { ProjectionLike } from 'ol/proj';
+import { AttributionLike } from 'ol/source/Source';
+import { TileSourceEvent } from 'ol/source/Tile';
+import TileImage from 'ol/source/TileImage';
+import WMSServerType from 'ol/source/WMSServerType';
+import TileGrid from 'ol/tilegrid/TileGrid';
 
 export interface Options {
     attributions?: AttributionLike;

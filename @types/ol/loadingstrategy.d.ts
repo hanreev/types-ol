@@ -1,5 +1,5 @@
-import { Extent } from './extent';
-import TileGrid from './tilegrid/TileGrid';
+import { Extent } from 'ol/extent';
+import TileGrid from 'ol/tilegrid/TileGrid';
 
 /**
  * Strategy function for loading all features with a single request.

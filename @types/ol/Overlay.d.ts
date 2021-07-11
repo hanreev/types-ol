@@ -1,12 +1,13 @@
-import { Coordinate } from './coordinate';
-import { EventsKey } from './events';
-import BaseEvent from './events/Event';
-import { Extent } from './extent';
-import BaseObject, { ObjectEvent } from './Object';
-import OverlayPositioning from './OverlayPositioning';
-import { Pixel } from './pixel';
-import PluggableMap from './PluggableMap';
-import { Size } from './size';
+import BaseObject from 'ol/Object';
+import { ObjectEvent } from 'ol/Object';
+import OverlayPositioning from 'ol/OverlayPositioning';
+import PluggableMap from 'ol/PluggableMap';
+import { Coordinate } from 'ol/coordinate';
+import { EventsKey } from 'ol/events';
+import BaseEvent from 'ol/events/Event';
+import { Extent } from 'ol/extent';
+import { Pixel } from 'ol/pixel';
+import { Size } from 'ol/size';
 
 export interface Options {
     id?: number | string;

@@ -1,9 +1,10 @@
-import { EventsKey } from '../events';
-import { Condition } from '../events/condition';
-import BaseEvent from '../events/Event';
-import MapBrowserEvent from '../MapBrowserEvent';
-import { ObjectEvent } from '../Object';
-import DragBox, { DragBoxEvent } from './DragBox';
+import MapBrowserEvent from 'ol/MapBrowserEvent';
+import { ObjectEvent } from 'ol/Object';
+import { EventsKey } from 'ol/events';
+import BaseEvent from 'ol/events/Event';
+import { Condition } from 'ol/events/condition';
+import DragBox from 'ol/interaction/DragBox';
+import { DragBoxEvent } from 'ol/interaction/DragBox';
 
 export interface Options {
     className?: string;

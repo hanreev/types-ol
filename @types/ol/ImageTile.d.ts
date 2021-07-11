@@ -1,6 +1,8 @@
-import Tile, { LoadFunction, Options } from './Tile';
-import { TileCoord } from './tilecoord';
-import TileState from './TileState';
+import Tile from 'ol/Tile';
+import { LoadFunction } from 'ol/Tile';
+import { Options } from 'ol/Tile';
+import TileState from 'ol/TileState';
+import { TileCoord } from 'ol/tilecoord';
 
 export default class ImageTile extends Tile {
     constructor(

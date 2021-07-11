@@ -1,6 +1,6 @@
-import { Extent } from '../extent';
-import ImageBase from '../ImageBase';
-import Projection from '../proj/Projection';
+import ImageBase from 'ol/ImageBase';
+import { Extent } from 'ol/extent';
+import Projection from 'ol/proj/Projection';
 
 export type FunctionType = (p0: Extent, p1: number, p2: number) => ImageBase;
 export default class ReprojImage extends ImageBase {

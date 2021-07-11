@@ -1,10 +1,11 @@
-import { Coordinate } from './coordinate';
-import { EventsKey } from './events';
-import BaseEvent from './events/Event';
-import Polygon from './geom/Polygon';
-import BaseObject, { ObjectEvent } from './Object';
-import { ProjectionLike } from './proj';
-import Projection from './proj/Projection';
+import BaseObject from 'ol/Object';
+import { ObjectEvent } from 'ol/Object';
+import { Coordinate } from 'ol/coordinate';
+import { EventsKey } from 'ol/events';
+import BaseEvent from 'ol/events/Event';
+import Polygon from 'ol/geom/Polygon';
+import { ProjectionLike } from 'ol/proj';
+import Projection from 'ol/proj/Projection';
 
 export interface Options {
     tracking?: boolean;

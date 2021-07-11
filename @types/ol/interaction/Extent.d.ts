@@ -1,12 +1,12 @@
-import { EventsKey } from '../events';
-import { Condition } from '../events/condition';
-import BaseEvent from '../events/Event';
-import { Extent as Extent_1 } from '../extent';
-import MapBrowserEvent from '../MapBrowserEvent';
-import { ObjectEvent } from '../Object';
-import PluggableMap from '../PluggableMap';
-import { StyleLike } from '../style/Style';
-import PointerInteraction from './Pointer';
+import MapBrowserEvent from 'ol/MapBrowserEvent';
+import { ObjectEvent } from 'ol/Object';
+import PluggableMap from 'ol/PluggableMap';
+import { EventsKey } from 'ol/events';
+import BaseEvent from 'ol/events/Event';
+import { Condition } from 'ol/events/condition';
+import { Extent as Extent_1 } from 'ol/extent';
+import PointerInteraction from 'ol/interaction/Pointer';
+import { StyleLike } from 'ol/style/Style';
 
 export interface Options {
     condition?: Condition;

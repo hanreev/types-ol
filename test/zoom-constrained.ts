@@ -1,7 +1,7 @@
-import TileLayer from 'ol/layer/Tile';
 import Map from 'ol/Map';
-import BingMaps from 'ol/source/BingMaps';
 import View from 'ol/View';
+import TileLayer from 'ol/layer/Tile';
+import BingMaps from 'ol/source/BingMaps';
 
 const map = new Map({
     target: 'map',

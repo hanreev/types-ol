@@ -1,8 +1,8 @@
-import TileLayer from 'ol/layer/Tile';
 import Map from 'ol/Map';
+import View from 'ol/View';
+import TileLayer from 'ol/layer/Tile';
 import { fromLonLat } from 'ol/proj';
 import { OSM, TileDebug } from 'ol/source';
-import View from 'ol/View';
 
 const osmSource = new OSM();
 const map = new Map({

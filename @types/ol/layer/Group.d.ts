@@ -1,12 +1,13 @@
-import Collection from '../Collection';
-import { EventsKey } from '../events';
-import BaseEvent from '../events/Event';
-import { Extent } from '../extent';
-import { ObjectEvent } from '../Object';
-import Source from '../source/Source';
-import State_1 from '../source/State';
-import BaseLayer from './Base';
-import Layer, { State } from './Layer';
+import Collection from 'ol/Collection';
+import { ObjectEvent } from 'ol/Object';
+import { EventsKey } from 'ol/events';
+import BaseEvent from 'ol/events/Event';
+import { Extent } from 'ol/extent';
+import BaseLayer from 'ol/layer/Base';
+import Layer from 'ol/layer/Layer';
+import { State } from 'ol/layer/Layer';
+import Source from 'ol/source/Source';
+import State_1 from 'ol/source/State';
 
 export interface Options {
     opacity?: number;

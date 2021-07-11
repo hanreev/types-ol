@@ -1,9 +1,10 @@
-import { Extent } from '../extent';
-import Feature, { FeatureLike } from '../Feature';
-import Geometry from '../geom/Geometry';
-import { ProjectionLike } from '../proj';
-import Projection from '../proj/Projection';
-import FormatType from './FormatType';
+import { FeatureLike } from 'ol/Feature';
+import Feature from 'ol/Feature';
+import { Extent } from 'ol/extent';
+import FormatType from 'ol/format/FormatType';
+import Geometry from 'ol/geom/Geometry';
+import { ProjectionLike } from 'ol/proj';
+import Projection from 'ol/proj/Projection';
 
 export interface ReadOptions {
     dataProjection?: ProjectionLike;

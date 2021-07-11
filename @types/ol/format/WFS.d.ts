@@ -1,15 +1,13 @@
-import { Extent } from '../extent';
-import Feature from '../Feature';
-import Geometry from '../geom/Geometry';
-import Projection from '../proj/Projection';
-import { ReadOptions } from './Feature';
-import Filter from './filter/Filter';
-import GMLBase, { Options as Options_1 } from './GMLBase';
-import XMLFeature from './XMLFeature';
+import Feature from 'ol/Feature';
+import { Extent } from 'ol/extent';
+import { ReadOptions } from 'ol/format/Feature';
+import GMLBase from 'ol/format/GMLBase';
+import { Options as Options_1 } from 'ol/format/GMLBase';
+import XMLFeature from 'ol/format/XMLFeature';
+import Filter from 'ol/format/filter/Filter';
+import Geometry from 'ol/geom/Geometry';
+import Projection from 'ol/proj/Projection';
 
-/**
- * Number of features; bounds/extent.
- */
 export interface FeatureCollectionMetadata {
     numberOfFeatures: number;
     bounds: Extent;

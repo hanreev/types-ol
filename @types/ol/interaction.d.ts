@@ -1,5 +1,5 @@
-import Collection from './Collection';
-import Interaction from './interaction/Interaction';
+import Collection from 'ol/Collection';
+import Interaction from 'ol/interaction/Interaction';
 
 export { default as DoubleClickZoom } from './interaction/DoubleClickZoom';
 export { default as DragAndDrop } from './interaction/DragAndDrop';

@@ -1,15 +1,16 @@
-import Disposable from '../Disposable';
-import { EventsKey } from '../events';
-import BaseEvent from '../events/Event';
-import { Extent } from '../extent';
-import ImageBase from '../ImageBase';
-import ImageCanvas from '../ImageCanvas';
-import Layer from '../layer/Layer';
-import { ObjectEvent } from '../Object';
-import { FrameState } from '../PluggableMap';
-import Projection from '../proj/Projection';
-import ImageSource, { ImageSourceEvent } from './Image';
-import Source from './Source';
+import Disposable from 'ol/Disposable';
+import ImageBase from 'ol/ImageBase';
+import ImageCanvas from 'ol/ImageCanvas';
+import { ObjectEvent } from 'ol/Object';
+import { FrameState } from 'ol/PluggableMap';
+import { EventsKey } from 'ol/events';
+import BaseEvent from 'ol/events/Event';
+import { Extent } from 'ol/extent';
+import Layer from 'ol/layer/Layer';
+import Projection from 'ol/proj/Projection';
+import ImageSource from 'ol/source/Image';
+import { ImageSourceEvent } from 'ol/source/Image';
+import Source from 'ol/source/Source';
 
 export interface FauxMessageEvent {
     data: any;

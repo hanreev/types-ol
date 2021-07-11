@@ -1,14 +1,14 @@
-import { EventsKey } from '../events';
-import BaseEvent from '../events/Event';
-import { Extent } from '../extent';
-import LineString from '../geom/LineString';
-import Point from '../geom/Point';
-import { ObjectEvent } from '../Object';
-import Projection from '../proj/Projection';
-import RenderEvent from '../render/Event';
-import Stroke from '../style/Stroke';
-import Text from '../style/Text';
-import VectorLayer from './Vector';
+import { ObjectEvent } from 'ol/Object';
+import { EventsKey } from 'ol/events';
+import BaseEvent from 'ol/events/Event';
+import { Extent } from 'ol/extent';
+import LineString from 'ol/geom/LineString';
+import Point from 'ol/geom/Point';
+import VectorLayer from 'ol/layer/Vector';
+import Projection from 'ol/proj/Projection';
+import RenderEvent from 'ol/render/Event';
+import Stroke from 'ol/style/Stroke';
+import Text from 'ol/style/Text';
 
 export interface GraticuleLabelDataType {
     geom: Point;

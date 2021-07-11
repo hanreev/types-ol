@@ -1,5 +1,5 @@
-import { Color } from '../color';
-import { ColorLike } from '../colorlike';
+import { Color } from 'ol/color';
+import { ColorLike } from 'ol/colorlike';
 
 export interface Options {
     color?: Color | ColorLike;

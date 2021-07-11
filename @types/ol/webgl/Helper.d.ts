@@ -1,8 +1,8 @@
-import Disposable from '../Disposable';
-import { FrameState } from '../PluggableMap';
-import { Transform } from '../transform';
-import WebGLArrayBuffer from './Buffer';
-import WebGLRenderTarget from './RenderTarget';
+import Disposable from 'ol/Disposable';
+import { FrameState } from 'ol/PluggableMap';
+import { Transform } from 'ol/transform';
+import WebGLArrayBuffer from 'ol/webgl/Buffer';
+import WebGLRenderTarget from 'ol/webgl/RenderTarget';
 
 /**
  * Description of an attribute in a buffer

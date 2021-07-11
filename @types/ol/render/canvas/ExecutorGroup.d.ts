@@ -1,11 +1,11 @@
+import { FeatureLike } from 'ol/Feature';
+import { Coordinate } from 'ol/coordinate';
+import { Extent } from 'ol/extent';
+import SimpleGeometry from 'ol/geom/SimpleGeometry';
+import { SerializableInstructions } from 'ol/render/canvas';
+import BuilderType from 'ol/render/canvas/BuilderType';
+import { Transform } from 'ol/transform';
 import RBush from 'rbush';
-import { Coordinate } from '../../coordinate';
-import { Extent } from '../../extent';
-import { FeatureLike } from '../../Feature';
-import SimpleGeometry from '../../geom/SimpleGeometry';
-import { Transform } from '../../transform';
-import { SerializableInstructions } from '../canvas';
-import BuilderType from './BuilderType';
 
 export default class ExecutorGroup {
     constructor(

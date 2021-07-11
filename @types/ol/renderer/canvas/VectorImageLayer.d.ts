@@ -1,14 +1,14 @@
-import { Coordinate } from '../../coordinate';
-import { EventsKey } from '../../events';
-import BaseEvent from '../../events/Event';
-import Feature from '../../Feature';
-import Geometry from '../../geom/Geometry';
-import VectorImageLayer from '../../layer/VectorImage';
-import { Pixel } from '../../pixel';
-import { FrameState } from '../../PluggableMap';
-import { HitMatch } from '../Map';
-import { FeatureCallback } from '../vector';
-import CanvasImageLayerRenderer from './ImageLayer';
+import Feature from 'ol/Feature';
+import { FrameState } from 'ol/PluggableMap';
+import { Coordinate } from 'ol/coordinate';
+import { EventsKey } from 'ol/events';
+import BaseEvent from 'ol/events/Event';
+import Geometry from 'ol/geom/Geometry';
+import VectorImageLayer from 'ol/layer/VectorImage';
+import { Pixel } from 'ol/pixel';
+import { HitMatch } from 'ol/renderer/Map';
+import CanvasImageLayerRenderer from 'ol/renderer/canvas/ImageLayer';
+import { FeatureCallback } from 'ol/renderer/vector';
 
 export default class CanvasVectorImageLayerRenderer extends CanvasImageLayerRenderer {
     constructor(layer: VectorImageLayer);

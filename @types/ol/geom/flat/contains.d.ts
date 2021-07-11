@@ -1,4 +1,4 @@
-import { Extent } from '../../extent';
+import { Extent } from 'ol/extent';
 
 export function linearRingContainsExtent(
     flatCoordinates: number[],

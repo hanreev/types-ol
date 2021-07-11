@@ -1,13 +1,14 @@
-import { EventsKey } from '../events';
-import BaseEvent from '../events/Event';
-import { Extent } from '../extent';
-import Feature from '../Feature';
-import Geometry from '../geom/Geometry';
-import Point from '../geom/Point';
-import { ObjectEvent } from '../Object';
-import Projection from '../proj/Projection';
-import { AttributionLike } from './Source';
-import VectorSource, { VectorSourceEvent } from './Vector';
+import Feature from 'ol/Feature';
+import { ObjectEvent } from 'ol/Object';
+import { EventsKey } from 'ol/events';
+import BaseEvent from 'ol/events/Event';
+import { Extent } from 'ol/extent';
+import Geometry from 'ol/geom/Geometry';
+import Point from 'ol/geom/Point';
+import Projection from 'ol/proj/Projection';
+import { AttributionLike } from 'ol/source/Source';
+import VectorSource from 'ol/source/Vector';
+import { VectorSourceEvent } from 'ol/source/Vector';
 
 export interface Options {
     attributions?: AttributionLike;

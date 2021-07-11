@@ -1,5 +1,6 @@
-import BaseEvent from './events/Event';
-import PluggableMap, { FrameState } from './PluggableMap';
+import PluggableMap from 'ol/PluggableMap';
+import { FrameState } from 'ol/PluggableMap';
+import BaseEvent from 'ol/events/Event';
 
 export default class MapEvent extends BaseEvent {
     constructor(type: string, map: PluggableMap, opt_frameState?: FrameState);

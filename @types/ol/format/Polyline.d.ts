@@ -1,9 +1,10 @@
-import Feature from '../Feature';
-import Geometry from '../geom/Geometry';
-import GeometryLayout from '../geom/GeometryLayout';
-import LineString from '../geom/LineString';
-import { ReadOptions, WriteOptions } from './Feature';
-import TextFeature from './TextFeature';
+import Feature from 'ol/Feature';
+import { ReadOptions } from 'ol/format/Feature';
+import { WriteOptions } from 'ol/format/Feature';
+import TextFeature from 'ol/format/TextFeature';
+import Geometry from 'ol/geom/Geometry';
+import GeometryLayout from 'ol/geom/GeometryLayout';
+import LineString from 'ol/geom/LineString';
 
 export interface Options {
     factor?: number;

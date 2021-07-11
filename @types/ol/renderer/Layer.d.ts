@@ -1,19 +1,19 @@
-import { Coordinate } from '../coordinate';
-import { EventsKey } from '../events';
-import BaseEvent from '../events/Event';
-import Feature from '../Feature';
-import Geometry from '../geom/Geometry';
-import ImageBase from '../ImageBase';
-import Layer from '../layer/Layer';
-import Observable from '../Observable';
-import { Pixel } from '../pixel';
-import { FrameState } from '../PluggableMap';
-import Projection from '../proj/Projection';
-import TileSource from '../source/Tile';
-import Tile from '../Tile';
-import TileRange from '../TileRange';
-import { HitMatch } from './Map';
-import { FeatureCallback } from './vector';
+import Feature from 'ol/Feature';
+import ImageBase from 'ol/ImageBase';
+import Observable from 'ol/Observable';
+import { FrameState } from 'ol/PluggableMap';
+import Tile from 'ol/Tile';
+import TileRange from 'ol/TileRange';
+import { Coordinate } from 'ol/coordinate';
+import { EventsKey } from 'ol/events';
+import BaseEvent from 'ol/events/Event';
+import Geometry from 'ol/geom/Geometry';
+import Layer from 'ol/layer/Layer';
+import { Pixel } from 'ol/pixel';
+import Projection from 'ol/proj/Projection';
+import { HitMatch } from 'ol/renderer/Map';
+import { FeatureCallback } from 'ol/renderer/vector';
+import TileSource from 'ol/source/Tile';
 
 export default class LayerRenderer<LayerType extends Layer = Layer> extends Observable {
     constructor(layer: LayerType);

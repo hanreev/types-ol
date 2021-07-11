@@ -1,16 +1,16 @@
-import { Extent } from '../extent';
-import Feature from '../Feature';
-import Geometry from '../geom/Geometry';
-import LinearRing from '../geom/LinearRing';
-import LineString from '../geom/LineString';
-import MultiLineString from '../geom/MultiLineString';
-import MultiPoint from '../geom/MultiPoint';
-import MultiPolygon from '../geom/MultiPolygon';
-import Point from '../geom/Point';
-import Polygon from '../geom/Polygon';
-import Projection from '../proj/Projection';
-import { ReadOptions } from './Feature';
-import XMLFeature from './XMLFeature';
+import Feature from 'ol/Feature';
+import { Extent } from 'ol/extent';
+import { ReadOptions } from 'ol/format/Feature';
+import XMLFeature from 'ol/format/XMLFeature';
+import Geometry from 'ol/geom/Geometry';
+import LineString from 'ol/geom/LineString';
+import LinearRing from 'ol/geom/LinearRing';
+import MultiLineString from 'ol/geom/MultiLineString';
+import MultiPoint from 'ol/geom/MultiPoint';
+import MultiPolygon from 'ol/geom/MultiPolygon';
+import Point from 'ol/geom/Point';
+import Polygon from 'ol/geom/Polygon';
+import Projection from 'ol/proj/Projection';
 
 export interface Options {
     featureNS?: { [key: string]: string } | string;

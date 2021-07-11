@@ -1,19 +1,20 @@
-import { Coordinate } from '../../coordinate';
-import { EventsKey } from '../../events';
-import BaseEvent from '../../events/Event';
-import Feature, { FeatureLike } from '../../Feature';
-import Geometry from '../../geom/Geometry';
-import VectorTileLayer from '../../layer/VectorTile';
-import { Pixel } from '../../pixel';
-import { FrameState } from '../../PluggableMap';
-import Projection from '../../proj/Projection';
-import BuilderGroup from '../../render/canvas/BuilderGroup';
-import Style from '../../style/Style';
-import Tile from '../../Tile';
-import VectorRenderTile from '../../VectorRenderTile';
-import { HitMatch } from '../Map';
-import { FeatureCallback } from '../vector';
-import CanvasTileLayerRenderer from './TileLayer';
+import Feature from 'ol/Feature';
+import { FeatureLike } from 'ol/Feature';
+import { FrameState } from 'ol/PluggableMap';
+import Tile from 'ol/Tile';
+import VectorRenderTile from 'ol/VectorRenderTile';
+import { Coordinate } from 'ol/coordinate';
+import { EventsKey } from 'ol/events';
+import BaseEvent from 'ol/events/Event';
+import Geometry from 'ol/geom/Geometry';
+import VectorTileLayer from 'ol/layer/VectorTile';
+import { Pixel } from 'ol/pixel';
+import Projection from 'ol/proj/Projection';
+import BuilderGroup from 'ol/render/canvas/BuilderGroup';
+import { HitMatch } from 'ol/renderer/Map';
+import CanvasTileLayerRenderer from 'ol/renderer/canvas/TileLayer';
+import { FeatureCallback } from 'ol/renderer/vector';
+import Style from 'ol/style/Style';
 
 export default class CanvasVectorTileLayerRenderer extends CanvasTileLayerRenderer {
     constructor(layer: VectorTileLayer);

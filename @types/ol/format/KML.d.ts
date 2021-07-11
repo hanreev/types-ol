@@ -1,14 +1,15 @@
-import Feature from '../Feature';
-import Geometry from '../geom/Geometry';
-import Fill from '../style/Fill';
-import IconAnchorUnits from '../style/IconAnchorUnits';
-import IconOrigin from '../style/IconOrigin';
-import ImageStyle from '../style/Image';
-import Stroke from '../style/Stroke';
-import Style from '../style/Style';
-import Text from '../style/Text';
-import { ReadOptions, WriteOptions } from './Feature';
-import XMLFeature from './XMLFeature';
+import Feature from 'ol/Feature';
+import { ReadOptions } from 'ol/format/Feature';
+import { WriteOptions } from 'ol/format/Feature';
+import XMLFeature from 'ol/format/XMLFeature';
+import Geometry from 'ol/geom/Geometry';
+import Fill from 'ol/style/Fill';
+import IconAnchorUnits from 'ol/style/IconAnchorUnits';
+import IconOrigin from 'ol/style/IconOrigin';
+import ImageStyle from 'ol/style/Image';
+import Stroke from 'ol/style/Stroke';
+import Style from 'ol/style/Style';
+import Text from 'ol/style/Text';
 
 export interface GxTrackObject {
     flatCoordinates: number[];

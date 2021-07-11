@@ -1,9 +1,9 @@
+import Map from 'ol/Map';
+import View from 'ol/View';
 import { defaults as defaultControls, ScaleLine } from 'ol/control';
 import { Units } from 'ol/control/ScaleLine';
 import TileLayer from 'ol/layer/Tile';
-import Map from 'ol/Map';
 import OSM from 'ol/source/OSM';
-import View from 'ol/View';
 
 const scaleLineControl = new ScaleLine();
 

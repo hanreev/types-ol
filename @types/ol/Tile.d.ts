@@ -1,7 +1,7 @@
-import Target from './events/Target';
-import Projection from './proj/Projection';
-import { TileCoord } from './tilecoord';
-import TileState from './TileState';
+import TileState from 'ol/TileState';
+import Target from 'ol/events/Target';
+import Projection from 'ol/proj/Projection';
+import { TileCoord } from 'ol/tilecoord';
 
 /**
  * A function that takes an {@link module:ol/Tile} for the tile and a

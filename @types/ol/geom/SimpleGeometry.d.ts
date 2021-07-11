@@ -1,13 +1,13 @@
-import { Coordinate } from '../coordinate';
-import { EventsKey } from '../events';
-import BaseEvent from '../events/Event';
-import { Extent } from '../extent';
-import { ObjectEvent } from '../Object';
-import { TransformFunction } from '../proj';
-import { Transform } from '../transform';
-import Geometry from './Geometry';
-import GeometryLayout from './GeometryLayout';
-import GeometryType from './GeometryType';
+import { ObjectEvent } from 'ol/Object';
+import { Coordinate } from 'ol/coordinate';
+import { EventsKey } from 'ol/events';
+import BaseEvent from 'ol/events/Event';
+import { Extent } from 'ol/extent';
+import Geometry from 'ol/geom/Geometry';
+import GeometryLayout from 'ol/geom/GeometryLayout';
+import GeometryType from 'ol/geom/GeometryType';
+import { TransformFunction } from 'ol/proj';
+import { Transform } from 'ol/transform';
 
 export default abstract class SimpleGeometry extends Geometry {
     constructor();

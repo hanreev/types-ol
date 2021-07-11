@@ -1,20 +1,20 @@
-import Collection from '../Collection';
-import { EventsKey } from '../events';
-import { Condition } from '../events/condition';
-import BaseEvent from '../events/Event';
-import { Extent } from '../extent';
-import Feature from '../Feature';
-import Geometry from '../geom/Geometry';
-import SimpleGeometry from '../geom/SimpleGeometry';
-import BaseVectorLayer from '../layer/BaseVector';
-import VectorLayer from '../layer/Vector';
-import MapBrowserEvent from '../MapBrowserEvent';
-import { ObjectEvent } from '../Object';
-import PluggableMap from '../PluggableMap';
-import VectorSource from '../source/Vector';
-import VectorTile from '../source/VectorTile';
-import { StyleLike } from '../style/Style';
-import PointerInteraction from './Pointer';
+import Collection from 'ol/Collection';
+import Feature from 'ol/Feature';
+import MapBrowserEvent from 'ol/MapBrowserEvent';
+import { ObjectEvent } from 'ol/Object';
+import PluggableMap from 'ol/PluggableMap';
+import { EventsKey } from 'ol/events';
+import BaseEvent from 'ol/events/Event';
+import { Condition } from 'ol/events/condition';
+import { Extent } from 'ol/extent';
+import Geometry from 'ol/geom/Geometry';
+import SimpleGeometry from 'ol/geom/SimpleGeometry';
+import PointerInteraction from 'ol/interaction/Pointer';
+import BaseVectorLayer from 'ol/layer/BaseVector';
+import VectorLayer from 'ol/layer/Vector';
+import VectorSource from 'ol/source/Vector';
+import VectorTile from 'ol/source/VectorTile';
+import { StyleLike } from 'ol/style/Style';
 
 export interface Options {
     condition?: Condition;

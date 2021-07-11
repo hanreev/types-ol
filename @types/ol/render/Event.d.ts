@@ -1,7 +1,7 @@
-import BaseEvent from '../events/Event';
-import { FrameState } from '../PluggableMap';
-import { Transform } from '../transform';
-import EventType from './EventType';
+import { FrameState } from 'ol/PluggableMap';
+import BaseEvent from 'ol/events/Event';
+import EventType from 'ol/render/EventType';
+import { Transform } from 'ol/transform';
 
 export default class RenderEvent extends BaseEvent {
     constructor(

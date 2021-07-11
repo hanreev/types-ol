@@ -1,12 +1,12 @@
-import { Coordinate } from '../coordinate';
-import { EventsKey } from '../events';
-import { Condition } from '../events/condition';
-import BaseEvent from '../events/Event';
-import Polygon from '../geom/Polygon';
-import MapBrowserEvent from '../MapBrowserEvent';
-import { ObjectEvent } from '../Object';
-import { Pixel } from '../pixel';
-import PointerInteraction from './Pointer';
+import MapBrowserEvent from 'ol/MapBrowserEvent';
+import { ObjectEvent } from 'ol/Object';
+import { Coordinate } from 'ol/coordinate';
+import { EventsKey } from 'ol/events';
+import BaseEvent from 'ol/events/Event';
+import { Condition } from 'ol/events/condition';
+import Polygon from 'ol/geom/Polygon';
+import PointerInteraction from 'ol/interaction/Pointer';
+import { Pixel } from 'ol/pixel';
 
 /**
  * A function that takes a {@link module:ol/MapBrowserEvent} and two

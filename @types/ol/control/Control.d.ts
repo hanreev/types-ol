@@ -1,8 +1,9 @@
-import { EventsKey } from '../events';
-import BaseEvent from '../events/Event';
-import MapEvent from '../MapEvent';
-import BaseObject, { ObjectEvent } from '../Object';
-import PluggableMap from '../PluggableMap';
+import MapEvent from 'ol/MapEvent';
+import BaseObject from 'ol/Object';
+import { ObjectEvent } from 'ol/Object';
+import PluggableMap from 'ol/PluggableMap';
+import { EventsKey } from 'ol/events';
+import BaseEvent from 'ol/events/Event';
 
 export interface Options {
     element?: HTMLElement;

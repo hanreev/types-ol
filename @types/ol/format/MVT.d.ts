@@ -1,8 +1,12 @@
-import Feature, { FeatureClass, FeatureLike } from '../Feature';
-import Geometry from '../geom/Geometry';
-import Projection from '../proj/Projection';
-import FeatureFormat, { ReadOptions, WriteOptions } from './Feature';
-import FormatType from './FormatType';
+import { FeatureClass } from 'ol/Feature';
+import { FeatureLike } from 'ol/Feature';
+import Feature from 'ol/Feature';
+import FeatureFormat from 'ol/format/Feature';
+import { ReadOptions } from 'ol/format/Feature';
+import { WriteOptions } from 'ol/format/Feature';
+import FormatType from 'ol/format/FormatType';
+import Geometry from 'ol/geom/Geometry';
+import Projection from 'ol/proj/Projection';
 
 export interface Options {
     featureClass?: FeatureClass;

@@ -1,4 +1,4 @@
-import Projection from './Projection';
+import Projection from 'ol/proj/Projection';
 
 /**
  * Add a projection to the cache.

@@ -1,10 +1,10 @@
-import Layer from './layer/Layer';
-import { OrderFunction } from './render';
-import Source from './source/Source';
-import Tile from './Tile';
-import { TileCoord } from './tilecoord';
-import TileState from './TileState';
-import VectorTile from './VectorTile';
+import Tile from 'ol/Tile';
+import TileState from 'ol/TileState';
+import VectorTile from 'ol/VectorTile';
+import Layer from 'ol/layer/Layer';
+import { OrderFunction } from 'ol/render';
+import Source from 'ol/source/Source';
+import { TileCoord } from 'ol/tilecoord';
 
 export interface ReplayState {
     dirty: boolean;

@@ -1,8 +1,8 @@
-import { EventsKey } from '../events';
-import BaseEvent from '../events/Event';
-import MapEvent from '../MapEvent';
-import { ObjectEvent } from '../Object';
-import Control from './Control';
+import MapEvent from 'ol/MapEvent';
+import { ObjectEvent } from 'ol/Object';
+import Control from 'ol/control/Control';
+import { EventsKey } from 'ol/events';
+import BaseEvent from 'ol/events/Event';
 
 export interface Options {
     className?: string;

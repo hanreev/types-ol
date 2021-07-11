@@ -1,12 +1,12 @@
-import { EventsKey } from '../events';
-import BaseEvent from '../events/Event';
-import { Extent } from '../extent';
-import { ObjectEvent } from '../Object';
-import PluggableMap from '../PluggableMap';
-import { OrderFunction } from '../render';
-import RenderEvent from '../render/Event';
-import VectorTileLayer from './VectorTile';
-import VectorTileRenderType from './VectorTileRenderType';
+import { ObjectEvent } from 'ol/Object';
+import PluggableMap from 'ol/PluggableMap';
+import { EventsKey } from 'ol/events';
+import BaseEvent from 'ol/events/Event';
+import { Extent } from 'ol/extent';
+import VectorTileLayer from 'ol/layer/VectorTile';
+import VectorTileRenderType from 'ol/layer/VectorTileRenderType';
+import { OrderFunction } from 'ol/render';
+import RenderEvent from 'ol/render/Event';
 
 export interface LayerObject {
     id: string;

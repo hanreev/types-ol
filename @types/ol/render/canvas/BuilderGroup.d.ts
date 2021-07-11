@@ -1,7 +1,7 @@
-import { Extent } from '../../extent';
-import { SerializableInstructions } from '../canvas';
-import VectorContext from '../VectorContext';
-import BuilderType from './BuilderType';
+import { Extent } from 'ol/extent';
+import VectorContext from 'ol/render/VectorContext';
+import { SerializableInstructions } from 'ol/render/canvas';
+import BuilderType from 'ol/render/canvas/BuilderType';
 
 export default class BuilderGroup {
     constructor(tolerance: number, maxExtent: Extent, resolution: number, pixelRatio: number);

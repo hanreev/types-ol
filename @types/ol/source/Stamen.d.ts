@@ -1,9 +1,9 @@
-import { EventsKey } from '../events';
-import BaseEvent from '../events/Event';
-import { ObjectEvent } from '../Object';
-import { LoadFunction } from '../Tile';
-import { TileSourceEvent } from './Tile';
-import XYZ from './XYZ';
+import { ObjectEvent } from 'ol/Object';
+import { LoadFunction } from 'ol/Tile';
+import { EventsKey } from 'ol/events';
+import BaseEvent from 'ol/events/Event';
+import { TileSourceEvent } from 'ol/source/Tile';
+import XYZ from 'ol/source/XYZ';
 
 export interface Options {
     cacheSize?: number;

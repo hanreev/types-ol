@@ -1,9 +1,9 @@
-import { Coordinate } from './coordinate';
-import Corner from './extent/Corner';
-import Relationship from './extent/Relationship';
-import { TransformFunction } from './proj';
-import Projection from './proj/Projection';
-import { Size } from './size';
+import { Coordinate } from 'ol/coordinate';
+import Corner from 'ol/extent/Corner';
+import Relationship from 'ol/extent/Relationship';
+import { TransformFunction } from 'ol/proj';
+import Projection from 'ol/proj/Projection';
+import { Size } from 'ol/size';
 
 /**
  * An array of numbers representing an extent: [minx, miny, maxx, maxy].

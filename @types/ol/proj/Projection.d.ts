@@ -1,7 +1,7 @@
-import { Coordinate } from '../coordinate';
-import { Extent } from '../extent';
-import TileGrid from '../tilegrid/TileGrid';
-import Units from './Units';
+import { Coordinate } from 'ol/coordinate';
+import { Extent } from 'ol/extent';
+import Units from 'ol/proj/Units';
+import TileGrid from 'ol/tilegrid/TileGrid';
 
 export interface Options {
     code: string;

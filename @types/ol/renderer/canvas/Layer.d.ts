@@ -1,14 +1,14 @@
-import { Coordinate } from '../../coordinate';
-import { EventsKey } from '../../events';
-import BaseEvent from '../../events/Event';
-import { Extent } from '../../extent';
-import Layer from '../../layer/Layer';
-import { Pixel } from '../../pixel';
-import { FrameState } from '../../PluggableMap';
-import { Transform } from '../../transform';
-import LayerRenderer from '../Layer';
-import { HitMatch } from '../Map';
-import { FeatureCallback } from '../vector';
+import { FrameState } from 'ol/PluggableMap';
+import { Coordinate } from 'ol/coordinate';
+import { EventsKey } from 'ol/events';
+import BaseEvent from 'ol/events/Event';
+import { Extent } from 'ol/extent';
+import Layer from 'ol/layer/Layer';
+import { Pixel } from 'ol/pixel';
+import LayerRenderer from 'ol/renderer/Layer';
+import { HitMatch } from 'ol/renderer/Map';
+import { FeatureCallback } from 'ol/renderer/vector';
+import { Transform } from 'ol/transform';
 
 export default abstract class CanvasLayerRenderer<LayerType extends Layer = Layer> extends LayerRenderer {
     constructor(layer: LayerType);

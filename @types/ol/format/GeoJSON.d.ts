@@ -1,22 +1,21 @@
-import {
-    Feature,
-    FeatureCollection,
-    GeoJSON as GeoJSON_1,
-    Geometry,
-    GeometryCollection,
-    LineString,
-    MultiLineString,
-    MultiPoint,
-    MultiPolygon,
-    Point,
-    Polygon,
-} from 'geojson';
-import Feature_1 from '../Feature';
-import Geometry_1 from '../geom/Geometry';
-import { ProjectionLike } from '../proj';
-import Projection from '../proj/Projection';
-import { ReadOptions, WriteOptions } from './Feature';
-import JSONFeature from './JSONFeature';
+import { Feature } from 'geojson';
+import { FeatureCollection } from 'geojson';
+import { Geometry } from 'geojson';
+import { GeometryCollection } from 'geojson';
+import { LineString } from 'geojson';
+import { MultiLineString } from 'geojson';
+import { MultiPoint } from 'geojson';
+import { MultiPolygon } from 'geojson';
+import { GeoJSON as GeoJSON_1 } from 'geojson';
+import { Point } from 'geojson';
+import { Polygon } from 'geojson';
+import Feature_1 from 'ol/Feature';
+import { ReadOptions } from 'ol/format/Feature';
+import { WriteOptions } from 'ol/format/Feature';
+import JSONFeature from 'ol/format/JSONFeature';
+import Geometry_1 from 'ol/geom/Geometry';
+import { ProjectionLike } from 'ol/proj';
+import Projection from 'ol/proj/Projection';
 
 export type GeoJSONFeature = Feature;
 export type GeoJSONFeatureCollection = FeatureCollection;

@@ -1,15 +1,15 @@
-import Collection from '../Collection';
-import { Coordinate } from '../coordinate';
-import { EventsKey } from '../events';
-import BaseEvent from '../events/Event';
-import Feature from '../Feature';
-import Geometry from '../geom/Geometry';
-import MapBrowserEvent from '../MapBrowserEvent';
-import { ObjectEvent } from '../Object';
-import { Pixel } from '../pixel';
-import PluggableMap from '../PluggableMap';
-import VectorSource from '../source/Vector';
-import PointerInteraction from './Pointer';
+import Collection from 'ol/Collection';
+import Feature from 'ol/Feature';
+import MapBrowserEvent from 'ol/MapBrowserEvent';
+import { ObjectEvent } from 'ol/Object';
+import PluggableMap from 'ol/PluggableMap';
+import { Coordinate } from 'ol/coordinate';
+import { EventsKey } from 'ol/events';
+import BaseEvent from 'ol/events/Event';
+import Geometry from 'ol/geom/Geometry';
+import PointerInteraction from 'ol/interaction/Pointer';
+import { Pixel } from 'ol/pixel';
+import VectorSource from 'ol/source/Vector';
 
 export interface Options {
     features?: Collection<Feature<Geometry>>;

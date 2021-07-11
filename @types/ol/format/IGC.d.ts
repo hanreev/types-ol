@@ -1,7 +1,8 @@
-import Feature from '../Feature';
-import Geometry from '../geom/Geometry';
-import { ReadOptions, WriteOptions } from './Feature';
-import TextFeature from './TextFeature';
+import Feature from 'ol/Feature';
+import { ReadOptions } from 'ol/format/Feature';
+import { WriteOptions } from 'ol/format/Feature';
+import TextFeature from 'ol/format/TextFeature';
+import Geometry from 'ol/geom/Geometry';
 
 export interface Options {
     altitudeMode?: IGCZ | string;

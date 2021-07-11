@@ -1,4 +1,4 @@
-import { Coordinate } from '../../coordinate';
+import { Coordinate } from 'ol/coordinate';
 
 /**
  * This function calls callback for each segment of the flat coordinates

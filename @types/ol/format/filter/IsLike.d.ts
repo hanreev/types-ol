@@ -1,4 +1,4 @@
-import Comparison from './Comparison';
+import Comparison from 'ol/format/filter/Comparison';
 
 /**
  * [constructor description]

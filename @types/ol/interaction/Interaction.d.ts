@@ -1,10 +1,11 @@
-import { Coordinate } from '../coordinate';
-import { EventsKey } from '../events';
-import BaseEvent from '../events/Event';
-import MapBrowserEvent from '../MapBrowserEvent';
-import BaseObject, { ObjectEvent } from '../Object';
-import PluggableMap from '../PluggableMap';
-import View from '../View';
+import MapBrowserEvent from 'ol/MapBrowserEvent';
+import BaseObject from 'ol/Object';
+import { ObjectEvent } from 'ol/Object';
+import PluggableMap from 'ol/PluggableMap';
+import View from 'ol/View';
+import { Coordinate } from 'ol/coordinate';
+import { EventsKey } from 'ol/events';
+import BaseEvent from 'ol/events/Event';
 
 /**
  * Object literal with config options for interactions.

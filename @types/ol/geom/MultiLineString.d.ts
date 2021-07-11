@@ -1,12 +1,12 @@
-import { Coordinate } from '../coordinate';
-import { EventsKey } from '../events';
-import BaseEvent from '../events/Event';
-import { Extent } from '../extent';
-import { ObjectEvent } from '../Object';
-import GeometryLayout from './GeometryLayout';
-import GeometryType from './GeometryType';
-import LineString from './LineString';
-import SimpleGeometry from './SimpleGeometry';
+import { ObjectEvent } from 'ol/Object';
+import { Coordinate } from 'ol/coordinate';
+import { EventsKey } from 'ol/events';
+import BaseEvent from 'ol/events/Event';
+import { Extent } from 'ol/extent';
+import GeometryLayout from 'ol/geom/GeometryLayout';
+import GeometryType from 'ol/geom/GeometryType';
+import LineString from 'ol/geom/LineString';
+import SimpleGeometry from 'ol/geom/SimpleGeometry';
 
 export default class MultiLineString extends SimpleGeometry {
     constructor(

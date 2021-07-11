@@ -1,6 +1,6 @@
-import { EventsKey } from './events';
-import BaseEvent from './events/Event';
-import LRUCache from './structs/LRUCache';
+import { EventsKey } from 'ol/events';
+import BaseEvent from 'ol/events/Event';
+import LRUCache from 'ol/structs/LRUCache';
 
 export default class TileCache extends LRUCache<any> {
     constructor();

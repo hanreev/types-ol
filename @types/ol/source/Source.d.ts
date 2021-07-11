@@ -1,10 +1,11 @@
-import { EventsKey } from '../events';
-import BaseEvent from '../events/Event';
-import BaseObject, { ObjectEvent } from '../Object';
-import { FrameState } from '../PluggableMap';
-import { ProjectionLike } from '../proj';
-import Projection from '../proj/Projection';
-import State from './State';
+import BaseObject from 'ol/Object';
+import { ObjectEvent } from 'ol/Object';
+import { FrameState } from 'ol/PluggableMap';
+import { EventsKey } from 'ol/events';
+import BaseEvent from 'ol/events/Event';
+import { ProjectionLike } from 'ol/proj';
+import Projection from 'ol/proj/Projection';
+import State from 'ol/source/State';
 
 /**
  * A function that returns a string or an array of strings representing source

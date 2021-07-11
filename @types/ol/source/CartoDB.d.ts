@@ -1,10 +1,10 @@
-import { EventsKey } from '../events';
-import BaseEvent from '../events/Event';
-import { ObjectEvent } from '../Object';
-import { ProjectionLike } from '../proj';
-import { AttributionLike } from './Source';
-import { TileSourceEvent } from './Tile';
-import XYZ from './XYZ';
+import { ObjectEvent } from 'ol/Object';
+import { EventsKey } from 'ol/events';
+import BaseEvent from 'ol/events/Event';
+import { ProjectionLike } from 'ol/proj';
+import { AttributionLike } from 'ol/source/Source';
+import { TileSourceEvent } from 'ol/source/Tile';
+import XYZ from 'ol/source/XYZ';
 
 export interface CartoDBLayerInfo {
     layergroupid: string;

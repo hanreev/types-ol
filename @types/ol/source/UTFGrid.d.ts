@@ -1,14 +1,14 @@
-import { Coordinate } from '../coordinate';
-import { EventsKey } from '../events';
-import BaseEvent from '../events/Event';
-import { Extent } from '../extent';
-import { ObjectEvent } from '../Object';
-import Projection from '../proj/Projection';
-import Tile from '../Tile';
-import { TileCoord } from '../tilecoord';
-import TileState from '../TileState';
-import TileSource from './Tile';
-import { Config } from './TileJSON';
+import { ObjectEvent } from 'ol/Object';
+import Tile from 'ol/Tile';
+import TileState from 'ol/TileState';
+import { Coordinate } from 'ol/coordinate';
+import { EventsKey } from 'ol/events';
+import BaseEvent from 'ol/events/Event';
+import { Extent } from 'ol/extent';
+import Projection from 'ol/proj/Projection';
+import TileSource from 'ol/source/Tile';
+import { Config } from 'ol/source/TileJSON';
+import { TileCoord } from 'ol/tilecoord';
 
 export interface Options {
     preemptive?: boolean;

@@ -1,5 +1,5 @@
-import Geometry from '../../geom/Geometry';
-import Filter from './Filter';
+import Filter from 'ol/format/filter/Filter';
+import Geometry from 'ol/geom/Geometry';
 
 export default abstract class Spatial extends Filter {
     constructor(tagName: string, geometryName: string, geometry: Geometry, opt_srsName?: string);

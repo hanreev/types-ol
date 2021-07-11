@@ -1,7 +1,7 @@
-import Projection from '../proj/Projection';
-import Tile from '../Tile';
-import { TileCoord } from '../tilecoord';
-import TileGrid from '../tilegrid/TileGrid';
+import Tile from 'ol/Tile';
+import Projection from 'ol/proj/Projection';
+import { TileCoord } from 'ol/tilecoord';
+import TileGrid from 'ol/tilegrid/TileGrid';
 
 export type FunctionType = (p0: number, p1: number, p2: number, p3: number) => Tile;
 export default class ReprojTile extends Tile {

@@ -1,9 +1,9 @@
-import { FeatureLike } from './Feature';
-import SimpleGeometry from './geom/SimpleGeometry';
-import { Pixel } from './pixel';
-import CanvasImmediateRenderer from './render/canvas/Immediate';
-import RenderEvent from './render/Event';
-import { Size } from './size';
+import { FeatureLike } from 'ol/Feature';
+import SimpleGeometry from 'ol/geom/SimpleGeometry';
+import { Pixel } from 'ol/pixel';
+import RenderEvent from 'ol/render/Event';
+import CanvasImmediateRenderer from 'ol/render/canvas/Immediate';
+import { Size } from 'ol/size';
 
 /**
  * A function to be used when sorting features before rendering.

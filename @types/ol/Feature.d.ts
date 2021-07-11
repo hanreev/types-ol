@@ -1,9 +1,12 @@
-import { EventsKey } from './events';
-import BaseEvent from './events/Event';
-import Geometry from './geom/Geometry';
-import BaseObject, { ObjectEvent } from './Object';
-import RenderFeature from './render/Feature';
-import Style, { StyleFunction, StyleLike } from './style/Style';
+import BaseObject from 'ol/Object';
+import { ObjectEvent } from 'ol/Object';
+import { EventsKey } from 'ol/events';
+import BaseEvent from 'ol/events/Event';
+import Geometry from 'ol/geom/Geometry';
+import RenderFeature from 'ol/render/Feature';
+import { StyleLike } from 'ol/style/Style';
+import { StyleFunction } from 'ol/style/Style';
+import Style from 'ol/style/Style';
 
 export type FeatureClass = typeof Feature | typeof RenderFeature;
 export type FeatureLike = Feature<Geometry> | RenderFeature;

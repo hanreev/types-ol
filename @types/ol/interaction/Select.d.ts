@@ -1,25 +1,20 @@
-import Collection from '../Collection';
-import { EventsKey } from '../events';
-import { Condition } from '../events/condition';
-import BaseEvent from '../events/Event';
-import Feature, { FeatureLike } from '../Feature';
-import Geometry from '../geom/Geometry';
-import Layer from '../layer/Layer';
-import VectorLayer from '../layer/Vector';
-import MapBrowserEvent from '../MapBrowserEvent';
-import { ObjectEvent } from '../Object';
-import PluggableMap from '../PluggableMap';
-import Source from '../source/Source';
-import VectorSource from '../source/Vector';
-import { StyleLike } from '../style/Style';
-import Interaction from './Interaction';
+import Collection from 'ol/Collection';
+import { FeatureLike } from 'ol/Feature';
+import Feature from 'ol/Feature';
+import MapBrowserEvent from 'ol/MapBrowserEvent';
+import { ObjectEvent } from 'ol/Object';
+import PluggableMap from 'ol/PluggableMap';
+import { EventsKey } from 'ol/events';
+import BaseEvent from 'ol/events/Event';
+import { Condition } from 'ol/events/condition';
+import Geometry from 'ol/geom/Geometry';
+import Interaction from 'ol/interaction/Interaction';
+import Layer from 'ol/layer/Layer';
+import VectorLayer from 'ol/layer/Vector';
+import Source from 'ol/source/Source';
+import VectorSource from 'ol/source/Vector';
+import { StyleLike } from 'ol/style/Style';
 
-/**
- * A function that takes an {@link module:ol/Feature} or
- * {@link module:ol/render/Feature} and an
- * {@link module:ol/layer/Layer} and returns true if the feature may be
- * selected or false otherwise.
- */
 export type FilterFunction = (p0: FeatureLike, p1: Layer<Source>) => boolean;
 export interface Options {
     addCondition?: Condition;

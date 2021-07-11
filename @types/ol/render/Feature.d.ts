@@ -1,6 +1,7 @@
-import { Extent } from '../extent';
-import GeometryType from '../geom/GeometryType';
-import { ProjectionLike, TransformFunction } from '../proj';
+import { Extent } from 'ol/extent';
+import GeometryType from 'ol/geom/GeometryType';
+import { TransformFunction } from 'ol/proj';
+import { ProjectionLike } from 'ol/proj';
 
 export default class RenderFeature {
     constructor(

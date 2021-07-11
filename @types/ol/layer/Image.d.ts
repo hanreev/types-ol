@@ -1,12 +1,13 @@
-import { EventsKey } from '../events';
-import BaseEvent from '../events/Event';
-import { ObjectEvent } from '../Object';
-import RenderEvent from '../render/Event';
-import LayerRenderer from '../renderer/Layer';
-import ImageSource from '../source/Image';
-import Source from '../source/Source';
-import BaseImageLayer, { Options } from './BaseImage';
-import Layer from './Layer';
+import { ObjectEvent } from 'ol/Object';
+import { EventsKey } from 'ol/events';
+import BaseEvent from 'ol/events/Event';
+import BaseImageLayer from 'ol/layer/BaseImage';
+import { Options } from 'ol/layer/BaseImage';
+import Layer from 'ol/layer/Layer';
+import RenderEvent from 'ol/render/Event';
+import LayerRenderer from 'ol/renderer/Layer';
+import ImageSource from 'ol/source/Image';
+import Source from 'ol/source/Source';
 
 export default class ImageLayer<
     ImageSourceType extends ImageSource = ImageSource,

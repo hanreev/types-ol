@@ -1,5 +1,5 @@
-import { Extent } from '../extent';
-import Projection from './Projection';
+import { Extent } from 'ol/extent';
+import Projection from 'ol/proj/Projection';
 
 export const EXTENT: Extent;
 export const HALF_SIZE: number;

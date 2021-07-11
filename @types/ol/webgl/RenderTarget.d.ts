@@ -1,4 +1,4 @@
-import WebGLHelper from './Helper';
+import WebGLHelper from 'ol/webgl/Helper';
 
 export default class WebGLRenderTarget {
     constructor(helper: WebGLHelper, opt_size?: number[]);

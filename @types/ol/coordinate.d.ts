@@ -1,5 +1,5 @@
-import Circle from './geom/Circle';
-import Projection from './proj/Projection';
+import Circle from 'ol/geom/Circle';
+import Projection from 'ol/proj/Projection';
 
 /**
  * An array of numbers representing an xy coordinate. Example: [16, 48].

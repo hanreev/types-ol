@@ -1,20 +1,20 @@
+import Feature from 'ol/Feature';
+import { FrameState } from 'ol/PluggableMap';
+import { Coordinate } from 'ol/coordinate';
+import { EventsKey } from 'ol/events';
+import BaseEvent from 'ol/events/Event';
+import Geometry from 'ol/geom/Geometry';
+import VectorLayer from 'ol/layer/Vector';
+import { Pixel } from 'ol/pixel';
+import { TransformFunction } from 'ol/proj';
+import BuilderGroup from 'ol/render/canvas/BuilderGroup';
+import ExecutorGroup from 'ol/render/canvas/ExecutorGroup';
+import { HitMatch } from 'ol/renderer/Map';
+import CanvasLayerRenderer from 'ol/renderer/canvas/Layer';
+import { FeatureCallback } from 'ol/renderer/vector';
+import VectorSource from 'ol/source/Vector';
+import Style from 'ol/style/Style';
 import RBush from 'rbush';
-import { Coordinate } from '../../coordinate';
-import { EventsKey } from '../../events';
-import BaseEvent from '../../events/Event';
-import Feature from '../../Feature';
-import Geometry from '../../geom/Geometry';
-import VectorLayer from '../../layer/Vector';
-import { Pixel } from '../../pixel';
-import { FrameState } from '../../PluggableMap';
-import { TransformFunction } from '../../proj';
-import BuilderGroup from '../../render/canvas/BuilderGroup';
-import ExecutorGroup from '../../render/canvas/ExecutorGroup';
-import VectorSource from '../../source/Vector';
-import Style from '../../style/Style';
-import { HitMatch } from '../Map';
-import { FeatureCallback } from '../vector';
-import CanvasLayerRenderer from './Layer';
 
 export default class CanvasVectorLayerRenderer extends CanvasLayerRenderer {
     constructor(vectorLayer: VectorLayer<VectorSource<Geometry>>);

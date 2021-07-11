@@ -1,14 +1,16 @@
-import { Coordinate } from '../coordinate';
-import { EventsKey } from '../events';
-import BaseEvent from '../events/Event';
-import { Extent } from '../extent';
-import ImageWrapper, { LoadFunction } from '../Image';
-import { ObjectEvent } from '../Object';
-import { ProjectionLike } from '../proj';
-import Projection from '../proj/Projection';
-import ImageSource, { ImageSourceEvent } from './Image';
-import { AttributionLike } from './Source';
-import WMSServerType from './WMSServerType';
+import { LoadFunction } from 'ol/Image';
+import ImageWrapper from 'ol/Image';
+import { ObjectEvent } from 'ol/Object';
+import { Coordinate } from 'ol/coordinate';
+import { EventsKey } from 'ol/events';
+import BaseEvent from 'ol/events/Event';
+import { Extent } from 'ol/extent';
+import { ProjectionLike } from 'ol/proj';
+import Projection from 'ol/proj/Projection';
+import ImageSource from 'ol/source/Image';
+import { ImageSourceEvent } from 'ol/source/Image';
+import { AttributionLike } from 'ol/source/Source';
+import WMSServerType from 'ol/source/WMSServerType';
 
 export interface Options {
     attributions?: AttributionLike;

@@ -1,11 +1,12 @@
+import { FeatureLike } from 'ol/Feature';
+import { Coordinate } from 'ol/coordinate';
+import { Extent } from 'ol/extent';
+import SimpleGeometry from 'ol/geom/SimpleGeometry';
+import { SerializableInstructions } from 'ol/render/canvas';
+import { Label } from 'ol/render/canvas';
+import { Size } from 'ol/size';
+import { Transform } from 'ol/transform';
 import RBush from 'rbush';
-import { Coordinate } from '../../coordinate';
-import { Extent } from '../../extent';
-import { FeatureLike } from '../../Feature';
-import SimpleGeometry from '../../geom/SimpleGeometry';
-import { Size } from '../../size';
-import { Transform } from '../../transform';
-import { Label, SerializableInstructions } from '../canvas';
 
 export interface BBox {
     minX: number;

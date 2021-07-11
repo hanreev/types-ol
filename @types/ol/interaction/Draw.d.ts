@@ -1,28 +1,22 @@
-import Collection from '../Collection';
-import { Coordinate } from '../coordinate';
-import { EventsKey } from '../events';
-import { Condition } from '../events/condition';
-import BaseEvent from '../events/Event';
-import Feature from '../Feature';
-import Geometry from '../geom/Geometry';
-import GeometryType from '../geom/GeometryType';
-import LineString from '../geom/LineString';
-import SimpleGeometry from '../geom/SimpleGeometry';
-import VectorLayer from '../layer/Vector';
-import MapBrowserEvent from '../MapBrowserEvent';
-import { ObjectEvent } from '../Object';
-import PluggableMap from '../PluggableMap';
-import Projection from '../proj/Projection';
-import VectorSource from '../source/Vector';
-import { StyleLike } from '../style/Style';
-import PointerInteraction from './Pointer';
+import Collection from 'ol/Collection';
+import Feature from 'ol/Feature';
+import MapBrowserEvent from 'ol/MapBrowserEvent';
+import { ObjectEvent } from 'ol/Object';
+import PluggableMap from 'ol/PluggableMap';
+import { Coordinate } from 'ol/coordinate';
+import { EventsKey } from 'ol/events';
+import BaseEvent from 'ol/events/Event';
+import { Condition } from 'ol/events/condition';
+import Geometry from 'ol/geom/Geometry';
+import GeometryType from 'ol/geom/GeometryType';
+import LineString from 'ol/geom/LineString';
+import SimpleGeometry from 'ol/geom/SimpleGeometry';
+import PointerInteraction from 'ol/interaction/Pointer';
+import VectorLayer from 'ol/layer/Vector';
+import Projection from 'ol/proj/Projection';
+import VectorSource from 'ol/source/Vector';
+import { StyleLike } from 'ol/style/Style';
 
-/**
- * Function that takes an array of coordinates and an optional existing geometry
- * and a projection as arguments, and returns a geometry. The optional existing
- * geometry is the geometry that is returned when the function is called without
- * a second argument.
- */
 export type GeometryFunction = (p0: SketchCoordType, p1: SimpleGeometry, p2: Projection) => SimpleGeometry;
 /**
  * Coordinate type when drawing lines.

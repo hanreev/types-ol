@@ -1,10 +1,10 @@
-import { EventsKey } from '../events';
-import BaseEvent from '../events/Event';
-import { ObjectEvent } from '../Object';
-import { LoadFunction } from '../Tile';
-import { TileCoord } from '../tilecoord';
-import { TileSourceEvent } from './Tile';
-import TileImage from './TileImage';
+import { ObjectEvent } from 'ol/Object';
+import { LoadFunction } from 'ol/Tile';
+import { EventsKey } from 'ol/events';
+import BaseEvent from 'ol/events/Event';
+import { TileSourceEvent } from 'ol/source/Tile';
+import TileImage from 'ol/source/TileImage';
+import { TileCoord } from 'ol/tilecoord';
 
 export interface BingMapsImageryMetadataResponse {
     statusCode: number;

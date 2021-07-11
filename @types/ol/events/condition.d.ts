@@ -1,4 +1,4 @@
-import MapBrowserEvent from '../MapBrowserEvent';
+import MapBrowserEvent from 'ol/MapBrowserEvent';
 
 /**
  * A function that takes an {@link module:ol/MapBrowserEvent} and returns a

@@ -1,13 +1,13 @@
-import { EventsKey } from '../events';
-import BaseEvent from '../events/Event';
-import { ObjectEvent } from '../Object';
-import { ProjectionLike } from '../proj';
-import { Size } from '../size';
-import Tile from '../Tile';
-import { TileCoord } from '../tilecoord';
-import TileGrid from '../tilegrid/TileGrid';
-import { TileSourceEvent } from './Tile';
-import XYZ from './XYZ';
+import { ObjectEvent } from 'ol/Object';
+import Tile from 'ol/Tile';
+import { EventsKey } from 'ol/events';
+import BaseEvent from 'ol/events/Event';
+import { ProjectionLike } from 'ol/proj';
+import { Size } from 'ol/size';
+import { TileSourceEvent } from 'ol/source/Tile';
+import XYZ from 'ol/source/XYZ';
+import { TileCoord } from 'ol/tilecoord';
+import TileGrid from 'ol/tilegrid/TileGrid';
 
 export interface Options {
     projection?: ProjectionLike;

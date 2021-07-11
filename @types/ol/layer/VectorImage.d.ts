@@ -1,17 +1,17 @@
-import { EventsKey } from '../events';
-import BaseEvent from '../events/Event';
-import { Extent } from '../extent';
-import Geometry from '../geom/Geometry';
-import { ObjectEvent } from '../Object';
-import PluggableMap from '../PluggableMap';
-import { OrderFunction } from '../render';
-import RenderEvent from '../render/Event';
-import LayerRenderer from '../renderer/Layer';
-import Source from '../source/Source';
-import VectorSource from '../source/Vector';
-import { StyleLike } from '../style/Style';
-import BaseVectorLayer from './BaseVector';
-import Layer from './Layer';
+import { ObjectEvent } from 'ol/Object';
+import PluggableMap from 'ol/PluggableMap';
+import { EventsKey } from 'ol/events';
+import BaseEvent from 'ol/events/Event';
+import { Extent } from 'ol/extent';
+import Geometry from 'ol/geom/Geometry';
+import BaseVectorLayer from 'ol/layer/BaseVector';
+import Layer from 'ol/layer/Layer';
+import { OrderFunction } from 'ol/render';
+import RenderEvent from 'ol/render/Event';
+import LayerRenderer from 'ol/renderer/Layer';
+import Source from 'ol/source/Source';
+import VectorSource from 'ol/source/Vector';
+import { StyleLike } from 'ol/style/Style';
 
 export interface Options {
     className?: string;

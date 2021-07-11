@@ -1,15 +1,17 @@
-import Collection from '../Collection';
-import { Coordinate } from '../coordinate';
-import { EventsKey } from '../events';
-import BaseEvent from '../events/Event';
-import { Extent } from '../extent';
-import Feature from '../Feature';
-import { FeatureLoader, FeatureUrlFunction } from '../featureloader';
-import FeatureFormat from '../format/Feature';
-import Geometry from '../geom/Geometry';
-import { ObjectEvent } from '../Object';
-import Projection from '../proj/Projection';
-import Source, { AttributionLike } from './Source';
+import Collection from 'ol/Collection';
+import Feature from 'ol/Feature';
+import { ObjectEvent } from 'ol/Object';
+import { Coordinate } from 'ol/coordinate';
+import { EventsKey } from 'ol/events';
+import BaseEvent from 'ol/events/Event';
+import { Extent } from 'ol/extent';
+import { FeatureLoader } from 'ol/featureloader';
+import { FeatureUrlFunction } from 'ol/featureloader';
+import FeatureFormat from 'ol/format/Feature';
+import Geometry from 'ol/geom/Geometry';
+import Projection from 'ol/proj/Projection';
+import { AttributionLike } from 'ol/source/Source';
+import Source from 'ol/source/Source';
 
 /**
  * A function that takes an {@link module:ol/extent~Extent} and a resolution as arguments, and

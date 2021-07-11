@@ -1,11 +1,11 @@
-import { Extent } from '../../extent';
-import { FeatureLike } from '../../Feature';
-import MultiPoint from '../../geom/MultiPoint';
-import Point from '../../geom/Point';
-import ImageStyle from '../../style/Image';
-import { SerializableInstructions } from '../canvas';
-import RenderFeature from '../Feature';
-import CanvasBuilder from './Builder';
+import { FeatureLike } from 'ol/Feature';
+import { Extent } from 'ol/extent';
+import MultiPoint from 'ol/geom/MultiPoint';
+import Point from 'ol/geom/Point';
+import RenderFeature from 'ol/render/Feature';
+import { SerializableInstructions } from 'ol/render/canvas';
+import CanvasBuilder from 'ol/render/canvas/Builder';
+import ImageStyle from 'ol/style/Image';
 
 export default class CanvasImageBuilder extends CanvasBuilder {
     constructor(tolerance: number, maxExtent: Extent, resolution: number, pixelRatio: number);

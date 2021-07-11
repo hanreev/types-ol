@@ -1,17 +1,18 @@
-import { Type } from './centerconstraint';
-import { Coordinate } from './coordinate';
-import { EventsKey } from './events';
-import BaseEvent from './events/Event';
-import { Extent } from './extent';
-import SimpleGeometry from './geom/SimpleGeometry';
-import BaseObject, { ObjectEvent } from './Object';
-import { Pixel } from './pixel';
-import { ProjectionLike } from './proj';
-import Projection from './proj/Projection';
-import { Type as Type_1 } from './resolutionconstraint';
-import { Type as Type_2 } from './rotationconstraint';
-import { Size } from './size';
-import ViewHint from './ViewHint';
+import BaseObject from 'ol/Object';
+import { ObjectEvent } from 'ol/Object';
+import ViewHint from 'ol/ViewHint';
+import { Type } from 'ol/centerconstraint';
+import { Coordinate } from 'ol/coordinate';
+import { EventsKey } from 'ol/events';
+import BaseEvent from 'ol/events/Event';
+import { Extent } from 'ol/extent';
+import SimpleGeometry from 'ol/geom/SimpleGeometry';
+import { Pixel } from 'ol/pixel';
+import { ProjectionLike } from 'ol/proj';
+import Projection from 'ol/proj/Projection';
+import { Type as Type_1 } from 'ol/resolutionconstraint';
+import { Type as Type_2 } from 'ol/rotationconstraint';
+import { Size } from 'ol/size';
 
 /**
  * An animation configuration

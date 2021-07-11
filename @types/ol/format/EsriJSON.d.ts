@@ -1,20 +1,19 @@
-import {
-    Feature,
-    FeatureSet,
-    Geometry,
-    HasZM,
-    Multipoint,
-    Point,
-    Polygon,
-    Polyline,
-    Position,
-    SpatialReferenceWkid,
-} from 'arcgis-rest-api';
-import Feature_1 from '../Feature';
-import Geometry_1 from '../geom/Geometry';
-import Projection from '../proj/Projection';
-import { ReadOptions, WriteOptions } from './Feature';
-import JSONFeature from './JSONFeature';
+import { Feature } from 'arcgis-rest-api';
+import { FeatureSet } from 'arcgis-rest-api';
+import { Geometry } from 'arcgis-rest-api';
+import { HasZM } from 'arcgis-rest-api';
+import { Multipoint } from 'arcgis-rest-api';
+import { Point } from 'arcgis-rest-api';
+import { Polygon } from 'arcgis-rest-api';
+import { Polyline } from 'arcgis-rest-api';
+import { Position } from 'arcgis-rest-api';
+import { SpatialReferenceWkid } from 'arcgis-rest-api';
+import Feature_1 from 'ol/Feature';
+import { ReadOptions } from 'ol/format/Feature';
+import { WriteOptions } from 'ol/format/Feature';
+import JSONFeature from 'ol/format/JSONFeature';
+import Geometry_1 from 'ol/geom/Geometry';
+import Projection from 'ol/proj/Projection';
 
 export type EsriJSONFeature = Feature;
 export type EsriJSONFeatureSet = FeatureSet;

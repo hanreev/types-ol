@@ -1,17 +1,19 @@
-import { EventsKey } from '../events';
-import BaseEvent from '../events/Event';
-import { Extent } from '../extent';
-import Feature from '../Feature';
-import Geometry from '../geom/Geometry';
-import { ObjectEvent } from '../Object';
-import { Pixel } from '../pixel';
-import PluggableMap, { FrameState } from '../PluggableMap';
-import { OrderFunction } from '../render';
-import RenderEvent from '../render/Event';
-import VectorSource from '../source/Vector';
-import VectorTile from '../source/VectorTile';
-import { StyleFunction, StyleLike } from '../style/Style';
-import Layer from './Layer';
+import Feature from 'ol/Feature';
+import { ObjectEvent } from 'ol/Object';
+import PluggableMap from 'ol/PluggableMap';
+import { FrameState } from 'ol/PluggableMap';
+import { EventsKey } from 'ol/events';
+import BaseEvent from 'ol/events/Event';
+import { Extent } from 'ol/extent';
+import Geometry from 'ol/geom/Geometry';
+import Layer from 'ol/layer/Layer';
+import { Pixel } from 'ol/pixel';
+import { OrderFunction } from 'ol/render';
+import RenderEvent from 'ol/render/Event';
+import VectorSource from 'ol/source/Vector';
+import VectorTile from 'ol/source/VectorTile';
+import { StyleLike } from 'ol/style/Style';
+import { StyleFunction } from 'ol/style/Style';
 
 export interface Options<VectorSourceType extends VectorSource | VectorTile = VectorSource | VectorTile> {
     className?: string;

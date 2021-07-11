@@ -1,6 +1,6 @@
-import Disposable from '../Disposable';
-import { Listener } from '../events';
-import BaseEvent from './Event';
+import Disposable from 'ol/Disposable';
+import { Listener } from 'ol/events';
+import BaseEvent from 'ol/events/Event';
 
 export type EventTargetLike = EventTarget | Target;
 export default class Target extends Disposable {

@@ -1,15 +1,16 @@
-import Collection from '../Collection';
-import { Coordinate } from '../coordinate';
-import { EventsKey } from '../events';
-import BaseEvent from '../events/Event';
-import Feature, { FeatureLike } from '../Feature';
-import Geometry from '../geom/Geometry';
-import Layer from '../layer/Layer';
-import MapBrowserEvent from '../MapBrowserEvent';
-import { ObjectEvent } from '../Object';
-import PluggableMap from '../PluggableMap';
-import Source from '../source/Source';
-import PointerInteraction from './Pointer';
+import Collection from 'ol/Collection';
+import { FeatureLike } from 'ol/Feature';
+import Feature from 'ol/Feature';
+import MapBrowserEvent from 'ol/MapBrowserEvent';
+import { ObjectEvent } from 'ol/Object';
+import PluggableMap from 'ol/PluggableMap';
+import { Coordinate } from 'ol/coordinate';
+import { EventsKey } from 'ol/events';
+import BaseEvent from 'ol/events/Event';
+import Geometry from 'ol/geom/Geometry';
+import PointerInteraction from 'ol/interaction/Pointer';
+import Layer from 'ol/layer/Layer';
+import Source from 'ol/source/Source';
 
 /**
  * A function that takes an {@link module:ol/Feature} or

@@ -1,11 +1,12 @@
-import { EventsKey } from './events';
-import BaseEvent from './events/Event';
-import MapBrowserEvent from './MapBrowserEvent';
-import MapEvent from './MapEvent';
-import { ObjectEvent } from './Object';
-import PluggableMap, { MapOptions } from './PluggableMap';
-import RenderEvent from './render/Event';
-import MapRenderer from './renderer/Map';
+import MapBrowserEvent from 'ol/MapBrowserEvent';
+import MapEvent from 'ol/MapEvent';
+import { ObjectEvent } from 'ol/Object';
+import PluggableMap from 'ol/PluggableMap';
+import { MapOptions } from 'ol/PluggableMap';
+import { EventsKey } from 'ol/events';
+import BaseEvent from 'ol/events/Event';
+import RenderEvent from 'ol/render/Event';
+import MapRenderer from 'ol/renderer/Map';
 
 export default class Map extends PluggableMap {
     constructor(options: MapOptions);

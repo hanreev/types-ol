@@ -1,8 +1,8 @@
-import { Coordinate } from './coordinate';
-import BaseEvent from './events/Event';
-import { FrameState } from './PluggableMap';
-import PriorityQueue from './structs/PriorityQueue';
-import Tile from './Tile';
+import { FrameState } from 'ol/PluggableMap';
+import Tile from 'ol/Tile';
+import { Coordinate } from 'ol/coordinate';
+import BaseEvent from 'ol/events/Event';
+import PriorityQueue from 'ol/structs/PriorityQueue';
 
 export type PriorityFunction = (p0: Tile, p1: string, p2: Coordinate, p3: number) => number;
 export default class TileQueue extends PriorityQueue<any> {

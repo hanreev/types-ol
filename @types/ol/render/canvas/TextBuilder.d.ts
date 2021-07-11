@@ -1,10 +1,10 @@
-import { Extent } from '../../extent';
-import { FeatureLike } from '../../Feature';
-import SimpleGeometry from '../../geom/SimpleGeometry';
-import Text from '../../style/Text';
-import { SerializableInstructions } from '../canvas';
-import RenderFeature from '../Feature';
-import CanvasBuilder from './Builder';
+import { FeatureLike } from 'ol/Feature';
+import { Extent } from 'ol/extent';
+import SimpleGeometry from 'ol/geom/SimpleGeometry';
+import RenderFeature from 'ol/render/Feature';
+import { SerializableInstructions } from 'ol/render/canvas';
+import CanvasBuilder from 'ol/render/canvas/Builder';
+import Text from 'ol/style/Text';
 
 export enum TEXT_ALIGN {
     left = 0,

@@ -1,13 +1,14 @@
-import { Coordinate } from '../coordinate';
-import Disposable from '../Disposable';
-import { FeatureLike } from '../Feature';
-import SimpleGeometry from '../geom/SimpleGeometry';
-import Layer from '../layer/Layer';
-import { Pixel } from '../pixel';
-import PluggableMap, { FrameState } from '../PluggableMap';
-import EventType from '../render/EventType';
-import Source from '../source/Source';
-import { FeatureCallback } from './vector';
+import Disposable from 'ol/Disposable';
+import { FeatureLike } from 'ol/Feature';
+import PluggableMap from 'ol/PluggableMap';
+import { FrameState } from 'ol/PluggableMap';
+import { Coordinate } from 'ol/coordinate';
+import SimpleGeometry from 'ol/geom/SimpleGeometry';
+import Layer from 'ol/layer/Layer';
+import { Pixel } from 'ol/pixel';
+import EventType from 'ol/render/EventType';
+import { FeatureCallback } from 'ol/renderer/vector';
+import Source from 'ol/source/Source';
 
 export interface HitMatch<T> {
     feature: FeatureLike;

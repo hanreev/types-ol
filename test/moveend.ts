@@ -1,10 +1,10 @@
 import { MapEvent } from 'ol';
+import Map from 'ol/Map';
+import View from 'ol/View';
 import { getBottomLeft, getTopRight } from 'ol/extent';
 import TileLayer from 'ol/layer/Tile';
-import Map from 'ol/Map';
 import { toLonLat } from 'ol/proj';
 import OSM from 'ol/source/OSM';
-import View from 'ol/View';
 
 const map = new Map({
     layers: [

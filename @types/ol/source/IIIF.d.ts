@@ -1,14 +1,14 @@
-import { EventsKey } from '../events';
-import BaseEvent from '../events/Event';
-import { Extent } from '../extent';
-import { Versions } from '../format/IIIFInfo';
-import { ObjectEvent } from '../Object';
-import { ProjectionLike } from '../proj';
-import { Size } from '../size';
-import { AttributionLike } from './Source';
-import State from './State';
-import { TileSourceEvent } from './Tile';
-import TileImage from './TileImage';
+import { ObjectEvent } from 'ol/Object';
+import { EventsKey } from 'ol/events';
+import BaseEvent from 'ol/events/Event';
+import { Extent } from 'ol/extent';
+import { Versions } from 'ol/format/IIIFInfo';
+import { ProjectionLike } from 'ol/proj';
+import { Size } from 'ol/size';
+import { AttributionLike } from 'ol/source/Source';
+import State from 'ol/source/State';
+import { TileSourceEvent } from 'ol/source/Tile';
+import TileImage from 'ol/source/TileImage';
 
 export interface Options {
     attributions?: AttributionLike;

@@ -1,13 +1,13 @@
-import { Coordinate } from '../../coordinate';
-import { EventsKey } from '../../events';
-import BaseEvent from '../../events/Event';
-import ImageBase from '../../ImageBase';
-import ImageLayer from '../../layer/Image';
-import { FrameState } from '../../PluggableMap';
-import ImageSource from '../../source/Image';
-import { HitMatch } from '../Map';
-import { FeatureCallback } from '../vector';
-import CanvasLayerRenderer from './Layer';
+import ImageBase from 'ol/ImageBase';
+import { FrameState } from 'ol/PluggableMap';
+import { Coordinate } from 'ol/coordinate';
+import { EventsKey } from 'ol/events';
+import BaseEvent from 'ol/events/Event';
+import ImageLayer from 'ol/layer/Image';
+import { HitMatch } from 'ol/renderer/Map';
+import CanvasLayerRenderer from 'ol/renderer/canvas/Layer';
+import { FeatureCallback } from 'ol/renderer/vector';
+import ImageSource from 'ol/source/Image';
 
 export default class CanvasImageLayerRenderer extends CanvasLayerRenderer {
     constructor(imageLayer: ImageLayer<ImageSource>);

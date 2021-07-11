@@ -1,10 +1,10 @@
-import { Color } from '../color';
-import BaseEvent from '../events/Event';
-import ImageState from '../ImageState';
-import { Size } from '../size';
-import IconAnchorUnits from './IconAnchorUnits';
-import IconOrigin from './IconOrigin';
-import ImageStyle from './Image';
+import ImageState from 'ol/ImageState';
+import { Color } from 'ol/color';
+import BaseEvent from 'ol/events/Event';
+import { Size } from 'ol/size';
+import IconAnchorUnits from 'ol/style/IconAnchorUnits';
+import IconOrigin from 'ol/style/IconOrigin';
+import ImageStyle from 'ol/style/Image';
 
 export interface Options {
     anchor?: number[];

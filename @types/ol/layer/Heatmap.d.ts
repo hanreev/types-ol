@@ -1,13 +1,13 @@
-import { EventsKey } from '../events';
-import BaseEvent from '../events/Event';
-import { Extent } from '../extent';
-import Feature from '../Feature';
-import Geometry from '../geom/Geometry';
-import { ObjectEvent } from '../Object';
-import RenderEvent from '../render/Event';
-import WebGLPointsLayerRenderer from '../renderer/webgl/PointsLayer';
-import VectorSource from '../source/Vector';
-import VectorLayer from './Vector';
+import Feature from 'ol/Feature';
+import { ObjectEvent } from 'ol/Object';
+import { EventsKey } from 'ol/events';
+import BaseEvent from 'ol/events/Event';
+import { Extent } from 'ol/extent';
+import Geometry from 'ol/geom/Geometry';
+import VectorLayer from 'ol/layer/Vector';
+import RenderEvent from 'ol/render/Event';
+import WebGLPointsLayerRenderer from 'ol/renderer/webgl/PointsLayer';
+import VectorSource from 'ol/source/Vector';
 
 export interface Options {
     className?: string;

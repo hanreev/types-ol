@@ -1,16 +1,18 @@
-import { EventsKey } from '../events';
-import BaseEvent from '../events/Event';
-import { ObjectEvent } from '../Object';
-import { ProjectionLike } from '../proj';
-import Projection from '../proj/Projection';
-import { Size } from '../size';
-import Tile, { Options as Options_1 } from '../Tile';
-import TileCache from '../TileCache';
-import { TileCoord } from '../tilecoord';
-import TileGrid from '../tilegrid/TileGrid';
-import TileRange from '../TileRange';
-import Source, { AttributionLike } from './Source';
-import State from './State';
+import { ObjectEvent } from 'ol/Object';
+import { Options as Options_1 } from 'ol/Tile';
+import Tile from 'ol/Tile';
+import TileCache from 'ol/TileCache';
+import TileRange from 'ol/TileRange';
+import { EventsKey } from 'ol/events';
+import BaseEvent from 'ol/events/Event';
+import { ProjectionLike } from 'ol/proj';
+import Projection from 'ol/proj/Projection';
+import { Size } from 'ol/size';
+import { AttributionLike } from 'ol/source/Source';
+import Source from 'ol/source/Source';
+import State from 'ol/source/State';
+import { TileCoord } from 'ol/tilecoord';
+import TileGrid from 'ol/tilegrid/TileGrid';
 
 export interface Options {
     attributions?: AttributionLike;

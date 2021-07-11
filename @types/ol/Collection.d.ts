@@ -1,7 +1,8 @@
-import CollectionEventType from './CollectionEventType';
-import { EventsKey } from './events';
-import BaseEvent from './events/Event';
-import BaseObject, { ObjectEvent } from './Object';
+import CollectionEventType from 'ol/CollectionEventType';
+import BaseObject from 'ol/Object';
+import { ObjectEvent } from 'ol/Object';
+import { EventsKey } from 'ol/events';
+import BaseEvent from 'ol/events/Event';
 
 export interface Options {
     unique?: boolean;

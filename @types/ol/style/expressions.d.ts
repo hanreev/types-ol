@@ -1,4 +1,4 @@
-import { Color } from '../color';
+import { Color } from 'ol/color';
 
 /**
  * Base type used for literal style parameters; can be a number literal or the output of an operator,

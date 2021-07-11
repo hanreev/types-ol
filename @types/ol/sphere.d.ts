@@ -1,6 +1,6 @@
-import { Coordinate } from './coordinate';
-import Geometry from './geom/Geometry';
-import { ProjectionLike } from './proj';
+import { Coordinate } from 'ol/coordinate';
+import Geometry from 'ol/geom/Geometry';
+import { ProjectionLike } from 'ol/proj';
 
 /**
  * Object literal with options for the {@link getLength} or {@link getArea}

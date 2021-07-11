@@ -1,4 +1,4 @@
-import { Color } from './color';
+import { Color } from 'ol/color';
 
 /**
  * A type accepted by CanvasRenderingContext2D.fillStyle

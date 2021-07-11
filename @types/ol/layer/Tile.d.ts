@@ -1,12 +1,13 @@
-import { EventsKey } from '../events';
-import BaseEvent from '../events/Event';
-import { ObjectEvent } from '../Object';
-import RenderEvent from '../render/Event';
-import LayerRenderer from '../renderer/Layer';
-import Source from '../source/Source';
-import TileSource from '../source/Tile';
-import BaseTileLayer, { Options } from './BaseTile';
-import Layer from './Layer';
+import { ObjectEvent } from 'ol/Object';
+import { EventsKey } from 'ol/events';
+import BaseEvent from 'ol/events/Event';
+import BaseTileLayer from 'ol/layer/BaseTile';
+import { Options } from 'ol/layer/BaseTile';
+import Layer from 'ol/layer/Layer';
+import RenderEvent from 'ol/render/Event';
+import LayerRenderer from 'ol/renderer/Layer';
+import Source from 'ol/source/Source';
+import TileSource from 'ol/source/Tile';
 
 export default class TileLayer<TileSourceType extends TileSource = TileSource> extends BaseTileLayer<TileSourceType> {
     constructor(opt_options?: Options<TileSourceType> & { [key: string]: any });

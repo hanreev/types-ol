@@ -1,11 +1,14 @@
-import Feature, { FeatureLike } from './Feature';
-import { FeatureLoader } from './featureloader';
-import FeatureFormat from './format/Feature';
-import Geometry from './geom/Geometry';
-import Projection from './proj/Projection';
-import Tile, { LoadFunction, Options } from './Tile';
-import { TileCoord } from './tilecoord';
-import TileState from './TileState';
+import { FeatureLike } from 'ol/Feature';
+import Feature from 'ol/Feature';
+import Tile from 'ol/Tile';
+import { LoadFunction } from 'ol/Tile';
+import { Options } from 'ol/Tile';
+import TileState from 'ol/TileState';
+import { FeatureLoader } from 'ol/featureloader';
+import FeatureFormat from 'ol/format/Feature';
+import Geometry from 'ol/geom/Geometry';
+import Projection from 'ol/proj/Projection';
+import { TileCoord } from 'ol/tilecoord';
 
 export default class VectorTile extends Tile {
     constructor(

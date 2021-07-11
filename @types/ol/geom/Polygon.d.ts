@@ -1,14 +1,14 @@
-import { Coordinate } from '../coordinate';
-import { EventsKey } from '../events';
-import BaseEvent from '../events/Event';
-import { Extent } from '../extent';
-import { ObjectEvent } from '../Object';
-import Circle from './Circle';
-import GeometryLayout from './GeometryLayout';
-import GeometryType from './GeometryType';
-import LinearRing from './LinearRing';
-import Point from './Point';
-import SimpleGeometry from './SimpleGeometry';
+import { ObjectEvent } from 'ol/Object';
+import { Coordinate } from 'ol/coordinate';
+import { EventsKey } from 'ol/events';
+import BaseEvent from 'ol/events/Event';
+import { Extent } from 'ol/extent';
+import Circle from 'ol/geom/Circle';
+import GeometryLayout from 'ol/geom/GeometryLayout';
+import GeometryType from 'ol/geom/GeometryType';
+import LinearRing from 'ol/geom/LinearRing';
+import Point from 'ol/geom/Point';
+import SimpleGeometry from 'ol/geom/SimpleGeometry';
 
 export default class Polygon extends SimpleGeometry {
     constructor(coordinates: Coordinate[][] | number[], opt_layout?: GeometryLayout, opt_ends?: number[]);

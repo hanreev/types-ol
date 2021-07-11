@@ -1,5 +1,5 @@
-import { EventsKey } from '../events';
-import BaseEvent from '../events/Event';
+import { EventsKey } from 'ol/events';
+import BaseEvent from 'ol/events/Event';
 
 export interface Entry {
     key_: string;

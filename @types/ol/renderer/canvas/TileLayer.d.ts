@@ -1,18 +1,18 @@
-import { Coordinate } from '../../coordinate';
-import { EventsKey } from '../../events';
-import BaseEvent from '../../events/Event';
-import { Extent } from '../../extent';
-import ImageTile from '../../ImageTile';
-import TileLayer from '../../layer/Tile';
-import VectorTileLayer from '../../layer/VectorTile';
-import { FrameState } from '../../PluggableMap';
-import Projection from '../../proj/Projection';
-import TileSource from '../../source/Tile';
-import Tile from '../../Tile';
-import TileGrid from '../../tilegrid/TileGrid';
-import { HitMatch } from '../Map';
-import { FeatureCallback } from '../vector';
-import CanvasLayerRenderer from './Layer';
+import ImageTile from 'ol/ImageTile';
+import { FrameState } from 'ol/PluggableMap';
+import Tile from 'ol/Tile';
+import { Coordinate } from 'ol/coordinate';
+import { EventsKey } from 'ol/events';
+import BaseEvent from 'ol/events/Event';
+import { Extent } from 'ol/extent';
+import TileLayer from 'ol/layer/Tile';
+import VectorTileLayer from 'ol/layer/VectorTile';
+import Projection from 'ol/proj/Projection';
+import { HitMatch } from 'ol/renderer/Map';
+import CanvasLayerRenderer from 'ol/renderer/canvas/Layer';
+import { FeatureCallback } from 'ol/renderer/vector';
+import TileSource from 'ol/source/Tile';
+import TileGrid from 'ol/tilegrid/TileGrid';
 
 export default class CanvasTileLayerRenderer extends CanvasLayerRenderer {
     constructor(tileLayer: TileLayer<TileSource> | VectorTileLayer);

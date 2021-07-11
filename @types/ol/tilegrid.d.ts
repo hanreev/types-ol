@@ -1,10 +1,10 @@
-import { Extent } from './extent';
-import Corner from './extent/Corner';
-import { ProjectionLike } from './proj';
-import Projection from './proj/Projection';
-import { Size } from './size';
-import { TileCoord } from './tilecoord';
-import TileGrid from './tilegrid/TileGrid';
+import { Extent } from 'ol/extent';
+import Corner from 'ol/extent/Corner';
+import { ProjectionLike } from 'ol/proj';
+import Projection from 'ol/proj/Projection';
+import { Size } from 'ol/size';
+import { TileCoord } from 'ol/tilecoord';
+import TileGrid from 'ol/tilegrid/TileGrid';
 
 export interface XYZOptions {
     extent?: Extent;
