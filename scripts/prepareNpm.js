@@ -37,17 +37,4 @@ childProcess.execSync('yarn test', { stdio: 'ignore' });
 console.log('# Emitting definitions to output directory');
 fs.copySync(srcPath, destPath);
 
-// Add package.json
-console.log('# Copying package.json');
-const packageJsonPath = path.resolve(BASE_DIR, 'package.json');
-const packageJsonDestPath = path.join(destPath, 'package.json');
-
-const src = require(packageJsonPath);
-delete src.scripts;
-delete src.devDependencies;
-delete src.files;
-delete src.husky;
-
-fs.writeFileSync(packageJsonDestPath, JSON.stringify(src, null, 4));
-
 console.log('# DONE');

@@ -21,6 +21,8 @@
   "license": "MIT",
   "scripts": {
     "postinstall": "husky install",
+    "prepublishOnly": "pinst --disable",
+    "postpublish": "pinst --enable",
     "apply-patches": "node scripts/applyPatches.js",
     "build": "yarn apply-patches && yarn build-definition",
     "build-definition": "jsdoc -c jsdoc/conf.json -P openlayers/package.json -d @types",
@@ -61,6 +63,7 @@
     "no-emit-webpack-plugin": "^4.0.1",
     "node-html-parser": "^4.0.0",
     "ol": "^6.6.0",
+    "pinst": "^2.1.6",
     "prettier": "latest",
     "pretty-quick": "latest",
     "proj4": "^2.7.2",
