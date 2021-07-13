@@ -2,8 +2,15 @@ import { EventsKey, ListenerFunction } from './events';
 import BaseEvent from './events/Event';
 import Target from './events/Target';
 
+export type EventTypes = 'change' | 'error';
 export default class Observable extends Target {
     constructor();
+    protected onceInternal(type: string | string[], listener: (p0: any) => void | boolean): EventsKey | EventsKey[];
+    protected onInternal(type: string | string[], listener: (p0: any) => void | boolean): EventsKey | EventsKey[];
+    /**
+     * Unlisten for a certain type of event.
+     */
+    protected unInternal(type: string | string[], listener: (p0: any) => void | boolean): void;
     /**
      * Increases the revision counter and dispatches a 'change' event.
      */

@@ -1,5 +1,6 @@
 import { ObjectEvent } from '../Object';
 import { LoadFunction } from '../Tile';
+import { NearestDirectionFunction } from '../array';
 import { EventsKey, ListenerFunction } from '../events';
 import BaseEvent from '../events/Event';
 import { TileSourceEvent } from './Tile';
@@ -16,6 +17,7 @@ export interface Options {
     transition?: number;
     url?: string;
     wrapX?: boolean;
+    zDirection?: number | NearestDirectionFunction;
 }
 export default class Stamen extends XYZ {
     constructor(options: Options);

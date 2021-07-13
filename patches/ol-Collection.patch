@@ -1,5 +1,5 @@
 diff --git a/src/ol/Collection.js b/src/ol/Collection.js
-index ab11627c3..0bc65359a 100644
+index 286f17d1c..7de6106eb 100644
 --- a/src/ol/Collection.js
 +++ b/src/ol/Collection.js
 @@ -18,11 +18,13 @@ const Property = {
@@ -12,9 +12,9 @@ index ab11627c3..0bc65359a 100644
  export class CollectionEvent extends Event {
    /**
     * @param {import("./CollectionEventType.js").default} type Type.
--   * @param {*=} opt_element Element.
-+   * @param {T=} opt_element Element.
-    * @param {number=} opt_index The index of the added or removed element.
+-   * @param {*} [opt_element] Element.
++   * @param {T} [opt_element] Element.
+    * @param {number} [opt_index] The index of the added or removed element.
     */
    constructor(type, opt_element, opt_index) {
 @@ -30,7 +32,7 @@ export class CollectionEvent extends Event {

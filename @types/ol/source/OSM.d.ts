@@ -1,5 +1,6 @@
 import { ObjectEvent } from '../Object';
 import { LoadFunction } from '../Tile';
+import { NearestDirectionFunction } from '../array';
 import { EventsKey, ListenerFunction } from '../events';
 import BaseEvent from '../events/Event';
 import { AttributionLike } from './Source';
@@ -18,6 +19,7 @@ export interface Options {
     transition?: number;
     url?: string;
     wrapX?: boolean;
+    zDirection?: number | NearestDirectionFunction;
 }
 /**
  * The attribution containing a link to the OpenStreetMap Copyright and License
@@ -25,7 +27,7 @@ export interface Options {
  */
 export const ATTRIBUTION: string;
 export default class OSM extends XYZ {
-    constructor(opt_options?: Options & { [key: string]: any });
+    constructor(opt_options?: Options);
     on(type: string, listener: ListenerFunction): EventsKey;
     on(type: string[], listener: ListenerFunction): EventsKey[];
     once(type: string, listener: ListenerFunction): EventsKey;

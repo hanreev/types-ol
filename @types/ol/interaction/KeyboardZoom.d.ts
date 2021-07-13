@@ -11,7 +11,7 @@ export interface Options {
     delta?: number;
 }
 export default class KeyboardZoom extends Interaction {
-    constructor(opt_options?: Options & { [key: string]: any });
+    constructor(opt_options?: Options);
     /**
      * Handles the {@link module:ol/MapBrowserEvent map browser event} if it was a
      * KeyEvent, and decides whether to zoom in or out (depending on whether the

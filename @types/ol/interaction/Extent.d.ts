@@ -17,7 +17,7 @@ export interface Options {
     wrapX?: boolean;
 }
 export default class Extent extends PointerInteraction {
-    constructor(opt_options?: Options & { [key: string]: any });
+    constructor(opt_options?: Options);
     /**
      * Returns the current drawn extent in the view projection (or user projection if set)
      */

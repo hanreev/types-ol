@@ -1,12 +1,11 @@
 import Collection from '../Collection';
-import Feature from '../Feature';
+import Feature, { FeatureLike } from '../Feature';
 import MapBrowserEvent from '../MapBrowserEvent';
 import { ObjectEvent } from '../Object';
 import PluggableMap from '../PluggableMap';
 import { EventsKey, ListenerFunction } from '../events';
 import BaseEvent from '../events/Event';
 import { Condition } from '../events/condition';
-import { Extent } from '../extent';
 import Geometry from '../geom/Geometry';
 import SimpleGeometry from '../geom/SimpleGeometry';
 import BaseVectorLayer from '../layer/BaseVector';
@@ -26,13 +25,14 @@ export interface Options {
     hitDetection?: boolean | BaseVectorLayer<VectorSource<Geometry> | VectorTile>;
     features?: Collection<Feature<Geometry>>;
     wrapX?: boolean;
+    snapToPointer?: boolean;
 }
 export interface SegmentData {
     depth?: number[];
-    feature: Feature<Geometry>;
+    feature: FeatureLike;
     geometry: SimpleGeometry;
     index?: number;
-    segment: Extent[];
+    segment: number[][];
     featureSegments?: SegmentData[];
 }
 declare enum ModifyEventType {
@@ -100,15 +100,11 @@ export default class Modify extends PointerInteraction {
     un(type: 'propertychange', listener: (evt: ObjectEvent) => void): void;
 }
 export class ModifyEvent extends BaseEvent {
-    constructor(
-        type: ModifyEventType,
-        features: Collection<Feature<Geometry>>,
-        MapBrowserEvent: MapBrowserEvent<UIEvent>,
-    );
+    constructor(type: ModifyEventType, features: Collection<FeatureLike>, MapBrowserEvent: MapBrowserEvent<UIEvent>);
     /**
      * The features being modified.
      */
-    features: Collection<Feature<Geometry>>;
+    features: Collection<FeatureLike>;
     /**
      * Associated {@link module:ol/MapBrowserEvent}.
      */

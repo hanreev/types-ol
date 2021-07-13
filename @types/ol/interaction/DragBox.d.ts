@@ -22,7 +22,7 @@ export interface Options {
     onBoxEnd?: (this: DragBox, p0: MapBrowserEvent<UIEvent>) => void;
 }
 export default class DragBox extends PointerInteraction {
-    constructor(opt_options?: Options & { [key: string]: any });
+    constructor(opt_options?: Options);
     /**
      * The default condition for determining whether the boxend event
      * should fire.

@@ -7,8 +7,8 @@ import Style, { StyleFunction, StyleLike } from './style/Style';
 
 export type FeatureClass = typeof Feature | typeof RenderFeature;
 export type FeatureLike = Feature<Geometry> | RenderFeature;
-export default class Feature<GeomType extends Geometry = Geometry> extends BaseObject {
-    constructor(opt_geometryOrProperties?: GeomType | { [key: string]: any });
+export default class Feature<G extends Geometry = Geometry> extends BaseObject {
+    constructor(opt_geometryOrProperties?: G | { [key: string]: any });
     /**
      * Clone this feature. If the original feature has a geometry it
      * is also cloned. The feature id is not set in the clone.
@@ -19,7 +19,7 @@ export default class Feature<GeomType extends Geometry = Geometry> extends BaseO
      * geometries.  The "default" geometry (the one that is rendered by default) is
      * set when calling {@link module:ol/Feature~Feature#setGeometry}.
      */
-    getGeometry(): GeomType | undefined;
+    getGeometry(): G | undefined;
     /**
      * Get the name of the feature's default geometry.  By default, the default
      * geometry is named geometry.
@@ -44,7 +44,7 @@ export default class Feature<GeomType extends Geometry = Geometry> extends BaseO
      * Set the default geometry for the feature.  This will update the property
      * with the name returned by {@link module:ol/Feature~Feature#getGeometryName}.
      */
-    setGeometry(geometry: GeomType | undefined): void;
+    setGeometry(geometry: G | undefined): void;
     /**
      * Set the property name to be used when getting the feature's default geometry.
      * When calling {@link module:ol/Feature~Feature#getGeometry}, the value of the property with

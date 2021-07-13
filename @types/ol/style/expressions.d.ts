@@ -53,7 +53,7 @@ import { Color } from '../color';
  * ['>=', value1, value2] returns true if value1 is greater than or equals value2, or false otherwise.
  * ['==', value1, value2] returns true if value1 equals value2, or false otherwise.
  * ['!=', value1, value2] returns true if value1 does not equal value2, or false otherwise.
- * ['!', value1] returns false if value1 is true or greater than 0, or true otherwise.
+ * ['', value1] returns false if value1 is true or greater than 0, or true otherwise.
  * ['all', value1, value2, ...] returns true if all the inputs are true, false otherwise.
  * ['any', value1, value2, ...] returns true if any of the inputs are true, false otherwise.
  * ['between', value1, value2, value3] returns true if value1 is contained between value2 and value3
@@ -154,3 +154,7 @@ export function numberToGlsl(v: number): string;
  * converted to be a GLSL-compatible string.
  */
 export function stringToGlsl(context: ParsingContext, string: string): string;
+/**
+ * Get the uniform name given a variable name.
+ */
+export function uniformNameForVariable(variableName: string): string;

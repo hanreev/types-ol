@@ -2,7 +2,6 @@ import { FeatureLike } from '../../Feature';
 import { Coordinate } from '../../coordinate';
 import { Extent } from '../../extent';
 import SimpleGeometry from '../../geom/SimpleGeometry';
-import { Size } from '../../size';
 import { Transform } from '../../transform';
 import { Label, SerializableInstructions } from '../canvas';
 import RBush from 'rbush';
@@ -28,13 +27,7 @@ export interface ImageOrLabelDimensions {
 }
 export type ReplayImageOrLabelArgs = any;
 export default class Executor {
-    constructor(
-        resolution: number,
-        pixelRatio: number,
-        overlaps: boolean,
-        instructions: SerializableInstructions,
-        renderBuffer: Size,
-    );
+    constructor(resolution: number, pixelRatio: number, overlaps: boolean, instructions: SerializableInstructions);
     protected coordinates: number[];
     protected hitDetectionInstructions: any[];
     protected instructions: any[];

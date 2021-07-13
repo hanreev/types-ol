@@ -41,7 +41,6 @@ export default class Icon extends ImageStyle {
      */
     getColor(): Color;
     getHitDetectionImage(): HTMLImageElement | HTMLCanvasElement;
-    getHitDetectionImageSize(): Size;
     /**
      * Get the image icon.
      */

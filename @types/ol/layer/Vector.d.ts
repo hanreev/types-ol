@@ -11,7 +11,7 @@ import Layer from './Layer';
 export default class VectorLayer<
     VectorSourceType extends VectorSource = VectorSource,
 > extends BaseVectorLayer<VectorSourceType> {
-    constructor(opt_options?: Options<VectorSourceType> & { [key: string]: any });
+    constructor(opt_options?: Options<VectorSourceType>);
     /**
      * Create a renderer for this layer.
      */

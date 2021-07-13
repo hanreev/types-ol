@@ -37,7 +37,7 @@ declare enum SelectEventType {
     SELECT = 'select',
 }
 export default class Select extends Interaction {
-    constructor(opt_options?: Options & { [key: string]: any });
+    constructor(opt_options?: Options);
     /**
      * Get the selected features.
      */

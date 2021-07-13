@@ -24,9 +24,10 @@ export interface Options {
     blur?: number;
     weight?: string | ((p0: Feature<Geometry>) => number);
     source?: VectorSource<Geometry>;
+    properties?: { [key: string]: any };
 }
-export default class Heatmap extends VectorLayer {
-    constructor(opt_options?: Options & { [key: string]: any });
+export default class Heatmap extends VectorLayer<VectorSource> {
+    constructor(opt_options?: Options);
     /**
      * Create a renderer for this layer.
      */

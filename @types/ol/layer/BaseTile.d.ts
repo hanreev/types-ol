@@ -21,9 +21,10 @@ export interface Options<TileSourceType extends TileSource = TileSource> {
     source?: TileSourceType;
     map?: PluggableMap;
     useInterimTilesOnError?: boolean;
+    properties?: { [key: string]: any };
 }
 export default class BaseTileLayer<TileSourceType extends TileSource = TileSource> extends Layer<TileSourceType> {
-    constructor(opt_options?: Options<TileSourceType> & { [key: string]: any });
+    constructor(opt_options?: Options<TileSourceType>);
     /**
      * Return the level as number to which we will preload tiles up to.
      */

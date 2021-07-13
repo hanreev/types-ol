@@ -1,6 +1,7 @@
 import ImageTile from '../ImageTile';
 import { ObjectEvent } from '../Object';
 import { LoadFunction, UrlFunction } from '../Tile';
+import { NearestDirectionFunction } from '../array';
 import { EventsKey, ListenerFunction } from '../events';
 import BaseEvent from '../events/Event';
 import { ProjectionLike } from '../proj';
@@ -12,6 +13,7 @@ import WMTSRequestEncoding from './WMTSRequestEncoding';
 
 export interface Options {
     attributions?: AttributionLike;
+    attributionsCollapsible?: boolean;
     cacheSize?: number;
     crossOrigin?: null | string;
     imageSmoothing?: boolean;
@@ -32,6 +34,7 @@ export interface Options {
     urls?: string[];
     wrapX?: boolean;
     transition?: number;
+    zDirection?: number | NearestDirectionFunction;
 }
 export default class WMTS extends TileImage {
     constructor(options: Options);

@@ -1,5 +1,6 @@
 import { ObjectEvent } from '../Object';
 import { LoadFunction } from '../Tile';
+import { NearestDirectionFunction } from '../array';
 import { EventsKey, ListenerFunction } from '../events';
 import BaseEvent from '../events/Event';
 import { ProjectionLike } from '../proj';
@@ -23,9 +24,10 @@ export interface Options {
     wrapX?: boolean;
     transition?: number;
     urls?: string[];
+    zDirection?: number | NearestDirectionFunction;
 }
 export default class TileArcGISRest extends TileImage {
-    constructor(opt_options?: Options & { [key: string]: any });
+    constructor(opt_options?: Options);
     /**
      * Get the user-provided params, i.e. those passed to the constructor through
      * the "params" option, and possibly updated using the updateParams method.

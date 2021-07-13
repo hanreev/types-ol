@@ -511,14 +511,6 @@ function getParams(doclet, _module) {
         paramType += '[]';
       }
 
-      if (
-        definitionConfig.extraOptions &&
-        doclet.kind == 'class' &&
-        name.includes('opt_options') &&
-        isExtendBaseObject(doclet)
-      )
-        paramType += '& {[key: string]: any}';
-
       const paramStr = `${name}: ${paramType}`;
       return param.defaultValue ? `${paramStr} = ${param.defaultValue}` : paramStr;
     })
@@ -928,17 +920,15 @@ function getGenericType(key, _module, includeBracket = true, includeType = false
 
 /**
  * @param {Doclet} doclet
- * @returns {boolean}
+ * @param {string} parent
  */
-function isExtendBaseObject(doclet) {
-  const baseObjectLongname = 'module:ol/Object~BaseObject';
-
-  if (doclet && doclet.longname == baseObjectLongname) return true;
+function isExtendClass(doclet, parent) {
+  if (doclet && doclet.longname == parent) return true;
 
   let result = false;
   while (doclet && Array.isArray(doclet.augments) && doclet.augments.length) {
     const augment = doclet.augments.length > 1 ? doclet.augments[1] : doclet.augments[0];
-    if (augment == baseObjectLongname) {
+    if (augment == parent) {
       result = true;
       break;
     } else {

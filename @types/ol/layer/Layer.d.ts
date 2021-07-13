@@ -26,6 +26,7 @@ export interface Options<SourceType extends Source = Source> {
     source?: SourceType;
     map?: PluggableMap;
     render?: RenderFunction;
+    properties?: { [key: string]: any };
 }
 export type RenderFunction = (p0: FrameState) => HTMLElement;
 export interface State {
@@ -72,11 +73,11 @@ export default class Layer<SourceType extends Source = Source> extends BaseLayer
     /**
      * Sets the layer to be rendered on top of other layers on a map. The map will
      * not manage this layer in its layers collection, and the callback in
-     * {@link module:ol/Map#forEachLayerAtPixel} will receive null as layer. This
+     * {@link module:ol/Map~Map#forEachLayerAtPixel} will receive null as layer. This
      * is useful for temporary layers. To remove an unmanaged layer from the map,
      * use #setMap(null).
      * To add the layer to a map and have it managed by the map, use
-     * {@link module:ol/Map#addLayer} instead.
+     * {@link module:ol/Map~Map#addLayer} instead.
      */
     setMap(map: PluggableMap): void;
     /**

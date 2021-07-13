@@ -2,6 +2,7 @@ import ImageTile from '../ImageTile';
 import { ObjectEvent } from '../Object';
 import { LoadFunction, Options as Options_1 } from '../Tile';
 import TileState from '../TileState';
+import { NearestDirectionFunction } from '../array';
 import { EventsKey, ListenerFunction } from '../events';
 import BaseEvent from '../events/Event';
 import { Extent } from '../extent';
@@ -26,7 +27,7 @@ export interface Options {
     extent?: Extent;
     transition?: number;
     tileSize?: number;
-    zDirection?: number;
+    zDirection?: number | NearestDirectionFunction;
 }
 export class CustomTile extends ImageTile {
     constructor(
@@ -44,7 +45,7 @@ export class CustomTile extends ImageTile {
     getImage(): HTMLCanvasElement | HTMLImageElement | HTMLVideoElement;
 }
 export default class Zoomify extends TileImage {
-    constructor(opt_options: Options & { [key: string]: any });
+    constructor(opt_options: Options);
     on(type: string, listener: ListenerFunction): EventsKey;
     on(type: string[], listener: ListenerFunction): EventsKey[];
     once(type: string, listener: ListenerFunction): EventsKey;

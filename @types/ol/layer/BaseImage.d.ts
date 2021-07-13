@@ -19,9 +19,10 @@ export interface Options<ImageSourceType extends ImageSource = ImageSource> {
     maxZoom?: number;
     map?: PluggableMap;
     source?: ImageSourceType;
+    properties?: { [key: string]: any };
 }
 export default class BaseImageLayer<ImageSourceType extends ImageSource = ImageSource> extends Layer<ImageSourceType> {
-    constructor(opt_options?: Options<ImageSourceType> & { [key: string]: any });
+    constructor(opt_options?: Options<ImageSourceType>);
     on(type: string, listener: ListenerFunction): EventsKey;
     on(type: string[], listener: ListenerFunction): EventsKey[];
     once(type: string, listener: ListenerFunction): EventsKey;

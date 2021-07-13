@@ -2,6 +2,7 @@ import ImageTile from '../ImageTile';
 import { ObjectEvent } from '../Object';
 import Tile, { LoadFunction, UrlFunction } from '../Tile';
 import TileCache from '../TileCache';
+import { NearestDirectionFunction } from '../array';
 import { EventsKey, ListenerFunction } from '../events';
 import BaseEvent from '../events/Event';
 import { ProjectionLike } from '../proj';
@@ -32,7 +33,7 @@ export interface Options {
     wrapX?: boolean;
     transition?: number;
     key?: string;
-    zDirection?: number;
+    zDirection?: number | NearestDirectionFunction;
 }
 export default class TileImage extends UrlTile {
     constructor(options: Options);

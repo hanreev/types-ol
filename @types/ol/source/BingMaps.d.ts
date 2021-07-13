@@ -1,5 +1,6 @@
 import { ObjectEvent } from '../Object';
 import { LoadFunction } from '../Tile';
+import { NearestDirectionFunction } from '../array';
 import { EventsKey, ListenerFunction } from '../events';
 import BaseEvent from '../events/Event';
 import { TileCoord } from '../tilecoord';
@@ -33,6 +34,7 @@ export interface Options {
     tileLoadFunction?: LoadFunction;
     wrapX?: boolean;
     transition?: number;
+    zDirection?: number | NearestDirectionFunction;
 }
 export interface Resource {
     imageHeight: number;

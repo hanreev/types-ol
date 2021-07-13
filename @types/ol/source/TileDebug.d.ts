@@ -1,10 +1,8 @@
 import { ObjectEvent } from '../Object';
-import Tile from '../Tile';
+import { NearestDirectionFunction } from '../array';
 import { EventsKey, ListenerFunction } from '../events';
 import BaseEvent from '../events/Event';
 import { ProjectionLike } from '../proj';
-import { Size } from '../size';
-import { TileCoord } from '../tilecoord';
 import TileGrid from '../tilegrid/TileGrid';
 import { TileSourceEvent } from './Tile';
 import XYZ from './XYZ';
@@ -13,24 +11,11 @@ export interface Options {
     projection?: ProjectionLike;
     tileGrid?: TileGrid;
     wrapX?: boolean;
-    zDirection?: number;
-}
-declare class LabeledTile extends Tile {
-    constructor(tileCoord: TileCoord, tileSize: Size, text: string);
-    /**
-     * Get the image element for this tile.
-     */
-    getImage(): HTMLCanvasElement;
-    /**
-     * Load the image or retry if loading previously failed.
-     * Loading is taken care of by the tile queue, and calling this method is
-     * only needed for preloading or for reloading in case of an error.
-     */
-    load(): void;
+    zDirection?: number | NearestDirectionFunction;
+    template?: string;
 }
 export default class TileDebug extends XYZ {
-    constructor(opt_options?: Options & { [key: string]: any });
-    getTile(z: number, x: number, y: number): LabeledTile;
+    constructor(opt_options?: Options);
     on(type: string, listener: ListenerFunction): EventsKey;
     on(type: string[], listener: ListenerFunction): EventsKey[];
     once(type: string, listener: ListenerFunction): EventsKey;

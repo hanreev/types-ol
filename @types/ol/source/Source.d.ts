@@ -7,8 +7,8 @@ import Projection from '../proj/Projection';
 import State from './State';
 
 /**
- * A function that returns a string or an array of strings representing source
- * attributions.
+ * A function that takes a {@link module:ol/PluggableMap~FrameState} and returns a string or
+ * an array of strings representing source attributions.
  */
 export type Attribution = (p0: FrameState) => string | string[];
 /**
@@ -30,6 +30,7 @@ export interface Options {
 }
 export default abstract class Source extends BaseObject {
     constructor(options: Options);
+    protected projection: Projection;
     /**
      * Get the attribution function for the source.
      */

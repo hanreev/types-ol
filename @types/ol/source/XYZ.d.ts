@@ -1,5 +1,6 @@
 import { ObjectEvent } from '../Object';
 import { LoadFunction, UrlFunction } from '../Tile';
+import { NearestDirectionFunction } from '../array';
 import { EventsKey, ListenerFunction } from '../events';
 import BaseEvent from '../events/Event';
 import { ProjectionLike } from '../proj';
@@ -30,10 +31,10 @@ export interface Options {
     urls?: string[];
     wrapX?: boolean;
     transition?: number;
-    zDirection?: number;
+    zDirection?: number | NearestDirectionFunction;
 }
 export default class XYZ extends TileImage {
-    constructor(opt_options?: Options & { [key: string]: any });
+    constructor(opt_options?: Options);
     on(type: string, listener: ListenerFunction): EventsKey;
     on(type: string[], listener: ListenerFunction): EventsKey[];
     once(type: string, listener: ListenerFunction): EventsKey;

@@ -18,14 +18,6 @@ if (process.argv.includes('--skip-build') || process.argv.includes('-s')) {
 } else {
   // Build
   console.log('# Rebuilding definitions');
-  try {
-    const confPath = path.resolve(BASE_DIR, 'jsdoc', 'conf.json');
-    const conf = JSON.parse(fs.readFileSync(confPath, { encoding: 'utf-8' }));
-    conf.typescript.definition.extraOptions = process.argv.includes('--extra-opts') || process.argv.includes('-x');
-    fs.writeFileSync(confPath, JSON.stringify(conf, null, 2));
-  } catch (error) {
-    console.log('# Could not update jsdoc config');
-  }
   childProcess.execSync('yarn build', { stdio: 'inherit' });
   console.log('# Formatting definitions');
   childProcess.execSync('yarn format', { stdio: 'ignore' });

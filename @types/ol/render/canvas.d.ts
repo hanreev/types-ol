@@ -78,7 +78,7 @@ export const defaultTextAlign: string;
 export const defaultTextBaseline: string;
 /**
  * The label cache for text rendering. To change the default cache size of 2048
- * entries, use {@link module:ol/structs/LRUCache#setSize}.
+ * entries, use {@link module:ol/structs/LRUCache~LRUCache#setSize cache.setSize()}.
  * Deprecated - there is no label cache any more.
  */
 export const labelCache: any;
@@ -87,7 +87,6 @@ export const labelCache: any;
  */
 export const registerFont: (fontSpec: string) => void;
 export const textHeights: { [key: string]: number };
-export function createTransformString(transform: Transform): string;
 export function drawImageOrLabel(
     context: CanvasRenderingContext2D,
     transform: Transform | null,

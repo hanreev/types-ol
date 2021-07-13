@@ -1,0 +1,143 @@
+diff --git a/src/ol/layer/BaseImage.js b/src/ol/layer/BaseImage.js
+index 984103b87..e1a65e5cb 100644
+--- a/src/ol/layer/BaseImage.js
++++ b/src/ol/layer/BaseImage.js
+@@ -40,7 +40,7 @@ import Layer from './Layer.js';
+  * options means that `title` is observable, and has get/set accessors.
+  *
+  * @template {import("../source/Image.js").default} ImageSourceType
+- * @extends {Layer<ImageSourceType>}
++ * @augments Layer<ImageSourceType>
+  * @api
+  */
+ class BaseImageLayer extends Layer {
+diff --git a/src/ol/layer/BaseTile.js b/src/ol/layer/BaseTile.js
+index 5fd7d8cd9..62da2afad 100644
+--- a/src/ol/layer/BaseTile.js
++++ b/src/ol/layer/BaseTile.js
+@@ -55,7 +55,7 @@ import {assign} from '../obj.js';
+  * options means that `title` is observable, and has get/set accessors.
+  *
+  * @template {import("../source/Tile.js").default} TileSourceType
+- * @extends {Layer<TileSourceType>}
++ * @augments Layer<TileSourceType>
+  * @api
+  */
+ class BaseTileLayer extends Layer {
+diff --git a/src/ol/layer/BaseVector.js b/src/ol/layer/BaseVector.js
+index 262613d41..44003c5a8 100644
+--- a/src/ol/layer/BaseVector.js
++++ b/src/ol/layer/BaseVector.js
+@@ -73,7 +73,7 @@ const Property = {
+  * options means that `title` is observable, and has get/set accessors.
+  *
+  * @template {import("../source/Vector.js").default|import("../source/VectorTile.js").default} VectorSourceType
+- * @extends {Layer<VectorSourceType>}
++ * @augments Layer<VectorSourceType>
+  * @api
+  */
+ class BaseVectorLayer extends Layer {
+diff --git a/src/ol/layer/Graticule.js b/src/ol/layer/Graticule.js
+index de624ba13..aee1eaf73 100644
+--- a/src/ol/layer/Graticule.js
++++ b/src/ol/layer/Graticule.js
+@@ -158,7 +158,7 @@ const INTERVALS = [
+  * Note that the view projection must define both extent and worldExtent.
+  *
+  * @fires import("../render/Event.js").RenderEvent
+- * @extends {VectorLayer<import("../source/Vector.js").default>}
++ * @augments VectorLayer<import("../source/Vector.js").default>
+  * @api
+  */
+ class Graticule extends VectorLayer {
+diff --git a/src/ol/layer/Heatmap.js b/src/ol/layer/Heatmap.js
+index c3e3306c8..cd2366ba6 100644
+--- a/src/ol/layer/Heatmap.js
++++ b/src/ol/layer/Heatmap.js
+@@ -61,7 +61,7 @@ const DEFAULT_GRADIENT = ['#00f', '#0ff', '#0f0', '#ff0', '#f00'];
+  * options means that `title` is observable, and has get/set accessors.
+  *
+  * @fires import("../render/Event.js").RenderEvent
+- * @extends {VectorLayer<import("../source/Vector.js").default>}
++ * @augments VectorLayer<import("../source/Vector.js").default>
+  * @api
+  */
+ class Heatmap extends VectorLayer {
+diff --git a/src/ol/layer/Image.js b/src/ol/layer/Image.js
+index 90c49319c..630cc7dbf 100644
+--- a/src/ol/layer/Image.js
++++ b/src/ol/layer/Image.js
+@@ -13,7 +13,7 @@ import CanvasImageLayerRenderer from '../renderer/canvas/ImageLayer.js';
+  * options means that `title` is observable, and has get/set accessors.
+  *
+  * @template {import("../source/Image.js").default} ImageSourceType
+- * @extends {BaseImageLayer<ImageSourceType>}
++ * @augments BaseImageLayer<ImageSourceType>
+  * @api
+  */
+ class ImageLayer extends BaseImageLayer {
+diff --git a/src/ol/layer/Tile.js b/src/ol/layer/Tile.js
+index ed9dbd655..9a7678feb 100644
+--- a/src/ol/layer/Tile.js
++++ b/src/ol/layer/Tile.js
+@@ -13,7 +13,7 @@ import CanvasTileLayerRenderer from '../renderer/canvas/TileLayer.js';
+  * options means that `title` is observable, and has get/set accessors.
+  *
+  * @template {import("../source/Tile.js").default} TileSourceType
+- * @extends {BaseTileLayer<TileSourceType>}
++ * @augments BaseTileLayer<TileSourceType>
+  * @api
+  */
+ class TileLayer extends BaseTileLayer {
+diff --git a/src/ol/layer/Vector.js b/src/ol/layer/Vector.js
+index 5658ed385..359a9f24c 100644
+--- a/src/ol/layer/Vector.js
++++ b/src/ol/layer/Vector.js
+@@ -12,7 +12,7 @@ import CanvasVectorLayerRenderer from '../renderer/canvas/VectorLayer.js';
+  * options means that `title` is observable, and has get/set accessors.
+  *
+  * @template {import("../source/Vector.js").default} VectorSourceType
+- * @extends {BaseVectorLayer<VectorSourceType>}
++ * @augments BaseVectorLayer<VectorSourceType>
+  * @api
+  */
+ class VectorLayer extends BaseVectorLayer {
+diff --git a/src/ol/layer/VectorImage.js b/src/ol/layer/VectorImage.js
+index b6c9b3d57..cea76f80c 100644
+--- a/src/ol/layer/VectorImage.js
++++ b/src/ol/layer/VectorImage.js
+@@ -55,7 +55,7 @@ import {assign} from '../obj.js';
+  * options means that `title` is observable, and has get/set accessors.
+  *
+  * @template {import("../source/Vector.js").default} VectorSourceType
+- * @extends {BaseVectorLayer<VectorSourceType>}
++ * @augments BaseVectorLayer<VectorSourceType>
+  * @api
+  */
+ class VectorImageLayer extends BaseVectorLayer {
+diff --git a/src/ol/layer/VectorTile.js b/src/ol/layer/VectorTile.js
+index 9921a3ccc..71f045894 100644
+--- a/src/ol/layer/VectorTile.js
++++ b/src/ol/layer/VectorTile.js
+@@ -85,7 +85,7 @@ import {assign} from '../obj.js';
+  * options means that `title` is observable, and has get/set accessors.
+  *
+  * @param {Options} [opt_options] Options.
+- * @extends {BaseVectorLayer<import("../source/VectorTile.js").default>}
++ * @augments BaseVectorLayer<import("../source/VectorTile.js").default>
+  * @api
+  */
+ class VectorTileLayer extends BaseVectorLayer {
+diff --git a/src/ol/layer/WebGLPoints.js b/src/ol/layer/WebGLPoints.js
+index 0597ebf1d..db6aa3dfe 100644
+--- a/src/ol/layer/WebGLPoints.js
++++ b/src/ol/layer/WebGLPoints.js
+@@ -69,7 +69,7 @@ import {parseLiteralStyle} from '../webgl/ShaderBuilder.js';
+  * options means that `title` is observable, and has get/set accessors.
+  *
+  * @template {import("../source/Vector.js").default} VectorSourceType
+- * @extends {Layer<VectorSourceType>}
++ * @augments Layer<VectorSourceType>
+  * @fires import("../render/Event.js").RenderEvent
+  */
+ class WebGLPointsLayer extends Layer {

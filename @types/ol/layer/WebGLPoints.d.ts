@@ -2,14 +2,13 @@ import { ObjectEvent } from '../Object';
 import { EventsKey, ListenerFunction } from '../events';
 import BaseEvent from '../events/Event';
 import { Extent } from '../extent';
-import Geometry from '../geom/Geometry';
 import RenderEvent from '../render/Event';
 import WebGLPointsLayerRenderer from '../renderer/webgl/PointsLayer';
 import VectorSource from '../source/Vector';
-import { LiteralStyle } from '../style/LiteralStyle';
+import { LiteralStyle } from '../style/literal';
 import Layer from './Layer';
 
-export interface Options {
+export interface Options<VectorSourceType extends VectorSource = VectorSource> {
     style: LiteralStyle;
     className?: string;
     opacity?: number;
@@ -20,11 +19,14 @@ export interface Options {
     maxResolution?: number;
     minZoom?: number;
     maxZoom?: number;
-    source?: VectorSource<Geometry>;
+    source?: VectorSourceType;
     disableHitDetection?: boolean;
+    properties?: { [key: string]: any };
 }
-export default class WebGLPointsLayer extends Layer<VectorSource> {
-    constructor(options: Options);
+export default class WebGLPointsLayer<
+    VectorSourceType extends VectorSource = VectorSource,
+> extends Layer<VectorSourceType> {
+    constructor(options: Options<VectorSourceType>);
     /**
      * Create a renderer for this layer.
      */

@@ -37,9 +37,10 @@ export interface Options {
     updateWhileInteracting?: boolean;
     preload?: number;
     useInterimTilesOnError?: boolean;
+    properties?: { [key: string]: any };
 }
 export default class VectorTileLayer extends BaseVectorLayer<VectorTile> {
-    constructor(opt_options?: Options & { [key: string]: any });
+    constructor(opt_options?: Options);
     /**
      * Create a renderer for this layer.
      */
@@ -49,7 +50,7 @@ export default class VectorTileLayer extends BaseVectorLayer<VectorTile> {
      * that resolves with an array of features. The array will either contain the topmost feature
      * when a hit was detected, or it will be empty.
      * The hit detection algorithm used for this method is optimized for performance, but is less
-     * accurate than the one used in {@link module:ol/PluggableMap~PluggableMap#getFeaturesAtPixel}: Text
+     * accurate than the one used in {@link module:ol/PluggableMap~PluggableMap#getFeaturesAtPixel map.getFeaturesAtPixel()}: Text
      * is not considered, and icons are only represented by their bounding box instead of the exact
      * image.
      */

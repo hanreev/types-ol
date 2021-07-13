@@ -11,7 +11,7 @@ export interface Options {
     render?: (p0: MapEvent) => void;
 }
 export default class ZoomSlider extends Control {
-    constructor(opt_options?: Options & { [key: string]: any });
+    constructor(opt_options?: Options);
     /**
      * Remove the control from its current map and attach it to the new map.
      * Subclasses may set up event handlers to get notified about changes to

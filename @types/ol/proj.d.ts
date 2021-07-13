@@ -172,7 +172,7 @@ export function toUserExtent(extent: Extent, sourceProjection: ProjectionLike): 
 /**
  * Transforms a coordinate from source projection to destination projection.
  * This returns a new coordinate (and does not modify the original).
- * See {@link module:ol/proj~transformExtent} for extent transformation.
+ * See {@link module:ol/proj.transformExtent} for extent transformation.
  * See the transform method of {@link module:ol/geom/Geometry~Geometry} and its
  * subclasses for geometry transforms.
  */

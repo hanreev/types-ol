@@ -28,20 +28,20 @@ export interface Options {
     useSpatialIndex?: boolean;
     wrapX?: boolean;
 }
-export default class VectorSource<GeomType extends Geometry = Geometry> extends Source {
-    constructor(opt_options?: Options & { [key: string]: any });
+export default class VectorSource<G extends Geometry = Geometry> extends Source {
+    constructor(opt_options?: Options);
     /**
      * Add a feature without firing a change event.
      */
-    protected addFeatureInternal(feature: Feature<GeomType>): void;
+    protected addFeatureInternal(feature: Feature<G>): void;
     /**
      * Add features without firing a change event.
      */
-    protected addFeaturesInternal(features: Feature<GeomType>[]): void;
+    protected addFeaturesInternal(features: Feature<G>[]): void;
     /**
      * Remove feature without firing a change event.
      */
-    protected removeFeatureInternal(feature: Feature<GeomType>): void;
+    protected removeFeatureInternal(feature: Feature<G>): void;
     /**
      * Add a single feature to the source.  If you want to add a batch of features
      * at once, call {@link module:ol/source/Vector~VectorSource#addFeatures #addFeatures()}
@@ -52,11 +52,11 @@ export default class VectorSource<GeomType extends Geometry = Geometry> extends 
      * meaning that if a feature with a duplicate id is added in the collection, it will
      * be removed from it right away.
      */
-    addFeature(feature: Feature<GeomType>): void;
+    addFeature(feature: Feature<G>): void;
     /**
      * Add a batch of features to the source.
      */
-    addFeatures(features: Feature<GeomType>[]): void;
+    addFeatures(features: Feature<G>[]): void;
     /**
      * Remove all features from the source.
      */
@@ -67,14 +67,14 @@ export default class VectorSource<GeomType extends Geometry = Geometry> extends 
      * stop and the function will return the same value.
      * Note: this function only iterate through the feature that have a defined geometry.
      */
-    forEachFeature<T>(callback: (p0: Feature<GeomType>) => T): T | undefined;
+    forEachFeature<T>(callback: (p0: Feature<G>) => T): T | undefined;
     /**
      * Iterate through all features whose geometries contain the provided
      * coordinate, calling the callback with each feature.  If the callback returns
      * a "truthy" value, iteration will stop and the function will return the same
      * value.
      */
-    forEachFeatureAtCoordinateDirect<T>(coordinate: Coordinate, callback: (p0: Feature<GeomType>) => T): T | undefined;
+    forEachFeatureAtCoordinateDirect<T>(coordinate: Coordinate, callback: (p0: Feature<G>) => T): T | undefined;
     /**
      * Iterate through all features whose bounding box intersects the provided
      * extent (note that the feature's geometry may not intersect the extent),
@@ -85,7 +85,7 @@ export default class VectorSource<GeomType extends Geometry = Geometry> extends 
      * When useSpatialIndex is set to false, this method will loop through all
      * features, equivalent to {@link module:ol/source/Vector~VectorSource#forEachFeature #forEachFeature()}.
      */
-    forEachFeatureInExtent<T>(extent: Extent, callback: (p0: Feature<GeomType>) => T): T | undefined;
+    forEachFeatureInExtent<T>(extent: Extent, callback: (p0: Feature<G>) => T): T | undefined;
     /**
      * Iterate through all features whose geometry intersects the provided extent,
      * calling the callback with each feature.  If the callback returns a "truthy"
@@ -93,13 +93,13 @@ export default class VectorSource<GeomType extends Geometry = Geometry> extends 
      * If you only want to test for bounding box intersection, call the
      * {@link module:ol/source/Vector~VectorSource#forEachFeatureInExtent #forEachFeatureInExtent()} method instead.
      */
-    forEachFeatureIntersectingExtent<T>(extent: Extent, callback: (p0: Feature<GeomType>) => T): T | undefined;
+    forEachFeatureIntersectingExtent<T>(extent: Extent, callback: (p0: Feature<G>) => T): T | undefined;
     /**
      * Get the closest feature to the provided coordinate.
      * This method is not available when the source is configured with
      * useSpatialIndex set to false.
      */
-    getClosestFeatureToCoordinate(coordinate: Coordinate, opt_filter?: () => void): Feature<GeomType>;
+    getClosestFeatureToCoordinate(coordinate: Coordinate, opt_filter?: (p0: Feature<G>) => boolean): Feature<G>;
     /**
      * Get the extent of the features currently in the source.
      * This method is not available when the source is configured with
@@ -111,25 +111,26 @@ export default class VectorSource<GeomType extends Geometry = Geometry> extends 
      * Note that the index treats string and numeric identifiers as the same.  So
      * source.getFeatureById(2) will return a feature with id '2' or 2.
      */
-    getFeatureById(id: string | number): Feature<GeomType>;
+    getFeatureById(id: string | number): Feature<G>;
     /**
      * Get a feature by its internal unique identifier (using getUid).
      */
-    getFeatureByUid(uid: string): Feature<GeomType>;
+    getFeatureByUid(uid: string): Feature<G>;
     /**
-     * Get all features on the source in random order.
+     * Get a snapshot of the features currently on the source in random order. The returned array
+     * is a copy, the features are references to the features in the source.
      */
-    getFeatures(): Feature<GeomType>[];
+    getFeatures(): Feature<G>[];
     /**
      * Get all features whose geometry intersects the provided coordinate.
      */
-    getFeaturesAtCoordinate(coordinate: Coordinate): Feature<GeomType>[];
+    getFeaturesAtCoordinate(coordinate: Coordinate): Feature<G>[];
     /**
      * Get the features collection associated with this source. Will be null
      * unless the source was configured with useSpatialIndex set to false, or
      * with an {@link module:ol/Collection} as features.
      */
-    getFeaturesCollection(): Collection<Feature<GeomType>>;
+    getFeaturesCollection(): Collection<Feature<G>>;
     /**
      * Get all features whose bounding box intersects the provided extent.  Note that this returns an array of
      * all features intersecting the given extent in random order (so it may include
@@ -137,7 +138,7 @@ export default class VectorSource<GeomType extends Geometry = Geometry> extends 
      * When useSpatialIndex is set to false, this method will return all
      * features.
      */
-    getFeaturesInExtent(extent: Extent): Feature<GeomType>[];
+    getFeaturesInExtent(extent: Extent): Feature<G>[];
     /**
      * Get the format associated with this source.
      */
@@ -151,7 +152,7 @@ export default class VectorSource<GeomType extends Geometry = Geometry> extends 
     /**
      * Returns true if the feature is contained within the source.
      */
-    hasFeature(feature: Feature<GeomType>): boolean;
+    hasFeature(feature: Feature<G>): boolean;
     isEmpty(): boolean;
     loadFeatures(extent: Extent, resolution: number, projection: Projection): void;
     /**
@@ -159,7 +160,7 @@ export default class VectorSource<GeomType extends Geometry = Geometry> extends 
      * at once, use the {@link module:ol/source/Vector~VectorSource#clear #clear()} method
      * instead.
      */
-    removeFeature(feature: Feature<GeomType>): void;
+    removeFeature(feature: Feature<G>): void;
     /**
      * Remove an extent from the list of loaded extents.
      */
@@ -209,14 +210,14 @@ export default class VectorSource<GeomType extends Geometry = Geometry> extends 
     once(type: 'removefeature', listener: (evt: VectorSourceEvent<Geometry>) => void): EventsKey;
     un(type: 'removefeature', listener: (evt: VectorSourceEvent<Geometry>) => void): void;
 }
-export class VectorSourceEvent<GeomType extends Geometry = Geometry> extends BaseEvent {
-    constructor(type: string, opt_feature?: Feature<GeomType>, opt_features?: Feature<GeomType>[]);
+export class VectorSourceEvent<G extends Geometry = Geometry> extends BaseEvent {
+    constructor(type: string, opt_feature?: Feature<G>, opt_features?: Feature<G>[]);
     /**
      * The added or removed feature for the ADDFEATURE and REMOVEFEATURE events, undefined otherwise.
      */
-    feature: Feature<GeomType>;
+    feature: Feature<G>;
     /**
      * The loaded features for the FEATURESLOADED event, undefined otherwise.
      */
-    features: Feature<GeomType>[];
+    features: Feature<G>[];
 }

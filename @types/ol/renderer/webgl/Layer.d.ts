@@ -61,10 +61,6 @@ export default class WebGLLayerRenderer<LayerType extends Layer = Layer> extends
     ): T | undefined;
     getDataAtPixel(pixel: Pixel, frameState: FrameState, hitTolerance: number): Uint8ClampedArray | Uint8Array;
     /**
-     * Will return the last shader compilation errors. If no error happened, will return null;
-     */
-    getShaderCompileErrors(): string | null;
-    /**
      * Perform action necessary to get the layer rendered after new fonts have loaded
      */
     handleFontsChanged(): void;

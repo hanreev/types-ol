@@ -11,7 +11,7 @@ import Layer from './Layer';
 export default class ImageLayer<
     ImageSourceType extends ImageSource = ImageSource,
 > extends BaseImageLayer<ImageSourceType> {
-    constructor(opt_options?: Options<ImageSourceType> & { [key: string]: any });
+    constructor(opt_options?: Options<ImageSourceType>);
     /**
      * Create a renderer for this layer.
      */

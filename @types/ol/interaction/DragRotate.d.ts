@@ -10,7 +10,7 @@ export interface Options {
     duration?: number;
 }
 export default class DragRotate extends PointerInteraction {
-    constructor(opt_options?: Options & { [key: string]: any });
+    constructor(opt_options?: Options);
     /**
      * Handle pointer down events.
      */

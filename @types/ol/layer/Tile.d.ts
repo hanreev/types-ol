@@ -9,7 +9,7 @@ import BaseTileLayer, { Options } from './BaseTile';
 import Layer from './Layer';
 
 export default class TileLayer<TileSourceType extends TileSource = TileSource> extends BaseTileLayer<TileSourceType> {
-    constructor(opt_options?: Options<TileSourceType> & { [key: string]: any });
+    constructor(opt_options?: Options<TileSourceType>);
     /**
      * Create a renderer for this layer.
      */

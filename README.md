@@ -11,7 +11,7 @@
 
 
 
-This project contains TypeScript definition for [OpenLayers](https://openlayers.org/) `v6.5.0` that includes all documented API and protected class members and methods.
+This project contains TypeScript definition for [OpenLayers](https://openlayers.org/) `v6.6.0` that includes all documented API and protected class members and methods.
 Check [v5.3.x branch](https://github.com/hanreev/types-ol/tree/v5.3.x) for [OpenLayers](https://openlayers.org/) `v5.3.x` definitions.
 
 
@@ -57,7 +57,7 @@ There are several ways to use this package. Please choose one:
     ...
     "devDependencies": {
       ...
-      "@hanreev/types-ol": "^3.5.4",
+      "@hanreev/types-ol": "^3.6.0",
       "@types/ol": "file:node_modules/@hanreev/types-ol/ol",
       ...
     }

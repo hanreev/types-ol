@@ -1,5 +1,6 @@
 import { ObjectEvent } from '../Object';
 import { LoadFunction } from '../Tile';
+import { NearestDirectionFunction } from '../array';
 import { EventsKey, ListenerFunction } from '../events';
 import BaseEvent from '../events/Event';
 import { Size } from '../size';
@@ -35,6 +36,7 @@ export interface Options {
     url?: string;
     wrapX?: boolean;
     transition?: number;
+    zDirection?: number | NearestDirectionFunction;
 }
 export default class TileJSON extends TileImage {
     constructor(options: Options);

@@ -125,6 +125,8 @@ exports.handlers = {
     // Fix multiple typedef in a comment
     e.source = e.source.replace(/\/\*\*.+?\*\//gs, m => {
       if (m.split('@typedef').length > 2) m = m.replace(/\s*?\*\s*?@typedef\s{.+}/g, tm => `\n*/\n\n/**${tm}`);
+      // Remove exclamation mark
+      m = m.replace(/({.*)!(.+})/gs, '$1$2');
       return m;
     });
 

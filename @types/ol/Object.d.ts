@@ -1,5 +1,5 @@
 import Observable from './Observable';
-import { EventsKey, ListenerFunction } from './events';
+import { EventsKey, Listener, ListenerFunction } from './events';
 import BaseEvent from './events/Event';
 
 export default class BaseObject extends Observable {
@@ -8,6 +8,7 @@ export default class BaseObject extends Observable {
      * Apply any properties from another object without triggering events.
      */
     protected applyProperties(source: BaseObject): void;
+    addChangeListener(key: string, listener: Listener): void;
     /**
      * Gets a value.
      */
@@ -22,6 +23,7 @@ export default class BaseObject extends Observable {
     getProperties(): { [key: string]: any };
     hasProperties(): boolean;
     notify(key: string, oldValue: any): void;
+    removeChangeListener(key: string, listener: Listener): void;
     /**
      * Sets a value.
      */
@@ -62,4 +64,3 @@ export class ObjectEvent extends BaseEvent {
      */
     oldValue: any;
 }
-export function getChangeEventType(key: string): string;

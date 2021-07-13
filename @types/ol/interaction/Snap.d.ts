@@ -28,7 +28,7 @@ export interface SegmentData {
     segment: Coordinate[];
 }
 export default class Snap extends PointerInteraction {
-    constructor(opt_options?: Options & { [key: string]: any });
+    constructor(opt_options?: Options);
     /**
      * Add a feature to the collection of features that we may snap to.
      */

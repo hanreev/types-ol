@@ -23,7 +23,7 @@ export interface Options {
     view?: View;
 }
 export default class OverviewMap extends Control {
-    constructor(opt_options?: Options & { [key: string]: any });
+    constructor(opt_options?: Options);
     /**
      * Determine if the overview map is collapsed.
      */

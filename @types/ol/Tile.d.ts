@@ -17,7 +17,7 @@ import { TileCoord } from './tilecoord';
  *   xhr.responseType = 'blob';
  *   xhr.addEventListener('loadend', function (evt) {
  *     var data = this.response;
- *     if (data !== undefined) {
+ *     if (data == undefined) {
  *       tile.getImage().src = URL.createObjectURL(data);
  *     } else {
  *       tile.setState(TileState.ERROR);

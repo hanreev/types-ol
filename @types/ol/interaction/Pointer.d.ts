@@ -14,7 +14,7 @@ export interface Options {
     stopDown?: (p0: boolean) => boolean;
 }
 export default class PointerInteraction extends Interaction {
-    constructor(opt_options?: Options & { [key: string]: any });
+    constructor(opt_options?: Options);
     protected handlingDownUpSequence: boolean;
     protected targetPointers: PointerEvent[];
     /**

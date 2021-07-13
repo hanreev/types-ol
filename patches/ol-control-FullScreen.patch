@@ -1,8 +1,8 @@
 diff --git a/src/ol/control/FullScreen.js b/src/ol/control/FullScreen.js
-index 05002b01a..fe81bb2a3 100644
+index 50906b4ce..182df897a 100644
 --- a/src/ol/control/FullScreen.js
 +++ b/src/ol/control/FullScreen.js
-@@ -35,9 +35,9 @@ const FullScreenEventType = {
+@@ -44,9 +44,9 @@ const FullScreenEventType = {
  /**
   * @typedef {Object} Options
   * @property {string} [className='ol-full-screen'] CSS class name.
@@ -14,8 +14,8 @@ index 05002b01a..fe81bb2a3 100644
   * button when full-screen is active.
   * @property {string} [activeClassName=className + '-true'] CSS class name for the button
   * when full-screen is active.
-@@ -64,8 +64,8 @@ const FullScreenEventType = {
-  * The [Fullscreen API](http://www.w3.org/TR/fullscreen/) is used to
+@@ -73,8 +73,8 @@ const FullScreenEventType = {
+  * The [Fullscreen API](https://www.w3.org/TR/fullscreen/) is used to
   * toggle the map in full screen mode.
   *
 - * @fires FullScreenEventType#enterfullscreen

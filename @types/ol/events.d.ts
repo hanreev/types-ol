@@ -22,7 +22,7 @@ export interface ListenerObject {
  * Registers an event listener on an event target. Inspired by
  * https://google.github.io/closure-library/api/source/closure/goog/events/events.js.src.html
  * This function efficiently binds a listener to a this object, and returns
- * a key for use with {@link module:ol/events~unlistenByKey}.
+ * a key for use with {@link module:ol/events.unlistenByKey}.
  */
 export function listen(
     target: EventTargetLike,
@@ -36,9 +36,9 @@ export function listen(
  * https://google.github.io/closure-library/api/source/closure/goog/events/events.js.src.html
  * This function efficiently binds a listener as self-unregistering listener
  * to a this object, and returns a key for use with
- * {@link module:ol/events~unlistenByKey} in case the listener needs to be
+ * {@link module:ol/events.unlistenByKey} in case the listener needs to be
  * unregistered before it is called.
- * When {@link module:ol/events~listen} is called with the same arguments after this
+ * When {@link module:ol/events.listen} is called with the same arguments after this
  * function, the self-unregistering listener will be turned into a permanent
  * listener.
  */
@@ -52,6 +52,6 @@ export function listenOnce(
  * Unregisters event listeners on an event target. Inspired by
  * https://google.github.io/closure-library/api/source/closure/goog/events/events.js.src.html
  * The argument passed to this function is the key returned from
- * {@link module:ol/events~listen} or {@link module:ol/events~listenOnce}.
+ * {@link module:ol/events.listen} or {@link module:ol/events.listenOnce}.
  */
 export function unlistenByKey(key: EventsKey): void;

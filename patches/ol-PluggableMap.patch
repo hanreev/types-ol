@@ -1,0 +1,16 @@
+diff --git a/src/ol/PluggableMap.js b/src/ol/PluggableMap.js
+index 4d8dfdb55..c3991d640 100644
+--- a/src/ol/PluggableMap.js
++++ b/src/ol/PluggableMap.js
+@@ -143,6 +143,11 @@ import {removeNode} from './dom.js';
+  */
+ 
+ /**
++ * @fires import("./MapBrowserEvent.js").MapBrowserEvent
++ * @fires import("./MapEvent.js").MapEvent
++ * @fires import("./render/Event.js").default#precompose
++ * @fires import("./render/Event.js").default#postcompose
++ * @fires import("./render/Event.js").default#rendercomplete
+  * @api
+  */
+ class PluggableMap extends BaseObject {

@@ -24,7 +24,7 @@ export interface Options {
     url: string;
 }
 export default class ImageWMS extends ImageSource {
-    constructor(opt_options?: Options & { [key: string]: any });
+    constructor(opt_options?: Options);
     /**
      * Return the GetFeatureInfo URL for the passed coordinate, resolution, and
      * projection. Return undefined if the GetFeatureInfo URL cannot be

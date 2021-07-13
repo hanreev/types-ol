@@ -12,7 +12,6 @@ export interface ReplayState {
     renderedTileRevision: number;
     renderedResolution: number;
     renderedRevision: number;
-    renderedZ: number;
     renderedTileResolution: number;
     renderedTileZ: number;
 }

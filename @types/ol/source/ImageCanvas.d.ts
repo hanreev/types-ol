@@ -14,8 +14,8 @@ import State from './State';
  * A function returning the canvas element ({HTMLCanvasElement})
  * used by the source as an image. The arguments passed to the function are:
  * {@link module:ol/extent~Extent} the image extent, {number} the image resolution,
- * {number} the device pixel ratio, {@link module:ol/size~Size} the image size, and
- * {@link module:ol/proj/Projection} the image projection. The canvas returned by
+ * {number} the pixel ratio of the map, {@link module:ol/size~Size} the image size,
+ * and {@link module:ol/proj/Projection} the image projection. The canvas returned by
  * this function is cached by the source. The this keyword inside the function
  * references the {@link module:ol/source/ImageCanvas}.
  */
@@ -37,7 +37,7 @@ export interface Options {
     state?: State;
 }
 export default class ImageCanvasSource extends ImageSource {
-    constructor(opt_options?: Options & { [key: string]: any });
+    constructor(opt_options?: Options);
     getImageInternal(extent: Extent, resolution: number, pixelRatio: number, projection: Projection): ImageCanvas;
     on(type: string, listener: ListenerFunction): EventsKey;
     on(type: string[], listener: ListenerFunction): EventsKey[];

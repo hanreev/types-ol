@@ -9,7 +9,7 @@ export interface Options {
     delta?: number;
 }
 export default class DoubleClickZoom extends Interaction {
-    constructor(opt_options?: Options & { [key: string]: any });
+    constructor(opt_options?: Options);
     /**
      * Handles the {@link module:ol/MapBrowserEvent map browser event} (if it was a
      * doubleclick) and eventually zooms the map.

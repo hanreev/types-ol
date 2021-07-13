@@ -1,4 +1,5 @@
 import { ObjectEvent } from '../Object';
+import { NearestDirectionFunction } from '../array';
 import { EventsKey, ListenerFunction } from '../events';
 import BaseEvent from '../events/Event';
 import { ProjectionLike } from '../proj';
@@ -20,8 +21,9 @@ export interface Options {
     wrapX?: boolean;
     config?: any;
     map?: string;
-    account: string;
+    account?: string;
     transition?: number;
+    zDirection?: number | NearestDirectionFunction;
 }
 export default class CartoDB extends XYZ {
     constructor(options: Options);

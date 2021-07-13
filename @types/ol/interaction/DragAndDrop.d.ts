@@ -20,7 +20,7 @@ declare enum DragAndDropEventType {
     ADD_FEATURES = 'addfeatures',
 }
 export default class DragAndDrop extends Interaction {
-    constructor(opt_options?: Options & { [key: string]: any });
+    constructor(opt_options?: Options);
     handleDrop(event: DragEvent): void;
     handleStop(event: DragEvent): void;
     /**

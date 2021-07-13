@@ -1,4 +1,5 @@
 import { ObjectEvent } from '../Object';
+import { NearestDirectionFunction } from '../array';
 import { EventsKey, ListenerFunction } from '../events';
 import BaseEvent from '../events/Event';
 import { Extent } from '../extent';
@@ -31,10 +32,10 @@ export interface Options {
     transition?: number;
     url?: string;
     version?: Versions;
-    zDirection?: number;
+    zDirection?: number | NearestDirectionFunction;
 }
 export default class IIIF extends TileImage {
-    constructor(opt_options?: Options & { [key: string]: any });
+    constructor(opt_options?: Options);
     on(type: string, listener: ListenerFunction): EventsKey;
     on(type: string[], listener: ListenerFunction): EventsKey[];
     once(type: string, listener: ListenerFunction): EventsKey;

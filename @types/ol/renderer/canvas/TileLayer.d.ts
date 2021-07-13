@@ -45,7 +45,7 @@ export default class CanvasTileLayerRenderer extends CanvasLayerRenderer {
         extent: Extent,
         currentZ: number,
         preload: number,
-        opt_tileCallback?: () => void,
+        opt_tileCallback?: (p0: Tile) => void,
     ): void;
     protected scheduleExpireCache(frameState: FrameState, tileSource: TileSource): void;
     protected updateUsedTiles(

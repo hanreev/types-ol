@@ -9,6 +9,7 @@ import Projection from '../proj/Projection';
 import Source, { AttributionLike } from './Source';
 import State from './State';
 
+export type ImageSourceEventTypes = 'imageloadend' | 'imageloaderror' | 'imageloadstart';
 export interface Options {
     attributions?: AttributionLike;
     imageSmoothing?: boolean;

@@ -1,4 +1,5 @@
 import BaseObject, { ObjectEvent } from './Object';
+import Types from './ObjectEventType';
 import { Coordinate } from './coordinate';
 import { EventsKey, ListenerFunction } from './events';
 import BaseEvent from './events/Event';
@@ -6,13 +7,25 @@ import Polygon from './geom/Polygon';
 import { ProjectionLike } from './proj';
 import Projection from './proj/Projection';
 
+export type GeolocationObjectEventTypes =
+    | Types
+    | 'change:accuracy'
+    | 'change:accuracyGeometry'
+    | 'change:altitude'
+    | 'change:altitudeAccuracy'
+    | 'change:heading'
+    | 'change:position'
+    | 'change:projection'
+    | 'change:speed'
+    | 'change:tracking'
+    | 'change:trackingOptions';
 export interface Options {
     tracking?: boolean;
     trackingOptions?: PositionOptions;
     projection?: ProjectionLike;
 }
 export default class Geolocation extends BaseObject {
-    constructor(opt_options?: Options & { [key: string]: any });
+    constructor(opt_options?: Options);
     /**
      * Clean up.
      */
@@ -57,7 +70,7 @@ export default class Geolocation extends BaseObject {
     getTracking(): boolean;
     /**
      * Get the tracking options.
-     * See http://www.w3.org/TR/geolocation-API/#position-options.
+     * See https://www.w3.org/TR/geolocation-API/#position-options.
      */
     getTrackingOptions(): PositionOptions | undefined;
     /**

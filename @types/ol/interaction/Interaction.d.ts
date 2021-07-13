@@ -13,7 +13,7 @@ export interface InteractionOptions {
     handleEvent: (p0: MapBrowserEvent<UIEvent>) => boolean;
 }
 export default class Interaction extends BaseObject {
-    constructor(opt_options?: InteractionOptions & { [key: string]: any });
+    constructor(opt_options?: InteractionOptions);
     /**
      * Return whether the interaction is currently active.
      */

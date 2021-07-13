@@ -11,7 +11,7 @@ export interface Options {
     pixelDelta?: number;
 }
 export default class KeyboardPan extends Interaction {
-    constructor(opt_options?: Options & { [key: string]: any });
+    constructor(opt_options?: Options);
     /**
      * Handles the {@link module:ol/MapBrowserEvent map browser event} if it was a
      * KeyEvent, and decides the direction to pan to (if an arrow key was

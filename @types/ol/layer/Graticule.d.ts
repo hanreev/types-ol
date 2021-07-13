@@ -6,6 +6,7 @@ import LineString from '../geom/LineString';
 import Point from '../geom/Point';
 import Projection from '../proj/Projection';
 import RenderEvent from '../render/Event';
+import VectorSource from '../source/Vector';
 import Stroke from '../style/Stroke';
 import Text from '../style/Text';
 import VectorLayer from './Vector';
@@ -36,9 +37,10 @@ export interface Options {
     latLabelStyle?: Text;
     intervals?: number[];
     wrapX?: boolean;
+    properties?: { [key: string]: any };
 }
-export default class Graticule extends VectorLayer {
-    constructor(opt_options?: Options & { [key: string]: any });
+export default class Graticule extends VectorLayer<VectorSource> {
+    constructor(opt_options?: Options);
     /**
      * Get the list of meridians.  Meridians are lines of equal longitude.
      */

@@ -16,7 +16,7 @@ export interface Options {
     target?: HTMLElement | string;
 }
 export default class Rotate extends Control {
-    constructor(opt_options?: Options & { [key: string]: any });
+    constructor(opt_options?: Options);
     on(type: string, listener: ListenerFunction): EventsKey;
     on(type: string[], listener: ListenerFunction): EventsKey[];
     once(type: string, listener: ListenerFunction): EventsKey;

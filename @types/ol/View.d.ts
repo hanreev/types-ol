@@ -1,4 +1,5 @@
 import BaseObject, { ObjectEvent } from './Object';
+import Types from './ObjectEventType';
 import ViewHint from './ViewHint';
 import { Type } from './centerconstraint';
 import { Coordinate } from './coordinate';
@@ -61,6 +62,7 @@ export interface State {
     rotation: number;
     zoom: number;
 }
+export type ViewObjectEventTypes = Types | 'change:center' | 'change:resolution' | 'change:rotation';
 export interface ViewOptions {
     center?: Coordinate;
     constrainRotation?: boolean | number;
@@ -85,7 +87,7 @@ export interface ViewOptions {
     padding?: number[];
 }
 export default class View extends BaseObject {
-    constructor(opt_options?: ViewOptions & { [key: string]: any });
+    constructor(opt_options?: ViewOptions);
     /**
      * Padding (in css pixels).
      * If the map viewport is partially covered with other content (overlays) along
@@ -306,6 +308,10 @@ export default class View extends BaseObject {
      */
     resolveConstraints(opt_duration?: number, opt_resolutionDirection?: number, opt_anchor?: Coordinate): void;
     /**
+     * Calculate rotated extent
+     */
+    rotatedExtentForGeometry(geometry: SimpleGeometry): Extent;
+    /**
      * Set the center of the current view. Any extent constraint will apply.
      */
     setCenter(center: Coordinate | undefined): void;
@@ -314,7 +320,7 @@ export default class View extends BaseObject {
      */
     setCenterInternal(center: Coordinate | undefined): void;
     /**
-     * Set whether the view shoud allow intermediary zoom levels.
+     * Set whether the view should allow intermediary zoom levels.
      */
     setConstrainResolution(enabled: boolean): void;
     setHint(hint: ViewHint, delta: number): number;

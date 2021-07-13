@@ -1,6 +1,7 @@
 import { ObjectEvent } from '../Object';
 import Tile from '../Tile';
 import TileState from '../TileState';
+import { NearestDirectionFunction } from '../array';
 import { Coordinate } from '../coordinate';
 import { EventsKey, ListenerFunction } from '../events';
 import BaseEvent from '../events/Event';
@@ -15,6 +16,7 @@ export interface Options {
     jsonp?: boolean;
     tileJSON?: Config;
     url?: string;
+    zDirection?: number | NearestDirectionFunction;
 }
 export interface UTFGridJSON {
     grid: string[];

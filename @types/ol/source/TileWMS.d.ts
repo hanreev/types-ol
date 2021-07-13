@@ -1,6 +1,7 @@
 import ImageTile from '../ImageTile';
 import { ObjectEvent } from '../Object';
 import { LoadFunction } from '../Tile';
+import { NearestDirectionFunction } from '../array';
 import { Coordinate } from '../coordinate';
 import { EventsKey, ListenerFunction } from '../events';
 import BaseEvent from '../events/Event';
@@ -13,6 +14,7 @@ import WMSServerType from './WMSServerType';
 
 export interface Options {
     attributions?: AttributionLike;
+    attributionsCollapsible?: boolean;
     cacheSize?: number;
     crossOrigin?: null | string;
     imageSmoothing?: boolean;
@@ -29,9 +31,10 @@ export interface Options {
     urls?: string[];
     wrapX?: boolean;
     transition?: number;
+    zDirection?: number | NearestDirectionFunction;
 }
 export default class TileWMS extends TileImage {
-    constructor(opt_options?: Options & { [key: string]: any });
+    constructor(opt_options?: Options);
     /**
      * Return the GetFeatureInfo URL for the passed coordinate, resolution, and
      * projection. Return undefined if the GetFeatureInfo URL cannot be

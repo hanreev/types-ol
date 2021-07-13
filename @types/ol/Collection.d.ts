@@ -7,7 +7,7 @@ export interface Options {
     unique?: boolean;
 }
 export default class Collection<T> extends BaseObject {
-    constructor(opt_array?: T[], opt_options?: Options & { [key: string]: any });
+    constructor(opt_array?: T[], opt_options?: Options);
     /**
      * Remove all elements from the collection.
      */

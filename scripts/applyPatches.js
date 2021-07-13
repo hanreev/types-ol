@@ -4,6 +4,7 @@ const glob = require('glob');
 const childProcess = require('child_process');
 
 const BASE_DIR = process.cwd();
+const OL_VERSION = 'v6.6.0';
 
 const jsdocConfigPath = path.resolve(BASE_DIR, 'jsdoc', 'conf.json');
 const jsdocConfig = require(jsdocConfigPath);
@@ -40,10 +41,10 @@ if (!patches.length) {
   process.exit();
 }
 
-console.log('# Checkout openlayers v6.5.0');
+console.log(`# Checkout openlayers ${OL_VERSION}`);
 process.chdir(olDir);
 childProcess.execSync('git checkout -- .', { stdio: 'inherit' });
-childProcess.execSync('git checkout v6.5.0', { stdio: 'inherit' });
+childProcess.execSync(`git checkout ${OL_VERSION}`, { stdio: 'inherit' });
 
 console.log('# ===== APPLYING PATCHES =====');
 for (const patch of patches) {

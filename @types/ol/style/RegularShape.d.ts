@@ -55,7 +55,6 @@ export default class RegularShape extends ImageStyle {
      */
     getFill(): Fill;
     getHitDetectionImage(): HTMLCanvasElement;
-    getHitDetectionImageSize(): Size;
     /**
      * Get the image icon.
      */
@@ -66,6 +65,10 @@ export default class RegularShape extends ImageStyle {
      * Get the origin of the symbolizer.
      */
     getOrigin(): number[];
+    /**
+     * Get the image pixel ratio.
+     */
+    getPixelRatio(pixelRatio: number): number;
     /**
      * Get the number of points for generating the shape.
      */

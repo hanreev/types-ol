@@ -6,6 +6,7 @@ import PluggableMap from '../PluggableMap';
 import { Coordinate } from '../coordinate';
 import { EventsKey, ListenerFunction } from '../events';
 import BaseEvent from '../events/Event';
+import { Condition } from '../events/condition';
 import Geometry from '../geom/Geometry';
 import Layer from '../layer/Layer';
 import Source from '../source/Source';
@@ -19,6 +20,7 @@ import PointerInteraction from './Pointer';
  */
 export type FilterFunction = (p0: FeatureLike, p1: Layer<Source>) => boolean;
 export interface Options {
+    condition?: Condition;
     features?: Collection<Feature<Geometry>>;
     layers?: Layer<Source>[] | ((p0: Layer<Source>) => boolean);
     filter?: FilterFunction;
@@ -30,7 +32,7 @@ declare enum TranslateEventType {
     TRANSLATEEND = 'translateend',
 }
 export default class Translate extends PointerInteraction {
-    constructor(opt_options?: Options & { [key: string]: any });
+    constructor(opt_options?: Options);
     /**
      * Returns the Hit-detection tolerance.
      */

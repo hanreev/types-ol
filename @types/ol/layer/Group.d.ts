@@ -18,15 +18,22 @@ export interface Options {
     minZoom?: number;
     maxZoom?: number;
     layers?: BaseLayer[] | Collection<BaseLayer>;
+    properties?: { [key: string]: any };
 }
 export default class LayerGroup extends BaseLayer {
-    constructor(opt_options?: Options & { [key: string]: any });
+    constructor(opt_options?: Options);
     /**
      * Returns the {@link module:ol/Collection collection} of {@link module:ol/layer/Layer~Layer layers}
      * in this group.
      */
     getLayers(): Collection<BaseLayer>;
     getLayersArray(opt_array?: Layer<Source>[]): Layer<Source>[];
+    /**
+     * Get the layer states list and use this groups z-index as the default
+     * for all layers in this and nested groups, if it is unset at this point.
+     * If opt_states is not provided and this group's z-index is undefined
+     * 0 is used a the default z-index.
+     */
     getLayerStatesArray(opt_states?: State[]): State[];
     getSourceState(): State_1;
     /**

@@ -14,10 +14,11 @@ export interface Options {
     projection?: ProjectionLike;
     render?: (p0: MapEvent) => void;
     target?: HTMLElement | string;
+    placeholder?: string | boolean;
     undefinedHTML?: string;
 }
 export default class MousePosition extends Control {
-    constructor(opt_options?: Options & { [key: string]: any });
+    constructor(opt_options?: Options);
     protected handleMouseMove(event: MouseEvent): void;
     protected handleMouseOut(event: Event): void;
     /**

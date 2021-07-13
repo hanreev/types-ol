@@ -13,7 +13,7 @@ export interface Options {
     minArea?: number;
 }
 export default class DragZoom extends DragBox {
-    constructor(opt_options?: Options & { [key: string]: any });
+    constructor(opt_options?: Options);
     /**
      * Function to execute just before onboxend is fired
      */

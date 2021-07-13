@@ -31,11 +31,12 @@ export interface Options<VectorSourceType extends VectorSource | VectorTile = Ve
     style?: StyleLike | null;
     updateWhileAnimating?: boolean;
     updateWhileInteracting?: boolean;
+    properties?: { [key: string]: any };
 }
 export default class BaseVectorLayer<
     VectorSourceType extends VectorSource | VectorTile = VectorSource | VectorTile,
 > extends Layer<VectorSourceType> {
-    constructor(opt_options?: Options<VectorSourceType> & { [key: string]: any });
+    constructor(opt_options?: Options<VectorSourceType>);
     getDeclutter(): boolean;
     /**
      * Get the topmost feature that intersects the given pixel on the viewport. Returns a promise

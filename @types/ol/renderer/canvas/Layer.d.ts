@@ -29,7 +29,6 @@ export default abstract class CanvasLayerRenderer<LayerType extends Layer = Laye
      * function that sets the values.
      */
     protected tempTransform: Transform;
-    protected clip(context: CanvasRenderingContext2D, frameState: FrameState, extent: Extent): void;
     protected clipUnrotated(context: CanvasRenderingContext2D, frameState: FrameState, extent: Extent): void;
     /**
      * Creates a transform for rendering to an element that will be rotated after rendering.

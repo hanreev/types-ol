@@ -1,6 +1,6 @@
 {
   "name": "@hanreev/types-ol",
-  "version": "3.5.4",
+  "version": "3.6.0",
   "description": "OpenLayers 6+ TypeScript definition",
   "author": "Rifa'i M. Hanif <hanreev@gmail.com>",
   "repository": {
@@ -20,6 +20,7 @@
   ],
   "license": "MIT",
   "scripts": {
+    "postinstall": "husky install",
     "apply-patches": "node scripts/applyPatches.js",
     "build": "yarn apply-patches && yarn build-definition",
     "build-definition": "jsdoc -c jsdoc/conf.json -P openlayers/package.json -d @types",
@@ -48,8 +49,8 @@
     "@types/node": "^16.3.1",
     "@types/proj4": "^2.5.0",
     "@types/rbush": "^3.0.0",
-    "@typescript-eslint/eslint-plugin": "^4.26.1",
-    "@typescript-eslint/parser": "^4.26.1",
+    "@typescript-eslint/eslint-plugin": "^4.28.3",
+    "@typescript-eslint/parser": "^4.28.3",
     "dtslint": "^4.1.0",
     "eslint": "^7.28.0",
     "eslint-plugin-unused-imports": "^1.1.1",
@@ -59,7 +60,7 @@
     "jsdoc-plugin-typescript": "2.0.6",
     "no-emit-webpack-plugin": "^4.0.1",
     "node-html-parser": "^4.0.0",
-    "ol": "^6.5.0",
+    "ol": "^6.6.0",
     "prettier": "latest",
     "pretty-quick": "latest",
     "proj4": "^2.7.2",

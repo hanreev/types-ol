@@ -2,6 +2,7 @@ import { ObjectEvent } from '../Object';
 import Tile, { Options as Options_1 } from '../Tile';
 import TileCache from '../TileCache';
 import TileRange from '../TileRange';
+import { NearestDirectionFunction } from '../array';
 import { EventsKey, ListenerFunction } from '../events';
 import BaseEvent from '../events/Event';
 import { ProjectionLike } from '../proj';
@@ -24,7 +25,7 @@ export interface Options {
     wrapX?: boolean;
     transition?: number;
     key?: string;
-    zDirection?: number;
+    zDirection?: number | NearestDirectionFunction;
 }
 export default abstract class TileSource extends Source {
     constructor(options: Options);

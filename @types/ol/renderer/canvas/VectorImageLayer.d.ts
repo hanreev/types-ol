@@ -6,12 +6,13 @@ import BaseEvent from '../../events/Event';
 import Geometry from '../../geom/Geometry';
 import VectorImageLayer from '../../layer/VectorImage';
 import { Pixel } from '../../pixel';
+import VectorSource from '../../source/Vector';
 import { HitMatch } from '../Map';
 import { FeatureCallback } from '../vector';
 import CanvasImageLayerRenderer from './ImageLayer';
 
 export default class CanvasVectorImageLayerRenderer extends CanvasImageLayerRenderer {
-    constructor(layer: VectorImageLayer);
+    constructor(layer: VectorImageLayer<VectorSource<Geometry>>);
     /**
      * Clean up.
      */

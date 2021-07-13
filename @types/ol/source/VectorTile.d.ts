@@ -3,6 +3,7 @@ import { ObjectEvent } from '../Object';
 import { LoadFunction, UrlFunction } from '../Tile';
 import VectorRenderTile from '../VectorRenderTile';
 import VectorTile_1 from '../VectorTile';
+import { NearestDirectionFunction } from '../array';
 import { EventsKey, ListenerFunction } from '../events';
 import BaseEvent from '../events/Event';
 import { Extent } from '../extent';
@@ -37,7 +38,7 @@ export interface Options {
     transition?: number;
     urls?: string[];
     wrapX?: boolean;
-    zDirection?: number;
+    zDirection?: number | NearestDirectionFunction;
 }
 export default class VectorTile extends UrlTile {
     constructor(options: Options);

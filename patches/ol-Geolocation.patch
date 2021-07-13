@@ -1,5 +1,5 @@
 diff --git a/src/ol/Geolocation.js b/src/ol/Geolocation.js
-index 7bfbbfe14..c5ec305d6 100644
+index e9a2668f5..051e258ea 100644
 --- a/src/ol/Geolocation.js
 +++ b/src/ol/Geolocation.js
 @@ -34,18 +34,20 @@ const Property = {
@@ -24,7 +24,7 @@ index 7bfbbfe14..c5ec305d6 100644
       */
      this.message = error.message;
    }
-@@ -81,7 +83,7 @@ class GeolocationError extends BaseEvent {
+@@ -96,7 +98,7 @@ class GeolocationError extends BaseEvent {
   *       window.console.log(geolocation.getPosition());
   *     });
   *

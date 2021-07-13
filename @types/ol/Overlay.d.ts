@@ -1,4 +1,5 @@
 import BaseObject, { ObjectEvent } from './Object';
+import Types from './ObjectEventType';
 import OverlayPositioning from './OverlayPositioning';
 import PluggableMap from './PluggableMap';
 import { Coordinate } from './coordinate';
@@ -22,6 +23,13 @@ export interface Options {
     autoPanOptions?: PanIntoViewOptions;
     className?: string;
 }
+export type OverlayObjectEventTypes =
+    | Types
+    | 'change:element'
+    | 'change:map'
+    | 'change:offset'
+    | 'change:position'
+    | 'change:positioning';
 export interface PanIntoViewOptions {
     animation?: PanOptions;
     margin?: number;
@@ -50,7 +58,7 @@ export default class Overlay extends BaseObject {
     protected handlePositionChanged(): void;
     protected handlePositioningChanged(): void;
     /**
-     * Pan the map so that the overlay is entirely visisble in the current viewport
+     * Pan the map so that the overlay is entirely visible in the current viewport
      * (if necessary) using the configured autoPan parameters
      */
     protected performAutoPan(): void;

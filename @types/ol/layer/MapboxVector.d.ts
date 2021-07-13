@@ -35,6 +35,7 @@ export interface Options {
     updateWhileInteracting?: boolean;
     preload?: number;
     useInterimTilesOnError?: boolean;
+    properties?: { [key: string]: any };
 }
 export interface SourceObject {
     url: string;

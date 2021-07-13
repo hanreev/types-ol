@@ -3,6 +3,7 @@ import { FeatureLike } from './Feature';
 import MapBrowserEvent from './MapBrowserEvent';
 import MapEvent from './MapEvent';
 import BaseObject, { ObjectEvent } from './Object';
+import Types from './ObjectEventType';
 import Overlay from './Overlay';
 import Tile from './Tile';
 import TileQueue from './TileQueue';
@@ -53,6 +54,7 @@ export interface FrameState {
     viewHints: number[];
     wantedTiles: { [key: string]: { [key: string]: boolean } };
 }
+export type MapObjectEventTypes = Types | 'change:layergroup' | 'change:size' | 'change:target' | 'change:view';
 /**
  * Object literal with config options for the map.
  */

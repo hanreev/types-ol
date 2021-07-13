@@ -12,6 +12,7 @@ import VectorSource, { VectorSourceEvent } from './Vector';
 export interface Options {
     attributions?: AttributionLike;
     distance?: number;
+    minDistance?: number;
     geometryFunction?: (p0: Feature<Geometry>) => Point;
     source?: VectorSource<Geometry>;
     wrapX?: boolean;
@@ -21,9 +22,12 @@ export default class Cluster extends VectorSource {
     protected distance: number;
     protected features: Feature<Geometry>[];
     protected geometryFunction: (feature: Feature<Geometry>) => Point;
+    protected interpolationRatio: number;
+    protected minDistance: number;
     protected resolution: number;
+    protected source: VectorSource<Geometry>;
     protected cluster(): void;
-    protected createCluster(features: Feature<Geometry>[]): Feature<Geometry>;
+    protected createCluster(features: Feature<Geometry>[], extent: Extent): Feature<Geometry>;
     /**
      * Remove all features from the source.
      */
@@ -32,6 +36,10 @@ export default class Cluster extends VectorSource {
      * Get the distance in pixels between clusters.
      */
     getDistance(): number;
+    /**
+     * The configured minimum distance between clusters.
+     */
+    getMinDistance(): number;
     getResolutions(): number[] | undefined;
     /**
      * Get a reference to the wrapped source.
@@ -43,13 +51,22 @@ export default class Cluster extends VectorSource {
      */
     refresh(): void;
     /**
-     * Set the distance in pixels between clusters.
+     * Set the distance within which features will be clusterd together.
      */
     setDistance(distance: number): void;
+    /**
+     * Set the minimum distance between clusters. Will be capped at the
+     * configured distance.
+     */
+    setMinDistance(minDistance: number): void;
     /**
      * Replace the wrapped source.
      */
     setSource(source: VectorSource<Geometry>): void;
+    /**
+     * Update the distances and refresh the source if necessary.
+     */
+    updateDistance(distance: number, minDistance: number): void;
     on(type: string, listener: ListenerFunction): EventsKey;
     on(type: string[], listener: ListenerFunction): EventsKey[];
     once(type: string, listener: ListenerFunction): EventsKey;

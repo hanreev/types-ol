@@ -3,7 +3,6 @@ import PluggableMap from '../PluggableMap';
 import { EventsKey, ListenerFunction } from '../events';
 import BaseEvent from '../events/Event';
 import { Extent } from '../extent';
-import Geometry from '../geom/Geometry';
 import { OrderFunction } from '../render';
 import RenderEvent from '../render/Event';
 import LayerRenderer from '../renderer/Layer';
@@ -13,7 +12,7 @@ import { StyleLike } from '../style/Style';
 import BaseVectorLayer from './BaseVector';
 import Layer from './Layer';
 
-export interface Options {
+export interface Options<VectorSourceType extends VectorSource = VectorSource> {
     className?: string;
     opacity?: number;
     visible?: boolean;
@@ -25,14 +24,17 @@ export interface Options {
     maxZoom?: number;
     renderOrder?: OrderFunction;
     renderBuffer?: number;
-    source?: VectorSource<Geometry>;
+    source?: VectorSourceType;
     map?: PluggableMap;
     declutter?: boolean;
     style?: StyleLike;
     imageRatio?: number;
+    properties?: { [key: string]: any };
 }
-export default class VectorImageLayer extends BaseVectorLayer<VectorSource> {
-    constructor(opt_options?: Options & { [key: string]: any });
+export default class VectorImageLayer<
+    VectorSourceType extends VectorSource = VectorSource,
+> extends BaseVectorLayer<VectorSourceType> {
+    constructor(opt_options?: Options<VectorSourceType>);
     /**
      * Create a renderer for this layer.
      */

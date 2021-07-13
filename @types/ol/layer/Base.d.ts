@@ -1,4 +1,5 @@
 import BaseObject, { ObjectEvent } from '../Object';
+import Types from '../ObjectEventType';
 import { EventsKey, ListenerFunction } from '../events';
 import BaseEvent from '../events/Event';
 import { Extent } from '../extent';
@@ -6,6 +7,16 @@ import Source from '../source/Source';
 import State_1 from '../source/State';
 import Layer, { State } from './Layer';
 
+export type BaseLayerObjectEventTypes =
+    | Types
+    | 'change:extent'
+    | 'change:maxResolution'
+    | 'change:maxZoom'
+    | 'change:minResolution'
+    | 'change:minZoom'
+    | 'change:opacity'
+    | 'change:visible'
+    | 'change:zIndex';
 export interface Options {
     className?: string;
     opacity?: number;
@@ -16,6 +27,7 @@ export interface Options {
     maxResolution?: number;
     minZoom?: number;
     maxZoom?: number;
+    properties?: { [key: string]: any };
 }
 export default class BaseLayer extends BaseObject {
     constructor(options: Options);

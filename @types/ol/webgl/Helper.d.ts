@@ -121,14 +121,9 @@ export default class WebGLHelper extends Disposable {
      */
     getGL(): WebGLRenderingContext;
     /**
-     * Create a program for a vertex and fragment shader. The shaders compilation may have failed:
-     * use WebGLHelper.getShaderCompileErrors()to have details if any.
+     * Create a program for a vertex and fragment shader.  Throws if shader compilation fails.
      */
     getProgram(fragmentShaderSource: string, vertexShaderSource: string): WebGLProgram;
-    /**
-     * Will return the last shader compilation errors. If no error happened, will return null;
-     */
-    getShaderCompileErrors(): string | null;
     /**
      * Will get the location from the shader or the cache
      */

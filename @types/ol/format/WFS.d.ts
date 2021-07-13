@@ -100,4 +100,4 @@ export default class WFS extends XMLFeature {
 /**
  * Encode filter as WFS Filter and return the Node.
  */
-export function writeFilter(filter: Filter, version: string): Node;
+export function writeFilter(filter: Filter, opt_version: string): Node;

@@ -77,7 +77,7 @@ export function pointerMove(mapBrowserEvent: MapBrowserEvent<UIEvent>): boolean;
 /**
  * Return true if the event originates from a primary pointer in
  * contact with the surface or if the left mouse button is pressed.
- * See http://www.w3.org/TR/pointerevents/#button-states.
+ * See https://www.w3.org/TR/pointerevents/#button-states.
  */
 export function primaryAction(mapBrowserEvent: MapBrowserEvent<UIEvent>): boolean;
 /**
