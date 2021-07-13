@@ -8,6 +8,7 @@
 
 
 ~~Definitions from this project will be syncronized with official [**@types/ol**](https://www.npmjs.com/package/@types/ol) package.~~
+
 As of v6.6.0, OpenLayers has officially provided its own TypeScript definitions. Installation of third party package like **@hanreev/types-ol** or [**@types/ol**](https://www.npmjs.com/package/@types/ol) may no longer be needed.
 
 This project contains TypeScript definition for [OpenLayers](https://openlayers.org/) `v6.6.0` that includes all documented API and protected class members and methods.
@@ -41,7 +42,7 @@ yarn add -D @hanreev/types-ol
 
 ## Usage
 
-- Add `ol` and `ol/*` ro `compilerOptions.paths` in `tsconfig.json`
+- Add `ol` and `ol/*` to `compilerOptions.paths` in `tsconfig.json`
 
   ```js
   // file: tsconfig.json
