@@ -7,9 +7,8 @@
 
 
 
-> <h3 align="center">Definitions from this project will be syncronized with official <a href="https://www.npmjs.com/package/@types/ol">@types/ol</a> package.</h3>
-
-
+~~Definitions from this project will be syncronized with official [**@types/ol**](https://www.npmjs.com/package/@types/ol) package.~~
+As of v6.6.0, OpenLayers has officially provided its own TypeScript definitions. Installation of third party package like **@hanreev/types-ol** or [**@types/ol**](https://www.npmjs.com/package/@types/ol) may no longer be needed.
 
 This project contains TypeScript definition for [OpenLayers](https://openlayers.org/) `v6.6.0` that includes all documented API and protected class members and methods.
 Check [v5.3.x branch](https://github.com/hanreev/types-ol/tree/v5.3.x) for [OpenLayers](https://openlayers.org/) `v5.3.x` definitions.
@@ -42,46 +41,11 @@ yarn add -D @hanreev/types-ol
 
 ## Usage
 
-There are several ways to use this package. Please choose one:
-
-- Install as `@types/ol`. This will simulate `@types/ol` installation from `node_modules/@hanreev/types-ol/ol` directory.  
-  **Why?**
-
-  - TypeScript compiler will look for types in `node_modules/@types` by default.
-  - If you're using [Visual Studio Code](https://code.visualstudio.com/), its IntelliSense will only recognize types from `node_modules/@types`.
-
-  ```js
-  // file: package.json
-
-  {
-    ...
-    "devDependencies": {
-      ...
-      "@hanreev/types-ol": "^3.6.0",
-      "@types/ol": "file:node_modules/@hanreev/types-ol/ol",
-      ...
-    }
-  }
-  ```
-
-  then run
-
-  ```bash
-  # NPM
-  npm i
-
-  # Yarn
-  yarn install
-  ```
-
-  > **_Note:_**  
-  > This package must be installed first before adding `"@types/ol": "file:node_modules/@hanreev/types-ol/ol"` in `package.json`.
-
-- Using `compilerOptions.paths` in `tsconfig.json`
+- Add `ol` and `ol/*` ro `compilerOptions.paths` in `tsconfig.json`
 
   ```js
   // file: tsconfig.json
-
+  
   {
     "compilerOptions": {
       ...
@@ -115,9 +79,7 @@ Configuration is located at `jsdoc/conf.json`
   "typescript": {
     "moduleRoot": "openlayers/src", // openlayers source
     "declaration": {
-      "extraOptions": true, // BaseObject derivatives can accept extra properties.
       "mode": "multiple", // "single" will generate all declarations in single index.d.ts file.
-      "strictGenericTypes": false // set to true to extract classes generic type from super class, members and methods.
       "strictReturnTypes": false // set to true to include undefined and null return.
     }
   },
@@ -150,7 +112,7 @@ Configuration is located at `jsdoc/conf.json`
   ```bash
   # NPM
   npm run lint-test && npm run test
-
+  
   # Yarn
   yarn lint-test && yarn test
   ```
