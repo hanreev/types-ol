@@ -26,7 +26,6 @@ export interface RenderOptions {
     strokeStyle?: ColorLike;
     strokeWidth: number;
     size: number;
-    lineCap: CanvasLineCap;
     lineDash: number[];
     lineDashOffset: number;
     lineJoin: CanvasLineJoin;

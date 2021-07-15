@@ -4,7 +4,7 @@ const glob = require('glob');
 const childProcess = require('child_process');
 
 const BASE_DIR = process.cwd();
-const OL_VERSION = 'v6.6.0';
+const OL_VERSION = 'v6.6.1';
 
 const jsdocConfigPath = path.resolve(BASE_DIR, 'jsdoc', 'conf.json');
 const jsdocConfig = require(jsdocConfigPath);

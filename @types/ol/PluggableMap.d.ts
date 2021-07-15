@@ -291,7 +291,7 @@ export default class PluggableMap extends BaseObject {
     /**
      * Set the target element to render this map into.
      */
-    setTarget(target: HTMLElement | string | undefined): void;
+    setTarget(target?: HTMLElement | string): void;
     /**
      * Set the view for this map.
      */

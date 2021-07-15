@@ -1,5 +1,7 @@
 ## Changelog
 
+- **v3.6.1**
+  - Updated to OpenLayers v6.6.1
 - **v3.6.0**
   - Updated to OpenLayers v6.6.0
 - **v3.5.4**

@@ -1,5 +1,6 @@
 export type VectorSourceEventTypes =
     | 'addfeature'
+    | 'changefeature'
     | 'clear'
     | 'removefeature'
     | 'featuresloadstart'
