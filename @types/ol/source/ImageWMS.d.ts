@@ -10,6 +10,9 @@ import ImageSource, { ImageSourceEvent } from './Image';
 import { AttributionLike } from './Source';
 import WMSServerType from './WMSServerType';
 
+export type TImageWMSBaseEventTypes = 'change' | 'error';
+export type TImageWMSImageSourceEventTypes = 'imageloadend' | 'imageloaderror' | 'imageloadstart';
+export type TImageWMSObjectEventTypes = 'propertychange';
 export interface Options {
     attributions?: AttributionLike;
     crossOrigin?: null | string;
@@ -68,27 +71,22 @@ export default class ImageWMS extends ImageSource {
      * Update the user-provided params.
      */
     updateParams(params: any): void;
-    on(type: string, listener: ListenerFunction): EventsKey;
-    on(type: string[], listener: ListenerFunction): EventsKey[];
-    once(type: string, listener: ListenerFunction): EventsKey;
-    once(type: string[], listener: ListenerFunction): EventsKey[];
-    un(type: string | string[], listener: ListenerFunction): void;
-    on(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
-    once(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
-    un(type: 'change', listener: (evt: BaseEvent) => void): void;
-    on(type: 'error', listener: (evt: BaseEvent) => void): EventsKey;
-    once(type: 'error', listener: (evt: BaseEvent) => void): EventsKey;
-    un(type: 'error', listener: (evt: BaseEvent) => void): void;
-    on(type: 'imageloadend', listener: (evt: ImageSourceEvent) => void): EventsKey;
-    once(type: 'imageloadend', listener: (evt: ImageSourceEvent) => void): EventsKey;
-    un(type: 'imageloadend', listener: (evt: ImageSourceEvent) => void): void;
-    on(type: 'imageloaderror', listener: (evt: ImageSourceEvent) => void): EventsKey;
-    once(type: 'imageloaderror', listener: (evt: ImageSourceEvent) => void): EventsKey;
-    un(type: 'imageloaderror', listener: (evt: ImageSourceEvent) => void): void;
-    on(type: 'imageloadstart', listener: (evt: ImageSourceEvent) => void): EventsKey;
-    once(type: 'imageloadstart', listener: (evt: ImageSourceEvent) => void): EventsKey;
-    un(type: 'imageloadstart', listener: (evt: ImageSourceEvent) => void): void;
-    on(type: 'propertychange', listener: (evt: ObjectEvent) => void): EventsKey;
-    once(type: 'propertychange', listener: (evt: ObjectEvent) => void): EventsKey;
-    un(type: 'propertychange', listener: (evt: ObjectEvent) => void): void;
+    on(type: TImageWMSBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
+    on(type: TImageWMSBaseEventTypes[], listener: ListenerFunction<BaseEvent>): EventsKey[];
+    once(type: TImageWMSBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
+    once(type: TImageWMSBaseEventTypes[], listener: ListenerFunction<BaseEvent>): EventsKey[];
+    un(type: TImageWMSBaseEventTypes | TImageWMSBaseEventTypes[], listener: ListenerFunction<BaseEvent>): void;
+    on(type: TImageWMSImageSourceEventTypes, listener: ListenerFunction<ImageSourceEvent>): EventsKey;
+    on(type: TImageWMSImageSourceEventTypes[], listener: ListenerFunction<ImageSourceEvent>): EventsKey[];
+    once(type: TImageWMSImageSourceEventTypes, listener: ListenerFunction<ImageSourceEvent>): EventsKey;
+    once(type: TImageWMSImageSourceEventTypes[], listener: ListenerFunction<ImageSourceEvent>): EventsKey[];
+    un(
+        type: TImageWMSImageSourceEventTypes | TImageWMSImageSourceEventTypes[],
+        listener: ListenerFunction<ImageSourceEvent>,
+    ): void;
+    on(type: TImageWMSObjectEventTypes, listener: ListenerFunction<ObjectEvent>): EventsKey;
+    on(type: TImageWMSObjectEventTypes[], listener: ListenerFunction<ObjectEvent>): EventsKey[];
+    once(type: TImageWMSObjectEventTypes, listener: ListenerFunction<ObjectEvent>): EventsKey;
+    once(type: TImageWMSObjectEventTypes[], listener: ListenerFunction<ObjectEvent>): EventsKey[];
+    un(type: TImageWMSObjectEventTypes | TImageWMSObjectEventTypes[], listener: ListenerFunction<ObjectEvent>): void;
 }

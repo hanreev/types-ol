@@ -8,6 +8,18 @@ import State_1 from '../source/State';
 import BaseLayer from './Base';
 import Layer, { State } from './Layer';
 
+export type TLayerGroupBaseEventTypes = 'change' | 'error';
+export type TLayerGroupObjectEventTypes =
+    | 'change:extent'
+    | 'change:layers'
+    | 'change:maxResolution'
+    | 'change:maxZoom'
+    | 'change:minResolution'
+    | 'change:minZoom'
+    | 'change:opacity'
+    | 'change:visible'
+    | 'change:zIndex'
+    | 'propertychange';
 export interface Options {
     opacity?: number;
     visible?: boolean;
@@ -41,45 +53,17 @@ export default class LayerGroup extends BaseLayer {
      * in this group.
      */
     setLayers(layers: Collection<BaseLayer>): void;
-    on(type: string, listener: ListenerFunction): EventsKey;
-    on(type: string[], listener: ListenerFunction): EventsKey[];
-    once(type: string, listener: ListenerFunction): EventsKey;
-    once(type: string[], listener: ListenerFunction): EventsKey[];
-    un(type: string | string[], listener: ListenerFunction): void;
-    on(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
-    once(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
-    un(type: 'change', listener: (evt: BaseEvent) => void): void;
-    on(type: 'change:extent', listener: (evt: ObjectEvent) => void): EventsKey;
-    once(type: 'change:extent', listener: (evt: ObjectEvent) => void): EventsKey;
-    un(type: 'change:extent', listener: (evt: ObjectEvent) => void): void;
-    on(type: 'change:layers', listener: (evt: ObjectEvent) => void): EventsKey;
-    once(type: 'change:layers', listener: (evt: ObjectEvent) => void): EventsKey;
-    un(type: 'change:layers', listener: (evt: ObjectEvent) => void): void;
-    on(type: 'change:maxResolution', listener: (evt: ObjectEvent) => void): EventsKey;
-    once(type: 'change:maxResolution', listener: (evt: ObjectEvent) => void): EventsKey;
-    un(type: 'change:maxResolution', listener: (evt: ObjectEvent) => void): void;
-    on(type: 'change:maxZoom', listener: (evt: ObjectEvent) => void): EventsKey;
-    once(type: 'change:maxZoom', listener: (evt: ObjectEvent) => void): EventsKey;
-    un(type: 'change:maxZoom', listener: (evt: ObjectEvent) => void): void;
-    on(type: 'change:minResolution', listener: (evt: ObjectEvent) => void): EventsKey;
-    once(type: 'change:minResolution', listener: (evt: ObjectEvent) => void): EventsKey;
-    un(type: 'change:minResolution', listener: (evt: ObjectEvent) => void): void;
-    on(type: 'change:minZoom', listener: (evt: ObjectEvent) => void): EventsKey;
-    once(type: 'change:minZoom', listener: (evt: ObjectEvent) => void): EventsKey;
-    un(type: 'change:minZoom', listener: (evt: ObjectEvent) => void): void;
-    on(type: 'change:opacity', listener: (evt: ObjectEvent) => void): EventsKey;
-    once(type: 'change:opacity', listener: (evt: ObjectEvent) => void): EventsKey;
-    un(type: 'change:opacity', listener: (evt: ObjectEvent) => void): void;
-    on(type: 'change:visible', listener: (evt: ObjectEvent) => void): EventsKey;
-    once(type: 'change:visible', listener: (evt: ObjectEvent) => void): EventsKey;
-    un(type: 'change:visible', listener: (evt: ObjectEvent) => void): void;
-    on(type: 'change:zIndex', listener: (evt: ObjectEvent) => void): EventsKey;
-    once(type: 'change:zIndex', listener: (evt: ObjectEvent) => void): EventsKey;
-    un(type: 'change:zIndex', listener: (evt: ObjectEvent) => void): void;
-    on(type: 'error', listener: (evt: BaseEvent) => void): EventsKey;
-    once(type: 'error', listener: (evt: BaseEvent) => void): EventsKey;
-    un(type: 'error', listener: (evt: BaseEvent) => void): void;
-    on(type: 'propertychange', listener: (evt: ObjectEvent) => void): EventsKey;
-    once(type: 'propertychange', listener: (evt: ObjectEvent) => void): EventsKey;
-    un(type: 'propertychange', listener: (evt: ObjectEvent) => void): void;
+    on(type: TLayerGroupBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
+    on(type: TLayerGroupBaseEventTypes[], listener: ListenerFunction<BaseEvent>): EventsKey[];
+    once(type: TLayerGroupBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
+    once(type: TLayerGroupBaseEventTypes[], listener: ListenerFunction<BaseEvent>): EventsKey[];
+    un(type: TLayerGroupBaseEventTypes | TLayerGroupBaseEventTypes[], listener: ListenerFunction<BaseEvent>): void;
+    on(type: TLayerGroupObjectEventTypes, listener: ListenerFunction<ObjectEvent>): EventsKey;
+    on(type: TLayerGroupObjectEventTypes[], listener: ListenerFunction<ObjectEvent>): EventsKey[];
+    once(type: TLayerGroupObjectEventTypes, listener: ListenerFunction<ObjectEvent>): EventsKey;
+    once(type: TLayerGroupObjectEventTypes[], listener: ListenerFunction<ObjectEvent>): EventsKey[];
+    un(
+        type: TLayerGroupObjectEventTypes | TLayerGroupObjectEventTypes[],
+        listener: ListenerFunction<ObjectEvent>,
+    ): void;
 }

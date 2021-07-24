@@ -11,6 +11,10 @@ import Projection from '../proj/Projection';
 import ImageSource, { ImageSourceEvent } from './Image';
 import Source from './Source';
 
+export type TRasterSourceRasterSourceEventTypes = 'afteroperations' | 'beforeoperations';
+export type TRasterSourceBaseEventTypes = 'change' | 'error';
+export type TRasterSourceImageSourceEventTypes = 'imageloadend' | 'imageloaderror' | 'imageloadstart';
+export type TRasterSourceObjectEventTypes = 'propertychange';
 export interface FauxMessageEvent {
     data: any;
 }
@@ -96,35 +100,35 @@ export default class RasterSource extends ImageSource {
      * Set the operation.
      */
     setOperation(operation: Operation, opt_lib?: any): void;
-    on(type: string, listener: ListenerFunction): EventsKey;
-    on(type: string[], listener: ListenerFunction): EventsKey[];
-    once(type: string, listener: ListenerFunction): EventsKey;
-    once(type: string[], listener: ListenerFunction): EventsKey[];
-    un(type: string | string[], listener: ListenerFunction): void;
-    on(type: 'afteroperations', listener: (evt: RasterSourceEvent) => void): EventsKey;
-    once(type: 'afteroperations', listener: (evt: RasterSourceEvent) => void): EventsKey;
-    un(type: 'afteroperations', listener: (evt: RasterSourceEvent) => void): void;
-    on(type: 'beforeoperations', listener: (evt: RasterSourceEvent) => void): EventsKey;
-    once(type: 'beforeoperations', listener: (evt: RasterSourceEvent) => void): EventsKey;
-    un(type: 'beforeoperations', listener: (evt: RasterSourceEvent) => void): void;
-    on(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
-    once(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
-    un(type: 'change', listener: (evt: BaseEvent) => void): void;
-    on(type: 'error', listener: (evt: BaseEvent) => void): EventsKey;
-    once(type: 'error', listener: (evt: BaseEvent) => void): EventsKey;
-    un(type: 'error', listener: (evt: BaseEvent) => void): void;
-    on(type: 'imageloadend', listener: (evt: ImageSourceEvent) => void): EventsKey;
-    once(type: 'imageloadend', listener: (evt: ImageSourceEvent) => void): EventsKey;
-    un(type: 'imageloadend', listener: (evt: ImageSourceEvent) => void): void;
-    on(type: 'imageloaderror', listener: (evt: ImageSourceEvent) => void): EventsKey;
-    once(type: 'imageloaderror', listener: (evt: ImageSourceEvent) => void): EventsKey;
-    un(type: 'imageloaderror', listener: (evt: ImageSourceEvent) => void): void;
-    on(type: 'imageloadstart', listener: (evt: ImageSourceEvent) => void): EventsKey;
-    once(type: 'imageloadstart', listener: (evt: ImageSourceEvent) => void): EventsKey;
-    un(type: 'imageloadstart', listener: (evt: ImageSourceEvent) => void): void;
-    on(type: 'propertychange', listener: (evt: ObjectEvent) => void): EventsKey;
-    once(type: 'propertychange', listener: (evt: ObjectEvent) => void): EventsKey;
-    un(type: 'propertychange', listener: (evt: ObjectEvent) => void): void;
+    on(type: TRasterSourceRasterSourceEventTypes, listener: ListenerFunction<RasterSourceEvent>): EventsKey;
+    on(type: TRasterSourceRasterSourceEventTypes[], listener: ListenerFunction<RasterSourceEvent>): EventsKey[];
+    once(type: TRasterSourceRasterSourceEventTypes, listener: ListenerFunction<RasterSourceEvent>): EventsKey;
+    once(type: TRasterSourceRasterSourceEventTypes[], listener: ListenerFunction<RasterSourceEvent>): EventsKey[];
+    un(
+        type: TRasterSourceRasterSourceEventTypes | TRasterSourceRasterSourceEventTypes[],
+        listener: ListenerFunction<RasterSourceEvent>,
+    ): void;
+    on(type: TRasterSourceBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
+    on(type: TRasterSourceBaseEventTypes[], listener: ListenerFunction<BaseEvent>): EventsKey[];
+    once(type: TRasterSourceBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
+    once(type: TRasterSourceBaseEventTypes[], listener: ListenerFunction<BaseEvent>): EventsKey[];
+    un(type: TRasterSourceBaseEventTypes | TRasterSourceBaseEventTypes[], listener: ListenerFunction<BaseEvent>): void;
+    on(type: TRasterSourceImageSourceEventTypes, listener: ListenerFunction<ImageSourceEvent>): EventsKey;
+    on(type: TRasterSourceImageSourceEventTypes[], listener: ListenerFunction<ImageSourceEvent>): EventsKey[];
+    once(type: TRasterSourceImageSourceEventTypes, listener: ListenerFunction<ImageSourceEvent>): EventsKey;
+    once(type: TRasterSourceImageSourceEventTypes[], listener: ListenerFunction<ImageSourceEvent>): EventsKey[];
+    un(
+        type: TRasterSourceImageSourceEventTypes | TRasterSourceImageSourceEventTypes[],
+        listener: ListenerFunction<ImageSourceEvent>,
+    ): void;
+    on(type: TRasterSourceObjectEventTypes, listener: ListenerFunction<ObjectEvent>): EventsKey;
+    on(type: TRasterSourceObjectEventTypes[], listener: ListenerFunction<ObjectEvent>): EventsKey[];
+    once(type: TRasterSourceObjectEventTypes, listener: ListenerFunction<ObjectEvent>): EventsKey;
+    once(type: TRasterSourceObjectEventTypes[], listener: ListenerFunction<ObjectEvent>): EventsKey[];
+    un(
+        type: TRasterSourceObjectEventTypes | TRasterSourceObjectEventTypes[],
+        listener: ListenerFunction<ObjectEvent>,
+    ): void;
 }
 export class RasterSourceEvent extends BaseEvent {
     constructor(type: string, frameState: FrameState, data: any);

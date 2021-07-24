@@ -15,6 +15,7 @@ import TileSource from '../source/Tile';
 import { HitMatch } from './Map';
 import { FeatureCallback } from './vector';
 
+export type TLayerRendererBaseEventTypes = 'change' | 'error';
 export default class LayerRenderer<LayerType extends Layer = Layer> extends Observable {
     constructor(layer: LayerType);
     protected layer_: LayerType;
@@ -58,15 +59,12 @@ export default class LayerRenderer<LayerType extends Layer = Layer> extends Obse
      * Render the layer.
      */
     renderFrame(frameState: FrameState, target: HTMLElement): HTMLElement;
-    on(type: string, listener: ListenerFunction): EventsKey;
-    on(type: string[], listener: ListenerFunction): EventsKey[];
-    once(type: string, listener: ListenerFunction): EventsKey;
-    once(type: string[], listener: ListenerFunction): EventsKey[];
-    un(type: string | string[], listener: ListenerFunction): void;
-    on(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
-    once(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
-    un(type: 'change', listener: (evt: BaseEvent) => void): void;
-    on(type: 'error', listener: (evt: BaseEvent) => void): EventsKey;
-    once(type: 'error', listener: (evt: BaseEvent) => void): EventsKey;
-    un(type: 'error', listener: (evt: BaseEvent) => void): void;
+    on(type: TLayerRendererBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
+    on(type: TLayerRendererBaseEventTypes[], listener: ListenerFunction<BaseEvent>): EventsKey[];
+    once(type: TLayerRendererBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
+    once(type: TLayerRendererBaseEventTypes[], listener: ListenerFunction<BaseEvent>): EventsKey[];
+    un(
+        type: TLayerRendererBaseEventTypes | TLayerRendererBaseEventTypes[],
+        listener: ListenerFunction<BaseEvent>,
+    ): void;
 }

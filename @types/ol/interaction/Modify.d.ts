@@ -15,6 +15,9 @@ import VectorTile from '../source/VectorTile';
 import { StyleLike } from '../style/Style';
 import PointerInteraction from './Pointer';
 
+export type TModifyBaseEventTypes = 'change' | 'error';
+export type TModifyObjectEventTypes = 'change:active' | 'propertychange';
+export type TModifyModifyEventTypes = 'modifyend' | 'modifystart';
 export interface Options {
     condition?: Condition;
     deleteCondition?: Condition;
@@ -75,29 +78,21 @@ export default class Modify extends PointerInteraction {
      * the map here.
      */
     setMap(map: PluggableMap): void;
-    on(type: string, listener: ListenerFunction): EventsKey;
-    on(type: string[], listener: ListenerFunction): EventsKey[];
-    once(type: string, listener: ListenerFunction): EventsKey;
-    once(type: string[], listener: ListenerFunction): EventsKey[];
-    un(type: string | string[], listener: ListenerFunction): void;
-    on(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
-    once(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
-    un(type: 'change', listener: (evt: BaseEvent) => void): void;
-    on(type: 'change:active', listener: (evt: ObjectEvent) => void): EventsKey;
-    once(type: 'change:active', listener: (evt: ObjectEvent) => void): EventsKey;
-    un(type: 'change:active', listener: (evt: ObjectEvent) => void): void;
-    on(type: 'error', listener: (evt: BaseEvent) => void): EventsKey;
-    once(type: 'error', listener: (evt: BaseEvent) => void): EventsKey;
-    un(type: 'error', listener: (evt: BaseEvent) => void): void;
-    on(type: 'modifyend', listener: (evt: ModifyEvent) => void): EventsKey;
-    once(type: 'modifyend', listener: (evt: ModifyEvent) => void): EventsKey;
-    un(type: 'modifyend', listener: (evt: ModifyEvent) => void): void;
-    on(type: 'modifystart', listener: (evt: ModifyEvent) => void): EventsKey;
-    once(type: 'modifystart', listener: (evt: ModifyEvent) => void): EventsKey;
-    un(type: 'modifystart', listener: (evt: ModifyEvent) => void): void;
-    on(type: 'propertychange', listener: (evt: ObjectEvent) => void): EventsKey;
-    once(type: 'propertychange', listener: (evt: ObjectEvent) => void): EventsKey;
-    un(type: 'propertychange', listener: (evt: ObjectEvent) => void): void;
+    on(type: TModifyBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
+    on(type: TModifyBaseEventTypes[], listener: ListenerFunction<BaseEvent>): EventsKey[];
+    once(type: TModifyBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
+    once(type: TModifyBaseEventTypes[], listener: ListenerFunction<BaseEvent>): EventsKey[];
+    un(type: TModifyBaseEventTypes | TModifyBaseEventTypes[], listener: ListenerFunction<BaseEvent>): void;
+    on(type: TModifyObjectEventTypes, listener: ListenerFunction<ObjectEvent>): EventsKey;
+    on(type: TModifyObjectEventTypes[], listener: ListenerFunction<ObjectEvent>): EventsKey[];
+    once(type: TModifyObjectEventTypes, listener: ListenerFunction<ObjectEvent>): EventsKey;
+    once(type: TModifyObjectEventTypes[], listener: ListenerFunction<ObjectEvent>): EventsKey[];
+    un(type: TModifyObjectEventTypes | TModifyObjectEventTypes[], listener: ListenerFunction<ObjectEvent>): void;
+    on(type: TModifyModifyEventTypes, listener: ListenerFunction<ModifyEvent>): EventsKey;
+    on(type: TModifyModifyEventTypes[], listener: ListenerFunction<ModifyEvent>): EventsKey[];
+    once(type: TModifyModifyEventTypes, listener: ListenerFunction<ModifyEvent>): EventsKey;
+    once(type: TModifyModifyEventTypes[], listener: ListenerFunction<ModifyEvent>): EventsKey[];
+    un(type: TModifyModifyEventTypes | TModifyModifyEventTypes[], listener: ListenerFunction<ModifyEvent>): void;
 }
 export class ModifyEvent extends BaseEvent {
     constructor(type: ModifyEventType, features: Collection<FeatureLike>, MapBrowserEvent: MapBrowserEvent<UIEvent>);

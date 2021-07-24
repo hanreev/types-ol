@@ -4,6 +4,8 @@ import PluggableMap from '../PluggableMap';
 import { EventsKey, ListenerFunction } from '../events';
 import BaseEvent from '../events/Event';
 
+export type TControlBaseEventTypes = 'change' | 'error';
+export type TControlObjectEventTypes = 'propertychange';
 export interface Options {
     element?: HTMLElement;
     render?: (p0: MapEvent) => void;
@@ -39,18 +41,14 @@ export default class Control extends BaseObject {
      * then the control is added to the map's overlay container.
      */
     setTarget(target: HTMLElement | string): void;
-    on(type: string, listener: ListenerFunction): EventsKey;
-    on(type: string[], listener: ListenerFunction): EventsKey[];
-    once(type: string, listener: ListenerFunction): EventsKey;
-    once(type: string[], listener: ListenerFunction): EventsKey[];
-    un(type: string | string[], listener: ListenerFunction): void;
-    on(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
-    once(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
-    un(type: 'change', listener: (evt: BaseEvent) => void): void;
-    on(type: 'error', listener: (evt: BaseEvent) => void): EventsKey;
-    once(type: 'error', listener: (evt: BaseEvent) => void): EventsKey;
-    un(type: 'error', listener: (evt: BaseEvent) => void): void;
-    on(type: 'propertychange', listener: (evt: ObjectEvent) => void): EventsKey;
-    once(type: 'propertychange', listener: (evt: ObjectEvent) => void): EventsKey;
-    un(type: 'propertychange', listener: (evt: ObjectEvent) => void): void;
+    on(type: TControlBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
+    on(type: TControlBaseEventTypes[], listener: ListenerFunction<BaseEvent>): EventsKey[];
+    once(type: TControlBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
+    once(type: TControlBaseEventTypes[], listener: ListenerFunction<BaseEvent>): EventsKey[];
+    un(type: TControlBaseEventTypes | TControlBaseEventTypes[], listener: ListenerFunction<BaseEvent>): void;
+    on(type: TControlObjectEventTypes, listener: ListenerFunction<ObjectEvent>): EventsKey;
+    on(type: TControlObjectEventTypes[], listener: ListenerFunction<ObjectEvent>): EventsKey[];
+    once(type: TControlObjectEventTypes, listener: ListenerFunction<ObjectEvent>): EventsKey;
+    once(type: TControlObjectEventTypes[], listener: ListenerFunction<ObjectEvent>): EventsKey[];
+    un(type: TControlObjectEventTypes | TControlObjectEventTypes[], listener: ListenerFunction<ObjectEvent>): void;
 }

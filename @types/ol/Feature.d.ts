@@ -5,6 +5,8 @@ import Geometry from './geom/Geometry';
 import RenderFeature from './render/Feature';
 import Style, { StyleFunction, StyleLike } from './style/Style';
 
+export type TFeatureBaseEventTypes = 'change' | 'error';
+export type TFeatureObjectEventTypes = 'change:geometry' | 'propertychange';
 export type FeatureClass = typeof Feature | typeof RenderFeature;
 export type FeatureLike = Feature<Geometry> | RenderFeature;
 export default class Feature<G extends Geometry = Geometry> extends BaseObject {
@@ -65,23 +67,16 @@ export default class Feature<G extends Geometry = Geometry> extends BaseObject {
      * setStyle() without arguments or a falsey value.
      */
     setStyle(opt_style?: StyleLike): void;
-    on(type: string, listener: ListenerFunction): EventsKey;
-    on(type: string[], listener: ListenerFunction): EventsKey[];
-    once(type: string, listener: ListenerFunction): EventsKey;
-    once(type: string[], listener: ListenerFunction): EventsKey[];
-    un(type: string | string[], listener: ListenerFunction): void;
-    on(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
-    once(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
-    un(type: 'change', listener: (evt: BaseEvent) => void): void;
-    on(type: 'change:geometry', listener: (evt: ObjectEvent) => void): EventsKey;
-    once(type: 'change:geometry', listener: (evt: ObjectEvent) => void): EventsKey;
-    un(type: 'change:geometry', listener: (evt: ObjectEvent) => void): void;
-    on(type: 'error', listener: (evt: BaseEvent) => void): EventsKey;
-    once(type: 'error', listener: (evt: BaseEvent) => void): EventsKey;
-    un(type: 'error', listener: (evt: BaseEvent) => void): void;
-    on(type: 'propertychange', listener: (evt: ObjectEvent) => void): EventsKey;
-    once(type: 'propertychange', listener: (evt: ObjectEvent) => void): EventsKey;
-    un(type: 'propertychange', listener: (evt: ObjectEvent) => void): void;
+    on(type: TFeatureBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
+    on(type: TFeatureBaseEventTypes[], listener: ListenerFunction<BaseEvent>): EventsKey[];
+    once(type: TFeatureBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
+    once(type: TFeatureBaseEventTypes[], listener: ListenerFunction<BaseEvent>): EventsKey[];
+    un(type: TFeatureBaseEventTypes | TFeatureBaseEventTypes[], listener: ListenerFunction<BaseEvent>): void;
+    on(type: TFeatureObjectEventTypes, listener: ListenerFunction<ObjectEvent>): EventsKey;
+    on(type: TFeatureObjectEventTypes[], listener: ListenerFunction<ObjectEvent>): EventsKey[];
+    once(type: TFeatureObjectEventTypes, listener: ListenerFunction<ObjectEvent>): EventsKey;
+    once(type: TFeatureObjectEventTypes[], listener: ListenerFunction<ObjectEvent>): EventsKey[];
+    un(type: TFeatureObjectEventTypes | TFeatureObjectEventTypes[], listener: ListenerFunction<ObjectEvent>): void;
 }
 /**
  * Convert the provided object into a feature style function.  Functions passed

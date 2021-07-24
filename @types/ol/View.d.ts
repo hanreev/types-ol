@@ -14,6 +14,8 @@ import { Type as Type_1 } from './resolutionconstraint';
 import { Type as Type_2 } from './rotationconstraint';
 import { Size } from './size';
 
+export type TViewBaseEventTypes = 'change' | 'error';
+export type TViewObjectEventTypes = 'change:center' | 'change:resolution' | 'change:rotation' | 'propertychange';
 /**
  * An animation configuration
  */
@@ -355,29 +357,16 @@ export default class View extends BaseObject {
      * Update all animations.
      */
     updateAnimations_(): void;
-    on(type: string, listener: ListenerFunction): EventsKey;
-    on(type: string[], listener: ListenerFunction): EventsKey[];
-    once(type: string, listener: ListenerFunction): EventsKey;
-    once(type: string[], listener: ListenerFunction): EventsKey[];
-    un(type: string | string[], listener: ListenerFunction): void;
-    on(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
-    once(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
-    un(type: 'change', listener: (evt: BaseEvent) => void): void;
-    on(type: 'change:center', listener: (evt: ObjectEvent) => void): EventsKey;
-    once(type: 'change:center', listener: (evt: ObjectEvent) => void): EventsKey;
-    un(type: 'change:center', listener: (evt: ObjectEvent) => void): void;
-    on(type: 'change:resolution', listener: (evt: ObjectEvent) => void): EventsKey;
-    once(type: 'change:resolution', listener: (evt: ObjectEvent) => void): EventsKey;
-    un(type: 'change:resolution', listener: (evt: ObjectEvent) => void): void;
-    on(type: 'change:rotation', listener: (evt: ObjectEvent) => void): EventsKey;
-    once(type: 'change:rotation', listener: (evt: ObjectEvent) => void): EventsKey;
-    un(type: 'change:rotation', listener: (evt: ObjectEvent) => void): void;
-    on(type: 'error', listener: (evt: BaseEvent) => void): EventsKey;
-    once(type: 'error', listener: (evt: BaseEvent) => void): EventsKey;
-    un(type: 'error', listener: (evt: BaseEvent) => void): void;
-    on(type: 'propertychange', listener: (evt: ObjectEvent) => void): EventsKey;
-    once(type: 'propertychange', listener: (evt: ObjectEvent) => void): EventsKey;
-    un(type: 'propertychange', listener: (evt: ObjectEvent) => void): void;
+    on(type: TViewBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
+    on(type: TViewBaseEventTypes[], listener: ListenerFunction<BaseEvent>): EventsKey[];
+    once(type: TViewBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
+    once(type: TViewBaseEventTypes[], listener: ListenerFunction<BaseEvent>): EventsKey[];
+    un(type: TViewBaseEventTypes | TViewBaseEventTypes[], listener: ListenerFunction<BaseEvent>): void;
+    on(type: TViewObjectEventTypes, listener: ListenerFunction<ObjectEvent>): EventsKey;
+    on(type: TViewObjectEventTypes[], listener: ListenerFunction<ObjectEvent>): EventsKey[];
+    once(type: TViewObjectEventTypes, listener: ListenerFunction<ObjectEvent>): EventsKey;
+    once(type: TViewObjectEventTypes[], listener: ListenerFunction<ObjectEvent>): EventsKey[];
+    un(type: TViewObjectEventTypes | TViewObjectEventTypes[], listener: ListenerFunction<ObjectEvent>): void;
 }
 export function createCenterConstraint(options: ViewOptions): Type;
 export function createResolutionConstraint(options: ViewOptions): any;

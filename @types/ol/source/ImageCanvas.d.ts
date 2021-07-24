@@ -10,6 +10,9 @@ import ImageSource, { ImageSourceEvent } from './Image';
 import { AttributionLike } from './Source';
 import State from './State';
 
+export type TImageCanvasSourceBaseEventTypes = 'change' | 'error';
+export type TImageCanvasSourceImageSourceEventTypes = 'imageloadend' | 'imageloaderror' | 'imageloadstart';
+export type TImageCanvasSourceObjectEventTypes = 'propertychange';
 /**
  * A function returning the canvas element ({HTMLCanvasElement})
  * used by the source as an image. The arguments passed to the function are:
@@ -39,27 +42,28 @@ export interface Options {
 export default class ImageCanvasSource extends ImageSource {
     constructor(opt_options?: Options);
     getImageInternal(extent: Extent, resolution: number, pixelRatio: number, projection: Projection): ImageCanvas;
-    on(type: string, listener: ListenerFunction): EventsKey;
-    on(type: string[], listener: ListenerFunction): EventsKey[];
-    once(type: string, listener: ListenerFunction): EventsKey;
-    once(type: string[], listener: ListenerFunction): EventsKey[];
-    un(type: string | string[], listener: ListenerFunction): void;
-    on(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
-    once(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
-    un(type: 'change', listener: (evt: BaseEvent) => void): void;
-    on(type: 'error', listener: (evt: BaseEvent) => void): EventsKey;
-    once(type: 'error', listener: (evt: BaseEvent) => void): EventsKey;
-    un(type: 'error', listener: (evt: BaseEvent) => void): void;
-    on(type: 'imageloadend', listener: (evt: ImageSourceEvent) => void): EventsKey;
-    once(type: 'imageloadend', listener: (evt: ImageSourceEvent) => void): EventsKey;
-    un(type: 'imageloadend', listener: (evt: ImageSourceEvent) => void): void;
-    on(type: 'imageloaderror', listener: (evt: ImageSourceEvent) => void): EventsKey;
-    once(type: 'imageloaderror', listener: (evt: ImageSourceEvent) => void): EventsKey;
-    un(type: 'imageloaderror', listener: (evt: ImageSourceEvent) => void): void;
-    on(type: 'imageloadstart', listener: (evt: ImageSourceEvent) => void): EventsKey;
-    once(type: 'imageloadstart', listener: (evt: ImageSourceEvent) => void): EventsKey;
-    un(type: 'imageloadstart', listener: (evt: ImageSourceEvent) => void): void;
-    on(type: 'propertychange', listener: (evt: ObjectEvent) => void): EventsKey;
-    once(type: 'propertychange', listener: (evt: ObjectEvent) => void): EventsKey;
-    un(type: 'propertychange', listener: (evt: ObjectEvent) => void): void;
+    on(type: TImageCanvasSourceBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
+    on(type: TImageCanvasSourceBaseEventTypes[], listener: ListenerFunction<BaseEvent>): EventsKey[];
+    once(type: TImageCanvasSourceBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
+    once(type: TImageCanvasSourceBaseEventTypes[], listener: ListenerFunction<BaseEvent>): EventsKey[];
+    un(
+        type: TImageCanvasSourceBaseEventTypes | TImageCanvasSourceBaseEventTypes[],
+        listener: ListenerFunction<BaseEvent>,
+    ): void;
+    on(type: TImageCanvasSourceImageSourceEventTypes, listener: ListenerFunction<ImageSourceEvent>): EventsKey;
+    on(type: TImageCanvasSourceImageSourceEventTypes[], listener: ListenerFunction<ImageSourceEvent>): EventsKey[];
+    once(type: TImageCanvasSourceImageSourceEventTypes, listener: ListenerFunction<ImageSourceEvent>): EventsKey;
+    once(type: TImageCanvasSourceImageSourceEventTypes[], listener: ListenerFunction<ImageSourceEvent>): EventsKey[];
+    un(
+        type: TImageCanvasSourceImageSourceEventTypes | TImageCanvasSourceImageSourceEventTypes[],
+        listener: ListenerFunction<ImageSourceEvent>,
+    ): void;
+    on(type: TImageCanvasSourceObjectEventTypes, listener: ListenerFunction<ObjectEvent>): EventsKey;
+    on(type: TImageCanvasSourceObjectEventTypes[], listener: ListenerFunction<ObjectEvent>): EventsKey[];
+    once(type: TImageCanvasSourceObjectEventTypes, listener: ListenerFunction<ObjectEvent>): EventsKey;
+    once(type: TImageCanvasSourceObjectEventTypes[], listener: ListenerFunction<ObjectEvent>): EventsKey[];
+    un(
+        type: TImageCanvasSourceObjectEventTypes | TImageCanvasSourceObjectEventTypes[],
+        listener: ListenerFunction<ObjectEvent>,
+    ): void;
 }

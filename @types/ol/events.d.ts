@@ -5,18 +5,18 @@ import { EventTargetLike } from './events/Target';
  * Key to use with {@link module:ol/Observable~Observable#unByKey}.
  */
 export interface EventsKey {
-    listener: ListenerFunction;
+    listener: ListenerFunction<Event | BaseEvent>;
     target: EventTargetLike;
     type: string;
 }
-export type Listener = ListenerFunction | ListenerObject;
+export type Listener = ListenerFunction<Event | BaseEvent> | ListenerObject;
 /**
  * Listener function. This function is called with an event object as argument.
  * When the function returns false, event propagation will stop.
  */
-export type ListenerFunction = (p0: Event | BaseEvent) => void | boolean;
+export type ListenerFunction<T extends Event | BaseEvent = Event | BaseEvent> = (p0: T) => void | boolean;
 export interface ListenerObject {
-    handleEvent: ListenerFunction;
+    handleEvent: ListenerFunction<Event | BaseEvent>;
 }
 /**
  * Registers an event listener on an event target. Inspired by
@@ -27,7 +27,7 @@ export interface ListenerObject {
 export function listen(
     target: EventTargetLike,
     type: string,
-    listener: ListenerFunction,
+    listener: ListenerFunction<Event | BaseEvent>,
     opt_this?: any,
     opt_once?: boolean,
 ): EventsKey;
@@ -45,7 +45,7 @@ export function listen(
 export function listenOnce(
     target: EventTargetLike,
     type: string,
-    listener: ListenerFunction,
+    listener: ListenerFunction<Event | BaseEvent>,
     opt_this?: any,
 ): EventsKey;
 /**

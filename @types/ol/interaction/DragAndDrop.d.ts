@@ -10,6 +10,9 @@ import Projection from '../proj/Projection';
 import VectorSource from '../source/Vector';
 import Interaction from './Interaction';
 
+export type TDragAndDropDragAndDropEventTypes = 'addfeatures';
+export type TDragAndDropBaseEventTypes = 'change' | 'error';
+export type TDragAndDropObjectEventTypes = 'change:active' | 'propertychange';
 export interface Options {
     formatConstructors?: (typeof FeatureFormat | FeatureFormat)[];
     source?: VectorSource<Geometry>;
@@ -33,26 +36,27 @@ export default class DragAndDrop extends Interaction {
      * the map here.
      */
     setMap(map: PluggableMap): void;
-    on(type: string, listener: ListenerFunction): EventsKey;
-    on(type: string[], listener: ListenerFunction): EventsKey[];
-    once(type: string, listener: ListenerFunction): EventsKey;
-    once(type: string[], listener: ListenerFunction): EventsKey[];
-    un(type: string | string[], listener: ListenerFunction): void;
-    on(type: 'addfeatures', listener: (evt: DragAndDropEvent) => void): EventsKey;
-    once(type: 'addfeatures', listener: (evt: DragAndDropEvent) => void): EventsKey;
-    un(type: 'addfeatures', listener: (evt: DragAndDropEvent) => void): void;
-    on(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
-    once(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
-    un(type: 'change', listener: (evt: BaseEvent) => void): void;
-    on(type: 'change:active', listener: (evt: ObjectEvent) => void): EventsKey;
-    once(type: 'change:active', listener: (evt: ObjectEvent) => void): EventsKey;
-    un(type: 'change:active', listener: (evt: ObjectEvent) => void): void;
-    on(type: 'error', listener: (evt: BaseEvent) => void): EventsKey;
-    once(type: 'error', listener: (evt: BaseEvent) => void): EventsKey;
-    un(type: 'error', listener: (evt: BaseEvent) => void): void;
-    on(type: 'propertychange', listener: (evt: ObjectEvent) => void): EventsKey;
-    once(type: 'propertychange', listener: (evt: ObjectEvent) => void): EventsKey;
-    un(type: 'propertychange', listener: (evt: ObjectEvent) => void): void;
+    on(type: TDragAndDropDragAndDropEventTypes, listener: ListenerFunction<DragAndDropEvent>): EventsKey;
+    on(type: TDragAndDropDragAndDropEventTypes[], listener: ListenerFunction<DragAndDropEvent>): EventsKey[];
+    once(type: TDragAndDropDragAndDropEventTypes, listener: ListenerFunction<DragAndDropEvent>): EventsKey;
+    once(type: TDragAndDropDragAndDropEventTypes[], listener: ListenerFunction<DragAndDropEvent>): EventsKey[];
+    un(
+        type: TDragAndDropDragAndDropEventTypes | TDragAndDropDragAndDropEventTypes[],
+        listener: ListenerFunction<DragAndDropEvent>,
+    ): void;
+    on(type: TDragAndDropBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
+    on(type: TDragAndDropBaseEventTypes[], listener: ListenerFunction<BaseEvent>): EventsKey[];
+    once(type: TDragAndDropBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
+    once(type: TDragAndDropBaseEventTypes[], listener: ListenerFunction<BaseEvent>): EventsKey[];
+    un(type: TDragAndDropBaseEventTypes | TDragAndDropBaseEventTypes[], listener: ListenerFunction<BaseEvent>): void;
+    on(type: TDragAndDropObjectEventTypes, listener: ListenerFunction<ObjectEvent>): EventsKey;
+    on(type: TDragAndDropObjectEventTypes[], listener: ListenerFunction<ObjectEvent>): EventsKey[];
+    once(type: TDragAndDropObjectEventTypes, listener: ListenerFunction<ObjectEvent>): EventsKey;
+    once(type: TDragAndDropObjectEventTypes[], listener: ListenerFunction<ObjectEvent>): EventsKey[];
+    un(
+        type: TDragAndDropObjectEventTypes | TDragAndDropObjectEventTypes[],
+        listener: ListenerFunction<ObjectEvent>,
+    ): void;
 }
 export class DragAndDropEvent extends BaseEvent {
     constructor(

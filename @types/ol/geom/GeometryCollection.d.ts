@@ -7,6 +7,8 @@ import { TransformFunction } from '../proj';
 import Geometry from './Geometry';
 import GeometryType from './GeometryType';
 
+export type TGeometryCollectionBaseEventTypes = 'change' | 'error';
+export type TGeometryCollectionObjectEventTypes = 'propertychange';
 export default class GeometryCollection extends Geometry {
     constructor(opt_geometries?: Geometry[]);
     protected computeExtent(extent: Extent): Extent;
@@ -70,18 +72,20 @@ export default class GeometryCollection extends Geometry {
      * instead you want a new geometry, first clone() this geometry.
      */
     translate(deltaX: number, deltaY: number): void;
-    on(type: string, listener: ListenerFunction): EventsKey;
-    on(type: string[], listener: ListenerFunction): EventsKey[];
-    once(type: string, listener: ListenerFunction): EventsKey;
-    once(type: string[], listener: ListenerFunction): EventsKey[];
-    un(type: string | string[], listener: ListenerFunction): void;
-    on(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
-    once(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
-    un(type: 'change', listener: (evt: BaseEvent) => void): void;
-    on(type: 'error', listener: (evt: BaseEvent) => void): EventsKey;
-    once(type: 'error', listener: (evt: BaseEvent) => void): EventsKey;
-    un(type: 'error', listener: (evt: BaseEvent) => void): void;
-    on(type: 'propertychange', listener: (evt: ObjectEvent) => void): EventsKey;
-    once(type: 'propertychange', listener: (evt: ObjectEvent) => void): EventsKey;
-    un(type: 'propertychange', listener: (evt: ObjectEvent) => void): void;
+    on(type: TGeometryCollectionBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
+    on(type: TGeometryCollectionBaseEventTypes[], listener: ListenerFunction<BaseEvent>): EventsKey[];
+    once(type: TGeometryCollectionBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
+    once(type: TGeometryCollectionBaseEventTypes[], listener: ListenerFunction<BaseEvent>): EventsKey[];
+    un(
+        type: TGeometryCollectionBaseEventTypes | TGeometryCollectionBaseEventTypes[],
+        listener: ListenerFunction<BaseEvent>,
+    ): void;
+    on(type: TGeometryCollectionObjectEventTypes, listener: ListenerFunction<ObjectEvent>): EventsKey;
+    on(type: TGeometryCollectionObjectEventTypes[], listener: ListenerFunction<ObjectEvent>): EventsKey[];
+    once(type: TGeometryCollectionObjectEventTypes, listener: ListenerFunction<ObjectEvent>): EventsKey;
+    once(type: TGeometryCollectionObjectEventTypes[], listener: ListenerFunction<ObjectEvent>): EventsKey[];
+    un(
+        type: TGeometryCollectionObjectEventTypes | TGeometryCollectionObjectEventTypes[],
+        listener: ListenerFunction<ObjectEvent>,
+    ): void;
 }

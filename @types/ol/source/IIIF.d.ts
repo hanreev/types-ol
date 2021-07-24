@@ -11,6 +11,9 @@ import State from './State';
 import { TileSourceEvent } from './Tile';
 import TileImage from './TileImage';
 
+export type TIIIFBaseEventTypes = 'change' | 'error';
+export type TIIIFObjectEventTypes = 'propertychange';
+export type TIIIFTileSourceEventTypes = 'tileloadend' | 'tileloaderror' | 'tileloadstart';
 export interface Options {
     attributions?: AttributionLike;
     attributionsCollapsible?: boolean;
@@ -36,27 +39,22 @@ export interface Options {
 }
 export default class IIIF extends TileImage {
     constructor(opt_options?: Options);
-    on(type: string, listener: ListenerFunction): EventsKey;
-    on(type: string[], listener: ListenerFunction): EventsKey[];
-    once(type: string, listener: ListenerFunction): EventsKey;
-    once(type: string[], listener: ListenerFunction): EventsKey[];
-    un(type: string | string[], listener: ListenerFunction): void;
-    on(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
-    once(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
-    un(type: 'change', listener: (evt: BaseEvent) => void): void;
-    on(type: 'error', listener: (evt: BaseEvent) => void): EventsKey;
-    once(type: 'error', listener: (evt: BaseEvent) => void): EventsKey;
-    un(type: 'error', listener: (evt: BaseEvent) => void): void;
-    on(type: 'propertychange', listener: (evt: ObjectEvent) => void): EventsKey;
-    once(type: 'propertychange', listener: (evt: ObjectEvent) => void): EventsKey;
-    un(type: 'propertychange', listener: (evt: ObjectEvent) => void): void;
-    on(type: 'tileloadend', listener: (evt: TileSourceEvent) => void): EventsKey;
-    once(type: 'tileloadend', listener: (evt: TileSourceEvent) => void): EventsKey;
-    un(type: 'tileloadend', listener: (evt: TileSourceEvent) => void): void;
-    on(type: 'tileloaderror', listener: (evt: TileSourceEvent) => void): EventsKey;
-    once(type: 'tileloaderror', listener: (evt: TileSourceEvent) => void): EventsKey;
-    un(type: 'tileloaderror', listener: (evt: TileSourceEvent) => void): void;
-    on(type: 'tileloadstart', listener: (evt: TileSourceEvent) => void): EventsKey;
-    once(type: 'tileloadstart', listener: (evt: TileSourceEvent) => void): EventsKey;
-    un(type: 'tileloadstart', listener: (evt: TileSourceEvent) => void): void;
+    on(type: TIIIFBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
+    on(type: TIIIFBaseEventTypes[], listener: ListenerFunction<BaseEvent>): EventsKey[];
+    once(type: TIIIFBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
+    once(type: TIIIFBaseEventTypes[], listener: ListenerFunction<BaseEvent>): EventsKey[];
+    un(type: TIIIFBaseEventTypes | TIIIFBaseEventTypes[], listener: ListenerFunction<BaseEvent>): void;
+    on(type: TIIIFObjectEventTypes, listener: ListenerFunction<ObjectEvent>): EventsKey;
+    on(type: TIIIFObjectEventTypes[], listener: ListenerFunction<ObjectEvent>): EventsKey[];
+    once(type: TIIIFObjectEventTypes, listener: ListenerFunction<ObjectEvent>): EventsKey;
+    once(type: TIIIFObjectEventTypes[], listener: ListenerFunction<ObjectEvent>): EventsKey[];
+    un(type: TIIIFObjectEventTypes | TIIIFObjectEventTypes[], listener: ListenerFunction<ObjectEvent>): void;
+    on(type: TIIIFTileSourceEventTypes, listener: ListenerFunction<TileSourceEvent>): EventsKey;
+    on(type: TIIIFTileSourceEventTypes[], listener: ListenerFunction<TileSourceEvent>): EventsKey[];
+    once(type: TIIIFTileSourceEventTypes, listener: ListenerFunction<TileSourceEvent>): EventsKey;
+    once(type: TIIIFTileSourceEventTypes[], listener: ListenerFunction<TileSourceEvent>): EventsKey[];
+    un(
+        type: TIIIFTileSourceEventTypes | TIIIFTileSourceEventTypes[],
+        listener: ListenerFunction<TileSourceEvent>,
+    ): void;
 }

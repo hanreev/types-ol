@@ -13,6 +13,8 @@ import TileGrid from '../tilegrid/TileGrid';
 import Source, { AttributionLike } from './Source';
 import State from './State';
 
+export type TTileSourceBaseEventTypes = 'change' | 'error';
+export type TTileSourceObjectEventTypes = 'propertychange';
 export interface Options {
     attributions?: AttributionLike;
     attributionsCollapsible?: boolean;
@@ -84,20 +86,19 @@ export default abstract class TileSource extends Source {
      * Marks a tile coord as being used, without triggering a load.
      */
     abstract useTile(z: number, x: number, y: number, projection: Projection): void;
-    on(type: string, listener: ListenerFunction): EventsKey;
-    on(type: string[], listener: ListenerFunction): EventsKey[];
-    once(type: string, listener: ListenerFunction): EventsKey;
-    once(type: string[], listener: ListenerFunction): EventsKey[];
-    un(type: string | string[], listener: ListenerFunction): void;
-    on(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
-    once(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
-    un(type: 'change', listener: (evt: BaseEvent) => void): void;
-    on(type: 'error', listener: (evt: BaseEvent) => void): EventsKey;
-    once(type: 'error', listener: (evt: BaseEvent) => void): EventsKey;
-    un(type: 'error', listener: (evt: BaseEvent) => void): void;
-    on(type: 'propertychange', listener: (evt: ObjectEvent) => void): EventsKey;
-    once(type: 'propertychange', listener: (evt: ObjectEvent) => void): EventsKey;
-    un(type: 'propertychange', listener: (evt: ObjectEvent) => void): void;
+    on(type: TTileSourceBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
+    on(type: TTileSourceBaseEventTypes[], listener: ListenerFunction<BaseEvent>): EventsKey[];
+    once(type: TTileSourceBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
+    once(type: TTileSourceBaseEventTypes[], listener: ListenerFunction<BaseEvent>): EventsKey[];
+    un(type: TTileSourceBaseEventTypes | TTileSourceBaseEventTypes[], listener: ListenerFunction<BaseEvent>): void;
+    on(type: TTileSourceObjectEventTypes, listener: ListenerFunction<ObjectEvent>): EventsKey;
+    on(type: TTileSourceObjectEventTypes[], listener: ListenerFunction<ObjectEvent>): EventsKey[];
+    once(type: TTileSourceObjectEventTypes, listener: ListenerFunction<ObjectEvent>): EventsKey;
+    once(type: TTileSourceObjectEventTypes[], listener: ListenerFunction<ObjectEvent>): EventsKey[];
+    un(
+        type: TTileSourceObjectEventTypes | TTileSourceObjectEventTypes[],
+        listener: ListenerFunction<ObjectEvent>,
+    ): void;
 }
 export class TileSourceEvent extends BaseEvent {
     constructor(type: string, tile: Tile);

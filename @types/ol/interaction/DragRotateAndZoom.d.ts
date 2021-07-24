@@ -5,6 +5,8 @@ import BaseEvent from '../events/Event';
 import { Condition } from '../events/condition';
 import PointerInteraction from './Pointer';
 
+export type TDragRotateAndZoomBaseEventTypes = 'change' | 'error';
+export type TDragRotateAndZoomObjectEventTypes = 'change:active' | 'propertychange';
 export interface Options {
     condition?: Condition;
     duration?: number;
@@ -23,21 +25,20 @@ export default class DragRotateAndZoom extends PointerInteraction {
      * Handle pointer up events.
      */
     handleUpEvent(mapBrowserEvent: MapBrowserEvent<UIEvent>): boolean;
-    on(type: string, listener: ListenerFunction): EventsKey;
-    on(type: string[], listener: ListenerFunction): EventsKey[];
-    once(type: string, listener: ListenerFunction): EventsKey;
-    once(type: string[], listener: ListenerFunction): EventsKey[];
-    un(type: string | string[], listener: ListenerFunction): void;
-    on(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
-    once(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
-    un(type: 'change', listener: (evt: BaseEvent) => void): void;
-    on(type: 'change:active', listener: (evt: ObjectEvent) => void): EventsKey;
-    once(type: 'change:active', listener: (evt: ObjectEvent) => void): EventsKey;
-    un(type: 'change:active', listener: (evt: ObjectEvent) => void): void;
-    on(type: 'error', listener: (evt: BaseEvent) => void): EventsKey;
-    once(type: 'error', listener: (evt: BaseEvent) => void): EventsKey;
-    un(type: 'error', listener: (evt: BaseEvent) => void): void;
-    on(type: 'propertychange', listener: (evt: ObjectEvent) => void): EventsKey;
-    once(type: 'propertychange', listener: (evt: ObjectEvent) => void): EventsKey;
-    un(type: 'propertychange', listener: (evt: ObjectEvent) => void): void;
+    on(type: TDragRotateAndZoomBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
+    on(type: TDragRotateAndZoomBaseEventTypes[], listener: ListenerFunction<BaseEvent>): EventsKey[];
+    once(type: TDragRotateAndZoomBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
+    once(type: TDragRotateAndZoomBaseEventTypes[], listener: ListenerFunction<BaseEvent>): EventsKey[];
+    un(
+        type: TDragRotateAndZoomBaseEventTypes | TDragRotateAndZoomBaseEventTypes[],
+        listener: ListenerFunction<BaseEvent>,
+    ): void;
+    on(type: TDragRotateAndZoomObjectEventTypes, listener: ListenerFunction<ObjectEvent>): EventsKey;
+    on(type: TDragRotateAndZoomObjectEventTypes[], listener: ListenerFunction<ObjectEvent>): EventsKey[];
+    once(type: TDragRotateAndZoomObjectEventTypes, listener: ListenerFunction<ObjectEvent>): EventsKey;
+    once(type: TDragRotateAndZoomObjectEventTypes[], listener: ListenerFunction<ObjectEvent>): EventsKey[];
+    un(
+        type: TDragRotateAndZoomObjectEventTypes | TDragRotateAndZoomObjectEventTypes[],
+        listener: ListenerFunction<ObjectEvent>,
+    ): void;
 }

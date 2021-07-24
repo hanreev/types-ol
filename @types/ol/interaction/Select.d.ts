@@ -14,6 +14,9 @@ import VectorSource from '../source/Vector';
 import { StyleLike } from '../style/Style';
 import Interaction from './Interaction';
 
+export type TSelectBaseEventTypes = 'change' | 'error';
+export type TSelectObjectEventTypes = 'change:active' | 'propertychange';
+export type TSelectSelectEventTypes = 'select';
 /**
  * A function that takes an {@link module:ol/Feature} or
  * {@link module:ol/render/Feature} and an
@@ -69,26 +72,21 @@ export default class Select extends Interaction {
      * map, if any. Pass null to just remove the interaction from the current map.
      */
     setMap(map: PluggableMap): void;
-    on(type: string, listener: ListenerFunction): EventsKey;
-    on(type: string[], listener: ListenerFunction): EventsKey[];
-    once(type: string, listener: ListenerFunction): EventsKey;
-    once(type: string[], listener: ListenerFunction): EventsKey[];
-    un(type: string | string[], listener: ListenerFunction): void;
-    on(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
-    once(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
-    un(type: 'change', listener: (evt: BaseEvent) => void): void;
-    on(type: 'change:active', listener: (evt: ObjectEvent) => void): EventsKey;
-    once(type: 'change:active', listener: (evt: ObjectEvent) => void): EventsKey;
-    un(type: 'change:active', listener: (evt: ObjectEvent) => void): void;
-    on(type: 'error', listener: (evt: BaseEvent) => void): EventsKey;
-    once(type: 'error', listener: (evt: BaseEvent) => void): EventsKey;
-    un(type: 'error', listener: (evt: BaseEvent) => void): void;
-    on(type: 'propertychange', listener: (evt: ObjectEvent) => void): EventsKey;
-    once(type: 'propertychange', listener: (evt: ObjectEvent) => void): EventsKey;
-    un(type: 'propertychange', listener: (evt: ObjectEvent) => void): void;
-    on(type: 'select', listener: (evt: SelectEvent) => void): EventsKey;
-    once(type: 'select', listener: (evt: SelectEvent) => void): EventsKey;
-    un(type: 'select', listener: (evt: SelectEvent) => void): void;
+    on(type: TSelectBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
+    on(type: TSelectBaseEventTypes[], listener: ListenerFunction<BaseEvent>): EventsKey[];
+    once(type: TSelectBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
+    once(type: TSelectBaseEventTypes[], listener: ListenerFunction<BaseEvent>): EventsKey[];
+    un(type: TSelectBaseEventTypes | TSelectBaseEventTypes[], listener: ListenerFunction<BaseEvent>): void;
+    on(type: TSelectObjectEventTypes, listener: ListenerFunction<ObjectEvent>): EventsKey;
+    on(type: TSelectObjectEventTypes[], listener: ListenerFunction<ObjectEvent>): EventsKey[];
+    once(type: TSelectObjectEventTypes, listener: ListenerFunction<ObjectEvent>): EventsKey;
+    once(type: TSelectObjectEventTypes[], listener: ListenerFunction<ObjectEvent>): EventsKey[];
+    un(type: TSelectObjectEventTypes | TSelectObjectEventTypes[], listener: ListenerFunction<ObjectEvent>): void;
+    on(type: TSelectSelectEventTypes, listener: ListenerFunction<SelectEvent>): EventsKey;
+    on(type: TSelectSelectEventTypes[], listener: ListenerFunction<SelectEvent>): EventsKey[];
+    once(type: TSelectSelectEventTypes, listener: ListenerFunction<SelectEvent>): EventsKey;
+    once(type: TSelectSelectEventTypes[], listener: ListenerFunction<SelectEvent>): EventsKey[];
+    un(type: TSelectSelectEventTypes | TSelectSelectEventTypes[], listener: ListenerFunction<SelectEvent>): void;
 }
 export class SelectEvent extends BaseEvent {
     constructor(

@@ -8,6 +8,8 @@ import GeometryLayout from './GeometryLayout';
 import GeometryType from './GeometryType';
 import SimpleGeometry from './SimpleGeometry';
 
+export type TCircleBaseEventTypes = 'change' | 'error';
+export type TCircleObjectEventTypes = 'propertychange';
 export default class Circle extends SimpleGeometry {
     constructor(center: Coordinate, opt_radius?: number, opt_layout?: GeometryLayout);
     protected computeExtent(extent: Extent): Extent;
@@ -71,18 +73,14 @@ export default class Circle extends SimpleGeometry {
      * instead you want a new geometry, first clone() this geometry.
      */
     translate(deltaX: number, deltaY: number): void;
-    on(type: string, listener: ListenerFunction): EventsKey;
-    on(type: string[], listener: ListenerFunction): EventsKey[];
-    once(type: string, listener: ListenerFunction): EventsKey;
-    once(type: string[], listener: ListenerFunction): EventsKey[];
-    un(type: string | string[], listener: ListenerFunction): void;
-    on(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
-    once(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
-    un(type: 'change', listener: (evt: BaseEvent) => void): void;
-    on(type: 'error', listener: (evt: BaseEvent) => void): EventsKey;
-    once(type: 'error', listener: (evt: BaseEvent) => void): EventsKey;
-    un(type: 'error', listener: (evt: BaseEvent) => void): void;
-    on(type: 'propertychange', listener: (evt: ObjectEvent) => void): EventsKey;
-    once(type: 'propertychange', listener: (evt: ObjectEvent) => void): EventsKey;
-    un(type: 'propertychange', listener: (evt: ObjectEvent) => void): void;
+    on(type: TCircleBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
+    on(type: TCircleBaseEventTypes[], listener: ListenerFunction<BaseEvent>): EventsKey[];
+    once(type: TCircleBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
+    once(type: TCircleBaseEventTypes[], listener: ListenerFunction<BaseEvent>): EventsKey[];
+    un(type: TCircleBaseEventTypes | TCircleBaseEventTypes[], listener: ListenerFunction<BaseEvent>): void;
+    on(type: TCircleObjectEventTypes, listener: ListenerFunction<ObjectEvent>): EventsKey;
+    on(type: TCircleObjectEventTypes[], listener: ListenerFunction<ObjectEvent>): EventsKey[];
+    once(type: TCircleObjectEventTypes, listener: ListenerFunction<ObjectEvent>): EventsKey;
+    once(type: TCircleObjectEventTypes[], listener: ListenerFunction<ObjectEvent>): EventsKey[];
+    un(type: TCircleObjectEventTypes | TCircleObjectEventTypes[], listener: ListenerFunction<ObjectEvent>): void;
 }

@@ -8,6 +8,9 @@ import Projection from '../proj/Projection';
 import ImageSource, { ImageSourceEvent } from './Image';
 import { AttributionLike } from './Source';
 
+export type TImageArcGISRestBaseEventTypes = 'change' | 'error';
+export type TImageArcGISRestImageSourceEventTypes = 'imageloadend' | 'imageloaderror' | 'imageloadstart';
+export type TImageArcGISRestObjectEventTypes = 'propertychange';
 export interface Options {
     attributions?: AttributionLike;
     crossOrigin?: null | string;
@@ -48,27 +51,28 @@ export default class ImageArcGISRest extends ImageSource {
      * Update the user-provided params.
      */
     updateParams(params: any): void;
-    on(type: string, listener: ListenerFunction): EventsKey;
-    on(type: string[], listener: ListenerFunction): EventsKey[];
-    once(type: string, listener: ListenerFunction): EventsKey;
-    once(type: string[], listener: ListenerFunction): EventsKey[];
-    un(type: string | string[], listener: ListenerFunction): void;
-    on(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
-    once(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
-    un(type: 'change', listener: (evt: BaseEvent) => void): void;
-    on(type: 'error', listener: (evt: BaseEvent) => void): EventsKey;
-    once(type: 'error', listener: (evt: BaseEvent) => void): EventsKey;
-    un(type: 'error', listener: (evt: BaseEvent) => void): void;
-    on(type: 'imageloadend', listener: (evt: ImageSourceEvent) => void): EventsKey;
-    once(type: 'imageloadend', listener: (evt: ImageSourceEvent) => void): EventsKey;
-    un(type: 'imageloadend', listener: (evt: ImageSourceEvent) => void): void;
-    on(type: 'imageloaderror', listener: (evt: ImageSourceEvent) => void): EventsKey;
-    once(type: 'imageloaderror', listener: (evt: ImageSourceEvent) => void): EventsKey;
-    un(type: 'imageloaderror', listener: (evt: ImageSourceEvent) => void): void;
-    on(type: 'imageloadstart', listener: (evt: ImageSourceEvent) => void): EventsKey;
-    once(type: 'imageloadstart', listener: (evt: ImageSourceEvent) => void): EventsKey;
-    un(type: 'imageloadstart', listener: (evt: ImageSourceEvent) => void): void;
-    on(type: 'propertychange', listener: (evt: ObjectEvent) => void): EventsKey;
-    once(type: 'propertychange', listener: (evt: ObjectEvent) => void): EventsKey;
-    un(type: 'propertychange', listener: (evt: ObjectEvent) => void): void;
+    on(type: TImageArcGISRestBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
+    on(type: TImageArcGISRestBaseEventTypes[], listener: ListenerFunction<BaseEvent>): EventsKey[];
+    once(type: TImageArcGISRestBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
+    once(type: TImageArcGISRestBaseEventTypes[], listener: ListenerFunction<BaseEvent>): EventsKey[];
+    un(
+        type: TImageArcGISRestBaseEventTypes | TImageArcGISRestBaseEventTypes[],
+        listener: ListenerFunction<BaseEvent>,
+    ): void;
+    on(type: TImageArcGISRestImageSourceEventTypes, listener: ListenerFunction<ImageSourceEvent>): EventsKey;
+    on(type: TImageArcGISRestImageSourceEventTypes[], listener: ListenerFunction<ImageSourceEvent>): EventsKey[];
+    once(type: TImageArcGISRestImageSourceEventTypes, listener: ListenerFunction<ImageSourceEvent>): EventsKey;
+    once(type: TImageArcGISRestImageSourceEventTypes[], listener: ListenerFunction<ImageSourceEvent>): EventsKey[];
+    un(
+        type: TImageArcGISRestImageSourceEventTypes | TImageArcGISRestImageSourceEventTypes[],
+        listener: ListenerFunction<ImageSourceEvent>,
+    ): void;
+    on(type: TImageArcGISRestObjectEventTypes, listener: ListenerFunction<ObjectEvent>): EventsKey;
+    on(type: TImageArcGISRestObjectEventTypes[], listener: ListenerFunction<ObjectEvent>): EventsKey[];
+    once(type: TImageArcGISRestObjectEventTypes, listener: ListenerFunction<ObjectEvent>): EventsKey;
+    once(type: TImageArcGISRestObjectEventTypes[], listener: ListenerFunction<ObjectEvent>): EventsKey[];
+    un(
+        type: TImageArcGISRestObjectEventTypes | TImageArcGISRestObjectEventTypes[],
+        listener: ListenerFunction<ObjectEvent>,
+    ): void;
 }

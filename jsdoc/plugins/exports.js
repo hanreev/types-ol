@@ -131,9 +131,9 @@ exports.handlers = {
     });
 
     // Fix optional parameter with multiple types
-    e.source = e.source.replace(/{(.+?)=}/g, (_, p1) => `{(${p1})=}`);
+    // e.source = e.source.replace(/{(.+?)=}/g, (_, p1) => `{(${p1})=}`);
 
     // Fix enums has undefined properties
-    e.source = e.source.replace(/export const/g, 'const');
+    e.source = e.source.replace(/(@enum.+?)export (const )/gs, '$1$2');
   },
 };

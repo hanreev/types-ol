@@ -1,0 +1,14 @@
+diff --git a/src/ol/events.js b/src/ol/events.js
+index 937ca5c6d..b92d6f0f5 100644
+--- a/src/ol/events.js
++++ b/src/ol/events.js
+@@ -16,7 +16,8 @@ import {clear} from './obj.js';
+  * Listener function. This function is called with an event object as argument.
+  * When the function returns `false`, event propagation will stop.
+  *
+- * @typedef {function((Event|import("./events/Event.js").default)): (void|boolean)} ListenerFunction
++ * @typedef {function(T): (void|boolean)} ListenerFunction
++ * @template {Event|import("./events/Event.js").default} T
+  * @api
+  */
+ 

@@ -9,6 +9,8 @@ import MultiPoint from './MultiPoint';
 import Polygon from './Polygon';
 import SimpleGeometry from './SimpleGeometry';
 
+export type TMultiPolygonBaseEventTypes = 'change' | 'error';
+export type TMultiPolygonObjectEventTypes = 'propertychange';
 export default class MultiPolygon extends SimpleGeometry {
     constructor(
         coordinates: (Coordinate[][] | Polygon)[] | number[],
@@ -62,18 +64,17 @@ export default class MultiPolygon extends SimpleGeometry {
      * Set the coordinates of the multipolygon.
      */
     setCoordinates(coordinates: Coordinate[][][], opt_layout?: GeometryLayout): void;
-    on(type: string, listener: ListenerFunction): EventsKey;
-    on(type: string[], listener: ListenerFunction): EventsKey[];
-    once(type: string, listener: ListenerFunction): EventsKey;
-    once(type: string[], listener: ListenerFunction): EventsKey[];
-    un(type: string | string[], listener: ListenerFunction): void;
-    on(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
-    once(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
-    un(type: 'change', listener: (evt: BaseEvent) => void): void;
-    on(type: 'error', listener: (evt: BaseEvent) => void): EventsKey;
-    once(type: 'error', listener: (evt: BaseEvent) => void): EventsKey;
-    un(type: 'error', listener: (evt: BaseEvent) => void): void;
-    on(type: 'propertychange', listener: (evt: ObjectEvent) => void): EventsKey;
-    once(type: 'propertychange', listener: (evt: ObjectEvent) => void): EventsKey;
-    un(type: 'propertychange', listener: (evt: ObjectEvent) => void): void;
+    on(type: TMultiPolygonBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
+    on(type: TMultiPolygonBaseEventTypes[], listener: ListenerFunction<BaseEvent>): EventsKey[];
+    once(type: TMultiPolygonBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
+    once(type: TMultiPolygonBaseEventTypes[], listener: ListenerFunction<BaseEvent>): EventsKey[];
+    un(type: TMultiPolygonBaseEventTypes | TMultiPolygonBaseEventTypes[], listener: ListenerFunction<BaseEvent>): void;
+    on(type: TMultiPolygonObjectEventTypes, listener: ListenerFunction<ObjectEvent>): EventsKey;
+    on(type: TMultiPolygonObjectEventTypes[], listener: ListenerFunction<ObjectEvent>): EventsKey[];
+    once(type: TMultiPolygonObjectEventTypes, listener: ListenerFunction<ObjectEvent>): EventsKey;
+    once(type: TMultiPolygonObjectEventTypes[], listener: ListenerFunction<ObjectEvent>): EventsKey[];
+    un(
+        type: TMultiPolygonObjectEventTypes | TMultiPolygonObjectEventTypes[],
+        listener: ListenerFunction<ObjectEvent>,
+    ): void;
 }

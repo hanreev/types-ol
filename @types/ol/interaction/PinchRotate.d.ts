@@ -4,6 +4,8 @@ import { EventsKey, ListenerFunction } from '../events';
 import BaseEvent from '../events/Event';
 import PointerInteraction from './Pointer';
 
+export type TPinchRotateBaseEventTypes = 'change' | 'error';
+export type TPinchRotateObjectEventTypes = 'change:active' | 'propertychange';
 export interface Options {
     duration?: number;
     threshold?: number;
@@ -22,21 +24,17 @@ export default class PinchRotate extends PointerInteraction {
      * Handle pointer up events.
      */
     handleUpEvent(mapBrowserEvent: MapBrowserEvent<UIEvent>): boolean;
-    on(type: string, listener: ListenerFunction): EventsKey;
-    on(type: string[], listener: ListenerFunction): EventsKey[];
-    once(type: string, listener: ListenerFunction): EventsKey;
-    once(type: string[], listener: ListenerFunction): EventsKey[];
-    un(type: string | string[], listener: ListenerFunction): void;
-    on(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
-    once(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
-    un(type: 'change', listener: (evt: BaseEvent) => void): void;
-    on(type: 'change:active', listener: (evt: ObjectEvent) => void): EventsKey;
-    once(type: 'change:active', listener: (evt: ObjectEvent) => void): EventsKey;
-    un(type: 'change:active', listener: (evt: ObjectEvent) => void): void;
-    on(type: 'error', listener: (evt: BaseEvent) => void): EventsKey;
-    once(type: 'error', listener: (evt: BaseEvent) => void): EventsKey;
-    un(type: 'error', listener: (evt: BaseEvent) => void): void;
-    on(type: 'propertychange', listener: (evt: ObjectEvent) => void): EventsKey;
-    once(type: 'propertychange', listener: (evt: ObjectEvent) => void): EventsKey;
-    un(type: 'propertychange', listener: (evt: ObjectEvent) => void): void;
+    on(type: TPinchRotateBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
+    on(type: TPinchRotateBaseEventTypes[], listener: ListenerFunction<BaseEvent>): EventsKey[];
+    once(type: TPinchRotateBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
+    once(type: TPinchRotateBaseEventTypes[], listener: ListenerFunction<BaseEvent>): EventsKey[];
+    un(type: TPinchRotateBaseEventTypes | TPinchRotateBaseEventTypes[], listener: ListenerFunction<BaseEvent>): void;
+    on(type: TPinchRotateObjectEventTypes, listener: ListenerFunction<ObjectEvent>): EventsKey;
+    on(type: TPinchRotateObjectEventTypes[], listener: ListenerFunction<ObjectEvent>): EventsKey[];
+    once(type: TPinchRotateObjectEventTypes, listener: ListenerFunction<ObjectEvent>): EventsKey;
+    once(type: TPinchRotateObjectEventTypes[], listener: ListenerFunction<ObjectEvent>): EventsKey[];
+    un(
+        type: TPinchRotateObjectEventTypes | TPinchRotateObjectEventTypes[],
+        listener: ListenerFunction<ObjectEvent>,
+    ): void;
 }

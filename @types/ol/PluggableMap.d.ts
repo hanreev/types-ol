@@ -26,6 +26,16 @@ import Source from './source/Source';
 import { Transform } from './transform';
 import RBush from 'rbush';
 
+export type TPluggableMapBaseEventTypes = 'change' | 'error';
+export type TPluggableMapObjectEventTypes =
+    | 'change:layerGroup'
+    | 'change:size'
+    | 'change:target'
+    | 'change:view'
+    | 'propertychange';
+export type TPluggableMapMapBrowserEventTypes = 'click' | 'dblclick' | 'pointerdrag' | 'pointermove' | 'singleclick';
+export type TPluggableMapMapEventTypes = 'moveend' | 'movestart' | 'postrender';
+export type TPluggableMapRenderEventTypes = 'postcompose' | 'precompose' | 'rendercomplete';
 export interface AtPixelOptions {
     layerFilter?: (p0: Layer<Source>) => boolean;
     hitTolerance?: number;
@@ -301,63 +311,38 @@ export default class PluggableMap extends BaseObject {
      * third-party code changes the size of the map viewport.
      */
     updateSize(): void;
-    on(type: string, listener: ListenerFunction): EventsKey;
-    on(type: string[], listener: ListenerFunction): EventsKey[];
-    once(type: string, listener: ListenerFunction): EventsKey;
-    once(type: string[], listener: ListenerFunction): EventsKey[];
-    un(type: string | string[], listener: ListenerFunction): void;
-    on(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
-    once(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
-    un(type: 'change', listener: (evt: BaseEvent) => void): void;
-    on(type: 'change:layerGroup', listener: (evt: ObjectEvent) => void): EventsKey;
-    once(type: 'change:layerGroup', listener: (evt: ObjectEvent) => void): EventsKey;
-    un(type: 'change:layerGroup', listener: (evt: ObjectEvent) => void): void;
-    on(type: 'change:size', listener: (evt: ObjectEvent) => void): EventsKey;
-    once(type: 'change:size', listener: (evt: ObjectEvent) => void): EventsKey;
-    un(type: 'change:size', listener: (evt: ObjectEvent) => void): void;
-    on(type: 'change:target', listener: (evt: ObjectEvent) => void): EventsKey;
-    once(type: 'change:target', listener: (evt: ObjectEvent) => void): EventsKey;
-    un(type: 'change:target', listener: (evt: ObjectEvent) => void): void;
-    on(type: 'change:view', listener: (evt: ObjectEvent) => void): EventsKey;
-    once(type: 'change:view', listener: (evt: ObjectEvent) => void): EventsKey;
-    un(type: 'change:view', listener: (evt: ObjectEvent) => void): void;
-    on(type: 'click', listener: (evt: MapBrowserEvent<UIEvent>) => void): EventsKey;
-    once(type: 'click', listener: (evt: MapBrowserEvent<UIEvent>) => void): EventsKey;
-    un(type: 'click', listener: (evt: MapBrowserEvent<UIEvent>) => void): void;
-    on(type: 'dblclick', listener: (evt: MapBrowserEvent<UIEvent>) => void): EventsKey;
-    once(type: 'dblclick', listener: (evt: MapBrowserEvent<UIEvent>) => void): EventsKey;
-    un(type: 'dblclick', listener: (evt: MapBrowserEvent<UIEvent>) => void): void;
-    on(type: 'error', listener: (evt: BaseEvent) => void): EventsKey;
-    once(type: 'error', listener: (evt: BaseEvent) => void): EventsKey;
-    un(type: 'error', listener: (evt: BaseEvent) => void): void;
-    on(type: 'moveend', listener: (evt: MapEvent) => void): EventsKey;
-    once(type: 'moveend', listener: (evt: MapEvent) => void): EventsKey;
-    un(type: 'moveend', listener: (evt: MapEvent) => void): void;
-    on(type: 'movestart', listener: (evt: MapEvent) => void): EventsKey;
-    once(type: 'movestart', listener: (evt: MapEvent) => void): EventsKey;
-    un(type: 'movestart', listener: (evt: MapEvent) => void): void;
-    on(type: 'pointerdrag', listener: (evt: MapBrowserEvent<UIEvent>) => void): EventsKey;
-    once(type: 'pointerdrag', listener: (evt: MapBrowserEvent<UIEvent>) => void): EventsKey;
-    un(type: 'pointerdrag', listener: (evt: MapBrowserEvent<UIEvent>) => void): void;
-    on(type: 'pointermove', listener: (evt: MapBrowserEvent<UIEvent>) => void): EventsKey;
-    once(type: 'pointermove', listener: (evt: MapBrowserEvent<UIEvent>) => void): EventsKey;
-    un(type: 'pointermove', listener: (evt: MapBrowserEvent<UIEvent>) => void): void;
-    on(type: 'postcompose', listener: (evt: RenderEvent) => void): EventsKey;
-    once(type: 'postcompose', listener: (evt: RenderEvent) => void): EventsKey;
-    un(type: 'postcompose', listener: (evt: RenderEvent) => void): void;
-    on(type: 'postrender', listener: (evt: MapEvent) => void): EventsKey;
-    once(type: 'postrender', listener: (evt: MapEvent) => void): EventsKey;
-    un(type: 'postrender', listener: (evt: MapEvent) => void): void;
-    on(type: 'precompose', listener: (evt: RenderEvent) => void): EventsKey;
-    once(type: 'precompose', listener: (evt: RenderEvent) => void): EventsKey;
-    un(type: 'precompose', listener: (evt: RenderEvent) => void): void;
-    on(type: 'propertychange', listener: (evt: ObjectEvent) => void): EventsKey;
-    once(type: 'propertychange', listener: (evt: ObjectEvent) => void): EventsKey;
-    un(type: 'propertychange', listener: (evt: ObjectEvent) => void): void;
-    on(type: 'rendercomplete', listener: (evt: RenderEvent) => void): EventsKey;
-    once(type: 'rendercomplete', listener: (evt: RenderEvent) => void): EventsKey;
-    un(type: 'rendercomplete', listener: (evt: RenderEvent) => void): void;
-    on(type: 'singleclick', listener: (evt: MapBrowserEvent<UIEvent>) => void): EventsKey;
-    once(type: 'singleclick', listener: (evt: MapBrowserEvent<UIEvent>) => void): EventsKey;
-    un(type: 'singleclick', listener: (evt: MapBrowserEvent<UIEvent>) => void): void;
+    on(type: TPluggableMapBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
+    on(type: TPluggableMapBaseEventTypes[], listener: ListenerFunction<BaseEvent>): EventsKey[];
+    once(type: TPluggableMapBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
+    once(type: TPluggableMapBaseEventTypes[], listener: ListenerFunction<BaseEvent>): EventsKey[];
+    un(type: TPluggableMapBaseEventTypes | TPluggableMapBaseEventTypes[], listener: ListenerFunction<BaseEvent>): void;
+    on(type: TPluggableMapObjectEventTypes, listener: ListenerFunction<ObjectEvent>): EventsKey;
+    on(type: TPluggableMapObjectEventTypes[], listener: ListenerFunction<ObjectEvent>): EventsKey[];
+    once(type: TPluggableMapObjectEventTypes, listener: ListenerFunction<ObjectEvent>): EventsKey;
+    once(type: TPluggableMapObjectEventTypes[], listener: ListenerFunction<ObjectEvent>): EventsKey[];
+    un(
+        type: TPluggableMapObjectEventTypes | TPluggableMapObjectEventTypes[],
+        listener: ListenerFunction<ObjectEvent>,
+    ): void;
+    on(type: TPluggableMapMapBrowserEventTypes, listener: ListenerFunction<MapBrowserEvent<UIEvent>>): EventsKey;
+    on(type: TPluggableMapMapBrowserEventTypes[], listener: ListenerFunction<MapBrowserEvent<UIEvent>>): EventsKey[];
+    once(type: TPluggableMapMapBrowserEventTypes, listener: ListenerFunction<MapBrowserEvent<UIEvent>>): EventsKey;
+    once(type: TPluggableMapMapBrowserEventTypes[], listener: ListenerFunction<MapBrowserEvent<UIEvent>>): EventsKey[];
+    un(
+        type: TPluggableMapMapBrowserEventTypes | TPluggableMapMapBrowserEventTypes[],
+        listener: ListenerFunction<MapBrowserEvent<UIEvent>>,
+    ): void;
+    on(type: TPluggableMapMapEventTypes, listener: ListenerFunction<MapEvent>): EventsKey;
+    on(type: TPluggableMapMapEventTypes[], listener: ListenerFunction<MapEvent>): EventsKey[];
+    once(type: TPluggableMapMapEventTypes, listener: ListenerFunction<MapEvent>): EventsKey;
+    once(type: TPluggableMapMapEventTypes[], listener: ListenerFunction<MapEvent>): EventsKey[];
+    un(type: TPluggableMapMapEventTypes | TPluggableMapMapEventTypes[], listener: ListenerFunction<MapEvent>): void;
+    on(type: TPluggableMapRenderEventTypes, listener: ListenerFunction<RenderEvent>): EventsKey;
+    on(type: TPluggableMapRenderEventTypes[], listener: ListenerFunction<RenderEvent>): EventsKey[];
+    once(type: TPluggableMapRenderEventTypes, listener: ListenerFunction<RenderEvent>): EventsKey;
+    once(type: TPluggableMapRenderEventTypes[], listener: ListenerFunction<RenderEvent>): EventsKey[];
+    un(
+        type: TPluggableMapRenderEventTypes | TPluggableMapRenderEventTypes[],
+        listener: ListenerFunction<RenderEvent>,
+    ): void;
 }

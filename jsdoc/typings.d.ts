@@ -1,4 +1,4 @@
-declare var env: any;
+declare const env: any;
 
 interface DefinitionConfig {
     extraOptions?: boolean;
@@ -176,4 +176,11 @@ interface ParseCompleteEvent {
 
 interface NewDocletEvent {
     doclet: Doclet;
+}
+
+interface CommentFoundEvent {
+    filename: string;
+    comment: string;
+    lineno: number;
+    columnno: number;
 }

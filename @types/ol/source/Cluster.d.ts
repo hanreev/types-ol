@@ -9,11 +9,22 @@ import Projection from '../proj/Projection';
 import { AttributionLike } from './Source';
 import VectorSource, { VectorSourceEvent } from './Vector';
 
+export type TClusterVectorSourceEventTypes =
+    | 'addfeature'
+    | 'changefeature'
+    | 'clear'
+    | 'featuresloadend'
+    | 'featuresloaderror'
+    | 'featuresloadstart'
+    | 'removefeature';
+export type TClusterBaseEventTypes = 'change' | 'error';
+export type TClusterObjectEventTypes = 'propertychange';
 export interface Options {
     attributions?: AttributionLike;
     distance?: number;
     minDistance?: number;
     geometryFunction?: (p0: Feature<Geometry>) => Point;
+    createCluster?: (p0: Point, p1: Feature[]) => Feature<Geometry>;
     source?: VectorSource<Geometry>;
     wrapX?: boolean;
 }
@@ -67,39 +78,22 @@ export default class Cluster extends VectorSource {
      * Update the distances and refresh the source if necessary.
      */
     updateDistance(distance: number, minDistance: number): void;
-    on(type: string, listener: ListenerFunction): EventsKey;
-    on(type: string[], listener: ListenerFunction): EventsKey[];
-    once(type: string, listener: ListenerFunction): EventsKey;
-    once(type: string[], listener: ListenerFunction): EventsKey[];
-    un(type: string | string[], listener: ListenerFunction): void;
-    on(type: 'addfeature', listener: (evt: VectorSourceEvent<Geometry>) => void): EventsKey;
-    once(type: 'addfeature', listener: (evt: VectorSourceEvent<Geometry>) => void): EventsKey;
-    un(type: 'addfeature', listener: (evt: VectorSourceEvent<Geometry>) => void): void;
-    on(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
-    once(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
-    un(type: 'change', listener: (evt: BaseEvent) => void): void;
-    on(type: 'changefeature', listener: (evt: VectorSourceEvent<Geometry>) => void): EventsKey;
-    once(type: 'changefeature', listener: (evt: VectorSourceEvent<Geometry>) => void): EventsKey;
-    un(type: 'changefeature', listener: (evt: VectorSourceEvent<Geometry>) => void): void;
-    on(type: 'clear', listener: (evt: VectorSourceEvent<Geometry>) => void): EventsKey;
-    once(type: 'clear', listener: (evt: VectorSourceEvent<Geometry>) => void): EventsKey;
-    un(type: 'clear', listener: (evt: VectorSourceEvent<Geometry>) => void): void;
-    on(type: 'error', listener: (evt: BaseEvent) => void): EventsKey;
-    once(type: 'error', listener: (evt: BaseEvent) => void): EventsKey;
-    un(type: 'error', listener: (evt: BaseEvent) => void): void;
-    on(type: 'featuresloadend', listener: (evt: VectorSourceEvent<Geometry>) => void): EventsKey;
-    once(type: 'featuresloadend', listener: (evt: VectorSourceEvent<Geometry>) => void): EventsKey;
-    un(type: 'featuresloadend', listener: (evt: VectorSourceEvent<Geometry>) => void): void;
-    on(type: 'featuresloaderror', listener: (evt: VectorSourceEvent<Geometry>) => void): EventsKey;
-    once(type: 'featuresloaderror', listener: (evt: VectorSourceEvent<Geometry>) => void): EventsKey;
-    un(type: 'featuresloaderror', listener: (evt: VectorSourceEvent<Geometry>) => void): void;
-    on(type: 'featuresloadstart', listener: (evt: VectorSourceEvent<Geometry>) => void): EventsKey;
-    once(type: 'featuresloadstart', listener: (evt: VectorSourceEvent<Geometry>) => void): EventsKey;
-    un(type: 'featuresloadstart', listener: (evt: VectorSourceEvent<Geometry>) => void): void;
-    on(type: 'propertychange', listener: (evt: ObjectEvent) => void): EventsKey;
-    once(type: 'propertychange', listener: (evt: ObjectEvent) => void): EventsKey;
-    un(type: 'propertychange', listener: (evt: ObjectEvent) => void): void;
-    on(type: 'removefeature', listener: (evt: VectorSourceEvent<Geometry>) => void): EventsKey;
-    once(type: 'removefeature', listener: (evt: VectorSourceEvent<Geometry>) => void): EventsKey;
-    un(type: 'removefeature', listener: (evt: VectorSourceEvent<Geometry>) => void): void;
+    on(type: TClusterVectorSourceEventTypes, listener: ListenerFunction<VectorSourceEvent<Geometry>>): EventsKey;
+    on(type: TClusterVectorSourceEventTypes[], listener: ListenerFunction<VectorSourceEvent<Geometry>>): EventsKey[];
+    once(type: TClusterVectorSourceEventTypes, listener: ListenerFunction<VectorSourceEvent<Geometry>>): EventsKey;
+    once(type: TClusterVectorSourceEventTypes[], listener: ListenerFunction<VectorSourceEvent<Geometry>>): EventsKey[];
+    un(
+        type: TClusterVectorSourceEventTypes | TClusterVectorSourceEventTypes[],
+        listener: ListenerFunction<VectorSourceEvent<Geometry>>,
+    ): void;
+    on(type: TClusterBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
+    on(type: TClusterBaseEventTypes[], listener: ListenerFunction<BaseEvent>): EventsKey[];
+    once(type: TClusterBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
+    once(type: TClusterBaseEventTypes[], listener: ListenerFunction<BaseEvent>): EventsKey[];
+    un(type: TClusterBaseEventTypes | TClusterBaseEventTypes[], listener: ListenerFunction<BaseEvent>): void;
+    on(type: TClusterObjectEventTypes, listener: ListenerFunction<ObjectEvent>): EventsKey;
+    on(type: TClusterObjectEventTypes[], listener: ListenerFunction<ObjectEvent>): EventsKey[];
+    once(type: TClusterObjectEventTypes, listener: ListenerFunction<ObjectEvent>): EventsKey;
+    once(type: TClusterObjectEventTypes[], listener: ListenerFunction<ObjectEvent>): EventsKey[];
+    un(type: TClusterObjectEventTypes | TClusterObjectEventTypes[], listener: ListenerFunction<ObjectEvent>): void;
 }

@@ -12,6 +12,9 @@ import Layer from '../layer/Layer';
 import Source from '../source/Source';
 import PointerInteraction from './Pointer';
 
+export type TTranslateBaseEventTypes = 'change' | 'error';
+export type TTranslateObjectEventTypes = 'change:active' | 'propertychange';
+export type TTranslateTranslateEventTypes = 'translateend' | 'translatestart' | 'translating';
 /**
  * A function that takes an {@link module:ol/Feature} or
  * {@link module:ol/render/Feature} and an
@@ -64,32 +67,24 @@ export default class Translate extends PointerInteraction {
      * the map here.
      */
     setMap(map: PluggableMap): void;
-    on(type: string, listener: ListenerFunction): EventsKey;
-    on(type: string[], listener: ListenerFunction): EventsKey[];
-    once(type: string, listener: ListenerFunction): EventsKey;
-    once(type: string[], listener: ListenerFunction): EventsKey[];
-    un(type: string | string[], listener: ListenerFunction): void;
-    on(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
-    once(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
-    un(type: 'change', listener: (evt: BaseEvent) => void): void;
-    on(type: 'change:active', listener: (evt: ObjectEvent) => void): EventsKey;
-    once(type: 'change:active', listener: (evt: ObjectEvent) => void): EventsKey;
-    un(type: 'change:active', listener: (evt: ObjectEvent) => void): void;
-    on(type: 'error', listener: (evt: BaseEvent) => void): EventsKey;
-    once(type: 'error', listener: (evt: BaseEvent) => void): EventsKey;
-    un(type: 'error', listener: (evt: BaseEvent) => void): void;
-    on(type: 'propertychange', listener: (evt: ObjectEvent) => void): EventsKey;
-    once(type: 'propertychange', listener: (evt: ObjectEvent) => void): EventsKey;
-    un(type: 'propertychange', listener: (evt: ObjectEvent) => void): void;
-    on(type: 'translateend', listener: (evt: TranslateEvent) => void): EventsKey;
-    once(type: 'translateend', listener: (evt: TranslateEvent) => void): EventsKey;
-    un(type: 'translateend', listener: (evt: TranslateEvent) => void): void;
-    on(type: 'translatestart', listener: (evt: TranslateEvent) => void): EventsKey;
-    once(type: 'translatestart', listener: (evt: TranslateEvent) => void): EventsKey;
-    un(type: 'translatestart', listener: (evt: TranslateEvent) => void): void;
-    on(type: 'translating', listener: (evt: TranslateEvent) => void): EventsKey;
-    once(type: 'translating', listener: (evt: TranslateEvent) => void): EventsKey;
-    un(type: 'translating', listener: (evt: TranslateEvent) => void): void;
+    on(type: TTranslateBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
+    on(type: TTranslateBaseEventTypes[], listener: ListenerFunction<BaseEvent>): EventsKey[];
+    once(type: TTranslateBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
+    once(type: TTranslateBaseEventTypes[], listener: ListenerFunction<BaseEvent>): EventsKey[];
+    un(type: TTranslateBaseEventTypes | TTranslateBaseEventTypes[], listener: ListenerFunction<BaseEvent>): void;
+    on(type: TTranslateObjectEventTypes, listener: ListenerFunction<ObjectEvent>): EventsKey;
+    on(type: TTranslateObjectEventTypes[], listener: ListenerFunction<ObjectEvent>): EventsKey[];
+    once(type: TTranslateObjectEventTypes, listener: ListenerFunction<ObjectEvent>): EventsKey;
+    once(type: TTranslateObjectEventTypes[], listener: ListenerFunction<ObjectEvent>): EventsKey[];
+    un(type: TTranslateObjectEventTypes | TTranslateObjectEventTypes[], listener: ListenerFunction<ObjectEvent>): void;
+    on(type: TTranslateTranslateEventTypes, listener: ListenerFunction<TranslateEvent>): EventsKey;
+    on(type: TTranslateTranslateEventTypes[], listener: ListenerFunction<TranslateEvent>): EventsKey[];
+    once(type: TTranslateTranslateEventTypes, listener: ListenerFunction<TranslateEvent>): EventsKey;
+    once(type: TTranslateTranslateEventTypes[], listener: ListenerFunction<TranslateEvent>): EventsKey[];
+    un(
+        type: TTranslateTranslateEventTypes | TTranslateTranslateEventTypes[],
+        listener: ListenerFunction<TranslateEvent>,
+    ): void;
 }
 export class TranslateEvent extends BaseEvent {
     constructor(

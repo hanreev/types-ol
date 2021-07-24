@@ -8,6 +8,8 @@ import GeometryType from './GeometryType';
 import LineString from './LineString';
 import SimpleGeometry from './SimpleGeometry';
 
+export type TMultiLineStringBaseEventTypes = 'change' | 'error';
+export type TMultiLineStringObjectEventTypes = 'propertychange';
 export default class MultiLineString extends SimpleGeometry {
     constructor(
         coordinates: (Coordinate[] | LineString)[] | number[],
@@ -65,18 +67,20 @@ export default class MultiLineString extends SimpleGeometry {
      * Set the coordinates of the multilinestring.
      */
     setCoordinates(coordinates: Coordinate[][], opt_layout?: GeometryLayout): void;
-    on(type: string, listener: ListenerFunction): EventsKey;
-    on(type: string[], listener: ListenerFunction): EventsKey[];
-    once(type: string, listener: ListenerFunction): EventsKey;
-    once(type: string[], listener: ListenerFunction): EventsKey[];
-    un(type: string | string[], listener: ListenerFunction): void;
-    on(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
-    once(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
-    un(type: 'change', listener: (evt: BaseEvent) => void): void;
-    on(type: 'error', listener: (evt: BaseEvent) => void): EventsKey;
-    once(type: 'error', listener: (evt: BaseEvent) => void): EventsKey;
-    un(type: 'error', listener: (evt: BaseEvent) => void): void;
-    on(type: 'propertychange', listener: (evt: ObjectEvent) => void): EventsKey;
-    once(type: 'propertychange', listener: (evt: ObjectEvent) => void): EventsKey;
-    un(type: 'propertychange', listener: (evt: ObjectEvent) => void): void;
+    on(type: TMultiLineStringBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
+    on(type: TMultiLineStringBaseEventTypes[], listener: ListenerFunction<BaseEvent>): EventsKey[];
+    once(type: TMultiLineStringBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
+    once(type: TMultiLineStringBaseEventTypes[], listener: ListenerFunction<BaseEvent>): EventsKey[];
+    un(
+        type: TMultiLineStringBaseEventTypes | TMultiLineStringBaseEventTypes[],
+        listener: ListenerFunction<BaseEvent>,
+    ): void;
+    on(type: TMultiLineStringObjectEventTypes, listener: ListenerFunction<ObjectEvent>): EventsKey;
+    on(type: TMultiLineStringObjectEventTypes[], listener: ListenerFunction<ObjectEvent>): EventsKey[];
+    once(type: TMultiLineStringObjectEventTypes, listener: ListenerFunction<ObjectEvent>): EventsKey;
+    once(type: TMultiLineStringObjectEventTypes[], listener: ListenerFunction<ObjectEvent>): EventsKey[];
+    un(
+        type: TMultiLineStringObjectEventTypes | TMultiLineStringObjectEventTypes[],
+        listener: ListenerFunction<ObjectEvent>,
+    ): void;
 }

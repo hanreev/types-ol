@@ -16,6 +16,7 @@ import { FeatureCallback } from '../vector';
 import CanvasLayerRenderer from './Layer';
 import RBush from 'rbush';
 
+export type TCanvasVectorLayerRendererBaseEventTypes = 'change' | 'error';
 export default class CanvasVectorLayerRenderer extends CanvasLayerRenderer {
     constructor(vectorLayer: VectorLayer<VectorSource<Geometry>>);
     forEachFeatureAtCoordinate<T>(
@@ -58,15 +59,12 @@ export default class CanvasVectorLayerRenderer extends CanvasLayerRenderer {
      * Get a rendering container from an existing target, if compatible.
      */
     useContainer(target: HTMLElement, transform: string, opacity: number): void;
-    on(type: string, listener: ListenerFunction): EventsKey;
-    on(type: string[], listener: ListenerFunction): EventsKey[];
-    once(type: string, listener: ListenerFunction): EventsKey;
-    once(type: string[], listener: ListenerFunction): EventsKey[];
-    un(type: string | string[], listener: ListenerFunction): void;
-    on(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
-    once(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
-    un(type: 'change', listener: (evt: BaseEvent) => void): void;
-    on(type: 'error', listener: (evt: BaseEvent) => void): EventsKey;
-    once(type: 'error', listener: (evt: BaseEvent) => void): EventsKey;
-    un(type: 'error', listener: (evt: BaseEvent) => void): void;
+    on(type: TCanvasVectorLayerRendererBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
+    on(type: TCanvasVectorLayerRendererBaseEventTypes[], listener: ListenerFunction<BaseEvent>): EventsKey[];
+    once(type: TCanvasVectorLayerRendererBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
+    once(type: TCanvasVectorLayerRendererBaseEventTypes[], listener: ListenerFunction<BaseEvent>): EventsKey[];
+    un(
+        type: TCanvasVectorLayerRendererBaseEventTypes | TCanvasVectorLayerRendererBaseEventTypes[],
+        listener: ListenerFunction<BaseEvent>,
+    ): void;
 }

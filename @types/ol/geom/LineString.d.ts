@@ -7,6 +7,8 @@ import GeometryLayout from './GeometryLayout';
 import GeometryType from './GeometryType';
 import SimpleGeometry from './SimpleGeometry';
 
+export type TLineStringBaseEventTypes = 'change' | 'error';
+export type TLineStringObjectEventTypes = 'propertychange';
 export default class LineString extends SimpleGeometry {
     constructor(coordinates: Coordinate[] | number[], opt_layout?: GeometryLayout);
     protected getSimplifiedGeometryInternal(squaredTolerance: number): LineString;
@@ -61,18 +63,17 @@ export default class LineString extends SimpleGeometry {
      * Set the coordinates of the linestring.
      */
     setCoordinates(coordinates: Coordinate[], opt_layout?: GeometryLayout): void;
-    on(type: string, listener: ListenerFunction): EventsKey;
-    on(type: string[], listener: ListenerFunction): EventsKey[];
-    once(type: string, listener: ListenerFunction): EventsKey;
-    once(type: string[], listener: ListenerFunction): EventsKey[];
-    un(type: string | string[], listener: ListenerFunction): void;
-    on(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
-    once(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
-    un(type: 'change', listener: (evt: BaseEvent) => void): void;
-    on(type: 'error', listener: (evt: BaseEvent) => void): EventsKey;
-    once(type: 'error', listener: (evt: BaseEvent) => void): EventsKey;
-    un(type: 'error', listener: (evt: BaseEvent) => void): void;
-    on(type: 'propertychange', listener: (evt: ObjectEvent) => void): EventsKey;
-    once(type: 'propertychange', listener: (evt: ObjectEvent) => void): EventsKey;
-    un(type: 'propertychange', listener: (evt: ObjectEvent) => void): void;
+    on(type: TLineStringBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
+    on(type: TLineStringBaseEventTypes[], listener: ListenerFunction<BaseEvent>): EventsKey[];
+    once(type: TLineStringBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
+    once(type: TLineStringBaseEventTypes[], listener: ListenerFunction<BaseEvent>): EventsKey[];
+    un(type: TLineStringBaseEventTypes | TLineStringBaseEventTypes[], listener: ListenerFunction<BaseEvent>): void;
+    on(type: TLineStringObjectEventTypes, listener: ListenerFunction<ObjectEvent>): EventsKey;
+    on(type: TLineStringObjectEventTypes[], listener: ListenerFunction<ObjectEvent>): EventsKey[];
+    once(type: TLineStringObjectEventTypes, listener: ListenerFunction<ObjectEvent>): EventsKey;
+    once(type: TLineStringObjectEventTypes[], listener: ListenerFunction<ObjectEvent>): EventsKey[];
+    un(
+        type: TLineStringObjectEventTypes | TLineStringObjectEventTypes[],
+        listener: ListenerFunction<ObjectEvent>,
+    ): void;
 }

@@ -9,6 +9,9 @@ import { Size } from '../size';
 import ImageSource, { ImageSourceEvent } from './Image';
 import { AttributionLike } from './Source';
 
+export type TStaticBaseEventTypes = 'change' | 'error';
+export type TStaticImageSourceEventTypes = 'imageloadend' | 'imageloaderror' | 'imageloadstart';
+export type TStaticObjectEventTypes = 'propertychange';
 export interface Options {
     attributions?: AttributionLike;
     crossOrigin?: null | string;
@@ -31,27 +34,22 @@ export default class Static extends ImageSource {
      */
     getUrl(): string;
     handleImageChange(evt: BaseEvent): void;
-    on(type: string, listener: ListenerFunction): EventsKey;
-    on(type: string[], listener: ListenerFunction): EventsKey[];
-    once(type: string, listener: ListenerFunction): EventsKey;
-    once(type: string[], listener: ListenerFunction): EventsKey[];
-    un(type: string | string[], listener: ListenerFunction): void;
-    on(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
-    once(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
-    un(type: 'change', listener: (evt: BaseEvent) => void): void;
-    on(type: 'error', listener: (evt: BaseEvent) => void): EventsKey;
-    once(type: 'error', listener: (evt: BaseEvent) => void): EventsKey;
-    un(type: 'error', listener: (evt: BaseEvent) => void): void;
-    on(type: 'imageloadend', listener: (evt: ImageSourceEvent) => void): EventsKey;
-    once(type: 'imageloadend', listener: (evt: ImageSourceEvent) => void): EventsKey;
-    un(type: 'imageloadend', listener: (evt: ImageSourceEvent) => void): void;
-    on(type: 'imageloaderror', listener: (evt: ImageSourceEvent) => void): EventsKey;
-    once(type: 'imageloaderror', listener: (evt: ImageSourceEvent) => void): EventsKey;
-    un(type: 'imageloaderror', listener: (evt: ImageSourceEvent) => void): void;
-    on(type: 'imageloadstart', listener: (evt: ImageSourceEvent) => void): EventsKey;
-    once(type: 'imageloadstart', listener: (evt: ImageSourceEvent) => void): EventsKey;
-    un(type: 'imageloadstart', listener: (evt: ImageSourceEvent) => void): void;
-    on(type: 'propertychange', listener: (evt: ObjectEvent) => void): EventsKey;
-    once(type: 'propertychange', listener: (evt: ObjectEvent) => void): EventsKey;
-    un(type: 'propertychange', listener: (evt: ObjectEvent) => void): void;
+    on(type: TStaticBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
+    on(type: TStaticBaseEventTypes[], listener: ListenerFunction<BaseEvent>): EventsKey[];
+    once(type: TStaticBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
+    once(type: TStaticBaseEventTypes[], listener: ListenerFunction<BaseEvent>): EventsKey[];
+    un(type: TStaticBaseEventTypes | TStaticBaseEventTypes[], listener: ListenerFunction<BaseEvent>): void;
+    on(type: TStaticImageSourceEventTypes, listener: ListenerFunction<ImageSourceEvent>): EventsKey;
+    on(type: TStaticImageSourceEventTypes[], listener: ListenerFunction<ImageSourceEvent>): EventsKey[];
+    once(type: TStaticImageSourceEventTypes, listener: ListenerFunction<ImageSourceEvent>): EventsKey;
+    once(type: TStaticImageSourceEventTypes[], listener: ListenerFunction<ImageSourceEvent>): EventsKey[];
+    un(
+        type: TStaticImageSourceEventTypes | TStaticImageSourceEventTypes[],
+        listener: ListenerFunction<ImageSourceEvent>,
+    ): void;
+    on(type: TStaticObjectEventTypes, listener: ListenerFunction<ObjectEvent>): EventsKey;
+    on(type: TStaticObjectEventTypes[], listener: ListenerFunction<ObjectEvent>): EventsKey[];
+    once(type: TStaticObjectEventTypes, listener: ListenerFunction<ObjectEvent>): EventsKey;
+    once(type: TStaticObjectEventTypes[], listener: ListenerFunction<ObjectEvent>): EventsKey[];
+    un(type: TStaticObjectEventTypes | TStaticObjectEventTypes[], listener: ListenerFunction<ObjectEvent>): void;
 }

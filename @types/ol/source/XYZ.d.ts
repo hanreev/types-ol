@@ -10,6 +10,9 @@ import { AttributionLike } from './Source';
 import { TileSourceEvent } from './Tile';
 import TileImage from './TileImage';
 
+export type TXYZBaseEventTypes = 'change' | 'error';
+export type TXYZObjectEventTypes = 'propertychange';
+export type TXYZTileSourceEventTypes = 'tileloadend' | 'tileloaderror' | 'tileloadstart';
 export interface Options {
     attributions?: AttributionLike;
     attributionsCollapsible?: boolean;
@@ -35,27 +38,19 @@ export interface Options {
 }
 export default class XYZ extends TileImage {
     constructor(opt_options?: Options);
-    on(type: string, listener: ListenerFunction): EventsKey;
-    on(type: string[], listener: ListenerFunction): EventsKey[];
-    once(type: string, listener: ListenerFunction): EventsKey;
-    once(type: string[], listener: ListenerFunction): EventsKey[];
-    un(type: string | string[], listener: ListenerFunction): void;
-    on(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
-    once(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
-    un(type: 'change', listener: (evt: BaseEvent) => void): void;
-    on(type: 'error', listener: (evt: BaseEvent) => void): EventsKey;
-    once(type: 'error', listener: (evt: BaseEvent) => void): EventsKey;
-    un(type: 'error', listener: (evt: BaseEvent) => void): void;
-    on(type: 'propertychange', listener: (evt: ObjectEvent) => void): EventsKey;
-    once(type: 'propertychange', listener: (evt: ObjectEvent) => void): EventsKey;
-    un(type: 'propertychange', listener: (evt: ObjectEvent) => void): void;
-    on(type: 'tileloadend', listener: (evt: TileSourceEvent) => void): EventsKey;
-    once(type: 'tileloadend', listener: (evt: TileSourceEvent) => void): EventsKey;
-    un(type: 'tileloadend', listener: (evt: TileSourceEvent) => void): void;
-    on(type: 'tileloaderror', listener: (evt: TileSourceEvent) => void): EventsKey;
-    once(type: 'tileloaderror', listener: (evt: TileSourceEvent) => void): EventsKey;
-    un(type: 'tileloaderror', listener: (evt: TileSourceEvent) => void): void;
-    on(type: 'tileloadstart', listener: (evt: TileSourceEvent) => void): EventsKey;
-    once(type: 'tileloadstart', listener: (evt: TileSourceEvent) => void): EventsKey;
-    un(type: 'tileloadstart', listener: (evt: TileSourceEvent) => void): void;
+    on(type: TXYZBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
+    on(type: TXYZBaseEventTypes[], listener: ListenerFunction<BaseEvent>): EventsKey[];
+    once(type: TXYZBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
+    once(type: TXYZBaseEventTypes[], listener: ListenerFunction<BaseEvent>): EventsKey[];
+    un(type: TXYZBaseEventTypes | TXYZBaseEventTypes[], listener: ListenerFunction<BaseEvent>): void;
+    on(type: TXYZObjectEventTypes, listener: ListenerFunction<ObjectEvent>): EventsKey;
+    on(type: TXYZObjectEventTypes[], listener: ListenerFunction<ObjectEvent>): EventsKey[];
+    once(type: TXYZObjectEventTypes, listener: ListenerFunction<ObjectEvent>): EventsKey;
+    once(type: TXYZObjectEventTypes[], listener: ListenerFunction<ObjectEvent>): EventsKey[];
+    un(type: TXYZObjectEventTypes | TXYZObjectEventTypes[], listener: ListenerFunction<ObjectEvent>): void;
+    on(type: TXYZTileSourceEventTypes, listener: ListenerFunction<TileSourceEvent>): EventsKey;
+    on(type: TXYZTileSourceEventTypes[], listener: ListenerFunction<TileSourceEvent>): EventsKey[];
+    once(type: TXYZTileSourceEventTypes, listener: ListenerFunction<TileSourceEvent>): EventsKey;
+    once(type: TXYZTileSourceEventTypes[], listener: ListenerFunction<TileSourceEvent>): EventsKey[];
+    un(type: TXYZTileSourceEventTypes | TXYZTileSourceEventTypes[], listener: ListenerFunction<TileSourceEvent>): void;
 }

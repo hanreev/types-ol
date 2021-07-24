@@ -6,6 +6,8 @@ import { ProjectionLike } from '../proj';
 import Projection from '../proj/Projection';
 import State from './State';
 
+export type TSourceBaseEventTypes = 'change' | 'error';
+export type TSourceObjectEventTypes = 'propertychange';
 /**
  * A function that takes a {@link module:ol/PluggableMap~FrameState} and returns a string or
  * an array of strings representing source attributions.
@@ -59,18 +61,14 @@ export default abstract class Source extends BaseObject {
      * Set the state of the source.
      */
     setState(state: State): void;
-    on(type: string, listener: ListenerFunction): EventsKey;
-    on(type: string[], listener: ListenerFunction): EventsKey[];
-    once(type: string, listener: ListenerFunction): EventsKey;
-    once(type: string[], listener: ListenerFunction): EventsKey[];
-    un(type: string | string[], listener: ListenerFunction): void;
-    on(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
-    once(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
-    un(type: 'change', listener: (evt: BaseEvent) => void): void;
-    on(type: 'error', listener: (evt: BaseEvent) => void): EventsKey;
-    once(type: 'error', listener: (evt: BaseEvent) => void): EventsKey;
-    un(type: 'error', listener: (evt: BaseEvent) => void): void;
-    on(type: 'propertychange', listener: (evt: ObjectEvent) => void): EventsKey;
-    once(type: 'propertychange', listener: (evt: ObjectEvent) => void): EventsKey;
-    un(type: 'propertychange', listener: (evt: ObjectEvent) => void): void;
+    on(type: TSourceBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
+    on(type: TSourceBaseEventTypes[], listener: ListenerFunction<BaseEvent>): EventsKey[];
+    once(type: TSourceBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
+    once(type: TSourceBaseEventTypes[], listener: ListenerFunction<BaseEvent>): EventsKey[];
+    un(type: TSourceBaseEventTypes | TSourceBaseEventTypes[], listener: ListenerFunction<BaseEvent>): void;
+    on(type: TSourceObjectEventTypes, listener: ListenerFunction<ObjectEvent>): EventsKey;
+    on(type: TSourceObjectEventTypes[], listener: ListenerFunction<ObjectEvent>): EventsKey[];
+    once(type: TSourceObjectEventTypes, listener: ListenerFunction<ObjectEvent>): EventsKey;
+    once(type: TSourceObjectEventTypes[], listener: ListenerFunction<ObjectEvent>): EventsKey[];
+    un(type: TSourceObjectEventTypes | TSourceObjectEventTypes[], listener: ListenerFunction<ObjectEvent>): void;
 }

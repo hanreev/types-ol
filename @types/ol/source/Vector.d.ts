@@ -11,6 +11,16 @@ import Geometry from '../geom/Geometry';
 import Projection from '../proj/Projection';
 import Source, { AttributionLike } from './Source';
 
+export type TVectorSourceVectorSourceEventTypes =
+    | 'addfeature'
+    | 'changefeature'
+    | 'clear'
+    | 'featuresloadend'
+    | 'featuresloaderror'
+    | 'featuresloadstart'
+    | 'removefeature';
+export type TVectorSourceBaseEventTypes = 'change' | 'error';
+export type TVectorSourceObjectEventTypes = 'propertychange';
 /**
  * A function that takes an {@link module:ol/extent~Extent} and a resolution as arguments, and
  * returns an array of {@link module:ol/extent~Extent} with the extents to load. Usually this
@@ -174,41 +184,33 @@ export default class VectorSource<G extends Geometry = Geometry> extends Source 
      * Points the source to a new url. The next render cycle will use the new url.
      */
     setUrl(url: string | FeatureUrlFunction): void;
-    on(type: string, listener: ListenerFunction): EventsKey;
-    on(type: string[], listener: ListenerFunction): EventsKey[];
-    once(type: string, listener: ListenerFunction): EventsKey;
-    once(type: string[], listener: ListenerFunction): EventsKey[];
-    un(type: string | string[], listener: ListenerFunction): void;
-    on(type: 'addfeature', listener: (evt: VectorSourceEvent<Geometry>) => void): EventsKey;
-    once(type: 'addfeature', listener: (evt: VectorSourceEvent<Geometry>) => void): EventsKey;
-    un(type: 'addfeature', listener: (evt: VectorSourceEvent<Geometry>) => void): void;
-    on(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
-    once(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
-    un(type: 'change', listener: (evt: BaseEvent) => void): void;
-    on(type: 'changefeature', listener: (evt: VectorSourceEvent<Geometry>) => void): EventsKey;
-    once(type: 'changefeature', listener: (evt: VectorSourceEvent<Geometry>) => void): EventsKey;
-    un(type: 'changefeature', listener: (evt: VectorSourceEvent<Geometry>) => void): void;
-    on(type: 'clear', listener: (evt: VectorSourceEvent<Geometry>) => void): EventsKey;
-    once(type: 'clear', listener: (evt: VectorSourceEvent<Geometry>) => void): EventsKey;
-    un(type: 'clear', listener: (evt: VectorSourceEvent<Geometry>) => void): void;
-    on(type: 'error', listener: (evt: BaseEvent) => void): EventsKey;
-    once(type: 'error', listener: (evt: BaseEvent) => void): EventsKey;
-    un(type: 'error', listener: (evt: BaseEvent) => void): void;
-    on(type: 'featuresloadend', listener: (evt: VectorSourceEvent<Geometry>) => void): EventsKey;
-    once(type: 'featuresloadend', listener: (evt: VectorSourceEvent<Geometry>) => void): EventsKey;
-    un(type: 'featuresloadend', listener: (evt: VectorSourceEvent<Geometry>) => void): void;
-    on(type: 'featuresloaderror', listener: (evt: VectorSourceEvent<Geometry>) => void): EventsKey;
-    once(type: 'featuresloaderror', listener: (evt: VectorSourceEvent<Geometry>) => void): EventsKey;
-    un(type: 'featuresloaderror', listener: (evt: VectorSourceEvent<Geometry>) => void): void;
-    on(type: 'featuresloadstart', listener: (evt: VectorSourceEvent<Geometry>) => void): EventsKey;
-    once(type: 'featuresloadstart', listener: (evt: VectorSourceEvent<Geometry>) => void): EventsKey;
-    un(type: 'featuresloadstart', listener: (evt: VectorSourceEvent<Geometry>) => void): void;
-    on(type: 'propertychange', listener: (evt: ObjectEvent) => void): EventsKey;
-    once(type: 'propertychange', listener: (evt: ObjectEvent) => void): EventsKey;
-    un(type: 'propertychange', listener: (evt: ObjectEvent) => void): void;
-    on(type: 'removefeature', listener: (evt: VectorSourceEvent<Geometry>) => void): EventsKey;
-    once(type: 'removefeature', listener: (evt: VectorSourceEvent<Geometry>) => void): EventsKey;
-    un(type: 'removefeature', listener: (evt: VectorSourceEvent<Geometry>) => void): void;
+    on(type: TVectorSourceVectorSourceEventTypes, listener: ListenerFunction<VectorSourceEvent<Geometry>>): EventsKey;
+    on(
+        type: TVectorSourceVectorSourceEventTypes[],
+        listener: ListenerFunction<VectorSourceEvent<Geometry>>,
+    ): EventsKey[];
+    once(type: TVectorSourceVectorSourceEventTypes, listener: ListenerFunction<VectorSourceEvent<Geometry>>): EventsKey;
+    once(
+        type: TVectorSourceVectorSourceEventTypes[],
+        listener: ListenerFunction<VectorSourceEvent<Geometry>>,
+    ): EventsKey[];
+    un(
+        type: TVectorSourceVectorSourceEventTypes | TVectorSourceVectorSourceEventTypes[],
+        listener: ListenerFunction<VectorSourceEvent<Geometry>>,
+    ): void;
+    on(type: TVectorSourceBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
+    on(type: TVectorSourceBaseEventTypes[], listener: ListenerFunction<BaseEvent>): EventsKey[];
+    once(type: TVectorSourceBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
+    once(type: TVectorSourceBaseEventTypes[], listener: ListenerFunction<BaseEvent>): EventsKey[];
+    un(type: TVectorSourceBaseEventTypes | TVectorSourceBaseEventTypes[], listener: ListenerFunction<BaseEvent>): void;
+    on(type: TVectorSourceObjectEventTypes, listener: ListenerFunction<ObjectEvent>): EventsKey;
+    on(type: TVectorSourceObjectEventTypes[], listener: ListenerFunction<ObjectEvent>): EventsKey[];
+    once(type: TVectorSourceObjectEventTypes, listener: ListenerFunction<ObjectEvent>): EventsKey;
+    once(type: TVectorSourceObjectEventTypes[], listener: ListenerFunction<ObjectEvent>): EventsKey[];
+    un(
+        type: TVectorSourceObjectEventTypes | TVectorSourceObjectEventTypes[],
+        listener: ListenerFunction<ObjectEvent>,
+    ): void;
 }
 export class VectorSourceEvent<G extends Geometry = Geometry> extends BaseEvent {
     constructor(type: string, opt_feature?: Feature<G>, opt_features?: Feature<G>[]);

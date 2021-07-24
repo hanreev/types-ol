@@ -17,6 +17,9 @@ import VectorSource from '../source/Vector';
 import { StyleLike } from '../style/Style';
 import PointerInteraction from './Pointer';
 
+export type TDrawBaseEventTypes = 'change' | 'error';
+export type TDrawObjectEventTypes = 'change:active' | 'propertychange';
+export type TDrawDrawEventTypes = 'drawabort' | 'drawend' | 'drawstart';
 /**
  * Function that takes an array of coordinates and an optional existing geometry
  * and a projection as arguments, and returns a geometry. The optional existing
@@ -119,32 +122,21 @@ export default class Draw extends PointerInteraction {
      * the map here.
      */
     setMap(map: PluggableMap): void;
-    on(type: string, listener: ListenerFunction): EventsKey;
-    on(type: string[], listener: ListenerFunction): EventsKey[];
-    once(type: string, listener: ListenerFunction): EventsKey;
-    once(type: string[], listener: ListenerFunction): EventsKey[];
-    un(type: string | string[], listener: ListenerFunction): void;
-    on(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
-    once(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
-    un(type: 'change', listener: (evt: BaseEvent) => void): void;
-    on(type: 'change:active', listener: (evt: ObjectEvent) => void): EventsKey;
-    once(type: 'change:active', listener: (evt: ObjectEvent) => void): EventsKey;
-    un(type: 'change:active', listener: (evt: ObjectEvent) => void): void;
-    on(type: 'drawabort', listener: (evt: DrawEvent) => void): EventsKey;
-    once(type: 'drawabort', listener: (evt: DrawEvent) => void): EventsKey;
-    un(type: 'drawabort', listener: (evt: DrawEvent) => void): void;
-    on(type: 'drawend', listener: (evt: DrawEvent) => void): EventsKey;
-    once(type: 'drawend', listener: (evt: DrawEvent) => void): EventsKey;
-    un(type: 'drawend', listener: (evt: DrawEvent) => void): void;
-    on(type: 'drawstart', listener: (evt: DrawEvent) => void): EventsKey;
-    once(type: 'drawstart', listener: (evt: DrawEvent) => void): EventsKey;
-    un(type: 'drawstart', listener: (evt: DrawEvent) => void): void;
-    on(type: 'error', listener: (evt: BaseEvent) => void): EventsKey;
-    once(type: 'error', listener: (evt: BaseEvent) => void): EventsKey;
-    un(type: 'error', listener: (evt: BaseEvent) => void): void;
-    on(type: 'propertychange', listener: (evt: ObjectEvent) => void): EventsKey;
-    once(type: 'propertychange', listener: (evt: ObjectEvent) => void): EventsKey;
-    un(type: 'propertychange', listener: (evt: ObjectEvent) => void): void;
+    on(type: TDrawBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
+    on(type: TDrawBaseEventTypes[], listener: ListenerFunction<BaseEvent>): EventsKey[];
+    once(type: TDrawBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
+    once(type: TDrawBaseEventTypes[], listener: ListenerFunction<BaseEvent>): EventsKey[];
+    un(type: TDrawBaseEventTypes | TDrawBaseEventTypes[], listener: ListenerFunction<BaseEvent>): void;
+    on(type: TDrawObjectEventTypes, listener: ListenerFunction<ObjectEvent>): EventsKey;
+    on(type: TDrawObjectEventTypes[], listener: ListenerFunction<ObjectEvent>): EventsKey[];
+    once(type: TDrawObjectEventTypes, listener: ListenerFunction<ObjectEvent>): EventsKey;
+    once(type: TDrawObjectEventTypes[], listener: ListenerFunction<ObjectEvent>): EventsKey[];
+    un(type: TDrawObjectEventTypes | TDrawObjectEventTypes[], listener: ListenerFunction<ObjectEvent>): void;
+    on(type: TDrawDrawEventTypes, listener: ListenerFunction<DrawEvent>): EventsKey;
+    on(type: TDrawDrawEventTypes[], listener: ListenerFunction<DrawEvent>): EventsKey[];
+    once(type: TDrawDrawEventTypes, listener: ListenerFunction<DrawEvent>): EventsKey;
+    once(type: TDrawDrawEventTypes[], listener: ListenerFunction<DrawEvent>): EventsKey[];
+    un(type: TDrawDrawEventTypes | TDrawDrawEventTypes[], listener: ListenerFunction<DrawEvent>): void;
 }
 export class DrawEvent extends BaseEvent {
     constructor(type: DrawEventType, feature: Feature<Geometry>);

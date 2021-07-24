@@ -9,6 +9,18 @@ import Layer from '../layer/Layer';
 import Source from '../source/Source';
 import Control from './Control';
 
+export type TControlledMapBaseEventTypes = 'change' | 'error';
+export type TControlledMapObjectEventTypes =
+    | 'change:layerGroup'
+    | 'change:size'
+    | 'change:target'
+    | 'change:view'
+    | 'propertychange';
+export type TControlledMapMapBrowserEventTypes = 'click' | 'dblclick' | 'pointerdrag' | 'pointermove' | 'singleclick';
+export type TControlledMapMapEventTypes = 'moveend' | 'movestart' | 'postrender';
+export type TControlledMapRenderEventTypes = 'postcompose' | 'precompose' | 'rendercomplete';
+export type TOverviewMapBaseEventTypes = 'change' | 'error';
+export type TOverviewMapObjectEventTypes = 'propertychange';
 export interface Options {
     className?: string;
     collapsed?: boolean;
@@ -60,18 +72,17 @@ export default class OverviewMap extends Control {
      * Set whether the overview map view should rotate with the main map view.
      */
     setRotateWithView(rotateWithView: boolean): void;
-    on(type: string, listener: ListenerFunction): EventsKey;
-    on(type: string[], listener: ListenerFunction): EventsKey[];
-    once(type: string, listener: ListenerFunction): EventsKey;
-    once(type: string[], listener: ListenerFunction): EventsKey[];
-    un(type: string | string[], listener: ListenerFunction): void;
-    on(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
-    once(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
-    un(type: 'change', listener: (evt: BaseEvent) => void): void;
-    on(type: 'error', listener: (evt: BaseEvent) => void): EventsKey;
-    once(type: 'error', listener: (evt: BaseEvent) => void): EventsKey;
-    un(type: 'error', listener: (evt: BaseEvent) => void): void;
-    on(type: 'propertychange', listener: (evt: ObjectEvent) => void): EventsKey;
-    once(type: 'propertychange', listener: (evt: ObjectEvent) => void): EventsKey;
-    un(type: 'propertychange', listener: (evt: ObjectEvent) => void): void;
+    on(type: TOverviewMapBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
+    on(type: TOverviewMapBaseEventTypes[], listener: ListenerFunction<BaseEvent>): EventsKey[];
+    once(type: TOverviewMapBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
+    once(type: TOverviewMapBaseEventTypes[], listener: ListenerFunction<BaseEvent>): EventsKey[];
+    un(type: TOverviewMapBaseEventTypes | TOverviewMapBaseEventTypes[], listener: ListenerFunction<BaseEvent>): void;
+    on(type: TOverviewMapObjectEventTypes, listener: ListenerFunction<ObjectEvent>): EventsKey;
+    on(type: TOverviewMapObjectEventTypes[], listener: ListenerFunction<ObjectEvent>): EventsKey[];
+    once(type: TOverviewMapObjectEventTypes, listener: ListenerFunction<ObjectEvent>): EventsKey;
+    once(type: TOverviewMapObjectEventTypes[], listener: ListenerFunction<ObjectEvent>): EventsKey[];
+    un(
+        type: TOverviewMapObjectEventTypes | TOverviewMapObjectEventTypes[],
+        listener: ListenerFunction<ObjectEvent>,
+    ): void;
 }

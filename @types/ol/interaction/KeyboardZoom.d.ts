@@ -5,6 +5,8 @@ import BaseEvent from '../events/Event';
 import { Condition } from '../events/condition';
 import Interaction from './Interaction';
 
+export type TKeyboardZoomBaseEventTypes = 'change' | 'error';
+export type TKeyboardZoomObjectEventTypes = 'change:active' | 'propertychange';
 export interface Options {
     duration?: number;
     condition?: Condition;
@@ -18,21 +20,17 @@ export default class KeyboardZoom extends Interaction {
      * key pressed was '+' or '-').
      */
     handleEvent(mapBrowserEvent: MapBrowserEvent<UIEvent>): boolean;
-    on(type: string, listener: ListenerFunction): EventsKey;
-    on(type: string[], listener: ListenerFunction): EventsKey[];
-    once(type: string, listener: ListenerFunction): EventsKey;
-    once(type: string[], listener: ListenerFunction): EventsKey[];
-    un(type: string | string[], listener: ListenerFunction): void;
-    on(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
-    once(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
-    un(type: 'change', listener: (evt: BaseEvent) => void): void;
-    on(type: 'change:active', listener: (evt: ObjectEvent) => void): EventsKey;
-    once(type: 'change:active', listener: (evt: ObjectEvent) => void): EventsKey;
-    un(type: 'change:active', listener: (evt: ObjectEvent) => void): void;
-    on(type: 'error', listener: (evt: BaseEvent) => void): EventsKey;
-    once(type: 'error', listener: (evt: BaseEvent) => void): EventsKey;
-    un(type: 'error', listener: (evt: BaseEvent) => void): void;
-    on(type: 'propertychange', listener: (evt: ObjectEvent) => void): EventsKey;
-    once(type: 'propertychange', listener: (evt: ObjectEvent) => void): EventsKey;
-    un(type: 'propertychange', listener: (evt: ObjectEvent) => void): void;
+    on(type: TKeyboardZoomBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
+    on(type: TKeyboardZoomBaseEventTypes[], listener: ListenerFunction<BaseEvent>): EventsKey[];
+    once(type: TKeyboardZoomBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
+    once(type: TKeyboardZoomBaseEventTypes[], listener: ListenerFunction<BaseEvent>): EventsKey[];
+    un(type: TKeyboardZoomBaseEventTypes | TKeyboardZoomBaseEventTypes[], listener: ListenerFunction<BaseEvent>): void;
+    on(type: TKeyboardZoomObjectEventTypes, listener: ListenerFunction<ObjectEvent>): EventsKey;
+    on(type: TKeyboardZoomObjectEventTypes[], listener: ListenerFunction<ObjectEvent>): EventsKey[];
+    once(type: TKeyboardZoomObjectEventTypes, listener: ListenerFunction<ObjectEvent>): EventsKey;
+    once(type: TKeyboardZoomObjectEventTypes[], listener: ListenerFunction<ObjectEvent>): EventsKey[];
+    un(
+        type: TKeyboardZoomObjectEventTypes | TKeyboardZoomObjectEventTypes[],
+        listener: ListenerFunction<ObjectEvent>,
+    ): void;
 }

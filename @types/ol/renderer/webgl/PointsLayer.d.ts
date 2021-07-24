@@ -12,6 +12,7 @@ import { HitMatch } from '../Map';
 import { FeatureCallback } from '../vector';
 import WebGLLayerRenderer, { PostProcessesOptions } from './Layer';
 
+export type TWebGLPointsLayerRendererBaseEventTypes = 'change' | 'error';
 /**
  * A description of a custom attribute to be passed on to the GPU, with a value different
  * for each feature.
@@ -69,15 +70,12 @@ export default class WebGLPointsLayerRenderer extends WebGLLayerRenderer {
      * Render the hit detection data to the corresponding render target
      */
     renderHitDetection(frameState: FrameState): void;
-    on(type: string, listener: ListenerFunction): EventsKey;
-    on(type: string[], listener: ListenerFunction): EventsKey[];
-    once(type: string, listener: ListenerFunction): EventsKey;
-    once(type: string[], listener: ListenerFunction): EventsKey[];
-    un(type: string | string[], listener: ListenerFunction): void;
-    on(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
-    once(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
-    un(type: 'change', listener: (evt: BaseEvent) => void): void;
-    on(type: 'error', listener: (evt: BaseEvent) => void): EventsKey;
-    once(type: 'error', listener: (evt: BaseEvent) => void): EventsKey;
-    un(type: 'error', listener: (evt: BaseEvent) => void): void;
+    on(type: TWebGLPointsLayerRendererBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
+    on(type: TWebGLPointsLayerRendererBaseEventTypes[], listener: ListenerFunction<BaseEvent>): EventsKey[];
+    once(type: TWebGLPointsLayerRendererBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
+    once(type: TWebGLPointsLayerRendererBaseEventTypes[], listener: ListenerFunction<BaseEvent>): EventsKey[];
+    un(
+        type: TWebGLPointsLayerRendererBaseEventTypes | TWebGLPointsLayerRendererBaseEventTypes[],
+        listener: ListenerFunction<BaseEvent>,
+    ): void;
 }

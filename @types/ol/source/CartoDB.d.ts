@@ -7,6 +7,9 @@ import { AttributionLike } from './Source';
 import { TileSourceEvent } from './Tile';
 import XYZ from './XYZ';
 
+export type TCartoDBBaseEventTypes = 'change' | 'error';
+export type TCartoDBObjectEventTypes = 'propertychange';
+export type TCartoDBTileSourceEventTypes = 'tileloadend' | 'tileloaderror' | 'tileloadstart';
 export interface CartoDBLayerInfo {
     layergroupid: string;
     cdn_url: any;
@@ -39,27 +42,22 @@ export default class CartoDB extends XYZ {
      * Updates the carto db config.
      */
     updateConfig(config: any): void;
-    on(type: string, listener: ListenerFunction): EventsKey;
-    on(type: string[], listener: ListenerFunction): EventsKey[];
-    once(type: string, listener: ListenerFunction): EventsKey;
-    once(type: string[], listener: ListenerFunction): EventsKey[];
-    un(type: string | string[], listener: ListenerFunction): void;
-    on(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
-    once(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
-    un(type: 'change', listener: (evt: BaseEvent) => void): void;
-    on(type: 'error', listener: (evt: BaseEvent) => void): EventsKey;
-    once(type: 'error', listener: (evt: BaseEvent) => void): EventsKey;
-    un(type: 'error', listener: (evt: BaseEvent) => void): void;
-    on(type: 'propertychange', listener: (evt: ObjectEvent) => void): EventsKey;
-    once(type: 'propertychange', listener: (evt: ObjectEvent) => void): EventsKey;
-    un(type: 'propertychange', listener: (evt: ObjectEvent) => void): void;
-    on(type: 'tileloadend', listener: (evt: TileSourceEvent) => void): EventsKey;
-    once(type: 'tileloadend', listener: (evt: TileSourceEvent) => void): EventsKey;
-    un(type: 'tileloadend', listener: (evt: TileSourceEvent) => void): void;
-    on(type: 'tileloaderror', listener: (evt: TileSourceEvent) => void): EventsKey;
-    once(type: 'tileloaderror', listener: (evt: TileSourceEvent) => void): EventsKey;
-    un(type: 'tileloaderror', listener: (evt: TileSourceEvent) => void): void;
-    on(type: 'tileloadstart', listener: (evt: TileSourceEvent) => void): EventsKey;
-    once(type: 'tileloadstart', listener: (evt: TileSourceEvent) => void): EventsKey;
-    un(type: 'tileloadstart', listener: (evt: TileSourceEvent) => void): void;
+    on(type: TCartoDBBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
+    on(type: TCartoDBBaseEventTypes[], listener: ListenerFunction<BaseEvent>): EventsKey[];
+    once(type: TCartoDBBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
+    once(type: TCartoDBBaseEventTypes[], listener: ListenerFunction<BaseEvent>): EventsKey[];
+    un(type: TCartoDBBaseEventTypes | TCartoDBBaseEventTypes[], listener: ListenerFunction<BaseEvent>): void;
+    on(type: TCartoDBObjectEventTypes, listener: ListenerFunction<ObjectEvent>): EventsKey;
+    on(type: TCartoDBObjectEventTypes[], listener: ListenerFunction<ObjectEvent>): EventsKey[];
+    once(type: TCartoDBObjectEventTypes, listener: ListenerFunction<ObjectEvent>): EventsKey;
+    once(type: TCartoDBObjectEventTypes[], listener: ListenerFunction<ObjectEvent>): EventsKey[];
+    un(type: TCartoDBObjectEventTypes | TCartoDBObjectEventTypes[], listener: ListenerFunction<ObjectEvent>): void;
+    on(type: TCartoDBTileSourceEventTypes, listener: ListenerFunction<TileSourceEvent>): EventsKey;
+    on(type: TCartoDBTileSourceEventTypes[], listener: ListenerFunction<TileSourceEvent>): EventsKey[];
+    once(type: TCartoDBTileSourceEventTypes, listener: ListenerFunction<TileSourceEvent>): EventsKey;
+    once(type: TCartoDBTileSourceEventTypes[], listener: ListenerFunction<TileSourceEvent>): EventsKey[];
+    un(
+        type: TCartoDBTileSourceEventTypes | TCartoDBTileSourceEventTypes[],
+        listener: ListenerFunction<TileSourceEvent>,
+    ): void;
 }

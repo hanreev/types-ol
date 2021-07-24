@@ -4,6 +4,8 @@ import { EventsKey, ListenerFunction } from '../events';
 import BaseEvent from '../events/Event';
 import Control from './Control';
 
+export type TFullScreenBaseEventTypes = 'change' | 'enterfullscreen' | 'error' | 'leavefullscreen';
+export type TFullScreenObjectEventTypes = 'propertychange';
 export interface Options {
     className?: string;
     label?: string | Text | HTMLElement;
@@ -27,24 +29,17 @@ export default class FullScreen extends Control {
      * the map here.
      */
     setMap(map: PluggableMap): void;
-    on(type: string, listener: ListenerFunction): EventsKey;
-    on(type: string[], listener: ListenerFunction): EventsKey[];
-    once(type: string, listener: ListenerFunction): EventsKey;
-    once(type: string[], listener: ListenerFunction): EventsKey[];
-    un(type: string | string[], listener: ListenerFunction): void;
-    on(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
-    once(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
-    un(type: 'change', listener: (evt: BaseEvent) => void): void;
-    on(type: 'enterfullscreen', listener: (evt: BaseEvent) => void): EventsKey;
-    once(type: 'enterfullscreen', listener: (evt: BaseEvent) => void): EventsKey;
-    un(type: 'enterfullscreen', listener: (evt: BaseEvent) => void): void;
-    on(type: 'error', listener: (evt: BaseEvent) => void): EventsKey;
-    once(type: 'error', listener: (evt: BaseEvent) => void): EventsKey;
-    un(type: 'error', listener: (evt: BaseEvent) => void): void;
-    on(type: 'leavefullscreen', listener: (evt: BaseEvent) => void): EventsKey;
-    once(type: 'leavefullscreen', listener: (evt: BaseEvent) => void): EventsKey;
-    un(type: 'leavefullscreen', listener: (evt: BaseEvent) => void): void;
-    on(type: 'propertychange', listener: (evt: ObjectEvent) => void): EventsKey;
-    once(type: 'propertychange', listener: (evt: ObjectEvent) => void): EventsKey;
-    un(type: 'propertychange', listener: (evt: ObjectEvent) => void): void;
+    on(type: TFullScreenBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
+    on(type: TFullScreenBaseEventTypes[], listener: ListenerFunction<BaseEvent>): EventsKey[];
+    once(type: TFullScreenBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
+    once(type: TFullScreenBaseEventTypes[], listener: ListenerFunction<BaseEvent>): EventsKey[];
+    un(type: TFullScreenBaseEventTypes | TFullScreenBaseEventTypes[], listener: ListenerFunction<BaseEvent>): void;
+    on(type: TFullScreenObjectEventTypes, listener: ListenerFunction<ObjectEvent>): EventsKey;
+    on(type: TFullScreenObjectEventTypes[], listener: ListenerFunction<ObjectEvent>): EventsKey[];
+    once(type: TFullScreenObjectEventTypes, listener: ListenerFunction<ObjectEvent>): EventsKey;
+    once(type: TFullScreenObjectEventTypes[], listener: ListenerFunction<ObjectEvent>): EventsKey[];
+    un(
+        type: TFullScreenObjectEventTypes | TFullScreenObjectEventTypes[],
+        listener: ListenerFunction<ObjectEvent>,
+    ): void;
 }

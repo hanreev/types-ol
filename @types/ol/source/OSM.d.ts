@@ -7,6 +7,9 @@ import { AttributionLike } from './Source';
 import { TileSourceEvent } from './Tile';
 import XYZ from './XYZ';
 
+export type TOSMBaseEventTypes = 'change' | 'error';
+export type TOSMObjectEventTypes = 'propertychange';
+export type TOSMTileSourceEventTypes = 'tileloadend' | 'tileloaderror' | 'tileloadstart';
 export interface Options {
     attributions?: AttributionLike;
     cacheSize?: number;
@@ -28,27 +31,19 @@ export interface Options {
 export const ATTRIBUTION: string;
 export default class OSM extends XYZ {
     constructor(opt_options?: Options);
-    on(type: string, listener: ListenerFunction): EventsKey;
-    on(type: string[], listener: ListenerFunction): EventsKey[];
-    once(type: string, listener: ListenerFunction): EventsKey;
-    once(type: string[], listener: ListenerFunction): EventsKey[];
-    un(type: string | string[], listener: ListenerFunction): void;
-    on(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
-    once(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
-    un(type: 'change', listener: (evt: BaseEvent) => void): void;
-    on(type: 'error', listener: (evt: BaseEvent) => void): EventsKey;
-    once(type: 'error', listener: (evt: BaseEvent) => void): EventsKey;
-    un(type: 'error', listener: (evt: BaseEvent) => void): void;
-    on(type: 'propertychange', listener: (evt: ObjectEvent) => void): EventsKey;
-    once(type: 'propertychange', listener: (evt: ObjectEvent) => void): EventsKey;
-    un(type: 'propertychange', listener: (evt: ObjectEvent) => void): void;
-    on(type: 'tileloadend', listener: (evt: TileSourceEvent) => void): EventsKey;
-    once(type: 'tileloadend', listener: (evt: TileSourceEvent) => void): EventsKey;
-    un(type: 'tileloadend', listener: (evt: TileSourceEvent) => void): void;
-    on(type: 'tileloaderror', listener: (evt: TileSourceEvent) => void): EventsKey;
-    once(type: 'tileloaderror', listener: (evt: TileSourceEvent) => void): EventsKey;
-    un(type: 'tileloaderror', listener: (evt: TileSourceEvent) => void): void;
-    on(type: 'tileloadstart', listener: (evt: TileSourceEvent) => void): EventsKey;
-    once(type: 'tileloadstart', listener: (evt: TileSourceEvent) => void): EventsKey;
-    un(type: 'tileloadstart', listener: (evt: TileSourceEvent) => void): void;
+    on(type: TOSMBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
+    on(type: TOSMBaseEventTypes[], listener: ListenerFunction<BaseEvent>): EventsKey[];
+    once(type: TOSMBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
+    once(type: TOSMBaseEventTypes[], listener: ListenerFunction<BaseEvent>): EventsKey[];
+    un(type: TOSMBaseEventTypes | TOSMBaseEventTypes[], listener: ListenerFunction<BaseEvent>): void;
+    on(type: TOSMObjectEventTypes, listener: ListenerFunction<ObjectEvent>): EventsKey;
+    on(type: TOSMObjectEventTypes[], listener: ListenerFunction<ObjectEvent>): EventsKey[];
+    once(type: TOSMObjectEventTypes, listener: ListenerFunction<ObjectEvent>): EventsKey;
+    once(type: TOSMObjectEventTypes[], listener: ListenerFunction<ObjectEvent>): EventsKey[];
+    un(type: TOSMObjectEventTypes | TOSMObjectEventTypes[], listener: ListenerFunction<ObjectEvent>): void;
+    on(type: TOSMTileSourceEventTypes, listener: ListenerFunction<TileSourceEvent>): EventsKey;
+    on(type: TOSMTileSourceEventTypes[], listener: ListenerFunction<TileSourceEvent>): EventsKey[];
+    once(type: TOSMTileSourceEventTypes, listener: ListenerFunction<TileSourceEvent>): EventsKey;
+    once(type: TOSMTileSourceEventTypes[], listener: ListenerFunction<TileSourceEvent>): EventsKey[];
+    un(type: TOSMTileSourceEventTypes | TOSMTileSourceEventTypes[], listener: ListenerFunction<TileSourceEvent>): void;
 }

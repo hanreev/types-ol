@@ -24,7 +24,7 @@ const MODULE_IMPORTS = {};
 /** @type {Object<string, ModuleExports>} */
 const MODULE_EXPORTS = {};
 
-/** @type {Object<string, Doclet[]>} */
+/** @type {Object<string, string[]>} */
 const MODULE_CHILDREN = {};
 
 /** @type {string[]} */
@@ -589,40 +589,27 @@ const PROCESSORS = {
         children.push(getComment(child) + childString);
       });
 
+    /** @type {Object<string, Array<string>>} */
+    const eventTypesMap = {};
+
     /**
      * @param {string} eventType
-     * @param {string} fireType
+     * @param {string} event
      */
-    const addFire = (eventType, fireType) => {
-      if (fireType.startsWith('ol')) fireType = 'module:' + fireType;
+    const addFire = (eventType, event) => {
+      if (event.startsWith('ol')) event = 'module:' + event;
 
-      let genericType = getGenericType(fireType, _module, false);
+      let genericType = getGenericType(event, _module, false);
       if (genericType && genericType == getGenericType(doclet.longname, _module, false)) genericType = null;
 
-      fireType = getType(/** @type {Doclet} */ ({ type: { names: [fireType || 'undefined'] } }), _module);
-
-      ['on', 'once', 'un'].forEach(fireMethod => {
-        const returnType = fireMethod == 'un' ? 'void' : 'EventsKey';
-        children.push(`${fireMethod}(type: '${eventType}', listener: (evt: ${fireType}) => void): ${returnType};`);
-      });
+      event = getType(/** @type {Doclet} */ ({ type: { names: [event || 'undefined'] } }), _module);
+      eventTypesMap[event] = eventTypesMap[event] || [];
+      eventTypesMap[event].push(eventType);
     };
 
     if (doclet.fires) {
       registerImport(_module, 'module:ol/events~EventsKey');
 
-      // Add default observable methods
-      if (doclet.longname != 'module:ol/Observable~Observable') {
-        registerImport(_module, 'module:ol/events~ListenerFunction');
-        ['on', 'once'].forEach(fireMethod => {
-          children.push(
-            `${fireMethod}(type: string, listener: ListenerFunction): EventsKey;`,
-            `${fireMethod}(type: string[], listener: ListenerFunction): EventsKey[];`,
-          );
-        });
-        children.push(`un(type: string | string[], listener: ListenerFunction): void;`);
-      }
-
-      // Add per event observsable method
       doclet.fires
         .sort((a, b) => {
           const aMatch = a.match(/^(.*?)([#~.])?event:(.+?)$/);
@@ -662,6 +649,25 @@ const PROCESSORS = {
             logger.error('Fires process failed --', doclet.longname, fire);
           }
         });
+    }
+
+    if (Object.keys(eventTypesMap).length) {
+      const listenerFunction = registerImport(_module, 'module:ol/events~ListenerFunction');
+      for (const event in eventTypesMap) {
+        // if (doclet.longname != 'module:ol/Observable~Observable' && event == 'BaseEvent') continue;
+        const eventTypes = eventTypesMap[event].map(t => `'${t}'`).join(' | ');
+        const eventTypesName = `T${doclet.name}${event.replace(/<.+?>$/, '')}Types`;
+        MODULE_CHILDREN[_module.name].push(`export type ${eventTypesName} = ${eventTypes};`);
+        ['on', 'once'].forEach(method => {
+          children.push(
+            `${method}(type: ${eventTypesName}, listener: ${listenerFunction}<${event}>): EventsKey;`,
+            `${method}(type: ${eventTypesName}[], listener: ${listenerFunction}<${event}>): EventsKey[];`,
+          );
+        });
+        children.push(
+          `un(type: ${eventTypesName} | ${eventTypesName}[], listener: ${listenerFunction}<${event}>): void;`,
+        );
+      }
     }
 
     if (PROPERTY_AND_METHOD_PATCHES[doclet.longname]) children.push(...PROPERTY_AND_METHOD_PATCHES[doclet.longname]);
@@ -775,6 +781,9 @@ const PROCESSORS = {
  * @param {Doclet} doclet
  */
 async function processModule(doclet) {
+  MODULE_CHILDREN[doclet.name] = [];
+
+  /** @type {string[]} */
   let children = [];
 
   if (doclet.longname in IMPORT_PATCHES)
@@ -817,7 +826,7 @@ async function processModule(doclet) {
 
   if (MEMBER_PATCHES[doclet.longname]) children = children.concat(MEMBER_PATCHES[doclet.longname]);
 
-  MODULE_CHILDREN[doclet.name] = children;
+  MODULE_CHILDREN[doclet.name] = MODULE_CHILDREN[doclet.name].concat(children);
 
   if (doclet.name in MODULE_IMPORTS)
     MODULE_IMPORTS[doclet.name].expressions = sortImports(MODULE_IMPORTS[doclet.name].expressions, doclet);

@@ -8,6 +8,9 @@ import Polygon from '../geom/Polygon';
 import { Pixel } from '../pixel';
 import PointerInteraction from './Pointer';
 
+export type TDragBoxDragBoxEventTypes = 'boxcancel' | 'boxdrag' | 'boxend' | 'boxstart';
+export type TDragBoxBaseEventTypes = 'change' | 'error';
+export type TDragBoxObjectEventTypes = 'change:active' | 'propertychange';
 /**
  * A function that takes a {@link module:ol/MapBrowserEvent} and two
  * {@link module:ol/pixel~Pixel}s and returns a {boolean}. If the condition is met,
@@ -48,35 +51,21 @@ export default class DragBox extends PointerInteraction {
      * Function to execute just before onboxend is fired
      */
     onBoxEnd(event: MapBrowserEvent<UIEvent>): void;
-    on(type: string, listener: ListenerFunction): EventsKey;
-    on(type: string[], listener: ListenerFunction): EventsKey[];
-    once(type: string, listener: ListenerFunction): EventsKey;
-    once(type: string[], listener: ListenerFunction): EventsKey[];
-    un(type: string | string[], listener: ListenerFunction): void;
-    on(type: 'boxcancel', listener: (evt: DragBoxEvent) => void): EventsKey;
-    once(type: 'boxcancel', listener: (evt: DragBoxEvent) => void): EventsKey;
-    un(type: 'boxcancel', listener: (evt: DragBoxEvent) => void): void;
-    on(type: 'boxdrag', listener: (evt: DragBoxEvent) => void): EventsKey;
-    once(type: 'boxdrag', listener: (evt: DragBoxEvent) => void): EventsKey;
-    un(type: 'boxdrag', listener: (evt: DragBoxEvent) => void): void;
-    on(type: 'boxend', listener: (evt: DragBoxEvent) => void): EventsKey;
-    once(type: 'boxend', listener: (evt: DragBoxEvent) => void): EventsKey;
-    un(type: 'boxend', listener: (evt: DragBoxEvent) => void): void;
-    on(type: 'boxstart', listener: (evt: DragBoxEvent) => void): EventsKey;
-    once(type: 'boxstart', listener: (evt: DragBoxEvent) => void): EventsKey;
-    un(type: 'boxstart', listener: (evt: DragBoxEvent) => void): void;
-    on(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
-    once(type: 'change', listener: (evt: BaseEvent) => void): EventsKey;
-    un(type: 'change', listener: (evt: BaseEvent) => void): void;
-    on(type: 'change:active', listener: (evt: ObjectEvent) => void): EventsKey;
-    once(type: 'change:active', listener: (evt: ObjectEvent) => void): EventsKey;
-    un(type: 'change:active', listener: (evt: ObjectEvent) => void): void;
-    on(type: 'error', listener: (evt: BaseEvent) => void): EventsKey;
-    once(type: 'error', listener: (evt: BaseEvent) => void): EventsKey;
-    un(type: 'error', listener: (evt: BaseEvent) => void): void;
-    on(type: 'propertychange', listener: (evt: ObjectEvent) => void): EventsKey;
-    once(type: 'propertychange', listener: (evt: ObjectEvent) => void): EventsKey;
-    un(type: 'propertychange', listener: (evt: ObjectEvent) => void): void;
+    on(type: TDragBoxDragBoxEventTypes, listener: ListenerFunction<DragBoxEvent>): EventsKey;
+    on(type: TDragBoxDragBoxEventTypes[], listener: ListenerFunction<DragBoxEvent>): EventsKey[];
+    once(type: TDragBoxDragBoxEventTypes, listener: ListenerFunction<DragBoxEvent>): EventsKey;
+    once(type: TDragBoxDragBoxEventTypes[], listener: ListenerFunction<DragBoxEvent>): EventsKey[];
+    un(type: TDragBoxDragBoxEventTypes | TDragBoxDragBoxEventTypes[], listener: ListenerFunction<DragBoxEvent>): void;
+    on(type: TDragBoxBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
+    on(type: TDragBoxBaseEventTypes[], listener: ListenerFunction<BaseEvent>): EventsKey[];
+    once(type: TDragBoxBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
+    once(type: TDragBoxBaseEventTypes[], listener: ListenerFunction<BaseEvent>): EventsKey[];
+    un(type: TDragBoxBaseEventTypes | TDragBoxBaseEventTypes[], listener: ListenerFunction<BaseEvent>): void;
+    on(type: TDragBoxObjectEventTypes, listener: ListenerFunction<ObjectEvent>): EventsKey;
+    on(type: TDragBoxObjectEventTypes[], listener: ListenerFunction<ObjectEvent>): EventsKey[];
+    once(type: TDragBoxObjectEventTypes, listener: ListenerFunction<ObjectEvent>): EventsKey;
+    once(type: TDragBoxObjectEventTypes[], listener: ListenerFunction<ObjectEvent>): EventsKey[];
+    un(type: TDragBoxObjectEventTypes | TDragBoxObjectEventTypes[], listener: ListenerFunction<ObjectEvent>): void;
 }
 export class DragBoxEvent extends BaseEvent {
     constructor(type: string, coordinate: Coordinate, mapBrowserEvent: MapBrowserEvent<UIEvent>);

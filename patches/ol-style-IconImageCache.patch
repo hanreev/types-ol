@@ -1,0 +1,12 @@
+diff --git a/src/ol/style/IconImageCache.js b/src/ol/style/IconImageCache.js
+index 876ef1489..35c7bbc34 100644
+--- a/src/ol/style/IconImageCache.js
++++ b/src/ol/style/IconImageCache.js
+@@ -111,6 +111,7 @@ export default IconImageCache;
+ /**
+  * The {@link module:ol/style/IconImageCache~IconImageCache} for
+  * {@link module:ol/style/Icon~Icon} images.
++ * @type {IconImageCache}
+  * @api
+  */
+ export const shared = new IconImageCache();
