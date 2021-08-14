@@ -7,6 +7,9 @@ import GMLBase, { Options as Options_1 } from './GMLBase';
 import XMLFeature from './XMLFeature';
 import Filter from './filter/Filter';
 
+/**
+ * Number of features; bounds/extent.
+ */
 export interface FeatureCollectionMetadata {
     numberOfFeatures: number;
     bounds: Extent;
