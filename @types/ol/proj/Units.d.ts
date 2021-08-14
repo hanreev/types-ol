@@ -1,7 +1,7 @@
 /**
  * Meters per unit lookup table.
  */
-export const METERS_PER_UNIT: { [key in Units]: number };
+export const METERS_PER_UNIT: Record<Units, number>;
 /**
  * Projection units: 'degrees', 'ft', 'm', 'pixels', 'tile-pixels' or
  * 'us-ft'.

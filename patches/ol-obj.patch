@@ -1,17 +1,13 @@
 diff --git a/src/ol/obj.js b/src/ol/obj.js
-index 428fbf09a..be3b07bbf 100644
+index 428fbf09a..55f655f89 100644
 --- a/src/ol/obj.js
 +++ b/src/ol/obj.js
-@@ -47,9 +47,10 @@ export function clear(object) {
-  * Polyfill for Object.values().  Get an array of property values from an object.
-  * See https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/values
+@@ -49,7 +49,7 @@ export function clear(object) {
   *
-- * @param {!Object<K,V>} object The object from which to get the values.
-+ * @function
-+ * @param {!Object<string|number,V>} object The object from which to get the values.
+  * @param {!Object<K,V>} object The object from which to get the values.
   * @return {!Array<V>} The property values.
 - * @template K,V
-+ * @template V
++ * @template {string|number|symbol} K, V
   */
  export const getValues =
    typeof Object.values === 'function'

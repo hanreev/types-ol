@@ -44,7 +44,7 @@ export interface Options<VectorSourceType extends VectorSource | VectorTile = Ve
     style?: StyleLike | null;
     updateWhileAnimating?: boolean;
     updateWhileInteracting?: boolean;
-    properties?: { [key: string]: any };
+    properties?: Record<string, any>;
 }
 export default class BaseVectorLayer<
     VectorSourceType extends VectorSource | VectorTile = VectorSource | VectorTile,

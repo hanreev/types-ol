@@ -36,7 +36,7 @@ export interface Options<TileSourceType extends TileSource = TileSource> {
     source?: TileSourceType;
     map?: PluggableMap;
     useInterimTilesOnError?: boolean;
-    properties?: { [key: string]: any };
+    properties?: Record<string, any>;
 }
 export default class BaseTileLayer<TileSourceType extends TileSource = TileSource> extends Layer<TileSourceType> {
     constructor(opt_options?: Options<TileSourceType>);

@@ -23,7 +23,7 @@ export interface Options {
 export interface UTFGridJSON {
     grid: string[];
     keys: string[];
-    data?: { [key: string]: object };
+    data?: Record<string, object>;
 }
 export class CustomTile extends Tile {
     constructor(

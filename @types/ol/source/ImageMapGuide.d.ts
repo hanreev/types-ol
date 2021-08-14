@@ -39,7 +39,7 @@ export default class ImageMapGuide extends ImageSource {
     getParams(): any;
     getUrl(
         baseUrl: string,
-        params: { [key: string]: string | number },
+        params: Record<string, string | number>,
         extent: Extent,
         size: Size,
         projection: Projection,

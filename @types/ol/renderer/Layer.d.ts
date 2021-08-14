@@ -25,7 +25,7 @@ export default class LayerRenderer<LayerType extends Layer = Layer> extends Obse
     protected createLoadedTileFinder(
         source: TileSource,
         projection: Projection,
-        tiles: { [key: number]: { [key: string]: Tile } },
+        tiles: Record<number, Record<string, Tile>>,
     ): (p0: number, p1: TileRange) => boolean;
     /**
      * Load the image if not already loaded, and register the image change
@@ -50,7 +50,7 @@ export default class LayerRenderer<LayerType extends Layer = Layer> extends Obse
      * Perform action necessary to get the layer rendered after new fonts have loaded
      */
     handleFontsChanged(): void;
-    loadedTileCallback(tiles: { [key: number]: { [key: string]: Tile } }, zoom: number, tile: Tile): boolean | void;
+    loadedTileCallback(tiles: Record<number, Record<string, Tile>>, zoom: number, tile: Tile): boolean | void;
     /**
      * Determine whether render should be called.
      */

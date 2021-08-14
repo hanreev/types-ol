@@ -21,7 +21,7 @@ export interface Options {
     cacheSize?: number;
     crossOrigin?: null | string;
     imageSmoothing?: boolean;
-    params: { [key: string]: any };
+    params: Record<string, any>;
     gutter?: number;
     hidpi?: boolean;
     projection?: ProjectionLike;

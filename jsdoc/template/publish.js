@@ -16,8 +16,6 @@ const definitionConfig = env.conf.typescript.definition;
 /** @type {*} */
 let data;
 
-let GTTypeOnly = true;
-
 /** @type {Object<string, ModuleImports>} */
 const MODULE_IMPORTS = {};
 
@@ -59,7 +57,9 @@ const PROPERTY_TYPE_PATCHES = {};
 const IMPORT_PATCHES = {};
 
 /** @type {Object<string, string[]>} */
-const MEMBER_PATCHES = {};
+const MEMBER_PATCHES = {
+  'module:ol/Feature': ['export type ObjectWithGeometry<G> = Record<string, any> & { geometry?: G };'],
+};
 
 /** @type {Object<string, string[]>} */
 const PROPERTY_AND_METHOD_PATCHES = {
@@ -324,9 +324,7 @@ function stringifyType(parsedType, _module, undefinedLiteral = true, nullLiteral
         break;
 
       case 'Object':
-        if (['string', 'number'].indexOf(applications[0]) == -1)
-          typeStr = `{ [key in ${applications[0]}]: ${applications[1]} }`;
-        else typeStr = `{ [key: ${applications[0]}]: ${applications[1]} }`;
+        typeStr = `Record<${applications[0]}, ${applications[1]}>`;
         break;
 
       case 'Class':
@@ -544,11 +542,7 @@ const PROCESSORS = {
   /** @type {DocletParser} */
   class(doclet, _module) {
     const children = [];
-    let name = doclet.name;
-
-    GTTypeOnly = false;
-    name += getGenericType(doclet.longname, _module, true, true);
-    GTTypeOnly = true;
+    let name = doclet.name + getGenericType(doclet.longname, _module, true, true, true);
 
     if (Array.isArray(doclet.augments) && doclet.augments.length) {
       const [augment, _augment] = doclet.augments;
@@ -685,7 +679,9 @@ const PROCESSORS = {
 
   /** @type {DocletParser} */
   constant(doclet, _module) {
-    const decl = `const ${doclet.name}: ${getType(doclet, _module)};`;
+    const genericType = getGenericType(doclet.longname, _module, true, true);
+    const type = genericType + getType(doclet, _module).replace(/^\((.+?)\)$/, '$1');
+    const decl = `const ${doclet.name}: (${type});`;
     return definition(doclet, decl, _module);
   },
 
@@ -720,10 +716,7 @@ const PROCESSORS = {
     const children = [];
     const addedProps = [];
 
-    let docletName = doclet.name;
-    GTTypeOnly = false;
-    docletName += getGenericType(doclet.longname, _module, true, true);
-    GTTypeOnly = true;
+    const docletName = doclet.name + getGenericType(doclet.longname, _module, true, true, true);
 
     if (doclet.properties) {
       doclet.properties.forEach(prop => {
@@ -906,18 +899,19 @@ async function generateDefinition(doclet, emitOutput = true) {
  * @param {boolean} [includeType]
  * @returns {string}
  */
-function getGenericType(key, _module, includeBracket = true, includeType = false) {
+function getGenericType(key, _module, includeBracket = true, includeType = false, includeDefault = false) {
   if (!(key in GENERIC_TYPES)) return '';
   const genericTypes = GENERIC_TYPES[key]
     .map(gType => {
       let type;
-      if ((includeType || GTTypeOnly) && gType.type) type = getType(/** @type {Doclet} */ (gType), _module);
+      if (gType.type) type = getType(/** @type {Doclet} */ (gType), _module);
       if (type) {
-        if (GTTypeOnly) return type;
         if (includeType) {
-          type = type.replace(/<.+>/, '');
-          return `${gType.name} extends ${type} = ${type}`;
+          const _type = type.replace(/<.+>/, '');
+          type = `${gType.name} extends ${_type}`;
+          if (includeDefault) type += ` = ${_type}`;
         }
+        return type;
       }
 
       return gType.name;

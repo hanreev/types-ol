@@ -116,7 +116,7 @@ export function createDefaultStyle(feature: FeatureLike, resolution: number): St
 /**
  * Default styles for editing features.
  */
-export function createEditingStyle(): { [key in GeometryType]: Style[] };
+export function createEditingStyle(): Record<GeometryType, Style[]>;
 /**
  * Convert the provided object into a style function.  Functions passed through
  * unchanged.  Arrays of Style or single style objects wrapped in a

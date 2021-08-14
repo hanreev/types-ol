@@ -30,7 +30,7 @@ export interface Options {
     minZoom?: number;
     maxZoom?: number;
     layers?: BaseLayer[] | Collection<BaseLayer>;
-    properties?: { [key: string]: any };
+    properties?: Record<string, any>;
 }
 export default class LayerGroup extends BaseLayer {
     constructor(opt_options?: Options);

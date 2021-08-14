@@ -13,7 +13,7 @@ export default class ExecutorGroup {
         resolution: number,
         pixelRatio: number,
         overlaps: boolean,
-        allInstructions: { [key: string]: { [key in BuilderType]: SerializableInstructions } },
+        allInstructions: Record<string, Record<BuilderType, SerializableInstructions>>,
         opt_renderBuffer?: number,
     );
     clip(context: CanvasRenderingContext2D, transform: Transform): void;

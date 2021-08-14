@@ -4,7 +4,7 @@ import { UniformValue } from './Helper';
 
 export interface StyleParseResult {
     builder: ShaderBuilder;
-    uniforms: { [key: string]: UniformValue };
+    uniforms: Record<string, UniformValue>;
     attributes: CustomAttribute[];
 }
 export interface VaryingDescription {

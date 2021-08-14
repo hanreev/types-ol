@@ -4,7 +4,7 @@ import { ExpressionValue as ExpressionValue_1 } from './expressions';
 export type ExpressionValue = ExpressionValue_1;
 export interface LiteralStyle {
     filter?: ExpressionValue;
-    variables?: { [key: string]: number };
+    variables?: Record<string, number>;
     symbol?: LiteralSymbolStyle;
 }
 export interface LiteralSymbolStyle {

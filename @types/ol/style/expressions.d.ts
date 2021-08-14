@@ -96,12 +96,12 @@ export interface ParsingContext {
     inFragmentShader?: boolean;
     variables: string[];
     attributes: string[];
-    stringLiteralsMap: { [key: string]: number };
+    stringLiteralsMap: Record<string, number>;
 }
 /**
  * Operator declarations
  */
-export const Operators: { [key: string]: Operator };
+export const Operators: Record<string, Operator>;
 /**
  * Possible inferred types from a given value or expression.
  * Note: these are binary flags.

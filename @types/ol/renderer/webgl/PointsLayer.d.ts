@@ -19,7 +19,7 @@ export type TWebGLPointsLayerRendererBaseEventTypes = 'change' | 'error';
  */
 export interface CustomAttribute {
     name: string;
-    callback: (p0: Feature<Geometry>, p1: { [key: string]: any }) => number;
+    callback: (p0: Feature<Geometry>, p1: Record<string, any>) => number;
 }
 /**
  * Object that holds a reference to a feature, its geometry and properties. Used to optimize
@@ -27,7 +27,7 @@ export interface CustomAttribute {
  */
 export interface FeatureCacheItem {
     feature: Feature<Geometry>;
-    properties: { [key: string]: any };
+    properties: Record<string, any>;
     geometry: Geometry;
 }
 export interface Options {
@@ -37,7 +37,7 @@ export interface Options {
     fragmentShader: string;
     hitVertexShader?: string;
     hitFragmentShader?: string;
-    uniforms?: { [key: string]: UniformValue };
+    uniforms?: Record<string, UniformValue>;
     postProcesses?: PostProcessesOptions[];
 }
 export default class WebGLPointsLayerRenderer extends WebGLLayerRenderer {

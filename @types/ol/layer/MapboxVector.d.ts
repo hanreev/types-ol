@@ -50,14 +50,14 @@ export interface Options {
     updateWhileInteracting?: boolean;
     preload?: number;
     useInterimTilesOnError?: boolean;
-    properties?: { [key: string]: any };
+    properties?: Record<string, any>;
 }
 export interface SourceObject {
     url: string;
     type: SourceType;
 }
 export interface StyleObject {
-    sources: { [key: string]: SourceObject };
+    sources: Record<string, SourceObject>;
     sprite: string;
     glyphs: string;
     layers: LayerObject[];

@@ -49,7 +49,7 @@ export default abstract class TileSource extends Source {
      * Remove all cached tiles from the source. The next render cycle will fetch new tiles.
      */
     clear(): void;
-    expireCache(projection: Projection, usedTiles: { [key: string]: boolean }): void;
+    expireCache(projection: Projection, usedTiles: Record<string, boolean>): void;
     forEachLoadedTile(
         projection: Projection,
         z: number,

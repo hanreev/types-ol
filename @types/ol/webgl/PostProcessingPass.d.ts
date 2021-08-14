@@ -6,7 +6,7 @@ export interface Options {
     scaleRatio?: number;
     vertexShader?: string;
     fragmentShader?: string;
-    uniforms?: { [key: string]: UniformValue };
+    uniforms?: Record<string, UniformValue>;
 }
 export default class WebGLPostProcessingPass {
     constructor(options: Options);

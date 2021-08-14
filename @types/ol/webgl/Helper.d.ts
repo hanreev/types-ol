@@ -17,14 +17,14 @@ export interface BufferCacheEntry {
     webGlBuffer: WebGLBuffer;
 }
 export interface Options {
-    uniforms?: { [key: string]: UniformValue };
+    uniforms?: Record<string, UniformValue>;
     postProcesses?: PostProcessesOptions[];
 }
 export interface PostProcessesOptions {
     scaleRatio?: number;
     vertexShader?: string;
     fragmentShader?: string;
-    uniforms?: { [key: string]: UniformValue };
+    uniforms?: Record<string, UniformValue>;
 }
 export type UniformLiteralValue = number | number[] | HTMLCanvasElement | HTMLImageElement | ImageData | Transform;
 /**

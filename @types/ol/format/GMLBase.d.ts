@@ -13,7 +13,7 @@ import { ReadOptions } from './Feature';
 import XMLFeature from './XMLFeature';
 
 export interface Options {
-    featureNS?: { [key: string]: string } | string;
+    featureNS?: Record<string, string> | string;
     featureType?: string[] | string;
     srsName: string;
     surface?: boolean;
@@ -26,7 +26,7 @@ export interface Options {
 export const GMLNS: string;
 export default abstract class GMLBase extends XMLFeature {
     constructor(opt_options?: Options);
-    protected featureNS: { [key: string]: string } | string;
+    protected featureNS: Record<string, string> | string;
     protected featureType: string[] | string;
     protected schemaLocation: string;
     protected srsName: string;

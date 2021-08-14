@@ -39,7 +39,7 @@ export interface Options<VectorSourceType extends VectorSource = VectorSource> {
     maxZoom?: number;
     source?: VectorSourceType;
     disableHitDetection?: boolean;
-    properties?: { [key: string]: any };
+    properties?: Record<string, any>;
 }
 export default class WebGLPointsLayer<
     VectorSourceType extends VectorSource = VectorSource,

@@ -1,15 +1,18 @@
 diff --git a/src/ol/render/canvas.js b/src/ol/render/canvas.js
-index 783b8aa05..1ecdb7855 100644
+index 6202e5f92..8471cd2c5 100644
 --- a/src/ol/render/canvas.js
 +++ b/src/ol/render/canvas.js
-@@ -282,6 +282,7 @@ export const registerFont = (function () {
+@@ -281,8 +281,9 @@ export const registerFont = (function () {
  })();
  
  /**
 + * @function
   * @param {string} font Font to use for measuring.
-  * @return {import("../size.js").Size} Measurement.
+- * @return {import("../size.js").Size} Measurement.
++ * @return {number} Measurement.
   */
+ export const measureTextHeight = (function () {
+   /**
 diff --git a/src/ol/render/canvas/BuilderGroup.js b/src/ol/render/canvas/BuilderGroup.js
 index 49aa6c44c..4cd5e489a 100644
 --- a/src/ol/render/canvas/BuilderGroup.js

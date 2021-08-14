@@ -39,7 +39,7 @@ export interface Options<SourceType extends Source = Source> {
     source?: SourceType;
     map?: PluggableMap;
     render?: RenderFunction;
-    properties?: { [key: string]: any };
+    properties?: Record<string, any>;
 }
 export type RenderFunction = (p0: FrameState) => HTMLElement;
 export interface State {

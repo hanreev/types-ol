@@ -38,7 +38,7 @@ export interface Options {
     maxResolution?: number;
     minZoom?: number;
     maxZoom?: number;
-    properties?: { [key: string]: any };
+    properties?: Record<string, any>;
 }
 export default class BaseLayer extends BaseObject {
     constructor(options: Options);

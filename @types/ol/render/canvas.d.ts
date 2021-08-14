@@ -6,7 +6,7 @@ import Stroke from '../style/Stroke';
 import { Transform } from '../transform';
 import { ReplayImageOrLabelArgs } from './canvas/Executor';
 
-export type DeclutterImageWithText = { [key: number]: ReplayImageOrLabelArgs };
+export type DeclutterImageWithText = Record<number, ReplayImageOrLabelArgs>;
 export interface FillState {
     fillStyle: ColorLike;
 }
@@ -38,9 +38,9 @@ export interface SerializableInstructions {
     instructions: any[];
     hitDetectionInstructions: any[];
     coordinates: number[];
-    textStates?: { [key: string]: TextState };
-    fillStates?: { [key: string]: FillState };
-    strokeStates?: { [key: string]: StrokeState };
+    textStates?: Record<string, TextState>;
+    fillStates?: Record<string, FillState>;
+    strokeStates?: Record<string, StrokeState>;
 }
 export interface StrokeState {
     lineCap: CanvasLineCap;
@@ -86,7 +86,7 @@ export const labelCache: any;
  * Clears the label cache when a font becomes available.
  */
 export const registerFont: (fontSpec: string) => void;
-export const textHeights: { [key: string]: number };
+export const textHeights: Record<string, number>;
 export function drawImageOrLabel(
     context: CanvasRenderingContext2D,
     transform: Transform | null,
@@ -103,8 +103,8 @@ export function drawImageOrLabel(
 /**
  * Measure text width using a cache.
  */
-export function measureAndCacheTextWidth(font: string, text: string, cache: { [key: string]: number }): number;
-export function measureTextHeight(font: string): Size;
+export function measureAndCacheTextWidth(font: string, text: string, cache: Record<string, number>): number;
+export function measureTextHeight(font: string): number;
 export function measureTextWidth(font: string, text: string): number;
 export function measureTextWidths(font: string, lines: string[], widths: number[]): number;
 export function rotateAtOffset(

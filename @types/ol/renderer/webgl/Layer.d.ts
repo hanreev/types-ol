@@ -19,14 +19,14 @@ export interface BufferPositions {
 }
 export interface Options {
     className?: string;
-    uniforms?: { [key: string]: UniformValue };
+    uniforms?: Record<string, UniformValue>;
     postProcesses?: PostProcessesOptions[];
 }
 export interface PostProcessesOptions {
     scaleRatio?: number;
     vertexShader?: string;
     fragmentShader?: string;
-    uniforms?: { [key: string]: UniformValue };
+    uniforms?: Record<string, UniformValue>;
 }
 /**
  * This message will trigger the generation of a vertex and an index buffer based on the given render instructions.

@@ -8,7 +8,7 @@ import BaseEvent from '../events/Event';
 import { Extent } from '../extent';
 import Layer from '../layer/Layer';
 import Projection from '../proj/Projection';
-import ImageSource, { ImageSourceEvent } from './Image';
+import ImageSource, { ImageSourceEvent, ImageSourceEventTypes } from './Image';
 import Source from './Source';
 
 export type TRasterSourceRasterSourceEventTypes = 'afteroperations' | 'beforeoperations';
@@ -48,6 +48,7 @@ export interface ProcessorOptions {
     queue: number;
     imageOps?: boolean;
 }
+export type RasterSourceEventTypes = ImageSourceEventTypes | 'beforeoperations' | 'afteroperations';
 /**
  * Raster operation type. Supported values are 'pixel' and 'image'.
  */

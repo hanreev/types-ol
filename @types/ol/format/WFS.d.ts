@@ -17,7 +17,7 @@ export interface FeatureType {
     geometryName: string;
 }
 export interface Options {
-    featureNS?: { [key: string]: string } | string;
+    featureNS?: Record<string, string> | string;
     featureType?: string[] | string;
     gmlFormat?: GMLBase;
     schemaLocation?: string;

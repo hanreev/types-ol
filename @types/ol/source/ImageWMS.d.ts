@@ -20,7 +20,7 @@ export interface Options {
     serverType?: WMSServerType | string;
     imageLoadFunction?: LoadFunction;
     imageSmoothing?: boolean;
-    params: { [key: string]: any };
+    params: Record<string, any>;
     projection?: ProjectionLike;
     ratio?: number;
     resolutions?: number[];

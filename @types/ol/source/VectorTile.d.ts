@@ -50,7 +50,7 @@ export default class VectorTile extends UrlTile {
      * clear {@link module:ol/TileCache~TileCache} and delete all source tiles
      */
     clear(): void;
-    expireCache(projection: Projection, usedTiles: { [key: string]: boolean }): void;
+    expireCache(projection: Projection, usedTiles: Record<string, boolean>): void;
     /**
      * Get features whose bounding box intersects the provided extent. Only features for cached
      * tiles for the last rendered zoom level are available in the source. So this method is only

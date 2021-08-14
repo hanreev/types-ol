@@ -50,7 +50,7 @@ export interface Options {
     latLabelStyle?: Text;
     intervals?: number[];
     wrapX?: boolean;
-    properties?: { [key: string]: any };
+    properties?: Record<string, any>;
 }
 export default class Graticule extends VectorLayer<VectorSource> {
     constructor(opt_options?: Options);

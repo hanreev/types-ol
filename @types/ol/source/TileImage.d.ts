@@ -41,16 +41,16 @@ export interface Options {
 export default class TileImage extends UrlTile {
     constructor(options: Options);
     protected crossOrigin: string;
-    protected tileCacheForProjection: { [key: string]: TileCache };
+    protected tileCacheForProjection: Record<string, TileCache>;
     protected tileClass: typeof ImageTile;
-    protected tileGridForProjection: { [key: string]: TileGrid };
+    protected tileGridForProjection: Record<string, TileGrid>;
     /**
      * Return the key to be used for all tiles in the source.
      */
     protected getKey(): string;
     protected getTileInternal(z: number, x: number, y: number, pixelRatio: number, projection: Projection): Tile;
     canExpireCache(): boolean;
-    expireCache(projection: Projection, usedTiles: { [key: string]: boolean }): void;
+    expireCache(projection: Projection, usedTiles: Record<string, boolean>): void;
     getContextOptions(): object | undefined;
     getGutter(): number;
     getGutterForProjection(projection: Projection): number;

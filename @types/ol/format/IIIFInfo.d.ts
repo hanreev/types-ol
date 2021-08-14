@@ -8,9 +8,10 @@ export interface IiifProfile {
     maxHeight?: number;
     maxWidth?: number;
 }
-export type ImageInformationResponse = {
-    [key: string]: string | number | (number | string | IiifProfile)[] | { [key: string]: number } | TileInfo;
-};
+export type ImageInformationResponse = Record<
+    string,
+    string | number | (number | string | IiifProfile)[] | Record<string, number> | TileInfo
+>;
 export interface PreferredOptions {
     format?: string;
     quality?: string;

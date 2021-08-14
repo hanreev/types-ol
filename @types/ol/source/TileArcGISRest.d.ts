@@ -17,7 +17,7 @@ export interface Options {
     cacheSize?: number;
     crossOrigin?: null | string;
     imageSmoothing?: boolean;
-    params?: { [key: string]: any };
+    params?: Record<string, any>;
     hidpi?: boolean;
     tileGrid?: TileGrid;
     projection?: ProjectionLike;

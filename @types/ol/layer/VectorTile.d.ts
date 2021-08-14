@@ -52,7 +52,7 @@ export interface Options {
     updateWhileInteracting?: boolean;
     preload?: number;
     useInterimTilesOnError?: boolean;
-    properties?: { [key: string]: any };
+    properties?: Record<string, any>;
 }
 export default class VectorTileLayer extends BaseVectorLayer<VectorTile> {
     constructor(opt_options?: Options);

@@ -60,9 +60,9 @@ export interface FrameState {
     postRenderFunctions: PostRenderFunction[];
     size: Size;
     tileQueue: TileQueue;
-    usedTiles: { [key: string]: { [key: string]: boolean } };
+    usedTiles: Record<string, Record<string, boolean>>;
     viewHints: number[];
-    wantedTiles: { [key: string]: { [key: string]: boolean } };
+    wantedTiles: Record<string, Record<string, boolean>>;
 }
 export type MapObjectEventTypes = Types | 'change:layergroup' | 'change:size' | 'change:target' | 'change:view';
 /**
@@ -85,7 +85,7 @@ export interface MapOptionsInternal {
     interactions?: Collection<Interaction>;
     keyboardEventTarget: HTMLElement | Document;
     overlays: Collection<Overlay>;
-    values: { [key: string]: any };
+    values: Record<string, any>;
 }
 export type PostRenderFunction = (p0: PluggableMap, p1: FrameState) => any;
 export default class PluggableMap extends BaseObject {
@@ -125,7 +125,7 @@ export default class PluggableMap extends BaseObject {
      * callback with each intersecting feature. Layers included in the detection can
      * be configured through the layerFilter option in opt_options.
      */
-    forEachFeatureAtPixel<S, T>(
+    forEachFeatureAtPixel<T>(
         pixel: Pixel,
         callback: (p0: FeatureLike, p1: Layer<Source>, p2: SimpleGeometry) => T,
         opt_options?: AtPixelOptions,

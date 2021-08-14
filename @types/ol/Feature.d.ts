@@ -10,12 +10,12 @@ export type TFeatureObjectEventTypes = 'change:geometry' | 'propertychange';
 export type FeatureClass = typeof Feature | typeof RenderFeature;
 export type FeatureLike = Feature<Geometry> | RenderFeature;
 export default class Feature<G extends Geometry = Geometry> extends BaseObject {
-    constructor(opt_geometryOrProperties?: G | { [key: string]: any });
+    constructor(opt_geometryOrProperties?: G | ObjectWithGeometry<G>);
     /**
      * Clone this feature. If the original feature has a geometry it
      * is also cloned. The feature id is not set in the clone.
      */
-    clone(): Feature<Geometry>;
+    clone(): Feature<G>;
     /**
      * Get the feature's default geometry.  A feature may have any number of named
      * geometries.  The "default" geometry (the one that is rendered by default) is
@@ -84,3 +84,4 @@ export default class Feature<G extends Geometry = Geometry> extends BaseObject {
  * in a new feature style function.
  */
 export function createStyleFunction(obj: StyleFunction | Style[] | Style): StyleFunction;
+export type ObjectWithGeometry<G> = Record<string, any> & { geometry?: G };

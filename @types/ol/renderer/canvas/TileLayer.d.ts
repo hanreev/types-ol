@@ -50,7 +50,7 @@ export default class CanvasTileLayerRenderer extends CanvasLayerRenderer {
     ): void;
     protected scheduleExpireCache(frameState: FrameState, tileSource: TileSource): void;
     protected updateUsedTiles(
-        usedTiles: { [key: string]: { [key: string]: boolean } },
+        usedTiles: Record<string, Record<string, boolean>>,
         tileSource: TileSource,
         tile: Tile,
     ): void;
@@ -79,7 +79,7 @@ export default class CanvasTileLayerRenderer extends CanvasLayerRenderer {
      * Perform action necessary to get the layer rendered after new fonts have loaded
      */
     handleFontsChanged(): void;
-    loadedTileCallback(tiles: { [key: number]: { [key: string]: Tile } }, zoom: number, tile: Tile): boolean | void;
+    loadedTileCallback(tiles: Record<number, Record<string, Tile>>, zoom: number, tile: Tile): boolean | void;
     /**
      * Determine whether render should be called.
      */
