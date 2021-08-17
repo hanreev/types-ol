@@ -82,6 +82,8 @@ function prepareDt() {
   fs.writeFileSync('notNeededPackages.json', JSON.stringify(notNeededPackagesJson, null, 4), { encoding: 'utf-8' });
   fs.writeFileSync('.gitignore', gitignore.join('\n'), { encoding: 'utf-8' });
   childProcess.execSync('git init', { stdio: 'inherit' });
+  childProcess.execSync('git config user.name "Rifa\'i M. Hanif"', { stdio: 'inherit' });
+  childProcess.execSync('git config user.email hanreev@gmail.com', { stdio: 'inherit' });
   childProcess.execSync('git add --all', { stdio: 'inherit' });
   childProcess.execSync('git commit -m initial', { stdio: 'inherit' });
   process.chdir(BASE_DIR);

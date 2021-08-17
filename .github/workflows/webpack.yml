@@ -2,13 +2,12 @@ name: Node.js CI
 
 on:
   push:
-    branches: [ master ]
+    branches: [main]
   pull_request:
-    branches: [ master ]
+    branches: [main]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
@@ -17,7 +16,8 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: '14.x'
-      - run: git clone https://github.com/openlayers/openlayers
+      - name: Cloning openlayers repository
+        run: git clone https://github.com/openlayers/openlayers
       - run: yarn --frozen-lockfile
       - run: yarn prepare-npm
       - run: yarn prepare-dt
