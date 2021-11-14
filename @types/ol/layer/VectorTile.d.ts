@@ -47,7 +47,7 @@ export interface Options {
     source?: VectorTile;
     map?: PluggableMap;
     declutter?: boolean;
-    style?: StyleLike;
+    style?: StyleLike | null;
     updateWhileAnimating?: boolean;
     updateWhileInteracting?: boolean;
     preload?: number;
