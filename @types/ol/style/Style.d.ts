@@ -19,6 +19,7 @@ export interface Options {
     fill?: Fill;
     image?: ImageStyle;
     renderer?: RenderFunction;
+    hitDetectionRenderer?: RenderFunction;
     stroke?: Stroke;
     text?: Text;
     zIndex?: number;
@@ -62,6 +63,11 @@ export default class Style {
      */
     getGeometryFunction(): GeometryFunction;
     /**
+     * Get the custom renderer function that was configured with
+     * {@link #setHitDetectionRenderer} or the hitDetectionRenderer constructor option.
+     */
+    getHitDetectionRenderer(): RenderFunction | null;
+    /**
      * Get the image style.
      */
     getImage(): ImageStyle;
@@ -90,6 +96,11 @@ export default class Style {
      * Set a geometry that is rendered instead of the feature's geometry.
      */
     setGeometry(geometry: string | Geometry | GeometryFunction): void;
+    /**
+     * Sets a custom renderer function for this style used
+     * in hit detection.
+     */
+    setHitDetectionRenderer(renderer: RenderFunction | null): void;
     /**
      * Set the image style.
      */

@@ -1,19 +1,7 @@
 diff --git a/src/ol/control/FullScreen.js b/src/ol/control/FullScreen.js
-index 50906b4ce..182df897a 100644
+index 3c21dcd07..cbbe834b1 100644
 --- a/src/ol/control/FullScreen.js
 +++ b/src/ol/control/FullScreen.js
-@@ -44,9 +44,9 @@ const FullScreenEventType = {
- /**
-  * @typedef {Object} Options
-  * @property {string} [className='ol-full-screen'] CSS class name.
-- * @property {string|Text} [label='\u2922'] Text label to use for the button.
-+ * @property {string|Text|HTMLElement} [label='\u2922'] Text label to use for the button.
-  * Instead of text, also an element (e.g. a `span` element) can be used.
-- * @property {string|Text} [labelActive='\u00d7'] Text label to use for the
-+ * @property {string|Text|HTMLElement} [labelActive='\u00d7'] Text label to use for the
-  * button when full-screen is active.
-  * @property {string} [activeClassName=className + '-true'] CSS class name for the button
-  * when full-screen is active.
 @@ -73,8 +73,8 @@ const FullScreenEventType = {
   * The [Fullscreen API](https://www.w3.org/TR/fullscreen/) is used to
   * toggle the map in full screen mode.

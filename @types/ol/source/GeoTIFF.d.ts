@@ -20,6 +20,10 @@ export interface GeoKeys {
     ProjLinearUnitsGeoKey: number;
     ProjectedCSTypeGeoKey: number;
 }
+export interface GeoTIFF {
+    getImageCount: () => Promise<number>;
+    getImage: (p0: number) => Promise<GeoTIFFImage>;
+}
 export interface GeoTIFFImage {
     fileDirectory: any;
     geoKeys: GeoKeys;
@@ -29,10 +33,21 @@ export interface GeoTIFFImage {
     getBoundingBox: () => number[];
     getOrigin: () => number[];
     getResolution: (p0: GeoTIFFImage) => number[];
+    getWidth: () => number;
+    getHeight: () => number;
+    getTileWidth: () => number;
+    getTileHeight: () => number;
+    getGDALNoData: () => number | null;
+    getSamplesPerPixel: () => number;
+}
+export interface MultiGeoTIFF {
+    getImageCount: () => Promise<number>;
+    getImage: (p0: number) => Promise<GeoTIFFImage>;
 }
 export interface Options {
     sources: SourceInfo[];
     convertToRGB?: boolean;
+    normalize?: boolean;
     opaque?: boolean;
     transition?: number;
 }

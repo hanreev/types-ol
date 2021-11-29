@@ -39,7 +39,12 @@ export default class CanvasBuilder extends VectorContext {
     applyStroke(state: FillStrokeState): void;
     createFill(state: FillStrokeState): any[];
     createStroke(state: FillStrokeState): any[];
-    drawCustom(geometry: SimpleGeometry, feature: FeatureLike, renderer: () => void): void;
+    drawCustom(
+        geometry: SimpleGeometry,
+        feature: FeatureLike,
+        renderer: () => void,
+        hitDetectionRenderer: () => void,
+    ): void;
     drawCustomCoordinates_(
         flatCoordinates: number[],
         offset: number,

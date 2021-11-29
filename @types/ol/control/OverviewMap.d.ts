@@ -5,8 +5,7 @@ import PluggableMap from '../PluggableMap';
 import View from '../View';
 import { EventsKey, ListenerFunction } from '../events';
 import BaseEvent from '../events/Event';
-import Layer from '../layer/Layer';
-import Source from '../source/Source';
+import BaseLayer from '../layer/Base';
 import Control from './Control';
 
 export type TControlledMapBaseEventTypes = 'change' | 'error';
@@ -27,7 +26,7 @@ export interface Options {
     collapseLabel?: string | HTMLElement;
     collapsible?: boolean;
     label?: string | HTMLElement;
-    layers?: Layer<Source>[] | Collection<Layer<Source>>;
+    layers?: BaseLayer[] | Collection<BaseLayer>;
     render?: (p0: MapEvent) => void;
     rotateWithView?: boolean;
     target?: HTMLElement | string;

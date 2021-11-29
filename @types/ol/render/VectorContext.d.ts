@@ -23,7 +23,12 @@ export default class VectorContext {
     /**
      * Render a geometry with a custom renderer.
      */
-    drawCustom(geometry: SimpleGeometry, feature: FeatureLike, renderer: () => void): void;
+    drawCustom(
+        geometry: SimpleGeometry,
+        feature: FeatureLike,
+        renderer: () => void,
+        hitDetectionRenderer: () => void,
+    ): void;
     drawFeature(feature: Feature<Geometry>, style: Style): void;
     /**
      * Render a geometry.
