@@ -40,7 +40,7 @@ exports.handlers = {
       if (!(doclet.memberof in incompleteByClass)) incompleteByClass[doclet.memberof] = [];
 
       incompletes = incompleteByClass[doclet.memberof];
-      if (incompletes.indexOf(doclet.name) == -1) incompletes.push(doclet.name);
+      if (!incompletes.includes(doclet.name)) incompletes.push(doclet.name);
     }
   },
 
@@ -87,7 +87,7 @@ exports.handlers = {
                   if (stability) {
                     incompleteDoclet.stability = stability;
                     for (key in candidate)
-                      if (candidate.hasOwnProperty(key) && keepKeys.indexOf(key) == -1)
+                      if (candidate.hasOwnProperty(key) && !keepKeys.includes(key))
                         incompleteDoclet[key] = candidate[key];
                     // We have found a matching parent doc and applied it so we
                     // don't want to ignore this doclet anymore.

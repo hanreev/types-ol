@@ -25,7 +25,7 @@ function remapExports(doclet) {
         p4 = path.normalize(path.join(doclet.meta.path, p4));
         p4 = path.relative(moduleRoot, p4).replace(/\\/g, '/');
         p2.split(/,\s?/).forEach(e => {
-          if (e.indexOf(' as ') == -1) doclet.exports.exports.push(e);
+          if (!e.includes(' as ')) doclet.exports.exports.push(e);
         });
         return p1 + ` ${p2.trim()} ` + p3 + p4 + p5;
       });
@@ -78,7 +78,7 @@ exports.handlers = {
 
     if (doclet.params)
       doclet.params
-        .filter(param => param.name.indexOf('.') == -1)
+        .filter(param => !param.name.includes('.'))
         .forEach(param => extractFunctionDefinition(param, doclet.comment));
 
     if (doclet.properties) doclet.properties.forEach(prop => extractFunctionDefinition(prop, doclet.comment));

@@ -65,7 +65,7 @@ exports.handlers = {
         if (!cls.observables) cls.observables = [];
 
         observable = observables[doclet.observable];
-        if (observable.type && cls.observables.indexOf(observable) == -1) cls.observables.push(observable);
+        if (observable.type && !cls.observables.includes(observable)) cls.observables.push(observable);
 
         const tmpObservables = clsObservables[cls.longname] || [];
         clsObservables[cls.longname] = Array.from(new Set(tmpObservables.concat(cls.observables)));
@@ -73,7 +73,7 @@ exports.handlers = {
         if (!cls.fires) cls.fires = [];
 
         event = 'module:ol/Object.ObjectEvent#event:change:' + name;
-        if (cls.fires.indexOf(event) == -1) cls.fires.push(event);
+        if (!cls.fires.includes(event)) cls.fires.push(event);
 
         const tmpFires = fires[cls.longname] || [];
         fires[cls.longname] = Array.from(new Set(tmpFires.concat(cls.fires)));

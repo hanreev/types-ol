@@ -62,14 +62,14 @@ function includeAugments(doclet) {
           if (!doclet.fires) doclet.fires = [];
 
           cls.fires.forEach(f => {
-            if (doclet.fires.indexOf(f) == -1) doclet.fires.push(f);
+            if (!doclet.fires.includes(f)) doclet.fires.push(f);
           });
         }
         if (cls.observables) {
           if (!doclet.observables) doclet.observables = [];
 
           cls.observables.forEach(f => {
-            if (doclet.observables.indexOf(f) == -1) doclet.observables.push(f);
+            if (!doclet.observables.includes(f)) doclet.observables.push(f);
           });
         }
       }

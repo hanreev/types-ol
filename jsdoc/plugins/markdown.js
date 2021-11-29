@@ -33,10 +33,7 @@ markedRenderer.code = (code, language) => {
  * @returns {string}
  */
 function escapeCode(source) {
-  return source
-    .replace(/</g, '&lt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#39;');
+  return source.replace(/</g, '&lt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
 }
 
 /**
@@ -69,9 +66,7 @@ function parse(source) {
 
   source = escapeUnderscoresAndTildes(source);
 
-  result = marked(source, { renderer: markedRenderer })
-    .replace(/\s+$/, '')
-    .replace(/&#39;/g, `'`);
+  result = marked(source, { renderer: markedRenderer }).replace(/\s+$/, '').replace(/&#39;/g, `'`);
 
   result = unencodeQuotesAndTildes(result);
 
@@ -87,7 +82,7 @@ function shouldProcessString(tagName, text) {
   let shouldProcess = true;
 
   // we only want to process `@author` and `@see` tags that contain Markdown links
-  if ((tagName === 'author' || tagName === 'see') && text.indexOf('[') === -1) shouldProcess = false;
+  if ((tagName === 'author' || tagName === 'see') && !text.includes('[')) shouldProcess = false;
 
   return shouldProcess;
 }

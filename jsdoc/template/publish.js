@@ -104,7 +104,7 @@ function registerImport(_module, val) {
   let importName;
   let temp;
 
-  if (value.indexOf('.') != -1) {
+  if (value.includes('.')) {
     isDefault = false;
     splits = value.split('.');
   } else {
@@ -143,7 +143,7 @@ function registerImport(_module, val) {
     }
   }
 
-  if (!doclet && EXTERNAL_MODULE_WHITELIST.indexOf(moduleName) == -1) {
+  if (!doclet && !EXTERNAL_MODULE_WHITELIST.includes(moduleName)) {
     logger.warn('Invalid import or external module --', val, 'in', _module.name);
     if (moduleName.startsWith('geotiff')) return importName;
   }
@@ -162,7 +162,7 @@ function registerImport(_module, val) {
     counter++;
   }
 
-  while (_imports.names.indexOf(availableImportName) != -1) {
+  while (_imports.names.includes(availableImportName)) {
     availableImportName = `${importName}_${counter}`;
     counter++;
   }
@@ -369,7 +369,7 @@ function stringifyType(parsedType, _module, undefinedLiteral = true, nullLiteral
     typeStr = 'null';
   } else if (parsedType.type == 'UndefinedLiteral') {
     typeStr = 'undefined';
-  } else if (['UnknownLiteral', 'AllLiteral'].indexOf(parsedType.type) != -1) {
+  } else if (['UnknownLiteral', 'AllLiteral'].includes(parsedType.type)) {
     typeStr = 'any';
   } else {
     typeStr += suffix;
@@ -473,7 +473,7 @@ function getType(doclet, _module, undefinedLiteral = false, nullLiteral = true) 
 
   if (!nullLiteral) types = types.filter(t => t != 'null');
 
-  if (types.length > 1 && types.indexOf('any') != -1) types = types.filter(t => t != 'any');
+  if (types.length > 1 && types.includes('any')) types = types.filter(t => t != 'any');
 
   if (types.length == 1 && types[0] == 'object') types[0] = 'any';
 
@@ -498,7 +498,7 @@ function getParams(doclet, _module) {
   if (!doclet.params) return '';
 
   return doclet.params
-    .filter(param => param.name.indexOf('.') == -1)
+    .filter(param => !param.name.includes('.'))
     .map(param => {
       let name = param.name;
       let paramType = getType(/** @type {Doclet} */ (param), _module, true, true);
@@ -507,7 +507,7 @@ function getParams(doclet, _module) {
 
       if (param.variable) {
         name = '...' + name;
-        if (paramType.indexOf('|') != -1) paramType = `(${paramType})`;
+        if (paramType.includes('|')) paramType = `(${paramType})`;
         paramType += '[]';
       }
 
@@ -535,7 +535,7 @@ function definition(doclet, decl, _module) {
       } else {
         prefix = 'export default ';
       }
-    else if (_module.exports.exports.indexOf(doclet.name) != -1) prefix = 'export ';
+    else if (_module.exports.exports.includes(doclet.name)) prefix = 'export ';
 
   return prefix + decl + suffix;
 }
@@ -557,7 +557,7 @@ const PROCESSORS = {
           if (gt.startsWith('<module:')) gt = '<' + registerImport(_module, gt.replace(/<(.+)>/, '$1')) + '>';
           augmentName += gt;
         }
-      } else if (augment in GENERIC_TYPES && ANY_GENERIC_TYPES.indexOf(augment) != -1) {
+      } else if (augment in GENERIC_TYPES && ANY_GENERIC_TYPES.includes(augment)) {
         augmentName += '<any>';
       }
 
@@ -725,7 +725,7 @@ const PROCESSORS = {
         let name = prop.name;
 
         // Prevent duplicate property
-        if (addedProps.indexOf(name) != -1) return;
+        if (addedProps.includes(name)) return;
 
         addedProps.push(name);
 
@@ -813,7 +813,7 @@ async function processModule(doclet) {
       const child = PROCESSORS[processorName](item, doclet);
       const comment = getComment(item);
 
-      if (child.indexOf('export ') != -1) return children.push(comment + child);
+      if (child.includes('export ')) return children.push(comment + child);
 
       if (doclet.force_include_members && doclet.force_include_members.includes(item.name))
         children.push(comment + 'declare ' + child);
@@ -845,7 +845,7 @@ async function generateDefinition(doclet, emitOutput = true) {
   if (_exports && _exports.reExports.length) {
     _exports.reExports.forEach(x => {
       const match = x.match(/^(export\s{)(.+?)(}\sfrom\s['"])(.+?)(['"];)$/);
-      if (match && match[2].indexOf(' as ') == -1) {
+      if (match && !match[2].includes(' as ')) {
         const names = match[2]
           .split(/,\s?/)
           .map(name => {
