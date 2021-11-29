@@ -1,5 +1,6 @@
 import DataTile from '../DataTile';
 import { ObjectEvent } from '../Object';
+import { ViewOptions } from '../View';
 import { EventsKey, ListenerFunction } from '../events';
 import BaseEvent from '../events/Event';
 import Projection from '../proj/Projection';
@@ -47,6 +48,22 @@ export default class GeoTIFFSource extends DataTileSource {
     constructor(options: Options);
     getError(): Error;
     getTile(z: number, x: number, y: number, pixelRatio: number, projection: Projection): DataTile;
+    /**
+     * Get a promise for view properties based on the source.  Use the result of this function
+     * as the view option in a map constructor.
+     * <code>const source = new GeoTIFF(options);
+     *
+     * const map = new Map({
+     *   target: 'map',
+     *   layers: [
+     *     new TileLayer({
+     *       source: source,
+     *     }),
+     *   ],
+     *   view: source.getView(),
+     * });</code>
+     */
+    getView(): Promise<ViewOptions>;
     /**
      * Marks a tile coord as being used, without triggering a load.
      */

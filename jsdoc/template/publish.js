@@ -1034,11 +1034,36 @@ exports.publish = taffyData => {
    * Update module exports
    */
   members.modules.forEach((/** @type {Doclet} */ doclet) => {
-    doclet.exports.exports = doclet.exports.exports.filter(exportName => {
-      return find({ name: exportName, memberof: doclet.longname }).length > 0;
-    });
+    if (doclet.exports) {
+      const invalidExports = doclet.exports.exports.filter(exportName => {
+        return find({ name: exportName, memberof: doclet.longname }).length < 1;
+      });
+      doclet.exports.exports = doclet.exports.exports.filter(exportName => !invalidExports.includes(exportName));
 
-    MODULE_EXPORTS[doclet.name] = doclet.exports;
+      /** @type {ModuleImports} */
+      const _imports = MODULE_IMPORTS[doclet.name] || {
+        names: [],
+        imported: {},
+        expressions: [],
+      };
+
+      if (invalidExports.length && doclet.imports)
+        invalidExports.forEach(exportName => {
+          for (const key in doclet.imports) {
+            const members = doclet.imports[key];
+            let mName = members.find(member => member == exportName);
+            if (mName) {
+              if (members.indexOf(mName) > 0) mName = `{${mName}}`;
+              _imports.expressions.push(`import ${mName} from '${key}';`);
+              doclet.exports.reExports.push(`export {${exportName}};`);
+              break;
+            }
+          }
+        });
+
+      MODULE_EXPORTS[doclet.name] = doclet.exports;
+      MODULE_IMPORTS[doclet.name] = _imports;
+    }
   });
 
   Promise.all(members.modules.map((/** @type {Doclet} */ doclet) => processModule(doclet))).then(() => {

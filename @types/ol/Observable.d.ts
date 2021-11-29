@@ -6,12 +6,12 @@ export type TObservableBaseEventTypes = 'change' | 'error';
 export type EventTypes = 'change' | 'error';
 export default class Observable extends Target {
     constructor();
-    protected onceInternal(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
-    protected onInternal(type: string | string[], listener: (p0: any) => any): EventsKey | EventsKey[];
+    protected onceInternal(type: string | string[], listener: (p0: Event | BaseEvent) => any): EventsKey | EventsKey[];
+    protected onInternal(type: string | string[], listener: (p0: Event | BaseEvent) => any): EventsKey | EventsKey[];
     /**
      * Unlisten for a certain type of event.
      */
-    protected unInternal(type: string | string[], listener: (p0: any) => any): void;
+    protected unInternal(type: string | string[], listener: (p0: Event | BaseEvent) => any): void;
     /**
      * Increases the revision counter and dispatches a 'change' event.
      */

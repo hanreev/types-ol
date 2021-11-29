@@ -10,7 +10,7 @@ export interface IiifProfile {
 }
 export type ImageInformationResponse = Record<
     string,
-    string | number | (number | string | IiifProfile)[] | Record<string, number> | TileInfo
+    string | number | (number | string | IiifProfile | Record<string, number> | TileInfo)[]
 >;
 export interface PreferredOptions {
     format?: string;

@@ -22,7 +22,7 @@ export default class Control extends BaseObject {
     /**
      * Get the map associated with this control.
      */
-    getMap(): PluggableMap;
+    getMap(): PluggableMap | undefined;
     /**
      * Renders the control.
      */
@@ -32,7 +32,7 @@ export default class Control extends BaseObject {
      * Subclasses may set up event handlers to get notified about changes to
      * the map here.
      */
-    setMap(map: PluggableMap): void;
+    setMap(map?: PluggableMap): void;
     /**
      * This function is used to set a target element for the control. It has no
      * effect if it is called after the control has been added to the map (i.e.

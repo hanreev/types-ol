@@ -39,12 +39,7 @@ export default class CanvasVectorTileLayerRenderer extends CanvasTileLayerRender
      * Determine whether render should be called.
      */
     prepareFrame(frameState: FrameState): boolean;
-    prepareTile(
-        tile: VectorRenderTile,
-        pixelRatio: number,
-        projection: Projection,
-        queue: boolean,
-    ): boolean | undefined;
+    prepareTile(tile: VectorRenderTile, pixelRatio: number, projection: Projection): boolean | undefined;
     /**
      * Render declutter items for this layer
      */
@@ -60,7 +55,6 @@ export default class CanvasVectorTileLayerRenderer extends CanvasTileLayerRender
      * Render the layer.
      */
     renderFrame(frameState: FrameState, target: HTMLElement): HTMLElement;
-    renderQueuedTileImages_(hifi: boolean, frameState: FrameState): void;
     on(type: TCanvasVectorTileLayerRendererBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
     on(type: TCanvasVectorTileLayerRendererBaseEventTypes[], listener: ListenerFunction<BaseEvent>): EventsKey[];
     once(type: TCanvasVectorTileLayerRendererBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;

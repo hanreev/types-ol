@@ -29,7 +29,7 @@ export interface LayerObject {
 }
 export interface Options {
     styleUrl: string;
-    accessToken: string;
+    accessToken?: string;
     source?: string;
     layers?: string[];
     declutter?: boolean;

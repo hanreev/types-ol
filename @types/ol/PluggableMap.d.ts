@@ -7,7 +7,7 @@ import Types from './ObjectEventType';
 import Overlay from './Overlay';
 import Tile from './Tile';
 import TileQueue from './TileQueue';
-import View, { State } from './View';
+import View, { State, ViewOptions } from './View';
 import Control from './control/Control';
 import { Coordinate } from './coordinate';
 import { EventsKey, ListenerFunction } from './events';
@@ -53,6 +53,7 @@ export interface FrameState {
     coordinateToPixelTransform: Transform;
     declutterTree: RBush<any>;
     extent: null | Extent;
+    nextExtent?: Extent;
     index: number;
     layerStatesArray: State_1[];
     layerIndex: number;
@@ -78,7 +79,7 @@ export interface MapOptions {
     moveTolerance?: number;
     overlays?: Collection<Overlay> | Overlay[];
     target?: HTMLElement | string;
-    view?: View;
+    view?: View | Promise<ViewOptions>;
 }
 export interface MapOptionsInternal {
     controls?: Collection<Control>;
@@ -295,6 +296,10 @@ export default class PluggableMap extends BaseObject {
      */
     setLayerGroup(layerGroup: LayerGroup): void;
     /**
+     * Clear any existing layers and add layers to the map.
+     */
+    setLayers(layers: BaseLayer[] | Collection<BaseLayer>): void;
+    /**
      * Set the size of this map.
      */
     setSize(size: Size | undefined): void;
@@ -305,7 +310,7 @@ export default class PluggableMap extends BaseObject {
     /**
      * Set the view for this map.
      */
-    setView(view: View): void;
+    setView(view: View | Promise<ViewOptions>): void;
     /**
      * Force a recalculation of the map viewport size.  This should be called when
      * third-party code changes the size of the map viewport.

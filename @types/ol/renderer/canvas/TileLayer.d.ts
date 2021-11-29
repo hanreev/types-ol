@@ -63,7 +63,6 @@ export default class CanvasTileLayerRenderer extends CanvasLayerRenderer {
         h: number,
         gutter: number,
         transition: boolean,
-        opacity: number,
     ): void;
     forEachFeatureAtCoordinate<T>(
         coordinate: Coordinate,

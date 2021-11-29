@@ -117,6 +117,11 @@ export default class WebGLHelper extends Disposable {
     getAttributeLocation(name: string): number;
     getCanvas(): HTMLCanvasElement;
     /**
+     * Get a WebGL extension.  If the extension is not supported, null is returned.
+     * Extensions are cached after they are enabled for the first time.
+     */
+    getExtension(name: string): any;
+    /**
      * Get the WebGL rendering context
      */
     getGL(): WebGLRenderingContext;

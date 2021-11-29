@@ -111,6 +111,7 @@ interface Doclet {
     undocumented?: boolean;
     virtual?: boolean;
     yields?: DocletReturns[];
+    imports?: Record<string, string[]>;
 }
 
 interface TypeLiteral {

@@ -25,6 +25,7 @@ export interface Options {
     tilePixelRatio?: number;
     wrapX?: boolean;
     transition?: number;
+    bandCount?: number;
 }
 export default class DataTileSource extends TileSource {
     constructor(options: Options);

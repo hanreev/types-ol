@@ -49,10 +49,6 @@ export default class WebGLPointsLayer<
      * Create a renderer for this layer.
      */
     createRenderer(): WebGLPointsLayerRenderer;
-    /**
-     * Clean up.
-     */
-    disposeInternal(): void;
     on(type: TWebGLPointsLayerBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
     on(type: TWebGLPointsLayerBaseEventTypes[], listener: ListenerFunction<BaseEvent>): EventsKey[];
     once(type: TWebGLPointsLayerBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;

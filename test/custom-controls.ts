@@ -29,7 +29,7 @@ class RotateNorthControl extends Control {
     }
 
     handleRotateNorth() {
-        this.getMap().getView().setRotation(0);
+        this.getMap()?.getView().setRotation(0);
     }
 }
 

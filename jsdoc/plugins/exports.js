@@ -7,6 +7,9 @@ const moduleRoot = path.resolve(env.conf.typescript.moduleRoot);
 /** @type {Object<string, ModuleExports>} */
 const MODULE_EXPORTS = {};
 
+/** @type {Object<string, string[]>} */
+const MODULE_IMPORTS = {};
+
 /**
  * @param {Doclet} doclet
  */
@@ -30,6 +33,35 @@ function remapExports(doclet) {
         return p1 + ` ${p2.trim()} ` + p3 + p4 + p5;
       });
     });
+}
+
+/**
+ * @param {Doclet} doclet
+ */
+function remapImports(doclet) {
+  const filename = path.join(doclet.meta.path, doclet.meta.filename);
+  const _imports = MODULE_IMPORTS[filename];
+  if (!_imports) return;
+
+  /** @type {Object<string, string[]>} */
+  const importMap = {};
+  _imports.forEach(_import => {
+    const [_, names, modulePath] = /^import (.+?) from (.+);$/.exec(_import);
+    const mMatch = /{(.+?)}/.exec(names);
+    let key = modulePath.replace(/['"]/g, '');
+    if (key.startsWith('./')) {
+      key = path.normalize(path.join(doclet.meta.path, key));
+      key = path.relative(moduleRoot, key).replace(/\\/g, '/').replace(/\.js$/, '');
+    }
+    if (mMatch) {
+      const [mImports, mNames] = /{(.+?)}/.exec(names);
+      const dImport = names.replace(mImports, '').replace(',', '').trim();
+      importMap[key] = [dImport, ...mNames.trim().split(/,\s/)];
+    } else {
+      importMap[key] = [names.trim()];
+    }
+  });
+  doclet.imports = importMap;
 }
 
 /**
@@ -69,6 +101,7 @@ exports.handlers = {
 
     if (doclet.kind == 'module') {
       remapExports(doclet);
+      remapImports(doclet);
     } else {
       const filename = path.join(doclet.meta.path, doclet.meta.filename);
       if (MODULE_EXPORTS[filename].exports.includes(doclet.name)) doclet.stability = 'stable';
@@ -97,9 +130,11 @@ exports.handlers = {
       exports: [],
       reExports: [],
     };
+    const _imports = [];
     const exportRegex = /^export\s([^{]+?)\s(.+?)[(\s;]/gm;
     const multipleExportRegex = /^export\s{(.+?)};/gm;
     const reExportRegex = /^export\s{.+?}\sfrom.+;/gm;
+    const importRegex = /^import\s(.+?)\sfrom\s(.+);/gm;
     /** @type {RegExpMatchArray} */
     let match;
 
@@ -120,7 +155,13 @@ exports.handlers = {
       if (match) _exports.reExports.push(match[0].replace('.js', ''));
     } while (match);
 
+    do {
+      match = importRegex.exec(e.source);
+      if (match) _imports.push(match[0]);
+    } while (match);
+
     MODULE_EXPORTS[e.filename] = _exports;
+    MODULE_IMPORTS[e.filename] = _imports;
 
     // Fix multiple typedef in a comment
     e.source = e.source.replace(/\/\*\*.+?\*\//gs, m => {

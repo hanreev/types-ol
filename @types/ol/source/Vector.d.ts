@@ -26,7 +26,7 @@ export type TVectorSourceObjectEventTypes = 'propertychange';
  * returns an array of {@link module:ol/extent~Extent} with the extents to load. Usually this
  * is one of the standard {@link module:ol/loadingstrategy} strategies.
  */
-export type LoadingStrategy = (p0: Extent, p1: number) => Extent[];
+export type LoadingStrategy = (p0: Extent, p1: number, p2: Projection) => Extent[];
 export interface Options {
     attributions?: AttributionLike;
     features?: Feature<Geometry>[] | Collection<Feature<Geometry>>;

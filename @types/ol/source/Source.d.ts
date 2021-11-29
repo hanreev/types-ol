@@ -1,5 +1,6 @@
 import BaseObject, { ObjectEvent } from '../Object';
 import { FrameState } from '../PluggableMap';
+import { ViewOptions } from '../View';
 import { EventsKey, ListenerFunction } from '../events';
 import BaseEvent from '../events/Event';
 import { ProjectionLike } from '../proj';
@@ -33,6 +34,8 @@ export interface Options {
 export default abstract class Source extends BaseObject {
     constructor(options: Options);
     protected projection: Projection;
+    protected viewRejector: () => void;
+    protected viewResolver: () => void;
     /**
      * Get the attribution function for the source.
      */
@@ -48,6 +51,7 @@ export default abstract class Source extends BaseObject {
      * Get the state of the source, see {@link module:ol/source/State~State} for possible states.
      */
     getState(): State;
+    getView(): Promise<ViewOptions>;
     getWrapX(): boolean | undefined;
     /**
      * Refreshes the source. The source will be cleared, and data from the server will be reloaded.

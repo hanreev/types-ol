@@ -28,6 +28,7 @@ import { ImageWMS, OSM, Vector as VectorSource, VectorTile as VectorTileSource }
 import { Options as XYZOptions } from 'ol/source/XYZ';
 import { Circle, Fill, Stroke, Style } from 'ol/style';
 import { StyleFunction } from 'ol/style/Style';
+
 import proj4 = require('proj4');
 /**
  * ==================================================
@@ -419,8 +420,11 @@ class CustomControl extends Control {
     }
 
     private _listener(evt: MouseEvent) {
-        const mapEvent = new MapBrowserEvent(evt.type, this.getMap(), evt);
-        console.log(mapEvent);
+        const map = this.getMap();
+        if (map) {
+            const mapEvent = new MapBrowserEvent(evt.type, map, evt);
+            console.log(mapEvent);
+        }
     }
 }
 

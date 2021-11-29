@@ -61,6 +61,9 @@ export interface State {
     center: Coordinate;
     projection: Projection;
     resolution: number;
+    nextCenter?: Coordinate;
+    nextResolution?: number;
+    nextRotation?: number;
     rotation: number;
     zoom: number;
 }

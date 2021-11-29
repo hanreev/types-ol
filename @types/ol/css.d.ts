@@ -37,3 +37,4 @@ export const CLASS_UNSUPPORTED: string;
  * for font families that have commas in them.
  */
 export const getFontParameters: (fontSpec: string) => FontParameters;
+export function cssOpacity(opacity: number): string;

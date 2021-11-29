@@ -68,6 +68,10 @@ export default class WebGLTileLayer extends BaseTileLayer {
      */
     protected createRenderer(): LayerRenderer<Layer<Source>>;
     /**
+     * Clean up underlying WebGL resources.
+     */
+    dispose(): void;
+    /**
      * Update any variables used by the layer style and trigger a re-render.
      */
     updateStyleVariables(variables: Record<string, number>): void;

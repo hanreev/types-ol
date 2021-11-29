@@ -21,6 +21,10 @@ export interface Options {
 export default class WebGLTileLayerRenderer extends WebGLLayerRenderer {
     constructor(tileLayer: WebGLTileLayer, options: Options);
     protected isDrawableTile(tile: Tile): boolean;
+    /**
+     * Clean up.
+     */
+    disposeInternal(): void;
     forEachFeatureAtCoordinate<T>(
         coordinate: Coordinate,
         frameState: FrameState,
