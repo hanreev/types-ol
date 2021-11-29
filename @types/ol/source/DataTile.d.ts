@@ -1,0 +1,65 @@
+import DataTile, { Data } from '../DataTile';
+import { ObjectEvent } from '../Object';
+import { EventsKey, ListenerFunction } from '../events';
+import BaseEvent from '../events/Event';
+import { ProjectionLike } from '../proj';
+import Projection from '../proj/Projection';
+import { Size } from '../size';
+import TileGrid from '../tilegrid/TileGrid';
+import State from './State';
+import TileSource, { TileSourceEvent } from './Tile';
+
+export type TDataTileSourceBaseEventTypes = 'change' | 'error';
+export type TDataTileSourceObjectEventTypes = 'propertychange';
+export type TDataTileSourceTileSourceEventTypes = 'tileloadend' | 'tileloaderror' | 'tileloadstart';
+export interface Options {
+    loader?: (p0: number, p1: number, p2: number) => Promise<Data>;
+    maxZoom?: number;
+    minZoom?: number;
+    tileSize?: number | Size;
+    maxResolution?: number;
+    projection?: ProjectionLike;
+    tileGrid?: TileGrid;
+    opaque?: boolean;
+    state?: State;
+    tilePixelRatio?: number;
+    wrapX?: boolean;
+    transition?: number;
+}
+export default class DataTileSource extends TileSource {
+    constructor(options: Options);
+    protected setLoader(loader: (p0: number, p1: number, p2: number) => Promise<Data>): void;
+    getTile(z: number, x: number, y: number, pixelRatio: number, projection: Projection): DataTile;
+    /**
+     * Handle tile change events.
+     */
+    handleTileChange_(event: BaseEvent): void;
+    /**
+     * Marks a tile coord as being used, without triggering a load.
+     */
+    useTile(z: number, x: number, y: number, projection: Projection): void;
+    on(type: TDataTileSourceBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
+    on(type: TDataTileSourceBaseEventTypes[], listener: ListenerFunction<BaseEvent>): EventsKey[];
+    once(type: TDataTileSourceBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
+    once(type: TDataTileSourceBaseEventTypes[], listener: ListenerFunction<BaseEvent>): EventsKey[];
+    un(
+        type: TDataTileSourceBaseEventTypes | TDataTileSourceBaseEventTypes[],
+        listener: ListenerFunction<BaseEvent>,
+    ): void;
+    on(type: TDataTileSourceObjectEventTypes, listener: ListenerFunction<ObjectEvent>): EventsKey;
+    on(type: TDataTileSourceObjectEventTypes[], listener: ListenerFunction<ObjectEvent>): EventsKey[];
+    once(type: TDataTileSourceObjectEventTypes, listener: ListenerFunction<ObjectEvent>): EventsKey;
+    once(type: TDataTileSourceObjectEventTypes[], listener: ListenerFunction<ObjectEvent>): EventsKey[];
+    un(
+        type: TDataTileSourceObjectEventTypes | TDataTileSourceObjectEventTypes[],
+        listener: ListenerFunction<ObjectEvent>,
+    ): void;
+    on(type: TDataTileSourceTileSourceEventTypes, listener: ListenerFunction<TileSourceEvent>): EventsKey;
+    on(type: TDataTileSourceTileSourceEventTypes[], listener: ListenerFunction<TileSourceEvent>): EventsKey[];
+    once(type: TDataTileSourceTileSourceEventTypes, listener: ListenerFunction<TileSourceEvent>): EventsKey;
+    once(type: TDataTileSourceTileSourceEventTypes[], listener: ListenerFunction<TileSourceEvent>): EventsKey[];
+    un(
+        type: TDataTileSourceTileSourceEventTypes | TDataTileSourceTileSourceEventTypes[],
+        listener: ListenerFunction<TileSourceEvent>,
+    ): void;
+}

@@ -28,7 +28,7 @@ const map = new Map({
 (document.getElementById('export-png') as HTMLElement).addEventListener('click', () => {
     map.once('rendercomplete', (event: any) => {
         const canvas = event.context.canvas;
-        if (navigator.msSaveBlob) navigator.msSaveBlob(canvas.msToBlob(), 'map.png');
+        if ((navigator as any).msSaveBlob) (navigator as any).msSaveBlob(canvas.msToBlob(), 'map.png');
         else
             canvas.toBlob((blob: any) => {
                 saveAs(blob, 'map.png');

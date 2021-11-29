@@ -138,7 +138,7 @@ export default class WebGLHelper extends Disposable {
      * Post process passes will be initialized here, the first one being bound as a render target for
      * subsequent draw calls.
      */
-    prepareDraw(frameState: FrameState): void;
+    prepareDraw(frameState: FrameState, opt_disableAlphaBlend?: boolean): void;
     /**
      * Clear the render target & bind it for future draw operations.
      * This is similar to prepareDraw, only post processes will not be applied.

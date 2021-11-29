@@ -134,7 +134,7 @@ function registerImport(_module, val) {
   }
 
   if (!doclet && moduleName.startsWith('ol')) {
-    splits = val.indexOf('~') != -1 ? val.split('~') : val.split('.');
+    splits = val.includes('~') ? val.split('~') : val.split('.');
     if (splits.length == 2) {
       temp = splits[0].split('/');
       temp[temp.length - 1] = splits[1];
@@ -143,8 +143,10 @@ function registerImport(_module, val) {
     }
   }
 
-  if (!doclet && EXTERNAL_MODULE_WHITELIST.indexOf(moduleName) == -1)
+  if (!doclet && EXTERNAL_MODULE_WHITELIST.indexOf(moduleName) == -1) {
     logger.warn('Invalid import or external module --', val, 'in', _module.name);
+    if (moduleName.startsWith('geotiff')) return importName;
+  }
 
   let counter = 1;
   let availableImportName = importName;

@@ -2,17 +2,24 @@ import { Color } from '../color';
 
 /**
  * Base type used for literal style parameters; can be a number literal or the output of an operator,
- * which in turns takes {@link ExpressionValue} arguments.
+ * which in turns takes {@link module:ol/style/expressions~ExpressionValue} arguments.
  * The following operators can be used:
  *
  * Reading operators:
  *
+ * ['band', bandIndex, xOffset, yOffset] For tile layers only. Fetches pixel values from band
+ * bandIndex of the source's data. The first bandIndex of the source data is 1. Fetched values
+ * are in the 0..1 range. {@link module:ol/source/TileImage~TileImage} sources have 4 bands: red,
+ * green, blue and alpha. {@link module:ol/source/DataTile~DataTileSource} sources can have any number
+ * of bands, depending on the underlying data source and
+ * {@link module:ol/source/GeoTIFF~Options configuration}. xOffset and yOffset are optional
+ * and allow specifying pixel offsets for x and y. This is used for sampling data from neighboring pixels.
  * ['get', 'attributeName'] fetches a feature attribute (it will be prefixed by a_ in the shader)
  * Note: those will be taken from the attributes provided to the renderer
- * ['var', 'varName'] fetches a value from the style variables, or 0 if undefined
- * ['time'] returns the time in seconds since the creation of the layer
- * ['zoom'] returns the current zoom level
  * ['resolution'] returns the current resolution
+ * ['time'] returns the time in seconds since the creation of the layer
+ * ['var', 'varName'] fetches a value from the style variables, or 0 if undefined
+ * ['zoom'] returns the current zoom level
  *
  *
  * Math operators:
@@ -24,6 +31,10 @@ import { Color } from '../color';
  * ['clamp', value, low, high] clamps value between low and high
  * ['%', value1, value2] returns the result of value1 % value2 (modulo)
  * ['^', value1, value2] returns the value of value1 raised to the value2 power
+ * ['abs', value1] returns the absolute value of value1
+ * ['sin', value1] returns the sine of value1
+ * ['cos', value1] returns the cosine of value1
+ * ['atan', value1, value2] returns atan2(value1, value2). If value2 is not provided, returns atan(value1)
  *
  *
  * Transform operators:
@@ -97,6 +108,7 @@ export interface ParsingContext {
     variables: string[];
     attributes: string[];
     stringLiteralsMap: Record<string, number>;
+    bandCount?: number;
 }
 /**
  * Operator declarations

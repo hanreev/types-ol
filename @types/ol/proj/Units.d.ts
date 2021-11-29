@@ -7,6 +7,7 @@ export const METERS_PER_UNIT: Record<Units, number>;
  * 'us-ft'.
  */
 declare enum Units {
+    RADIANS = 'radians',
     DEGREES = 'degrees',
     FEET = 'ft',
     METERS = 'm',
@@ -16,3 +17,4 @@ declare enum Units {
 }
 
 export default Units;
+export function fromCode(code: number): Units;

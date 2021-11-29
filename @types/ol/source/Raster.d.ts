@@ -18,6 +18,19 @@ export type TRasterSourceObjectEventTypes = 'propertychange';
 export interface FauxMessageEvent {
     data: any;
 }
+export interface Job {
+    meta: any;
+    inputs: ImageData[];
+    callback: JobCallback;
+}
+export type JobCallback = (p0: Error, p1: ImageData, p2: object | object[]) => void;
+export interface MinionData {
+    buffers: ArrayBuffer[];
+    meta: any;
+    imageOps: boolean;
+    width: number;
+    height: number;
+}
 /**
  * A function that takes an array of input data, performs some operation, and
  * returns an array of output data.
@@ -43,8 +56,8 @@ export interface Options {
 }
 export interface ProcessorOptions {
     threads: number;
-    operation: (p0: any[], p1: object) => any;
-    lib?: any;
+    operation: Operation;
+    lib?: Record<string, () => void>;
     queue: number;
     imageOps?: boolean;
 }
@@ -65,7 +78,7 @@ export class Processor extends Disposable {
     /**
      * Add a job to the queue.
      */
-    _enqueue(job: any): void;
+    _enqueue(job: Job): void;
     /**
      * Handle messages from the worker.
      */
@@ -82,7 +95,7 @@ export class Processor extends Disposable {
     /**
      * Run operation on input data.
      */
-    process(inputs: (any[] | ImageData)[], meta: any, callback: (p0: Error, p1: ImageData, p2: object) => void): void;
+    process(inputs: ImageData[], meta: any, callback: (p0: Error, p1: ImageData, p2: object) => void): void;
 }
 export default class RasterSource extends ImageSource {
     constructor(options: Options);
@@ -132,7 +145,7 @@ export default class RasterSource extends ImageSource {
     ): void;
 }
 export class RasterSourceEvent extends BaseEvent {
-    constructor(type: string, frameState: FrameState, data: any);
+    constructor(type: string, frameState: FrameState, data: object | object[]);
     /**
      * An object made available to all operations.  This can be used by operations
      * as a storage object (e.g. for calculating statistics).

@@ -31,7 +31,7 @@ export function numberSafeCompareFunction(a: any, b: any): number;
 export function remove<VALUE>(arr: VALUE[], obj: VALUE): boolean;
 export function reverseSubArray(arr: any[], begin: number, end: number): void;
 /**
- * Sort the passed array such that the relative order of equal elements is preverved.
+ * Sort the passed array such that the relative order of equal elements is preserved.
  * See https://en.wikipedia.org/wiki/Sorting_algorithm#Stability for details.
  */
 export function stableSort(arr: any[], compareFnc: (p0: any, p1: any) => number): void;

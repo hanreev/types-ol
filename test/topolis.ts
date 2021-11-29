@@ -186,8 +186,8 @@ function onDrawend(e: DrawEvent) {
             edgeGeom[edgeGeom.length - 1] = end.coordinate;
         }
         topo.addEdgeNewFaces(start, end, edgeGeom);
-    } catch (e) {
-        toastr.warning(e.toString());
+    } catch (e: any) {
+        toastr.warning(String(e));
     }
 }
 
