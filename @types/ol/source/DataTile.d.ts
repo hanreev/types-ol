@@ -12,8 +12,13 @@ import TileSource, { TileSourceEvent } from './Tile';
 export type TDataTileSourceBaseEventTypes = 'change' | 'error';
 export type TDataTileSourceObjectEventTypes = 'propertychange';
 export type TDataTileSourceTileSourceEventTypes = 'tileloadend' | 'tileloaderror' | 'tileloadstart';
+/**
+ * Data tile loading function.  The function is called with z, x, and y tile coordinates and
+ * returns {@link module:ol/DataTile~Data data} for a tile or a promise for the same.
+ */
+export type Loader = (p0: number, p1: number, p2: number) => Data | Promise<Data>;
 export interface Options {
-    loader?: (p0: number, p1: number, p2: number) => Promise<Data>;
+    loader?: Loader;
     maxZoom?: number;
     minZoom?: number;
     tileSize?: number | Size;
@@ -29,7 +34,7 @@ export interface Options {
 }
 export default class DataTileSource extends TileSource {
     constructor(options: Options);
-    protected setLoader(loader: (p0: number, p1: number, p2: number) => Promise<Data>): void;
+    protected setLoader(loader: Loader): void;
     getTile(z: number, x: number, y: number, pixelRatio: number, projection: Projection): DataTile;
     /**
      * Handle tile change events.

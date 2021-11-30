@@ -2,11 +2,9 @@ import { ObjectEvent } from '../Object';
 import { EventsKey, ListenerFunction } from '../events';
 import BaseEvent from '../events/Event';
 import RenderEvent from '../render/Event';
-import LayerRenderer from '../renderer/Layer';
-import Source from '../source/Source';
+import CanvasVectorLayerRenderer from '../renderer/canvas/VectorLayer';
 import VectorSource from '../source/Vector';
 import BaseVectorLayer, { Options } from './BaseVector';
-import Layer from './Layer';
 
 export type TVectorLayerBaseEventTypes = 'change' | 'error';
 export type TVectorLayerObjectEventTypes =
@@ -21,14 +19,11 @@ export type TVectorLayerObjectEventTypes =
     | 'change:zIndex'
     | 'propertychange';
 export type TVectorLayerRenderEventTypes = 'postrender' | 'prerender';
-export default class VectorLayer<
-    VectorSourceType extends VectorSource = VectorSource,
-> extends BaseVectorLayer<VectorSourceType> {
+export default class VectorLayer<VectorSourceType extends VectorSource = VectorSource> extends BaseVectorLayer<
+    VectorSourceType,
+    CanvasVectorLayerRenderer
+> {
     constructor(opt_options?: Options<VectorSourceType>);
-    /**
-     * Create a renderer for this layer.
-     */
-    createRenderer(): LayerRenderer<Layer<Source>>;
     on(type: TVectorLayerBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
     on(type: TVectorLayerBaseEventTypes[], listener: ListenerFunction<BaseEvent>): EventsKey[];
     once(type: TVectorLayerBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;

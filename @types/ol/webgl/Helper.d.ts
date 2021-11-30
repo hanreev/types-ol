@@ -16,9 +16,14 @@ export interface BufferCacheEntry {
     buffer: WebGLArrayBuffer;
     webGlBuffer: WebGLBuffer;
 }
+export interface CanvasCacheItem {
+    canvas: HTMLCanvasElement;
+    users: number;
+}
 export interface Options {
     uniforms?: Record<string, UniformValue>;
     postProcesses?: PostProcessesOptions[];
+    canvasCacheKey?: string;
 }
 export interface PostProcessesOptions {
     scaleRatio?: number;
@@ -69,6 +74,7 @@ export default class WebGLHelper extends Disposable {
      * the cache.
      */
     bindBuffer(buffer: WebGLArrayBuffer): void;
+    canvasCacheKeyMatches(canvasCacheKey: string): boolean;
     /**
      * Will attempt to compile a vertex or fragment shader based on source
      * On error, the shader will be returned but

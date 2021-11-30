@@ -2,11 +2,8 @@ import { ObjectEvent } from '../Object';
 import { EventsKey, ListenerFunction } from '../events';
 import BaseEvent from '../events/Event';
 import RenderEvent from '../render/Event';
-import LayerRenderer from '../renderer/Layer';
-import Source from '../source/Source';
 import TileSource from '../source/Tile';
 import BaseTileLayer, { Options } from './BaseTile';
-import Layer from './Layer';
 
 export type TTileLayerBaseEventTypes = 'change' | 'error';
 export type TTileLayerObjectEventTypes =
@@ -23,12 +20,8 @@ export type TTileLayerObjectEventTypes =
     | 'change:zIndex'
     | 'propertychange';
 export type TTileLayerRenderEventTypes = 'postrender' | 'prerender';
-export default class TileLayer<TileSourceType extends TileSource = TileSource> extends BaseTileLayer<TileSourceType> {
+export default class TileLayer<TileSourceType extends TileSource = TileSource> extends BaseTileLayer {
     constructor(opt_options?: Options<TileSourceType>);
-    /**
-     * Create a renderer for this layer.
-     */
-    protected createRenderer(): LayerRenderer<Layer<Source>>;
     on(type: TTileLayerBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
     on(type: TTileLayerBaseEventTypes[], listener: ListenerFunction<BaseEvent>): EventsKey[];
     once(type: TTileLayerBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;

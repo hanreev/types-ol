@@ -18,7 +18,6 @@ export interface BufferPositions {
     indexPosition: number;
 }
 export interface Options {
-    className?: string;
     uniforms?: Record<string, UniformValue>;
     postProcesses?: PostProcessesOptions[];
 }
@@ -47,8 +46,13 @@ export enum WebGLWorkerMessageType {
 export default class WebGLLayerRenderer<LayerType extends Layer = Layer> extends LayerRenderer {
     constructor(layer: LayerType, opt_options?: Options);
     protected helper: WebGLHelper;
-    protected postRender(frameState: FrameState): void;
-    protected preRender(frameState: FrameState): void;
+    protected afterHelperCreated(): void;
+    protected postRender(context: WebGLRenderingContext, frameState: FrameState): void;
+    /**
+     * Determine whether renderFrame should be called.
+     */
+    protected prepareFrameInternal(frameState: FrameState): boolean;
+    protected preRender(context: WebGLRenderingContext, frameState: FrameState): void;
     /**
      * Clean up.
      */
@@ -66,7 +70,7 @@ export default class WebGLLayerRenderer<LayerType extends Layer = Layer> extends
      */
     handleFontsChanged(): void;
     /**
-     * Determine whether render should be called.
+     * Determine whether renderFrame should be called.
      */
     prepareFrame(frameState: FrameState): boolean;
     /**

@@ -480,7 +480,7 @@ const writeTrxOpts: WriteTransactionOptions = {
 
 vectorLayer.on('postrender', evt => {
     // RenderEvent context should be nullable
-    if (evt.context) evt.context.restore();
+    if (evt.context instanceof CanvasRenderingContext2D) evt.context.restore();
 });
 
 const xyzOpts: XYZOptions = {
@@ -496,7 +496,7 @@ const xyzOpts: XYZOptions = {
 const imageLayer: ImageLayer<ImageWMS> = new ImageLayer<ImageWMS>({ source: new ImageWMS() });
 const layerImage: Layer<ImageWMS> = imageLayer;
 const imageWmsSource: ImageWMS = imageLayer.getSource();
-const osmSource: OSM = osmLayer.getSource();
+const osmSource = osmLayer.getSource() as OSM;
 
 const eventListener: ListenerFunction = event => console.log(event);
 const eventsKeys: EventsKey[] = map.getLayers().on(['add', 'remove'], eventListener);

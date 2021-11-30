@@ -3,6 +3,7 @@ import Types from '../ObjectEventType';
 import { EventsKey, ListenerFunction } from '../events';
 import BaseEvent from '../events/Event';
 import { Extent } from '../extent';
+import LayerRenderer from '../renderer/Layer';
 import Source from '../source/Source';
 import State_1 from '../source/State';
 import Layer, { State } from './Layer';
@@ -52,7 +53,7 @@ export default class BaseLayer extends BaseObject {
      * will be visible regardless of extent.
      */
     getExtent(): Extent | undefined;
-    getLayersArray(opt_array?: Layer<Source>[]): Layer<Source>[];
+    getLayersArray(opt_array?: Layer<Source, LayerRenderer>[]): Layer<Source, LayerRenderer>[];
     /**
      * This method is not meant to be called by layers or layer renderers because the state
      * is incorrect if the layer is included in a layer group.

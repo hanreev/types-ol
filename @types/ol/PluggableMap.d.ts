@@ -20,6 +20,7 @@ import LayerGroup from './layer/Group';
 import Layer, { State as State_1 } from './layer/Layer';
 import { Pixel } from './pixel';
 import RenderEvent from './render/Event';
+import LayerRenderer from './renderer/Layer';
 import MapRenderer from './renderer/Map';
 import { Size } from './size';
 import Source from './source/Source';
@@ -64,6 +65,7 @@ export interface FrameState {
     usedTiles: Record<string, Record<string, boolean>>;
     viewHints: number[];
     wantedTiles: Record<string, Record<string, boolean>>;
+    mapId: string;
 }
 export type MapObjectEventTypes = Types | 'change:layergroup' | 'change:size' | 'change:target' | 'change:view';
 /**
@@ -140,7 +142,7 @@ export default class PluggableMap extends BaseObject {
      */
     forEachLayerAtPixel<S, T>(
         pixel: Pixel,
-        callback: (this: S, p0: Layer<Source>, p1: Uint8ClampedArray | Uint8Array) => T,
+        callback: (this: S, p0: Layer<Source, LayerRenderer>, p1: Uint8ClampedArray | Uint8Array) => T,
         opt_options?: AtPixelOptions,
     ): T | undefined;
     /**

@@ -6,7 +6,7 @@ exports.defineTags = dictionary => {
   dictionary.defineTag('template', {
     mustHaveValue: true,
     canHaveType: true,
-    canHaveName: false,
+    canHaveName: true,
     onTagged: addTemplate,
   });
 };
@@ -16,12 +16,8 @@ exports.defineTags = dictionary => {
  * @param {Tag<TagValue>} tag
  */
 function addTemplate(doclet, tag) {
-  const value = tag.value;
-  if (!value.description) return;
-  doclet.genericTypes = value.description.split(/\s?,\s?/).map((t, i) => {
-    return {
-      name: t,
-      type: value.type && i === 0 ? value.type : null,
-    };
-  });
+  const { name, type } = tag.value;
+  if (!name) return;
+  doclet.genericTypes = doclet.genericTypes || [];
+  doclet.genericTypes.push({ name, type });
 }

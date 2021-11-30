@@ -7,7 +7,7 @@ import Geometry from '../geom/Geometry';
 import RenderEvent from '../render/Event';
 import WebGLPointsLayerRenderer from '../renderer/webgl/PointsLayer';
 import VectorSource from '../source/Vector';
-import VectorLayer from './Vector';
+import BaseVectorLayer from './BaseVector';
 
 export type THeatmapBaseEventTypes = 'change' | 'error';
 export type THeatmapObjectEventTypes =
@@ -42,12 +42,8 @@ export interface Options {
     source?: VectorSource<Geometry>;
     properties?: Record<string, any>;
 }
-export default class Heatmap extends VectorLayer<VectorSource> {
+export default class Heatmap extends BaseVectorLayer<VectorSource, WebGLPointsLayerRenderer> {
     constructor(opt_options?: Options);
-    /**
-     * Create a renderer for this layer.
-     */
-    createRenderer(): WebGLPointsLayerRenderer;
     /**
      * Return the blur size in pixels.
      */

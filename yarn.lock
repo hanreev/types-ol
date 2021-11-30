@@ -2773,10 +2773,10 @@ ol-mapbox-style@^6.5.1:
     mapbox-to-css-font "^2.4.0"
     webfont-matcher "^1.1.0"
 
-ol@6.9.0:
-  version "6.9.0"
-  resolved "https://registry.yarnpkg.com/ol/-/ol-6.9.0.tgz#3e1b39a76f99ede117ad79e66464698d6915df0b"
-  integrity sha512-VmU5HKHwO2O1uGgmBcng/dL1PouVB1jKiYUbiXPR5l1i/3B3qatexl4rapZAnsGx0vsOC7lI1GLx7jEZro8C8Q==
+ol@^6.9.1-dev.1638198999689:
+  version "6.9.1-dev.1638198999689"
+  resolved "https://registry.yarnpkg.com/ol/-/ol-6.9.1-dev.1638198999689.tgz#7af030a2b5017e2457348e5f3a735dabd7d98896"
+  integrity sha512-wnWqgvS0AhjdoOfn84R7F1QtmPr7C1btyY+04f96zI3KMY/Q1Kg4fXF9y2MQ2msDfX6scSUfy44VgyLR9Q88dQ==
   dependencies:
     geotiff "^1.0.8"
     ol-mapbox-style "^6.5.1"

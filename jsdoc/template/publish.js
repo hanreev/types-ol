@@ -554,7 +554,15 @@ const PROCESSORS = {
         const m = /^([^<]+)(.*)$/.exec(augment);
         if (m) {
           let gt = m[2];
-          if (gt.startsWith('<module:')) gt = '<' + registerImport(_module, gt.replace(/<(.+)>/, '$1')) + '>';
+          if (gt.startsWith('<')) {
+            gt = gt
+              .replace(/<(.+)>/, '$1')
+              .split(',')
+              .map(t => registerImport(_module, t))
+              .join(',');
+            gt = `<${gt}>`;
+          }
+          // if (gt.startsWith('<module:')) gt = '<' + registerImport(_module, gt.replace(/<(.+)>/, '$1')) + '>';
           augmentName += gt;
         }
       } else if (augment in GENERIC_TYPES && ANY_GENERIC_TYPES.includes(augment)) {
@@ -903,6 +911,14 @@ async function generateDefinition(doclet, emitOutput = true) {
  */
 function getGenericType(key, _module, includeBracket = true, includeType = false, includeDefault = false) {
   if (!(key in GENERIC_TYPES)) return '';
+  if (key == 'module:ol/renderer/Layer~LayerRenderer') {
+    if (_module.longname == 'module:ol/renderer/Layer') {
+      const gt = 'LayerType = any';
+      return includeBracket ? `<${gt}>` : gt;
+    }
+    return '';
+  }
+
   const genericTypes = GENERIC_TYPES[key]
     .map(gType => {
       let type;

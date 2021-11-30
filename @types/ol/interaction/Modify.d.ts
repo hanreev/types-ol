@@ -10,6 +10,7 @@ import Geometry from '../geom/Geometry';
 import SimpleGeometry from '../geom/SimpleGeometry';
 import BaseVectorLayer from '../layer/BaseVector';
 import VectorLayer from '../layer/Vector';
+import LayerRenderer from '../renderer/Layer';
 import VectorSource from '../source/Vector';
 import VectorTile from '../source/VectorTile';
 import { StyleLike } from '../style/Style';
@@ -25,7 +26,7 @@ export interface Options {
     pixelTolerance?: number;
     style?: StyleLike;
     source?: VectorSource<Geometry>;
-    hitDetection?: boolean | BaseVectorLayer<VectorSource<Geometry> | VectorTile>;
+    hitDetection?: boolean | BaseVectorLayer<VectorSource<Geometry> | VectorTile, LayerRenderer>;
     features?: Collection<Feature<Geometry>>;
     wrapX?: boolean;
     snapToPointer?: boolean;

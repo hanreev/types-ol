@@ -4,13 +4,15 @@ import { Coordinate } from '../../coordinate';
 import { EventsKey, ListenerFunction } from '../../events';
 import BaseEvent from '../../events/Event';
 import Geometry from '../../geom/Geometry';
-import VectorLayer from '../../layer/Vector';
+import BaseVectorLayer from '../../layer/BaseVector';
 import { Pixel } from '../../pixel';
 import { TransformFunction } from '../../proj';
 import BuilderGroup from '../../render/canvas/BuilderGroup';
 import ExecutorGroup from '../../render/canvas/ExecutorGroup';
 import VectorSource from '../../source/Vector';
+import VectorTile from '../../source/VectorTile';
 import Style from '../../style/Style';
+import LayerRenderer from '../Layer';
 import { HitMatch } from '../Map';
 import { FeatureCallback } from '../vector';
 import CanvasLayerRenderer from './Layer';
@@ -18,7 +20,7 @@ import RBush from 'rbush';
 
 export type TCanvasVectorLayerRendererBaseEventTypes = 'change' | 'error';
 export default class CanvasVectorLayerRenderer extends CanvasLayerRenderer {
-    constructor(vectorLayer: VectorLayer<VectorSource<Geometry>>);
+    constructor(vectorLayer: BaseVectorLayer<VectorSource<Geometry> | VectorTile, LayerRenderer>);
     forEachFeatureAtCoordinate<T>(
         coordinate: Coordinate,
         frameState: FrameState,
@@ -55,10 +57,6 @@ export default class CanvasVectorLayerRenderer extends CanvasLayerRenderer {
      */
     renderFrame(frameState: FrameState, target: HTMLElement): HTMLElement;
     renderWorlds(executorGroup: ExecutorGroup, frameState: FrameState, opt_declutterTree?: RBush<any>): void;
-    /**
-     * Get a rendering container from an existing target, if compatible.
-     */
-    useContainer(target: HTMLElement, transform: string, opacity: number): void;
     on(type: TCanvasVectorLayerRendererBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
     on(type: TCanvasVectorLayerRendererBaseEventTypes[], listener: ListenerFunction<BaseEvent>): EventsKey[];
     once(type: TCanvasVectorLayerRendererBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;

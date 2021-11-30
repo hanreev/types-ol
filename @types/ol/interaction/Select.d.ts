@@ -9,6 +9,7 @@ import { Condition } from '../events/condition';
 import Geometry from '../geom/Geometry';
 import Layer from '../layer/Layer';
 import VectorLayer from '../layer/Vector';
+import LayerRenderer from '../renderer/Layer';
 import Source from '../source/Source';
 import VectorSource from '../source/Vector';
 import { StyleLike } from '../style/Style';
@@ -27,7 +28,7 @@ export type FilterFunction = (p0: FeatureLike, p1: Layer<Source>) => boolean;
 export interface Options {
     addCondition?: Condition;
     condition?: Condition;
-    layers?: Layer<Source>[] | ((p0: Layer<Source>) => boolean);
+    layers?: Layer<Source, LayerRenderer>[] | ((p0: Layer<Source>) => boolean);
     style?: StyleLike | null;
     removeCondition?: Condition;
     toggleCondition?: Condition;

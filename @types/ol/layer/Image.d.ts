@@ -2,11 +2,9 @@ import { ObjectEvent } from '../Object';
 import { EventsKey, ListenerFunction } from '../events';
 import BaseEvent from '../events/Event';
 import RenderEvent from '../render/Event';
-import LayerRenderer from '../renderer/Layer';
+import CanvasImageLayerRenderer from '../renderer/canvas/ImageLayer';
 import ImageSource from '../source/Image';
-import Source from '../source/Source';
 import BaseImageLayer, { Options } from './BaseImage';
-import Layer from './Layer';
 
 export type TImageLayerBaseEventTypes = 'change' | 'error';
 export type TImageLayerObjectEventTypes =
@@ -21,14 +19,11 @@ export type TImageLayerObjectEventTypes =
     | 'change:zIndex'
     | 'propertychange';
 export type TImageLayerRenderEventTypes = 'postrender' | 'prerender';
-export default class ImageLayer<
-    ImageSourceType extends ImageSource = ImageSource,
-> extends BaseImageLayer<ImageSourceType> {
+export default class ImageLayer<ImageSourceType extends ImageSource = ImageSource> extends BaseImageLayer<
+    ImageSourceType,
+    CanvasImageLayerRenderer
+> {
     constructor(opt_options?: Options<ImageSourceType>);
-    /**
-     * Create a renderer for this layer.
-     */
-    createRenderer(): LayerRenderer<Layer<Source>>;
     on(type: TImageLayerBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
     on(type: TImageLayerBaseEventTypes[], listener: ListenerFunction<BaseEvent>): EventsKey[];
     once(type: TImageLayerBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;

@@ -3,6 +3,7 @@ import { ObjectEvent } from '../Object';
 import { EventsKey, ListenerFunction } from '../events';
 import BaseEvent from '../events/Event';
 import { Extent } from '../extent';
+import LayerRenderer from '../renderer/Layer';
 import Source from '../source/Source';
 import State_1 from '../source/State';
 import BaseLayer from './Base';
@@ -20,6 +21,7 @@ export type TLayerGroupObjectEventTypes =
     | 'change:visible'
     | 'change:zIndex'
     | 'propertychange';
+export type EventType = 'addlayer' | 'removelayer';
 export interface Options {
     opacity?: number;
     visible?: boolean;
@@ -32,6 +34,13 @@ export interface Options {
     layers?: BaseLayer[] | Collection<BaseLayer>;
     properties?: Record<string, any>;
 }
+export class GroupEvent extends BaseEvent {
+    constructor(type: EventType, layer: BaseLayer);
+    /**
+     * The added or removed layer.
+     */
+    layer: BaseLayer;
+}
 export default class LayerGroup extends BaseLayer {
     constructor(opt_options?: Options);
     /**
@@ -39,7 +48,7 @@ export default class LayerGroup extends BaseLayer {
      * in this group.
      */
     getLayers(): Collection<BaseLayer>;
-    getLayersArray(opt_array?: Layer<Source>[]): Layer<Source>[];
+    getLayersArray(opt_array?: Layer<Source, LayerRenderer>[]): Layer<Source, LayerRenderer>[];
     /**
      * Get the layer states list and use this groups z-index as the default
      * for all layers in this and nested groups, if it is unset at this point.
@@ -48,6 +57,9 @@ export default class LayerGroup extends BaseLayer {
      */
     getLayerStatesArray(opt_states?: State[]): State[];
     getSourceState(): State_1;
+    handleLayerGroupAdd_(event: GroupEvent): void;
+    handleLayerGroupRemove_(event: GroupEvent): void;
+    registerLayerListeners_(layer: BaseLayer): void;
     /**
      * Set the {@link module:ol/Collection collection} of {@link module:ol/layer/Layer~Layer layers}
      * in this group.

@@ -1,6 +1,6 @@
 {
   "name": "@hanreev/types-ol",
-  "version": "3.9.0",
+  "version": "3.9.1-dev.202111301850",
   "description": "OpenLayers 6+ TypeScript definition",
   "author": "Rifa'i M. Hanif <hanreev@gmail.com>",
   "repository": {
@@ -62,7 +62,7 @@
     "jsdoc-plugin-typescript": "2.0.6",
     "no-emit-webpack-plugin": "^4.0.1",
     "node-html-parser": "^5.1.0",
-    "ol": "6.9.0",
+    "ol": "^6.9.1-dev.1638198999689",
     "pinst": "^2.1.6",
     "prettier": "2.5.0",
     "pretty-quick": "3.1.2",

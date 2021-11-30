@@ -43,7 +43,7 @@ export interface Options<SourceType extends Source = Source> {
 }
 export type RenderFunction = (p0: FrameState) => HTMLElement;
 export interface State {
-    layer: Layer<Source>;
+    layer: Layer<Source, LayerRenderer>;
     opacity: number;
     sourceState: State_1;
     visible: boolean;
@@ -55,23 +55,30 @@ export interface State {
     minZoom: number;
     maxZoom: number;
 }
-export default class Layer<SourceType extends Source = Source> extends BaseLayer {
+export default class Layer<
+    SourceType extends Source = Source,
+    RendererType extends LayerRenderer = LayerRenderer,
+> extends BaseLayer {
     constructor(options: Options<SourceType>);
     /**
      * Create a renderer for this layer.
      */
-    protected createRenderer(): LayerRenderer<Layer<Source>>;
+    protected createRenderer(): RendererType;
     /**
      * Clean up.
      */
     disposeInternal(): void;
     getFeatures(pixel: Pixel): Promise<Feature<Geometry>[]>;
-    getLayersArray(opt_array?: Layer<Source>[]): Layer<Source>[];
+    getLayersArray(opt_array?: Layer<Source, LayerRenderer>[]): Layer<Source, LayerRenderer>[];
     getLayerStatesArray(opt_states?: State[]): State[];
+    /**
+     * For use inside the library only.
+     */
+    getMapInternal(): PluggableMap;
     /**
      * Get the renderer for this layer.
      */
-    getRenderer(): LayerRenderer<Layer<Source>>;
+    getRenderer(): RendererType;
     /**
      * Get the layer source.
      */
@@ -93,6 +100,10 @@ export default class Layer<SourceType extends Source = Source> extends BaseLayer
      * {@link module:ol/Map~Map#addLayer} instead.
      */
     setMap(map: PluggableMap): void;
+    /**
+     * For use inside the library only.
+     */
+    setMapInternal(map: PluggableMap): void;
     /**
      * Set the layer source.
      */

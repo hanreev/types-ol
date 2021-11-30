@@ -85,11 +85,11 @@ const affectGreen = document.getElementById('affect-green') as HTMLInputElement;
 const affectBlue = document.getElementById('affect-blue') as HTMLInputElement;
 
 const setBlendModeFromSelect = (evt: RenderEvent) => {
-    if (evt.context) evt.context.globalCompositeOperation = select.value;
+    if (evt.context instanceof CanvasRenderingContext2D) evt.context.globalCompositeOperation = select.value;
 };
 
 const resetBlendModeFromSelect = (evt: RenderEvent) => {
-    if (evt.context) evt.context.globalCompositeOperation = 'source-over';
+    if (evt.context instanceof CanvasRenderingContext2D) evt.context.globalCompositeOperation = 'source-over';
 };
 
 const bindLayerListeners = (layer: VectorLayer) => {
