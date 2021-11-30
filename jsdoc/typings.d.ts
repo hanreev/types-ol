@@ -155,6 +155,7 @@ type DocletParser = (p0: Doclet, p1: Doclet) => string;
 
 interface TagValue {
     type?: DocletType;
+    name?: string;
     description?: string;
 }
 

@@ -480,7 +480,7 @@ const writeTrxOpts: WriteTransactionOptions = {
 
 vectorLayer.on('postrender', evt => {
     // RenderEvent context should be nullable
-    if (evt.context) evt.context.restore();
+    if (evt.context instanceof CanvasRenderingContext2D) evt.context.restore();
 });
 
 const xyzOpts: XYZOptions = {

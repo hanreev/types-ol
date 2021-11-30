@@ -40,7 +40,7 @@ export interface Options<VectorSourceType extends VectorSource = VectorSource> {
     source?: VectorSourceType;
     map?: PluggableMap;
     declutter?: boolean;
-    style?: StyleLike;
+    style?: StyleLike | null;
     imageRatio?: number;
     properties?: Record<string, any>;
 }
