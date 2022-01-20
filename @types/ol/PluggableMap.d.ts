@@ -138,8 +138,11 @@ export default class PluggableMap extends BaseObject {
      * Detect layers that have a color value at a pixel on the viewport, and
      * execute a callback with each matching layer. Layers included in the
      * detection can be configured through opt_layerFilter.
-     * Note: this may give false positives unless the map layers have had different className
-     * properties assigned to them.
+     * Note: In maps with more than one layer, this method will typically return pixel data
+     * representing the composed image of all layers visible at the given pixel – because layers
+     * will generally share the same rendering context.  To force layers to render separately, and
+     * to get pixel data representing only one layer at a time, you can assign each layer a unique
+     * className in its constructor.
      */
     forEachLayerAtPixel<S, T>(
         pixel: Pixel,

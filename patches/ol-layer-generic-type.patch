@@ -25,13 +25,13 @@ index dfab212d2..9f0747438 100644
   */
  class BaseTileLayer extends Layer {
 diff --git a/src/ol/layer/BaseVector.js b/src/ol/layer/BaseVector.js
-index b8fee1a73..27ed69b98 100644
+index 8b8e790ab..1d7ca915a 100644
 --- a/src/ol/layer/BaseVector.js
 +++ b/src/ol/layer/BaseVector.js
 @@ -76,7 +76,7 @@ const Property = {
   *
   * @template {import("../source/Vector.js").default|import("../source/VectorTile.js").default} VectorSourceType
-  * @template {import("../renderer/Layer.js").default} RendererType
+  * @template {import("../renderer/canvas/VectorLayer.js").default|import("../renderer/canvas/VectorTileLayer.js").default|import("../renderer/canvas/VectorImageLayer.js").default|import("../renderer/webgl/PointsLayer.js").default} RendererType
 - * @extends {Layer<VectorSourceType, RendererType>}
 + * @augments Layer<VectorSourceType,RendererType>
   * @api
@@ -51,22 +51,9 @@ index a342f55af..1e4b5fc60 100644
   */
  class Graticule extends VectorLayer {
 diff --git a/src/ol/layer/Heatmap.js b/src/ol/layer/Heatmap.js
-index 5c9066a1e..dff4a4ac1 100644
+index 5c9066a1e..c60e5a7be 100644
 --- a/src/ol/layer/Heatmap.js
 +++ b/src/ol/layer/Heatmap.js
-@@ -3,9 +3,9 @@
-  */
- import BaseVector from './BaseVector.js';
- import WebGLPointsLayerRenderer from '../renderer/webgl/PointsLayer.js';
--import {assign} from '../obj.js';
--import {clamp} from '../math.js';
--import {createCanvasContext2D} from '../dom.js';
-+import { assign } from '../obj.js';
-+import { clamp } from '../math.js';
-+import { createCanvasContext2D } from '../dom.js';
- 
- /**
-  * @typedef {Object} Options
 @@ -61,7 +61,7 @@ const DEFAULT_GRADIENT = ['#00f', '#0ff', '#0f0', '#ff0', '#f00'];
   * options means that `title` is observable, and has get/set accessors.
   *
@@ -76,17 +63,6 @@ index 5c9066a1e..dff4a4ac1 100644
   * @api
   */
  class Heatmap extends BaseVector {
-@@ -273,9 +273,7 @@ class Heatmap extends BaseVector {
-           return (this.get(Property.RADIUS) + this.get(Property.BLUR)) * 2;
-         }.bind(this),
-         u_blurSlope: function () {
--          return (
--            this.get(Property.RADIUS) / Math.max(1, this.get(Property.BLUR))
--          );
-+          return this.get(Property.RADIUS) / Math.max(1, this.get(Property.BLUR));
-         }.bind(this),
-       },
-       postProcesses: [
 diff --git a/src/ol/layer/Image.js b/src/ol/layer/Image.js
 index fa26423ba..52ba965f0 100644
 --- a/src/ol/layer/Image.js
@@ -140,18 +116,9 @@ index 0bc6fbc71..047f61f6e 100644
   */
  class VectorLayer extends BaseVectorLayer {
 diff --git a/src/ol/layer/VectorImage.js b/src/ol/layer/VectorImage.js
-index 30821f006..5156f373d 100644
+index 30821f006..164ff4953 100644
 --- a/src/ol/layer/VectorImage.js
 +++ b/src/ol/layer/VectorImage.js
-@@ -3,7 +3,7 @@
-  */
- import BaseVectorLayer from './BaseVector.js';
- import CanvasVectorImageLayerRenderer from '../renderer/canvas/VectorImageLayer.js';
--import {assign} from '../obj.js';
-+import { assign } from '../obj.js';
- 
- /**
-  * @template {import("../source/Vector.js").default} VectorSourceType
 @@ -55,7 +55,7 @@ import {assign} from '../obj.js';
   * options means that `title` is observable, and has get/set accessors.
   *
@@ -161,31 +128,10 @@ index 30821f006..5156f373d 100644
   * @api
   */
  class VectorImageLayer extends BaseVectorLayer {
-@@ -73,8 +73,7 @@ class VectorImageLayer extends BaseVectorLayer {
-      * @type {number}
-      * @private
-      */
--    this.imageRatio_ =
--      options.imageRatio !== undefined ? options.imageRatio : 1;
-+    this.imageRatio_ = options.imageRatio !== undefined ? options.imageRatio : 1;
-   }
- 
-   /**
 diff --git a/src/ol/layer/VectorTile.js b/src/ol/layer/VectorTile.js
-index 4870b0261..4c80a79b8 100644
+index 4870b0261..2fe49e8c8 100644
 --- a/src/ol/layer/VectorTile.js
 +++ b/src/ol/layer/VectorTile.js
-@@ -5,8 +5,8 @@ import BaseVectorLayer from './BaseVector.js';
- import CanvasVectorTileLayerRenderer from '../renderer/canvas/VectorTileLayer.js';
- import TileProperty from './TileProperty.js';
- import VectorTileRenderType from './VectorTileRenderType.js';
--import {assert} from '../asserts.js';
--import {assign} from '../obj.js';
-+import { assert } from '../asserts.js';
-+import { assign } from '../obj.js';
- 
- /***
-  * @template Return
 @@ -87,7 +87,7 @@ import {assign} from '../obj.js';
   * options means that `title` is observable, and has get/set accessors.
   *
@@ -195,74 +141,10 @@ index 4870b0261..4c80a79b8 100644
   * @api
   */
  class VectorTileLayer extends BaseVectorLayer {
-@@ -101,11 +101,7 @@ class VectorTileLayer extends BaseVectorLayer {
-     delete baseOptions.preload;
-     delete baseOptions.useInterimTilesOnError;
- 
--    super(
--      /** @type {import("./BaseVector.js").Options<import("../source/VectorTile.js").default>} */ (
--        baseOptions
--      )
--    );
-+    super(/** @type {import("./BaseVector.js").Options<import("../source/VectorTile.js").default>} */ (baseOptions));
- 
-     /***
-      * @type {VectorTileLayerOnSignature<import("../events").EventsKey>}
-@@ -125,15 +121,11 @@ class VectorTileLayer extends BaseVectorLayer {
-     if (options.renderMode === VectorTileRenderType.IMAGE) {
-       //FIXME deprecated - remove this check in v7.
-       //eslint-disable-next-line
--      console.warn('renderMode: "image" is deprecated. Option ignored.')
-+      console.warn('renderMode: "image" is deprecated. Option ignored.');
-       options.renderMode = undefined;
-     }
-     const renderMode = options.renderMode || VectorTileRenderType.HYBRID;
--    assert(
--      renderMode == VectorTileRenderType.HYBRID ||
--        renderMode == VectorTileRenderType.VECTOR,
--      28
--    ); // `renderMode` must be `'hybrid'` or `'vector'`.
-+    assert(renderMode == VectorTileRenderType.HYBRID || renderMode == VectorTileRenderType.VECTOR, 28); // `renderMode` must be `'hybrid'` or `'vector'`.
- 
-     /**
-      * @private
-@@ -143,9 +135,7 @@ class VectorTileLayer extends BaseVectorLayer {
- 
-     this.setPreload(options.preload ? options.preload : 0);
-     this.setUseInterimTilesOnError(
--      options.useInterimTilesOnError !== undefined
--        ? options.useInterimTilesOnError
--        : true
-+      options.useInterimTilesOnError !== undefined ? options.useInterimTilesOnError : true
-     );
- 
-     /**
-@@ -209,9 +199,7 @@ class VectorTileLayer extends BaseVectorLayer {
-    * @api
-    */
-   getUseInterimTilesOnError() {
--    return /** @type {boolean} */ (
--      this.get(TileProperty.USE_INTERIM_TILES_ON_ERROR)
--    );
-+    return /** @type {boolean} */ (this.get(TileProperty.USE_INTERIM_TILES_ON_ERROR));
-   }
- 
-   /**
 diff --git a/src/ol/layer/WebGLPoints.js b/src/ol/layer/WebGLPoints.js
-index 009fc769b..365932b4d 100644
+index 009fc769b..bc3d20d84 100644
 --- a/src/ol/layer/WebGLPoints.js
 +++ b/src/ol/layer/WebGLPoints.js
-@@ -3,8 +3,8 @@
-  */
- import Layer from './Layer.js';
- import WebGLPointsLayerRenderer from '../renderer/webgl/PointsLayer.js';
--import {assign} from '../obj.js';
--import {parseLiteralStyle} from '../webgl/ShaderBuilder.js';
-+import { assign } from '../obj.js';
-+import { parseLiteralStyle } from '../webgl/ShaderBuilder.js';
- 
- /**
-  * @template {import("../source/Vector.js").default} VectorSourceType
 @@ -69,7 +69,7 @@ import {parseLiteralStyle} from '../webgl/ShaderBuilder.js';
   * options means that `title` is observable, and has get/set accessors.
   *
@@ -272,21 +154,6 @@ index 009fc769b..365932b4d 100644
   * @fires import("../render/Event.js").RenderEvent
   */
  class WebGLPointsLayer extends Layer {
-@@ -98,12 +98,8 @@ class WebGLPointsLayer extends Layer {
-     return new WebGLPointsLayerRenderer(this, {
-       vertexShader: this.parseResult_.builder.getSymbolVertexShader(),
-       fragmentShader: this.parseResult_.builder.getSymbolFragmentShader(),
--      hitVertexShader:
--        !this.hitDetectionDisabled_ &&
--        this.parseResult_.builder.getSymbolVertexShader(true),
--      hitFragmentShader:
--        !this.hitDetectionDisabled_ &&
--        this.parseResult_.builder.getSymbolFragmentShader(true),
-+      hitVertexShader: !this.hitDetectionDisabled_ && this.parseResult_.builder.getSymbolVertexShader(true),
-+      hitFragmentShader: !this.hitDetectionDisabled_ && this.parseResult_.builder.getSymbolFragmentShader(true),
-       uniforms: this.parseResult_.uniforms,
-       attributes: this.parseResult_.attributes,
-     });
 diff --git a/src/ol/layer/WebGLTile.js b/src/ol/layer/WebGLTile.js
 index 1409a69ef..fb95a8cd5 100644
 --- a/src/ol/layer/WebGLTile.js

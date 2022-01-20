@@ -4,7 +4,6 @@ import { EventsKey, ListenerFunction } from '../../events';
 import BaseEvent from '../../events/Event';
 import { Extent } from '../../extent';
 import WebGLTileLayer from '../../layer/WebGLTile';
-import { Pixel } from '../../pixel';
 import { UniformValue } from '../../webgl/Helper';
 import PaletteTexture from '../../webgl/PaletteTexture';
 import TileTexture from '../../webgl/TileTexture';
@@ -40,7 +39,6 @@ export default class WebGLTileLayerRenderer extends WebGLLayerRenderer {
         callback: FeatureCallback<T>,
         matches: HitMatch<T>[],
     ): T | undefined;
-    getDataAtPixel(pixel: Pixel, frameState: FrameState, hitTolerance: number): Uint8ClampedArray | Uint8Array;
     getLayer(): WebGLTileLayer;
     /**
      * Perform action necessary to get the layer rendered after new fonts have loaded

@@ -10,7 +10,10 @@ import Geometry from '../geom/Geometry';
 import SimpleGeometry from '../geom/SimpleGeometry';
 import BaseVectorLayer from '../layer/BaseVector';
 import VectorLayer from '../layer/Vector';
-import LayerRenderer from '../renderer/Layer';
+import CanvasVectorImageLayerRenderer from '../renderer/canvas/VectorImageLayer';
+import CanvasVectorLayerRenderer from '../renderer/canvas/VectorLayer';
+import CanvasVectorTileLayerRenderer from '../renderer/canvas/VectorTileLayer';
+import WebGLPointsLayerRenderer from '../renderer/webgl/PointsLayer';
 import VectorSource from '../source/Vector';
 import VectorTile from '../source/VectorTile';
 import { StyleLike } from '../style/Style';
@@ -26,7 +29,15 @@ export interface Options {
     pixelTolerance?: number;
     style?: StyleLike;
     source?: VectorSource<Geometry>;
-    hitDetection?: boolean | BaseVectorLayer<VectorSource<Geometry> | VectorTile, LayerRenderer>;
+    hitDetection?:
+        | boolean
+        | BaseVectorLayer<
+              VectorSource<Geometry> | VectorTile,
+              | CanvasVectorLayerRenderer
+              | CanvasVectorTileLayerRenderer
+              | CanvasVectorImageLayerRenderer
+              | WebGLPointsLayerRenderer
+          >;
     features?: Collection<Feature<Geometry>>;
     wrapX?: boolean;
     snapToPointer?: boolean;

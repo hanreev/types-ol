@@ -12,15 +12,25 @@ import ExecutorGroup from '../../render/canvas/ExecutorGroup';
 import VectorSource from '../../source/Vector';
 import VectorTile from '../../source/VectorTile';
 import Style from '../../style/Style';
-import LayerRenderer from '../Layer';
 import { HitMatch } from '../Map';
 import { FeatureCallback } from '../vector';
+import WebGLPointsLayerRenderer from '../webgl/PointsLayer';
 import CanvasLayerRenderer from './Layer';
+import CanvasVectorImageLayerRenderer from './VectorImageLayer';
+import CanvasVectorTileLayerRenderer from './VectorTileLayer';
 import RBush from 'rbush';
 
 export type TCanvasVectorLayerRendererBaseEventTypes = 'change' | 'error';
 export default class CanvasVectorLayerRenderer extends CanvasLayerRenderer {
-    constructor(vectorLayer: BaseVectorLayer<VectorSource<Geometry> | VectorTile, LayerRenderer>);
+    constructor(
+        vectorLayer: BaseVectorLayer<
+            VectorSource<Geometry> | VectorTile,
+            | CanvasVectorLayerRenderer
+            | CanvasVectorTileLayerRenderer
+            | CanvasVectorImageLayerRenderer
+            | WebGLPointsLayerRenderer
+        >,
+    );
     forEachFeatureAtCoordinate<T>(
         coordinate: Coordinate,
         frameState: FrameState,
