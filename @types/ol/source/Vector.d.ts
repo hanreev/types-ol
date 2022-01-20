@@ -51,7 +51,7 @@ export default class VectorSource<G extends Geometry = Geometry> extends Source 
     /**
      * Remove feature without firing a change event.
      */
-    protected removeFeatureInternal(feature: Feature<G>): void;
+    protected removeFeatureInternal(feature: Feature<G>): Feature<G> | undefined;
     /**
      * Add a single feature to the source.  If you want to add a batch of features
      * at once, call {@link module:ol/source/Vector~VectorSource#addFeatures #addFeatures()}

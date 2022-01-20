@@ -30,6 +30,7 @@ export interface Options {
     projection?: ProjectionLike;
     state?: State;
     wrapX?: boolean;
+    interpolate?: boolean;
 }
 export default abstract class Source extends BaseObject {
     constructor(options: Options);
@@ -41,7 +42,7 @@ export default abstract class Source extends BaseObject {
      */
     getAttributions(): Attribution;
     getAttributionsCollapsible(): boolean;
-    getContextOptions(): object | undefined;
+    getInterpolate(): boolean;
     /**
      * Get the projection of the source.
      */

@@ -69,6 +69,10 @@ export default abstract class ImageStyle {
      */
     abstract load(): void;
     /**
+     * Set the displacement.
+     */
+    setDisplacement(displacement: number[]): void;
+    /**
      * Set the opacity.
      */
     setOpacity(opacity: number): void;

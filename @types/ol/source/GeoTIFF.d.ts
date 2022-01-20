@@ -10,6 +10,10 @@ import { TileSourceEvent } from './Tile';
 export type TGeoTIFFSourceBaseEventTypes = 'change' | 'error';
 export type TGeoTIFFSourceObjectEventTypes = 'propertychange';
 export type TGeoTIFFSourceTileSourceEventTypes = 'tileloadend' | 'tileloaderror' | 'tileloadstart';
+export interface GDALMetadata {
+    STATISTICS_MINIMUM: string;
+    STATISTICS_MAXIMUM: string;
+}
 export interface GeoKeys {
     GTModelTypeGeoKey: number;
     GTRasterTypeGeoKey: number;
@@ -38,6 +42,7 @@ export interface GeoTIFFImage {
     getTileWidth: () => number;
     getTileHeight: () => number;
     getGDALNoData: () => number | null;
+    getGDALMetadata: () => GDALMetadata | null;
     getSamplesPerPixel: () => number;
 }
 export interface MultiGeoTIFF {
@@ -50,6 +55,8 @@ export interface Options {
     normalize?: boolean;
     opaque?: boolean;
     transition?: number;
+    wrapX?: boolean;
+    interpolate?: boolean;
 }
 export interface SourceInfo {
     url: string;

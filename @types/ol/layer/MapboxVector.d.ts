@@ -5,6 +5,8 @@ import BaseEvent from '../events/Event';
 import { Extent } from '../extent';
 import { OrderFunction } from '../render';
 import RenderEvent from '../render/Event';
+import VectorTile from '../source/VectorTile';
+import { BackgroundColor } from './Base';
 import VectorTileLayer from './VectorTile';
 import VectorTileRenderType from './VectorTileRenderType';
 
@@ -25,7 +27,10 @@ export type TMapboxVectorLayerObjectEventTypes =
 export type TMapboxVectorLayerRenderEventTypes = 'postrender' | 'prerender';
 export interface LayerObject {
     id: string;
+    type: string;
     source: string;
+    layout: any;
+    paint: any;
 }
 export interface Options {
     styleUrl: string;
@@ -33,6 +38,7 @@ export interface Options {
     source?: string;
     layers?: string[];
     declutter?: boolean;
+    background?: BackgroundColor | false;
     className?: string;
     opacity?: number;
     visible?: boolean;
@@ -55,6 +61,7 @@ export interface Options {
 export interface SourceObject {
     url: string;
     type: SourceType;
+    tiles?: string[];
 }
 export interface StyleObject {
     sources: Record<string, SourceObject>;
@@ -81,7 +88,13 @@ export default class MapboxVectorLayer extends VectorTileLayer {
     /**
      * Handle the loaded style object.
      */
-    protected onStyleLoad(style: StyleObject): void;
+    protected onStyleLoad(style: StyleObject, styleUrl: string): void;
+    /**
+     * Applies configuration from the provided source to this layer's source,
+     * and reconfigures the loader to add a feature that renders the background,
+     * if the style is configured with a background.
+     */
+    configureSource(source: VectorTile, style: StyleObject): void;
     on(type: TMapboxVectorLayerBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
     on(type: TMapboxVectorLayerBaseEventTypes[], listener: ListenerFunction<BaseEvent>): EventsKey[];
     once(type: TMapboxVectorLayerBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;

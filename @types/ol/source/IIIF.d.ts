@@ -22,6 +22,7 @@ export interface Options {
     extent?: Extent;
     format?: string;
     imageSmoothing?: boolean;
+    interpolate?: boolean;
     projection?: ProjectionLike;
     quality?: string;
     reprojectionErrorThreshold?: number;

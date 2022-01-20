@@ -52,6 +52,7 @@ export default abstract class CanvasLayerRenderer<LayerType extends Layer = Laye
         callback: FeatureCallback<T>,
         matches: HitMatch<T>[],
     ): T | undefined;
+    getBackground(frameState: FrameState): string;
     getDataAtPixel(pixel: Pixel, frameState: FrameState, hitTolerance: number): Uint8ClampedArray | Uint8Array;
     /**
      * Perform action necessary to get the layer rendered after new fonts have loaded
@@ -68,7 +69,7 @@ export default abstract class CanvasLayerRenderer<LayerType extends Layer = Laye
     /**
      * Get a rendering container from an existing target, if compatible.
      */
-    useContainer(target: HTMLElement, transform: string, opacity: number): void;
+    useContainer(target: HTMLElement, transform: string, opacity: number, opt_backgroundColor?: string): void;
     on(type: TCanvasLayerRendererBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
     on(type: TCanvasLayerRendererBaseEventTypes[], listener: ListenerFunction<BaseEvent>): EventsKey[];
     once(type: TCanvasLayerRendererBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;

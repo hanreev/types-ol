@@ -1,12 +1,13 @@
 import ImageTile from '../ImageTile';
 import { ObjectEvent } from '../Object';
-import Tile, { LoadFunction, UrlFunction } from '../Tile';
+import { LoadFunction, UrlFunction } from '../Tile';
 import TileCache from '../TileCache';
 import { NearestDirectionFunction } from '../array';
 import { EventsKey, ListenerFunction } from '../events';
 import BaseEvent from '../events/Event';
 import { ProjectionLike } from '../proj';
 import Projection from '../proj/Projection';
+import ReprojTile from '../reproj/Tile';
 import TileGrid from '../tilegrid/TileGrid';
 import { AttributionLike } from './Source';
 import State from './State';
@@ -22,6 +23,7 @@ export interface Options {
     cacheSize?: number;
     crossOrigin?: null | string;
     imageSmoothing?: boolean;
+    interpolate?: boolean;
     opaque?: boolean;
     projection?: ProjectionLike;
     reprojectionErrorThreshold?: number;
@@ -44,18 +46,23 @@ export default class TileImage extends UrlTile {
     protected tileCacheForProjection: Record<string, TileCache>;
     protected tileClass: typeof ImageTile;
     protected tileGridForProjection: Record<string, TileGrid>;
+    protected getTileInternal(
+        z: number,
+        x: number,
+        y: number,
+        pixelRatio: number,
+        projection: Projection,
+    ): ImageTile | ReprojTile;
+    canExpireCache(): boolean;
+    expireCache(projection: Projection, usedTiles: Record<string, boolean>): void;
+    getGutter(): number;
+    getGutterForProjection(projection: Projection): number;
     /**
      * Return the key to be used for all tiles in the source.
      */
-    protected getKey(): string;
-    protected getTileInternal(z: number, x: number, y: number, pixelRatio: number, projection: Projection): Tile;
-    canExpireCache(): boolean;
-    expireCache(projection: Projection, usedTiles: Record<string, boolean>): void;
-    getContextOptions(): object | undefined;
-    getGutter(): number;
-    getGutterForProjection(projection: Projection): number;
+    getKey(): string;
     getOpaque(projection: Projection): boolean;
-    getTile(z: number, x: number, y: number, pixelRatio: number, projection: Projection): Tile;
+    getTile(z: number, x: number, y: number, pixelRatio: number, projection: Projection): ImageTile | ReprojTile;
     getTileCacheForProjection(projection: Projection): TileCache;
     getTileGridForProjection(projection: Projection): TileGrid;
     /**

@@ -4,6 +4,7 @@ import { EventsKey, ListenerFunction } from '../events';
 import BaseEvent from '../events/Event';
 import { Extent } from '../extent';
 import RenderEvent from '../render/Event';
+import LayerRenderer from '../renderer/Layer';
 import ImageSource from '../source/Image';
 import Layer from './Layer';
 
@@ -34,7 +35,10 @@ export interface Options<ImageSourceType extends ImageSource = ImageSource> {
     source?: ImageSourceType;
     properties?: Record<string, any>;
 }
-export default class BaseImageLayer<ImageSourceType extends ImageSource = ImageSource> extends Layer<ImageSourceType> {
+export default class BaseImageLayer<
+    ImageSourceType extends ImageSource = ImageSource,
+    RendererType extends LayerRenderer = LayerRenderer,
+> extends Layer<ImageSourceType, RendererType> {
     constructor(opt_options?: Options<ImageSourceType>);
     on(type: TBaseImageLayerBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
     on(type: TBaseImageLayerBaseEventTypes[], listener: ListenerFunction<BaseEvent>): EventsKey[];

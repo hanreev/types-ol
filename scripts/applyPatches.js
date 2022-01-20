@@ -4,7 +4,7 @@ const glob = require('glob');
 const childProcess = require('child_process');
 
 const BASE_DIR = process.cwd();
-const OL_VERSION = 'v6.9.0';
+const OL_VERSION = 'v6.10.0';
 
 const jsdocConfigPath = path.resolve(BASE_DIR, 'jsdoc', 'conf.json');
 const jsdocConfig = require(jsdocConfigPath);
@@ -47,9 +47,14 @@ childProcess.execSync('git checkout -- .', { stdio: 'inherit' });
 childProcess.execSync(`git checkout ${OL_VERSION}`, { stdio: 'inherit' });
 
 console.log('# ===== APPLYING PATCHES =====');
-for (const patch of patches) {
-  console.log(`# Applying "${path.basename(patch)}"`);
-  childProcess.execSync(`git apply "${patch}"`);
+try {
+  for (const patch of patches) {
+    console.log(`# Applying "${path.basename(patch)}"`);
+    childProcess.execSync(`git apply "${patch}"`);
+  }
+} catch (error) {
+  childProcess.execSync('git checkout -- .');
+  throw error;
 }
 process.chdir(BASE_DIR);
 

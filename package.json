@@ -1,6 +1,6 @@
 {
   "name": "@hanreev/types-ol",
-  "version": "3.9.1",
+  "version": "3.10.0",
   "description": "OpenLayers 6+ TypeScript definition",
   "author": "Rifa'i M. Hanif <hanreev@gmail.com>",
   "repository": {
@@ -43,8 +43,9 @@
     "@types/topojson-specification": "^1.0.2"
   },
   "devDependencies": {
-    "@definitelytyped/definitions-parser": "0.0.93",
-    "@definitelytyped/utils": "0.0.93",
+    "@definitelytyped/definitions-parser": "latest",
+    "@definitelytyped/dtslint": "latest",
+    "@definitelytyped/utils": "latest",
     "@trivago/prettier-plugin-sort-imports": "^3.1.1",
     "@types/fs-extra": "^9.0.13",
     "@types/glob": "^7.2.0",
@@ -53,7 +54,6 @@
     "@types/proj4": "^2.5.2",
     "@typescript-eslint/eslint-plugin": "^5.4.0",
     "@typescript-eslint/parser": "^5.4.0",
-    "dtslint": "^4.2.1",
     "eslint": "^8.3.0",
     "eslint-plugin-unused-imports": "^2.0.0",
     "fs-extra": "^10.0.0",
@@ -62,7 +62,7 @@
     "jsdoc-plugin-typescript": "2.0.6",
     "no-emit-webpack-plugin": "^4.0.1",
     "node-html-parser": "^5.1.0",
-    "ol": "6.9.0",
+    "ol": "6.10.0",
     "pinst": "^2.1.6",
     "prettier": "2.5.0",
     "pretty-quick": "3.1.2",

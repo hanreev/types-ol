@@ -3,6 +3,7 @@ import Types from '../ObjectEventType';
 import { EventsKey, ListenerFunction } from '../events';
 import BaseEvent from '../events/Event';
 import { Extent } from '../extent';
+import LayerRenderer from '../renderer/Layer';
 import Source from '../source/Source';
 import State_1 from '../source/State';
 import Layer, { State } from './Layer';
@@ -18,6 +19,10 @@ export type TBaseLayerObjectEventTypes =
     | 'change:visible'
     | 'change:zIndex'
     | 'propertychange';
+/**
+ * A css color, or a function called with a view resolution returning a css color.
+ */
+export type BackgroundColor = string | ((p0: number) => string);
 export type BaseLayerObjectEventTypes =
     | Types
     | 'change:extent'
@@ -38,6 +43,7 @@ export interface Options {
     maxResolution?: number;
     minZoom?: number;
     maxZoom?: number;
+    background?: BackgroundColor;
     properties?: Record<string, any>;
 }
 export default class BaseLayer extends BaseObject {
@@ -46,13 +52,17 @@ export default class BaseLayer extends BaseObject {
      * Clean up.
      */
     disposeInternal(): void;
+    /**
+     * Get the background for this layer.
+     */
+    getBackground(): BackgroundColor | false;
     getClassName(): string;
     /**
      * Return the {@link module:ol/extent~Extent extent} of the layer or undefined if it
      * will be visible regardless of extent.
      */
     getExtent(): Extent | undefined;
-    getLayersArray(opt_array?: Layer<Source>[]): Layer<Source>[];
+    getLayersArray(opt_array?: Layer<Source, LayerRenderer>[]): Layer<Source, LayerRenderer>[];
     /**
      * This method is not meant to be called by layers or layer renderers because the state
      * is incorrect if the layer is included in a layer group.
@@ -89,6 +99,10 @@ export default class BaseLayer extends BaseObject {
      * rendering. The default Z-index is 0.
      */
     getZIndex(): number;
+    /**
+     * Sets the backgrlound color.
+     */
+    setBackground(opt_background?: BackgroundColor): void;
     /**
      * Set the extent at which the layer is visible.  If undefined, the layer
      * will be visible at all extents.

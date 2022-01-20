@@ -16,7 +16,7 @@ import { HitMatch } from './Map';
 import { FeatureCallback } from './vector';
 
 export type TLayerRendererBaseEventTypes = 'change' | 'error';
-export default class LayerRenderer<LayerType extends Layer = Layer> extends Observable {
+export default class LayerRenderer<LayerType extends Layer = any> extends Observable {
     constructor(layer: LayerType);
     protected layer_: LayerType;
     /**

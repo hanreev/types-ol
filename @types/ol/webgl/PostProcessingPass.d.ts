@@ -13,7 +13,12 @@ export default class WebGLPostProcessingPass {
     /**
      * Render to the next postprocessing pass (or to the canvas if final pass).
      */
-    apply(frameState: FrameState, nextPass?: WebGLPostProcessingPass): void;
+    apply(
+        frameState: FrameState,
+        nextPass?: WebGLPostProcessingPass,
+        preCompose?: (p0: WebGLRenderingContext, p1: FrameState) => void,
+        postCompose?: (p0: WebGLRenderingContext, p1: FrameState) => void,
+    ): void;
     getFrameBuffer(): WebGLFramebuffer;
     /**
      * Get the WebGL rendering context

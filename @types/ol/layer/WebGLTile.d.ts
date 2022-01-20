@@ -4,13 +4,13 @@ import { EventsKey, ListenerFunction } from '../events';
 import BaseEvent from '../events/Event';
 import { Extent } from '../extent';
 import RenderEvent from '../render/Event';
-import LayerRenderer from '../renderer/Layer';
-import Source from '../source/Source';
-import TileSource from '../source/Tile';
+import WebGLTileLayerRenderer from '../renderer/webgl/TileLayer';
+import DataTileSource from '../source/DataTile';
+import TileImage from '../source/TileImage';
 import { ExpressionValue } from '../style/expressions';
 import { UniformValue } from '../webgl/Helper';
+import PaletteTexture from '../webgl/PaletteTexture';
 import BaseTileLayer from './BaseTile';
-import Layer from './Layer';
 
 export type TWebGLTileLayerBaseEventTypes = 'change' | 'error';
 export type TWebGLTileLayerObjectEventTypes =
@@ -39,7 +39,7 @@ export interface Options {
     minZoom?: number;
     maxZoom?: number;
     preload?: number;
-    source?: TileSource;
+    source?: SourceType;
     map?: PluggableMap;
     useInterimTilesOnError?: boolean;
     cacheSize?: number;
@@ -48,12 +48,14 @@ export interface ParsedStyle {
     vertexShader: string;
     fragmentShader: string;
     uniforms: Record<string, UniformValue>;
+    paletteTextures: PaletteTexture[];
 }
+export type SourceType = DataTileSource | TileImage;
 /**
  * Translates tile data to rendered pixels.
  */
 export interface Style {
-    variables?: Record<string, number>;
+    variables?: Record<string, string | number>;
     color?: ExpressionValue;
     brightness?: ExpressionValue;
     contrast?: ExpressionValue;
@@ -61,16 +63,18 @@ export interface Style {
     saturation?: ExpressionValue;
     gamma?: ExpressionValue;
 }
-export default class WebGLTileLayer extends BaseTileLayer {
+export default class WebGLTileLayer extends BaseTileLayer<SourceType, WebGLTileLayerRenderer> {
     constructor(opt_options: Options);
-    /**
-     * Create a renderer for this layer.
-     */
-    protected createRenderer(): LayerRenderer<Layer<Source>>;
     /**
      * Clean up underlying WebGL resources.
      */
     dispose(): void;
+    /**
+     * Update the layer style.  The updateStyleVariables function is a more efficient
+     * way to update layer rendering.  In cases where the whole style needs to be updated,
+     * this method may be called instead.
+     */
+    setStyle(style: Style): void;
     /**
      * Update any variables used by the layer style and trigger a re-render.
      */

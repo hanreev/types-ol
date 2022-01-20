@@ -46,5 +46,5 @@ export function render(
     sources: ImageExtent[],
     gutter: number,
     opt_renderEdges?: boolean,
-    opt_contextOptions?: any,
+    opt_interpolate?: any,
 ): HTMLCanvasElement;

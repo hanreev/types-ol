@@ -41,14 +41,11 @@ export interface Options<VectorSourceType extends VectorSource = VectorSource> {
     disableHitDetection?: boolean;
     properties?: Record<string, any>;
 }
-export default class WebGLPointsLayer<
-    VectorSourceType extends VectorSource = VectorSource,
-> extends Layer<VectorSourceType> {
+export default class WebGLPointsLayer<VectorSourceType extends VectorSource = VectorSource> extends Layer<
+    VectorSourceType,
+    WebGLPointsLayerRenderer
+> {
     constructor(options: Options<VectorSourceType>);
-    /**
-     * Create a renderer for this layer.
-     */
-    createRenderer(): WebGLPointsLayerRenderer;
     on(type: TWebGLPointsLayerBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
     on(type: TWebGLPointsLayerBaseEventTypes[], listener: ListenerFunction<BaseEvent>): EventsKey[];
     once(type: TWebGLPointsLayerBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;

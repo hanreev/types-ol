@@ -10,6 +10,7 @@ export interface Options {
     tileCoord: TileCoord;
     loader: () => Promise<Data>;
     transition?: number;
+    interpolate?: boolean;
 }
 export default class DataTile extends Tile {
     constructor(options: Options);

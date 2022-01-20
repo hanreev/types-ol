@@ -8,12 +8,11 @@ import Geometry from '../geom/Geometry';
 import { Pixel } from '../pixel';
 import { OrderFunction } from '../render';
 import RenderEvent from '../render/Event';
-import LayerRenderer from '../renderer/Layer';
-import Source from '../source/Source';
+import CanvasVectorTileLayerRenderer from '../renderer/canvas/VectorTileLayer';
 import VectorTile from '../source/VectorTile';
 import { StyleLike } from '../style/Style';
+import { BackgroundColor } from './Base';
 import BaseVectorLayer from './BaseVector';
-import Layer from './Layer';
 import VectorTileRenderType from './VectorTileRenderType';
 
 export type TVectorTileLayerBaseEventTypes = 'change' | 'error';
@@ -48,18 +47,16 @@ export interface Options {
     map?: PluggableMap;
     declutter?: boolean;
     style?: StyleLike | null;
+    background?: BackgroundColor | false;
     updateWhileAnimating?: boolean;
     updateWhileInteracting?: boolean;
     preload?: number;
     useInterimTilesOnError?: boolean;
     properties?: Record<string, any>;
 }
-export default class VectorTileLayer extends BaseVectorLayer<VectorTile> {
+export default class VectorTileLayer extends BaseVectorLayer<VectorTile, CanvasVectorTileLayerRenderer> {
     constructor(opt_options?: Options);
-    /**
-     * Create a renderer for this layer.
-     */
-    protected createRenderer(): LayerRenderer<Layer<Source>>;
+    getBackground(): BackgroundColor;
     /**
      * Get the topmost feature that intersects the given pixel on the viewport. Returns a promise
      * that resolves with an array of features. The array will either contain the topmost feature
@@ -79,6 +76,7 @@ export default class VectorTileLayer extends BaseVectorLayer<VectorTile> {
      * Whether we use interim tiles on error.
      */
     getUseInterimTilesOnError(): boolean;
+    setBackground(background: BackgroundColor): void;
     /**
      * Set the level as number to which we will preload tiles up to.
      */

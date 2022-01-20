@@ -17,6 +17,7 @@ export interface Options {
     hidpi?: boolean;
     imageLoadFunction?: LoadFunction;
     imageSmoothing?: boolean;
+    interpolate?: boolean;
     params?: Record<string, any>;
     projection?: ProjectionLike;
     ratio?: number;

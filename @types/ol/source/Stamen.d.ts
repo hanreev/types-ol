@@ -12,6 +12,7 @@ export type TStamenTileSourceEventTypes = 'tileloadend' | 'tileloaderror' | 'til
 export interface Options {
     cacheSize?: number;
     imageSmoothing?: boolean;
+    interpolate?: boolean;
     layer: string;
     minZoom?: number;
     maxZoom?: number;

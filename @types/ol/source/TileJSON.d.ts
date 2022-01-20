@@ -31,6 +31,7 @@ export interface Options {
     cacheSize?: number;
     crossOrigin?: null | string;
     imageSmoothing?: boolean;
+    interpolate?: boolean;
     jsonp?: boolean;
     reprojectionErrorThreshold?: number;
     tileJSON?: Config;

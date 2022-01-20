@@ -8,9 +8,11 @@ import Geometry from '../geom/Geometry';
 import { Pixel } from '../pixel';
 import { OrderFunction } from '../render';
 import RenderEvent from '../render/Event';
+import LayerRenderer from '../renderer/Layer';
 import VectorSource from '../source/Vector';
 import VectorTile from '../source/VectorTile';
 import { StyleFunction, StyleLike } from '../style/Style';
+import { BackgroundColor } from './Base';
 import Layer from './Layer';
 
 export type TBaseVectorLayerBaseEventTypes = 'change' | 'error';
@@ -42,13 +44,15 @@ export interface Options<VectorSourceType extends VectorSource | VectorTile = Ve
     map?: PluggableMap;
     declutter?: boolean;
     style?: StyleLike | null;
+    background?: BackgroundColor;
     updateWhileAnimating?: boolean;
     updateWhileInteracting?: boolean;
     properties?: Record<string, any>;
 }
 export default class BaseVectorLayer<
     VectorSourceType extends VectorSource | VectorTile = VectorSource | VectorTile,
-> extends Layer<VectorSourceType> {
+    RendererType extends LayerRenderer = LayerRenderer,
+> extends Layer<VectorSourceType, RendererType> {
     constructor(opt_options?: Options<VectorSourceType>);
     getDeclutter(): boolean;
     /**
@@ -85,7 +89,7 @@ export default class BaseVectorLayer<
      * an array of styles. If set to null, the layer has no style (a null style),
      * so only features that have their own styles will be rendered in the layer. Call
      * setStyle() without arguments to reset to the default style. See
-     * {@link module:ol/style} for information on the default style.
+     * {@link module:ol/style/Style~Style} for information on the default style.
      */
     setStyle(opt_style?: StyleLike | null): void;
     on(type: TBaseVectorLayerBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;

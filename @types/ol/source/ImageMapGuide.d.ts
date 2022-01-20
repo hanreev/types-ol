@@ -23,6 +23,7 @@ export interface Options {
     resolutions?: number[];
     imageLoadFunction?: LoadFunction;
     imageSmoothing?: boolean;
+    interpolate?: boolean;
     params?: any;
 }
 export default class ImageMapGuide extends ImageSource {

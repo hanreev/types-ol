@@ -35,7 +35,7 @@ export type RenderFunction = (p0: Coordinate | Coordinate[] | Coordinate[][], p1
 /**
  * A function that takes an {@link module:ol/Feature} and a {number}
  * representing the view's resolution. The function should return a
- * {@link module:ol/style/Style} or an array of them. This way e.g. a
+ * {@link module:ol/style/Style~Style} or an array of them. This way e.g. a
  * vector layer can be styled. If the function returns undefined, the
  * feature will not be rendered.
  */

@@ -8,6 +8,7 @@ import BaseEvent from '../events/Event';
 import { Extent } from '../extent';
 import Layer from '../layer/Layer';
 import Projection from '../proj/Projection';
+import LayerRenderer from '../renderer/Layer';
 import ImageSource, { ImageSourceEvent, ImageSourceEventTypes } from './Image';
 import Source from './Source';
 
@@ -48,7 +49,7 @@ export interface MinionData {
  */
 export type Operation = (p0: number[][] | ImageData[], p1: object) => number[] | ImageData;
 export interface Options {
-    sources: (Source | Layer<Source>)[];
+    sources: (Source | Layer<Source, LayerRenderer>)[];
     operation?: Operation;
     lib?: any;
     threads?: number;

@@ -34,6 +34,7 @@ export interface Options {
     attributions?: AttributionLike;
     canvasFunction?: FunctionType;
     imageSmoothing?: boolean;
+    interpolate?: boolean;
     projection?: ProjectionLike;
     ratio?: number;
     resolutions?: number[];

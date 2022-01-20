@@ -9,6 +9,7 @@ import BaseEvent from '../events/Event';
 import { Condition } from '../events/condition';
 import Geometry from '../geom/Geometry';
 import Layer from '../layer/Layer';
+import LayerRenderer from '../renderer/Layer';
 import Source from '../source/Source';
 import PointerInteraction from './Pointer';
 
@@ -25,7 +26,7 @@ export type FilterFunction = (p0: FeatureLike, p1: Layer<Source>) => boolean;
 export interface Options {
     condition?: Condition;
     features?: Collection<Feature<Geometry>>;
-    layers?: Layer<Source>[] | ((p0: Layer<Source>) => boolean);
+    layers?: Layer<Source, LayerRenderer>[] | ((p0: Layer<Source>) => boolean);
     filter?: FilterFunction;
     hitTolerance?: number;
 }

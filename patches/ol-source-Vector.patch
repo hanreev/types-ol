@@ -1,5 +1,5 @@
 diff --git a/src/ol/source/Vector.js b/src/ol/source/Vector.js
-index eda2f7958..fef03af8e 100644
+index 1defcf3e1..ff81bd947 100644
 --- a/src/ol/source/Vector.js
 +++ b/src/ol/source/Vector.js
 @@ -34,27 +34,27 @@ import {xhr} from '../featureloader.js';
@@ -186,7 +186,7 @@ index eda2f7958..fef03af8e 100644
                evt.element
              )
            );
-@@ -570,7 +570,7 @@ class VectorSource extends Source {
+@@ -573,7 +573,7 @@ class VectorSource extends Source {
     * stop and the function will return the same value.
     * Note: this function only iterate through the feature that have a defined geometry.
     *
@@ -195,7 +195,7 @@ index eda2f7958..fef03af8e 100644
     *     on the source.  Return a truthy value to stop iteration.
     * @return {T|undefined} The return value from the last call to the callback.
     * @template T
-@@ -591,7 +591,7 @@ class VectorSource extends Source {
+@@ -594,7 +594,7 @@ class VectorSource extends Source {
     * value.
     *
     * @param {import("../coordinate.js").Coordinate} coordinate Coordinate.
@@ -204,7 +204,7 @@ index eda2f7958..fef03af8e 100644
     *     whose goemetry contains the provided coordinate.
     * @return {T|undefined} The return value from the last call to the callback.
     * @template T
-@@ -621,7 +621,7 @@ class VectorSource extends Source {
+@@ -624,7 +624,7 @@ class VectorSource extends Source {
     * features, equivalent to {@link module:ol/source/Vector~VectorSource#forEachFeature #forEachFeature()}.
     *
     * @param {import("../extent.js").Extent} extent Extent.
@@ -213,7 +213,7 @@ index eda2f7958..fef03af8e 100644
     *     whose bounding box intersects the provided extent.
     * @return {T|undefined} The return value from the last call to the callback.
     * @template T
-@@ -644,7 +644,7 @@ class VectorSource extends Source {
+@@ -647,7 +647,7 @@ class VectorSource extends Source {
     * {@link module:ol/source/Vector~VectorSource#forEachFeatureInExtent #forEachFeatureInExtent()} method instead.
     *
     * @param {import("../extent.js").Extent} extent Extent.
@@ -222,7 +222,7 @@ index eda2f7958..fef03af8e 100644
     *     whose geometry intersects the provided extent.
     * @return {T|undefined} The return value from the last call to the callback.
     * @template T
-@@ -654,7 +654,7 @@ class VectorSource extends Source {
+@@ -657,7 +657,7 @@ class VectorSource extends Source {
      return this.forEachFeatureInExtent(
        extent,
        /**
@@ -231,7 +231,7 @@ index eda2f7958..fef03af8e 100644
         * @return {T|undefined} The return value from the last call to the callback.
         */
        function (feature) {
-@@ -673,7 +673,7 @@ class VectorSource extends Source {
+@@ -676,7 +676,7 @@ class VectorSource extends Source {
     * Get the features collection associated with this source. Will be `null`
     * unless the source was configured with `useSpatialIndex` set to `false`, or
     * with an {@link module:ol/Collection} as `features`.
@@ -240,7 +240,7 @@ index eda2f7958..fef03af8e 100644
     * @api
     */
    getFeaturesCollection() {
-@@ -683,7 +683,7 @@ class VectorSource extends Source {
+@@ -686,7 +686,7 @@ class VectorSource extends Source {
    /**
     * Get a snapshot of the features currently on the source in random order. The returned array
     * is a copy, the features are references to the features in the source.
@@ -249,7 +249,7 @@ index eda2f7958..fef03af8e 100644
     * @api
     */
    getFeatures() {
-@@ -696,7 +696,7 @@ class VectorSource extends Source {
+@@ -699,7 +699,7 @@ class VectorSource extends Source {
          extend(features, getValues(this.nullGeometryFeatures_));
        }
      }
@@ -258,7 +258,7 @@ index eda2f7958..fef03af8e 100644
        features
      );
    }
-@@ -704,7 +704,7 @@ class VectorSource extends Source {
+@@ -707,7 +707,7 @@ class VectorSource extends Source {
    /**
     * Get all features whose geometry intersects the provided coordinate.
     * @param {import("../coordinate.js").Coordinate} coordinate Coordinate.
@@ -267,7 +267,7 @@ index eda2f7958..fef03af8e 100644
     * @api
     */
    getFeaturesAtCoordinate(coordinate) {
-@@ -724,7 +724,7 @@ class VectorSource extends Source {
+@@ -727,7 +727,7 @@ class VectorSource extends Source {
     * features.
     *
     * @param {import("../extent.js").Extent} extent Extent.
@@ -276,7 +276,7 @@ index eda2f7958..fef03af8e 100644
     * @api
     */
    getFeaturesInExtent(extent) {
-@@ -743,10 +743,10 @@ class VectorSource extends Source {
+@@ -746,10 +746,10 @@ class VectorSource extends Source {
     * This method is not available when the source is configured with
     * `useSpatialIndex` set to `false`.
     * @param {import("../coordinate.js").Coordinate} coordinate Coordinate.
@@ -289,7 +289,7 @@ index eda2f7958..fef03af8e 100644
     * @api
     */
    getClosestFeatureToCoordinate(coordinate, opt_filter) {
-@@ -767,7 +767,7 @@ class VectorSource extends Source {
+@@ -770,7 +770,7 @@ class VectorSource extends Source {
      this.featuresRtree_.forEachInExtent(
        extent,
        /**
@@ -298,7 +298,7 @@ index eda2f7958..fef03af8e 100644
         */
        function (feature) {
          if (filter(feature)) {
-@@ -817,7 +817,7 @@ class VectorSource extends Source {
+@@ -820,7 +820,7 @@ class VectorSource extends Source {
     * `source.getFeatureById(2)` will return a feature with id `'2'` or `2`.
     *
     * @param {string|number} id Feature identifier.
@@ -307,7 +307,7 @@ index eda2f7958..fef03af8e 100644
     * @api
     */
    getFeatureById(id) {
-@@ -829,7 +829,7 @@ class VectorSource extends Source {
+@@ -832,7 +832,7 @@ class VectorSource extends Source {
     * Get a feature by its internal unique identifier (using `getUid`).
     *
     * @param {string} uid Feature identifier.
@@ -316,7 +316,7 @@ index eda2f7958..fef03af8e 100644
     */
    getFeatureByUid(uid) {
      const feature = this.uidIndex_[uid];
-@@ -868,7 +868,7 @@ class VectorSource extends Source {
+@@ -871,7 +871,7 @@ class VectorSource extends Source {
     * @private
     */
    handleFeatureChange_(event) {
@@ -325,7 +325,7 @@ index eda2f7958..fef03af8e 100644
        event.target
      );
      const featureKey = getUid(feature);
-@@ -912,7 +912,7 @@ class VectorSource extends Source {
+@@ -915,7 +915,7 @@ class VectorSource extends Source {
  
    /**
     * Returns true if the feature is contained within the source.
@@ -334,7 +334,7 @@ index eda2f7958..fef03af8e 100644
     * @return {boolean} Has feature.
     * @api
     */
-@@ -1015,7 +1015,7 @@ class VectorSource extends Source {
+@@ -1018,7 +1018,7 @@ class VectorSource extends Source {
     * Remove a single feature from the source.  If you want to remove all features
     * at once, use the {@link module:ol/source/Vector~VectorSource#clear #clear()} method
     * instead.
@@ -343,16 +343,18 @@ index eda2f7958..fef03af8e 100644
     * @api
     */
    removeFeature(feature) {
-@@ -1033,7 +1033,7 @@ class VectorSource extends Source {
+@@ -1041,8 +1041,8 @@ class VectorSource extends Source {
  
    /**
     * Remove feature without firing a `change` event.
 -   * @param {import("../Feature.js").default<Geometry>} feature Feature.
+-   * @return {import("../Feature.js").default<Geometry>|undefined} The removed feature
 +   * @param {import("../Feature.js").default<G>} feature Feature.
++   * @return {import("../Feature.js").default<G>|undefined} The removed feature
+    *     (or undefined if the feature was not found).
     * @protected
     */
-   removeFeatureInternal(feature) {
-@@ -1053,7 +1053,7 @@ class VectorSource extends Source {
+@@ -1068,7 +1068,7 @@ class VectorSource extends Source {
    /**
     * Remove a feature from the id index.  Called internally when the feature id
     * may have changed.

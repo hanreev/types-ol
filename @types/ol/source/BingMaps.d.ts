@@ -32,6 +32,7 @@ export interface Options {
     key: string;
     imagerySet: string;
     imageSmoothing?: boolean;
+    interpolate?: boolean;
     maxZoom?: number;
     reprojectionErrorThreshold?: number;
     tileLoadFunction?: LoadFunction;

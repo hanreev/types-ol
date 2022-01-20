@@ -8,6 +8,7 @@ import Layer from '../../layer/Layer';
 import { Pixel } from '../../pixel';
 import Source from '../../source/Source';
 import { UniformValue } from '../../webgl/Helper';
+import LayerRenderer from '../Layer';
 import { HitMatch } from '../Map';
 import { FeatureCallback } from '../vector';
 import WebGLLayerRenderer, { PostProcessesOptions } from './Layer';
@@ -41,7 +42,7 @@ export interface Options {
     postProcesses?: PostProcessesOptions[];
 }
 export default class WebGLPointsLayerRenderer extends WebGLLayerRenderer {
-    constructor(layer: Layer<Source>, options: Options);
+    constructor(layer: Layer<Source, LayerRenderer>, options: Options);
     /**
      * Clean up.
      */
@@ -59,9 +60,9 @@ export default class WebGLPointsLayerRenderer extends WebGLLayerRenderer {
      */
     handleFontsChanged(): void;
     /**
-     * Determine whether render should be called.
+     * Determine whether renderFrame should be called.
      */
-    prepareFrame(frameState: FrameState): boolean;
+    prepareFrameInternal(frameState: FrameState): boolean;
     /**
      * Render the layer.
      */

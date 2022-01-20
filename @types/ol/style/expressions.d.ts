@@ -1,4 +1,5 @@
 import { Color } from '../color';
+import PaletteTexture from '../webgl/PaletteTexture';
 
 /**
  * Base type used for literal style parameters; can be a number literal or the output of an operator,
@@ -78,6 +79,11 @@ import { Color } from '../color';
  * ['color', red, green, blue, alpha] creates a color value from number values; the alpha parameter is
  * optional; if not specified, it will be set to 1.
  * Note: red, green and blue components must be values between 0 and 255; alpha between 0 and 1.
+ * ['palette', index, colors] picks a color value from an array of colors using the given index; the index
+ * expression must evaluate to a number; the items in the colors array must be strings with hex colors
+ * (e.g. '#86A136'), colors using the rgba[a] functional notation (e.g. 'rgb(134, 161, 54)' or 'rgba(134, 161, 54, 1)'),
+ * named colors (e.g. 'red'), or array literals with 3 ([r, g, b]) or 4 ([r, g, b, a]) values (with r, g, and b
+ * in the 0-255 range and a in the 0-1 range).
  *
  *
  *
@@ -108,7 +114,9 @@ export interface ParsingContext {
     variables: string[];
     attributes: string[];
     stringLiteralsMap: Record<string, number>;
+    functions: Record<string, string>;
     bandCount?: number;
+    paletteTextures?: PaletteTexture[];
 }
 /**
  * Operator declarations

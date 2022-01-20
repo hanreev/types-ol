@@ -4,6 +4,7 @@ import { EventsKey, ListenerFunction } from '../events';
 import BaseEvent from '../events/Event';
 import { Extent } from '../extent';
 import RenderEvent from '../render/Event';
+import LayerRenderer from '../renderer/Layer';
 import TileSource from '../source/Tile';
 import Layer from './Layer';
 
@@ -38,7 +39,10 @@ export interface Options<TileSourceType extends TileSource = TileSource> {
     useInterimTilesOnError?: boolean;
     properties?: Record<string, any>;
 }
-export default class BaseTileLayer<TileSourceType extends TileSource = TileSource> extends Layer<TileSourceType> {
+export default class BaseTileLayer<
+    TileSourceType extends TileSource = TileSource,
+    RendererType extends LayerRenderer = LayerRenderer,
+> extends Layer<TileSourceType, RendererType> {
     constructor(opt_options?: Options<TileSourceType>);
     /**
      * Return the level as number to which we will preload tiles up to.

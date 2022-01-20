@@ -15,6 +15,7 @@ export interface Options {
     cacheSize?: number;
     crossOrigin?: null | string;
     imageSmoothing?: boolean;
+    interpolate?: boolean;
     maxZoom?: number;
     opaque?: boolean;
     reprojectionErrorThreshold?: number;

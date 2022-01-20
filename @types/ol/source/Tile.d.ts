@@ -28,17 +28,13 @@ export interface Options {
     transition?: number;
     key?: string;
     zDirection?: number | NearestDirectionFunction;
+    interpolate?: boolean;
 }
 export default abstract class TileSource extends Source {
     constructor(options: Options);
     protected tileCache: TileCache;
-    protected tileGrid: TileGrid;
     protected tileOptions: Options_1;
     protected tmpSize: Size;
-    /**
-     * Return the key to be used for all tiles in the source.
-     */
-    protected getKey(): string;
     protected getTileCacheForProjection(projection: Projection): TileCache;
     /**
      * Set the value to be used as the key for all tiles in the source.
@@ -57,6 +53,10 @@ export default abstract class TileSource extends Source {
         callback: (p0: Tile) => boolean | void,
     ): boolean;
     getGutterForProjection(projection: Projection): number;
+    /**
+     * Return the key to be used for all tiles in the source.
+     */
+    getKey(): string;
     getOpaque(projection: Projection): boolean;
     getResolutions(): number[];
     abstract getTile(z: number, x: number, y: number, pixelRatio: number, projection: Projection): Tile;

@@ -16,9 +16,14 @@ export interface BufferCacheEntry {
     buffer: WebGLArrayBuffer;
     webGlBuffer: WebGLBuffer;
 }
+export interface CanvasCacheItem {
+    canvas: HTMLCanvasElement;
+    users: number;
+}
 export interface Options {
     uniforms?: Record<string, UniformValue>;
     postProcesses?: PostProcessesOptions[];
+    canvasCacheKey?: string;
 }
 export interface PostProcessesOptions {
     scaleRatio?: number;
@@ -69,6 +74,7 @@ export default class WebGLHelper extends Disposable {
      * the cache.
      */
     bindBuffer(buffer: WebGLArrayBuffer): void;
+    canvasCacheKeyMatches(canvasCacheKey: string): boolean;
     /**
      * Will attempt to compile a vertex or fragment shader based on source
      * On error, the shader will be returned but
@@ -105,7 +111,11 @@ export default class WebGLHelper extends Disposable {
     /**
      * Apply the successive post process passes which will eventually render to the actual canvas.
      */
-    finalizeDraw(frameState: FrameState): void;
+    finalizeDraw(
+        frameState: FrameState,
+        preCompose?: (p0: WebGLRenderingContext, p1: FrameState) => void,
+        postCompose?: (p0: WebGLRenderingContext, p1: FrameState) => void,
+    ): void;
     /**
      * Update the data contained in the buffer array; this is required for the
      * new data to be rendered
@@ -162,6 +172,7 @@ export default class WebGLHelper extends Disposable {
      * Give a value for a standard matrix4 uniform
      */
     setUniformMatrixValue(uniform: string, value: number[]): void;
+    setUniforms(uniforms: Record<string, UniformValue>): void;
     /**
      * Use a program.  If the program is already in use, this will return false.
      */

@@ -1,5 +1,7 @@
 ## Changelog
 
+- **v3.10.0**
+  - Updated to OpenLayers v6.10.0
 - **v3.9.1**
   - Allow `null` as style of VectorImage and VectorTile #32
 - **v3.9.0**
