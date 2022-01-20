@@ -19,6 +19,7 @@ export interface Options {
     cacheSize?: number;
     crossOrigin?: null | string;
     imageSmoothing?: boolean;
+    interpolate?: boolean;
     reprojectionErrorThreshold?: number;
     tileLoadFunction?: LoadFunction;
     wrapX?: boolean;

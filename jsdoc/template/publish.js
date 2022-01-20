@@ -903,23 +903,26 @@ async function generateDefinition(doclet, emitOutput = true) {
 }
 
 /**
- * @param {string} key
+ * @param {string} longname
  * @param {Doclet} _module
  * @param {boolean} [includeBracket]
  * @param {boolean} [includeType]
  * @returns {string}
  */
-function getGenericType(key, _module, includeBracket = true, includeType = false, includeDefault = false) {
-  if (!(key in GENERIC_TYPES)) return '';
-  if (key == 'module:ol/renderer/Layer~LayerRenderer') {
-    if (_module.longname == 'module:ol/renderer/Layer') {
-      const gt = 'LayerType = any';
+function getGenericType(longname, _module, includeBracket = true, includeType = false, includeDefault = false) {
+  if (!(longname in GENERIC_TYPES)) return '';
+
+  // FIXME: Circular dependency
+  if (longname === 'module:ol/renderer/Layer~LayerRenderer') {
+    if (_module.longname === 'module:ol/renderer/Layer') {
+      registerImport(_module, 'module:ol/layer/Layer~Layer');
+      const gt = 'LayerType extends Layer = any';
       return includeBracket ? `<${gt}>` : gt;
     }
     return '';
   }
 
-  const genericTypes = GENERIC_TYPES[key]
+  const genericTypes = GENERIC_TYPES[longname]
     .map(gType => {
       let type;
       if (gType.type) type = getType(/** @type {Doclet} */ (gType), _module);

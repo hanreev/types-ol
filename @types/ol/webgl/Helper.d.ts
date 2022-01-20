@@ -111,7 +111,11 @@ export default class WebGLHelper extends Disposable {
     /**
      * Apply the successive post process passes which will eventually render to the actual canvas.
      */
-    finalizeDraw(frameState: FrameState): void;
+    finalizeDraw(
+        frameState: FrameState,
+        preCompose?: (p0: WebGLRenderingContext, p1: FrameState) => void,
+        postCompose?: (p0: WebGLRenderingContext, p1: FrameState) => void,
+    ): void;
     /**
      * Update the data contained in the buffer array; this is required for the
      * new data to be rendered
@@ -168,6 +172,7 @@ export default class WebGLHelper extends Disposable {
      * Give a value for a standard matrix4 uniform
      */
     setUniformMatrixValue(uniform: string, value: number[]): void;
+    setUniforms(uniforms: Record<string, UniformValue>): void;
     /**
      * Use a program.  If the program is already in use, this will return false.
      */

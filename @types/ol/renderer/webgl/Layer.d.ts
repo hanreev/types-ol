@@ -47,6 +47,8 @@ export default class WebGLLayerRenderer<LayerType extends Layer = Layer> extends
     constructor(layer: LayerType, opt_options?: Options);
     protected helper: WebGLHelper;
     protected afterHelperCreated(): void;
+    protected dispatchPostComposeEvent(context: WebGLRenderingContext, frameState: FrameState): void;
+    protected dispatchPreComposeEvent(context: WebGLRenderingContext, frameState: FrameState): void;
     protected postRender(context: WebGLRenderingContext, frameState: FrameState): void;
     /**
      * Determine whether renderFrame should be called.
@@ -77,6 +79,10 @@ export default class WebGLLayerRenderer<LayerType extends Layer = Layer> extends
      * Render the layer.
      */
     renderFrame(frameState: FrameState, target: HTMLElement): HTMLElement;
+    /**
+     * Reset options (only handles uniforms).
+     */
+    reset(options: Options): void;
     on(type: TWebGLLayerRendererBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
     on(type: TWebGLLayerRendererBaseEventTypes[], listener: ListenerFunction<BaseEvent>): EventsKey[];
     once(type: TWebGLLayerRendererBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;

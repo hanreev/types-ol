@@ -11,6 +11,7 @@ import RenderEvent from '../render/Event';
 import CanvasVectorTileLayerRenderer from '../renderer/canvas/VectorTileLayer';
 import VectorTile from '../source/VectorTile';
 import { StyleLike } from '../style/Style';
+import { BackgroundColor } from './Base';
 import BaseVectorLayer from './BaseVector';
 import VectorTileRenderType from './VectorTileRenderType';
 
@@ -46,6 +47,7 @@ export interface Options {
     map?: PluggableMap;
     declutter?: boolean;
     style?: StyleLike | null;
+    background?: BackgroundColor | false;
     updateWhileAnimating?: boolean;
     updateWhileInteracting?: boolean;
     preload?: number;
@@ -54,6 +56,7 @@ export interface Options {
 }
 export default class VectorTileLayer extends BaseVectorLayer<VectorTile, CanvasVectorTileLayerRenderer> {
     constructor(opt_options?: Options);
+    getBackground(): BackgroundColor;
     /**
      * Get the topmost feature that intersects the given pixel on the viewport. Returns a promise
      * that resolves with an array of features. The array will either contain the topmost feature
@@ -73,6 +76,7 @@ export default class VectorTileLayer extends BaseVectorLayer<VectorTile, CanvasV
      * Whether we use interim tiles on error.
      */
     getUseInterimTilesOnError(): boolean;
+    setBackground(background: BackgroundColor): void;
     /**
      * Set the level as number to which we will preload tiles up to.
      */

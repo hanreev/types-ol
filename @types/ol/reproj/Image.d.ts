@@ -11,7 +11,7 @@ export default class ReprojImage extends ImageBase {
         targetResolution: number,
         pixelRatio: number,
         getImageFunction: FunctionType,
-        opt_contextOptions?: any,
+        interpolate: boolean,
     );
     /**
      * Clean up.

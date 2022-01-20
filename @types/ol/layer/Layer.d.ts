@@ -45,7 +45,7 @@ export type RenderFunction = (p0: FrameState) => HTMLElement;
 export interface State {
     layer: Layer<Source, LayerRenderer>;
     opacity: number;
-    sourceState: State_1;
+    source: Source;
     visible: boolean;
     managed: boolean;
     extent?: Extent;
@@ -79,6 +79,7 @@ export default class Layer<
      * Get the renderer for this layer.
      */
     getRenderer(): RendererType;
+    getRenderSource(): SourceType;
     /**
      * Get the layer source.
      */

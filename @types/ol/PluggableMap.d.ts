@@ -66,6 +66,7 @@ export interface FrameState {
     viewHints: number[];
     wantedTiles: Record<string, Record<string, boolean>>;
     mapId: string;
+    renderTargets: Record<string, boolean>;
 }
 export type MapObjectEventTypes = Types | 'change:layergroup' | 'change:size' | 'change:target' | 'change:view';
 /**
@@ -137,14 +138,21 @@ export default class PluggableMap extends BaseObject {
      * Detect layers that have a color value at a pixel on the viewport, and
      * execute a callback with each matching layer. Layers included in the
      * detection can be configured through opt_layerFilter.
-     * Note: this may give false positives unless the map layers have had different className
-     * properties assigned to them.
+     * Note: In maps with more than one layer, this method will typically return pixel data
+     * representing the composed image of all layers visible at the given pixel – because layers
+     * will generally share the same rendering context.  To force layers to render separately, and
+     * to get pixel data representing only one layer at a time, you can assign each layer a unique
+     * className in its constructor.
      */
     forEachLayerAtPixel<S, T>(
         pixel: Pixel,
         callback: (this: S, p0: Layer<Source, LayerRenderer>, p1: Uint8ClampedArray | Uint8Array) => T,
         opt_options?: AtPixelOptions,
     ): T | undefined;
+    /**
+     * Get all layers from all layer groups.
+     */
+    getAllLayers(): Layer<Source, LayerRenderer>[];
     /**
      * Get the map controls. Modifying this collection changes the controls
      * associated with the map.

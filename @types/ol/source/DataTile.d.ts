@@ -6,6 +6,7 @@ import { ProjectionLike } from '../proj';
 import Projection from '../proj/Projection';
 import { Size } from '../size';
 import TileGrid from '../tilegrid/TileGrid';
+import { AttributionLike } from './Source';
 import State from './State';
 import TileSource, { TileSourceEvent } from './Tile';
 
@@ -19,6 +20,8 @@ export type TDataTileSourceTileSourceEventTypes = 'tileloadend' | 'tileloaderror
 export type Loader = (p0: number, p1: number, p2: number) => Data | Promise<Data>;
 export interface Options {
     loader?: Loader;
+    attributions?: AttributionLike;
+    attributionsCollapsible?: boolean;
     maxZoom?: number;
     minZoom?: number;
     tileSize?: number | Size;
@@ -31,6 +34,7 @@ export interface Options {
     wrapX?: boolean;
     transition?: number;
     bandCount?: number;
+    interpolate?: boolean;
 }
 export default class DataTileSource extends TileSource {
     constructor(options: Options);

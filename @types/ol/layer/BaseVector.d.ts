@@ -8,10 +8,14 @@ import Geometry from '../geom/Geometry';
 import { Pixel } from '../pixel';
 import { OrderFunction } from '../render';
 import RenderEvent from '../render/Event';
-import LayerRenderer from '../renderer/Layer';
+import CanvasVectorImageLayerRenderer from '../renderer/canvas/VectorImageLayer';
+import CanvasVectorLayerRenderer from '../renderer/canvas/VectorLayer';
+import CanvasVectorTileLayerRenderer from '../renderer/canvas/VectorTileLayer';
+import WebGLPointsLayerRenderer from '../renderer/webgl/PointsLayer';
 import VectorSource from '../source/Vector';
 import VectorTile from '../source/VectorTile';
 import { StyleFunction, StyleLike } from '../style/Style';
+import { BackgroundColor } from './Base';
 import Layer from './Layer';
 
 export type TBaseVectorLayerBaseEventTypes = 'change' | 'error';
@@ -43,13 +47,22 @@ export interface Options<VectorSourceType extends VectorSource | VectorTile = Ve
     map?: PluggableMap;
     declutter?: boolean;
     style?: StyleLike | null;
+    background?: BackgroundColor;
     updateWhileAnimating?: boolean;
     updateWhileInteracting?: boolean;
     properties?: Record<string, any>;
 }
 export default class BaseVectorLayer<
     VectorSourceType extends VectorSource | VectorTile = VectorSource | VectorTile,
-    RendererType extends LayerRenderer = LayerRenderer,
+    RendererType extends
+        | CanvasVectorLayerRenderer
+        | CanvasVectorTileLayerRenderer
+        | CanvasVectorImageLayerRenderer
+        | WebGLPointsLayerRenderer =
+        | CanvasVectorLayerRenderer
+        | CanvasVectorTileLayerRenderer
+        | CanvasVectorImageLayerRenderer
+        | WebGLPointsLayerRenderer,
 > extends Layer<VectorSourceType, RendererType> {
     constructor(opt_options?: Options<VectorSourceType>);
     getDeclutter(): boolean;

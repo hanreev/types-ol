@@ -33,6 +33,7 @@ import { TileCoord } from './tilecoord';
 export type LoadFunction = (p0: Tile, p1: string) => void;
 export interface Options {
     transition?: number;
+    interpolate?: boolean;
 }
 /**
  * {@link module:ol/source/Tile~Tile} sources use a function of this type to get

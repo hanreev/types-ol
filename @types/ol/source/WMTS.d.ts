@@ -20,6 +20,7 @@ export interface Options {
     cacheSize?: number;
     crossOrigin?: null | string;
     imageSmoothing?: boolean;
+    interpolate?: boolean;
     tileGrid: WMTSTileGrid;
     projection?: ProjectionLike;
     reprojectionErrorThreshold?: number;

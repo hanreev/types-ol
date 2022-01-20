@@ -47,9 +47,14 @@ childProcess.execSync('git checkout -- .', { stdio: 'inherit' });
 childProcess.execSync(`git checkout ${OL_VERSION}`, { stdio: 'inherit' });
 
 console.log('# ===== APPLYING PATCHES =====');
-for (const patch of patches) {
-  console.log(`# Applying "${path.basename(patch)}"`);
-  childProcess.execSync(`git apply "${patch}"`);
+try {
+  for (const patch of patches) {
+    console.log(`# Applying "${path.basename(patch)}"`);
+    childProcess.execSync(`git apply "${patch}"`);
+  }
+} catch (error) {
+  childProcess.execSync('git checkout -- .');
+  throw error;
 }
 process.chdir(BASE_DIR);
 

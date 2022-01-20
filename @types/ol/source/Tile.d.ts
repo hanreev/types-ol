@@ -28,6 +28,7 @@ export interface Options {
     transition?: number;
     key?: string;
     zDirection?: number | NearestDirectionFunction;
+    interpolate?: boolean;
 }
 export default abstract class TileSource extends Source {
     constructor(options: Options);

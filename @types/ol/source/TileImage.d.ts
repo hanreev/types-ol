@@ -23,6 +23,7 @@ export interface Options {
     cacheSize?: number;
     crossOrigin?: null | string;
     imageSmoothing?: boolean;
+    interpolate?: boolean;
     opaque?: boolean;
     projection?: ProjectionLike;
     reprojectionErrorThreshold?: number;
@@ -54,7 +55,6 @@ export default class TileImage extends UrlTile {
     ): ImageTile | ReprojTile;
     canExpireCache(): boolean;
     expireCache(projection: Projection, usedTiles: Record<string, boolean>): void;
-    getContextOptions(): object | undefined;
     getGutter(): number;
     getGutterForProjection(projection: Projection): number;
     /**

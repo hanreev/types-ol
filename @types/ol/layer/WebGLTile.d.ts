@@ -1,15 +1,16 @@
 import { ObjectEvent } from '../Object';
-import PluggableMap from '../PluggableMap';
+import PluggableMap, { FrameState } from '../PluggableMap';
 import { EventsKey, ListenerFunction } from '../events';
 import BaseEvent from '../events/Event';
 import { Extent } from '../extent';
 import RenderEvent from '../render/Event';
 import WebGLTileLayerRenderer from '../renderer/webgl/TileLayer';
 import DataTileSource from '../source/DataTile';
-import TileSource from '../source/Tile';
+import State from '../source/State';
 import TileImage from '../source/TileImage';
 import { ExpressionValue } from '../style/expressions';
 import { UniformValue } from '../webgl/Helper';
+import PaletteTexture from '../webgl/PaletteTexture';
 import BaseTileLayer from './BaseTile';
 
 export type TWebGLTileLayerBaseEventTypes = 'change' | 'error';
@@ -40,6 +41,7 @@ export interface Options {
     maxZoom?: number;
     preload?: number;
     source?: SourceType;
+    sources?: SourceType[] | ((p0: Extent, p1: number) => SourceType[]);
     map?: PluggableMap;
     useInterimTilesOnError?: boolean;
     cacheSize?: number;
@@ -48,6 +50,7 @@ export interface ParsedStyle {
     vertexShader: string;
     fragmentShader: string;
     uniforms: Record<string, UniformValue>;
+    paletteTextures: PaletteTexture[];
 }
 export type SourceType = DataTileSource | TileImage;
 /**
@@ -62,15 +65,26 @@ export interface Style {
     saturation?: ExpressionValue;
     gamma?: ExpressionValue;
 }
-export default class WebGLTileLayer<TileSourceType extends TileSource = TileSource> extends BaseTileLayer<
-    TileSourceType,
-    WebGLTileLayerRenderer
-> {
+export default class WebGLTileLayer extends BaseTileLayer<SourceType, WebGLTileLayerRenderer> {
     constructor(opt_options: Options);
     /**
      * Clean up underlying WebGL resources.
      */
     dispose(): void;
+    getRenderSource(): SourceType;
+    /**
+     * Gets the sources for this layer, for a given extent and resolution.
+     */
+    getSources(extent: Extent, resolution: number): SourceType[];
+    getSourceState(): State;
+    render(frameState: FrameState, target: HTMLElement): HTMLElement;
+    renderSources(frameState: FrameState, sources: SourceType[]): HTMLElement;
+    /**
+     * Update the layer style.  The updateStyleVariables function is a more efficient
+     * way to update layer rendering.  In cases where the whole style needs to be updated,
+     * this method may be called instead.
+     */
+    setStyle(style: Style): void;
     /**
      * Update any variables used by the layer style and trigger a re-render.
      */

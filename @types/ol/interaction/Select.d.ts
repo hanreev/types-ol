@@ -51,10 +51,8 @@ export default class Select extends Interaction {
      */
     getHitTolerance(): number;
     /**
-     * Returns the associated {@link module:ol/layer/Vector~Vector vectorlayer} of
-     * the (last) selected feature. Note that this will not work with any
-     * programmatic method like pushing features to
-     * {@link module:ol/interaction/Select~Select#getFeatures collection}.
+     * Returns the associated {@link module:ol/layer/Vector~Vector vector layer} of
+     * a selected feature.
      */
     getLayer(feature: FeatureLike): VectorLayer<VectorSource<Geometry>>;
     getStyle(): StyleLike | null;

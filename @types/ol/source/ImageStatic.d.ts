@@ -18,6 +18,7 @@ export interface Options {
     imageExtent?: Extent;
     imageLoadFunction?: LoadFunction;
     imageSmoothing?: boolean;
+    interpolate?: boolean;
     projection?: ProjectionLike;
     imageSize?: Size;
     url: string;

@@ -16,6 +16,7 @@ export type ImageSourceEventTypes = 'imageloadend' | 'imageloaderror' | 'imagelo
 export interface Options {
     attributions?: AttributionLike;
     imageSmoothing?: boolean;
+    interpolate?: boolean;
     projection?: ProjectionLike;
     resolutions?: number[];
     state?: State;
@@ -38,7 +39,6 @@ export default abstract class ImageSource extends Source {
      * Handle image change events.
      */
     protected handleImageChange(event: BaseEvent): void;
-    getContextOptions(): object | undefined;
     getImage(extent: Extent, resolution: number, pixelRatio: number, projection: Projection): ImageBase;
     getResolutions(): number[];
     on(type: TImageSourceBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;

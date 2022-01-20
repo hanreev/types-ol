@@ -31,6 +31,7 @@ export interface Options {
     transition?: number;
     key?: string;
     zDirection?: number | NearestDirectionFunction;
+    interpolate?: boolean;
 }
 export default class UrlTile extends TileSource {
     constructor(options: Options);

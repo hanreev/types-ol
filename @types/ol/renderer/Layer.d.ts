@@ -8,6 +8,7 @@ import { Coordinate } from '../coordinate';
 import { EventsKey, ListenerFunction } from '../events';
 import BaseEvent from '../events/Event';
 import Geometry from '../geom/Geometry';
+import Layer from '../layer/Layer';
 import { Pixel } from '../pixel';
 import Projection from '../proj/Projection';
 import TileSource from '../source/Tile';
@@ -15,7 +16,7 @@ import { HitMatch } from './Map';
 import { FeatureCallback } from './vector';
 
 export type TLayerRendererBaseEventTypes = 'change' | 'error';
-export default class LayerRenderer<LayerType = any> extends Observable {
+export default class LayerRenderer<LayerType extends Layer = any> extends Observable {
     constructor(layer: LayerType);
     protected layer_: LayerType;
     /**

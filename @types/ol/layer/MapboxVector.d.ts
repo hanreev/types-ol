@@ -6,6 +6,7 @@ import { Extent } from '../extent';
 import { OrderFunction } from '../render';
 import RenderEvent from '../render/Event';
 import VectorTile from '../source/VectorTile';
+import { BackgroundColor } from './Base';
 import VectorTileLayer from './VectorTile';
 import VectorTileRenderType from './VectorTileRenderType';
 
@@ -37,6 +38,7 @@ export interface Options {
     source?: string;
     layers?: string[];
     declutter?: boolean;
+    background?: BackgroundColor | false;
     className?: string;
     opacity?: number;
     visible?: boolean;
@@ -86,7 +88,7 @@ export default class MapboxVectorLayer extends VectorTileLayer {
     /**
      * Handle the loaded style object.
      */
-    protected onStyleLoad(style: StyleObject): void;
+    protected onStyleLoad(style: StyleObject, styleUrl: string): void;
     /**
      * Applies configuration from the provided source to this layer's source,
      * and reconfigures the loader to add a feature that renders the background,

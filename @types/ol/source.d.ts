@@ -1,3 +1,8 @@
+import { Extent } from './extent';
+import Source from './source/Source';
+import { TileCoord } from './tilecoord';
+import TileGrid from './tilegrid/TileGrid';
+
 export { default as BingMaps } from './source/BingMaps';
 export { default as CartoDB } from './source/CartoDB';
 export { default as Cluster } from './source/Cluster';
@@ -27,3 +32,12 @@ export { default as VectorTile } from './source/VectorTile';
 export { default as WMTS } from './source/WMTS';
 export { default as XYZ } from './source/XYZ';
 export { default as Zoomify } from './source/Zoomify';
+
+/**
+ * Creates a sources function from a tile grid. This function can be used as value for the
+ * sources property of the {@link module:ol/layer/Layer~Layer} subclasses that support it.
+ */
+export function sourcesFromTileGrid(
+    tileGrid: TileGrid,
+    factory: (p0: TileCoord) => Source,
+): (p0: Extent, p1: number) => Source[];

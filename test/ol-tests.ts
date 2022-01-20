@@ -496,7 +496,7 @@ const xyzOpts: XYZOptions = {
 const imageLayer: ImageLayer<ImageWMS> = new ImageLayer<ImageWMS>({ source: new ImageWMS() });
 const layerImage: Layer<ImageWMS> = imageLayer;
 const imageWmsSource: ImageWMS = imageLayer.getSource();
-const osmSource = osmLayer.getSource() as OSM;
+const osmSource = osmLayer.getSource();
 
 const eventListener: ListenerFunction = event => console.log(event);
 const eventsKeys: EventsKey[] = map.getLayers().on(['add', 'remove'], eventListener);
