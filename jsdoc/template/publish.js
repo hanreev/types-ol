@@ -913,13 +913,14 @@ function getGenericType(longname, _module, includeBracket = true, includeType = 
   if (!(longname in GENERIC_TYPES)) return '';
 
   // FIXME: Circular dependency
-  if (longname === 'module:ol/renderer/Layer~LayerRenderer')
+  if (longname === 'module:ol/renderer/Layer~LayerRenderer') {
     if (_module.longname === 'module:ol/renderer/Layer') {
       registerImport(_module, 'module:ol/layer/Layer~Layer');
-      return '<LayerType extends Layer = any>';
-    } else {
-      return '';
+      const gt = 'LayerType extends Layer = any';
+      return includeBracket ? `<${gt}>` : gt;
     }
+    return '';
+  }
 
   const genericTypes = GENERIC_TYPES[longname]
     .map(gType => {
