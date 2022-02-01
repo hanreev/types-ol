@@ -13,22 +13,22 @@ export type TTileArcGISRestBaseEventTypes = 'change' | 'error';
 export type TTileArcGISRestObjectEventTypes = 'propertychange';
 export type TTileArcGISRestTileSourceEventTypes = 'tileloadend' | 'tileloaderror' | 'tileloadstart';
 export interface Options {
-    attributions?: AttributionLike;
-    cacheSize?: number;
-    crossOrigin?: null | string;
-    imageSmoothing?: boolean;
-    interpolate?: boolean;
-    params?: Record<string, any>;
-    hidpi?: boolean;
-    tileGrid?: TileGrid;
-    projection?: ProjectionLike;
-    reprojectionErrorThreshold?: number;
-    tileLoadFunction?: LoadFunction;
-    url?: string;
-    wrapX?: boolean;
-    transition?: number;
-    urls?: string[];
-    zDirection?: number | NearestDirectionFunction;
+    attributions?: AttributionLike | undefined;
+    cacheSize?: number | undefined;
+    crossOrigin?: null | string | undefined;
+    imageSmoothing?: boolean | undefined;
+    interpolate?: boolean | undefined;
+    params?: Record<string, any> | undefined;
+    hidpi?: boolean | undefined;
+    tileGrid?: TileGrid | undefined;
+    projection?: ProjectionLike | undefined;
+    reprojectionErrorThreshold?: number | undefined;
+    tileLoadFunction?: LoadFunction | undefined;
+    url?: string | undefined;
+    wrapX?: boolean | undefined;
+    transition?: number | undefined;
+    urls?: string[] | undefined;
+    zDirection?: number | NearestDirectionFunction | undefined;
 }
 export default class TileArcGISRest extends TileImage {
     constructor(opt_options?: Options);

@@ -20,13 +20,13 @@ export type TClusterVectorSourceEventTypes =
 export type TClusterBaseEventTypes = 'change' | 'error';
 export type TClusterObjectEventTypes = 'propertychange';
 export interface Options {
-    attributions?: AttributionLike;
-    distance?: number;
-    minDistance?: number;
-    geometryFunction?: (p0: Feature<Geometry>) => Point;
-    createCluster?: (p0: Point, p1: Feature[]) => Feature<Geometry>;
-    source?: VectorSource<Geometry>;
-    wrapX?: boolean;
+    attributions?: AttributionLike | undefined;
+    distance?: number | undefined;
+    minDistance?: number | undefined;
+    geometryFunction?: ((p0: Feature<Geometry>) => Point) | undefined;
+    createCluster?: ((p0: Point, p1: Feature[]) => Feature<Geometry>) | undefined;
+    source?: VectorSource<Geometry> | undefined;
+    wrapX?: boolean | undefined;
 }
 export default class Cluster extends VectorSource {
     constructor(options: Options);

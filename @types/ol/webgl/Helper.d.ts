@@ -10,7 +10,7 @@ import WebGLRenderTarget from './RenderTarget';
 export interface AttributeDescription {
     name: string;
     size: number;
-    type?: AttributeType;
+    type?: AttributeType | undefined;
 }
 export interface BufferCacheEntry {
     buffer: WebGLArrayBuffer;
@@ -21,15 +21,15 @@ export interface CanvasCacheItem {
     users: number;
 }
 export interface Options {
-    uniforms?: Record<string, UniformValue>;
-    postProcesses?: PostProcessesOptions[];
-    canvasCacheKey?: string;
+    uniforms?: Record<string, UniformValue> | undefined;
+    postProcesses?: PostProcessesOptions[] | undefined;
+    canvasCacheKey?: string | undefined;
 }
 export interface PostProcessesOptions {
-    scaleRatio?: number;
-    vertexShader?: string;
-    fragmentShader?: string;
-    uniforms?: Record<string, UniformValue>;
+    scaleRatio?: number | undefined;
+    vertexShader?: string | undefined;
+    fragmentShader?: string | undefined;
+    uniforms?: Record<string, UniformValue> | undefined;
 }
 export type UniformLiteralValue = number | number[] | HTMLCanvasElement | HTMLImageElement | ImageData | Transform;
 /**

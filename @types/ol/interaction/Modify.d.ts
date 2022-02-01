@@ -23,12 +23,12 @@ export type TModifyBaseEventTypes = 'change' | 'error';
 export type TModifyObjectEventTypes = 'change:active' | 'propertychange';
 export type TModifyModifyEventTypes = 'modifyend' | 'modifystart';
 export interface Options {
-    condition?: Condition;
-    deleteCondition?: Condition;
-    insertVertexCondition?: Condition;
-    pixelTolerance?: number;
-    style?: StyleLike;
-    source?: VectorSource<Geometry>;
+    condition?: Condition | undefined;
+    deleteCondition?: Condition | undefined;
+    insertVertexCondition?: Condition | undefined;
+    pixelTolerance?: number | undefined;
+    style?: StyleLike | undefined;
+    source?: VectorSource<Geometry> | undefined;
     hitDetection?:
         | boolean
         | BaseVectorLayer<
@@ -37,18 +37,19 @@ export interface Options {
               | CanvasVectorTileLayerRenderer
               | CanvasVectorImageLayerRenderer
               | WebGLPointsLayerRenderer
-          >;
-    features?: Collection<Feature<Geometry>>;
-    wrapX?: boolean;
-    snapToPointer?: boolean;
+          >
+        | undefined;
+    features?: Collection<Feature<Geometry>> | undefined;
+    wrapX?: boolean | undefined;
+    snapToPointer?: boolean | undefined;
 }
 export interface SegmentData {
-    depth?: number[];
+    depth?: number[] | undefined;
     feature: FeatureLike;
     geometry: SimpleGeometry;
-    index?: number;
+    index?: number | undefined;
     segment: number[][];
-    featureSegments?: SegmentData[];
+    featureSegments?: SegmentData[] | undefined;
 }
 declare enum ModifyEventType {
     MODIFYSTART = 'modifystart',

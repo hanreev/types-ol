@@ -13,14 +13,14 @@ export type TStaticBaseEventTypes = 'change' | 'error';
 export type TStaticImageSourceEventTypes = 'imageloadend' | 'imageloaderror' | 'imageloadstart';
 export type TStaticObjectEventTypes = 'propertychange';
 export interface Options {
-    attributions?: AttributionLike;
-    crossOrigin?: null | string;
-    imageExtent?: Extent;
-    imageLoadFunction?: LoadFunction;
-    imageSmoothing?: boolean;
-    interpolate?: boolean;
-    projection?: ProjectionLike;
-    imageSize?: Size;
+    attributions?: AttributionLike | undefined;
+    crossOrigin?: null | string | undefined;
+    imageExtent?: Extent | undefined;
+    imageLoadFunction?: LoadFunction | undefined;
+    imageSmoothing?: boolean | undefined;
+    interpolate?: boolean | undefined;
+    projection?: ProjectionLike | undefined;
+    imageSize?: Size | undefined;
     url: string;
 }
 export default class Static extends ImageSource {

@@ -8,9 +8,9 @@ import Interaction from './Interaction';
 export type TKeyboardZoomBaseEventTypes = 'change' | 'error';
 export type TKeyboardZoomObjectEventTypes = 'change:active' | 'propertychange';
 export interface Options {
-    duration?: number;
-    condition?: Condition;
-    delta?: number;
+    duration?: number | undefined;
+    condition?: Condition | undefined;
+    delta?: number | undefined;
 }
 export default class KeyboardZoom extends Interaction {
     constructor(opt_options?: Options);

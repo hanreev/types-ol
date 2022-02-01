@@ -20,13 +20,13 @@ export type TViewObjectEventTypes = 'change:center' | 'change:resolution' | 'cha
  * An animation configuration
  */
 export interface Animation {
-    sourceCenter?: Coordinate;
-    targetCenter?: Coordinate;
-    sourceResolution?: number;
-    targetResolution?: number;
-    sourceRotation?: number;
-    targetRotation?: number;
-    anchor?: Coordinate;
+    sourceCenter?: Coordinate | undefined;
+    targetCenter?: Coordinate | undefined;
+    sourceResolution?: number | undefined;
+    targetResolution?: number | undefined;
+    sourceRotation?: number | undefined;
+    targetRotation?: number | undefined;
+    anchor?: Coordinate | undefined;
     start: number;
     duration: number;
     complete: boolean;
@@ -34,13 +34,13 @@ export interface Animation {
     callback: (p0: boolean) => void;
 }
 export interface AnimationOptions {
-    center?: Coordinate;
-    zoom?: number;
-    resolution?: number;
-    rotation?: number;
-    anchor?: Coordinate;
-    duration?: number;
-    easing?: (p0: number) => number;
+    center?: Coordinate | undefined;
+    zoom?: number | undefined;
+    resolution?: number | undefined;
+    rotation?: number | undefined;
+    anchor?: Coordinate | undefined;
+    duration?: number | undefined;
+    easing?: ((p0: number) => number) | undefined;
 }
 export interface Constraints {
     center: Type;
@@ -48,48 +48,48 @@ export interface Constraints {
     rotation: Type_2;
 }
 export interface FitOptions {
-    size?: Size;
-    padding?: number[];
-    nearest?: boolean;
-    minResolution?: number;
-    maxZoom?: number;
-    duration?: number;
-    easing?: (p0: number) => number;
-    callback?: (p0: boolean) => void;
+    size?: Size | undefined;
+    padding?: number[] | undefined;
+    nearest?: boolean | undefined;
+    minResolution?: number | undefined;
+    maxZoom?: number | undefined;
+    duration?: number | undefined;
+    easing?: ((p0: number) => number) | undefined;
+    callback?: ((p0: boolean) => void) | undefined;
 }
 export interface State {
     center: Coordinate;
     projection: Projection;
     resolution: number;
-    nextCenter?: Coordinate;
-    nextResolution?: number;
-    nextRotation?: number;
+    nextCenter?: Coordinate | undefined;
+    nextResolution?: number | undefined;
+    nextRotation?: number | undefined;
     rotation: number;
     zoom: number;
 }
 export type ViewObjectEventTypes = Types | 'change:center' | 'change:resolution' | 'change:rotation';
 export interface ViewOptions {
-    center?: Coordinate;
-    constrainRotation?: boolean | number;
-    enableRotation?: boolean;
-    extent?: Extent;
-    constrainOnlyCenter?: boolean;
-    smoothExtentConstraint?: boolean;
-    maxResolution?: number;
-    minResolution?: number;
-    maxZoom?: number;
-    minZoom?: number;
-    multiWorld?: boolean;
-    constrainResolution?: boolean;
-    smoothResolutionConstraint?: boolean;
-    showFullExtent?: boolean;
-    projection?: ProjectionLike;
-    resolution?: number;
-    resolutions?: number[];
-    rotation?: number;
-    zoom?: number;
-    zoomFactor?: number;
-    padding?: number[];
+    center?: Coordinate | undefined;
+    constrainRotation?: boolean | number | undefined;
+    enableRotation?: boolean | undefined;
+    extent?: Extent | undefined;
+    constrainOnlyCenter?: boolean | undefined;
+    smoothExtentConstraint?: boolean | undefined;
+    maxResolution?: number | undefined;
+    minResolution?: number | undefined;
+    maxZoom?: number | undefined;
+    minZoom?: number | undefined;
+    multiWorld?: boolean | undefined;
+    constrainResolution?: boolean | undefined;
+    smoothResolutionConstraint?: boolean | undefined;
+    showFullExtent?: boolean | undefined;
+    projection?: ProjectionLike | undefined;
+    resolution?: number | undefined;
+    resolutions?: number[] | undefined;
+    rotation?: number | undefined;
+    zoom?: number | undefined;
+    zoomFactor?: number | undefined;
+    padding?: number[] | undefined;
 }
 export default class View extends BaseObject {
     constructor(opt_options?: ViewOptions);

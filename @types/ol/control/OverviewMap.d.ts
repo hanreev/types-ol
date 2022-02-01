@@ -21,17 +21,17 @@ export type TControlledMapRenderEventTypes = 'postcompose' | 'precompose' | 'ren
 export type TOverviewMapBaseEventTypes = 'change' | 'error';
 export type TOverviewMapObjectEventTypes = 'propertychange';
 export interface Options {
-    className?: string;
-    collapsed?: boolean;
-    collapseLabel?: string | HTMLElement;
-    collapsible?: boolean;
-    label?: string | HTMLElement;
-    layers?: BaseLayer[] | Collection<BaseLayer>;
-    render?: (p0: MapEvent) => void;
-    rotateWithView?: boolean;
-    target?: HTMLElement | string;
-    tipLabel?: string;
-    view?: View;
+    className?: string | undefined;
+    collapsed?: boolean | undefined;
+    collapseLabel?: string | HTMLElement | undefined;
+    collapsible?: boolean | undefined;
+    label?: string | HTMLElement | undefined;
+    layers?: BaseLayer[] | Collection<BaseLayer> | undefined;
+    render?: ((p0: MapEvent) => void) | undefined;
+    rotateWithView?: boolean | undefined;
+    target?: HTMLElement | string | undefined;
+    tipLabel?: string | undefined;
+    view?: View | undefined;
 }
 export default class OverviewMap extends Control {
     constructor(opt_options?: Options);

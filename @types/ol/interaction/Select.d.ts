@@ -26,16 +26,16 @@ export type TSelectSelectEventTypes = 'select';
  */
 export type FilterFunction = (p0: FeatureLike, p1: Layer<Source>) => boolean;
 export interface Options {
-    addCondition?: Condition;
-    condition?: Condition;
-    layers?: Layer<Source, LayerRenderer>[] | ((p0: Layer<Source>) => boolean);
-    style?: StyleLike | null;
-    removeCondition?: Condition;
-    toggleCondition?: Condition;
-    multi?: boolean;
-    features?: Collection<Feature<Geometry>>;
-    filter?: FilterFunction;
-    hitTolerance?: number;
+    addCondition?: Condition | undefined;
+    condition?: Condition | undefined;
+    layers?: Layer<Source, LayerRenderer>[] | ((p0: Layer<Source>) => boolean) | undefined;
+    style?: StyleLike | null | undefined;
+    removeCondition?: Condition | undefined;
+    toggleCondition?: Condition | undefined;
+    multi?: boolean | undefined;
+    features?: Collection<Feature<Geometry>> | undefined;
+    filter?: FilterFunction | undefined;
+    hitTolerance?: number | undefined;
 }
 declare enum SelectEventType {
     SELECT = 'select',

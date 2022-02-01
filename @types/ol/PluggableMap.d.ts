@@ -38,9 +38,9 @@ export type TPluggableMapMapBrowserEventTypes = 'click' | 'dblclick' | 'pointerd
 export type TPluggableMapMapEventTypes = 'moveend' | 'movestart' | 'postrender';
 export type TPluggableMapRenderEventTypes = 'postcompose' | 'precompose' | 'rendercomplete';
 export interface AtPixelOptions {
-    layerFilter?: (p0: Layer<Source>) => boolean;
-    hitTolerance?: number;
-    checkWrapped?: boolean;
+    layerFilter?: ((p0: Layer<Source>) => boolean) | undefined;
+    hitTolerance?: number | undefined;
+    checkWrapped?: boolean | undefined;
 }
 /**
  * State of the current frame. Only pixelRatio, time and viewState should
@@ -54,7 +54,7 @@ export interface FrameState {
     coordinateToPixelTransform: Transform;
     declutterTree: RBush<any>;
     extent: null | Extent;
-    nextExtent?: Extent;
+    nextExtent?: Extent | undefined;
     index: number;
     layerStatesArray: State_1[];
     layerIndex: number;
@@ -73,20 +73,20 @@ export type MapObjectEventTypes = Types | 'change:layergroup' | 'change:size' | 
  * Object literal with config options for the map.
  */
 export interface MapOptions {
-    controls?: Collection<Control> | Control[];
-    pixelRatio?: number;
-    interactions?: Collection<Interaction> | Interaction[];
-    keyboardEventTarget?: HTMLElement | Document | string;
-    layers?: BaseLayer[] | Collection<BaseLayer> | LayerGroup;
-    maxTilesLoading?: number;
-    moveTolerance?: number;
-    overlays?: Collection<Overlay> | Overlay[];
-    target?: HTMLElement | string;
-    view?: View | Promise<ViewOptions>;
+    controls?: Collection<Control> | Control[] | undefined;
+    pixelRatio?: number | undefined;
+    interactions?: Collection<Interaction> | Interaction[] | undefined;
+    keyboardEventTarget?: HTMLElement | Document | string | undefined;
+    layers?: BaseLayer[] | Collection<BaseLayer> | LayerGroup | undefined;
+    maxTilesLoading?: number | undefined;
+    moveTolerance?: number | undefined;
+    overlays?: Collection<Overlay> | Overlay[] | undefined;
+    target?: HTMLElement | string | undefined;
+    view?: View | Promise<ViewOptions> | undefined;
 }
 export interface MapOptionsInternal {
-    controls?: Collection<Control>;
-    interactions?: Collection<Interaction>;
+    controls?: Collection<Control> | undefined;
+    interactions?: Collection<Interaction> | undefined;
     keyboardEventTarget: HTMLElement | Document;
     overlays: Collection<Overlay>;
     values: Record<string, any>;

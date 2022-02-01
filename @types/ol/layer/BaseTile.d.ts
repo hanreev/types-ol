@@ -24,20 +24,20 @@ export type TBaseTileLayerObjectEventTypes =
     | 'propertychange';
 export type TBaseTileLayerRenderEventTypes = 'postrender' | 'prerender';
 export interface Options<TileSourceType extends TileSource = TileSource> {
-    className?: string;
-    opacity?: number;
-    visible?: boolean;
-    extent?: Extent;
-    zIndex?: number;
-    minResolution?: number;
-    maxResolution?: number;
-    minZoom?: number;
-    maxZoom?: number;
-    preload?: number;
-    source?: TileSourceType;
-    map?: PluggableMap;
-    useInterimTilesOnError?: boolean;
-    properties?: Record<string, any>;
+    className?: string | undefined;
+    opacity?: number | undefined;
+    visible?: boolean | undefined;
+    extent?: Extent | undefined;
+    zIndex?: number | undefined;
+    minResolution?: number | undefined;
+    maxResolution?: number | undefined;
+    minZoom?: number | undefined;
+    maxZoom?: number | undefined;
+    preload?: number | undefined;
+    source?: TileSourceType | undefined;
+    map?: PluggableMap | undefined;
+    useInterimTilesOnError?: boolean | undefined;
+    properties?: Record<string, any> | undefined;
 }
 export default class BaseTileLayer<
     TileSourceType extends TileSource = TileSource,

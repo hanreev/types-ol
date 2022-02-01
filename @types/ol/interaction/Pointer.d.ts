@@ -8,12 +8,12 @@ import Interaction from './Interaction';
 export type TPointerInteractionBaseEventTypes = 'change' | 'error';
 export type TPointerInteractionObjectEventTypes = 'change:active' | 'propertychange';
 export interface Options {
-    handleDownEvent?: (p0: MapBrowserEvent<UIEvent>) => boolean;
-    handleDragEvent?: (p0: MapBrowserEvent<UIEvent>) => void;
-    handleEvent?: (p0: MapBrowserEvent<UIEvent>) => boolean;
-    handleMoveEvent?: (p0: MapBrowserEvent<UIEvent>) => void;
-    handleUpEvent?: (p0: MapBrowserEvent<UIEvent>) => boolean;
-    stopDown?: (p0: boolean) => boolean;
+    handleDownEvent?: ((p0: MapBrowserEvent<UIEvent>) => boolean) | undefined;
+    handleDragEvent?: ((p0: MapBrowserEvent<UIEvent>) => void) | undefined;
+    handleEvent?: ((p0: MapBrowserEvent<UIEvent>) => boolean) | undefined;
+    handleMoveEvent?: ((p0: MapBrowserEvent<UIEvent>) => void) | undefined;
+    handleUpEvent?: ((p0: MapBrowserEvent<UIEvent>) => boolean) | undefined;
+    stopDown?: ((p0: boolean) => boolean) | undefined;
 }
 export default class PointerInteraction extends Interaction {
     constructor(opt_options?: Options);

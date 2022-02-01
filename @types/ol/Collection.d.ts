@@ -7,7 +7,7 @@ export type TCollectionCollectionEventTypes = 'add' | 'remove';
 export type TCollectionBaseEventTypes = 'change' | 'error';
 export type TCollectionObjectEventTypes = 'change:length' | 'propertychange';
 export interface Options {
-    unique?: boolean;
+    unique?: boolean | undefined;
 }
 export default class Collection<T> extends BaseObject {
     constructor(opt_array?: T[], opt_options?: Options);

@@ -23,16 +23,16 @@ export type TLayerGroupObjectEventTypes =
     | 'propertychange';
 export type EventType = 'addlayer' | 'removelayer';
 export interface Options {
-    opacity?: number;
-    visible?: boolean;
-    extent?: Extent;
-    zIndex?: number;
-    minResolution?: number;
-    maxResolution?: number;
-    minZoom?: number;
-    maxZoom?: number;
-    layers?: BaseLayer[] | Collection<BaseLayer>;
-    properties?: Record<string, any>;
+    opacity?: number | undefined;
+    visible?: boolean | undefined;
+    extent?: Extent | undefined;
+    zIndex?: number | undefined;
+    minResolution?: number | undefined;
+    maxResolution?: number | undefined;
+    minZoom?: number | undefined;
+    maxZoom?: number | undefined;
+    layers?: BaseLayer[] | Collection<BaseLayer> | undefined;
+    properties?: Record<string, any> | undefined;
 }
 export class GroupEvent extends BaseEvent {
     constructor(type: EventType, layer: BaseLayer);

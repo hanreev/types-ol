@@ -51,20 +51,20 @@ export interface MultiGeoTIFF {
 }
 export interface Options {
     sources: SourceInfo[];
-    convertToRGB?: boolean;
-    normalize?: boolean;
-    opaque?: boolean;
-    transition?: number;
-    wrapX?: boolean;
-    interpolate?: boolean;
+    convertToRGB?: boolean | undefined;
+    normalize?: boolean | undefined;
+    opaque?: boolean | undefined;
+    transition?: number | undefined;
+    wrapX?: boolean | undefined;
+    interpolate?: boolean | undefined;
 }
 export interface SourceInfo {
     url: string;
-    overviews?: string[];
-    min?: number;
-    max?: number;
-    nodata?: number;
-    bands?: number[];
+    overviews?: string[] | undefined;
+    min?: number | undefined;
+    max?: number | undefined;
+    nodata?: number | undefined;
+    bands?: number[] | undefined;
 }
 export default class GeoTIFFSource extends DataTileSource {
     constructor(options: Options);

@@ -16,9 +16,9 @@ export type LayerType = WebGLTileLayer;
 export interface Options {
     vertexShader: string;
     fragmentShader: string;
-    uniforms?: Record<string, UniformValue>;
-    paletteTextures?: PaletteTexture[];
-    cacheSize?: number;
+    uniforms?: Record<string, UniformValue> | undefined;
+    paletteTextures?: PaletteTexture[] | undefined;
+    cacheSize?: number | undefined;
 }
 export default class WebGLTileLayerRenderer extends WebGLLayerRenderer {
     constructor(tileLayer: LayerType, options: Options);

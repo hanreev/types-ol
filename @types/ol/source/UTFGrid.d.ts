@@ -14,16 +14,16 @@ import { Config } from './TileJSON';
 export type TUTFGridBaseEventTypes = 'change' | 'error';
 export type TUTFGridObjectEventTypes = 'propertychange';
 export interface Options {
-    preemptive?: boolean;
-    jsonp?: boolean;
-    tileJSON?: Config;
-    url?: string;
-    zDirection?: number | NearestDirectionFunction;
+    preemptive?: boolean | undefined;
+    jsonp?: boolean | undefined;
+    tileJSON?: Config | undefined;
+    url?: string | undefined;
+    zDirection?: number | NearestDirectionFunction | undefined;
 }
 export interface UTFGridJSON {
     grid: string[];
     keys: string[];
-    data?: Record<string, object>;
+    data?: Record<string, object> | undefined;
 }
 export class CustomTile extends Tile {
     constructor(

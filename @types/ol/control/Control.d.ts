@@ -7,9 +7,9 @@ import BaseEvent from '../events/Event';
 export type TControlBaseEventTypes = 'change' | 'error';
 export type TControlObjectEventTypes = 'propertychange';
 export interface Options {
-    element?: HTMLElement;
-    render?: (p0: MapEvent) => void;
-    target?: HTMLElement | string;
+    element?: HTMLElement | undefined;
+    render?: ((p0: MapEvent) => void) | undefined;
+    target?: HTMLElement | string | undefined;
 }
 export default class Control extends BaseObject {
     constructor(options: Options);

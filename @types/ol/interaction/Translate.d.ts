@@ -24,11 +24,11 @@ export type TTranslateTranslateEventTypes = 'translateend' | 'translatestart' | 
  */
 export type FilterFunction = (p0: FeatureLike, p1: Layer<Source>) => boolean;
 export interface Options {
-    condition?: Condition;
-    features?: Collection<Feature<Geometry>>;
-    layers?: Layer<Source, LayerRenderer>[] | ((p0: Layer<Source>) => boolean);
-    filter?: FilterFunction;
-    hitTolerance?: number;
+    condition?: Condition | undefined;
+    features?: Collection<Feature<Geometry>> | undefined;
+    layers?: Layer<Source, LayerRenderer>[] | ((p0: Layer<Source>) => boolean) | undefined;
+    filter?: FilterFunction | undefined;
+    hitTolerance?: number | undefined;
 }
 declare enum TranslateEventType {
     TRANSLATESTART = 'translatestart',

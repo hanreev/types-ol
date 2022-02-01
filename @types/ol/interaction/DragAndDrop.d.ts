@@ -14,10 +14,10 @@ export type TDragAndDropDragAndDropEventTypes = 'addfeatures';
 export type TDragAndDropBaseEventTypes = 'change' | 'error';
 export type TDragAndDropObjectEventTypes = 'change:active' | 'propertychange';
 export interface Options {
-    formatConstructors?: (typeof FeatureFormat | FeatureFormat)[];
-    source?: VectorSource<Geometry>;
-    projection?: ProjectionLike;
-    target?: HTMLElement;
+    formatConstructors?: (typeof FeatureFormat | FeatureFormat)[] | undefined;
+    source?: VectorSource<Geometry> | undefined;
+    projection?: ProjectionLike | undefined;
+    target?: HTMLElement | undefined;
 }
 declare enum DragAndDropEventType {
     ADD_FEATURES = 'addfeatures',

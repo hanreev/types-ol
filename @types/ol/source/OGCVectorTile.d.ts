@@ -16,16 +16,16 @@ export interface Options {
     url: string;
     context?: any;
     format: FeatureFormat;
-    mediaType?: string;
-    attributions?: AttributionLike;
-    attributionsCollapsible?: boolean;
-    cacheSize?: number;
-    overlaps?: boolean;
-    projection?: ProjectionLike;
-    tileClass?: typeof VectorTile;
-    transition?: number;
-    wrapX?: boolean;
-    zDirection?: number | NearestDirectionFunction;
+    mediaType?: string | undefined;
+    attributions?: AttributionLike | undefined;
+    attributionsCollapsible?: boolean | undefined;
+    cacheSize?: number | undefined;
+    overlaps?: boolean | undefined;
+    projection?: ProjectionLike | undefined;
+    tileClass?: typeof VectorTile | undefined;
+    transition?: number | undefined;
+    wrapX?: boolean | undefined;
+    zDirection?: number | NearestDirectionFunction | undefined;
 }
 export default class OGCVectorTile extends VectorTile_1 {
     constructor(options: Options);

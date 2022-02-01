@@ -28,15 +28,15 @@ export type TVectorSourceObjectEventTypes = 'propertychange';
  */
 export type LoadingStrategy = (p0: Extent, p1: number, p2: Projection) => Extent[];
 export interface Options {
-    attributions?: AttributionLike;
-    features?: Feature<Geometry>[] | Collection<Feature<Geometry>>;
-    format?: FeatureFormat;
-    loader?: FeatureLoader;
-    overlaps?: boolean;
-    strategy?: LoadingStrategy;
-    url?: string | FeatureUrlFunction;
-    useSpatialIndex?: boolean;
-    wrapX?: boolean;
+    attributions?: AttributionLike | undefined;
+    features?: Feature<Geometry>[] | Collection<Feature<Geometry>> | undefined;
+    format?: FeatureFormat | undefined;
+    loader?: FeatureLoader | undefined;
+    overlaps?: boolean | undefined;
+    strategy?: LoadingStrategy | undefined;
+    url?: string | FeatureUrlFunction | undefined;
+    useSpatialIndex?: boolean | undefined;
+    wrapX?: boolean | undefined;
 }
 export default class VectorSource<G extends Geometry = Geometry> extends Source {
     constructor(opt_options?: Options);

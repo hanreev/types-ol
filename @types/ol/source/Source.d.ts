@@ -25,12 +25,12 @@ export type Attribution = (p0: FrameState) => string | string[];
  */
 export type AttributionLike = string | string[] | Attribution;
 export interface Options {
-    attributions?: AttributionLike;
-    attributionsCollapsible?: boolean;
-    projection?: ProjectionLike;
-    state?: State;
-    wrapX?: boolean;
-    interpolate?: boolean;
+    attributions?: AttributionLike | undefined;
+    attributionsCollapsible?: boolean | undefined;
+    projection?: ProjectionLike | undefined;
+    state?: State | undefined;
+    wrapX?: boolean | undefined;
+    interpolate?: boolean | undefined;
 }
 export default abstract class Source extends BaseObject {
     constructor(options: Options);

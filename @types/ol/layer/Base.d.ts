@@ -34,17 +34,17 @@ export type BaseLayerObjectEventTypes =
     | 'change:visible'
     | 'change:zIndex';
 export interface Options {
-    className?: string;
-    opacity?: number;
-    visible?: boolean;
-    extent?: Extent;
-    zIndex?: number;
-    minResolution?: number;
-    maxResolution?: number;
-    minZoom?: number;
-    maxZoom?: number;
-    background?: BackgroundColor;
-    properties?: Record<string, any>;
+    className?: string | undefined;
+    opacity?: number | undefined;
+    visible?: boolean | undefined;
+    extent?: Extent | undefined;
+    zIndex?: number | undefined;
+    minResolution?: number | undefined;
+    maxResolution?: number | undefined;
+    minZoom?: number | undefined;
+    maxZoom?: number | undefined;
+    background?: BackgroundColor | undefined;
+    properties?: Record<string, any> | undefined;
 }
 export default class BaseLayer extends BaseObject {
     constructor(options: Options);

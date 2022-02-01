@@ -12,12 +12,12 @@ export type TExtentBaseEventTypes = 'change' | 'error';
 export type TExtentObjectEventTypes = 'change:active' | 'propertychange';
 export type TExtentExtentEventTypes = 'extentchanged';
 export interface Options {
-    condition?: Condition;
-    extent?: Extent_1;
-    boxStyle?: StyleLike;
-    pixelTolerance?: number;
-    pointerStyle?: StyleLike;
-    wrapX?: boolean;
+    condition?: Condition | undefined;
+    extent?: Extent_1 | undefined;
+    boxStyle?: StyleLike | undefined;
+    pixelTolerance?: number | undefined;
+    pointerStyle?: StyleLike | undefined;
+    wrapX?: boolean | undefined;
 }
 export default class Extent extends PointerInteraction {
     constructor(opt_options?: Options);

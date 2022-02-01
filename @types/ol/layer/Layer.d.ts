@@ -27,19 +27,19 @@ export type TLayerObjectEventTypes =
     | 'propertychange';
 export type TLayerRenderEventTypes = 'postrender' | 'prerender';
 export interface Options<SourceType extends Source = Source> {
-    className?: string;
-    opacity?: number;
-    visible?: boolean;
-    extent?: Extent;
-    zIndex?: number;
-    minResolution?: number;
-    maxResolution?: number;
-    minZoom?: number;
-    maxZoom?: number;
-    source?: SourceType;
-    map?: PluggableMap;
-    render?: RenderFunction;
-    properties?: Record<string, any>;
+    className?: string | undefined;
+    opacity?: number | undefined;
+    visible?: boolean | undefined;
+    extent?: Extent | undefined;
+    zIndex?: number | undefined;
+    minResolution?: number | undefined;
+    maxResolution?: number | undefined;
+    minZoom?: number | undefined;
+    maxZoom?: number | undefined;
+    source?: SourceType | undefined;
+    map?: PluggableMap | undefined;
+    render?: RenderFunction | undefined;
+    properties?: Record<string, any> | undefined;
 }
 export type RenderFunction = (p0: FrameState) => HTMLElement;
 export interface State {
@@ -48,7 +48,7 @@ export interface State {
     sourceState: State_1;
     visible: boolean;
     managed: boolean;
-    extent?: Extent;
+    extent?: Extent | undefined;
     zIndex: number;
     maxResolution: number;
     minResolution: number;

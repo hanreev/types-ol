@@ -28,18 +28,18 @@ export type TWebGLPointsLayerRenderEventTypes =
     | 'rendercomplete';
 export interface Options<VectorSourceType extends VectorSource = VectorSource> {
     style: LiteralStyle;
-    className?: string;
-    opacity?: number;
-    visible?: boolean;
-    extent?: Extent;
-    zIndex?: number;
-    minResolution?: number;
-    maxResolution?: number;
-    minZoom?: number;
-    maxZoom?: number;
-    source?: VectorSourceType;
-    disableHitDetection?: boolean;
-    properties?: Record<string, any>;
+    className?: string | undefined;
+    opacity?: number | undefined;
+    visible?: boolean | undefined;
+    extent?: Extent | undefined;
+    zIndex?: number | undefined;
+    minResolution?: number | undefined;
+    maxResolution?: number | undefined;
+    minZoom?: number | undefined;
+    maxZoom?: number | undefined;
+    source?: VectorSourceType | undefined;
+    disableHitDetection?: boolean | undefined;
+    properties?: Record<string, any> | undefined;
 }
 export default class WebGLPointsLayer<VectorSourceType extends VectorSource = VectorSource> extends Layer<
     VectorSourceType,

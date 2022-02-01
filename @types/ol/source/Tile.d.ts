@@ -16,19 +16,19 @@ import State from './State';
 export type TTileSourceBaseEventTypes = 'change' | 'error';
 export type TTileSourceObjectEventTypes = 'propertychange';
 export interface Options {
-    attributions?: AttributionLike;
-    attributionsCollapsible?: boolean;
-    cacheSize?: number;
-    opaque?: boolean;
-    tilePixelRatio?: number;
-    projection?: ProjectionLike;
-    state?: State;
-    tileGrid?: TileGrid;
-    wrapX?: boolean;
-    transition?: number;
-    key?: string;
-    zDirection?: number | NearestDirectionFunction;
-    interpolate?: boolean;
+    attributions?: AttributionLike | undefined;
+    attributionsCollapsible?: boolean | undefined;
+    cacheSize?: number | undefined;
+    opaque?: boolean | undefined;
+    tilePixelRatio?: number | undefined;
+    projection?: ProjectionLike | undefined;
+    state?: State | undefined;
+    tileGrid?: TileGrid | undefined;
+    wrapX?: boolean | undefined;
+    transition?: number | undefined;
+    key?: string | undefined;
+    zDirection?: number | NearestDirectionFunction | undefined;
+    interpolate?: boolean | undefined;
 }
 export default abstract class TileSource extends Source {
     constructor(options: Options);

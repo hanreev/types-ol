@@ -9,8 +9,8 @@ export type Data = Uint8Array | Uint8ClampedArray | Float32Array | DataView;
 export interface Options {
     tileCoord: TileCoord;
     loader: () => Promise<Data>;
-    transition?: number;
-    interpolate?: boolean;
+    transition?: number | undefined;
+    interpolate?: boolean | undefined;
 }
 export default class DataTile extends Tile {
     constructor(options: Options);

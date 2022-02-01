@@ -7,15 +7,15 @@ import Control from './Control';
 export type TRotateBaseEventTypes = 'change' | 'error';
 export type TRotateObjectEventTypes = 'propertychange';
 export interface Options {
-    className?: string;
-    label?: string | HTMLElement;
-    tipLabel?: string;
-    compassClassName?: string;
-    duration?: number;
-    autoHide?: boolean;
-    render?: (p0: MapEvent) => void;
-    resetNorth?: () => void;
-    target?: HTMLElement | string;
+    className?: string | undefined;
+    label?: string | HTMLElement | undefined;
+    tipLabel?: string | undefined;
+    compassClassName?: string | undefined;
+    duration?: number | undefined;
+    autoHide?: boolean | undefined;
+    render?: ((p0: MapEvent) => void) | undefined;
+    resetNorth?: (() => void) | undefined;
+    target?: HTMLElement | string | undefined;
 }
 export default class Rotate extends Control {
     constructor(opt_options?: Options);

@@ -11,7 +11,7 @@ export interface Link {
 export interface SourceInfo {
     url: string;
     mediaType: string;
-    supportedMediaTypes?: string[];
+    supportedMediaTypes?: string[] | undefined;
     projection: Projection;
     context?: any;
 }
@@ -19,7 +19,7 @@ export interface TileMatrix {
     id: string;
     cellSize: number;
     pointOfOrigin: number[];
-    cornerOfOrigin?: CornerOfOrigin;
+    cornerOfOrigin?: CornerOfOrigin | undefined;
     matrixWidth: number;
     matrixHeight: number;
     tileWidth: number;
@@ -39,9 +39,9 @@ export interface TileMatrixSetLimit {
 }
 export interface TileSet {
     dataType: TileType;
-    tileMatrixSetDefinition?: string;
-    tileMatrixSet?: TileMatrixSet;
-    tileMatrixSetLimits?: TileMatrixSetLimit[];
+    tileMatrixSetDefinition?: string | undefined;
+    tileMatrixSet?: TileMatrixSet | undefined;
+    tileMatrixSetLimits?: TileMatrixSetLimit[] | undefined;
     links: Link[];
 }
 export interface TileSetInfo {

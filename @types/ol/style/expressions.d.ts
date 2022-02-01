@@ -110,13 +110,13 @@ export interface Operator {
  * Context available during the parsing of an expression.
  */
 export interface ParsingContext {
-    inFragmentShader?: boolean;
+    inFragmentShader?: boolean | undefined;
     variables: string[];
     attributes: string[];
     stringLiteralsMap: Record<string, number>;
     functions: Record<string, string>;
-    bandCount?: number;
-    paletteTextures?: PaletteTexture[];
+    bandCount?: number | undefined;
+    paletteTextures?: PaletteTexture[] | undefined;
 }
 /**
  * Operator declarations

@@ -7,7 +7,7 @@ import PointerInteraction from './Pointer';
 export type TPinchZoomBaseEventTypes = 'change' | 'error';
 export type TPinchZoomObjectEventTypes = 'change:active' | 'propertychange';
 export interface Options {
-    duration?: number;
+    duration?: number | undefined;
 }
 export default class PinchZoom extends PointerInteraction {
     constructor(opt_options?: Options);

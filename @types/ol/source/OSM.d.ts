@@ -11,19 +11,19 @@ export type TOSMBaseEventTypes = 'change' | 'error';
 export type TOSMObjectEventTypes = 'propertychange';
 export type TOSMTileSourceEventTypes = 'tileloadend' | 'tileloaderror' | 'tileloadstart';
 export interface Options {
-    attributions?: AttributionLike;
-    cacheSize?: number;
-    crossOrigin?: null | string;
-    imageSmoothing?: boolean;
-    interpolate?: boolean;
-    maxZoom?: number;
-    opaque?: boolean;
-    reprojectionErrorThreshold?: number;
-    tileLoadFunction?: LoadFunction;
-    transition?: number;
-    url?: string;
-    wrapX?: boolean;
-    zDirection?: number | NearestDirectionFunction;
+    attributions?: AttributionLike | undefined;
+    cacheSize?: number | undefined;
+    crossOrigin?: null | string | undefined;
+    imageSmoothing?: boolean | undefined;
+    interpolate?: boolean | undefined;
+    maxZoom?: number | undefined;
+    opaque?: boolean | undefined;
+    reprojectionErrorThreshold?: number | undefined;
+    tileLoadFunction?: LoadFunction | undefined;
+    transition?: number | undefined;
+    url?: string | undefined;
+    wrapX?: boolean | undefined;
+    zDirection?: number | NearestDirectionFunction | undefined;
 }
 /**
  * The attribution containing a link to the OpenStreetMap Copyright and License

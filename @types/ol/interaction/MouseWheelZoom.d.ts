@@ -8,13 +8,13 @@ import Interaction from './Interaction';
 export type TMouseWheelZoomBaseEventTypes = 'change' | 'error';
 export type TMouseWheelZoomObjectEventTypes = 'change:active' | 'propertychange';
 export interface Options {
-    condition?: Condition;
-    onFocusOnly?: boolean;
-    maxDelta?: number;
-    duration?: number;
-    timeout?: number;
-    useAnchor?: boolean;
-    constrainResolution?: boolean;
+    condition?: Condition | undefined;
+    onFocusOnly?: boolean | undefined;
+    maxDelta?: number | undefined;
+    duration?: number | undefined;
+    timeout?: number | undefined;
+    useAnchor?: boolean | undefined;
+    constrainResolution?: boolean | undefined;
 }
 export enum Mode {
     TRACKPAD = 'trackpad',

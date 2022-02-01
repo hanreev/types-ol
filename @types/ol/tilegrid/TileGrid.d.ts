@@ -6,14 +6,14 @@ import { Size } from '../size';
 import { TileCoord } from '../tilecoord';
 
 export interface Options {
-    extent?: Extent;
-    minZoom?: number;
-    origin?: Coordinate;
-    origins?: Coordinate[];
+    extent?: Extent | undefined;
+    minZoom?: number | undefined;
+    origin?: Coordinate | undefined;
+    origins?: Coordinate[] | undefined;
     resolutions: number[];
-    sizes?: Size[];
-    tileSize?: number | Size;
-    tileSizes?: Size[];
+    sizes?: Size[] | undefined;
+    tileSize?: number | Size | undefined;
+    tileSizes?: Size[] | undefined;
 }
 export default class TileGrid {
     constructor(options: Options);

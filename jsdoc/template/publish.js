@@ -737,9 +737,15 @@ const PROCESSORS = {
 
         addedProps.push(name);
 
-        if (prop.optional || (doclet.name == 'Options' && prop.name == 'projection')) name += '?';
+        const type = getType(/** @type {Doclet} */ (prop), _module);
+        let suffix = '';
 
-        children.push(`${name}: ${getType(/** @type {Doclet} */ (prop), _module)};`);
+        if (prop.optional || (doclet.name == 'Options' && prop.name == 'projection')) {
+          name += '?';
+          if (type !== 'any') suffix = ' | undefined';
+        }
+
+        children.push(`${name}: ${type}${suffix};`);
       });
 
       decl = `interface ${docletName} {\n${children.join('\n')}\n}`;

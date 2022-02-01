@@ -11,13 +11,13 @@ import Control from './Control';
 export type TMousePositionBaseEventTypes = 'change' | 'error';
 export type TMousePositionObjectEventTypes = 'change:coordinateFormat' | 'change:projection' | 'propertychange';
 export interface Options {
-    className?: string;
-    coordinateFormat?: CoordinateFormat;
-    projection?: ProjectionLike;
-    render?: (p0: MapEvent) => void;
-    target?: HTMLElement | string;
-    placeholder?: string | boolean;
-    undefinedHTML?: string;
+    className?: string | undefined;
+    coordinateFormat?: CoordinateFormat | undefined;
+    projection?: ProjectionLike | undefined;
+    render?: ((p0: MapEvent) => void) | undefined;
+    target?: HTMLElement | string | undefined;
+    placeholder?: string | boolean | undefined;
+    undefinedHTML?: string | undefined;
 }
 export default class MousePosition extends Control {
     constructor(opt_options?: Options);
