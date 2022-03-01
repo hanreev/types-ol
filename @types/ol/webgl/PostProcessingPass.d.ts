@@ -3,10 +3,10 @@ import { UniformValue } from './Helper';
 
 export interface Options {
     webGlContext: WebGLRenderingContext;
-    scaleRatio?: number;
-    vertexShader?: string;
-    fragmentShader?: string;
-    uniforms?: Record<string, UniformValue>;
+    scaleRatio?: number | undefined;
+    vertexShader?: string | undefined;
+    fragmentShader?: string | undefined;
+    uniforms?: Record<string, UniformValue> | undefined;
 }
 export default class WebGLPostProcessingPass {
     constructor(options: Options);

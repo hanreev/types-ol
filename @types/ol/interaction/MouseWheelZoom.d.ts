@@ -8,13 +8,13 @@ import Interaction from './Interaction';
 export type TMouseWheelZoomBaseEventTypes = 'change' | 'error';
 export type TMouseWheelZoomObjectEventTypes = 'change:active' | 'propertychange';
 export interface Options {
-    condition?: Condition;
-    onFocusOnly?: boolean;
-    maxDelta?: number;
-    duration?: number;
-    timeout?: number;
-    useAnchor?: boolean;
-    constrainResolution?: boolean;
+    condition?: Condition | undefined;
+    onFocusOnly?: boolean | undefined;
+    maxDelta?: number | undefined;
+    duration?: number | undefined;
+    timeout?: number | undefined;
+    useAnchor?: boolean | undefined;
+    constrainResolution?: boolean | undefined;
 }
 export enum Mode {
     TRACKPAD = 'trackpad',
@@ -23,7 +23,7 @@ export enum Mode {
 export default class MouseWheelZoom extends Interaction {
     constructor(opt_options?: Options);
     /**
-     * Handles the {@link module:ol/MapBrowserEvent map browser event} (if it was a mousewheel-event) and eventually
+     * Handles the {@link module:ol/MapBrowserEvent~MapBrowserEvent map browser event} (if it was a mousewheel-event) and eventually
      * zooms the map.
      */
     handleEvent(mapBrowserEvent: MapBrowserEvent<UIEvent>): boolean;

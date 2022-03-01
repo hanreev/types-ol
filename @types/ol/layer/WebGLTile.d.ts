@@ -29,22 +29,22 @@ export type TWebGLTileLayerObjectEventTypes =
     | 'propertychange';
 export type TWebGLTileLayerRenderEventTypes = 'postrender' | 'prerender';
 export interface Options {
-    style?: Style;
-    className?: string;
-    opacity?: number;
-    visible?: boolean;
-    extent?: Extent;
-    zIndex?: number;
-    minResolution?: number;
-    maxResolution?: number;
-    minZoom?: number;
-    maxZoom?: number;
-    preload?: number;
-    source?: SourceType;
-    sources?: SourceType[] | ((p0: Extent, p1: number) => SourceType[]);
-    map?: PluggableMap;
-    useInterimTilesOnError?: boolean;
-    cacheSize?: number;
+    style?: Style | undefined;
+    className?: string | undefined;
+    opacity?: number | undefined;
+    visible?: boolean | undefined;
+    extent?: Extent | undefined;
+    zIndex?: number | undefined;
+    minResolution?: number | undefined;
+    maxResolution?: number | undefined;
+    minZoom?: number | undefined;
+    maxZoom?: number | undefined;
+    preload?: number | undefined;
+    source?: SourceType | undefined;
+    sources?: SourceType[] | ((p0: Extent, p1: number) => SourceType[]) | undefined;
+    map?: PluggableMap | undefined;
+    useInterimTilesOnError?: boolean | undefined;
+    cacheSize?: number | undefined;
 }
 export interface ParsedStyle {
     vertexShader: string;
@@ -57,13 +57,13 @@ export type SourceType = DataTileSource | TileImage;
  * Translates tile data to rendered pixels.
  */
 export interface Style {
-    variables?: Record<string, string | number>;
-    color?: ExpressionValue;
-    brightness?: ExpressionValue;
-    contrast?: ExpressionValue;
-    exposure?: ExpressionValue;
-    saturation?: ExpressionValue;
-    gamma?: ExpressionValue;
+    variables?: Record<string, string | number> | undefined;
+    color?: ExpressionValue | undefined;
+    brightness?: ExpressionValue | undefined;
+    contrast?: ExpressionValue | undefined;
+    exposure?: ExpressionValue | undefined;
+    saturation?: ExpressionValue | undefined;
+    gamma?: ExpressionValue | undefined;
 }
 export default class WebGLTileLayer extends BaseTileLayer<SourceType, WebGLTileLayerRenderer> {
     constructor(opt_options: Options);
@@ -82,7 +82,9 @@ export default class WebGLTileLayer extends BaseTileLayer<SourceType, WebGLTileL
     /**
      * Update the layer style.  The updateStyleVariables function is a more efficient
      * way to update layer rendering.  In cases where the whole style needs to be updated,
-     * this method may be called instead.
+     * this method may be called instead.  Note that calling this method will also replace
+     * any previously set variables, so the new style also needs to include new variables,
+     * if needed.
      */
     setStyle(style: Style): void;
     /**

@@ -6,14 +6,14 @@ import FeatureFormat, { ReadOptions, WriteOptions } from './Feature';
 import FormatType from './FormatType';
 
 export interface Options {
-    splitCollection?: boolean;
-    hex?: boolean;
-    littleEndian?: boolean;
-    ewkb?: boolean;
-    geometryLayout?: GeometryLayout;
-    nodataZ?: number;
-    nodataM?: number;
-    srid?: number | boolean;
+    splitCollection?: boolean | undefined;
+    hex?: boolean | undefined;
+    littleEndian?: boolean | undefined;
+    ewkb?: boolean | undefined;
+    geometryLayout?: GeometryLayout | undefined;
+    nodataZ?: number | undefined;
+    nodataM?: number | undefined;
+    srid?: number | boolean | undefined;
 }
 export default class WKB extends FeatureFormat {
     constructor(opt_options?: Options);

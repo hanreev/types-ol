@@ -1,9 +1,9 @@
 diff --git a/src/ol/source/ImageCanvas.js b/src/ol/source/ImageCanvas.js
-index bc73fe22b..eab480adc 100644
+index 2765136c8..5d0074a99 100644
 --- a/src/ol/source/ImageCanvas.js
 +++ b/src/ol/source/ImageCanvas.js
 @@ -21,7 +21,7 @@ import {
-  * references the {@link module:ol/source/ImageCanvas}.
+  * references the {@link module:ol/source/ImageCanvas~ImageCanvasSource}.
   *
   * @typedef {function(this:import("../ImageCanvas.js").default, import("../extent.js").Extent, number,
 - *     number, import("../size.js").Size, import("../proj/Projection.js").default): HTMLCanvasElement} FunctionType

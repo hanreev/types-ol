@@ -33,6 +33,10 @@ export default class LayerRenderer<LayerType extends Layer = any> extends Observ
      */
     protected loadImage(image: ImageBase): boolean;
     protected renderIfReadyAndVisible(): void;
+    /**
+     * Clean up.
+     */
+    disposeInternal(): void;
     forEachFeatureAtCoordinate<T>(
         coordinate: Coordinate,
         frameState: FrameState,
@@ -40,6 +44,7 @@ export default class LayerRenderer<LayerType extends Layer = any> extends Observ
         callback: FeatureCallback<T>,
         matches: HitMatch<T>[],
     ): T | undefined;
+    getData(pixel: Pixel): Uint8ClampedArray | Uint8Array | Float32Array | DataView | null;
     getDataAtPixel(pixel: Pixel, frameState: FrameState, hitTolerance: number): Uint8ClampedArray | Uint8Array;
     /**
      * Asynchronous layer level hit detection.

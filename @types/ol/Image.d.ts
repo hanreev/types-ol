@@ -3,9 +3,9 @@ import ImageState from './ImageState';
 import { Extent } from './extent';
 
 /**
- * A function that takes an {@link module:ol/Image~Image} for the image and a
+ * A function that takes an {@link module:ol/Image~ImageWrapper} for the image and a
  * {string} for the src as arguments. It is supposed to make it so the
- * underlying image {@link module:ol/Image~Image#getImage} is assigned the
+ * underlying image {@link module:ol/Image~ImageWrapper#getImage} is assigned the
  * content specified by the src. If not specified, the default is
  * <code>function(image, src) {
  *   image.getImage().src = src;

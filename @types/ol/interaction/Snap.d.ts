@@ -14,11 +14,11 @@ import PointerInteraction from './Pointer';
 export type TSnapBaseEventTypes = 'change' | 'error';
 export type TSnapObjectEventTypes = 'change:active' | 'propertychange';
 export interface Options {
-    features?: Collection<Feature<Geometry>>;
-    edge?: boolean;
-    vertex?: boolean;
-    pixelTolerance?: number;
-    source?: VectorSource<Geometry>;
+    features?: Collection<Feature<Geometry>> | undefined;
+    edge?: boolean | undefined;
+    vertex?: boolean | undefined;
+    pixelTolerance?: number | undefined;
+    source?: VectorSource<Geometry> | undefined;
 }
 export interface Result {
     snapped: boolean;

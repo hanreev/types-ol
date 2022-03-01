@@ -4,6 +4,7 @@ import { Coordinate } from '../../coordinate';
 import { EventsKey, ListenerFunction } from '../../events';
 import BaseEvent from '../../events/Event';
 import ImageLayer from '../../layer/Image';
+import { Pixel } from '../../pixel';
 import ImageSource from '../../source/Image';
 import { HitMatch } from '../Map';
 import { FeatureCallback } from '../vector';
@@ -20,6 +21,7 @@ export default class CanvasImageLayerRenderer extends CanvasLayerRenderer {
         callback: FeatureCallback<T>,
         matches: HitMatch<T>[],
     ): T | undefined;
+    getData(pixel: Pixel): Uint8ClampedArray;
     getImage(): HTMLCanvasElement | HTMLImageElement | HTMLVideoElement;
     /**
      * Perform action necessary to get the layer rendered after new fonts have loaded

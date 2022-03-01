@@ -8,8 +8,8 @@ import PointerInteraction from './Pointer';
 export type TDragRotateAndZoomBaseEventTypes = 'change' | 'error';
 export type TDragRotateAndZoomObjectEventTypes = 'change:active' | 'propertychange';
 export interface Options {
-    condition?: Condition;
-    duration?: number;
+    condition?: Condition | undefined;
+    duration?: number | undefined;
 }
 export default class DragRotateAndZoom extends PointerInteraction {
     constructor(opt_options?: Options);

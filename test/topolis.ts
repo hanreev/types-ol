@@ -107,7 +107,7 @@ topo.on('removenode', (e: any) => {
 topo.on('addedge', edgeToFeature);
 topo.on('modedge', (e: any) => {
     const feature = edges.getFeatureById(e.id);
-    feature.setGeometry(new LineString(e.coordinates));
+    feature?.setGeometry(new LineString(e.coordinates));
 });
 topo.on('removeedge', (e: any) => {
     removeElementFeature(edges, e);
@@ -119,7 +119,7 @@ topo.on('removeface', (e: any) => {
 
 function removeElementFeature(source: VectorSource, element: any) {
     const feature = source.getFeatureById(element.id);
-    source.removeFeature(feature);
+    if (feature) source.removeFeature(feature);
 }
 
 function nodeToFeature(node: any) {
@@ -156,7 +156,7 @@ function createNode(topo_: any, coord: any) {
 }
 
 function onDrawend(e: DrawEvent) {
-    const edgeGeom = (e.feature.getGeometry() as SimpleGeometry).getCoordinates();
+    const edgeGeom = (e.feature.getGeometry() as SimpleGeometry).getCoordinates()!;
     const startCoord = edgeGeom[0];
     const endCoord = edgeGeom[edgeGeom.length - 1];
     let start: any;

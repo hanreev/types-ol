@@ -40,7 +40,7 @@ export default class MultiPolygon extends SimpleGeometry {
     getEndss(): number[][];
     getFlatInteriorPoints(): number[];
     /**
-     * Return the interior points as {@link module:ol/geom/MultiPoint multipoint}.
+     * Return the interior points as {@link module:ol/geom/MultiPoint~MultiPoint multipoint}.
      */
     getInteriorPoints(): MultiPoint;
     getOrientedFlatCoordinates(): number[];

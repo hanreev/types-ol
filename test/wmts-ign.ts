@@ -16,7 +16,7 @@ const map = new Map({
 
 const resolutions = [];
 const matrixIds = [];
-const proj3857 = getProjection('EPSG:3857');
+const proj3857 = getProjection('EPSG:3857')!;
 const maxResolution = getWidth(proj3857.getExtent()) / 256;
 
 for (let i = 0; i < 18; i++) {

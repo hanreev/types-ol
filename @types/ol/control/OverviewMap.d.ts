@@ -21,17 +21,17 @@ export type TControlledMapRenderEventTypes = 'postcompose' | 'precompose' | 'ren
 export type TOverviewMapBaseEventTypes = 'change' | 'error';
 export type TOverviewMapObjectEventTypes = 'propertychange';
 export interface Options {
-    className?: string;
-    collapsed?: boolean;
-    collapseLabel?: string | HTMLElement;
-    collapsible?: boolean;
-    label?: string | HTMLElement;
-    layers?: BaseLayer[] | Collection<BaseLayer>;
-    render?: (p0: MapEvent) => void;
-    rotateWithView?: boolean;
-    target?: HTMLElement | string;
-    tipLabel?: string;
-    view?: View;
+    className?: string | undefined;
+    collapsed?: boolean | undefined;
+    collapseLabel?: string | HTMLElement | undefined;
+    collapsible?: boolean | undefined;
+    label?: string | HTMLElement | undefined;
+    layers?: BaseLayer[] | Collection<BaseLayer> | undefined;
+    render?: ((p0: MapEvent) => void) | undefined;
+    rotateWithView?: boolean | undefined;
+    target?: HTMLElement | string | undefined;
+    tipLabel?: string | undefined;
+    view?: View | undefined;
 }
 export default class OverviewMap extends Control {
     constructor(opt_options?: Options);
@@ -63,10 +63,11 @@ export default class OverviewMap extends Control {
     setCollapsible(collapsible: boolean): void;
     /**
      * Remove the control from its current map and attach it to the new map.
+     * Pass null to just remove the control from the current map.
      * Subclasses may set up event handlers to get notified about changes to
      * the map here.
      */
-    setMap(map: PluggableMap): void;
+    setMap(map: PluggableMap | null): void;
     /**
      * Set whether the overview map view should rotate with the main map view.
      */

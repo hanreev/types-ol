@@ -12,17 +12,17 @@ export type TImageArcGISRestBaseEventTypes = 'change' | 'error';
 export type TImageArcGISRestImageSourceEventTypes = 'imageloadend' | 'imageloaderror' | 'imageloadstart';
 export type TImageArcGISRestObjectEventTypes = 'propertychange';
 export interface Options {
-    attributions?: AttributionLike;
-    crossOrigin?: null | string;
-    hidpi?: boolean;
-    imageLoadFunction?: LoadFunction;
-    imageSmoothing?: boolean;
-    interpolate?: boolean;
-    params?: Record<string, any>;
-    projection?: ProjectionLike;
-    ratio?: number;
-    resolutions?: number[];
-    url?: string;
+    attributions?: AttributionLike | undefined;
+    crossOrigin?: null | string | undefined;
+    hidpi?: boolean | undefined;
+    imageLoadFunction?: LoadFunction | undefined;
+    imageSmoothing?: boolean | undefined;
+    interpolate?: boolean | undefined;
+    params?: Record<string, any> | undefined;
+    projection?: ProjectionLike | undefined;
+    ratio?: number | undefined;
+    resolutions?: number[] | undefined;
+    url?: string | undefined;
 }
 export default class ImageArcGISRest extends ImageSource {
     constructor(opt_options?: Options);

@@ -8,8 +8,8 @@ import PointerInteraction from './Pointer';
 export type TDragRotateBaseEventTypes = 'change' | 'error';
 export type TDragRotateObjectEventTypes = 'change:active' | 'propertychange';
 export interface Options {
-    condition?: Condition;
-    duration?: number;
+    condition?: Condition | undefined;
+    duration?: number | undefined;
 }
 export default class DragRotate extends PointerInteraction {
     constructor(opt_options?: Options);

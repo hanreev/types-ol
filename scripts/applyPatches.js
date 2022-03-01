@@ -53,6 +53,7 @@ try {
     childProcess.execSync(`git apply "${patch}"`);
   }
 } catch (error) {
+  console.log('# Reverting changes');
   childProcess.execSync('git checkout -- .');
   throw error;
 }

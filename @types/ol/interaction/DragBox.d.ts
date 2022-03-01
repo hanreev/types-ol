@@ -12,17 +12,17 @@ export type TDragBoxDragBoxEventTypes = 'boxcancel' | 'boxdrag' | 'boxend' | 'bo
 export type TDragBoxBaseEventTypes = 'change' | 'error';
 export type TDragBoxObjectEventTypes = 'change:active' | 'propertychange';
 /**
- * A function that takes a {@link module:ol/MapBrowserEvent} and two
+ * A function that takes a {@link module:ol/MapBrowserEvent~MapBrowserEvent} and two
  * {@link module:ol/pixel~Pixel}s and returns a {boolean}. If the condition is met,
  * true should be returned.
  */
 export type EndCondition = (this: any, p0: MapBrowserEvent<UIEvent>, p1: Pixel, p2: Pixel) => boolean;
 export interface Options {
-    className?: string;
-    condition?: Condition;
-    minArea?: number;
-    boxEndCondition?: EndCondition;
-    onBoxEnd?: (this: DragBox, p0: MapBrowserEvent<UIEvent>) => void;
+    className?: string | undefined;
+    condition?: Condition | undefined;
+    minArea?: number | undefined;
+    boxEndCondition?: EndCondition | undefined;
+    onBoxEnd?: ((this: DragBox, p0: MapBrowserEvent<UIEvent>) => void) | undefined;
 }
 export default class DragBox extends PointerInteraction {
     constructor(opt_options?: Options);

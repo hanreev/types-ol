@@ -1,27 +1,27 @@
 import BaseObject, { ObjectEvent } from './Object';
 import { EventsKey, ListenerFunction } from './events';
 import BaseEvent from './events/Event';
-import Geometry from './geom/Geometry';
+import Geometry_1 from './geom/Geometry';
 import RenderFeature from './render/Feature';
 import Style, { StyleFunction, StyleLike } from './style/Style';
 
 export type TFeatureBaseEventTypes = 'change' | 'error';
 export type TFeatureObjectEventTypes = 'change:geometry' | 'propertychange';
 export type FeatureClass = typeof Feature | typeof RenderFeature;
-export type FeatureLike = Feature<Geometry> | RenderFeature;
-export default class Feature<G extends Geometry = Geometry> extends BaseObject {
-    constructor(opt_geometryOrProperties?: G | ObjectWithGeometry<G>);
+export type FeatureLike = Feature<Geometry_1> | RenderFeature;
+export default class Feature<Geometry extends Geometry_1 = Geometry_1> extends BaseObject {
+    constructor(opt_geometryOrProperties?: Geometry | ObjectWithGeometry<Geometry>);
     /**
      * Clone this feature. If the original feature has a geometry it
      * is also cloned. The feature id is not set in the clone.
      */
-    clone(): Feature<G>;
+    clone(): Feature<Geometry>;
     /**
      * Get the feature's default geometry.  A feature may have any number of named
      * geometries.  The "default" geometry (the one that is rendered by default) is
      * set when calling {@link module:ol/Feature~Feature#setGeometry}.
      */
-    getGeometry(): G | undefined;
+    getGeometry(): Geometry | undefined;
     /**
      * Get the name of the feature's default geometry.  By default, the default
      * geometry is named geometry.
@@ -46,7 +46,7 @@ export default class Feature<G extends Geometry = Geometry> extends BaseObject {
      * Set the default geometry for the feature.  This will update the property
      * with the name returned by {@link module:ol/Feature~Feature#getGeometryName}.
      */
-    setGeometry(geometry: G | undefined): void;
+    setGeometry(geometry: Geometry | undefined): void;
     /**
      * Set the property name to be used when getting the feature's default geometry.
      * When calling {@link module:ol/Feature~Feature#getGeometry}, the value of the property with

@@ -16,7 +16,7 @@ export function lineStringCoordinateAtM(
     stride: number,
     m: number,
     extrapolate: boolean,
-): Coordinate;
+): Coordinate | null;
 export function lineStringsCoordinateAtM(
     flatCoordinates: number[],
     offset: number,
@@ -25,4 +25,4 @@ export function lineStringsCoordinateAtM(
     m: number,
     extrapolate: boolean,
     interpolate: boolean,
-): Coordinate;
+): Coordinate | null;

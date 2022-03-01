@@ -23,12 +23,12 @@ export type TModifyBaseEventTypes = 'change' | 'error';
 export type TModifyObjectEventTypes = 'change:active' | 'propertychange';
 export type TModifyModifyEventTypes = 'modifyend' | 'modifystart';
 export interface Options {
-    condition?: Condition;
-    deleteCondition?: Condition;
-    insertVertexCondition?: Condition;
-    pixelTolerance?: number;
-    style?: StyleLike;
-    source?: VectorSource<Geometry>;
+    condition?: Condition | undefined;
+    deleteCondition?: Condition | undefined;
+    insertVertexCondition?: Condition | undefined;
+    pixelTolerance?: number | undefined;
+    style?: StyleLike | undefined;
+    source?: VectorSource<Geometry> | undefined;
     hitDetection?:
         | boolean
         | BaseVectorLayer<
@@ -37,18 +37,19 @@ export interface Options {
               | CanvasVectorTileLayerRenderer
               | CanvasVectorImageLayerRenderer
               | WebGLPointsLayerRenderer
-          >;
-    features?: Collection<Feature<Geometry>>;
-    wrapX?: boolean;
-    snapToPointer?: boolean;
+          >
+        | undefined;
+    features?: Collection<Feature<Geometry>> | undefined;
+    wrapX?: boolean | undefined;
+    snapToPointer?: boolean | undefined;
 }
 export interface SegmentData {
-    depth?: number[];
+    depth?: number[] | undefined;
     feature: FeatureLike;
     geometry: SimpleGeometry;
-    index?: number;
+    index?: number | undefined;
     segment: number[][];
-    featureSegments?: SegmentData[];
+    featureSegments?: SegmentData[] | undefined;
 }
 declare enum ModifyEventType {
     MODIFYSTART = 'modifystart',
@@ -69,7 +70,7 @@ export default class Modify extends PointerInteraction {
      */
     handleDragEvent(evt: MapBrowserEvent<UIEvent>): void;
     /**
-     * Handles the {@link module:ol/MapBrowserEvent map browser event} and may modify the geometry.
+     * Handles the {@link module:ol/MapBrowserEvent~MapBrowserEvent map browser event} and may modify the geometry.
      */
     handleEvent(mapBrowserEvent: MapBrowserEvent<UIEvent>): boolean;
     /**
@@ -107,13 +108,13 @@ export default class Modify extends PointerInteraction {
     un(type: TModifyModifyEventTypes | TModifyModifyEventTypes[], listener: ListenerFunction<ModifyEvent>): void;
 }
 export class ModifyEvent extends BaseEvent {
-    constructor(type: ModifyEventType, features: Collection<FeatureLike>, MapBrowserEvent: MapBrowserEvent<UIEvent>);
+    constructor(type: ModifyEventType, features: Collection<FeatureLike>, mapBrowserEvent: MapBrowserEvent<UIEvent>);
     /**
      * The features being modified.
      */
     features: Collection<FeatureLike>;
     /**
-     * Associated {@link module:ol/MapBrowserEvent}.
+     * Associated {@link module:ol/MapBrowserEvent~MapBrowserEvent}.
      */
     mapBrowserEvent: MapBrowserEvent<UIEvent>;
 }

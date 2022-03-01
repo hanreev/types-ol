@@ -23,16 +23,16 @@ export type TLayerGroupObjectEventTypes =
     | 'propertychange';
 export type EventType = 'addlayer' | 'removelayer';
 export interface Options {
-    opacity?: number;
-    visible?: boolean;
-    extent?: Extent;
-    zIndex?: number;
-    minResolution?: number;
-    maxResolution?: number;
-    minZoom?: number;
-    maxZoom?: number;
-    layers?: BaseLayer[] | Collection<BaseLayer>;
-    properties?: Record<string, any>;
+    opacity?: number | undefined;
+    visible?: boolean | undefined;
+    extent?: Extent | undefined;
+    zIndex?: number | undefined;
+    minResolution?: number | undefined;
+    maxResolution?: number | undefined;
+    minZoom?: number | undefined;
+    maxZoom?: number | undefined;
+    layers?: BaseLayer[] | Collection<BaseLayer> | undefined;
+    properties?: Record<string, any> | undefined;
 }
 export class GroupEvent extends BaseEvent {
     constructor(type: EventType, layer: BaseLayer);
@@ -44,7 +44,7 @@ export class GroupEvent extends BaseEvent {
 export default class LayerGroup extends BaseLayer {
     constructor(opt_options?: Options);
     /**
-     * Returns the {@link module:ol/Collection collection} of {@link module:ol/layer/Layer~Layer layers}
+     * Returns the {@link module:ol/Collection~Collection collection} of {@link module:ol/layer/Layer~Layer layers}
      * in this group.
      */
     getLayers(): Collection<BaseLayer>;
@@ -61,7 +61,7 @@ export default class LayerGroup extends BaseLayer {
     handleLayerGroupRemove_(event: GroupEvent): void;
     registerLayerListeners_(layer: BaseLayer): void;
     /**
-     * Set the {@link module:ol/Collection collection} of {@link module:ol/layer/Layer~Layer layers}
+     * Set the {@link module:ol/Collection~Collection collection} of {@link module:ol/layer/Layer~Layer layers}
      * in this group.
      */
     setLayers(layers: Collection<BaseLayer>): void;

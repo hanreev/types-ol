@@ -14,12 +14,12 @@ export type TImageSourceImageSourceEventTypes = 'imageloadend' | 'imageloaderror
 export type TImageSourceObjectEventTypes = 'propertychange';
 export type ImageSourceEventTypes = 'imageloadend' | 'imageloaderror' | 'imageloadstart';
 export interface Options {
-    attributions?: AttributionLike;
-    imageSmoothing?: boolean;
-    interpolate?: boolean;
-    projection?: ProjectionLike;
-    resolutions?: number[];
-    state?: State;
+    attributions?: AttributionLike | undefined;
+    imageSmoothing?: boolean | undefined;
+    interpolate?: boolean | undefined;
+    projection?: ProjectionLike | undefined;
+    resolutions?: number[] | undefined;
+    state?: State | undefined;
 }
 export enum ImageSourceEventType {
     IMAGELOADSTART = 'imageloadstart',
@@ -40,7 +40,7 @@ export default abstract class ImageSource extends Source {
      */
     protected handleImageChange(event: BaseEvent): void;
     getImage(extent: Extent, resolution: number, pixelRatio: number, projection: Projection): ImageBase;
-    getResolutions(): number[];
+    getResolutions(): number[] | null;
     on(type: TImageSourceBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
     on(type: TImageSourceBaseEventTypes[], listener: ListenerFunction<BaseEvent>): EventsKey[];
     once(type: TImageSourceBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;

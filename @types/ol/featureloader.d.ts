@@ -7,15 +7,15 @@ import Projection from './proj/Projection';
 import VectorSource from './source/Vector';
 
 /**
- * {@link module:ol/source/Vector} sources use a function of this type to
+ * {@link module:ol/source/Vector~VectorSource} sources use a function of this type to
  * load features.
  * This function takes up to 5 arguments. These are an {@link module:ol/extent~Extent} representing
  * the area to be loaded, a {number} representing the resolution (map units per pixel), an
- * {@link module:ol/proj/Projection} for the projection, an optional success callback that should get
+ * {@link module:ol/proj/Projection~Projection} for the projection, an optional success callback that should get
  * the loaded features passed as an argument and an optional failure callback with no arguments. If
  * the callbacks are not used, the corresponding vector source will not fire 'featuresloadend' and
  * 'featuresloaderror' events. this within the function is bound to the
- * {@link module:ol/source/Vector} it's called from.
+ * {@link module:ol/source/Vector~VectorSource} it's called from.
  * The function is responsible for loading the features and adding them to the
  * source.
  */
@@ -28,11 +28,11 @@ export type FeatureLoader = (
     p4: () => void,
 ) => void;
 /**
- * {@link module:ol/source/Vector} sources use a function of this type to
+ * {@link module:ol/source/Vector~VectorSource} sources use a function of this type to
  * get the url to load features from.
  * This function takes an {@link module:ol/extent~Extent} representing the area
  * to be loaded, a {number} representing the resolution (map units per pixel)
- * and an {@link module:ol/proj/Projection} for the projection  as
+ * and an {@link module:ol/proj/Projection~Projection} for the projection  as
  * arguments and returns a {string} representing the URL.
  */
 export type FeatureUrlFunction = (p0: Extent, p1: number, p2: Projection) => string;

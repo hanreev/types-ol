@@ -16,19 +16,19 @@ import State from './State';
 export type TTileSourceBaseEventTypes = 'change' | 'error';
 export type TTileSourceObjectEventTypes = 'propertychange';
 export interface Options {
-    attributions?: AttributionLike;
-    attributionsCollapsible?: boolean;
-    cacheSize?: number;
-    opaque?: boolean;
-    tilePixelRatio?: number;
-    projection?: ProjectionLike;
-    state?: State;
-    tileGrid?: TileGrid;
-    wrapX?: boolean;
-    transition?: number;
-    key?: string;
-    zDirection?: number | NearestDirectionFunction;
-    interpolate?: boolean;
+    attributions?: AttributionLike | undefined;
+    attributionsCollapsible?: boolean | undefined;
+    cacheSize?: number | undefined;
+    opaque?: boolean | undefined;
+    tilePixelRatio?: number | undefined;
+    projection?: ProjectionLike | undefined;
+    state?: State | undefined;
+    tileGrid?: TileGrid | undefined;
+    wrapX?: boolean | undefined;
+    transition?: number | undefined;
+    key?: string | undefined;
+    zDirection?: number | NearestDirectionFunction | undefined;
+    interpolate?: boolean | undefined;
 }
 export default abstract class TileSource extends Source {
     constructor(options: Options);
@@ -58,7 +58,7 @@ export default abstract class TileSource extends Source {
      */
     getKey(): string;
     getOpaque(projection: Projection): boolean;
-    getResolutions(): number[];
+    getResolutions(): number[] | null;
     abstract getTile(z: number, x: number, y: number, pixelRatio: number, projection: Projection): Tile;
     /**
      * Returns a tile coordinate wrapped around the x-axis. When the tile coordinate
@@ -69,7 +69,7 @@ export default abstract class TileSource extends Source {
     /**
      * Return the tile grid of the tile source.
      */
-    getTileGrid(): TileGrid;
+    getTileGrid(): TileGrid | null;
     getTileGridForProjection(projection: Projection): TileGrid;
     /**
      * Get the tile pixel ratio for this source. Subclasses may override this

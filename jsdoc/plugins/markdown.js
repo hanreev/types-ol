@@ -66,7 +66,7 @@ function parse(source) {
 
   source = escapeUnderscoresAndTildes(source);
 
-  result = marked(source, { renderer: markedRenderer }).replace(/\s+$/, '').replace(/&#39;/g, `'`);
+  result = marked.parse(source, { renderer: markedRenderer }).replace(/\s+$/, '').replace(/&#39;/g, `'`);
 
   result = unencodeQuotesAndTildes(result);
 

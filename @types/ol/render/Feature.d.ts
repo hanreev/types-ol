@@ -1,4 +1,7 @@
+import Feature from '../Feature';
 import { Extent } from '../extent';
+import { LineString, MultiLineString, MultiPoint, MultiPolygon, Point, Polygon } from '../geom';
+import Geometry from '../geom/Geometry';
 import GeometryType from '../geom/GeometryType';
 import { ProjectionLike, TransformFunction } from '../proj';
 import { StyleFunction } from '../style/Style';
@@ -55,3 +58,13 @@ export default class RenderFeature {
      */
     transform(projection: ProjectionLike): void;
 }
+/**
+ * Create an ol/Feature from an ol/render/Feature
+ */
+export function toFeature(renderFeature: RenderFeature, opt_geometryName?: string): Feature<Geometry>;
+/**
+ * Create a geometry from an ol/render/Feature
+ */
+export function toGeometry(
+    renderFeature: RenderFeature,
+): Point | MultiPoint | LineString | MultiLineString | Polygon | MultiPolygon;

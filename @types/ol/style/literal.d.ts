@@ -3,21 +3,21 @@ import { ExpressionValue as ExpressionValue_1 } from './expressions';
 
 export type ExpressionValue = ExpressionValue_1;
 export interface LiteralStyle {
-    filter?: ExpressionValue;
-    variables?: Record<string, number>;
-    symbol?: LiteralSymbolStyle;
+    filter?: ExpressionValue | undefined;
+    variables?: Record<string, number> | undefined;
+    symbol?: LiteralSymbolStyle | undefined;
 }
 export interface LiteralSymbolStyle {
     size: ExpressionValue | ExpressionValue[];
     symbolType: SymbolType;
-    src?: string;
-    crossOrigin?: string;
-    color?: Color | ExpressionValue[] | string;
-    opacity?: ExpressionValue;
-    rotation?: ExpressionValue;
-    offset?: ExpressionValue[];
-    textureCoord?: ExpressionValue[];
-    rotateWithView?: boolean;
+    src?: string | undefined;
+    crossOrigin?: string | undefined;
+    color?: Color | ExpressionValue[] | string | undefined;
+    opacity?: ExpressionValue | undefined;
+    rotation?: ExpressionValue | undefined;
+    offset?: ExpressionValue[] | undefined;
+    textureCoord?: ExpressionValue[] | undefined;
+    rotateWithView?: boolean | undefined;
 }
 export enum SymbolType {
     CIRCLE = 'circle',

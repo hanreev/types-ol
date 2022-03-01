@@ -11,11 +11,11 @@ export type TTileDebugBaseEventTypes = 'change' | 'error';
 export type TTileDebugObjectEventTypes = 'propertychange';
 export type TTileDebugTileSourceEventTypes = 'tileloadend' | 'tileloaderror' | 'tileloadstart';
 export interface Options {
-    projection?: ProjectionLike;
-    tileGrid?: TileGrid;
-    wrapX?: boolean;
-    zDirection?: number | NearestDirectionFunction;
-    template?: string;
+    projection?: ProjectionLike | undefined;
+    tileGrid?: TileGrid | undefined;
+    wrapX?: boolean | undefined;
+    zDirection?: number | NearestDirectionFunction | undefined;
+    template?: string | undefined;
 }
 export default class TileDebug extends XYZ {
     constructor(opt_options?: Options);

@@ -18,9 +18,9 @@ export type TImageCanvasSourceObjectEventTypes = 'propertychange';
  * used by the source as an image. The arguments passed to the function are:
  * {@link module:ol/extent~Extent} the image extent, {number} the image resolution,
  * {number} the pixel ratio of the map, {@link module:ol/size~Size} the image size,
- * and {@link module:ol/proj/Projection} the image projection. The canvas returned by
+ * and {@link module:ol/proj/Projection~Projection} the image projection. The canvas returned by
  * this function is cached by the source. The this keyword inside the function
- * references the {@link module:ol/source/ImageCanvas}.
+ * references the {@link module:ol/source/ImageCanvas~ImageCanvasSource}.
  */
 export type FunctionType = (
     this: ImageCanvas,
@@ -31,14 +31,14 @@ export type FunctionType = (
     p4: Projection,
 ) => HTMLCanvasElement | null | undefined;
 export interface Options {
-    attributions?: AttributionLike;
-    canvasFunction?: FunctionType;
-    imageSmoothing?: boolean;
-    interpolate?: boolean;
-    projection?: ProjectionLike;
-    ratio?: number;
-    resolutions?: number[];
-    state?: State;
+    attributions?: AttributionLike | undefined;
+    canvasFunction?: FunctionType | undefined;
+    imageSmoothing?: boolean | undefined;
+    interpolate?: boolean | undefined;
+    projection?: ProjectionLike | undefined;
+    ratio?: number | undefined;
+    resolutions?: number[] | undefined;
+    state?: State | undefined;
 }
 export default class ImageCanvasSource extends ImageSource {
     constructor(opt_options?: Options);

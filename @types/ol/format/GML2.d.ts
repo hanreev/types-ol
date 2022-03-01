@@ -26,8 +26,8 @@ export default class GML2 extends GMLBase {
     writeMultiPoint(node: Element, geometry: MultiPoint, objectStack: any[]): void;
     writeMultiSurfaceOrPolygon(node: Element, geometry: MultiPolygon, objectStack: any[]): void;
     writePoint(node: Element, geometry: Point, objectStack: any[]): void;
-    writePointMember(node: Node, point: Point, objectStack: any[]): void;
-    writeRing(node: Node, ring: LinearRing, objectStack: any[]): void;
+    writePointMember(node: Element, point: Point, objectStack: any[]): void;
+    writeRing(node: Element, ring: LinearRing, objectStack: any[]): void;
     writeSurfaceOrPolygon(node: Element, geometry: Polygon, objectStack: any[]): void;
     writeSurfaceOrPolygonMember(node: Node, polygon: Polygon, objectStack: any[]): void;
 }

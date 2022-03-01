@@ -4,6 +4,7 @@ import { EventsKey, ListenerFunction } from '../events';
 import BaseEvent from '../events/Event';
 import { Extent } from '../extent';
 import Geometry from '../geom/Geometry';
+import Point from '../geom/Point';
 import RenderEvent from '../render/Event';
 import WebGLPointsLayerRenderer from '../renderer/webgl/PointsLayer';
 import VectorSource from '../source/Vector';
@@ -26,21 +27,21 @@ export type THeatmapObjectEventTypes =
     | 'propertychange';
 export type THeatmapRenderEventTypes = 'postcompose' | 'postrender' | 'precompose' | 'prerender' | 'rendercomplete';
 export interface Options {
-    className?: string;
-    opacity?: number;
-    visible?: boolean;
-    extent?: Extent;
-    zIndex?: number;
-    minResolution?: number;
-    maxResolution?: number;
-    minZoom?: number;
-    maxZoom?: number;
-    gradient?: string[];
-    radius?: number;
-    blur?: number;
-    weight?: string | ((p0: Feature<Geometry>) => number);
-    source?: VectorSource<Geometry>;
-    properties?: Record<string, any>;
+    className?: string | undefined;
+    opacity?: number | undefined;
+    visible?: boolean | undefined;
+    extent?: Extent | undefined;
+    zIndex?: number | undefined;
+    minResolution?: number | undefined;
+    maxResolution?: number | undefined;
+    minZoom?: number | undefined;
+    maxZoom?: number | undefined;
+    gradient?: string[] | undefined;
+    radius?: number | undefined;
+    blur?: number | undefined;
+    weight?: string | ((p0: Feature<Geometry>) => number) | undefined;
+    source?: VectorSource<Point> | undefined;
+    properties?: Record<string, any> | undefined;
 }
 export default class Heatmap extends BaseVectorLayer<VectorSource, WebGLPointsLayerRenderer> {
     constructor(opt_options?: Options);

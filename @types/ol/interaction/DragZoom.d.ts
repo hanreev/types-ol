@@ -9,11 +9,11 @@ export type TDragZoomDragBoxEventTypes = 'boxcancel' | 'boxdrag' | 'boxend' | 'b
 export type TDragZoomBaseEventTypes = 'change' | 'error';
 export type TDragZoomObjectEventTypes = 'change:active' | 'propertychange';
 export interface Options {
-    className?: string;
-    condition?: Condition;
-    duration?: number;
-    out?: boolean;
-    minArea?: number;
+    className?: string | undefined;
+    condition?: Condition | undefined;
+    duration?: number | undefined;
+    out?: boolean | undefined;
+    minArea?: number | undefined;
 }
 export default class DragZoom extends DragBox {
     constructor(opt_options?: Options);

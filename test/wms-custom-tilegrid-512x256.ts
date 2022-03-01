@@ -7,7 +7,7 @@ import OSM from 'ol/source/OSM';
 import TileWMS from 'ol/source/TileWMS';
 import TileGrid from 'ol/tilegrid/TileGrid';
 
-const projExtent = getProjection('EPSG:3857').getExtent();
+const projExtent = getProjection('EPSG:3857')!.getExtent();
 const startResolution = getWidth(projExtent) / 256;
 const resolutions = new Array(22);
 for (let i = 0, ii = resolutions.length; i < ii; ++i) resolutions[i] = startResolution / Math.pow(2, i);

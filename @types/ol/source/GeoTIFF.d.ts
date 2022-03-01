@@ -1,4 +1,3 @@
-import DataTile from '../DataTile';
 import { ObjectEvent } from '../Object';
 import { ViewOptions } from '../View';
 import { EventsKey, ListenerFunction } from '../events';
@@ -6,6 +5,7 @@ import BaseEvent from '../events/Event';
 import Projection from '../proj/Projection';
 import DataTileSource from './DataTile';
 import { TileSourceEvent } from './Tile';
+import { GeoTIFF as GeoTIFF_1, GeoTIFFImage as GeoTIFFImage_1, MultiGeoTIFF as MultiGeoTIFF_1 } from 'geotiff';
 
 export type TGeoTIFFSourceBaseEventTypes = 'change' | 'error';
 export type TGeoTIFFSourceObjectEventTypes = 'propertychange';
@@ -24,52 +24,39 @@ export interface GeoKeys {
     ProjLinearUnitsGeoKey: number;
     ProjectedCSTypeGeoKey: number;
 }
-export interface GeoTIFF {
-    getImageCount: () => Promise<number>;
-    getImage: (p0: number) => Promise<GeoTIFFImage>;
+export type GeoTIFF = GeoTIFF_1;
+export type GeoTIFFImage = GeoTIFFImage_1;
+export interface GeoTIFFSourceOptions {
+    forceXHR?: boolean | undefined;
+    headers?: Record<string, string> | undefined;
+    credentials?: string | undefined;
+    maxRanges?: number | undefined;
+    allowFullFile?: boolean | undefined;
+    blockSize?: number | undefined;
+    cacheSize?: number | undefined;
 }
-export interface GeoTIFFImage {
-    fileDirectory: any;
-    geoKeys: GeoKeys;
-    littleEndian: boolean;
-    tiles: any;
-    isTiled: boolean;
-    getBoundingBox: () => number[];
-    getOrigin: () => number[];
-    getResolution: (p0: GeoTIFFImage) => number[];
-    getWidth: () => number;
-    getHeight: () => number;
-    getTileWidth: () => number;
-    getTileHeight: () => number;
-    getGDALNoData: () => number | null;
-    getGDALMetadata: () => GDALMetadata | null;
-    getSamplesPerPixel: () => number;
-}
-export interface MultiGeoTIFF {
-    getImageCount: () => Promise<number>;
-    getImage: (p0: number) => Promise<GeoTIFFImage>;
-}
+export type MultiGeoTIFF = MultiGeoTIFF_1;
 export interface Options {
     sources: SourceInfo[];
-    convertToRGB?: boolean;
-    normalize?: boolean;
-    opaque?: boolean;
-    transition?: number;
-    wrapX?: boolean;
-    interpolate?: boolean;
+    sourceOptions?: GeoTIFFSourceOptions | undefined;
+    convertToRGB?: boolean | undefined;
+    normalize?: boolean | undefined;
+    opaque?: boolean | undefined;
+    transition?: number | undefined;
+    wrapX?: boolean | undefined;
+    interpolate?: boolean | undefined;
 }
 export interface SourceInfo {
     url: string;
-    overviews?: string[];
-    min?: number;
-    max?: number;
-    nodata?: number;
-    bands?: number[];
+    overviews?: string[] | undefined;
+    min?: number | undefined;
+    max?: number | undefined;
+    nodata?: number | undefined;
+    bands?: number[] | undefined;
 }
 export default class GeoTIFFSource extends DataTileSource {
     constructor(options: Options);
     getError(): Error;
-    getTile(z: number, x: number, y: number, pixelRatio: number, projection: Projection): DataTile;
     /**
      * Get a promise for view properties based on the source.  Use the result of this function
      * as the view option in a map constructor.

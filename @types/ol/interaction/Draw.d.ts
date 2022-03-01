@@ -33,22 +33,22 @@ export type GeometryFunction = (p0: SketchCoordType, p1: SimpleGeometry, p2: Pro
 export type LineCoordType = Coordinate[];
 export interface Options {
     type: GeometryType;
-    clickTolerance?: number;
-    features?: Collection<Feature<Geometry>>;
-    source?: VectorSource<Geometry>;
-    dragVertexDelay?: number;
-    snapTolerance?: number;
-    stopClick?: boolean;
-    maxPoints?: number;
-    minPoints?: number;
-    finishCondition?: Condition;
-    style?: StyleLike;
-    geometryFunction?: GeometryFunction;
-    geometryName?: string;
-    condition?: Condition;
-    freehand?: boolean;
-    freehandCondition?: Condition;
-    wrapX?: boolean;
+    clickTolerance?: number | undefined;
+    features?: Collection<Feature<Geometry>> | undefined;
+    source?: VectorSource<Geometry> | undefined;
+    dragVertexDelay?: number | undefined;
+    snapTolerance?: number | undefined;
+    stopClick?: boolean | undefined;
+    maxPoints?: number | undefined;
+    minPoints?: number | undefined;
+    finishCondition?: Condition | undefined;
+    style?: StyleLike | undefined;
+    geometryFunction?: GeometryFunction | undefined;
+    geometryName?: string | undefined;
+    condition?: Condition | undefined;
+    freehand?: boolean | undefined;
+    freehandCondition?: Condition | undefined;
+    wrapX?: boolean | undefined;
 }
 /**
  * Coordinate type when drawing points.
@@ -104,7 +104,7 @@ export default class Draw extends PointerInteraction {
      */
     handleDownEvent(event: MapBrowserEvent<UIEvent>): boolean;
     /**
-     * Handles the {@link module:ol/MapBrowserEvent map browser event} and may actually draw or finish the drawing.
+     * Handles the {@link module:ol/MapBrowserEvent~MapBrowserEvent map browser event} and may actually draw or finish the drawing.
      */
     handleEvent(event: MapBrowserEvent<UIEvent>): boolean;
     /**
@@ -154,6 +154,6 @@ export function createBox(): GeometryFunction;
 /**
  * Create a geometryFunction for type: 'Circle' that will create a regular
  * polygon with a user specified number of sides and start angle instead of a
- * module:ol/geom/Circle~Circle geometry.
+ * {@link module:ol/geom/Circle~Circle} geometry.
  */
 export function createRegularPolygon(opt_sides?: number, opt_angle?: number): GeometryFunction;

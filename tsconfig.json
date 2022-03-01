@@ -12,8 +12,9 @@
       "ol": ["@types/ol"],
       "ol/*": ["@types/ol/*"]
     },
-    "strict": true,
     "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "strict": true,
     "strictFunctionTypes": true,
     "strictNullChecks": true,
     "target": "es5"

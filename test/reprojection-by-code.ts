@@ -45,7 +45,7 @@ function setProjection(code: string, name: string, proj4def: string | proj4.Proj
     const newProjCode = 'EPSG:' + code;
     proj4.defs(newProjCode, proj4def);
     register(proj4);
-    const newProj = getProjection(newProjCode);
+    const newProj = getProjection(newProjCode)!;
     const fromLonLat = getTransform('EPSG:4326', newProj);
 
     // very approximate calculation of projection extent

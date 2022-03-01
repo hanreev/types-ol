@@ -360,7 +360,7 @@ const projSpec = {
 proj4.defs(projSpec.code, projSpec.proj4);
 register(proj4);
 
-const proj = getProjection(projSpec.code);
+const proj = getProjection(projSpec.code)!;
 const transform = getTransform('EPSG:4326', proj);
 const extent = applyTransform([projSpec.bbox[1], projSpec.bbox[2], projSpec.bbox[3], projSpec.bbox[0]], transform);
 proj.setExtent(extent);
@@ -495,8 +495,8 @@ const xyzOpts: XYZOptions = {
 
 const imageLayer: ImageLayer<ImageWMS> = new ImageLayer<ImageWMS>({ source: new ImageWMS() });
 const layerImage: Layer<ImageWMS> = imageLayer;
-const imageWmsSource: ImageWMS = imageLayer.getSource();
-const osmSource = osmLayer.getSource();
+const imageWmsSource: ImageWMS = imageLayer.getSource()!;
+const osmSource: OSM = osmLayer.getSource()!;
 
 const eventListener: ListenerFunction = event => console.log(event);
 const eventsKeys: EventsKey[] = map.getLayers().on(['add', 'remove'], eventListener);

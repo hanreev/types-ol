@@ -1,30 +1,30 @@
 import { Options } from '../source/IIIF';
 
 export interface IiifProfile {
-    formats?: string[];
-    qualities?: string[];
-    supports?: string[];
-    maxArea?: number;
-    maxHeight?: number;
-    maxWidth?: number;
+    formats?: string[] | undefined;
+    qualities?: string[] | undefined;
+    supports?: string[] | undefined;
+    maxArea?: number | undefined;
+    maxHeight?: number | undefined;
+    maxWidth?: number | undefined;
 }
 export type ImageInformationResponse = Record<
     string,
     string | number | (number | string | IiifProfile | Record<string, number> | TileInfo)[]
 >;
 export interface PreferredOptions {
-    format?: string;
-    quality?: string;
+    format?: string | undefined;
+    quality?: string | undefined;
 }
 export interface SupportedFeatures {
-    supports?: string[];
-    formats?: string[];
-    qualities?: string[];
+    supports?: string[] | undefined;
+    formats?: string[] | undefined;
+    qualities?: string[] | undefined;
 }
 export interface TileInfo {
     scaleFactors: number[];
     width: number;
-    height?: number;
+    height?: number | undefined;
 }
 /**
  * Enum representing the major IIIF Image API versions

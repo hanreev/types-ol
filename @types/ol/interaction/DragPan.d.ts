@@ -9,9 +9,9 @@ import PointerInteraction from './Pointer';
 export type TDragPanBaseEventTypes = 'change' | 'error';
 export type TDragPanObjectEventTypes = 'change:active' | 'propertychange';
 export interface Options {
-    condition?: Condition;
-    onFocusOnly?: boolean;
-    kinetic?: Kinetic;
+    condition?: Condition | undefined;
+    onFocusOnly?: boolean | undefined;
+    kinetic?: Kinetic | undefined;
 }
 export default class DragPan extends PointerInteraction {
     constructor(opt_options?: Options);

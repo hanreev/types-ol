@@ -14,17 +14,17 @@ export type TImageWMSBaseEventTypes = 'change' | 'error';
 export type TImageWMSImageSourceEventTypes = 'imageloadend' | 'imageloaderror' | 'imageloadstart';
 export type TImageWMSObjectEventTypes = 'propertychange';
 export interface Options {
-    attributions?: AttributionLike;
-    crossOrigin?: null | string;
-    hidpi?: boolean;
-    serverType?: WMSServerType | string;
-    imageLoadFunction?: LoadFunction;
-    imageSmoothing?: boolean;
-    interpolate?: boolean;
+    attributions?: AttributionLike | undefined;
+    crossOrigin?: null | string | undefined;
+    hidpi?: boolean | undefined;
+    serverType?: WMSServerType | string | undefined;
+    imageLoadFunction?: LoadFunction | undefined;
+    imageSmoothing?: boolean | undefined;
+    interpolate?: boolean | undefined;
     params: Record<string, any>;
-    projection?: ProjectionLike;
-    ratio?: number;
-    resolutions?: number[];
+    projection?: ProjectionLike | undefined;
+    ratio?: number | undefined;
+    resolutions?: number[] | undefined;
     url: string;
 }
 export default class ImageWMS extends ImageSource {

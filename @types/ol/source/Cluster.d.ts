@@ -20,13 +20,13 @@ export type TClusterVectorSourceEventTypes =
 export type TClusterBaseEventTypes = 'change' | 'error';
 export type TClusterObjectEventTypes = 'propertychange';
 export interface Options {
-    attributions?: AttributionLike;
-    distance?: number;
-    minDistance?: number;
-    geometryFunction?: (p0: Feature<Geometry>) => Point;
-    createCluster?: (p0: Point, p1: Feature[]) => Feature<Geometry>;
-    source?: VectorSource<Geometry>;
-    wrapX?: boolean;
+    attributions?: AttributionLike | undefined;
+    distance?: number | undefined;
+    minDistance?: number | undefined;
+    geometryFunction?: ((p0: Feature<Geometry>) => Point) | undefined;
+    createCluster?: ((p0: Point, p1: Feature[]) => Feature<Geometry>) | undefined;
+    source?: VectorSource<Geometry> | undefined;
+    wrapX?: boolean | undefined;
 }
 export default class Cluster extends VectorSource {
     constructor(options: Options);
@@ -36,7 +36,7 @@ export default class Cluster extends VectorSource {
     protected interpolationRatio: number;
     protected minDistance: number;
     protected resolution: number;
-    protected source: VectorSource<Geometry>;
+    protected source: VectorSource<Geometry> | null;
     protected cluster(): void;
     protected createCluster(features: Feature<Geometry>[], extent: Extent): Feature<Geometry>;
     /**
@@ -51,11 +51,11 @@ export default class Cluster extends VectorSource {
      * The configured minimum distance between clusters.
      */
     getMinDistance(): number;
-    getResolutions(): number[] | undefined;
+    getResolutions(): number[] | null;
     /**
      * Get a reference to the wrapped source.
      */
-    getSource(): VectorSource<Geometry>;
+    getSource(): VectorSource<Geometry> | null;
     loadFeatures(extent: Extent, resolution: number, projection: Projection): void;
     /**
      * Handle the source changing.
@@ -73,7 +73,7 @@ export default class Cluster extends VectorSource {
     /**
      * Replace the wrapped source.
      */
-    setSource(source: VectorSource<Geometry>): void;
+    setSource(source: VectorSource<Geometry> | null): void;
     /**
      * Update the distances and refresh the source if necessary.
      */

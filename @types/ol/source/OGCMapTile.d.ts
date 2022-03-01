@@ -13,17 +13,17 @@ export type TOGCMapTileTileSourceEventTypes = 'tileloadend' | 'tileloaderror' | 
 export interface Options {
     url: string;
     context?: any;
-    mediaType?: string;
-    projection?: ProjectionLike;
-    attributions?: AttributionLike;
-    cacheSize?: number;
-    crossOrigin?: null | string;
-    imageSmoothing?: boolean;
-    interpolate?: boolean;
-    reprojectionErrorThreshold?: number;
-    tileLoadFunction?: LoadFunction;
-    wrapX?: boolean;
-    transition?: number;
+    mediaType?: string | undefined;
+    projection?: ProjectionLike | undefined;
+    attributions?: AttributionLike | undefined;
+    cacheSize?: number | undefined;
+    crossOrigin?: null | string | undefined;
+    imageSmoothing?: boolean | undefined;
+    interpolate?: boolean | undefined;
+    reprojectionErrorThreshold?: number | undefined;
+    tileLoadFunction?: LoadFunction | undefined;
+    wrapX?: boolean | undefined;
+    transition?: number | undefined;
 }
 export default class OGCMapTile extends TileImage {
     constructor(options: Options);

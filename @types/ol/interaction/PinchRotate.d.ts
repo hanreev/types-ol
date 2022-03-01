@@ -7,8 +7,8 @@ import PointerInteraction from './Pointer';
 export type TPinchRotateBaseEventTypes = 'change' | 'error';
 export type TPinchRotateObjectEventTypes = 'change:active' | 'propertychange';
 export interface Options {
-    duration?: number;
-    threshold?: number;
+    duration?: number | undefined;
+    threshold?: number | undefined;
 }
 export default class PinchRotate extends PointerInteraction {
     constructor(opt_options?: Options);

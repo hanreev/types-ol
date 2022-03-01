@@ -11,13 +11,13 @@ import Control from './Control';
 export type TMousePositionBaseEventTypes = 'change' | 'error';
 export type TMousePositionObjectEventTypes = 'change:coordinateFormat' | 'change:projection' | 'propertychange';
 export interface Options {
-    className?: string;
-    coordinateFormat?: CoordinateFormat;
-    projection?: ProjectionLike;
-    render?: (p0: MapEvent) => void;
-    target?: HTMLElement | string;
-    placeholder?: string | boolean;
-    undefinedHTML?: string;
+    className?: string | undefined;
+    coordinateFormat?: CoordinateFormat | undefined;
+    projection?: ProjectionLike | undefined;
+    render?: ((p0: MapEvent) => void) | undefined;
+    target?: HTMLElement | string | undefined;
+    placeholder?: string | boolean | undefined;
+    undefinedHTML?: string | undefined;
 }
 export default class MousePosition extends Control {
     constructor(opt_options?: Options);
@@ -38,10 +38,11 @@ export default class MousePosition extends Control {
     setCoordinateFormat(format: CoordinateFormat): void;
     /**
      * Remove the control from its current map and attach it to the new map.
+     * Pass null to just remove the control from the current map.
      * Subclasses may set up event handlers to get notified about changes to
      * the map here.
      */
-    setMap(map: PluggableMap): void;
+    setMap(map: PluggableMap | null): void;
     /**
      * Set the projection that is used to report the mouse position.
      */

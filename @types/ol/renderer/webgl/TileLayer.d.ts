@@ -4,6 +4,7 @@ import { EventsKey, ListenerFunction } from '../../events';
 import BaseEvent from '../../events/Event';
 import { Extent } from '../../extent';
 import WebGLTileLayer from '../../layer/WebGLTile';
+import { Pixel } from '../../pixel';
 import { UniformValue } from '../../webgl/Helper';
 import PaletteTexture from '../../webgl/PaletteTexture';
 import TileTexture from '../../webgl/TileTexture';
@@ -16,9 +17,9 @@ export type LayerType = WebGLTileLayer;
 export interface Options {
     vertexShader: string;
     fragmentShader: string;
-    uniforms?: Record<string, UniformValue>;
-    paletteTextures?: PaletteTexture[];
-    cacheSize?: number;
+    uniforms?: Record<string, UniformValue> | undefined;
+    paletteTextures?: PaletteTexture[] | undefined;
+    cacheSize?: number | undefined;
 }
 export default class WebGLTileLayerRenderer extends WebGLLayerRenderer {
     constructor(tileLayer: LayerType, options: Options);
@@ -29,7 +30,7 @@ export default class WebGLTileLayerRenderer extends WebGLLayerRenderer {
     enqueueTiles(
         frameState: FrameState,
         extent: Extent,
-        z: number,
+        initialZ: number,
         tileTexturesByZ: Record<number, TileTexture[]>,
     ): void;
     forEachFeatureAtCoordinate<T>(
@@ -39,7 +40,7 @@ export default class WebGLTileLayerRenderer extends WebGLLayerRenderer {
         callback: FeatureCallback<T>,
         matches: HitMatch<T>[],
     ): T | undefined;
-    getLayer(): WebGLTileLayer;
+    getData(pixel: Pixel): Uint8ClampedArray | Uint8Array | Float32Array | DataView;
     /**
      * Perform action necessary to get the layer rendered after new fonts have loaded
      */

@@ -9,9 +9,9 @@ import Style from '../style/Style';
 
 /**
  * Feature callback. The callback will be called with three arguments. The first
- * argument is one {@link module:ol/Feature feature} or {@link module:ol/render/Feature render feature}
- * at the pixel, the second is the {@link module:ol/layer/Layer layer} of the feature and will be null for
- * unmanaged layers. The third is the {@link module:ol/geom/SimpleGeometry} of the feature. For features
+ * argument is one {@link module:ol/Feature~Feature feature} or {@link module:ol/render/Feature~RenderFeature render feature}
+ * at the pixel, the second is the {@link module:ol/layer/Layer~Layer layer} of the feature and will be null for
+ * unmanaged layers. The third is the {@link module:ol/geom/SimpleGeometry~SimpleGeometry} of the feature. For features
  * with a GeometryCollection geometry, it will be the first detected geometry from the collection.
  */
 export type FeatureCallback<T> = (p0: FeatureLike, p1: Layer<Source>, p2: SimpleGeometry) => T;

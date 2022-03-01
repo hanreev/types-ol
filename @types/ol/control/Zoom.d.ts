@@ -6,16 +6,16 @@ import Control from './Control';
 export type TZoomBaseEventTypes = 'change' | 'error';
 export type TZoomObjectEventTypes = 'propertychange';
 export interface Options {
-    duration?: number;
-    className?: string;
-    zoomInClassName?: string;
-    zoomOutClassName?: string;
-    zoomInLabel?: string | HTMLElement;
-    zoomOutLabel?: string | HTMLElement;
-    zoomInTipLabel?: string;
-    zoomOutTipLabel?: string;
-    delta?: number;
-    target?: HTMLElement | string;
+    duration?: number | undefined;
+    className?: string | undefined;
+    zoomInClassName?: string | undefined;
+    zoomOutClassName?: string | undefined;
+    zoomInLabel?: string | HTMLElement | undefined;
+    zoomOutLabel?: string | HTMLElement | undefined;
+    zoomInTipLabel?: string | undefined;
+    zoomOutTipLabel?: string | undefined;
+    delta?: number | undefined;
+    target?: HTMLElement | string | undefined;
 }
 export default class Zoom extends Control {
     constructor(opt_options?: Options);

@@ -10,18 +10,18 @@ export type TStamenBaseEventTypes = 'change' | 'error';
 export type TStamenObjectEventTypes = 'propertychange';
 export type TStamenTileSourceEventTypes = 'tileloadend' | 'tileloaderror' | 'tileloadstart';
 export interface Options {
-    cacheSize?: number;
-    imageSmoothing?: boolean;
-    interpolate?: boolean;
+    cacheSize?: number | undefined;
+    imageSmoothing?: boolean | undefined;
+    interpolate?: boolean | undefined;
     layer: string;
-    minZoom?: number;
-    maxZoom?: number;
-    reprojectionErrorThreshold?: number;
-    tileLoadFunction?: LoadFunction;
-    transition?: number;
-    url?: string;
-    wrapX?: boolean;
-    zDirection?: number | NearestDirectionFunction;
+    minZoom?: number | undefined;
+    maxZoom?: number | undefined;
+    reprojectionErrorThreshold?: number | undefined;
+    tileLoadFunction?: LoadFunction | undefined;
+    transition?: number | undefined;
+    url?: string | undefined;
+    wrapX?: boolean | undefined;
+    zDirection?: number | NearestDirectionFunction | undefined;
 }
 export default class Stamen extends XYZ {
     constructor(options: Options);

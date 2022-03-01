@@ -8,7 +8,7 @@ import WMTS from 'ol/source/WMTS';
 import WMTSTileGrid from 'ol/tilegrid/WMTS';
 
 // create the WMTS tile grid in the google projection
-const projection = getProjection('EPSG:3857');
+const projection = getProjection('EPSG:3857')!;
 const tileSizePixels = 256;
 const tileSizeMtrs = getWidth(projection.getExtent()) / tileSizePixels;
 const matrixIds: string[] = [];

@@ -3,6 +3,7 @@ import PluggableMap from '../PluggableMap';
 import { EventsKey, ListenerFunction } from '../events';
 import BaseEvent from '../events/Event';
 import { Extent } from '../extent';
+import { Pixel } from '../pixel';
 import RenderEvent from '../render/Event';
 import LayerRenderer from '../renderer/Layer';
 import TileSource from '../source/Tile';
@@ -24,26 +25,37 @@ export type TBaseTileLayerObjectEventTypes =
     | 'propertychange';
 export type TBaseTileLayerRenderEventTypes = 'postrender' | 'prerender';
 export interface Options<TileSourceType extends TileSource = TileSource> {
-    className?: string;
-    opacity?: number;
-    visible?: boolean;
-    extent?: Extent;
-    zIndex?: number;
-    minResolution?: number;
-    maxResolution?: number;
-    minZoom?: number;
-    maxZoom?: number;
-    preload?: number;
-    source?: TileSourceType;
-    map?: PluggableMap;
-    useInterimTilesOnError?: boolean;
-    properties?: Record<string, any>;
+    className?: string | undefined;
+    opacity?: number | undefined;
+    visible?: boolean | undefined;
+    extent?: Extent | undefined;
+    zIndex?: number | undefined;
+    minResolution?: number | undefined;
+    maxResolution?: number | undefined;
+    minZoom?: number | undefined;
+    maxZoom?: number | undefined;
+    preload?: number | undefined;
+    source?: TileSourceType | undefined;
+    map?: PluggableMap | undefined;
+    useInterimTilesOnError?: boolean | undefined;
+    properties?: Record<string, any> | undefined;
 }
 export default class BaseTileLayer<
     TileSourceType extends TileSource = TileSource,
     RendererType extends LayerRenderer = LayerRenderer,
 > extends Layer<TileSourceType, RendererType> {
     constructor(opt_options?: Options<TileSourceType>);
+    /**
+     * Get data for a pixel location.  The return type depends on the source data.  For image tiles,
+     * a four element RGBA array will be returned.  For data tiles, the array length will match the
+     * number of bands in the dataset.  For requests outside the layer extent, null will be returned.
+     * Data for a image tiles can only be retrieved if the source's crossOrigin property is set.
+     * <code>// display layer data on every pointer move
+     * map.on('pointermove', (event) => {
+     *   console.log(layer.getData(event.pixel));
+     * });</code>
+     */
+    getData(pixel: Pixel): Uint8ClampedArray | Uint8Array | Float32Array | DataView | null;
     /**
      * Return the level as number to which we will preload tiles up to.
      */

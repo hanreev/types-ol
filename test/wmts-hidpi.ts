@@ -32,7 +32,7 @@ fetch(capabilitiesUrl)
             layer,
             matrixSet: 'google3857',
             style: 'normal',
-        });
+        })!;
         options.tilePixelRatio = tilePixelRatio;
         map.addLayer(
             new TileLayer({

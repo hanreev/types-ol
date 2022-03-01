@@ -23,9 +23,9 @@ export default class Interaction extends BaseObject {
     /**
      * Get the map associated with this interaction.
      */
-    getMap(): PluggableMap;
+    getMap(): PluggableMap | null;
     /**
-     * Handles the {@link module:ol/MapBrowserEvent map browser event}.
+     * Handles the {@link module:ol/MapBrowserEvent~MapBrowserEvent map browser event}.
      */
     handleEvent(mapBrowserEvent: MapBrowserEvent<UIEvent>): boolean;
     /**
@@ -37,7 +37,7 @@ export default class Interaction extends BaseObject {
      * Subclasses may set up event handlers to get notified about changes to
      * the map here.
      */
-    setMap(map: PluggableMap): void;
+    setMap(map: PluggableMap | null): void;
     on(type: TInteractionBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
     on(type: TInteractionBaseEventTypes[], listener: ListenerFunction<BaseEvent>): EventsKey[];
     once(type: TInteractionBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;

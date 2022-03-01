@@ -23,25 +23,25 @@ export { default as Snap } from './interaction/Snap';
 export { default as Translate } from './interaction/Translate';
 
 export interface DefaultsOptions {
-    altShiftDragRotate?: boolean;
-    onFocusOnly?: boolean;
-    doubleClickZoom?: boolean;
-    keyboard?: boolean;
-    mouseWheelZoom?: boolean;
-    shiftDragZoom?: boolean;
-    dragPan?: boolean;
-    pinchRotate?: boolean;
-    pinchZoom?: boolean;
-    zoomDelta?: number;
-    zoomDuration?: number;
+    altShiftDragRotate?: boolean | undefined;
+    onFocusOnly?: boolean | undefined;
+    doubleClickZoom?: boolean | undefined;
+    keyboard?: boolean | undefined;
+    mouseWheelZoom?: boolean | undefined;
+    shiftDragZoom?: boolean | undefined;
+    dragPan?: boolean | undefined;
+    pinchRotate?: boolean | undefined;
+    pinchZoom?: boolean | undefined;
+    zoomDelta?: number | undefined;
+    zoomDuration?: number | undefined;
 }
 /**
  * Set of interactions included in maps by default. Specific interactions can be
  * excluded by setting the appropriate option to false in the constructor
  * options, but the order of the interactions is fixed.  If you want to specify
  * a different order for interactions, you will need to create your own
- * {@link module:ol/interaction/Interaction} instances and insert
- * them into a {@link module:ol/Collection} in the order you want
+ * {@link module:ol/interaction/Interaction~Interaction} instances and insert
+ * them into a {@link module:ol/Collection~Collection} in the order you want
  * before creating your {@link module:ol/Map~Map} instance. Changing the order can
  * be of interest if the event propagation needs to be stopped at a point.
  * The default set of interactions, in sequence, is:

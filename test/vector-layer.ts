@@ -87,9 +87,9 @@ const displayFeatureInfo = (pixel: Pixel) => {
     if (info) info.innerHTML = feature ? `${feature.getId()}: ${feature.get('name')}` : '&nbsp;';
 
     if (feature !== highlight) {
-        if (highlight) featureOverlay.getSource().removeFeature(highlight as Feature);
+        if (highlight) featureOverlay.getSource()?.removeFeature(highlight as Feature);
 
-        if (feature) featureOverlay.getSource().addFeature(feature as Feature);
+        if (feature) featureOverlay.getSource()?.addFeature(feature as Feature);
 
         highlight = feature;
     }

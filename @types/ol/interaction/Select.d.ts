@@ -19,23 +19,23 @@ export type TSelectBaseEventTypes = 'change' | 'error';
 export type TSelectObjectEventTypes = 'change:active' | 'propertychange';
 export type TSelectSelectEventTypes = 'select';
 /**
- * A function that takes an {@link module:ol/Feature} or
- * {@link module:ol/render/Feature} and an
- * {@link module:ol/layer/Layer} and returns true if the feature may be
+ * A function that takes an {@link module:ol/Feature~Feature} or
+ * {@link module:ol/render/Feature~RenderFeature} and an
+ * {@link module:ol/layer/Layer~Layer} and returns true if the feature may be
  * selected or false otherwise.
  */
 export type FilterFunction = (p0: FeatureLike, p1: Layer<Source>) => boolean;
 export interface Options {
-    addCondition?: Condition;
-    condition?: Condition;
-    layers?: Layer<Source, LayerRenderer>[] | ((p0: Layer<Source>) => boolean);
-    style?: StyleLike | null;
-    removeCondition?: Condition;
-    toggleCondition?: Condition;
-    multi?: boolean;
-    features?: Collection<Feature<Geometry>>;
-    filter?: FilterFunction;
-    hitTolerance?: number;
+    addCondition?: Condition | undefined;
+    condition?: Condition | undefined;
+    layers?: Layer<Source, LayerRenderer>[] | ((p0: Layer<Source>) => boolean) | undefined;
+    style?: StyleLike | null | undefined;
+    removeCondition?: Condition | undefined;
+    toggleCondition?: Condition | undefined;
+    multi?: boolean | undefined;
+    features?: Collection<Feature<Geometry>> | undefined;
+    filter?: FilterFunction | undefined;
+    hitTolerance?: number | undefined;
 }
 declare enum SelectEventType {
     SELECT = 'select',
@@ -51,13 +51,13 @@ export default class Select extends Interaction {
      */
     getHitTolerance(): number;
     /**
-     * Returns the associated {@link module:ol/layer/Vector~Vector vector layer} of
+     * Returns the associated {@link module:ol/layer/Vector~VectorLayer vector layer} of
      * a selected feature.
      */
     getLayer(feature: FeatureLike): VectorLayer<VectorSource<Geometry>>;
     getStyle(): StyleLike | null;
     /**
-     * Handles the {@link module:ol/MapBrowserEvent map browser event} and may change the
+     * Handles the {@link module:ol/MapBrowserEvent~MapBrowserEvent map browser event} and may change the
      * selected state of features.
      */
     handleEvent(mapBrowserEvent: MapBrowserEvent<UIEvent>): boolean;
@@ -70,7 +70,7 @@ export default class Select extends Interaction {
      * Remove the interaction from its current map, if any,  and attach it to a new
      * map, if any. Pass null to just remove the interaction from the current map.
      */
-    setMap(map: PluggableMap): void;
+    setMap(map: PluggableMap | null): void;
     on(type: TSelectBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
     on(type: TSelectBaseEventTypes[], listener: ListenerFunction<BaseEvent>): EventsKey[];
     once(type: TSelectBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
@@ -99,7 +99,7 @@ export class SelectEvent extends BaseEvent {
      */
     deselected: Feature<Geometry>[];
     /**
-     * Associated {@link module:ol/MapBrowserEvent}.
+     * Associated {@link module:ol/MapBrowserEvent~MapBrowserEvent}.
      */
     mapBrowserEvent: MapBrowserEvent<UIEvent>;
     /**

@@ -21,19 +21,19 @@ export interface GxTrackObject {
  */
 export type IconUrlFunction = (p0: string) => string;
 export interface Options {
-    extractStyles?: boolean;
-    showPointNames?: boolean;
-    defaultStyle?: Style[];
-    writeStyles?: boolean;
-    crossOrigin?: null | string;
-    iconUrlFunction?: IconUrlFunction;
+    extractStyles?: boolean | undefined;
+    showPointNames?: boolean | undefined;
+    defaultStyle?: Style[] | undefined;
+    writeStyles?: boolean | undefined;
+    crossOrigin?: null | string | undefined;
+    iconUrlFunction?: IconUrlFunction | undefined;
 }
 export interface Vec2 {
     x: number;
     xunits: IconAnchorUnits;
     y: number;
     yunits: IconAnchorUnits;
-    origin?: IconOrigin;
+    origin?: IconOrigin | undefined;
 }
 export default class KML extends XMLFeature {
     constructor(opt_options?: Options);
@@ -66,25 +66,25 @@ export default class KML extends XMLFeature {
 /**
  * Get the default fill style (or null if not yet set).
  */
-export function getDefaultFillStyle(): Fill;
+export function getDefaultFillStyle(): Fill | null;
 /**
  * Get the default image style (or null if not yet set).
  */
-export function getDefaultImageStyle(): ImageStyle;
+export function getDefaultImageStyle(): ImageStyle | null;
 /**
  * Get the default stroke style (or null if not yet set).
  */
-export function getDefaultStrokeStyle(): Stroke;
+export function getDefaultStrokeStyle(): Stroke | null;
 /**
  * Get the default style (or null if not yet set).
  */
-export function getDefaultStyle(): Style;
+export function getDefaultStyle(): Style | null;
 /**
  * Get the default style array (or null if not yet set).
  */
-export function getDefaultStyleArray(): Style[];
+export function getDefaultStyleArray(): Style[] | null;
 /**
  * Get the default text style (or null if not yet set).
  */
-export function getDefaultTextStyle(): Text;
+export function getDefaultTextStyle(): Text | null;
 export function readFlatCoordinates(node: Node): number[] | undefined;

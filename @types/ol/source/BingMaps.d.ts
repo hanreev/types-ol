@@ -23,22 +23,22 @@ export interface CoverageArea {
 }
 export interface ImageryProvider {
     coverageAreas: CoverageArea[];
-    attribution?: string;
+    attribution?: string | undefined;
 }
 export interface Options {
-    cacheSize?: number;
-    hidpi?: boolean;
-    culture?: string;
+    cacheSize?: number | undefined;
+    hidpi?: boolean | undefined;
+    culture?: string | undefined;
     key: string;
     imagerySet: string;
-    imageSmoothing?: boolean;
-    interpolate?: boolean;
-    maxZoom?: number;
-    reprojectionErrorThreshold?: number;
-    tileLoadFunction?: LoadFunction;
-    wrapX?: boolean;
-    transition?: number;
-    zDirection?: number | NearestDirectionFunction;
+    imageSmoothing?: boolean | undefined;
+    interpolate?: boolean | undefined;
+    maxZoom?: number | undefined;
+    reprojectionErrorThreshold?: number | undefined;
+    tileLoadFunction?: LoadFunction | undefined;
+    wrapX?: boolean | undefined;
+    transition?: number | undefined;
+    zDirection?: number | NearestDirectionFunction | undefined;
 }
 export interface Resource {
     imageHeight: number;
@@ -47,7 +47,7 @@ export interface Resource {
     zoomMax: number;
     imageUrl: string;
     imageUrlSubdomains: string[];
-    imageryProviders?: ImageryProvider[];
+    imageryProviders?: ImageryProvider[] | undefined;
 }
 export interface ResourceSet {
     resources: Resource[];

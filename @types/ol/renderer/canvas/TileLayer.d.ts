@@ -7,6 +7,7 @@ import BaseEvent from '../../events/Event';
 import { Extent } from '../../extent';
 import TileLayer from '../../layer/Tile';
 import VectorTileLayer from '../../layer/VectorTile';
+import { Pixel } from '../../pixel';
 import Projection from '../../proj/Projection';
 import TileSource from '../../source/Tile';
 import TileGrid from '../../tilegrid/TileGrid';
@@ -15,8 +16,10 @@ import { FeatureCallback } from '../vector';
 import CanvasLayerRenderer from './Layer';
 
 export type TCanvasTileLayerRendererBaseEventTypes = 'change' | 'error';
-export default class CanvasTileLayerRenderer extends CanvasLayerRenderer {
-    constructor(tileLayer: TileLayer<TileSource> | VectorTileLayer);
+export default class CanvasTileLayerRenderer<
+    LayerType extends TileLayer | VectorTileLayer = TileLayer | VectorTileLayer,
+> extends CanvasLayerRenderer {
+    constructor(tileLayer: LayerType);
     protected renderedPixelRatio: number;
     protected renderedProjection: Projection;
     protected renderedRevision: number;
@@ -71,8 +74,8 @@ export default class CanvasTileLayerRenderer extends CanvasLayerRenderer {
         callback: FeatureCallback<T>,
         matches: HitMatch<T>[],
     ): T | undefined;
+    getData(pixel: Pixel): Uint8ClampedArray;
     getImage(): HTMLCanvasElement;
-    getLayer(): TileLayer<TileSource> | VectorTileLayer;
     getTile(z: number, x: number, y: number, frameState: FrameState): Tile;
     /**
      * Perform action necessary to get the layer rendered after new fonts have loaded

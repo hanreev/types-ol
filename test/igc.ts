@@ -173,7 +173,7 @@ const featureOverlay = new VectorLayer({
         if (highlight === undefined) {
             highlight = new Feature(new Point(coordinate));
             feature.set('highlight', highlight);
-            featureOverlay.getSource().addFeature(highlight);
+            featureOverlay.getSource()?.addFeature(highlight);
         } else {
             highlight.getGeometry().setCoordinates(coordinate);
         }

@@ -52,7 +52,7 @@ draw.on('drawend', event => {
 
     const feat = event.feature;
     const geometry = feat.getGeometry() as SimpleGeometry;
-    const coords = geometry.getCoordinates();
+    const coords = geometry.getCoordinates()!;
     const smoothened = makeSmooth(coords, parseInt(numIterations.value, 10) || 5);
     geometry.setCoordinates(smoothened);
 });

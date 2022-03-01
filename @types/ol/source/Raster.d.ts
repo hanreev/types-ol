@@ -50,17 +50,17 @@ export interface MinionData {
 export type Operation = (p0: number[][] | ImageData[], p1: object) => number[] | ImageData;
 export interface Options {
     sources: (Source | Layer<Source, LayerRenderer>)[];
-    operation?: Operation;
+    operation?: Operation | undefined;
     lib?: any;
-    threads?: number;
-    operationType?: RasterOperationType;
+    threads?: number | undefined;
+    operationType?: RasterOperationType | undefined;
 }
 export interface ProcessorOptions {
     threads: number;
     operation: Operation;
-    lib?: Record<string, () => void>;
+    lib?: Record<string, () => void> | undefined;
     queue: number;
-    imageOps?: boolean;
+    imageOps?: boolean | undefined;
 }
 export type RasterSourceEventTypes = ImageSourceEventTypes | 'beforeoperations' | 'afteroperations';
 /**

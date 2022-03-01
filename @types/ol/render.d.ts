@@ -7,8 +7,8 @@ import { Size } from './size';
 
 /**
  * A function to be used when sorting features before rendering.
- * It takes two instances of {@link module:ol/Feature} or
- * {@link module:ol/render/Feature} and returns a {number}.
+ * It takes two instances of {@link module:ol/Feature~Feature} or
+ * {@link module:ol/render/Feature~RenderFeature} and returns a {number}.
  */
 export type OrderFunction = (p0: FeatureLike, p1: FeatureLike) => number;
 export interface State {
@@ -20,8 +20,8 @@ export interface State {
     rotation: number;
 }
 export interface ToContextOptions {
-    size?: Size;
-    pixelRatio?: number;
+    size?: Size | undefined;
+    pixelRatio?: number | undefined;
 }
 /**
  * Gets the pixel of the event's canvas context from the map viewport's CSS pixel.

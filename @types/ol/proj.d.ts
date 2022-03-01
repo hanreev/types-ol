@@ -7,7 +7,7 @@ export { METERS_PER_UNIT };
 export { Projection };
 
 /**
- * A projection as {@link module:ol/proj/Projection}, SRS identifier
+ * A projection as {@link module:ol/proj/Projection~Projection}, SRS identifier
  * string or undefined.
  */
 export type ProjectionLike = Projection | string;
@@ -63,9 +63,7 @@ export function addProjections(projections: Projection[]): void;
  */
 export function clearAllProjections(): void;
 /**
- * Clear the user projection if set.  Note that this method is not yet a part of
- * the stable API.  Support for user projections is not yet complete and should
- * be considered experimental.
+ * Clear the user projection if set.
  */
 export function clearUserProjection(): void;
 export function cloneTransform(input: number[], opt_output?: number[], opt_dimension?: number): number[];
@@ -88,6 +86,7 @@ export function createSafeCoordinateTransform(
 export function createTransformFromCoordinateTransform(
     coordTransform: (p0: Coordinate) => Coordinate,
 ): TransformFunction;
+export function disableCoordinateWarning(opt_disable?: boolean): void;
 /**
  * Checks if two projections are the same, that is every coordinate in one
  * projection does represent the same geographic point as the same coordinate in
@@ -117,12 +116,12 @@ export function fromUserResolution(resolution: number, destProjection: Projectio
 /**
  * Fetches a Projection object for the code specified.
  */
-export function get(projectionLike: ProjectionLike): Projection;
+export function get(projectionLike: ProjectionLike): Projection | null;
 /**
  * Get the resolution of the point in degrees or distance units.
  * For projections with degrees as the unit this will simply return the
  * provided resolution. For other projections the point resolution is
- * by default estimated by transforming the 'point' pixel to EPSG:4326,
+ * by default estimated by transforming the point pixel to EPSG:4326,
  * measuring its width and height on the normal sphere,
  * and taking the average of the width and height.
  * A custom function can be provided for a specific projection, either
@@ -156,12 +155,11 @@ export function getTransformFromProjections(
  * Note that this method is not yet a part of the stable API.  Support for user
  * projections is not yet complete and should be considered experimental.
  */
-export function getUserProjection(): Projection;
+export function getUserProjection(): Projection | null;
 export function identityTransform(input: number[], opt_output?: number[], opt_dimension?: number): number[];
 /**
  * Set the projection for coordinates supplied from and returned by API methods.
- * Note that this method is not yet a part of the stable API.  Support for user
- * projections is not yet complete and should be considered experimental.
+ * This includes all API methods except for those interacting with tile grids.
  */
 export function setUserProjection(projection: ProjectionLike): void;
 /**
@@ -211,8 +209,7 @@ export function transformWithProjections(
     destinationProjection: Projection,
 ): Coordinate;
 /**
- * Use geographic coordinates (WGS-84 datum) in API methods.  Note that this
- * method is not yet a part of the stable API.  Support for user projections is
- * not yet complete and should be considered experimental.
+ * Use geographic coordinates (WGS-84 datum) in API methods.  This includes all API
+ * methods except for those interacting with tile grids.
  */
 export function useGeographic(): void;

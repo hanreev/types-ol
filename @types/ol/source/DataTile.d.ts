@@ -19,22 +19,22 @@ export type TDataTileSourceTileSourceEventTypes = 'tileloadend' | 'tileloaderror
  */
 export type Loader = (p0: number, p1: number, p2: number) => Data | Promise<Data>;
 export interface Options {
-    loader?: Loader;
-    attributions?: AttributionLike;
-    attributionsCollapsible?: boolean;
-    maxZoom?: number;
-    minZoom?: number;
-    tileSize?: number | Size;
-    maxResolution?: number;
-    projection?: ProjectionLike;
-    tileGrid?: TileGrid;
-    opaque?: boolean;
-    state?: State;
-    tilePixelRatio?: number;
-    wrapX?: boolean;
-    transition?: number;
-    bandCount?: number;
-    interpolate?: boolean;
+    loader?: Loader | undefined;
+    attributions?: AttributionLike | undefined;
+    attributionsCollapsible?: boolean | undefined;
+    maxZoom?: number | undefined;
+    minZoom?: number | undefined;
+    tileSize?: number | Size | undefined;
+    maxResolution?: number | undefined;
+    projection?: ProjectionLike | undefined;
+    tileGrid?: TileGrid | undefined;
+    opaque?: boolean | undefined;
+    state?: State | undefined;
+    tilePixelRatio?: number | undefined;
+    wrapX?: boolean | undefined;
+    transition?: number | undefined;
+    bandCount?: number | undefined;
+    interpolate?: boolean | undefined;
 }
 export default class DataTileSource extends TileSource {
     constructor(options: Options);

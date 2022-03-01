@@ -18,7 +18,7 @@ const configs = {
     compilerOptions: {
       baseUrl: '../',
       forceConsistentCasingInFileNames: true,
-      lib: ['es6', 'dom'],
+      lib: ['dom', 'esnext'],
       module: 'commonjs',
       noEmit: true,
       noImplicitAny: true,
@@ -81,7 +81,8 @@ function prepareDt() {
   fs.writeFileSync('package.json', JSON.stringify(packageJson, null, 4), { encoding: 'utf-8' });
   fs.writeFileSync('notNeededPackages.json', JSON.stringify(notNeededPackagesJson, null, 4), { encoding: 'utf-8' });
   fs.writeFileSync('.gitignore', gitignore.join('\n'), { encoding: 'utf-8' });
-  childProcess.execSync('git init -b master', { stdio: 'inherit' });
+  childProcess.execSync('git init', { stdio: 'inherit' });
+  childProcess.execSync('git checkout -b master', { stdio: 'inherit' });
   childProcess.execSync('git config user.name "Rifa\'i M. Hanif"', { stdio: 'inherit' });
   childProcess.execSync('git config user.email hanreev@gmail.com', { stdio: 'inherit' });
   childProcess.execSync('git add --all', { stdio: 'inherit' });
