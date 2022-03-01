@@ -17,7 +17,18 @@ const definitionConfig = env.conf.typescript.definition;
 let data;
 
 /** @type {Object<string, ModuleImports>} */
-const MODULE_IMPORTS = {};
+const MODULE_IMPORTS = {
+  'ol/Feature': {
+    names: ['Geometry'],
+    imported: {},
+    expressions: [],
+  },
+  'ol/source/Vector': {
+    names: ['Geometry'],
+    imported: {},
+    expressions: [],
+  },
+};
 
 /** @type {Object<string, ModuleExports>} */
 const MODULE_EXPORTS = {};
@@ -26,7 +37,7 @@ const MODULE_EXPORTS = {};
 const MODULE_CHILDREN = {};
 
 /** @type {string[]} */
-const EXTERNAL_MODULE_WHITELIST = ['arcgis-rest-api', 'geojson', 'topojson-specification', 'rbush'];
+const EXTERNAL_MODULE_WHITELIST = ['arcgis-rest-api', 'geojson', 'geotiff', 'pbf', 'rbush', 'topojson-specification'];
 
 /** @type {Object<string, DocletGenericType[]>} */
 const GENERIC_TYPES = {};

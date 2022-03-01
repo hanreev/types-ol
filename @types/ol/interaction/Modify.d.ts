@@ -70,7 +70,7 @@ export default class Modify extends PointerInteraction {
      */
     handleDragEvent(evt: MapBrowserEvent<UIEvent>): void;
     /**
-     * Handles the {@link module:ol/MapBrowserEvent map browser event} and may modify the geometry.
+     * Handles the {@link module:ol/MapBrowserEvent~MapBrowserEvent map browser event} and may modify the geometry.
      */
     handleEvent(mapBrowserEvent: MapBrowserEvent<UIEvent>): boolean;
     /**
@@ -108,13 +108,13 @@ export default class Modify extends PointerInteraction {
     un(type: TModifyModifyEventTypes | TModifyModifyEventTypes[], listener: ListenerFunction<ModifyEvent>): void;
 }
 export class ModifyEvent extends BaseEvent {
-    constructor(type: ModifyEventType, features: Collection<FeatureLike>, MapBrowserEvent: MapBrowserEvent<UIEvent>);
+    constructor(type: ModifyEventType, features: Collection<FeatureLike>, mapBrowserEvent: MapBrowserEvent<UIEvent>);
     /**
      * The features being modified.
      */
     features: Collection<FeatureLike>;
     /**
-     * Associated {@link module:ol/MapBrowserEvent}.
+     * Associated {@link module:ol/MapBrowserEvent~MapBrowserEvent}.
      */
     mapBrowserEvent: MapBrowserEvent<UIEvent>;
 }

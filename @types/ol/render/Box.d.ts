@@ -14,6 +14,6 @@ export default class RenderBox extends Disposable {
      */
     disposeInternal(): void;
     getGeometry(): Polygon;
-    setMap(map: PluggableMap): void;
+    setMap(map: PluggableMap | null): void;
     setPixels(startPixel: Pixel, endPixel: Pixel): void;
 }

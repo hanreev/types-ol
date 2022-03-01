@@ -1,7 +1,7 @@
 import MapBrowserEvent from '../MapBrowserEvent';
 
 /**
- * A function that takes an {@link module:ol/MapBrowserEvent} and returns a
+ * A function that takes an {@link module:ol/MapBrowserEvent~MapBrowserEvent} and returns a
  * {boolean}. If the condition is met, true should be returned.
  */
 export type Condition = (this: any, p0: MapBrowserEvent<UIEvent>) => boolean;

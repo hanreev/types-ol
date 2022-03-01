@@ -130,7 +130,7 @@ export default class WebGLHelper extends Disposable {
      * Get a WebGL extension.  If the extension is not supported, null is returned.
      * Extensions are cached after they are enabled for the first time.
      */
-    getExtension(name: string): any;
+    getExtension(name: string): object | null;
     /**
      * Get the WebGL rendering context
      */
@@ -168,6 +168,10 @@ export default class WebGLHelper extends Disposable {
      * Give a value for a standard float uniform
      */
     setUniformFloatValue(uniform: string, value: number): void;
+    /**
+     * Give a value for a vec4 uniform
+     */
+    setUniformFloatVec4(uniform: string, value: number[]): void;
     /**
      * Give a value for a standard matrix4 uniform
      */

@@ -37,7 +37,7 @@ export interface Options<SourceType extends Source = Source> {
     minZoom?: number | undefined;
     maxZoom?: number | undefined;
     source?: SourceType | undefined;
-    map?: PluggableMap | undefined;
+    map?: PluggableMap | null | undefined;
     render?: RenderFunction | undefined;
     properties?: Record<string, any> | undefined;
 }
@@ -45,7 +45,7 @@ export type RenderFunction = (p0: FrameState) => HTMLElement;
 export interface State {
     layer: Layer<Source, LayerRenderer>;
     opacity: number;
-    sourceState: State_1;
+    source: Source;
     visible: boolean;
     managed: boolean;
     extent?: Extent | undefined;
@@ -60,6 +60,7 @@ export default class Layer<
     RendererType extends LayerRenderer = LayerRenderer,
 > extends BaseLayer {
     constructor(options: Options<SourceType>);
+    protected rendered: boolean;
     /**
      * Create a renderer for this layer.
      */
@@ -68,21 +69,23 @@ export default class Layer<
      * Clean up.
      */
     disposeInternal(): void;
+    getData(pixel: Pixel): Uint8ClampedArray | Uint8Array | Float32Array | DataView | null;
     getFeatures(pixel: Pixel): Promise<Feature<Geometry>[]>;
     getLayersArray(opt_array?: Layer<Source, LayerRenderer>[]): Layer<Source, LayerRenderer>[];
     getLayerStatesArray(opt_states?: State[]): State[];
     /**
      * For use inside the library only.
      */
-    getMapInternal(): PluggableMap;
+    getMapInternal(): PluggableMap | null;
     /**
      * Get the renderer for this layer.
      */
     getRenderer(): RendererType;
+    getRenderSource(): SourceType | null;
     /**
      * Get the layer source.
      */
-    getSource(): SourceType;
+    getSource(): SourceType | null;
     getSourceState(): State_1;
     hasRenderer(): boolean;
     /**
@@ -99,15 +102,19 @@ export default class Layer<
      * To add the layer to a map and have it managed by the map, use
      * {@link module:ol/Map~Map#addLayer} instead.
      */
-    setMap(map: PluggableMap): void;
+    setMap(map: PluggableMap | null): void;
     /**
      * For use inside the library only.
      */
-    setMapInternal(map: PluggableMap): void;
+    setMapInternal(map: PluggableMap | null): void;
     /**
      * Set the layer source.
      */
-    setSource(source: SourceType): void;
+    setSource(source: SourceType | null): void;
+    /**
+     * Called when a layer is not visible during a map render.
+     */
+    unrender(): void;
     on(type: TLayerBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
     on(type: TLayerBaseEventTypes[], listener: ListenerFunction<BaseEvent>): EventsKey[];
     once(type: TLayerBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;

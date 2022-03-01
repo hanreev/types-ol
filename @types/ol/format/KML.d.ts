@@ -66,25 +66,25 @@ export default class KML extends XMLFeature {
 /**
  * Get the default fill style (or null if not yet set).
  */
-export function getDefaultFillStyle(): Fill;
+export function getDefaultFillStyle(): Fill | null;
 /**
  * Get the default image style (or null if not yet set).
  */
-export function getDefaultImageStyle(): ImageStyle;
+export function getDefaultImageStyle(): ImageStyle | null;
 /**
  * Get the default stroke style (or null if not yet set).
  */
-export function getDefaultStrokeStyle(): Stroke;
+export function getDefaultStrokeStyle(): Stroke | null;
 /**
  * Get the default style (or null if not yet set).
  */
-export function getDefaultStyle(): Style;
+export function getDefaultStyle(): Style | null;
 /**
  * Get the default style array (or null if not yet set).
  */
-export function getDefaultStyleArray(): Style[];
+export function getDefaultStyleArray(): Style[] | null;
 /**
  * Get the default text style (or null if not yet set).
  */
-export function getDefaultTextStyle(): Text;
+export function getDefaultTextStyle(): Text | null;
 export function readFlatCoordinates(node: Node): number[] | undefined;

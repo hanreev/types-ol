@@ -44,7 +44,7 @@ export class GroupEvent extends BaseEvent {
 export default class LayerGroup extends BaseLayer {
     constructor(opt_options?: Options);
     /**
-     * Returns the {@link module:ol/Collection collection} of {@link module:ol/layer/Layer~Layer layers}
+     * Returns the {@link module:ol/Collection~Collection collection} of {@link module:ol/layer/Layer~Layer layers}
      * in this group.
      */
     getLayers(): Collection<BaseLayer>;
@@ -61,7 +61,7 @@ export default class LayerGroup extends BaseLayer {
     handleLayerGroupRemove_(event: GroupEvent): void;
     registerLayerListeners_(layer: BaseLayer): void;
     /**
-     * Set the {@link module:ol/Collection collection} of {@link module:ol/layer/Layer~Layer layers}
+     * Set the {@link module:ol/Collection~Collection collection} of {@link module:ol/layer/Layer~Layer layers}
      * in this group.
      */
     setLayers(layers: Collection<BaseLayer>): void;

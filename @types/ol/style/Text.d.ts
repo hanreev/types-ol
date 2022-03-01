@@ -13,7 +13,7 @@ export interface Options {
     scale?: number | Size | undefined;
     rotateWithView?: boolean | undefined;
     rotation?: number | undefined;
-    text?: string | undefined;
+    text?: string | string[] | undefined;
     textAlign?: string | undefined;
     textBaseline?: string | undefined;
     fill?: Fill | undefined;
@@ -63,7 +63,7 @@ export default class Text {
     /**
      * Get the padding for the text.
      */
-    getPadding(): number[];
+    getPadding(): number[] | null;
     /**
      * Get the label placement.
      */
@@ -91,7 +91,7 @@ export default class Text {
     /**
      * Get the text to be rendered.
      */
-    getText(): string | undefined;
+    getText(): string | string[] | undefined;
     /**
      * Get the text alignment.
      */
@@ -135,7 +135,7 @@ export default class Text {
     /**
      * Set the padding ([top, right, bottom, left]).
      */
-    setPadding(padding: number[]): void;
+    setPadding(padding: number[] | null): void;
     /**
      * Set the text placement.
      */

@@ -4,7 +4,7 @@ const glob = require('glob');
 const childProcess = require('child_process');
 
 const BASE_DIR = process.cwd();
-const OL_VERSION = 'v6.12.0';
+const OL_VERSION = 'v6.13.0';
 
 const jsdocConfigPath = path.resolve(BASE_DIR, 'jsdoc', 'conf.json');
 const jsdocConfig = require(jsdocConfigPath);
@@ -53,6 +53,7 @@ try {
     childProcess.execSync(`git apply "${patch}"`);
   }
 } catch (error) {
+  console.log('# Reverting changes');
   childProcess.execSync('git checkout -- .');
   throw error;
 }

@@ -1,5 +1,7 @@
 ## Changelog
 
+- **v3.13.0**
+  - Updated to OpenLayers v6.13.0
 - **v3.12.1**
   - Add `undefined` to optional properties
 - **v3.12.0**

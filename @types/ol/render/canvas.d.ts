@@ -100,13 +100,13 @@ export function drawImageOrLabel(
     y: number,
     scale: Size,
 ): void;
+export function getTextDimensions(baseStyle: TextState, chunks: string[]): any;
 /**
  * Measure text width using a cache.
  */
 export function measureAndCacheTextWidth(font: string, text: string, cache: Record<string, number>): number;
 export function measureTextHeight(font: string): number;
 export function measureTextWidth(font: string, text: string): number;
-export function measureTextWidths(font: string, lines: string[], widths: number[]): number;
 export function rotateAtOffset(
     context: CanvasRenderingContext2D,
     rotation: number,

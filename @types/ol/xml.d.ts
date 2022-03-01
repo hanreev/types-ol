@@ -4,7 +4,7 @@
  * to have this structure.
  */
 export interface NodeStackItem {
-    node: Node;
+    node: Element;
 }
 export type Parser = (p0: Element, p1: any[]) => void;
 export type Serializer = (p0: Element, p1: any, p2: any[]) => void;
@@ -43,7 +43,7 @@ export function makeArrayPusher<T>(valueReader: (this: T, p0: Element, p1: any[]
 /**
  * Create a serializer that calls the provided nodeWriter from
  * {@link module:ol/xml.serialize}. This can be used by the parent writer to have the
- * 'nodeWriter' called with an array of values when the nodeWriter was
+ * nodeWriter called with an array of values when the nodeWriter was
  * designed to serialize a single item. An example would be a LineString
  * geometry writer, which could be reused for writing MultiLineString
  * geometries.

@@ -46,6 +46,10 @@ export default class WebGLPointsLayer<VectorSourceType extends VectorSource = Ve
     WebGLPointsLayerRenderer
 > {
     constructor(options: Options<VectorSourceType>);
+    /**
+     * Update any variables used by the layer style and trigger a re-render.
+     */
+    updateStyleVariables(variables: Record<string, number>): void;
     on(type: TWebGLPointsLayerBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
     on(type: TWebGLPointsLayerBaseEventTypes[], listener: ListenerFunction<BaseEvent>): EventsKey[];
     once(type: TWebGLPointsLayerBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;

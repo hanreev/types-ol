@@ -75,7 +75,7 @@ const imagery = new TileLayer({
 });
 
 const raster = new RasterSource({
-    sources: [imagery.getSource()],
+    sources: [imagery.getSource()!],
     operationType: RasterOperationType.IMAGE,
     operation: growRegion,
     // Functions in the `lib` object will be available to the operation run in

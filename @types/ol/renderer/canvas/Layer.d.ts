@@ -14,6 +14,7 @@ export type TCanvasLayerRendererBaseEventTypes = 'change' | 'error';
 export default abstract class CanvasLayerRenderer<LayerType extends Layer = Layer> extends LayerRenderer {
     constructor(layer: LayerType);
     protected container: HTMLElement;
+    protected frameState: FrameState | null;
     /**
      * The transform for viewport CSS pixels to rendered pixels.  This transform must
      * be set when rendering a frame and may be used by other functions after rendering.
@@ -45,6 +46,10 @@ export default abstract class CanvasLayerRenderer<LayerType extends Layer = Laye
     ): Transform;
     protected postRender(context: CanvasRenderingContext2D, frameState: FrameState): void;
     protected preRender(context: CanvasRenderingContext2D, frameState: FrameState): void;
+    /**
+     * Clean up.
+     */
+    disposeInternal(): void;
     abstract forEachFeatureAtCoordinate<T>(
         coordinate: Coordinate,
         frameState: FrameState,
@@ -54,6 +59,11 @@ export default abstract class CanvasLayerRenderer<LayerType extends Layer = Laye
     ): T | undefined;
     getBackground(frameState: FrameState): string;
     getDataAtPixel(pixel: Pixel, frameState: FrameState, hitTolerance: number): Uint8ClampedArray | Uint8Array;
+    getImageData(
+        image: HTMLCanvasElement | HTMLImageElement | HTMLVideoElement,
+        col: number,
+        row: number,
+    ): Uint8ClampedArray | null;
     /**
      * Perform action necessary to get the layer rendered after new fonts have loaded
      */

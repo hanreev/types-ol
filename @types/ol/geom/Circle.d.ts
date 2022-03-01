@@ -23,7 +23,7 @@ export default class Circle extends SimpleGeometry {
      * Return the center of the circle as {@link module:ol/coordinate~Coordinate coordinate}.
      */
     getCenter(): Coordinate;
-    getCoordinates(): any[];
+    getCoordinates(): any[] | null;
     /**
      * Return the radius of the circle.
      */

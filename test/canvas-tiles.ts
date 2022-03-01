@@ -13,7 +13,7 @@ const map = new Map({
         new TileLayer({
             source: new TileDebug({
                 projection: 'EPSG:3857',
-                tileGrid: osmSource.getTileGrid(),
+                tileGrid: osmSource.getTileGrid() || undefined,
             }),
         }),
     ],

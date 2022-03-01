@@ -25,10 +25,11 @@ export default class FullScreen extends Control {
     constructor(opt_options?: Options);
     /**
      * Remove the control from its current map and attach it to the new map.
+     * Pass null to just remove the control from the current map.
      * Subclasses may set up event handlers to get notified about changes to
      * the map here.
      */
-    setMap(map: PluggableMap): void;
+    setMap(map: PluggableMap | null): void;
     on(type: TFullScreenBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
     on(type: TFullScreenBaseEventTypes[], listener: ListenerFunction<BaseEvent>): EventsKey[];
     once(type: TFullScreenBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;

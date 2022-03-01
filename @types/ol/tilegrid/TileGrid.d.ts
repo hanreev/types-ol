@@ -83,7 +83,7 @@ export default class TileGrid {
     /**
      * Get the tile size for a zoom level. The type of the return value matches the
      * tileSize or tileSizes that the tile grid was configured with. To always
-     * get an module:ol/size~Size, run the result through module:ol/size~Size.toSize().
+     * get an {@link module:ol/size~Size}, run the result through {@link module:ol/size.toSize}.
      */
     getTileSize(z: number): number | Size;
     getZForResolution(resolution: number, opt_direction?: number | NearestDirectionFunction): number;

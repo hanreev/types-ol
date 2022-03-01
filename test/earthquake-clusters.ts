@@ -53,7 +53,7 @@ let maxFeatureCount: number;
 let vector: VectorLayer = null as any;
 const calculateClusterInfo = (resolution: number) => {
     maxFeatureCount = 0;
-    const features = vector.getSource().getFeatures();
+    const features = vector.getSource()!.getFeatures();
     let feature: Feature;
     let radius: number;
     for (let i = features.length - 1; i >= 0; --i) {

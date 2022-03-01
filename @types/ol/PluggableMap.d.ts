@@ -135,6 +135,8 @@ export default class PluggableMap extends BaseObject {
         opt_options?: AtPixelOptions,
     ): T | undefined;
     /**
+     * Please the layer.getData() method for {@link module:ol/layer/Tile~TileLayer#getData tile layers} or
+     * {@link module:ol/layer/Image~ImageLayer#getData image layers} instead of using this method.
      * Detect layers that have a color value at a pixel on the viewport, and
      * execute a callback with each matching layer. Layers included in the
      * detection can be configured through opt_layerFilter.
@@ -198,7 +200,7 @@ export default class PluggableMap extends BaseObject {
      * Get the collection of layers associated with this map.
      */
     getLayers(): Collection<BaseLayer>;
-    getLoading(): boolean;
+    getLoadingOrNotReady(): boolean;
     /**
      * Get an overlay by its identifier (the value returned by overlay.getId()).
      * Note that the index treats string and numeric identifiers as the same. So

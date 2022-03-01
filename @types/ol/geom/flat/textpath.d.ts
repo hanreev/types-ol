@@ -11,4 +11,4 @@ export function drawTextOnPath(
     font: string,
     cache: Record<string, number>,
     rotation: number,
-): any[][];
+): any[][] | null;

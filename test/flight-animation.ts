@@ -94,7 +94,7 @@ function animateFlights(event: RenderEvent) {
     for (const feature of features)
         if (!feature.get('finished')) {
             // only draw the lines for which the animation has not finished yet
-            const coords = (feature.getGeometry() as SimpleGeometry).getCoordinates();
+            const coords = (feature.getGeometry() as SimpleGeometry).getCoordinates()!;
             const elapsedTime = frameState.time - feature.get('start');
             const elapsedPoints = elapsedTime * pointsPerMs;
 

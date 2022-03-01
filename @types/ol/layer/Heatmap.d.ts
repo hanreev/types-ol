@@ -4,6 +4,7 @@ import { EventsKey, ListenerFunction } from '../events';
 import BaseEvent from '../events/Event';
 import { Extent } from '../extent';
 import Geometry from '../geom/Geometry';
+import Point from '../geom/Point';
 import RenderEvent from '../render/Event';
 import WebGLPointsLayerRenderer from '../renderer/webgl/PointsLayer';
 import VectorSource from '../source/Vector';
@@ -39,7 +40,7 @@ export interface Options {
     radius?: number | undefined;
     blur?: number | undefined;
     weight?: string | ((p0: Feature<Geometry>) => number) | undefined;
-    source?: VectorSource<Geometry> | undefined;
+    source?: VectorSource<Point> | undefined;
     properties?: Record<string, any> | undefined;
 }
 export default class Heatmap extends BaseVectorLayer<VectorSource, WebGLPointsLayerRenderer> {

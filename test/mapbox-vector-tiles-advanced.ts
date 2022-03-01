@@ -41,7 +41,7 @@ const map = new Map({
                     'OpenStreetMap contributors</a>',
                 format: new MVT(),
                 tileGrid: new TileGrid({
-                    extent: getProjection('EPSG:3857').getExtent(),
+                    extent: getProjection('EPSG:3857')!.getExtent(),
                     resolutions,
                     tileSize: 512,
                 }),

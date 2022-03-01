@@ -55,6 +55,7 @@ export default class WebGLLayerRenderer<LayerType extends Layer = Layer> extends
      */
     protected prepareFrameInternal(frameState: FrameState): boolean;
     protected preRender(context: WebGLRenderingContext, frameState: FrameState): void;
+    protected removeHelper(): void;
     /**
      * Clean up.
      */

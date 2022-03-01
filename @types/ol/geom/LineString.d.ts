@@ -41,7 +41,7 @@ export default class LineString extends SimpleGeometry {
      * M will return the first coordinate and Ms greater than the last M will
      * return the last coordinate.
      */
-    getCoordinateAtM(m: number, opt_extrapolate?: boolean): Coordinate;
+    getCoordinateAtM(m: number, opt_extrapolate?: boolean): Coordinate | null;
     /**
      * Return the coordinates of the linestring.
      */

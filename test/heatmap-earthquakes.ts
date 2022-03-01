@@ -19,7 +19,7 @@ const vector = new HeatmapLayer({
     radius: parseInt(radius.value, 10),
 });
 
-vector.getSource().on('addfeature', event => {
+vector.getSource()!.on('addfeature', event => {
     // 2012_Earthquakes_Mag5.kml stores the magnitude of each earthquake in a
     // standards-violating <magnitude> tag in each Placemark.  We extract it from
     // the Placemark's name instead.

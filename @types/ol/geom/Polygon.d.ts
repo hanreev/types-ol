@@ -46,7 +46,7 @@ export default class Polygon extends SimpleGeometry {
      * The exterior linear ring is available at index 0 and the interior rings
      * at index 1 and beyond.
      */
-    getLinearRing(index: number): LinearRing;
+    getLinearRing(index: number): LinearRing | null;
     /**
      * Return the number of rings of the polygon,  this includes the exterior
      * ring and any interior rings.

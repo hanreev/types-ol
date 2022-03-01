@@ -31,7 +31,7 @@ export default abstract class SimpleGeometry extends Geometry {
      */
     abstract clone(): Geometry;
     abstract closestPointXY(x: number, y: number, closestPoint: Coordinate, minSquaredDistance: number): number;
-    abstract getCoordinates(): any[];
+    abstract getCoordinates(): any[] | null;
     /**
      * Return the first coordinate of the geometry.
      */

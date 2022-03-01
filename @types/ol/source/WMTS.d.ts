@@ -104,4 +104,4 @@ export default class WMTS extends TileImage {
 /**
  * Generate source options from a capabilities object.
  */
-export function optionsFromCapabilities(wmtsCap: any, config: any): Options;
+export function optionsFromCapabilities(wmtsCap: any, config: any): Options | null;

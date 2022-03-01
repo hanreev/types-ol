@@ -10,8 +10,8 @@ import Stroke from './Stroke';
 import Text from './Text';
 
 /**
- * A function that takes an {@link module:ol/Feature} as argument and returns an
- * {@link module:ol/geom/Geometry} that will be rendered and styled for the feature.
+ * A function that takes an {@link module:ol/Feature~Feature} as argument and returns an
+ * {@link module:ol/geom/Geometry~Geometry} that will be rendered and styled for the feature.
  */
 export type GeometryFunction = (p0: FeatureLike) => Geometry | RenderFeature | undefined;
 export interface Options {
@@ -33,7 +33,7 @@ export interface Options {
  */
 export type RenderFunction = (p0: Coordinate | Coordinate[] | Coordinate[][], p1: State) => void;
 /**
- * A function that takes an {@link module:ol/Feature} and a {number}
+ * A function that takes an {@link module:ol/Feature~Feature} and a {number}
  * representing the view's resolution. The function should return a
  * {@link module:ol/style/Style~Style} or an array of them. This way e.g. a
  * vector layer can be styled. If the function returns undefined, the

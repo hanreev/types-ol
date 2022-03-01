@@ -1,4 +1,8 @@
 /**
+ * Return a two-dimensional endss
+ */
+export function inflateEnds(flatCoordinates: number[], ends: number[]): number[][];
+/**
  * Is the linear ring oriented clockwise in a coordinate system with a bottom-left
  * coordinate origin? For a coordinate system with a top-left coordinate origin,
  * the ring's orientation is clockwise when this function returns false.

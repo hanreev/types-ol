@@ -17,7 +17,7 @@ fetch('data/WMTSCapabilities.xml')
         const options = optionsFromCapabilities(result, {
             layer: 'layer-7328',
             matrixSet: 'EPSG:3857',
-        });
+        })!;
 
         map = new Map({
             layers: [

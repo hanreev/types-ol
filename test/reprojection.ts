@@ -40,25 +40,25 @@ proj4.defs('ESRI:54009', '+proj=moll +lon_0=0 +x_0=0 +y_0=0 +datum=WGS84 ' + '+u
 register(proj4);
 
 const proj27700 = getProjection('EPSG:27700');
-proj27700.setExtent([0, 0, 700000, 1300000]);
+proj27700?.setExtent([0, 0, 700000, 1300000]);
 
 const proj23032 = getProjection('EPSG:23032');
-proj23032.setExtent([-1206118.71, 4021309.92, 1295389.0, 8051813.28]);
+proj23032?.setExtent([-1206118.71, 4021309.92, 1295389.0, 8051813.28]);
 
 const proj5479 = getProjection('EPSG:5479');
-proj5479.setExtent([6825737.53, 4189159.8, 9633741.96, 5782472.71]);
+proj5479?.setExtent([6825737.53, 4189159.8, 9633741.96, 5782472.71]);
 
 const proj21781 = getProjection('EPSG:21781');
-proj21781.setExtent([485071.54, 75346.36, 828515.78, 299941.84]);
+proj21781?.setExtent([485071.54, 75346.36, 828515.78, 299941.84]);
 
 const proj3413 = getProjection('EPSG:3413');
-proj3413.setExtent([-4194304, -4194304, 4194304, 4194304]);
+proj3413?.setExtent([-4194304, -4194304, 4194304, 4194304]);
 
 const proj2163 = getProjection('EPSG:2163');
-proj2163.setExtent([-8040784.5135, -2577524.921, 3668901.4484, 4785105.1096]);
+proj2163?.setExtent([-8040784.5135, -2577524.921, 3668901.4484, 4785105.1096]);
 
 const proj54009 = getProjection('ESRI:54009');
-proj54009.setExtent([-18e6, -9e6, 18e6, 9e6]);
+proj54009?.setExtent([-18e6, -9e6, 18e6, 9e6]);
 
 const layers: { [key: string]: TileLayer } = {};
 
@@ -113,7 +113,7 @@ fetch(url)
         const options = optionsFromCapabilities(result, {
             layer: 'OSM_Land_Mask',
             matrixSet: 'EPSG3413_250m',
-        });
+        })!;
         options.crossOrigin = '';
         options.projection = 'EPSG:3413';
         options.wrapX = false;
@@ -132,7 +132,7 @@ layers['grandcanyon'] = new TileLayer({
     }),
 });
 
-const startResolution = getWidth(getProjection('EPSG:3857').getExtent()) / 256;
+const startResolution = getWidth(getProjection('EPSG:3857')!.getExtent()) / 256;
 const resolutions = new Array(22);
 for (let i = 0, ii = resolutions.length; i < ii; ++i) resolutions[i] = startResolution / Math.pow(2, i);
 
@@ -169,9 +169,9 @@ let renderEdges = false;
 
 function updateViewProjection() {
     const newProj = getProjection(viewProjSelect.value);
-    const newProjExtent = newProj.getExtent();
+    const newProjExtent = newProj?.getExtent();
     const newView = new View({
-        projection: newProj,
+        projection: newProj || undefined,
         center: getCenter(newProjExtent || [0, 0, 0, 0]),
         zoom: 0,
         extent: newProjExtent,

@@ -2,7 +2,7 @@ import BaseEvent from './events/Event';
 import { EventTargetLike } from './events/Target';
 
 /**
- * Key to use with {@link module:ol/Observable~Observable#unByKey}.
+ * Key to use with {@link module:ol/Observable.unByKey}.
  */
 export interface EventsKey {
     listener: ListenerFunction<Event | BaseEvent>;

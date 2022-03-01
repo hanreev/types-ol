@@ -91,7 +91,7 @@ export default class Overlay extends BaseObject {
     /**
      * Get the map associated with this overlay.
      */
-    getMap(): PluggableMap | undefined;
+    getMap(): PluggableMap | null;
     /**
      * Get the offset of this overlay.
      */
@@ -120,7 +120,7 @@ export default class Overlay extends BaseObject {
     /**
      * Set the map to be associated with this overlay.
      */
-    setMap(map: PluggableMap | undefined): void;
+    setMap(map: PluggableMap | null): void;
     /**
      * Set the offset for this overlay.
      */

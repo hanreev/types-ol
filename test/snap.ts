@@ -72,22 +72,22 @@ const optionsForm = document.getElementById('options-form') as HTMLFormElement;
 
 class ExampleDrawClass {
     Point = new Draw({
-        source: vector.getSource(),
+        source: vector.getSource()!,
         type: GeometryType.POINT,
     });
 
     LineString = new Draw({
-        source: vector.getSource(),
+        source: vector.getSource()!,
         type: GeometryType.LINE_STRING,
     });
 
     Polygon = new Draw({
-        source: vector.getSource(),
+        source: vector.getSource()!,
         type: GeometryType.POLYGON,
     });
 
     Circle = new Draw({
-        source: vector.getSource(),
+        source: vector.getSource()!,
         type: GeometryType.CIRCLE,
     });
 
@@ -149,6 +149,6 @@ ExampleModify.setActive(false);
 // in order for its map browser event handlers to be fired first. Its handlers
 // are responsible of doing the snapping.
 const snap = new Snap({
-    source: vector.getSource(),
+    source: vector.getSource()!,
 });
 map.addInteraction(snap);

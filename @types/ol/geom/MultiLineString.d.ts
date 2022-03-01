@@ -40,7 +40,7 @@ export default class MultiLineString extends SimpleGeometry {
      * false then the function will return null for Ms falling between
      * LineStrings.
      */
-    getCoordinateAtM(m: number, opt_extrapolate?: boolean, opt_interpolate?: boolean): Coordinate;
+    getCoordinateAtM(m: number, opt_extrapolate?: boolean, opt_interpolate?: boolean): Coordinate | null;
     /**
      * Return the coordinates of the multilinestring.
      */

@@ -7,7 +7,7 @@ import OSM from 'ol/source/OSM';
 import WMTS from 'ol/source/WMTS';
 import WMTSTileGrid from 'ol/tilegrid/WMTS';
 
-const projection = getProjection('EPSG:3857');
+const projection = getProjection('EPSG:3857')!;
 const projectionExtent = projection.getExtent();
 const size = getWidth(projectionExtent) / 256;
 const resolutions = new Array(14);

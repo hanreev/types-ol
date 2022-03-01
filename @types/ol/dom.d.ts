@@ -20,7 +20,7 @@ export function outerHeight(element: HTMLElement): number;
  */
 export function outerWidth(element: HTMLElement): number;
 export function removeChildren(node: Node): void;
-export function removeNode(node: Node): Node;
+export function removeNode(node: Node): Node | null;
 /**
  * Transform the children of a parent node so they match the
  * provided list of children.  This function aims to efficiently

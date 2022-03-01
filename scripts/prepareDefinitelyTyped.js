@@ -18,7 +18,7 @@ const configs = {
     compilerOptions: {
       baseUrl: '../',
       forceConsistentCasingInFileNames: true,
-      lib: ['es6', 'dom'],
+      lib: ['dom', 'esnext'],
       module: 'commonjs',
       noEmit: true,
       noImplicitAny: true,

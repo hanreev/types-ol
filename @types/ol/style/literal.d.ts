@@ -11,6 +11,7 @@ export interface LiteralSymbolStyle {
     size: ExpressionValue | ExpressionValue[];
     symbolType: SymbolType;
     src?: string | undefined;
+    crossOrigin?: string | undefined;
     color?: Color | ExpressionValue[] | string | undefined;
     opacity?: ExpressionValue | undefined;
     rotation?: ExpressionValue | undefined;

@@ -7,7 +7,7 @@ import BaseEvent from '../events/Event';
 import { Extent } from '../extent';
 import { FeatureLoader, FeatureUrlFunction } from '../featureloader';
 import FeatureFormat from '../format/Feature';
-import Geometry from '../geom/Geometry';
+import Geometry_1 from '../geom/Geometry';
 import Projection from '../proj/Projection';
 import Source, { AttributionLike } from './Source';
 
@@ -29,7 +29,7 @@ export type TVectorSourceObjectEventTypes = 'propertychange';
 export type LoadingStrategy = (p0: Extent, p1: number, p2: Projection) => Extent[];
 export interface Options {
     attributions?: AttributionLike | undefined;
-    features?: Feature<Geometry>[] | Collection<Feature<Geometry>> | undefined;
+    features?: Feature<Geometry_1>[] | Collection<Feature<Geometry_1>> | undefined;
     format?: FeatureFormat | undefined;
     loader?: FeatureLoader | undefined;
     overlaps?: boolean | undefined;
@@ -38,35 +38,35 @@ export interface Options {
     useSpatialIndex?: boolean | undefined;
     wrapX?: boolean | undefined;
 }
-export default class VectorSource<G extends Geometry = Geometry> extends Source {
+export default class VectorSource<Geometry extends Geometry_1 = Geometry_1> extends Source {
     constructor(opt_options?: Options);
     /**
      * Add a feature without firing a change event.
      */
-    protected addFeatureInternal(feature: Feature<G>): void;
+    protected addFeatureInternal(feature: Feature<Geometry>): void;
     /**
      * Add features without firing a change event.
      */
-    protected addFeaturesInternal(features: Feature<G>[]): void;
+    protected addFeaturesInternal(features: Feature<Geometry>[]): void;
     /**
      * Remove feature without firing a change event.
      */
-    protected removeFeatureInternal(feature: Feature<G>): Feature<G> | undefined;
+    protected removeFeatureInternal(feature: Feature<Geometry>): Feature<Geometry> | undefined;
     /**
      * Add a single feature to the source.  If you want to add a batch of features
      * at once, call {@link module:ol/source/Vector~VectorSource#addFeatures #addFeatures()}
      * instead. A feature will not be added to the source if feature with
      * the same id is already there. The reason for this behavior is to avoid
      * feature duplication when using bbox or tile loading strategies.
-     * Note: this also applies if an {@link module:ol/Collection} is used for features,
+     * Note: this also applies if an {@link module:ol/Collection~Collection} is used for features,
      * meaning that if a feature with a duplicate id is added in the collection, it will
      * be removed from it right away.
      */
-    addFeature(feature: Feature<G>): void;
+    addFeature(feature: Feature<Geometry>): void;
     /**
      * Add a batch of features to the source.
      */
-    addFeatures(features: Feature<G>[]): void;
+    addFeatures(features: Feature<Geometry>[]): void;
     /**
      * Remove all features from the source.
      */
@@ -77,14 +77,14 @@ export default class VectorSource<G extends Geometry = Geometry> extends Source 
      * stop and the function will return the same value.
      * Note: this function only iterate through the feature that have a defined geometry.
      */
-    forEachFeature<T>(callback: (p0: Feature<G>) => T): T | undefined;
+    forEachFeature<T>(callback: (p0: Feature<Geometry>) => T): T | undefined;
     /**
      * Iterate through all features whose geometries contain the provided
      * coordinate, calling the callback with each feature.  If the callback returns
      * a "truthy" value, iteration will stop and the function will return the same
      * value.
      */
-    forEachFeatureAtCoordinateDirect<T>(coordinate: Coordinate, callback: (p0: Feature<G>) => T): T | undefined;
+    forEachFeatureAtCoordinateDirect<T>(coordinate: Coordinate, callback: (p0: Feature<Geometry>) => T): T | undefined;
     /**
      * Iterate through all features whose bounding box intersects the provided
      * extent (note that the feature's geometry may not intersect the extent),
@@ -95,7 +95,7 @@ export default class VectorSource<G extends Geometry = Geometry> extends Source 
      * When useSpatialIndex is set to false, this method will loop through all
      * features, equivalent to {@link module:ol/source/Vector~VectorSource#forEachFeature #forEachFeature()}.
      */
-    forEachFeatureInExtent<T>(extent: Extent, callback: (p0: Feature<G>) => T): T | undefined;
+    forEachFeatureInExtent<T>(extent: Extent, callback: (p0: Feature<Geometry>) => T): T | undefined;
     /**
      * Iterate through all features whose geometry intersects the provided extent,
      * calling the callback with each feature.  If the callback returns a "truthy"
@@ -103,13 +103,16 @@ export default class VectorSource<G extends Geometry = Geometry> extends Source 
      * If you only want to test for bounding box intersection, call the
      * {@link module:ol/source/Vector~VectorSource#forEachFeatureInExtent #forEachFeatureInExtent()} method instead.
      */
-    forEachFeatureIntersectingExtent<T>(extent: Extent, callback: (p0: Feature<G>) => T): T | undefined;
+    forEachFeatureIntersectingExtent<T>(extent: Extent, callback: (p0: Feature<Geometry>) => T): T | undefined;
     /**
      * Get the closest feature to the provided coordinate.
      * This method is not available when the source is configured with
      * useSpatialIndex set to false.
      */
-    getClosestFeatureToCoordinate(coordinate: Coordinate, opt_filter?: (p0: Feature<G>) => boolean): Feature<G>;
+    getClosestFeatureToCoordinate(
+        coordinate: Coordinate,
+        opt_filter?: (p0: Feature<Geometry>) => boolean,
+    ): Feature<Geometry>;
     /**
      * Get the extent of the features currently in the source.
      * This method is not available when the source is configured with
@@ -121,26 +124,26 @@ export default class VectorSource<G extends Geometry = Geometry> extends Source 
      * Note that the index treats string and numeric identifiers as the same.  So
      * source.getFeatureById(2) will return a feature with id '2' or 2.
      */
-    getFeatureById(id: string | number): Feature<G>;
+    getFeatureById(id: string | number): Feature<Geometry> | null;
     /**
      * Get a feature by its internal unique identifier (using getUid).
      */
-    getFeatureByUid(uid: string): Feature<G>;
+    getFeatureByUid(uid: string): Feature<Geometry> | null;
     /**
      * Get a snapshot of the features currently on the source in random order. The returned array
      * is a copy, the features are references to the features in the source.
      */
-    getFeatures(): Feature<G>[];
+    getFeatures(): Feature<Geometry>[];
     /**
      * Get all features whose geometry intersects the provided coordinate.
      */
-    getFeaturesAtCoordinate(coordinate: Coordinate): Feature<G>[];
+    getFeaturesAtCoordinate(coordinate: Coordinate): Feature<Geometry>[];
     /**
      * Get the features collection associated with this source. Will be null
      * unless the source was configured with useSpatialIndex set to false, or
-     * with an {@link module:ol/Collection} as features.
+     * with an {@link module:ol/Collection~Collection} as features.
      */
-    getFeaturesCollection(): Collection<Feature<G>>;
+    getFeaturesCollection(): Collection<Feature<Geometry>> | null;
     /**
      * Get all features whose bounding box intersects the provided extent.  Note that this returns an array of
      * all features intersecting the given extent in random order (so it may include
@@ -148,13 +151,13 @@ export default class VectorSource<G extends Geometry = Geometry> extends Source 
      * When useSpatialIndex is set to false, this method will return all
      * features.
      */
-    getFeaturesInExtent(extent: Extent): Feature<G>[];
+    getFeaturesInExtent(extent: Extent): Feature<Geometry>[];
     /**
      * Get the format associated with this source.
      */
     getFormat(): FeatureFormat | undefined;
     getOverlaps(): boolean;
-    getResolutions(): number[] | undefined;
+    getResolutions(): number[] | null;
     /**
      * Get the url associated with this source.
      */
@@ -162,7 +165,7 @@ export default class VectorSource<G extends Geometry = Geometry> extends Source 
     /**
      * Returns true if the feature is contained within the source.
      */
-    hasFeature(feature: Feature<G>): boolean;
+    hasFeature(feature: Feature<Geometry>): boolean;
     isEmpty(): boolean;
     loadFeatures(extent: Extent, resolution: number, projection: Projection): void;
     /**
@@ -170,7 +173,7 @@ export default class VectorSource<G extends Geometry = Geometry> extends Source 
      * at once, use the {@link module:ol/source/Vector~VectorSource#clear #clear()} method
      * instead.
      */
-    removeFeature(feature: Feature<G>): void;
+    removeFeature(feature: Feature<Geometry>): void;
     /**
      * Remove an extent from the list of loaded extents.
      */
@@ -184,19 +187,22 @@ export default class VectorSource<G extends Geometry = Geometry> extends Source 
      * Points the source to a new url. The next render cycle will use the new url.
      */
     setUrl(url: string | FeatureUrlFunction): void;
-    on(type: TVectorSourceVectorSourceEventTypes, listener: ListenerFunction<VectorSourceEvent<Geometry>>): EventsKey;
+    on(type: TVectorSourceVectorSourceEventTypes, listener: ListenerFunction<VectorSourceEvent<Geometry_1>>): EventsKey;
     on(
         type: TVectorSourceVectorSourceEventTypes[],
-        listener: ListenerFunction<VectorSourceEvent<Geometry>>,
+        listener: ListenerFunction<VectorSourceEvent<Geometry_1>>,
     ): EventsKey[];
-    once(type: TVectorSourceVectorSourceEventTypes, listener: ListenerFunction<VectorSourceEvent<Geometry>>): EventsKey;
+    once(
+        type: TVectorSourceVectorSourceEventTypes,
+        listener: ListenerFunction<VectorSourceEvent<Geometry_1>>,
+    ): EventsKey;
     once(
         type: TVectorSourceVectorSourceEventTypes[],
-        listener: ListenerFunction<VectorSourceEvent<Geometry>>,
+        listener: ListenerFunction<VectorSourceEvent<Geometry_1>>,
     ): EventsKey[];
     un(
         type: TVectorSourceVectorSourceEventTypes | TVectorSourceVectorSourceEventTypes[],
-        listener: ListenerFunction<VectorSourceEvent<Geometry>>,
+        listener: ListenerFunction<VectorSourceEvent<Geometry_1>>,
     ): void;
     on(type: TVectorSourceBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
     on(type: TVectorSourceBaseEventTypes[], listener: ListenerFunction<BaseEvent>): EventsKey[];
@@ -212,14 +218,14 @@ export default class VectorSource<G extends Geometry = Geometry> extends Source 
         listener: ListenerFunction<ObjectEvent>,
     ): void;
 }
-export class VectorSourceEvent<G extends Geometry = Geometry> extends BaseEvent {
-    constructor(type: string, opt_feature?: Feature<G>, opt_features?: Feature<G>[]);
+export class VectorSourceEvent<Geometry extends Geometry_1 = Geometry_1> extends BaseEvent {
+    constructor(type: string, opt_feature?: Feature<Geometry>, opt_features?: Feature<Geometry>[]);
     /**
      * The added or removed feature for the ADDFEATURE and REMOVEFEATURE events, undefined otherwise.
      */
-    feature: Feature<G>;
+    feature: Feature<Geometry>;
     /**
      * The loaded features for the FEATURESLOADED event, undefined otherwise.
      */
-    features: Feature<G>[];
+    features: Feature<Geometry>[];
 }

@@ -58,7 +58,7 @@ export default abstract class TileSource extends Source {
      */
     getKey(): string;
     getOpaque(projection: Projection): boolean;
-    getResolutions(): number[];
+    getResolutions(): number[] | null;
     abstract getTile(z: number, x: number, y: number, pixelRatio: number, projection: Projection): Tile;
     /**
      * Returns a tile coordinate wrapped around the x-axis. When the tile coordinate
@@ -69,7 +69,7 @@ export default abstract class TileSource extends Source {
     /**
      * Return the tile grid of the tile source.
      */
-    getTileGrid(): TileGrid;
+    getTileGrid(): TileGrid | null;
     getTileGridForProjection(projection: Projection): TileGrid;
     /**
      * Get the tile pixel ratio for this source. Subclasses may override this

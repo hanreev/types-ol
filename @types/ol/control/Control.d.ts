@@ -22,17 +22,18 @@ export default class Control extends BaseObject {
     /**
      * Get the map associated with this control.
      */
-    getMap(): PluggableMap | undefined;
+    getMap(): PluggableMap | null;
     /**
      * Renders the control.
      */
     render(mapEvent: MapEvent): void;
     /**
      * Remove the control from its current map and attach it to the new map.
+     * Pass null to just remove the control from the current map.
      * Subclasses may set up event handlers to get notified about changes to
      * the map here.
      */
-    setMap(map?: PluggableMap): void;
+    setMap(map: PluggableMap | null): void;
     /**
      * This function is used to set a target element for the control. It has no
      * effect if it is called after the control has been added to the map (i.e.

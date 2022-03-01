@@ -19,7 +19,7 @@ export default class Triangulation {
         opt_destinationResolution: number,
     );
     /**
-     * Calculates extent of the 'source' coordinates from all the triangles.
+     * Calculates extent of the source coordinates from all the triangles.
      */
     calculateSourceExtent(): Extent;
     getTriangles(): Triangle[];

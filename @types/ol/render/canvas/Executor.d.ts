@@ -34,7 +34,7 @@ export default class Executor {
     protected overlaps: boolean;
     protected pixelRatio: number;
     protected resolution: number;
-    createLabel(text: string, textKey: string, fillKey: string, strokeKey: string): Label;
+    createLabel(text: string | string[], textKey: string, fillKey: string, strokeKey: string): Label;
     execute(
         context: CanvasRenderingContext2D,
         contextScale: number,

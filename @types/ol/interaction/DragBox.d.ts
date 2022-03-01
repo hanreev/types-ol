@@ -12,7 +12,7 @@ export type TDragBoxDragBoxEventTypes = 'boxcancel' | 'boxdrag' | 'boxend' | 'bo
 export type TDragBoxBaseEventTypes = 'change' | 'error';
 export type TDragBoxObjectEventTypes = 'change:active' | 'propertychange';
 /**
- * A function that takes a {@link module:ol/MapBrowserEvent} and two
+ * A function that takes a {@link module:ol/MapBrowserEvent~MapBrowserEvent} and two
  * {@link module:ol/pixel~Pixel}s and returns a {boolean}. If the condition is met,
  * true should be returned.
  */

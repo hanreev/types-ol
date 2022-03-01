@@ -17,9 +17,9 @@ export type TTranslateBaseEventTypes = 'change' | 'error';
 export type TTranslateObjectEventTypes = 'change:active' | 'propertychange';
 export type TTranslateTranslateEventTypes = 'translateend' | 'translatestart' | 'translating';
 /**
- * A function that takes an {@link module:ol/Feature} or
- * {@link module:ol/render/Feature} and an
- * {@link module:ol/layer/Layer} and returns true if the feature may be
+ * A function that takes an {@link module:ol/Feature~Feature} or
+ * {@link module:ol/render/Feature~RenderFeature} and an
+ * {@link module:ol/layer/Layer~Layer} and returns true if the feature may be
  * translated or false otherwise.
  */
 export type FilterFunction = (p0: FeatureLike, p1: Layer<Source>) => boolean;
@@ -100,7 +100,7 @@ export class TranslateEvent extends BaseEvent {
      */
     features: Collection<Feature<Geometry>>;
     /**
-     * Associated {@link module:ol/MapBrowserEvent}.
+     * Associated {@link module:ol/MapBrowserEvent~MapBrowserEvent}.
      */
     mapBrowserEvent: MapBrowserEvent<UIEvent>;
     /**

@@ -24,7 +24,7 @@ index 6b99149cf..0ba3ed2c4 100644
 + */
 +export const create = () => {}
 diff --git a/src/ol/worker/webgl.js b/src/ol/worker/webgl.js
-index 3d2f1269c..3d80d9b38 100644
+index b4c5a9a6b..3d80d9b38 100644
 --- a/src/ol/worker/webgl.js
 +++ b/src/ol/worker/webgl.js
 @@ -2,61 +2,10 @@
@@ -58,7 +58,7 @@ index 3d2f1269c..3d80d9b38 100644
 -    const indexBuffer = new Uint32Array(indicesCount);
 -    const vertexBuffer = new Float32Array(verticesCount);
 -
--    let bufferPositions = null;
+-    let bufferPositions;
 -    for (let i = 0; i < renderInstructions.length; i += instructionsCount) {
 -      bufferPositions = writePointFeatureToBuffers(
 -        renderInstructions,

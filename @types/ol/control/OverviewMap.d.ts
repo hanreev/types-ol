@@ -63,10 +63,11 @@ export default class OverviewMap extends Control {
     setCollapsible(collapsible: boolean): void;
     /**
      * Remove the control from its current map and attach it to the new map.
+     * Pass null to just remove the control from the current map.
      * Subclasses may set up event handlers to get notified about changes to
      * the map here.
      */
-    setMap(map: PluggableMap): void;
+    setMap(map: PluggableMap | null): void;
     /**
      * Set whether the overview map view should rotate with the main map view.
      */

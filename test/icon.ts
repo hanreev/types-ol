@@ -71,7 +71,7 @@ map.on('click', evt => {
         return f;
     });
     if (feature) {
-        const coordinates = (feature.getGeometry() as SimpleGeometry).getCoordinates();
+        const coordinates = (feature.getGeometry() as SimpleGeometry).getCoordinates()!;
         popup.setPosition(coordinates);
         $(element).popover({
             placement: 'top',

@@ -16,6 +16,10 @@ export default class LRUCache<T> {
      */
     clear(): void;
     containsKey(key: string): boolean;
+    /**
+     * Expire the cache.
+     */
+    expireCache(keep?: Record<string, boolean>): void;
     forEach(f: (p0: T, p1: string, p2: LRUCache<T>) => any): void;
     get(key: string, opt_options?: any): T;
     getCount(): number;

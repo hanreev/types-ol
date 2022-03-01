@@ -100,7 +100,7 @@ export default class BaseLayer extends BaseObject {
      */
     getZIndex(): number;
     /**
-     * Sets the backgrlound color.
+     * Sets the background color.
      */
     setBackground(opt_background?: BackgroundColor): void;
     /**
