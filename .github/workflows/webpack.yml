@@ -20,4 +20,3 @@ jobs:
         run: git clone https://github.com/openlayers/openlayers
       - run: yarn --frozen-lockfile
       - run: yarn prepare-npm
-      - run: yarn prepare-dt

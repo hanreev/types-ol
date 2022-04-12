@@ -14,24 +14,28 @@ console.log('# Cleaning output directory');
 fs.removeSync(destPath);
 
 if (process.argv.includes('--skip-build') || process.argv.includes('-s')) {
-  console.log('# Build task is skipped');
+  console.log('# Build skipped');
 } else {
   // Build
   console.log('# Rebuilding definitions');
   childProcess.execSync('yarn build', { stdio: 'inherit' });
   console.log('# Formatting definitions');
   childProcess.execSync('yarn format', { stdio: 'ignore' });
+
+  // Lint
+  console.log('# Linting definitions');
+  childProcess.execSync('yarn lint', { stdio: 'inherit' });
 }
 
-// Lint
-console.log('# Linting definitions');
-childProcess.execSync('yarn lint', { stdio: 'inherit' });
-
-// Test
-console.log('# Testing definitions');
-childProcess.execSync('yarn format-test', { stdio: 'ignore' });
-childProcess.execSync('yarn lint-test', { stdio: 'inherit' });
-childProcess.execSync('yarn test', { stdio: 'ignore' });
+if (process.argv.includes('--skip-test') || process.argv.includes('-T')) {
+  console.log('# Test skipped');
+} else {
+  // Test
+  console.log('# Testing definitions');
+  childProcess.execSync('yarn format-test', { stdio: 'ignore' });
+  childProcess.execSync('yarn lint-test', { stdio: 'inherit' });
+  childProcess.execSync('yarn test', { stdio: 'ignore' });
+}
 
 // Copy
 console.log('# Emitting definitions to output directory');
