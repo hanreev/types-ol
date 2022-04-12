@@ -27,7 +27,14 @@ export type TWebGLTileLayerObjectEventTypes =
     | 'change:visible'
     | 'change:zIndex'
     | 'propertychange';
-export type TWebGLTileLayerRenderEventTypes = 'postrender' | 'prerender';
+export type TWebGLTileLayerRenderEventTypes =
+    | 'loadend'
+    | 'loadstart'
+    | 'postcompose'
+    | 'postrender'
+    | 'precompose'
+    | 'prerender'
+    | 'rendercomplete';
 export interface Options {
     style?: Style | undefined;
     className?: string | undefined;

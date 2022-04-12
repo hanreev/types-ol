@@ -155,7 +155,7 @@ index 662ec3f6e..ace38ded0 100644
   */
  class WebGLPointsLayer extends Layer {
 diff --git a/src/ol/layer/WebGLTile.js b/src/ol/layer/WebGLTile.js
-index 4f7a01ff6..9888f74f4 100644
+index 4e2f04223..a3e86b88f 100644
 --- a/src/ol/layer/WebGLTile.js
 +++ b/src/ol/layer/WebGLTile.js
 @@ -300,7 +300,7 @@ function parseStyle(style, bandCount) {
@@ -164,6 +164,6 @@ index 4f7a01ff6..9888f74f4 100644
   *
 - * @extends BaseTileLayer<SourceType, WebGLTileLayerRenderer>
 + * @augments BaseTileLayer<SourceType,import("../renderer/webgl/TileLayer.js").default>
+  * @fires import("../render/Event.js").RenderEvent
   * @api
   */
- class WebGLTileLayer extends BaseTileLayer {

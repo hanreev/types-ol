@@ -34,6 +34,7 @@ export default abstract class GMLBase extends XMLFeature {
     lineStringMemberParser(node: Element, objectStack: any[]): void;
     pointMemberParser(node: Element, objectStack: any[]): void;
     polygonMemberParser(node: Element, objectStack: any[]): void;
+    readExtentElement(node: Element, objectStack: any[]): Geometry | Extent | undefined;
     readFeatureElement(node: Element, objectStack: any[]): Feature<Geometry>;
     readFeatureElementInternal(node: Element, objectStack: any[], asFeature: boolean): Feature<Geometry> | object;
     readFeaturesFromNode(node: Element, opt_options?: ReadOptions): Feature<Geometry>[];
@@ -41,6 +42,7 @@ export default abstract class GMLBase extends XMLFeature {
     readFlatCoordinatesFromNode(node: Element, objectStack: any[]): number[];
     readFlatLinearRing(node: Element, objectStack: any[]): number[] | undefined;
     readGeometryElement(node: Element, objectStack: any[]): Geometry | Extent | undefined;
+    readGeometryOrExtent(node: Element, objectStack: any[]): Geometry | Extent | undefined;
     readLinearRing(node: Element, objectStack: any[]): LinearRing | undefined;
     readLineString(node: Element, objectStack: any[]): LineString | undefined;
     readMultiLineString(node: Element, objectStack: any[]): MultiLineString | undefined;

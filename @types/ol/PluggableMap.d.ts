@@ -240,7 +240,7 @@ export default class PluggableMap extends BaseObject {
     /**
      * Get the map renderer.
      */
-    getRenderer(): MapRenderer;
+    getRenderer(): MapRenderer | null;
     /**
      * Get the size of this map.
      */

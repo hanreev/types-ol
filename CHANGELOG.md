@@ -1,5 +1,8 @@
 ## Changelog
 
+- **v6.14.0**
+  - Bump version to match OpenLayers
+  - Updated to OpenLayers v6.14.1
 - **v3.13.0**
   - Updated to OpenLayers v6.13.0
 - **v3.12.1**

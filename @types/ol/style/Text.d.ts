@@ -159,7 +159,7 @@ export default class Text {
     /**
      * Set the text.
      */
-    setText(text: string | undefined): void;
+    setText(text: string | string[] | undefined): void;
     /**
      * Set the text alignment.
      */

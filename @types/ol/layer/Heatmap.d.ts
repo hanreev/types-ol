@@ -25,7 +25,14 @@ export type THeatmapObjectEventTypes =
     | 'change:visible'
     | 'change:zIndex'
     | 'propertychange';
-export type THeatmapRenderEventTypes = 'postcompose' | 'postrender' | 'precompose' | 'prerender' | 'rendercomplete';
+export type THeatmapRenderEventTypes =
+    | 'loadend'
+    | 'loadstart'
+    | 'postcompose'
+    | 'postrender'
+    | 'precompose'
+    | 'prerender'
+    | 'rendercomplete';
 export interface Options {
     className?: string | undefined;
     opacity?: number | undefined;

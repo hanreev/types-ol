@@ -23,7 +23,14 @@ export type TGraticuleObjectEventTypes =
     | 'change:visible'
     | 'change:zIndex'
     | 'propertychange';
-export type TGraticuleRenderEventTypes = 'postcompose' | 'postrender' | 'precompose' | 'prerender' | 'rendercomplete';
+export type TGraticuleRenderEventTypes =
+    | 'loadend'
+    | 'loadstart'
+    | 'postcompose'
+    | 'postrender'
+    | 'precompose'
+    | 'prerender'
+    | 'rendercomplete';
 export interface GraticuleLabelDataType {
     geom: Point;
     text: string;
