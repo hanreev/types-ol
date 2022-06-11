@@ -24,6 +24,7 @@ export interface Options {
     size?: Size | undefined;
     imgSize?: Size | undefined;
     src?: string | undefined;
+    declutterMode?: 'declutter' | 'obstacle' | 'none' | undefined;
 }
 export default class Icon extends ImageStyle {
     constructor(opt_options?: Options);

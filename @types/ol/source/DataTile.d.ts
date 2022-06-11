@@ -25,6 +25,7 @@ export interface Options {
     maxZoom?: number | undefined;
     minZoom?: number | undefined;
     tileSize?: number | Size | undefined;
+    gutter?: number | undefined;
     maxResolution?: number | undefined;
     projection?: ProjectionLike | undefined;
     tileGrid?: TileGrid | undefined;
@@ -38,7 +39,18 @@ export interface Options {
 }
 export default class DataTileSource extends TileSource {
     constructor(options: Options);
+    /**
+     * Get the source tile size at the given zoom level.  This may be different than the rendered tile
+     * size.
+     */
+    protected getTileSize(z: number): Size;
     protected setLoader(loader: Loader): void;
+    /**
+     * Set the source tile sizes.  The length of the array is expected to match the number of
+     * levels in the tile grid.
+     */
+    protected setTileSizes(tileSizes: Size[]): void;
+    getGutterForProjection(projection: Projection): number;
     getTile(z: number, x: number, y: number, pixelRatio: number, projection: Projection): DataTile;
     /**
      * Handle tile change events.

@@ -21,6 +21,10 @@ export const PASSIVE_EVENT_LISTENERS: boolean;
  */
 export const SAFARI: boolean;
 /**
+ * https://bugs.webkit.org/show_bug.cgi?id=237906
+ */
+export const SAFARI_BUG_237906: boolean;
+/**
  * User agent string says we are dealing with a WebKit engine.
  */
 export const WEBKIT: boolean;

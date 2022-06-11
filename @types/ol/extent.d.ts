@@ -170,6 +170,13 @@ export function isEmpty(extent: Extent): boolean;
 export function returnOrUpdate(extent: Extent, opt_extent?: Extent): Extent;
 export function scaleFromCenter(extent: Extent, value: number): void;
 /**
+ * Fits the extent to the real world
+ * If the extent does not cross the anti meridian, this will return the extent in an array
+ * If the extent crosses the anti meridian, the extent will be sliced, so each part fits within the
+ * real world
+ */
+export function wrapAndSliceX(extent: Extent, projection: Projection): Extent[];
+/**
  * Modifies the provided extent in-place to be within the real world
  * extent.
  */

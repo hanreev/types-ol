@@ -21,7 +21,6 @@ export interface Options {
     source?: VectorSource<Geometry> | undefined;
 }
 export interface Result {
-    snapped: boolean;
     vertex: Coordinate | null;
     vertexPixel: Pixel | null;
 }
@@ -50,7 +49,7 @@ export default class Snap extends PointerInteraction {
      * the map here.
      */
     setMap(map: PluggableMap): void;
-    snapTo(pixel: Pixel, pixelCoordinate: Coordinate, map: PluggableMap): Result;
+    snapTo(pixel: Pixel, pixelCoordinate: Coordinate, map: PluggableMap): Result | null;
     on(type: TSnapBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
     on(type: TSnapBaseEventTypes[], listener: ListenerFunction<BaseEvent>): EventsKey[];
     once(type: TSnapBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;

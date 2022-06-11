@@ -15,6 +15,7 @@ export interface Options {
     rotation?: number | undefined;
     text?: string | string[] | undefined;
     textAlign?: string | undefined;
+    justify?: string | undefined;
     textBaseline?: string | undefined;
     fill?: Fill | undefined;
     stroke?: Stroke | undefined;
@@ -44,6 +45,10 @@ export default class Text {
      * Get the font name.
      */
     getFont(): string | undefined;
+    /**
+     * Get the justification.
+     */
+    getJustify(): string | undefined;
     /**
      * Get the maximum angle between adjacent characters.
      */
@@ -117,6 +122,10 @@ export default class Text {
      */
     setFont(font: string | undefined): void;
     /**
+     * Set the justification.
+     */
+    setJustify(justify: string | undefined): void;
+    /**
      * Set the maximum angle between adjacent characters.
      */
     setMaxAngle(maxAngle: number): void;
@@ -159,7 +168,7 @@ export default class Text {
     /**
      * Set the text.
      */
-    setText(text: string | undefined): void;
+    setText(text: string | string[] | undefined): void;
     /**
      * Set the text alignment.
      */

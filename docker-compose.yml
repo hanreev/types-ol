@@ -1,0 +1,11 @@
+version: '3'
+services:
+  nodejs:
+    build: '.'
+    image: node-lts-alpine-git
+    environment:
+      ARGS: ${ARGS}
+    volumes:
+      - .:/app
+      - ./openlayers:/app/openlayers
+    command: sh -c "yarn --frozen-lockfile && yarn prepare-npm $ARGS"

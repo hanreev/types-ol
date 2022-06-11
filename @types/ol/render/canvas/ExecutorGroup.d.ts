@@ -34,7 +34,7 @@ export default class ExecutorGroup {
         callback: (p0: FeatureLike, p1: SimpleGeometry, p2: number) => T,
         declutteredFeatures: FeatureLike[],
     ): T | undefined;
-    getClipCoords(transform: Transform): number[];
+    getClipCoords(transform: Transform): number[] | null;
     hasExecutors(executors: BuilderType[]): boolean;
     isEmpty(): boolean;
 }

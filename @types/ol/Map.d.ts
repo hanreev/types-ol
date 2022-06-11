@@ -15,7 +15,7 @@ export type TMapObjectEventTypes =
     | 'change:view'
     | 'propertychange';
 export type TMapMapBrowserEventTypes = 'click' | 'dblclick' | 'pointerdrag' | 'pointermove' | 'singleclick';
-export type TMapMapEventTypes = 'moveend' | 'movestart' | 'postrender';
+export type TMapMapEventTypes = 'loadend' | 'loadstart' | 'moveend' | 'movestart' | 'postrender';
 export type TMapRenderEventTypes = 'postcompose' | 'precompose' | 'rendercomplete';
 export default class Map extends PluggableMap {
     constructor(options: MapOptions);

@@ -9,7 +9,6 @@ export interface Options {
     tile: TileType;
     grid: TileGrid;
     helper: WebGLHelper;
-    tilePixelRatio?: number | undefined;
     gutter?: number | undefined;
 }
 export type TileType = DataTile | ImageTile | ReprojTile;
@@ -18,6 +17,6 @@ export default class TileTexture extends Target {
     /**
      * Get data for a pixel.  If the tile is not loaded, null is returned.
      */
-    getPixelData(col: number, row: number): Data | null;
+    getPixelData(renderCol: number, renderRow: number): Data | null;
     setTile(tile: TileType): void;
 }

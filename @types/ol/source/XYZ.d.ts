@@ -30,6 +30,7 @@ export interface Options {
     tileLoadFunction?: LoadFunction | undefined;
     tilePixelRatio?: number | undefined;
     tileSize?: number | Size | undefined;
+    gutter?: number | undefined;
     tileUrlFunction?: UrlFunction | undefined;
     url?: string | undefined;
     urls?: string[] | undefined;
@@ -39,6 +40,7 @@ export interface Options {
 }
 export default class XYZ extends TileImage {
     constructor(opt_options?: Options);
+    getGutter(): number;
     on(type: TXYZBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
     on(type: TXYZBaseEventTypes[], listener: ListenerFunction<BaseEvent>): EventsKey[];
     once(type: TXYZBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;

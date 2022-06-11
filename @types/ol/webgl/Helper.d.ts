@@ -69,6 +69,14 @@ export enum ShaderType {
 export default class WebGLHelper extends Disposable {
     constructor(opt_options?: Options);
     /**
+     * Sets the default matrix uniforms for a given frame state. This is called internally in prepareDraw.
+     */
+    applyFrameState(frameState: FrameState): void;
+    /**
+     * Sets the custom uniforms based on what was given in the constructor. This is called internally in prepareDraw.
+     */
+    applyUniforms(frameState: FrameState): void;
+    /**
      * Just bind the buffer if it's in the cache. Otherwise create
      * the WebGL buffer, bind it, populate it, and add an entry to
      * the cache.

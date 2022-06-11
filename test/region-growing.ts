@@ -5,7 +5,7 @@ import { fromLonLat } from 'ol/proj';
 import BingMaps from 'ol/source/BingMaps';
 import RasterSource, { RasterOperationType } from 'ol/source/Raster';
 
-function growRegion(inputs: number[][] | ImageData[], data: any) {
+function growRegion(inputs: number[][] | ImageData[], data: any): ImageData {
     const image = inputs[0] as ImageData;
     let seed = data.pixel;
     const delta = parseInt(data.delta, 10);
@@ -54,7 +54,7 @@ function growRegion(inputs: number[][] | ImageData[], data: any) {
         }
         edge = newedge;
     }
-    return { data: outputData, width, height };
+    return { colorSpace: 'srgb', data: outputData, width, height };
 }
 
 function next4Edges(edge: any[]) {

@@ -21,6 +21,7 @@ export interface Options {
     rotation?: number | undefined;
     rotateWithView?: boolean | undefined;
     scale?: number | Size | undefined;
+    declutterMode?: 'declutter' | 'obstacle' | 'none' | undefined;
 }
 export interface RenderOptions {
     strokeStyle?: ColorLike | undefined;

@@ -54,6 +54,7 @@ export interface StrokeState {
 export interface TextState {
     font: string;
     textAlign?: string | undefined;
+    justify?: string | undefined;
     textBaseline: string;
     placement?: string | undefined;
     maxAngle?: number | undefined;

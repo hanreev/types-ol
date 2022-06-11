@@ -47,8 +47,9 @@ export interface Options {
     interpolate?: boolean | undefined;
 }
 export interface SourceInfo {
-    url: string;
+    url?: string | undefined;
     overviews?: string[] | undefined;
+    blob?: Blob | undefined;
     min?: number | undefined;
     max?: number | undefined;
     nodata?: number | undefined;

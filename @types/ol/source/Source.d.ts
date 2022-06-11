@@ -34,7 +34,7 @@ export interface Options {
 }
 export default abstract class Source extends BaseObject {
     constructor(options: Options);
-    protected projection: Projection;
+    protected projection: Projection | null;
     protected viewRejector: () => void;
     protected viewResolver: () => void;
     /**
@@ -46,7 +46,7 @@ export default abstract class Source extends BaseObject {
     /**
      * Get the projection of the source.
      */
-    getProjection(): Projection;
+    getProjection(): Projection | null;
     abstract getResolutions(): number[] | null;
     /**
      * Get the state of the source, see {@link module:ol/source/State~State} for possible states.

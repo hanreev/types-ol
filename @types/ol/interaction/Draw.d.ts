@@ -8,6 +8,7 @@ import { EventsKey, ListenerFunction } from '../events';
 import BaseEvent from '../events/Event';
 import { Condition } from '../events/condition';
 import Geometry from '../geom/Geometry';
+import GeometryLayout from '../geom/GeometryLayout';
 import GeometryType from '../geom/GeometryType';
 import LineString from '../geom/LineString';
 import SimpleGeometry from '../geom/SimpleGeometry';
@@ -49,6 +50,7 @@ export interface Options {
     freehand?: boolean | undefined;
     freehandCondition?: Condition | undefined;
     wrapX?: boolean | undefined;
+    geometryLayout?: GeometryLayout | undefined;
 }
 /**
  * Coordinate type when drawing points.
