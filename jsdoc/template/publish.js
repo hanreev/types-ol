@@ -946,7 +946,8 @@ function getGenericType(longname, _module, includeBracket = true, includeType = 
       if (type) {
         if (includeType) {
           const _type = type.replace(/<.+>/, '');
-          type = `${gType.name} extends ${_type}`;
+          type = gType.name;
+          if (_type != 'any') type += ` extends ${_type}`;
           if (includeDefault) type += ` = ${_type}`;
         }
         return type;

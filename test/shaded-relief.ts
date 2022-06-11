@@ -4,7 +4,7 @@ import { Image as ImageLayer, Tile as TileLayer } from 'ol/layer';
 import { OSM, Raster, XYZ } from 'ol/source';
 import { Operation, RasterOperationType } from 'ol/source/Raster';
 
-const shade: Operation = (inputs: number[][] | ImageData[], data: any) => {
+const shade: Operation = (inputs: number[][] | ImageData[], data: any): ImageData => {
     const elevationImage = inputs[0] as ImageData;
     const width = elevationImage.width;
     const height = elevationImage.height;
@@ -97,7 +97,7 @@ const shade: Operation = (inputs: number[][] | ImageData[], data: any) => {
         }
     }
 
-    return { data: shadeData, width, height };
+    return { colorSpace: 'srgb', data: shadeData, width, height };
 };
 
 const elevation = new XYZ({
