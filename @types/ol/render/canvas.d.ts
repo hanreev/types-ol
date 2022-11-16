@@ -3,9 +3,11 @@ import { ColorLike } from '../colorlike';
 import { Size } from '../size';
 import Fill from '../style/Fill';
 import Stroke from '../style/Stroke';
+import { TextJustify, TextPlacement } from '../style/Text';
 import { Transform } from '../transform';
 import { ReplayImageOrLabelArgs } from './canvas/Executor';
 
+export type BuilderType = 'Circle' | 'Image' | 'LineString' | 'Polygon' | 'Text' | 'Default';
 export type DeclutterImageWithText = Record<number, ReplayImageOrLabelArgs>;
 export interface FillState {
     fillStyle: ColorLike;
@@ -53,10 +55,10 @@ export interface StrokeState {
 }
 export interface TextState {
     font: string;
-    textAlign?: string | undefined;
-    justify?: string | undefined;
-    textBaseline: string;
-    placement?: string | undefined;
+    textAlign?: CanvasTextAlign | undefined;
+    justify?: TextJustify | undefined;
+    textBaseline: CanvasTextBaseline;
+    placement?: TextPlacement | undefined;
     maxAngle?: number | undefined;
     overflow?: boolean | undefined;
     backgroundFill?: Fill | undefined;
@@ -75,14 +77,8 @@ export const defaultLineWidth: number;
 export const defaultMiterLimit: number;
 export const defaultPadding: number[];
 export const defaultStrokeStyle: ColorLike;
-export const defaultTextAlign: string;
-export const defaultTextBaseline: string;
-/**
- * The label cache for text rendering. To change the default cache size of 2048
- * entries, use {@link module:ol/structs/LRUCache~LRUCache#setSize cache.setSize()}.
- * Deprecated - there is no label cache any more.
- */
-export const labelCache: any;
+export const defaultTextAlign: CanvasTextAlign;
+export const defaultTextBaseline: CanvasTextBaseline;
 /**
  * Clears the label cache when a font becomes available.
  */

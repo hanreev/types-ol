@@ -1,11 +1,11 @@
 import { Coordinate } from '../coordinate';
 import { Extent } from '../extent';
 import TileGrid from '../tilegrid/TileGrid';
-import Units from './Units';
+import { Units } from './Units';
 
 export interface Options {
     code: string;
-    units?: Units | string | undefined;
+    units?: Units | undefined;
     extent?: Extent | undefined;
     axisOrientation?: string | undefined;
     global?: boolean | undefined;

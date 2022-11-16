@@ -4,8 +4,7 @@ import { EventsKey, ListenerFunction } from '../events';
 import BaseEvent from '../events/Event';
 import { Extent } from '../extent';
 import Circle from './Circle';
-import GeometryLayout from './GeometryLayout';
-import GeometryType from './GeometryType';
+import { GeometryLayout, Type } from './Geometry';
 import LinearRing from './LinearRing';
 import Point from './Point';
 import SimpleGeometry from './SimpleGeometry';
@@ -13,7 +12,7 @@ import SimpleGeometry from './SimpleGeometry';
 export type TPolygonBaseEventTypes = 'change' | 'error';
 export type TPolygonObjectEventTypes = 'propertychange';
 export default class Polygon extends SimpleGeometry {
-    constructor(coordinates: Coordinate[][] | number[], opt_layout?: GeometryLayout, opt_ends?: number[]);
+    constructor(coordinates: Coordinate[][] | number[], layout?: GeometryLayout, ends?: number[]);
     protected getSimplifiedGeometryInternal(squaredTolerance: number): Polygon;
     /**
      * Append the passed linear ring to this polygon.
@@ -33,7 +32,7 @@ export default class Polygon extends SimpleGeometry {
      * Get the coordinate array for this geometry.  This array has the structure
      * of a GeoJSON coordinate array for polygons.
      */
-    getCoordinates(opt_right?: boolean): Coordinate[][];
+    getCoordinates(right?: boolean): Coordinate[][];
     getEnds(): number[];
     getFlatInteriorPoint(): number[];
     /**
@@ -60,7 +59,7 @@ export default class Polygon extends SimpleGeometry {
     /**
      * Get the type of this geometry.
      */
-    getType(): GeometryType;
+    getType(): Type;
     /**
      * Test if the geometry and the passed extent intersect.
      */
@@ -68,7 +67,7 @@ export default class Polygon extends SimpleGeometry {
     /**
      * Set the coordinates of the polygon.
      */
-    setCoordinates(coordinates: Coordinate[][], opt_layout?: GeometryLayout): void;
+    setCoordinates(coordinates: Coordinate[][], layout?: GeometryLayout): void;
     on(type: TPolygonBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
     on(type: TPolygonBaseEventTypes[], listener: ListenerFunction<BaseEvent>): EventsKey[];
     once(type: TPolygonBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
@@ -83,11 +82,11 @@ export default class Polygon extends SimpleGeometry {
 /**
  * Create an approximation of a circle on the surface of a sphere.
  */
-export function circular(center: Coordinate, radius: number, opt_n?: number, opt_sphereRadius?: number): Polygon;
+export function circular(center: Coordinate, radius: number, n?: number, sphereRadius?: number): Polygon;
 /**
  * Create a regular polygon from a circle.
  */
-export function fromCircle(circle: Circle, opt_sides?: number, opt_angle?: number): Polygon;
+export function fromCircle(circle: Circle, sides?: number, angle?: number): Polygon;
 /**
  * Create a polygon from an extent. The layout used is XY.
  */
@@ -95,4 +94,4 @@ export function fromExtent(extent: Extent): Polygon;
 /**
  * Modify the coordinates of a polygon to make it a regular polygon.
  */
-export function makeRegular(polygon: Polygon, center: Coordinate, radius: number, opt_angle?: number): void;
+export function makeRegular(polygon: Polygon, center: Coordinate, radius: number, angle?: number): void;

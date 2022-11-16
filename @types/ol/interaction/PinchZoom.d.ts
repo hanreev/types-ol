@@ -10,7 +10,7 @@ export interface Options {
     duration?: number | undefined;
 }
 export default class PinchZoom extends PointerInteraction {
-    constructor(opt_options?: Options);
+    constructor(options?: Options);
     /**
      * Handle pointer down events.
      */

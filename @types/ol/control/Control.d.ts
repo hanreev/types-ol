@@ -1,6 +1,6 @@
+import Map from '../Map';
 import MapEvent from '../MapEvent';
 import BaseObject, { ObjectEvent } from '../Object';
-import PluggableMap from '../PluggableMap';
 import { EventsKey, ListenerFunction } from '../events';
 import BaseEvent from '../events/Event';
 
@@ -22,7 +22,7 @@ export default class Control extends BaseObject {
     /**
      * Get the map associated with this control.
      */
-    getMap(): PluggableMap | null;
+    getMap(): Map | null;
     /**
      * Renders the control.
      */
@@ -33,7 +33,7 @@ export default class Control extends BaseObject {
      * Subclasses may set up event handlers to get notified about changes to
      * the map here.
      */
-    setMap(map: PluggableMap | null): void;
+    setMap(map: Map | null): void;
     /**
      * This function is used to set a target element for the control. It has no
      * effect if it is called after the control has been added to the map (i.e.

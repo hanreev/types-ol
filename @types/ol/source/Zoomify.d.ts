@@ -20,19 +20,19 @@ export interface Options {
     attributions?: AttributionLike | undefined;
     cacheSize?: number | undefined;
     crossOrigin?: null | string | undefined;
-    imageSmoothing?: boolean | undefined;
     interpolate?: boolean | undefined;
     projection?: ProjectionLike | undefined;
     tilePixelRatio?: number | undefined;
     reprojectionErrorThreshold?: number | undefined;
     url: string;
-    tierSizeCalculation?: string | undefined;
+    tierSizeCalculation?: TierSizeCalculation | undefined;
     size: Size;
     extent?: Extent | undefined;
     transition?: number | undefined;
     tileSize?: number | undefined;
     zDirection?: number | NearestDirectionFunction | undefined;
 }
+export type TierSizeCalculation = 'default' | 'truncated';
 export class CustomTile extends ImageTile {
     constructor(
         tileSize: Size,
@@ -41,7 +41,7 @@ export class CustomTile extends ImageTile {
         src: string,
         crossOrigin: string,
         tileLoadFunction: LoadFunction,
-        opt_options?: Options_1,
+        options?: Options_1,
     );
     /**
      * Get the image element for this tile.
@@ -49,7 +49,7 @@ export class CustomTile extends ImageTile {
     getImage(): HTMLCanvasElement | HTMLImageElement | HTMLVideoElement;
 }
 export default class Zoomify extends TileImage {
-    constructor(opt_options: Options);
+    constructor(options: Options);
     on(type: TZoomifyBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
     on(type: TZoomifyBaseEventTypes[], listener: ListenerFunction<BaseEvent>): EventsKey[];
     once(type: TZoomifyBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;

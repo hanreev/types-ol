@@ -11,7 +11,7 @@ export interface Options {
     matrixIds: string[];
     sizes?: Size[] | undefined;
     tileSize?: number | Size | undefined;
-    tileSizes?: Size[] | undefined;
+    tileSizes?: (number | Size)[] | undefined;
 }
 export default class WMTSTileGrid extends TileGrid {
     constructor(options: Options);
@@ -25,8 +25,4 @@ export default class WMTSTileGrid extends TileGrid {
  * Create a tile grid from a WMTS capabilities matrix set and an
  * optional TileMatrixSetLimits.
  */
-export function createFromCapabilitiesMatrixSet(
-    matrixSet: any,
-    opt_extent?: Extent,
-    opt_matrixLimits?: object[],
-): WMTSTileGrid;
+export function createFromCapabilitiesMatrixSet(matrixSet: any, extent?: Extent, matrixLimits?: object[]): WMTSTileGrid;

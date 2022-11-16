@@ -1,6 +1,6 @@
 import Feature, { FeatureLike } from '../Feature';
+import Map from '../Map';
 import { ObjectEvent } from '../Object';
-import PluggableMap from '../PluggableMap';
 import { EventsKey, ListenerFunction } from '../events';
 import BaseEvent from '../events/Event';
 import FeatureFormat from '../format/Feature';
@@ -23,7 +23,7 @@ declare enum DragAndDropEventType {
     ADD_FEATURES = 'addfeatures',
 }
 export default class DragAndDrop extends Interaction {
-    constructor(opt_options?: Options);
+    constructor(options?: Options);
     handleDrop(event: DragEvent): void;
     handleStop(event: DragEvent): void;
     /**
@@ -35,7 +35,7 @@ export default class DragAndDrop extends Interaction {
      * Subclasses may set up event handlers to get notified about changes to
      * the map here.
      */
-    setMap(map: PluggableMap): void;
+    setMap(map: Map): void;
     on(type: TDragAndDropDragAndDropEventTypes, listener: ListenerFunction<DragAndDropEvent>): EventsKey;
     on(type: TDragAndDropDragAndDropEventTypes[], listener: ListenerFunction<DragAndDropEvent>): EventsKey[];
     once(type: TDragAndDropDragAndDropEventTypes, listener: ListenerFunction<DragAndDropEvent>): EventsKey;
@@ -59,12 +59,7 @@ export default class DragAndDrop extends Interaction {
     ): void;
 }
 export class DragAndDropEvent extends BaseEvent {
-    constructor(
-        type: DragAndDropEventType,
-        file: File,
-        opt_features?: Feature<Geometry>[],
-        opt_projection?: Projection,
-    );
+    constructor(type: DragAndDropEventType, file: File, features?: Feature<Geometry>[], projection?: Projection);
     /**
      * The features parsed from dropped data.
      */

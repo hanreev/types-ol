@@ -13,16 +13,10 @@ export type NearestDirectionFunction = (p0: number, p1: number, p2: number) => n
  * Performs a binary search on the provided sorted list and returns the index of the item if found. If it can't be found it'll return -1.
  * https://github.com/darkskyapp/binary-search
  */
-export function binarySearch(haystack: any[], needle: any, opt_comparator?: () => void): number;
+export function binarySearch(haystack: any[], needle: any, comparator?: () => void): number;
 export function equals(arr1: any[] | Uint8ClampedArray, arr2: any[] | Uint8ClampedArray): boolean;
 export function extend<VALUE>(arr: VALUE[], data: VALUE[] | VALUE): void;
-export function find<VALUE>(arr: VALUE[], func: (p0: VALUE, p1: number, p2: any) => boolean): VALUE | null;
-export function findIndex(arr: any[], func: () => void): number;
-/**
- * Whether the array contains the given object.
- */
-export function includes(arr: any[], obj: any): boolean;
-export function isSorted(arr: any[], opt_func?: () => void, opt_strict?: boolean): boolean;
+export function isSorted(arr: any[], func?: () => void, strict?: boolean): boolean;
 export function linearFindNearest(arr: number[], target: number, direction: number | NearestDirectionFunction): number;
 /**
  * Compare function for array sort that is safe for numbers.

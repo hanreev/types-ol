@@ -2,11 +2,10 @@ import { Feature, MapBrowserEvent } from 'ol';
 import Map from 'ol/Map';
 import { unByKey } from 'ol/Observable';
 import Overlay from 'ol/Overlay';
-import OverlayPositioning from 'ol/OverlayPositioning';
 import View from 'ol/View';
 import { EventsKey } from 'ol/events';
 import { LineString, Polygon } from 'ol/geom';
-import GeometryType from 'ol/geom/GeometryType';
+import { Type as GeometryType } from 'ol/geom/Geometry';
 import Draw from 'ol/interaction/Draw';
 import { Tile as TileLayer, Vector as VectorLayer } from 'ol/layer';
 import { OSM, Vector as VectorSource } from 'ol/source';
@@ -172,7 +171,7 @@ function createHelpTooltip() {
     helpTooltip = new Overlay({
         element: helpTooltipElement,
         offset: [15, 0],
-        positioning: OverlayPositioning.CENTER_LEFT,
+        positioning: 'center-left',
     });
     map.addOverlay(helpTooltip);
 }
@@ -185,7 +184,7 @@ function createMeasureTooltip() {
     measureTooltip = new Overlay({
         element: measureTooltipElement,
         offset: [0, -15],
-        positioning: OverlayPositioning.BOTTOM_CENTER,
+        positioning: 'bottom-center',
     });
     map.addOverlay(measureTooltip);
 }

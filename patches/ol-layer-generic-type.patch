@@ -1,5 +1,5 @@
 diff --git a/src/ol/layer/BaseImage.js b/src/ol/layer/BaseImage.js
-index e2eeec168..129204ed0 100644
+index e6ddfcc0c..880b8c38e 100644
 --- a/src/ol/layer/BaseImage.js
 +++ b/src/ol/layer/BaseImage.js
 @@ -41,7 +41,7 @@ import Layer from './Layer.js';
@@ -12,10 +12,10 @@ index e2eeec168..129204ed0 100644
   */
  class BaseImageLayer extends Layer {
 diff --git a/src/ol/layer/BaseTile.js b/src/ol/layer/BaseTile.js
-index b41f3c9be..2c80281c3 100644
+index d0d68cafd..2e7d1ac34 100644
 --- a/src/ol/layer/BaseTile.js
 +++ b/src/ol/layer/BaseTile.js
-@@ -56,7 +56,7 @@ import {assign} from '../obj.js';
+@@ -55,7 +55,7 @@ import TileProperty from './TileProperty.js';
   *
   * @template {import("../source/Tile.js").default} TileSourceType
   * @template {import("../renderer/Layer.js").default} RendererType
@@ -25,7 +25,7 @@ index b41f3c9be..2c80281c3 100644
   */
  class BaseTileLayer extends Layer {
 diff --git a/src/ol/layer/BaseVector.js b/src/ol/layer/BaseVector.js
-index 682fc2dfd..0a1a293fc 100644
+index 375bde86e..346206fed 100644
 --- a/src/ol/layer/BaseVector.js
 +++ b/src/ol/layer/BaseVector.js
 @@ -81,7 +81,7 @@ const Property = {
@@ -38,10 +38,10 @@ index 682fc2dfd..0a1a293fc 100644
   */
  class BaseVectorLayer extends Layer {
 diff --git a/src/ol/layer/Graticule.js b/src/ol/layer/Graticule.js
-index d22c51851..fe86054ea 100644
+index 57b2cd023..a190ca5ab 100644
 --- a/src/ol/layer/Graticule.js
 +++ b/src/ol/layer/Graticule.js
-@@ -161,7 +161,7 @@ const INTERVALS = [
+@@ -178,7 +178,7 @@ const INTERVALS = [
   * Note that the view projection must define both extent and worldExtent.
   *
   * @fires import("../render/Event.js").RenderEvent
@@ -51,10 +51,10 @@ index d22c51851..fe86054ea 100644
   */
  class Graticule extends VectorLayer {
 diff --git a/src/ol/layer/Heatmap.js b/src/ol/layer/Heatmap.js
-index 5d2fb598c..2df12e2a8 100644
+index 03a6f125e..c79071c80 100644
 --- a/src/ol/layer/Heatmap.js
 +++ b/src/ol/layer/Heatmap.js
-@@ -61,7 +61,7 @@ const DEFAULT_GRADIENT = ['#00f', '#0ff', '#0f0', '#ff0', '#f00'];
+@@ -60,7 +60,7 @@ const DEFAULT_GRADIENT = ['#00f', '#0ff', '#0f0', '#ff0', '#f00'];
   * options means that `title` is observable, and has get/set accessors.
   *
   * @fires import("../render/Event.js").RenderEvent
@@ -64,7 +64,7 @@ index 5d2fb598c..2df12e2a8 100644
   */
  class Heatmap extends BaseVector {
 diff --git a/src/ol/layer/Image.js b/src/ol/layer/Image.js
-index 5b0828e9a..9a6194e7c 100644
+index 3f7bf2499..83e0fc3af 100644
 --- a/src/ol/layer/Image.js
 +++ b/src/ol/layer/Image.js
 @@ -13,7 +13,7 @@ import CanvasImageLayerRenderer from '../renderer/canvas/ImageLayer.js';
@@ -77,11 +77,11 @@ index 5b0828e9a..9a6194e7c 100644
   */
  class ImageLayer extends BaseImageLayer {
 diff --git a/src/ol/layer/MapboxVector.js b/src/ol/layer/MapboxVector.js
-index 324d2c079..48ff5f92d 100644
+index 5c1d26d4d..67e0e33d2 100644
 --- a/src/ol/layer/MapboxVector.js
 +++ b/src/ol/layer/MapboxVector.js
-@@ -267,7 +267,7 @@ const SourceType = {
-  * will receive an object with an `error` property that can be used to diagnose the problem.
+@@ -134,7 +134,7 @@ class ErrorEvent extends BaseEvent {
+  * [ol-mapbox-style](https://github.com/openlayers/ol-mapbox-style) library to be loaded as well.
   *
   * @param {Options} options Options.
 - * @extends {VectorTileLayer}
@@ -90,7 +90,7 @@ index 324d2c079..48ff5f92d 100644
   * @api
   */
 diff --git a/src/ol/layer/Tile.js b/src/ol/layer/Tile.js
-index e6460349e..29bee44d6 100644
+index da459d6a1..502d71853 100644
 --- a/src/ol/layer/Tile.js
 +++ b/src/ol/layer/Tile.js
 @@ -13,7 +13,7 @@ import CanvasTileLayerRenderer from '../renderer/canvas/TileLayer.js';
@@ -103,7 +103,7 @@ index e6460349e..29bee44d6 100644
   */
  class TileLayer extends BaseTileLayer {
 diff --git a/src/ol/layer/Vector.js b/src/ol/layer/Vector.js
-index c2c2001eb..ca5b881a6 100644
+index 557362074..13084d52b 100644
 --- a/src/ol/layer/Vector.js
 +++ b/src/ol/layer/Vector.js
 @@ -16,7 +16,7 @@ import CanvasVectorLayerRenderer from '../renderer/canvas/VectorLayer.js';
@@ -116,10 +116,10 @@ index c2c2001eb..ca5b881a6 100644
   */
  class VectorLayer extends BaseVectorLayer {
 diff --git a/src/ol/layer/VectorImage.js b/src/ol/layer/VectorImage.js
-index 3487562c5..0dedcd28a 100644
+index c69564b66..466da655a 100644
 --- a/src/ol/layer/VectorImage.js
 +++ b/src/ol/layer/VectorImage.js
-@@ -59,7 +59,7 @@ import {assign} from '../obj.js';
+@@ -58,7 +58,7 @@ import CanvasVectorImageLayerRenderer from '../renderer/canvas/VectorImageLayer.
   * options means that `title` is observable, and has get/set accessors.
   *
   * @template {import("../source/Vector.js").default} VectorSourceType
@@ -129,23 +129,23 @@ index 3487562c5..0dedcd28a 100644
   */
  class VectorImageLayer extends BaseVectorLayer {
 diff --git a/src/ol/layer/VectorTile.js b/src/ol/layer/VectorTile.js
-index 71ef266ad..5370d9697 100644
+index f98efc039..42855c202 100644
 --- a/src/ol/layer/VectorTile.js
 +++ b/src/ol/layer/VectorTile.js
-@@ -92,7 +92,7 @@ import {assign} from '../obj.js';
+@@ -94,7 +94,7 @@ import {assert} from '../asserts.js';
   * options means that `title` is observable, and has get/set accessors.
   *
-  * @param {Options} [opt_options] Options.
+  * @param {Options} [options] Options.
 - * @extends {BaseVectorLayer<import("../source/VectorTile.js").default, CanvasVectorTileLayerRenderer>}
 + * @augments BaseVectorLayer<import("../source/VectorTile.js").default,import("../renderer/canvas/VectorTileLayer.js").default>
   * @api
   */
  class VectorTileLayer extends BaseVectorLayer {
 diff --git a/src/ol/layer/WebGLPoints.js b/src/ol/layer/WebGLPoints.js
-index 662ec3f6e..ace38ded0 100644
+index 721d761bc..6db1ea007 100644
 --- a/src/ol/layer/WebGLPoints.js
 +++ b/src/ol/layer/WebGLPoints.js
-@@ -69,7 +69,7 @@ import {parseLiteralStyle} from '../webgl/ShaderBuilder.js';
+@@ -68,7 +68,7 @@ import {parseLiteralStyle} from '../webgl/ShaderBuilder.js';
   * options means that `title` is observable, and has get/set accessors.
   *
   * @template {import("../source/Vector.js").default<import("../geom/Point.js").default>} VectorSourceType
@@ -155,10 +155,10 @@ index 662ec3f6e..ace38ded0 100644
   */
  class WebGLPointsLayer extends Layer {
 diff --git a/src/ol/layer/WebGLTile.js b/src/ol/layer/WebGLTile.js
-index 4e2f04223..a3e86b88f 100644
+index 2cf948e0e..efb30c619 100644
 --- a/src/ol/layer/WebGLTile.js
 +++ b/src/ol/layer/WebGLTile.js
-@@ -300,7 +300,7 @@ function parseStyle(style, bandCount) {
+@@ -298,7 +298,7 @@ function parseStyle(style, bandCount) {
   * property on the layer object; for example, setting `title: 'My Title'` in the
   * options means that `title` is observable, and has get/set accessors.
   *

@@ -1,9 +1,7 @@
 import Geolocation from 'ol/Geolocation';
 import Map from 'ol/Map';
 import Overlay from 'ol/Overlay';
-import OverlayPositioning from 'ol/OverlayPositioning';
 import View from 'ol/View';
-import GeometryLayout from 'ol/geom/GeometryLayout';
 import LineString from 'ol/geom/LineString';
 import TileLayer from 'ol/layer/Tile';
 import { fromLonLat } from 'ol/proj';
@@ -29,7 +27,7 @@ const map = new Map({
 // Geolocation marker
 const markerEl = document.getElementById('geolocation_marker') as HTMLImageElement;
 const marker = new Overlay({
-    positioning: OverlayPositioning.CENTER_CENTER,
+    positioning: 'center-center',
     element: markerEl,
     stopEvent: false,
 });
@@ -38,7 +36,7 @@ map.addOverlay(marker);
 // LineString to store the different geolocation positions. This LineString
 // is time aware.
 // The Z dimension is actually used to store the rotation (heading).
-const positions = new LineString([], GeometryLayout.XYZM);
+const positions = new LineString([], 'XYZM');
 
 // Geolocation Control
 const geolocation = new Geolocation({

@@ -16,7 +16,6 @@ export interface Options {
     crossOrigin?: null | string | undefined;
     hidpi?: boolean | undefined;
     imageLoadFunction?: LoadFunction | undefined;
-    imageSmoothing?: boolean | undefined;
     interpolate?: boolean | undefined;
     params?: Record<string, any> | undefined;
     projection?: ProjectionLike | undefined;
@@ -25,7 +24,7 @@ export interface Options {
     url?: string | undefined;
 }
 export default class ImageArcGISRest extends ImageSource {
-    constructor(opt_options?: Options);
+    constructor(options?: Options);
     getImageInternal(extent: Extent, resolution: number, pixelRatio: number, projection: Projection): ImageWrapper;
     /**
      * Return the image load function of the source.

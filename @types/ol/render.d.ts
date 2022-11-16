@@ -40,11 +40,14 @@ export function getVectorContext(event: RenderEvent): CanvasImmediateRenderer;
  * import Fill from 'ol/style/Fill';
  * import Polygon from 'ol/geom/Polygon';
  *
- * var canvas = document.createElement('canvas');
- * var render = toContext(canvas.getContext('2d'),
- *     { size: [100, 100] });
+ * const canvas = document.createElement('canvas');
+ * const render = toContext(
+ *     canvas.getContext('2d'),
+ *     {size: [100, 100]}
+ * );
  * render.setFillStrokeStyle(new Fill({ color: blue }));
  * render.drawPolygon(
- *     new Polygon([[[0, 0], [100, 100], [100, 0], [0, 0]]]));</code>
+ *     new Polygon([[[0, 0], [100, 100], [100, 0], [0, 0]]])
+ * );</code>
  */
-export function toContext(context: CanvasRenderingContext2D, opt_options?: ToContextOptions): CanvasImmediateRenderer;
+export function toContext(context: CanvasRenderingContext2D, options?: ToContextOptions): CanvasImmediateRenderer;

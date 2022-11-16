@@ -39,7 +39,7 @@ export type MultiGeoTIFF = MultiGeoTIFF_1;
 export interface Options {
     sources: SourceInfo[];
     sourceOptions?: GeoTIFFSourceOptions | undefined;
-    convertToRGB?: boolean | undefined;
+    convertToRGB?: true | false | 'auto' | undefined;
     normalize?: boolean | undefined;
     opaque?: boolean | undefined;
     transition?: number | undefined;

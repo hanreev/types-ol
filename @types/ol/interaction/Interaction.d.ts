@@ -1,6 +1,6 @@
+import Map from '../Map';
 import MapBrowserEvent from '../MapBrowserEvent';
 import BaseObject, { ObjectEvent } from '../Object';
-import PluggableMap from '../PluggableMap';
 import View from '../View';
 import { Coordinate } from '../coordinate';
 import { EventsKey, ListenerFunction } from '../events';
@@ -15,7 +15,7 @@ export interface InteractionOptions {
     handleEvent: (p0: MapBrowserEvent<UIEvent>) => boolean;
 }
 export default class Interaction extends BaseObject {
-    constructor(opt_options?: InteractionOptions);
+    constructor(options?: InteractionOptions);
     /**
      * Return whether the interaction is currently active.
      */
@@ -23,7 +23,7 @@ export default class Interaction extends BaseObject {
     /**
      * Get the map associated with this interaction.
      */
-    getMap(): PluggableMap | null;
+    getMap(): Map | null;
     /**
      * Handles the {@link module:ol/MapBrowserEvent~MapBrowserEvent map browser event}.
      */
@@ -37,7 +37,7 @@ export default class Interaction extends BaseObject {
      * Subclasses may set up event handlers to get notified about changes to
      * the map here.
      */
-    setMap(map: PluggableMap | null): void;
+    setMap(map: Map | null): void;
     on(type: TInteractionBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
     on(type: TInteractionBaseEventTypes[], listener: ListenerFunction<BaseEvent>): EventsKey[];
     once(type: TInteractionBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
@@ -52,5 +52,5 @@ export default class Interaction extends BaseObject {
         listener: ListenerFunction<ObjectEvent>,
     ): void;
 }
-export function pan(view: View, delta: Coordinate, opt_duration?: number): void;
-export function zoomByDelta(view: View, delta: number, opt_anchor?: Coordinate, opt_duration?: number): void;
+export function pan(view: View, delta: Coordinate, duration?: number): void;
+export function zoomByDelta(view: View, delta: number, anchor?: Coordinate, duration?: number): void;

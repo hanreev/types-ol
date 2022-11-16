@@ -1,20 +1,16 @@
+export interface MetersPerUnitLookup {
+    radians: number;
+    degrees: number;
+    ft: number;
+    m: number;
+    'us-ft': number;
+}
+/**
+ * Projection units.
+ */
+export type Units = 'radians' | 'degrees' | 'ft' | 'm' | 'pixels' | 'tile-pixels' | 'us-ft';
 /**
  * Meters per unit lookup table.
  */
-export const METERS_PER_UNIT: Record<Units, number>;
-/**
- * Projection units: 'degrees', 'ft', 'm', 'pixels', 'tile-pixels' or
- * 'us-ft'.
- */
-declare enum Units {
-    RADIANS = 'radians',
-    DEGREES = 'degrees',
-    FEET = 'ft',
-    METERS = 'm',
-    PIXELS = 'pixels',
-    TILE_PIXELS = 'tile-pixels',
-    USFEET = 'us-ft',
-}
-
-export default Units;
+export const METERS_PER_UNIT: MetersPerUnitLookup;
 export function fromCode(code: number): Units;

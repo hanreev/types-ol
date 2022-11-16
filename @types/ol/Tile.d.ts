@@ -13,10 +13,10 @@ import { TileCoord } from './tilecoord';
  * <code>import TileState from 'ol/TileState';
  *
  * source.setTileLoadFunction(function(tile, src) {
- *   var xhr = new XMLHttpRequest();
+ *   const xhr = new XMLHttpRequest();
  *   xhr.responseType = 'blob';
  *   xhr.addEventListener('loadend', function (evt) {
- *     var data = this.response;
+ *     const data = this.response;
  *     if (data == undefined) {
  *       tile.getImage().src = URL.createObjectURL(data);
  *     } else {
@@ -46,7 +46,7 @@ export interface Options {
  */
 export type UrlFunction = (p0: TileCoord, p1: number, p2: Projection) => string | undefined;
 export default abstract class Tile extends Target {
-    constructor(tileCoord: TileCoord, state: TileState, opt_options?: Options);
+    constructor(tileCoord: TileCoord, state: TileState, options?: Options);
     protected state: TileState;
     protected changed(): void;
     /**

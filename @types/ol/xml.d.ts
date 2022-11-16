@@ -33,13 +33,13 @@ export function isDocument(object: any): boolean;
  */
 export function makeArrayExtender<T>(
     valueReader: (this: T, p0: Node, p1: any[]) => any[] | undefined,
-    opt_this?: T,
+    thisArg?: T,
 ): Parser;
 /**
  * Make an array pusher function for pushing to the array at the top of the
  * object stack.
  */
-export function makeArrayPusher<T>(valueReader: (this: T, p0: Element, p1: any[]) => any, opt_this?: T): Parser;
+export function makeArrayPusher<T>(valueReader: (this: T, p0: Element, p1: any[]) => any, thisArg?: T): Parser;
 /**
  * Create a serializer that calls the provided nodeWriter from
  * {@link module:ol/xml.serialize}. This can be used by the parent writer to have the
@@ -50,7 +50,7 @@ export function makeArrayPusher<T>(valueReader: (this: T, p0: Element, p1: any[]
  */
 export function makeArraySerializer<T, V>(
     nodeWriter: (this: T, p0: Element, p1: V, p2: any[]) => void,
-    opt_this?: T,
+    thisArg?: T,
 ): Serializer;
 /**
  * Create a serializer that appends nodes written by its nodeWriter to its
@@ -59,7 +59,7 @@ export function makeArraySerializer<T, V>(
  */
 export function makeChildAppender<T, V>(
     nodeWriter: (this: T, p0: Node, p1: V, p2: any[]) => void,
-    opt_this?: T,
+    thisArg?: T,
 ): Serializer;
 /**
  * Make an object property pusher function for adding a property to the
@@ -67,37 +67,37 @@ export function makeChildAppender<T, V>(
  */
 export function makeObjectPropertyPusher<T>(
     valueReader: (this: T, p0: Element, p1: any[]) => any,
-    opt_property?: string,
-    opt_this?: T,
+    property?: string,
+    thisArg?: T,
 ): Parser;
 /**
  * Make an object property setter function.
  */
 export function makeObjectPropertySetter<T>(
     valueReader: (this: T, p0: Element, p1: any[]) => any,
-    opt_property?: string,
-    opt_this?: T,
+    property?: string,
+    thisArg?: T,
 ): Parser;
 /**
  * Make an object stack replacer function for replacing the object at the
  * top of the stack.
  */
-export function makeReplacer<T>(valueReader: (this: T, p0: Node, p1: any[]) => any, opt_this?: T): Parser;
+export function makeReplacer<T>(valueReader: (this: T, p0: Node, p1: any[]) => any, thisArg?: T): Parser;
 /**
  * Create an array of values to be used with {@link module:ol/xml.serialize} or
  * {@link module:ol/xml.pushSerializeAndPop}, where orderedKeys has to be provided as
- * opt_key argument.
+ * key argument.
  */
 export function makeSequence(object: Record<string, any>, orderedKeys: string[]): any[];
 /**
- * Create a node factory which can use the opt_keys passed to
+ * Create a node factory which can use the keys passed to
  * {@link module:ol/xml.serialize} or {@link module:ol/xml.pushSerializeAndPop} as node names,
  * or a fixed node name. The namespace of the created nodes can either be fixed,
  * or the parent namespace will be used.
  */
 export function makeSimpleNodeFactory(
-    opt_nodeName?: string,
-    opt_namespaceURI?: string,
+    fixedNodeName?: string,
+    fixedNamespaceURI?: string,
 ): (p0: any, p1: any[], p2?: string) => Node | undefined;
 /**
  * Create a namespaced structure, using the same values for each namespace.
@@ -107,7 +107,7 @@ export function makeSimpleNodeFactory(
 export function makeStructureNS<T>(
     namespaceURIs: string[],
     structure: T,
-    opt_structureNS?: Record<string, T>,
+    structureNS?: Record<string, T>,
 ): Record<string, T>;
 /**
  * Parse an XML string to an XML Document.
@@ -120,7 +120,7 @@ export function parseNode(
     parsersNS: Record<string, Record<string, Parser>>,
     node: Element,
     objectStack: any[],
-    opt_this?: any,
+    thisArg?: any,
 ): void;
 /**
  * Push an object on top of the stack, parse and return the popped object.
@@ -130,7 +130,7 @@ export function pushParseAndPop<T>(
     parsersNS: Record<string, Record<string, Parser>>,
     node: Element,
     objectStack: any[],
-    opt_this?: any,
+    thisArg?: any,
 ): T;
 export function pushSerializeAndPop<O, T>(
     object: O,
@@ -138,8 +138,8 @@ export function pushSerializeAndPop<O, T>(
     nodeFactory: (this: T, p0: any, p1: any[], p2: string | undefined) => Node | undefined,
     values: any[],
     objectStack: any[],
-    opt_keys?: string[],
-    opt_this?: T,
+    keys?: string[],
+    thisArg?: T,
 ): O | undefined;
 /**
  * Register a Document to use when creating nodes for XML serializations. Can be used
@@ -159,6 +159,6 @@ export function serialize<T>(
     nodeFactory: (this: T, p0: any, p1: any[], p2: string | undefined) => Node | undefined,
     values: any[],
     objectStack: any[],
-    opt_keys?: string[],
-    opt_this?: T,
+    keys?: string[],
+    thisArg?: T,
 ): void;

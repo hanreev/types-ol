@@ -1,5 +1,5 @@
+import Map from '../Map';
 import { ObjectEvent } from '../Object';
-import PluggableMap from '../PluggableMap';
 import { EventsKey, ListenerFunction } from '../events';
 import BaseEvent from '../events/Event';
 import Control from './Control';
@@ -22,14 +22,14 @@ declare enum FullScreenEventType {
     LEAVEFULLSCREEN = 'leavefullscreen',
 }
 export default class FullScreen extends Control {
-    constructor(opt_options?: Options);
+    constructor(options?: Options);
     /**
      * Remove the control from its current map and attach it to the new map.
      * Pass null to just remove the control from the current map.
      * Subclasses may set up event handlers to get notified about changes to
      * the map here.
      */
-    setMap(map: PluggableMap | null): void;
+    setMap(map: Map | null): void;
     on(type: TFullScreenBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
     on(type: TFullScreenBaseEventTypes[], listener: ListenerFunction<BaseEvent>): EventsKey[];
     once(type: TFullScreenBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;

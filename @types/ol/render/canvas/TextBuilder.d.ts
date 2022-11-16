@@ -23,5 +23,5 @@ export default class CanvasTextBuilder extends CanvasBuilder {
     constructor(tolerance: number, maxExtent: Extent, resolution: number, pixelRatio: number);
     drawText(geometry: SimpleGeometry | RenderFeature, feature: FeatureLike): void;
     finish(): SerializableInstructions;
-    setTextStyle(textStyle: Text, opt_sharedData?: any): void;
+    setTextStyle(textStyle: Text, sharedData?: any): void;
 }

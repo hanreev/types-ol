@@ -1,34 +1,31 @@
 diff --git a/src/ol/xml.js b/src/ol/xml.js
-index fe4b6884e..b002a2700 100644
+index d589db53d..21089e850 100644
 --- a/src/ol/xml.js
 +++ b/src/ol/xml.js
-@@ -268,7 +268,8 @@ export function makeObjectPropertySetter(valueReader, opt_property, opt_this) {
+@@ -266,7 +266,7 @@ export function makeObjectPropertySetter(valueReader, property, thisArg) {
   * @param {function(this: T, Node, V, Array<*>): void} nodeWriter Node writer.
-  * @param {T} [opt_this] The object to use as `this` in `nodeWriter`.
+  * @param {T} [thisArg] The object to use as `this` in `nodeWriter`.
   * @return {Serializer} Serializer.
 - * @template T, V
-+ * @template T
-+ * @template V
++ * @template T,V
   */
- export function makeChildAppender(nodeWriter, opt_this) {
+ export function makeChildAppender(nodeWriter, thisArg) {
    return function (node, value, objectStack) {
-@@ -296,7 +297,8 @@ export function makeChildAppender(nodeWriter, opt_this) {
+@@ -294,7 +294,7 @@ export function makeChildAppender(nodeWriter, thisArg) {
   * @param {function(this: T, Element, V, Array<*>): void} nodeWriter Node writer.
-  * @param {T} [opt_this] The object to use as `this` in `nodeWriter`.
+  * @param {T} [thisArg] The object to use as `this` in `nodeWriter`.
   * @return {Serializer} Serializer.
 - * @template T, V
-+ * @template T
-+ * @template V
++ * @template T,V
   */
- export function makeArraySerializer(nodeWriter, opt_this) {
+ export function makeArraySerializer(nodeWriter, thisArg) {
    let serializersNS, nodeFactory;
-@@ -520,7 +522,8 @@ export function serialize(
-  * @param {T} [opt_this] The object to use as `this` for the node factory and
+@@ -508,7 +508,7 @@ export function serialize(
+  * @param {T} [thisArg] The object to use as `this` for the node factory and
   *     serializers.
   * @return {O|undefined} Object.
 - * @template O, T
-+ * @template O
-+ * @template T
++ * @template O,T
   */
  export function pushSerializeAndPop(
    object,

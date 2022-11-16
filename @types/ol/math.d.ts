@@ -1,18 +1,4 @@
 /**
- * Return the hyperbolic cosine of a given number. The method will use the
- * native Math.cosh function if it is available, otherwise the hyperbolic
- * cosine will be calculated via the reference implementation of the Mozilla
- * developer network.
- */
-export const cosh: (x: number) => number;
-/**
- * Return the base 2 logarithm of a given number. The method will use the
- * native Math.log2 function if it is available, otherwise the base 2
- * logarithm will be calculated via the reference implementation of the
- * Mozilla developer network.
- */
-export const log2: (x: number) => number;
-/**
  * Rounds a number to the next bigger integer considering only the given number
  * of decimal digits (with rounding on the final digit).
  */

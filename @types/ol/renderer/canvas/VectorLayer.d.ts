@@ -1,5 +1,5 @@
 import Feature from '../../Feature';
-import { FrameState } from '../../PluggableMap';
+import { FrameState } from '../../Map';
 import { Coordinate } from '../../coordinate';
 import { EventsKey, ListenerFunction } from '../../events';
 import BaseEvent from '../../events/Event';
@@ -59,14 +59,14 @@ export default class CanvasVectorLayerRenderer extends CanvasLayerRenderer {
         squaredTolerance: number,
         styles: Style | Style[],
         builderGroup: BuilderGroup,
-        opt_transform?: TransformFunction,
-        opt_declutterBuilderGroup?: BuilderGroup,
+        transform?: TransformFunction,
+        declutterBuilderGroup?: BuilderGroup,
     ): boolean;
     /**
      * Render the layer.
      */
     renderFrame(frameState: FrameState, target: HTMLElement): HTMLElement;
-    renderWorlds(executorGroup: ExecutorGroup, frameState: FrameState, opt_declutterTree?: RBush<any>): void;
+    renderWorlds(executorGroup: ExecutorGroup, frameState: FrameState, declutterTree?: RBush<any>): void;
     on(type: TCanvasVectorLayerRendererBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
     on(type: TCanvasVectorLayerRendererBaseEventTypes[], listener: ListenerFunction<BaseEvent>): EventsKey[];
     once(type: TCanvasVectorLayerRendererBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;

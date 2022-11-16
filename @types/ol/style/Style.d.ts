@@ -1,7 +1,6 @@
 import { FeatureLike } from '../Feature';
 import { Coordinate } from '../coordinate';
-import Geometry from '../geom/Geometry';
-import GeometryType from '../geom/GeometryType';
+import Geometry, { Type } from '../geom/Geometry';
 import { State } from '../render';
 import RenderFeature from '../render/Feature';
 import Fill from './Fill';
@@ -45,7 +44,7 @@ export type StyleFunction = (p0: FeatureLike, p1: number) => Style | Style[] | v
  */
 export type StyleLike = Style | Style[] | StyleFunction;
 export default class Style {
-    constructor(opt_options?: Options);
+    constructor(options?: Options);
     /**
      * Clones the style.
      */
@@ -127,7 +126,7 @@ export function createDefaultStyle(feature: FeatureLike, resolution: number): St
 /**
  * Default styles for editing features.
  */
-export function createEditingStyle(): Record<GeometryType, Style[]>;
+export function createEditingStyle(): Record<Type, Style[]>;
 /**
  * Convert the provided object into a style function.  Functions passed through
  * unchanged.  Arrays of Style or single style objects wrapped in a

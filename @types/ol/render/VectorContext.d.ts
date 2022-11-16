@@ -43,10 +43,10 @@ export default class VectorContext {
     drawPolygon(polygonGeometry: Polygon | RenderFeature, feature: FeatureLike): void;
     drawText(geometry: SimpleGeometry | RenderFeature, feature: FeatureLike): void;
     setFillStrokeStyle(fillStyle: Fill, strokeStyle: Stroke): void;
-    setImageStyle(imageStyle: ImageStyle, opt_declutterImageWithText?: DeclutterImageWithText): void;
+    setImageStyle(imageStyle: ImageStyle, declutterImageWithText?: DeclutterImageWithText): void;
     /**
      * Set the rendering style.
      */
     setStyle(style: Style): void;
-    setTextStyle(textStyle: Text, opt_declutterImageWithText?: DeclutterImageWithText): void;
+    setTextStyle(textStyle: Text, declutterImageWithText?: DeclutterImageWithText): void;
 }

@@ -11,7 +11,7 @@ export interface Options {
     threshold?: number | undefined;
 }
 export default class PinchRotate extends PointerInteraction {
-    constructor(opt_options?: Options);
+    constructor(options?: Options);
     /**
      * Handle pointer down events.
      */

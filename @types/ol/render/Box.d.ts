@@ -1,5 +1,5 @@
 import Disposable from '../Disposable';
-import PluggableMap from '../PluggableMap';
+import Map from '../Map';
 import Polygon from '../geom/Polygon';
 import { Pixel } from '../pixel';
 
@@ -14,6 +14,6 @@ export default class RenderBox extends Disposable {
      */
     disposeInternal(): void;
     getGeometry(): Polygon;
-    setMap(map: PluggableMap | null): void;
+    setMap(map: Map | null): void;
     setPixels(startPixel: Pixel, endPixel: Pixel): void;
 }

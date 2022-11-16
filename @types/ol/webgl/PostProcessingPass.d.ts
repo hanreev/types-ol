@@ -1,4 +1,4 @@
-import { FrameState } from '../PluggableMap';
+import { FrameState } from '../Map';
 import { UniformValue } from './Helper';
 
 export interface Options {

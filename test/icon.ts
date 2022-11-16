@@ -1,7 +1,6 @@
 import Feature, { FeatureLike } from 'ol/Feature';
 import Map from 'ol/Map';
 import Overlay from 'ol/Overlay';
-import OverlayPositioning from 'ol/OverlayPositioning';
 import View from 'ol/View';
 import Point from 'ol/geom/Point';
 import SimpleGeometry from 'ol/geom/SimpleGeometry';
@@ -9,7 +8,6 @@ import { Tile as TileLayer, Vector as VectorLayer } from 'ol/layer';
 import TileJSON from 'ol/source/TileJSON';
 import VectorSource from 'ol/source/Vector';
 import { Icon, Style } from 'ol/style';
-import IconAnchorUnits from 'ol/style/IconAnchorUnits';
 
 declare let $: any;
 
@@ -23,8 +21,8 @@ const iconFeature = new Feature({
 const iconStyle = new Style({
     image: new Icon({
         anchor: [0.5, 46],
-        anchorXUnits: IconAnchorUnits.FRACTION,
-        anchorYUnits: IconAnchorUnits.PIXELS,
+        anchorXUnits: 'fraction',
+        anchorYUnits: 'pixels',
         src: 'data/icon.png',
     }),
 });
@@ -59,7 +57,7 @@ const element = document.getElementById('popup') as HTMLElement;
 
 const popup = new Overlay({
     element,
-    positioning: OverlayPositioning.BOTTOM_CENTER,
+    positioning: 'bottom-center',
     stopEvent: false,
     offset: [0, -50],
 });

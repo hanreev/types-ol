@@ -1,14 +1,13 @@
 import Feature from '../Feature';
 import { Extent } from '../extent';
 import { LineString, MultiLineString, MultiPoint, MultiPolygon, Point, Polygon } from '../geom';
-import Geometry from '../geom/Geometry';
-import GeometryType from '../geom/GeometryType';
+import Geometry, { Type } from '../geom/Geometry';
 import { ProjectionLike, TransformFunction } from '../proj';
 import { StyleFunction } from '../style/Style';
 
 export default class RenderFeature {
     constructor(
-        type: GeometryType,
+        type: Type,
         flatCoordinates: number[],
         ends: number[] | number[][],
         properties: Record<string, any>,
@@ -48,11 +47,11 @@ export default class RenderFeature {
     /**
      * Get the type of this feature's geometry.
      */
-    getType(): GeometryType;
+    getType(): Type;
     /**
      * Get a transformed and simplified version of the geometry.
      */
-    simplifyTransformed(squaredTolerance: number, opt_transform?: TransformFunction): RenderFeature;
+    simplifyTransformed(squaredTolerance: number, transform?: TransformFunction): RenderFeature;
     /**
      * Transform geometry coordinates from tile pixel space to projected.
      */
@@ -61,7 +60,7 @@ export default class RenderFeature {
 /**
  * Create an ol/Feature from an ol/render/Feature
  */
-export function toFeature(renderFeature: RenderFeature, opt_geometryName?: string): Feature<Geometry>;
+export function toFeature(renderFeature: RenderFeature, geometryName?: string): Feature<Geometry>;
 /**
  * Create a geometry from an ol/render/Feature
  */

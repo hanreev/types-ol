@@ -7,6 +7,7 @@ export interface ImageExtent {
     extent: Extent;
     image: HTMLCanvasElement | HTMLImageElement | HTMLVideoElement;
 }
+export const canvasPool: HTMLCanvasElement[];
 /**
  * Calculates ideal resolution to use from the source in order to achieve
  * pixel mapping as close as possible to 1:1 during reprojection.
@@ -45,6 +46,6 @@ export function render(
     triangulation: Triangulation,
     sources: ImageExtent[],
     gutter: number,
-    opt_renderEdges?: boolean,
-    opt_interpolate?: boolean,
+    renderEdges?: boolean,
+    interpolate?: boolean,
 ): HTMLCanvasElement;

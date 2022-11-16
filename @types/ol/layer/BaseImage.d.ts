@@ -1,5 +1,5 @@
+import Map from '../Map';
 import { ObjectEvent } from '../Object';
-import PluggableMap from '../PluggableMap';
 import { EventsKey, ListenerFunction } from '../events';
 import BaseEvent from '../events/Event';
 import { Extent } from '../extent';
@@ -31,7 +31,7 @@ export interface Options<ImageSourceType extends ImageSource = ImageSource> {
     maxResolution?: number | undefined;
     minZoom?: number | undefined;
     maxZoom?: number | undefined;
-    map?: PluggableMap | undefined;
+    map?: Map | undefined;
     source?: ImageSourceType | undefined;
     properties?: Record<string, any> | undefined;
 }
@@ -39,7 +39,7 @@ export default class BaseImageLayer<
     ImageSourceType extends ImageSource = ImageSource,
     RendererType extends LayerRenderer = LayerRenderer,
 > extends Layer<ImageSourceType, RendererType> {
-    constructor(opt_options?: Options<ImageSourceType>);
+    constructor(options?: Options<ImageSourceType>);
     on(type: TBaseImageLayerBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
     on(type: TBaseImageLayerBaseEventTypes[], listener: ListenerFunction<BaseEvent>): EventsKey[];
     once(type: TBaseImageLayerBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;

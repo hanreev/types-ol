@@ -3,14 +3,13 @@ import { Coordinate } from '../coordinate';
 import { EventsKey, ListenerFunction } from '../events';
 import BaseEvent from '../events/Event';
 import { Extent } from '../extent';
-import GeometryLayout from './GeometryLayout';
-import GeometryType from './GeometryType';
+import { GeometryLayout, Type } from './Geometry';
 import SimpleGeometry from './SimpleGeometry';
 
 export type TLinearRingBaseEventTypes = 'change' | 'error';
 export type TLinearRingObjectEventTypes = 'propertychange';
 export default class LinearRing extends SimpleGeometry {
-    constructor(coordinates: Coordinate[] | number[], opt_layout?: GeometryLayout);
+    constructor(coordinates: Coordinate[] | number[], layout?: GeometryLayout);
     protected getSimplifiedGeometryInternal(squaredTolerance: number): LinearRing;
     /**
      * Make a complete copy of the geometry.
@@ -28,7 +27,7 @@ export default class LinearRing extends SimpleGeometry {
     /**
      * Get the type of this geometry.
      */
-    getType(): GeometryType;
+    getType(): Type;
     /**
      * Test if the geometry and the passed extent intersect.
      */
@@ -36,7 +35,7 @@ export default class LinearRing extends SimpleGeometry {
     /**
      * Set the coordinates of the linear ring.
      */
-    setCoordinates(coordinates: Coordinate[], opt_layout?: GeometryLayout): void;
+    setCoordinates(coordinates: Coordinate[], layout?: GeometryLayout): void;
     on(type: TLinearRingBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
     on(type: TLinearRingBaseEventTypes[], listener: ListenerFunction<BaseEvent>): EventsKey[];
     once(type: TLinearRingBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;

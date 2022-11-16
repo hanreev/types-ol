@@ -1,8 +1,8 @@
 import Collection from '../Collection';
-import Feature, { FeatureLike } from '../Feature';
+import Feature from '../Feature';
+import Map from '../Map';
 import MapBrowserEvent from '../MapBrowserEvent';
 import { ObjectEvent } from '../Object';
-import PluggableMap from '../PluggableMap';
 import { EventsKey, ListenerFunction } from '../events';
 import BaseEvent from '../events/Event';
 import { Condition } from '../events/condition';
@@ -19,12 +19,10 @@ export type TSelectBaseEventTypes = 'change' | 'error';
 export type TSelectObjectEventTypes = 'change:active' | 'propertychange';
 export type TSelectSelectEventTypes = 'select';
 /**
- * A function that takes an {@link module:ol/Feature~Feature} or
- * {@link module:ol/render/Feature~RenderFeature} and an
- * {@link module:ol/layer/Layer~Layer} and returns true if the feature may be
+ * A function that takes an {@link module:ol/Feature~Feature} and returns true if the feature may be
  * selected or false otherwise.
  */
-export type FilterFunction = (p0: FeatureLike, p1: Layer<Source>) => boolean;
+export type FilterFunction = (p0: Feature<Geometry>, p1: Layer<Source>) => boolean;
 export interface Options {
     addCondition?: Condition | undefined;
     condition?: Condition | undefined;
@@ -41,7 +39,7 @@ declare enum SelectEventType {
     SELECT = 'select',
 }
 export default class Select extends Interaction {
-    constructor(opt_options?: Options);
+    constructor(options?: Options);
     /**
      * Get the selected features.
      */
@@ -54,7 +52,7 @@ export default class Select extends Interaction {
      * Returns the associated {@link module:ol/layer/Vector~VectorLayer vector layer} of
      * a selected feature.
      */
-    getLayer(feature: FeatureLike): VectorLayer<VectorSource<Geometry>>;
+    getLayer(feature: Feature<Geometry>): VectorLayer<VectorSource<Geometry>>;
     getStyle(): StyleLike | null;
     /**
      * Handles the {@link module:ol/MapBrowserEvent~MapBrowserEvent map browser event} and may change the
@@ -70,7 +68,7 @@ export default class Select extends Interaction {
      * Remove the interaction from its current map, if any,  and attach it to a new
      * map, if any. Pass null to just remove the interaction from the current map.
      */
-    setMap(map: PluggableMap | null): void;
+    setMap(map: Map | null): void;
     on(type: TSelectBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
     on(type: TSelectBaseEventTypes[], listener: ListenerFunction<BaseEvent>): EventsKey[];
     once(type: TSelectBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;

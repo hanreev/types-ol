@@ -4,10 +4,29 @@ import { EventsKey, ListenerFunction } from '../events';
 import BaseEvent from '../events/Event';
 import { Extent } from '../extent';
 import { ProjectionLike, TransformFunction } from '../proj';
-import GeometryType from './GeometryType';
 
 export type TGeometryBaseEventTypes = 'change' | 'error';
 export type TGeometryObjectEventTypes = 'propertychange';
+/**
+ * The coordinate layout for geometries, indicating whether a 3rd or 4th z ('Z')
+ * or measure ('M') coordinate is available.
+ */
+export type GeometryLayout = 'XY' | 'XYZ' | 'XYM' | 'XYZM';
+/**
+ * The geometry type.  One of 'Point', 'LineString', 'LinearRing',
+ * 'Polygon', 'MultiPoint', 'MultiLineString', 'MultiPolygon',
+ * 'GeometryCollection', or 'Circle'.
+ */
+export type Type =
+    | 'Point'
+    | 'LineString'
+    | 'LinearRing'
+    | 'Polygon'
+    | 'MultiPoint'
+    | 'MultiLineString'
+    | 'MultiPolygon'
+    | 'GeometryCollection'
+    | 'Circle';
 export default abstract class Geometry extends BaseObject {
     constructor();
     protected simplifiedGeometryMaxMinSquaredTolerance: number;
@@ -30,11 +49,11 @@ export default abstract class Geometry extends BaseObject {
      * Return the closest point of the geometry to the passed point as
      * {@link module:ol/coordinate~Coordinate coordinate}.
      */
-    getClosestPoint(point: Coordinate, opt_closestPoint?: Coordinate): Coordinate;
+    getClosestPoint(point: Coordinate, closestPoint?: Coordinate): Coordinate;
     /**
      * Get the extent of the geometry.
      */
-    getExtent(opt_extent?: Extent): Extent;
+    getExtent(extent?: Extent): Extent;
     /**
      * Create a simplified version of this geometry using the Douglas Peucker
      * algorithm.
@@ -44,7 +63,7 @@ export default abstract class Geometry extends BaseObject {
     /**
      * Get the type of this geometry.
      */
-    abstract getType(): GeometryType;
+    abstract getType(): Type;
     /**
      * Returns true if this geometry includes the specified coordinate. If the
      * coordinate is on the boundary of the geometry, returns false.
@@ -63,7 +82,7 @@ export default abstract class Geometry extends BaseObject {
      * Scale the geometry (with an optional origin).  This modifies the geometry
      * coordinates in place.
      */
-    abstract scale(sx: number, opt_sy?: number, opt_anchor?: Coordinate): void;
+    abstract scale(sx: number, sy?: number, anchor?: Coordinate): void;
     /**
      * Create a simplified version of this geometry.  For linestrings, this uses
      * the Douglas Peucker
@@ -74,7 +93,7 @@ export default abstract class Geometry extends BaseObject {
     /**
      * Get a transformed and simplified version of the geometry.
      */
-    abstract simplifyTransformed(squaredTolerance: number, opt_transform?: TransformFunction): Geometry;
+    abstract simplifyTransformed(squaredTolerance: number, transform?: TransformFunction): Geometry;
     /**
      * Transform each coordinate of the geometry from one coordinate reference
      * system to another. The geometry is modified in place.

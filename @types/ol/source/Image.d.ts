@@ -6,8 +6,7 @@ import BaseEvent from '../events/Event';
 import { Extent } from '../extent';
 import { ProjectionLike } from '../proj';
 import Projection from '../proj/Projection';
-import Source, { AttributionLike } from './Source';
-import State from './State';
+import Source, { AttributionLike, State } from './Source';
 
 export type TImageSourceBaseEventTypes = 'change' | 'error';
 export type TImageSourceImageSourceEventTypes = 'imageloadend' | 'imageloaderror' | 'imageloadstart';
@@ -15,7 +14,6 @@ export type TImageSourceObjectEventTypes = 'propertychange';
 export type ImageSourceEventTypes = 'imageloadend' | 'imageloaderror' | 'imageloadstart';
 export interface Options {
     attributions?: AttributionLike | undefined;
-    imageSmoothing?: boolean | undefined;
     interpolate?: boolean | undefined;
     projection?: ProjectionLike | undefined;
     resolutions?: number[] | undefined;

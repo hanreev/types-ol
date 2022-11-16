@@ -64,12 +64,12 @@ export interface WriteTransactionOptions {
     version?: string | undefined;
 }
 export default class WFS extends XMLFeature {
-    constructor(opt_options?: Options);
-    protected readFeaturesFromNode(node: Element, opt_options?: ReadOptions): Feature<Geometry>[];
+    constructor(options?: Options);
+    protected readFeaturesFromNode(node: Element, options?: ReadOptions): Feature<Geometry>[];
     /**
      * Create a bbox filter and combine it with another optional filter.
      */
-    combineBboxAndFilter(geometryName: string, extent: Extent, opt_srsName?: string, opt_filter?: Filter): Filter;
+    combineBboxAndFilter(geometryName: string, extent: Extent, srsName?: string, filter?: Filter): Filter;
     getFeatureType(): string[] | string | undefined;
     /**
      * Read feature collection metadata of the source.
@@ -103,4 +103,4 @@ export default class WFS extends XMLFeature {
 /**
  * Encode filter as WFS Filter and return the Node.
  */
-export function writeFilter(filter: Filter, opt_version: string): Node;
+export function writeFilter(filter: Filter, version: string): Node;

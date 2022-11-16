@@ -27,7 +27,7 @@ export interface RenderOptions {
     strokeStyle?: ColorLike | undefined;
     strokeWidth: number;
     size: number;
-    lineDash: number[];
+    lineDash: number[] | null;
     lineDashOffset: number;
     lineJoin: CanvasLineJoin;
     miterLimit: number;
@@ -94,5 +94,13 @@ export default class RegularShape extends ImageStyle {
      * Load not yet loaded URI.
      */
     load(): void;
+    /**
+     * Set the fill style.
+     */
+    setFill(fill: Fill): void;
+    /**
+     * Set the stroke style.
+     */
+    setStroke(stroke: Stroke): void;
     unlistenImageChange(listener: (p0: BaseEvent) => void): void;
 }

@@ -14,7 +14,6 @@ export interface Options {
     attributions?: AttributionLike | undefined;
     cacheSize?: number | undefined;
     crossOrigin?: null | string | undefined;
-    imageSmoothing?: boolean | undefined;
     interpolate?: boolean | undefined;
     maxZoom?: number | undefined;
     opaque?: boolean | undefined;
@@ -31,7 +30,7 @@ export interface Options {
  */
 export const ATTRIBUTION: string;
 export default class OSM extends XYZ {
-    constructor(opt_options?: Options);
+    constructor(options?: Options);
     on(type: TOSMBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
     on(type: TOSMBaseEventTypes[], listener: ListenerFunction<BaseEvent>): EventsKey[];
     once(type: TOSMBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;

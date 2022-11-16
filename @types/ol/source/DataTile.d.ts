@@ -6,8 +6,7 @@ import { ProjectionLike } from '../proj';
 import Projection from '../proj/Projection';
 import { Size } from '../size';
 import TileGrid from '../tilegrid/TileGrid';
-import { AttributionLike } from './Source';
-import State from './State';
+import { AttributionLike, State } from './Source';
 import TileSource, { TileSourceEvent } from './Tile';
 
 export type TDataTileSourceBaseEventTypes = 'change' | 'error';
@@ -31,7 +30,6 @@ export interface Options {
     tileGrid?: TileGrid | undefined;
     opaque?: boolean | undefined;
     state?: State | undefined;
-    tilePixelRatio?: number | undefined;
     wrapX?: boolean | undefined;
     transition?: number | undefined;
     bandCount?: number | undefined;

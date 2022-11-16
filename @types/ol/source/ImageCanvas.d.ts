@@ -7,8 +7,7 @@ import { ProjectionLike } from '../proj';
 import Projection from '../proj/Projection';
 import { Size } from '../size';
 import ImageSource, { ImageSourceEvent } from './Image';
-import { AttributionLike } from './Source';
-import State from './State';
+import { AttributionLike, State } from './Source';
 
 export type TImageCanvasSourceBaseEventTypes = 'change' | 'error';
 export type TImageCanvasSourceImageSourceEventTypes = 'imageloadend' | 'imageloaderror' | 'imageloadstart';
@@ -33,7 +32,6 @@ export type FunctionType = (
 export interface Options {
     attributions?: AttributionLike | undefined;
     canvasFunction?: FunctionType | undefined;
-    imageSmoothing?: boolean | undefined;
     interpolate?: boolean | undefined;
     projection?: ProjectionLike | undefined;
     ratio?: number | undefined;
@@ -41,7 +39,7 @@ export interface Options {
     state?: State | undefined;
 }
 export default class ImageCanvasSource extends ImageSource {
-    constructor(opt_options?: Options);
+    constructor(options?: Options);
     getImageInternal(extent: Extent, resolution: number, pixelRatio: number, projection: Projection): ImageCanvas;
     on(type: TImageCanvasSourceBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
     on(type: TImageCanvasSourceBaseEventTypes[], listener: ListenerFunction<BaseEvent>): EventsKey[];

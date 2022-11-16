@@ -5,21 +5,21 @@ export type Type = (p0: number | undefined, p1: number, p2: Size, p3?: boolean) 
 export function createMinMaxResolution(
     maxResolution: number,
     minResolution: number,
-    opt_smooth?: boolean,
-    opt_maxExtent?: Extent,
-    opt_showFullExtent?: boolean,
+    smooth?: boolean,
+    maxExtent?: Extent,
+    showFullExtent?: boolean,
 ): Type;
 export function createSnapToPower(
     power: number,
     maxResolution: number,
-    opt_minResolution?: number,
-    opt_smooth?: boolean,
-    opt_maxExtent?: Extent,
-    opt_showFullExtent?: boolean,
+    minResolution?: number,
+    smooth?: boolean,
+    maxExtent?: Extent,
+    showFullExtent?: boolean,
 ): Type;
 export function createSnapToResolutions(
     resolutions: number[],
-    opt_smooth?: boolean,
-    opt_maxExtent?: Extent,
-    opt_showFullExtent?: boolean,
+    smooth?: boolean,
+    maxExtent?: Extent,
+    showFullExtent?: boolean,
 ): Type;

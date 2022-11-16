@@ -12,11 +12,11 @@ export interface Token {
     position: number;
 }
 export default class WKT extends TextFeature {
-    constructor(opt_options?: Options);
-    protected readFeatureFromText(text: string, opt_options?: ReadOptions): Feature<Geometry>;
-    protected readFeaturesFromText(text: string, opt_options?: ReadOptions): Feature<Geometry>[];
-    protected readGeometryFromText(text: string, opt_options?: ReadOptions): Geometry;
-    protected writeFeaturesText(features: Feature<Geometry>[], opt_options?: WriteOptions): string;
-    protected writeFeatureText(feature: Feature<Geometry>, opt_options?: WriteOptions): string;
-    protected writeGeometryText(geometry: Geometry, opt_options?: WriteOptions): string;
+    constructor(options?: Options);
+    protected readFeatureFromText(text: string, options?: ReadOptions): Feature<Geometry>;
+    protected readFeaturesFromText(text: string, options?: ReadOptions): Feature<Geometry>[];
+    protected readGeometryFromText(text: string, options?: ReadOptions): Geometry;
+    protected writeFeaturesText(features: Feature<Geometry>[], options?: WriteOptions): string;
+    protected writeFeatureText(feature: Feature<Geometry>, options?: WriteOptions): string;
+    protected writeGeometryText(geometry: Geometry, options?: WriteOptions): string;
 }

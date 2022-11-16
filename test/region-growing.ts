@@ -3,7 +3,7 @@ import View from 'ol/View';
 import { Image as ImageLayer, Tile as TileLayer } from 'ol/layer';
 import { fromLonLat } from 'ol/proj';
 import BingMaps from 'ol/source/BingMaps';
-import RasterSource, { RasterOperationType } from 'ol/source/Raster';
+import RasterSource from 'ol/source/Raster';
 
 function growRegion(inputs: number[][] | ImageData[], data: any): ImageData {
     const image = inputs[0] as ImageData;
@@ -76,7 +76,7 @@ const imagery = new TileLayer({
 
 const raster = new RasterSource({
     sources: [imagery.getSource()!],
-    operationType: RasterOperationType.IMAGE,
+    operationType: 'image',
     operation: growRegion,
     // Functions in the `lib` object will be available to the operation run in
     // the web worker.

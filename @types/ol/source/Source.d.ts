@@ -1,16 +1,15 @@
+import { FrameState } from '../Map';
 import BaseObject, { ObjectEvent } from '../Object';
-import { FrameState } from '../PluggableMap';
 import { ViewOptions } from '../View';
 import { EventsKey, ListenerFunction } from '../events';
 import BaseEvent from '../events/Event';
 import { ProjectionLike } from '../proj';
 import Projection from '../proj/Projection';
-import State from './State';
 
 export type TSourceBaseEventTypes = 'change' | 'error';
 export type TSourceObjectEventTypes = 'propertychange';
 /**
- * A function that takes a {@link module:ol/PluggableMap~FrameState} and returns a string or
+ * A function that takes a {@link module:ol/Map~FrameState} and returns a string or
  * an array of strings representing source attributions.
  */
 export type Attribution = (p0: FrameState) => string | string[];
@@ -32,6 +31,10 @@ export interface Options {
     wrapX?: boolean | undefined;
     interpolate?: boolean | undefined;
 }
+/**
+ * State of the source, one of 'undefined', 'loading', 'ready' or 'error'.
+ */
+export type State = 'undefined' | 'loading' | 'ready' | 'error';
 export default abstract class Source extends BaseObject {
     constructor(options: Options);
     protected projection: Projection | null;
@@ -49,7 +52,7 @@ export default abstract class Source extends BaseObject {
     getProjection(): Projection | null;
     abstract getResolutions(): number[] | null;
     /**
-     * Get the state of the source, see {@link module:ol/source/State~State} for possible states.
+     * Get the state of the source, see {@link module:ol/source/Source~State} for possible states.
      */
     getState(): State;
     getView(): Promise<ViewOptions>;

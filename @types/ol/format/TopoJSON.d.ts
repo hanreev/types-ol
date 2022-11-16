@@ -31,12 +31,12 @@ export type TopoJSONPoint = Point;
 export type TopoJSONPolygon = Polygon;
 export type TopoJSONTopology = Topology;
 export default class TopoJSON extends JSONFeature {
-    constructor(opt_options?: Options);
-    protected readFeatureFromObject(object: any, opt_options?: ReadOptions): Feature<Geometry>;
-    protected readFeaturesFromObject(object: any, opt_options?: ReadOptions): Feature<Geometry>[];
-    protected readGeometryFromObject(object: any, opt_options?: ReadOptions): Geometry;
+    constructor(options?: Options);
+    protected readFeatureFromObject(object: any, options?: ReadOptions): Feature<Geometry>;
+    protected readFeaturesFromObject(object: any, options?: ReadOptions): Feature<Geometry>[];
+    protected readGeometryFromObject(object: any, options?: ReadOptions): Geometry;
     protected readProjectionFromObject(object: any): Projection;
-    writeFeatureObject(feature: Feature<Geometry>, opt_options?: WriteOptions): any;
-    writeFeaturesObject(features: Feature<Geometry>[], opt_options?: WriteOptions): any;
-    writeGeometryObject(geometry: Geometry, opt_options?: WriteOptions): any;
+    writeFeatureObject(feature: Feature<Geometry>, options?: WriteOptions): any;
+    writeFeaturesObject(features: Feature<Geometry>[], options?: WriteOptions): any;
+    writeGeometryObject(geometry: Geometry, options?: WriteOptions): any;
 }

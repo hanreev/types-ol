@@ -1,7 +1,7 @@
 import Feature from '../Feature';
 import ImageBase from '../ImageBase';
+import { FrameState } from '../Map';
 import Observable from '../Observable';
-import { FrameState } from '../PluggableMap';
 import Tile from '../Tile';
 import TileRange from '../TileRange';
 import { Coordinate } from '../coordinate';
@@ -45,7 +45,6 @@ export default class LayerRenderer<LayerType extends Layer = any> extends Observ
         matches: HitMatch<T>[],
     ): T | undefined;
     getData(pixel: Pixel): Uint8ClampedArray | Uint8Array | Float32Array | DataView | null;
-    getDataAtPixel(pixel: Pixel, frameState: FrameState, hitTolerance: number): Uint8ClampedArray | Uint8Array;
     /**
      * Asynchronous layer level hit detection.
      */

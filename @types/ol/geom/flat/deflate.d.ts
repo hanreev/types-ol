@@ -17,12 +17,12 @@ export function deflateCoordinatesArray(
     offset: number,
     coordinatess: Coordinate[][],
     stride: number,
-    opt_ends?: number[],
+    ends?: number[],
 ): number[];
 export function deflateMultiCoordinatesArray(
     flatCoordinates: number[],
     offset: number,
     coordinatesss: Coordinate[][][],
     stride: number,
-    opt_endss?: number[][],
+    endss?: number[][],
 ): number[][];

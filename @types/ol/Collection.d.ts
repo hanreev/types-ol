@@ -10,7 +10,7 @@ export interface Options {
     unique?: boolean | undefined;
 }
 export default class Collection<T> extends BaseObject {
-    constructor(opt_array?: T[], opt_options?: Options);
+    constructor(array?: T[], options?: Options);
     /**
      * Remove all elements from the collection.
      */
@@ -88,7 +88,7 @@ export default class Collection<T> extends BaseObject {
     ): void;
 }
 export class CollectionEvent<T> extends BaseEvent {
-    constructor(type: CollectionEventType, opt_element?: T, opt_index?: number);
+    constructor(type: CollectionEventType, element: T, index: number);
     /**
      * The element that is added to or removed from the collection.
      */

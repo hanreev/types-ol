@@ -1,4 +1,4 @@
-import { Collection, Map, MapBrowserEvent, Overlay, PluggableMap, View } from 'ol';
+import { Collection, Map, MapBrowserEvent, Overlay, View } from 'ol';
 import { unByKey } from 'ol/Observable';
 import { stableSort } from 'ol/array';
 import {
@@ -17,7 +17,7 @@ import { EventsKey, ListenerFunction } from 'ol/events';
 import { applyTransform } from 'ol/extent';
 import { GeoJSON, MVT } from 'ol/format';
 import { WriteTransactionOptions } from 'ol/format/WFS';
-import GeometryType from 'ol/geom/GeometryType';
+import { Type as GeometryType } from 'ol/geom/Geometry';
 import { Draw, Modify, Select, defaults as defaultInteractions } from 'ol/interaction';
 import { Tile as TileLayer, Vector as VectorLayer, VectorTile as VectorTileLayer } from 'ol/layer';
 import ImageLayer from 'ol/layer/Image';
@@ -30,6 +30,7 @@ import { Circle, Fill, Stroke, Style } from 'ol/style';
 import { StyleFunction } from 'ol/style/Style';
 
 import proj4 = require('proj4');
+
 /**
  * ==================================================
  * # Styles
@@ -286,7 +287,7 @@ const controls = defaultControls().extend([
     new FullScreen(),
     new MousePosition({
         coordinateFormat: coord => toStringXY(coord!, 8),
-        undefinedHTML: '',
+        placeholder: '',
     }),
     new OverviewMap({
         layers,
@@ -306,9 +307,21 @@ const controls = defaultControls().extend([
  */
 
 const drawInteractions: Draw[] = [];
-(Object.keys(GeometryType) as (keyof typeof GeometryType)[]).forEach(type => {
+(
+    [
+        'Point',
+        'LineString',
+        'LinearRing',
+        'Polygon',
+        'MultiPoint',
+        'MultiLineString',
+        'MultiPolygon',
+        'GeometryCollection',
+        'Circle',
+    ] as GeometryType[]
+).forEach(type => {
     const draw = new Draw({
-        type: GeometryType[type],
+        type,
     });
 
     drawInteractions.push(draw);
@@ -399,7 +412,7 @@ class CustomControl extends Control {
     }
 
     // Override
-    setMap(map: PluggableMap) {
+    setMap(map: Map) {
         super.setMap(map);
         unByKey(this._eventKeys);
         this._eventKeys.splice(0);

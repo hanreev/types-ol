@@ -29,7 +29,7 @@ export function and(...conditions: Filter[]): And;
  * Create a <BBOX> operator to test whether a geometry-valued property
  * intersects a fixed bounding box
  */
-export function bbox(geometryName: string, extent: Extent, opt_srsName?: string): Bbox;
+export function bbox(geometryName: string, extent: Extent, srsName?: string): Bbox;
 /**
  * Creates a <PropertyIsBetween> comparison operator to test whether an expression
  * value lies within a range given by a lower and upper bound (inclusive).
@@ -39,12 +39,12 @@ export function between(propertyName: string, lowerBoundary: number, upperBounda
  * Create a <Contains> operator to test whether a geometry-valued property
  * contains a given geometry.
  */
-export function contains(geometryName: string, geometry: Geometry, opt_srsName?: string): Contains;
+export function contains(geometryName: string, geometry: Geometry, srsName?: string): Contains;
 /**
  * Create a <Disjoint> operator to test whether a geometry-valued property
  * is disjoint to a given geometry.
  */
-export function disjoint(geometryName: string, geometry: Geometry, opt_srsName?: string): Disjoint;
+export function disjoint(geometryName: string, geometry: Geometry, srsName?: string): Disjoint;
 /**
  * Create a <During> temporal operator.
  */
@@ -58,12 +58,12 @@ export function dwithin(
     geometry: Geometry,
     distance: number,
     unit: string,
-    opt_srsName?: string,
+    srsName?: string,
 ): DWithin;
 /**
  * Creates a <PropertyIsEqualTo> comparison operator.
  */
-export function equalTo(propertyName: string, expression: string | number, opt_matchCase?: boolean): EqualTo;
+export function equalTo(propertyName: string, expression: string | number, matchCase?: boolean): EqualTo;
 /**
  * Creates a <PropertyIsGreaterThan> comparison operator.
  */
@@ -76,7 +76,7 @@ export function greaterThanOrEqualTo(propertyName: string, expression: number): 
  * Create a <Intersects> operator to test whether a geometry-valued property
  * intersects a given geometry.
  */
-export function intersects(geometryName: string, geometry: Geometry, opt_srsName?: string): Intersects;
+export function intersects(geometryName: string, geometry: Geometry, srsName?: string): Intersects;
 /**
  * Creates a <PropertyIsNull> comparison operator to test whether a property value
  * is null.
@@ -97,10 +97,10 @@ export function lessThanOrEqualTo(propertyName: string, expression: number): Les
 export function like(
     propertyName: string,
     pattern: string,
-    opt_wildCard?: string,
-    opt_singleChar?: string,
-    opt_escapeChar?: string,
-    opt_matchCase?: boolean,
+    wildCard?: string,
+    singleChar?: string,
+    escapeChar?: string,
+    matchCase?: boolean,
 ): IsLike;
 /**
  * Represents a logical <Not> operator for a filter condition.
@@ -109,7 +109,7 @@ export function not(condition: Filter): Not;
 /**
  * Creates a <PropertyIsNotEqualTo> comparison operator.
  */
-export function notEqualTo(propertyName: string, expression: string | number, opt_matchCase?: boolean): NotEqualTo;
+export function notEqualTo(propertyName: string, expression: string | number, matchCase?: boolean): NotEqualTo;
 /**
  * Create a logical <Or> operator between two or more filter conditions.
  */
@@ -118,4 +118,4 @@ export function or(...conditions: Filter[]): Or;
  * Create a <Within> operator to test whether a geometry-valued property
  * is within a given geometry.
  */
-export function within(geometryName: string, geometry: Geometry, opt_srsName?: string): Within;
+export function within(geometryName: string, geometry: Geometry, srsName?: string): Within;

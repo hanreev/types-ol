@@ -4,8 +4,7 @@ import { EventsKey, ListenerFunction } from '../events';
 import BaseEvent from '../events/Event';
 import { Extent } from '../extent';
 import LayerRenderer from '../renderer/Layer';
-import Source from '../source/Source';
-import State_1 from '../source/State';
+import Source, { State as State_1 } from '../source/Source';
 import Layer, { State } from './Layer';
 
 export type TBaseLayerBaseEventTypes = 'change' | 'error';
@@ -62,13 +61,13 @@ export default class BaseLayer extends BaseObject {
      * will be visible regardless of extent.
      */
     getExtent(): Extent | undefined;
-    getLayersArray(opt_array?: Layer<Source, LayerRenderer>[]): Layer<Source, LayerRenderer>[];
+    getLayersArray(array?: Layer<Source, LayerRenderer>[]): Layer<Source, LayerRenderer>[];
     /**
      * This method is not meant to be called by layers or layer renderers because the state
      * is incorrect if the layer is included in a layer group.
      */
-    getLayerState(opt_managed?: boolean): State;
-    getLayerStatesArray(opt_states?: State[]): State[];
+    getLayerState(managed?: boolean): State;
+    getLayerStatesArray(states?: State[]): State[];
     /**
      * Return the maximum resolution of the layer.
      */
@@ -102,7 +101,7 @@ export default class BaseLayer extends BaseObject {
     /**
      * Sets the background color.
      */
-    setBackground(opt_background?: BackgroundColor): void;
+    setBackground(background?: BackgroundColor): void;
     /**
      * Set the extent at which the layer is visible.  If undefined, the layer
      * will be visible at all extents.

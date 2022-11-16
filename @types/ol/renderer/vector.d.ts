@@ -24,6 +24,6 @@ export function renderFeature(
     style: Style,
     squaredTolerance: number,
     listener: (p0: BaseEvent) => void,
-    opt_transform?: TransformFunction,
-    opt_declutterBuilderGroup?: BuilderGroup,
+    transform?: TransformFunction,
+    declutterBuilderGroup?: BuilderGroup,
 ): boolean;

@@ -3,19 +3,14 @@ import { Coordinate } from '../coordinate';
 import { EventsKey, ListenerFunction } from '../events';
 import BaseEvent from '../events/Event';
 import { Extent } from '../extent';
-import GeometryLayout from './GeometryLayout';
-import GeometryType from './GeometryType';
+import { GeometryLayout, Type } from './Geometry';
 import LineString from './LineString';
 import SimpleGeometry from './SimpleGeometry';
 
 export type TMultiLineStringBaseEventTypes = 'change' | 'error';
 export type TMultiLineStringObjectEventTypes = 'propertychange';
 export default class MultiLineString extends SimpleGeometry {
-    constructor(
-        coordinates: (Coordinate[] | LineString)[] | number[],
-        opt_layout?: GeometryLayout,
-        opt_ends?: number[],
-    );
+    constructor(coordinates: (Coordinate[] | LineString)[] | number[], layout?: GeometryLayout, ends?: number[]);
     protected getSimplifiedGeometryInternal(squaredTolerance: number): MultiLineString;
     /**
      * Append the passed linestring to the multilinestring.
@@ -29,18 +24,18 @@ export default class MultiLineString extends SimpleGeometry {
     /**
      * Returns the coordinate at m using linear interpolation, or null if no
      * such coordinate exists.
-     * opt_extrapolate controls extrapolation beyond the range of Ms in the
-     * MultiLineString. If opt_extrapolate is true then Ms less than the first
+     * extrapolate controls extrapolation beyond the range of Ms in the
+     * MultiLineString. If extrapolate is true then Ms less than the first
      * M will return the first coordinate and Ms greater than the last M will
      * return the last coordinate.
-     * opt_interpolate controls interpolation between consecutive LineStrings
-     * within the MultiLineString. If opt_interpolate is true the coordinates
+     * interpolate controls interpolation between consecutive LineStrings
+     * within the MultiLineString. If interpolate is true the coordinates
      * will be linearly interpolated between the last coordinate of one LineString
-     * and the first coordinate of the next LineString.  If opt_interpolate is
+     * and the first coordinate of the next LineString.  If interpolate is
      * false then the function will return null for Ms falling between
      * LineStrings.
      */
-    getCoordinateAtM(m: number, opt_extrapolate?: boolean, opt_interpolate?: boolean): Coordinate | null;
+    getCoordinateAtM(m: number, extrapolate?: boolean, interpolate?: boolean): Coordinate | null;
     /**
      * Return the coordinates of the multilinestring.
      */
@@ -58,7 +53,7 @@ export default class MultiLineString extends SimpleGeometry {
     /**
      * Get the type of this geometry.
      */
-    getType(): GeometryType;
+    getType(): Type;
     /**
      * Test if the geometry and the passed extent intersect.
      */
@@ -66,7 +61,7 @@ export default class MultiLineString extends SimpleGeometry {
     /**
      * Set the coordinates of the multilinestring.
      */
-    setCoordinates(coordinates: Coordinate[][], opt_layout?: GeometryLayout): void;
+    setCoordinates(coordinates: Coordinate[][], layout?: GeometryLayout): void;
     on(type: TMultiLineStringBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
     on(type: TMultiLineStringBaseEventTypes[], listener: ListenerFunction<BaseEvent>): EventsKey[];
     once(type: TMultiLineStringBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;

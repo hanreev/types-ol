@@ -1,7 +1,6 @@
 import { Extent } from '../../extent';
 import VectorContext from '../VectorContext';
-import { SerializableInstructions } from '../canvas';
-import BuilderType from './BuilderType';
+import { BuilderType, SerializableInstructions } from '../canvas';
 
 export default class BuilderGroup {
     constructor(tolerance: number, maxExtent: Extent, resolution: number, pixelRatio: number);

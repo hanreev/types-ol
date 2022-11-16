@@ -1,7 +1,7 @@
 import WebGLHelper from './Helper';
 
 export default class WebGLRenderTarget {
-    constructor(helper: WebGLHelper, opt_size?: number[]);
+    constructor(helper: WebGLHelper, size?: number[]);
     /**
      * This will cause following calls to #readAll or #readPixel to download the content of the
      * render target into memory, which is an expensive operation.

@@ -4,13 +4,12 @@ import { EventsKey, ListenerFunction } from '../events';
 import BaseEvent from '../events/Event';
 import { Extent } from '../extent';
 import { TransformFunction } from '../proj';
-import Geometry from './Geometry';
-import GeometryType from './GeometryType';
+import Geometry, { Type } from './Geometry';
 
 export type TGeometryCollectionBaseEventTypes = 'change' | 'error';
 export type TGeometryCollectionObjectEventTypes = 'propertychange';
 export default class GeometryCollection extends Geometry {
-    constructor(opt_geometries?: Geometry[]);
+    constructor(geometries?: Geometry[]);
     protected computeExtent(extent: Extent): Extent;
     /**
      * Apply a transform function to the coordinates of the geometry.
@@ -42,7 +41,7 @@ export default class GeometryCollection extends Geometry {
     /**
      * Get the type of this geometry.
      */
-    getType(): GeometryType;
+    getType(): Type;
     /**
      * Test if the geometry and the passed extent intersect.
      */
@@ -57,7 +56,7 @@ export default class GeometryCollection extends Geometry {
      * Scale the geometry (with an optional origin).  This modifies the geometry
      * coordinates in place.
      */
-    scale(sx: number, opt_sy?: number, opt_anchor?: Coordinate): void;
+    scale(sx: number, sy?: number, anchor?: Coordinate): void;
     /**
      * Set the geometries that make up this geometry collection.
      */
@@ -66,7 +65,7 @@ export default class GeometryCollection extends Geometry {
     /**
      * Get a transformed and simplified version of the geometry.
      */
-    simplifyTransformed(squaredTolerance: number, opt_transform?: TransformFunction): Geometry;
+    simplifyTransformed(squaredTolerance: number, transform?: TransformFunction): Geometry;
     /**
      * Translate the geometry.  This modifies the geometry coordinates in place.  If
      * instead you want a new geometry, first clone() this geometry.

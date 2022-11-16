@@ -19,7 +19,7 @@ export interface Options {
     render?: ((p0: MapEvent) => void) | undefined;
 }
 export default class Attribution extends Control {
-    constructor(opt_options?: Options);
+    constructor(options?: Options);
     /**
      * Return true when the attribution is currently collapsed or false
      * otherwise.

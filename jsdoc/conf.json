@@ -12,6 +12,7 @@
     "include": ["openlayers/src/ol"]
   },
   "plugins": [
+    "jsdoc-plugin-intersection",
     "jsdoc/plugins/markdown",
     "jsdoc-plugin-typescript",
     "jsdoc/plugins/inline-options",

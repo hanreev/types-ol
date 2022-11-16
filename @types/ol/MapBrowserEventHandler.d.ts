@@ -1,8 +1,8 @@
-import PluggableMap from './PluggableMap';
+import Map from './Map';
 import Target from './events/Target';
 
 export default class MapBrowserEventHandler extends Target {
-    constructor(map: PluggableMap, moveTolerance?: number);
+    constructor(map: Map, moveTolerance?: number);
     /**
      * Clean up.
      */

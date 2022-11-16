@@ -8,9 +8,9 @@ export enum BufferUsage {
     DYNAMIC_DRAW = 35048,
 }
 export default class WebGLArrayBuffer {
-    constructor(type: number, opt_usage?: number);
+    constructor(type: number, usage?: number);
     /**
-     * Populates the buffer with an array of the given size (all values will be zeroes).
+     * Populates the buffer with an array of the given size.
      */
     fromArray(array: number[]): void;
     /**

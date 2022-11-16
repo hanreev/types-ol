@@ -2,10 +2,10 @@
  * Create an html canvas element and returns its 2d context.
  */
 export function createCanvasContext2D(
-    opt_width?: number,
-    opt_height?: number,
-    opt_canvasPool?: HTMLCanvasElement[],
-    opt_Context2DSettings?: CanvasRenderingContext2DSettings,
+    width?: number,
+    height?: number,
+    canvasPool?: HTMLCanvasElement[],
+    settings?: CanvasRenderingContext2DSettings,
 ): CanvasRenderingContext2D;
 /**
  * Get the current computed height for the given element including margin,
@@ -19,6 +19,11 @@ export function outerHeight(element: HTMLElement): number;
  * Equivalent to jQuery's $(el).outerWidth(true).
  */
 export function outerWidth(element: HTMLElement): number;
+/**
+ * Releases canvas memory to avoid exceeding memory limits in Safari.
+ * See https://pqina.nl/blog/total-canvas-memory-use-exceeds-the-maximum-limit/
+ */
+export function releaseCanvas(context: CanvasRenderingContext2D): void;
 export function removeChildren(node: Node): void;
 export function removeNode(node: Node): Node | null;
 /**

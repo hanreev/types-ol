@@ -25,7 +25,7 @@ export default class TileLayer<TileSourceType extends TileSource = TileSource> e
     TileSourceType,
     CanvasTileLayerRenderer
 > {
-    constructor(opt_options?: Options<TileSourceType>);
+    constructor(options?: Options<TileSourceType>);
     on(type: TTileLayerBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
     on(type: TTileLayerBaseEventTypes[], listener: ListenerFunction<BaseEvent>): EventsKey[];
     once(type: TTileLayerBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;

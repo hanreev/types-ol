@@ -18,7 +18,7 @@ export interface Options {
     template?: string | undefined;
 }
 export default class TileDebug extends XYZ {
-    constructor(opt_options?: Options);
+    constructor(options?: Options);
     on(type: TTileDebugBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
     on(type: TTileDebugBaseEventTypes[], listener: ListenerFunction<BaseEvent>): EventsKey[];
     once(type: TTileDebugBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;

@@ -18,7 +18,7 @@ export interface Options {
     target?: HTMLElement | string | undefined;
 }
 export default class Zoom extends Control {
-    constructor(opt_options?: Options);
+    constructor(options?: Options);
     on(type: TZoomBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
     on(type: TZoomBaseEventTypes[], listener: ListenerFunction<BaseEvent>): EventsKey[];
     once(type: TZoomBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;

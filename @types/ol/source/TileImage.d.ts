@@ -9,8 +9,7 @@ import { ProjectionLike } from '../proj';
 import Projection from '../proj/Projection';
 import ReprojTile from '../reproj/Tile';
 import TileGrid from '../tilegrid/TileGrid';
-import { AttributionLike } from './Source';
-import State from './State';
+import { AttributionLike, State } from './Source';
 import { TileSourceEvent } from './Tile';
 import UrlTile from './UrlTile';
 
@@ -22,7 +21,6 @@ export interface Options {
     attributionsCollapsible?: boolean | undefined;
     cacheSize?: number | undefined;
     crossOrigin?: null | string | undefined;
-    imageSmoothing?: boolean | undefined;
     interpolate?: boolean | undefined;
     opaque?: boolean | undefined;
     projection?: ProjectionLike | undefined;

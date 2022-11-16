@@ -742,6 +742,7 @@ const PROCESSORS = {
     if (doclet.properties) {
       doclet.properties.forEach(prop => {
         let name = prop.name;
+        if (name.includes('-')) name = `'${name}'`;
 
         // Prevent duplicate property
         if (addedProps.includes(name)) return;

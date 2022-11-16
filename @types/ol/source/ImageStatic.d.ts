@@ -17,7 +17,6 @@ export interface Options {
     crossOrigin?: null | string | undefined;
     imageExtent?: Extent | undefined;
     imageLoadFunction?: LoadFunction | undefined;
-    imageSmoothing?: boolean | undefined;
     interpolate?: boolean | undefined;
     projection?: ProjectionLike | undefined;
     imageSize?: Size | undefined;

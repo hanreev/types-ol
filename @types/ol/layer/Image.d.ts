@@ -24,7 +24,7 @@ export default class ImageLayer<ImageSourceType extends ImageSource = ImageSourc
     ImageSourceType,
     CanvasImageLayerRenderer
 > {
-    constructor(opt_options?: Options<ImageSourceType>);
+    constructor(options?: Options<ImageSourceType>);
     /**
      * Get data for a pixel location.  A four element RGBA array will be returned.  For requests outside the
      * layer extent, null will be returned.  Data for an image can only be retrieved if the

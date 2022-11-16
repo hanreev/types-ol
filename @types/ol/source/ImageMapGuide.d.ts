@@ -22,7 +22,6 @@ export interface Options {
     ratio?: number | undefined;
     resolutions?: number[] | undefined;
     imageLoadFunction?: LoadFunction | undefined;
-    imageSmoothing?: boolean | undefined;
     interpolate?: boolean | undefined;
     params?: any;
 }

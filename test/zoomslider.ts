@@ -1,11 +1,10 @@
-import { PluggableMap } from 'ol';
 import Map from 'ol/Map';
 import View from 'ol/View';
 import { ZoomSlider } from 'ol/control';
 import TileLayer from 'ol/layer/Tile';
 import OSM from 'ol/source/OSM';
 
-function createMap(divId: string): PluggableMap {
+function createMap(divId: string): Map {
     const source = new OSM();
     const layer = new TileLayer({
         source,

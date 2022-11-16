@@ -19,8 +19,8 @@ export const WORLD_EXTENT: Extent;
 /**
  * Transformation from EPSG:4326 to EPSG:3857.
  */
-export function fromEPSG4326(input: number[], opt_output?: number[], opt_dimension?: number): number[];
+export function fromEPSG4326(input: number[], output?: number[], dimension?: number): number[];
 /**
  * Transformation from EPSG:3857 to EPSG:4326.
  */
-export function toEPSG4326(input: number[], opt_output?: number[], opt_dimension?: number): number[];
+export function toEPSG4326(input: number[], output?: number[], dimension?: number): number[];

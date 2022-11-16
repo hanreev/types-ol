@@ -16,7 +16,6 @@ export { default as MapEvent } from './MapEvent';
 export { default as Object } from './Object';
 export { default as Observable } from './Observable';
 export { default as Overlay } from './Overlay';
-export { default as PluggableMap } from './PluggableMap';
 export { default as Tile } from './Tile';
 export { default as TileCache } from './TileCache';
 export { default as TileQueue } from './TileQueue';

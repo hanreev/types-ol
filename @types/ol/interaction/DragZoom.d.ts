@@ -16,7 +16,7 @@ export interface Options {
     minArea?: number | undefined;
 }
 export default class DragZoom extends DragBox {
-    constructor(opt_options?: Options);
+    constructor(options?: Options);
     /**
      * Function to execute just before onboxend is fired
      */

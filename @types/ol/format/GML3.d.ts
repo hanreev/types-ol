@@ -12,12 +12,13 @@ import { WriteOptions } from './Feature';
 import GMLBase, { Options } from './GMLBase';
 
 export default class GML3 extends GMLBase {
-    constructor(opt_options?: Options);
+    constructor(options?: Options);
     curveMemberParser(node: Element, objectStack: any[]): void;
     exteriorParser(node: Element, objectStack: any[]): void;
     interiorParser(node: Element, objectStack: any[]): void;
     readCurve(node: Element, objectStack: any[]): LineString | undefined;
     readEnvelope(node: Element, objectStack: any[]): Extent | undefined;
+    readFlatCurveRing(node: Element, objectStack: any[]): number[] | undefined;
     readFlatPos(node: Node, objectStack: any[]): number[] | undefined;
     readFlatPosList(node: Element, objectStack: any[]): number[] | undefined;
     readLineStringSegment(node: Element, objectStack: any[]): number[] | undefined;
@@ -34,16 +35,16 @@ export default class GML3 extends GMLBase {
     /**
      * Encode an array of features in GML 3.1.1 Simple Features.
      */
-    writeFeatures(features: Feature<Geometry>[], opt_options?: WriteOptions): string;
+    writeFeatures(features: Feature<Geometry>[], options?: WriteOptions): string;
     /**
      * Encode an array of features in the GML 3.1.1 format as an XML node.
      */
-    writeFeaturesNode(features: Feature<Geometry>[], opt_options?: WriteOptions): Element;
+    writeFeaturesNode(features: Feature<Geometry>[], options?: WriteOptions): Element;
     writeGeometryElement(node: Node, geometry: Geometry | Extent, objectStack: any[]): void;
     /**
      * Encode a geometry in GML 3.1.1 Simple Features.
      */
-    writeGeometryNode(geometry: Geometry, opt_options?: WriteOptions): Node;
+    writeGeometryNode(geometry: Geometry, options?: WriteOptions): Node;
     writeLinearRing(node: Element, geometry: LinearRing, objectStack: any[]): void;
     writeLineStringOrCurveMember(node: Node, line: LineString, objectStack: any[]): void;
     writeMultiCurveOrLineString(node: Element, geometry: MultiLineString, objectStack: any[]): void;

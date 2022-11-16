@@ -1,7 +1,7 @@
 import { Coordinate } from './coordinate';
 import { Extent } from './extent';
 import Projection from './proj/Projection';
-import Units, { METERS_PER_UNIT } from './proj/Units';
+import { METERS_PER_UNIT, Units } from './proj/Units';
 
 export { METERS_PER_UNIT };
 export { Projection };
@@ -66,7 +66,7 @@ export function clearAllProjections(): void;
  * Clear the user projection if set.
  */
 export function clearUserProjection(): void;
-export function cloneTransform(input: number[], opt_output?: number[], opt_dimension?: number): number[];
+export function cloneTransform(input: number[], output?: number[], dimension?: number): number[];
 export function createProjection(projection: Projection | string | undefined, defaultCode: string): Projection;
 /**
  * Creates a safe coordinate transform function from a coordinate transform function.
@@ -86,7 +86,7 @@ export function createSafeCoordinateTransform(
 export function createTransformFromCoordinateTransform(
     coordTransform: (p0: Coordinate) => Coordinate,
 ): TransformFunction;
-export function disableCoordinateWarning(opt_disable?: boolean): void;
+export function disableCoordinateWarning(disable?: boolean): void;
 /**
  * Checks if two projections are the same, that is every coordinate in one
  * projection does represent the same geographic point as the same coordinate in
@@ -96,7 +96,7 @@ export function equivalent(projection1: Projection, projection2: Projection): bo
 /**
  * Transforms a coordinate from longitude/latitude to a different projection.
  */
-export function fromLonLat(coordinate: Coordinate, opt_projection?: ProjectionLike): Coordinate;
+export function fromLonLat(coordinate: Coordinate, projection?: ProjectionLike): Coordinate;
 /**
  * Return a coordinate transformed from the user projection.  If no user projection
  * is set, the original coordinate is returned.
@@ -134,7 +134,7 @@ export function getPointResolution(
     projection: ProjectionLike,
     resolution: number,
     point: Coordinate,
-    opt_units?: Units,
+    units?: Units,
 ): number;
 /**
  * Given the projection-like objects, searches for a transformation
@@ -156,7 +156,7 @@ export function getTransformFromProjections(
  * projections is not yet complete and should be considered experimental.
  */
 export function getUserProjection(): Projection | null;
-export function identityTransform(input: number[], opt_output?: number[], opt_dimension?: number): number[];
+export function identityTransform(input: number[], output?: number[], dimension?: number): number[];
 /**
  * Set the projection for coordinates supplied from and returned by API methods.
  * This includes all API methods except for those interacting with tile grids.
@@ -165,7 +165,7 @@ export function setUserProjection(projection: ProjectionLike): void;
 /**
  * Transforms a coordinate to longitude/latitude.
  */
-export function toLonLat(coordinate: Coordinate, opt_projection?: ProjectionLike): Coordinate;
+export function toLonLat(coordinate: Coordinate, projection?: ProjectionLike): Coordinate;
 /**
  * Return a coordinate transformed into the user projection.  If no user projection
  * is set, the original coordinate is returned.
@@ -198,7 +198,7 @@ export function transformExtent(
     extent: Extent,
     source: ProjectionLike,
     destination: ProjectionLike,
-    opt_stops?: number,
+    stops?: number,
 ): Extent;
 /**
  * Transforms the given point to the destination projection.

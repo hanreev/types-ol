@@ -1,8 +1,7 @@
 import Feature from '../Feature';
 import Geometry from '../geom/Geometry';
 import Fill from '../style/Fill';
-import IconAnchorUnits from '../style/IconAnchorUnits';
-import IconOrigin from '../style/IconOrigin';
+import { IconAnchorUnits, IconOrigin } from '../style/Icon';
 import ImageStyle from '../style/Image';
 import Stroke from '../style/Stroke';
 import Style from '../style/Style';
@@ -36,9 +35,9 @@ export interface Vec2 {
     origin?: IconOrigin | undefined;
 }
 export default class KML extends XMLFeature {
-    constructor(opt_options?: Options);
-    protected readFeaturesFromNode(node: Element, opt_options?: ReadOptions): Feature<Geometry>[];
-    readFeatureFromNode(node: Element, opt_options?: ReadOptions): Feature<Geometry>;
+    constructor(options?: Options);
+    protected readFeaturesFromNode(node: Element, options?: ReadOptions): Feature<Geometry>[];
+    readFeatureFromNode(node: Element, options?: ReadOptions): Feature<Geometry>;
     /**
      * Read the name of the KML.
      */
@@ -61,7 +60,7 @@ export default class KML extends XMLFeature {
      * Encode an array of features in the KML format as an XML node. GeometryCollections,
      * MultiPoints, MultiLineStrings, and MultiPolygons are output as MultiGeometries.
      */
-    writeFeaturesNode(features: Feature<Geometry>[], opt_options?: WriteOptions): Node;
+    writeFeaturesNode(features: Feature<Geometry>[], options?: WriteOptions): Node;
 }
 /**
  * Get the default fill style (or null if not yet set).

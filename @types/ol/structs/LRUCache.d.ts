@@ -9,7 +9,7 @@ export interface Entry {
     value_: any;
 }
 export default class LRUCache<T> {
-    constructor(opt_highWaterMark?: number);
+    constructor(highWaterMark?: number);
     canExpireCache(): boolean;
     /**
      * FIXME empty description for jsdoc
@@ -21,10 +21,14 @@ export default class LRUCache<T> {
      */
     expireCache(keep?: Record<string, boolean>): void;
     forEach(f: (p0: T, p1: string, p2: LRUCache<T>) => any): void;
-    get(key: string, opt_options?: any): T;
+    get(key: string, options?: any): T;
     getCount(): number;
     getKeys(): string[];
     getValues(): T[];
+    /**
+     * Return an entry without updating least recently used time.
+     */
+    peek(key: string): T;
     /**
      * Get the key of the newest item in the cache.  Throws if the cache is empty.
      */

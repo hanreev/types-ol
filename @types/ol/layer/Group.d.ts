@@ -4,8 +4,7 @@ import { EventsKey, ListenerFunction } from '../events';
 import BaseEvent from '../events/Event';
 import { Extent } from '../extent';
 import LayerRenderer from '../renderer/Layer';
-import Source from '../source/Source';
-import State_1 from '../source/State';
+import Source, { State as State_1 } from '../source/Source';
 import BaseLayer from './Base';
 import Layer, { State } from './Layer';
 
@@ -42,20 +41,20 @@ export class GroupEvent extends BaseEvent {
     layer: BaseLayer;
 }
 export default class LayerGroup extends BaseLayer {
-    constructor(opt_options?: Options);
+    constructor(options?: Options);
     /**
      * Returns the {@link module:ol/Collection~Collection collection} of {@link module:ol/layer/Layer~Layer layers}
      * in this group.
      */
     getLayers(): Collection<BaseLayer>;
-    getLayersArray(opt_array?: Layer<Source, LayerRenderer>[]): Layer<Source, LayerRenderer>[];
+    getLayersArray(array?: Layer<Source, LayerRenderer>[]): Layer<Source, LayerRenderer>[];
     /**
      * Get the layer states list and use this groups z-index as the default
      * for all layers in this and nested groups, if it is unset at this point.
-     * If opt_states is not provided and this group's z-index is undefined
+     * If dest is not provided and this group's z-index is undefined
      * 0 is used a the default z-index.
      */
-    getLayerStatesArray(opt_states?: State[]): State[];
+    getLayerStatesArray(dest?: State[]): State[];
     getSourceState(): State_1;
     handleLayerGroupAdd_(event: GroupEvent): void;
     handleLayerGroupRemove_(event: GroupEvent): void;

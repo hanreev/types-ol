@@ -13,7 +13,7 @@ export interface Options {
     resolutions: number[];
     sizes?: Size[] | undefined;
     tileSize?: number | Size | undefined;
-    tileSizes?: Size[] | undefined;
+    tileSizes?: (number | Size)[] | undefined;
 }
 export default class TileGrid {
     constructor(options: Options);
@@ -26,8 +26,8 @@ export default class TileGrid {
     forEachTileCoordParentTileRange(
         tileCoord: TileCoord,
         callback: (p0: number, p1: TileRange) => boolean,
-        opt_tileRange?: TileRange,
-        opt_extent?: Extent,
+        tempTileRange?: TileRange,
+        tempExtent?: Extent,
     ): boolean;
     /**
      * Get the extent for this tile grid, if it was configured.
@@ -55,11 +55,11 @@ export default class TileGrid {
      */
     getResolutions(): number[];
     getTileCoordCenter(tileCoord: TileCoord): Coordinate;
-    getTileCoordChildTileRange(tileCoord: TileCoord, opt_tileRange?: TileRange, opt_extent?: Extent): TileRange;
+    getTileCoordChildTileRange(tileCoord: TileCoord, tempTileRange?: TileRange, tempExtent?: Extent): TileRange | null;
     /**
      * Get the extent of a tile coordinate.
      */
-    getTileCoordExtent(tileCoord: TileCoord, opt_extent?: Extent): Extent;
+    getTileCoordExtent(tileCoord: TileCoord, tempExtent?: Extent): Extent;
     /**
      * Get the tile coordinate for the given map coordinate and resolution.  This
      * method considers that coordinates that intersect tile boundaries should be
@@ -74,12 +74,12 @@ export default class TileGrid {
     /**
      * Get the extent for a tile range.
      */
-    getTileRangeExtent(z: number, tileRange: TileRange, opt_extent?: Extent): Extent;
+    getTileRangeExtent(z: number, tileRange: TileRange, tempExtent?: Extent): Extent;
     /**
      * Get a tile range for the given extent and integer zoom level.
      */
-    getTileRangeForExtentAndZ(extent: Extent, z: number, opt_tileRange?: TileRange): TileRange;
-    getTileRangeForTileCoordAndZ(tileCoord: TileCoord, z: number, opt_tileRange?: TileRange): TileRange;
+    getTileRangeForExtentAndZ(extent: Extent, z: number, tempTileRange?: TileRange): TileRange;
+    getTileRangeForTileCoordAndZ(tileCoord: TileCoord, z: number, tempTileRange?: TileRange): TileRange | null;
     /**
      * Get the tile size for a zoom level. The type of the return value matches the
      * tileSize or tileSizes that the tile grid was configured with. To always
@@ -87,4 +87,8 @@ export default class TileGrid {
      */
     getTileSize(z: number): number | Size;
     getZForResolution(resolution: number, opt_direction?: number | NearestDirectionFunction): number;
+    /**
+     * The tile with the provided tile coordinate intersects the given viewport.
+     */
+    tileCoordIntersectsViewport(tileCoord: TileCoord, viewport: number[]): boolean;
 }

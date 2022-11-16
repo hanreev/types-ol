@@ -12,29 +12,22 @@ export interface Options {
     maxWidth?: number | undefined;
     render?: ((p0: MapEvent) => void) | undefined;
     target?: HTMLElement | string | undefined;
-    units?: Units | string | undefined;
+    units?: Units | undefined;
     bar?: boolean | undefined;
     steps?: number | undefined;
     text?: boolean | undefined;
     dpi?: number | undefined;
 }
 /**
- * Units for the scale line. Supported values are 'degrees', 'imperial',
- * 'nautical', 'metric', 'us'.
+ * Units for the scale line.
  */
-export enum Units {
-    DEGREES = 'degrees',
-    IMPERIAL = 'imperial',
-    NAUTICAL = 'nautical',
-    METRIC = 'metric',
-    US = 'us',
-}
+export type Units = 'degrees' | 'imperial' | 'nautical' | 'metric' | 'us';
 export default class ScaleLine extends Control {
-    constructor(opt_options?: Options);
+    constructor(options?: Options);
     /**
      * Creates a marker at given position
      */
-    createMarker(position: string, i: number): string;
+    createMarker(position: 'absolute' | 'relative'): string;
     /**
      * Creates the label for a marker marker at given position
      */

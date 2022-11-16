@@ -10,8 +10,7 @@ import Projection from '../proj/Projection';
 import { Size } from '../size';
 import { TileCoord } from '../tilecoord';
 import TileGrid from '../tilegrid/TileGrid';
-import Source, { AttributionLike } from './Source';
-import State from './State';
+import Source, { AttributionLike, State } from './Source';
 
 export type TTileSourceBaseEventTypes = 'change' | 'error';
 export type TTileSourceObjectEventTypes = 'propertychange';
@@ -65,7 +64,7 @@ export default abstract class TileSource extends Source {
      * is outside the resolution and extent range of the tile grid, null will be
      * returned.
      */
-    getTileCoordForTileUrlFunction(tileCoord: TileCoord, opt_projection?: Projection): TileCoord;
+    getTileCoordForTileUrlFunction(tileCoord: TileCoord, projection?: Projection): TileCoord;
     /**
      * Return the tile grid of the tile source.
      */

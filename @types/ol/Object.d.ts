@@ -5,7 +5,7 @@ import BaseEvent from './events/Event';
 export type TBaseObjectBaseEventTypes = 'change' | 'error';
 export type TBaseObjectObjectEventTypes = 'propertychange';
 export default class BaseObject extends Observable {
-    constructor(opt_values?: Record<string, any>);
+    constructor(values?: Record<string, any>);
     /**
      * Apply any properties from another object without triggering events.
      */
@@ -29,16 +29,16 @@ export default class BaseObject extends Observable {
     /**
      * Sets a value.
      */
-    set(key: string, value: any, opt_silent?: boolean): void;
+    set(key: string, value: any, silent?: boolean): void;
     /**
      * Sets a collection of key-value pairs.  Note that this changes any existing
      * properties and adds new ones (it does not remove any existing properties).
      */
-    setProperties(values: Record<string, any>, opt_silent?: boolean): void;
+    setProperties(values: Record<string, any>, silent?: boolean): void;
     /**
      * Unsets a property.
      */
-    unset(key: string, opt_silent?: boolean): void;
+    unset(key: string, silent?: boolean): void;
     on(type: TBaseObjectBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
     on(type: TBaseObjectBaseEventTypes[], listener: ListenerFunction<BaseEvent>): EventsKey[];
     once(type: TBaseObjectBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;

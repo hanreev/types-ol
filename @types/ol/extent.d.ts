@@ -1,10 +1,13 @@
 import { Coordinate } from './coordinate';
-import Corner from './extent/Corner';
 import Relationship from './extent/Relationship';
 import { TransformFunction } from './proj';
 import Projection from './proj/Projection';
 import { Size } from './size';
 
+/**
+ * Extent corner.
+ */
+export type Corner = 'bottom-left' | 'bottom-right' | 'top-left' | 'top-right';
 /**
  * An array of numbers representing an extent: [minx, miny, maxx, maxy].
  */
@@ -12,12 +15,7 @@ export type Extent = [number, number, number, number];
 /**
  * Apply a transform function to the extent.
  */
-export function applyTransform(
-    extent: Extent,
-    transformFn: TransformFunction,
-    opt_extent?: Extent,
-    opt_stops?: number,
-): Extent;
+export function applyTransform(extent: Extent, transformFn: TransformFunction, dest?: Extent, stops?: number): Extent;
 /**
  * Determine if two extents are approximately equivalent.
  */
@@ -29,11 +27,11 @@ export function boundingExtent(coordinates: Coordinate[]): Extent;
 /**
  * Return extent increased by the provided value.
  */
-export function buffer(extent: Extent, value: number, opt_extent?: Extent): Extent;
+export function buffer(extent: Extent, value: number, dest?: Extent): Extent;
 /**
  * Creates a clone of an extent.
  */
-export function clone(extent: Extent, opt_extent?: Extent): Extent;
+export function clone(extent: Extent, dest?: Extent): Extent;
 export function closestSquaredDistanceXY(extent: Extent, x: number, y: number): number;
 /**
  * Check if the passed coordinate is contained or on the edge of the extent.
@@ -60,21 +58,21 @@ export function createEmpty(): Extent;
 /**
  * Create a new extent or update the provided extent.
  */
-export function createOrUpdate(minX: number, minY: number, maxX: number, maxY: number, opt_extent?: Extent): Extent;
+export function createOrUpdate(minX: number, minY: number, maxX: number, maxY: number, dest?: Extent): Extent;
 /**
  * Create a new empty extent or make the provided one empty.
  */
-export function createOrUpdateEmpty(opt_extent?: Extent): Extent;
-export function createOrUpdateFromCoordinate(coordinate: Coordinate, opt_extent?: Extent): Extent;
-export function createOrUpdateFromCoordinates(coordinates: Coordinate[], opt_extent?: Extent): Extent;
+export function createOrUpdateEmpty(dest?: Extent): Extent;
+export function createOrUpdateFromCoordinate(coordinate: Coordinate, dest?: Extent): Extent;
+export function createOrUpdateFromCoordinates(coordinates: Coordinate[], dest?: Extent): Extent;
 export function createOrUpdateFromFlatCoordinates(
     flatCoordinates: number[],
     offset: number,
     end: number,
     stride: number,
-    opt_extent?: Extent,
+    dest?: Extent,
 ): Extent;
-export function createOrUpdateFromRings(rings: Coordinate[][], opt_extent?: Extent): Extent;
+export function createOrUpdateFromRings(rings: Coordinate[][], dest?: Extent): Extent;
 /**
  * Determine if two extents are equivalent.
  */
@@ -126,7 +124,7 @@ export function getForViewAndSize(
     resolution: number,
     rotation: number,
     size: Size,
-    opt_extent?: Extent,
+    dest?: Extent,
 ): Extent;
 /**
  * Get the height of an extent.
@@ -135,9 +133,10 @@ export function getHeight(extent: Extent): number;
 /**
  * Get the intersection of two extents.
  */
-export function getIntersection(extent1: Extent, extent2: Extent, opt_extent?: Extent): Extent;
+export function getIntersection(extent1: Extent, extent2: Extent, dest?: Extent): Extent;
 export function getIntersectionArea(extent1: Extent, extent2: Extent): number;
 export function getMargin(extent: Extent): number;
+export function getRotatedViewport(center: Coordinate, resolution: number, rotation: number, size: Size): number[];
 /**
  * Get the size (width, height) of an extent.
  */
@@ -167,7 +166,7 @@ export function intersectsSegment(extent: Extent, start: Coordinate, end: Coordi
  * Determine if an extent is empty.
  */
 export function isEmpty(extent: Extent): boolean;
-export function returnOrUpdate(extent: Extent, opt_extent?: Extent): Extent;
+export function returnOrUpdate(extent: Extent, dest?: Extent): Extent;
 export function scaleFromCenter(extent: Extent, value: number): void;
 /**
  * Fits the extent to the real world

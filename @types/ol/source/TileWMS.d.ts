@@ -10,7 +10,7 @@ import TileGrid from '../tilegrid/TileGrid';
 import { AttributionLike } from './Source';
 import { TileSourceEvent } from './Tile';
 import TileImage from './TileImage';
-import WMSServerType from './WMSServerType';
+import { ServerType } from './wms';
 
 export type TTileWMSBaseEventTypes = 'change' | 'error';
 export type TTileWMSObjectEventTypes = 'propertychange';
@@ -20,7 +20,6 @@ export interface Options {
     attributionsCollapsible?: boolean | undefined;
     cacheSize?: number | undefined;
     crossOrigin?: null | string | undefined;
-    imageSmoothing?: boolean | undefined;
     interpolate?: boolean | undefined;
     params: Record<string, any>;
     gutter?: number | undefined;
@@ -29,7 +28,7 @@ export interface Options {
     reprojectionErrorThreshold?: number | undefined;
     tileClass?: typeof ImageTile | undefined;
     tileGrid?: TileGrid | undefined;
-    serverType?: WMSServerType | string | undefined;
+    serverType?: ServerType | undefined;
     tileLoadFunction?: LoadFunction | undefined;
     url?: string | undefined;
     urls?: string[] | undefined;
@@ -38,7 +37,7 @@ export interface Options {
     zDirection?: number | NearestDirectionFunction | undefined;
 }
 export default class TileWMS extends TileImage {
-    constructor(opt_options?: Options);
+    constructor(options?: Options);
     /**
      * Return the GetFeatureInfo URL for the passed coordinate, resolution, and
      * projection. Return undefined if the GetFeatureInfo URL cannot be
