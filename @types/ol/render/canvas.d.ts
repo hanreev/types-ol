@@ -6,6 +6,7 @@ import Stroke from '../style/Stroke';
 import { Transform } from '../transform';
 import { ReplayImageOrLabelArgs } from './canvas/Executor';
 
+export type BuilderType = 'Circle' | 'Image' | 'LineString' | 'Polygon' | 'Text' | 'Default';
 export type DeclutterImageWithText = Record<number, ReplayImageOrLabelArgs>;
 export interface FillState {
     fillStyle: ColorLike;
@@ -54,6 +55,7 @@ export interface StrokeState {
 export interface TextState {
     font: string;
     textAlign?: string | undefined;
+    justify?: string | undefined;
     textBaseline: string;
     placement?: string | undefined;
     maxAngle?: number | undefined;

@@ -151,7 +151,7 @@ export default class VectorSource<Geometry extends Geometry_1 = Geometry_1> exte
      * When useSpatialIndex is set to false, this method will return all
      * features.
      */
-    getFeaturesInExtent(extent: Extent): Feature<Geometry>[];
+    getFeaturesInExtent(extent: Extent, opt_projection?: Projection): Feature<Geometry>[];
     /**
      * Get the format associated with this source.
      */

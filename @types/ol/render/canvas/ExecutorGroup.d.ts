@@ -3,8 +3,7 @@ import { Coordinate } from '../../coordinate';
 import { Extent } from '../../extent';
 import SimpleGeometry from '../../geom/SimpleGeometry';
 import { Transform } from '../../transform';
-import { SerializableInstructions } from '../canvas';
-import BuilderType from './BuilderType';
+import { BuilderType, SerializableInstructions } from '../canvas';
 import RBush from 'rbush';
 
 export default class ExecutorGroup {
@@ -34,7 +33,7 @@ export default class ExecutorGroup {
         callback: (p0: FeatureLike, p1: SimpleGeometry, p2: number) => T,
         declutteredFeatures: FeatureLike[],
     ): T | undefined;
-    getClipCoords(transform: Transform): number[];
+    getClipCoords(transform: Transform): number[] | null;
     hasExecutors(executors: BuilderType[]): boolean;
     isEmpty(): boolean;
 }

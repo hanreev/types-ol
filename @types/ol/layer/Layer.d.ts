@@ -9,8 +9,7 @@ import Geometry from '../geom/Geometry';
 import { Pixel } from '../pixel';
 import RenderEvent from '../render/Event';
 import LayerRenderer from '../renderer/Layer';
-import Source from '../source/Source';
-import State_1 from '../source/State';
+import Source, { State as State_1 } from '../source/Source';
 import BaseLayer from './Base';
 
 export type TLayerBaseEventTypes = 'change' | 'error';

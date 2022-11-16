@@ -27,4 +27,8 @@ export default class ReprojTile extends Tile {
      * Load not yet loaded URI.
      */
     load(): void;
+    /**
+     * Remove from the cache due to expiry
+     */
+    release(): void;
 }

@@ -4,10 +4,24 @@ import { EventsKey, ListenerFunction } from '../events';
 import BaseEvent from '../events/Event';
 import { Extent } from '../extent';
 import { ProjectionLike, TransformFunction } from '../proj';
-import GeometryType from './GeometryType';
 
 export type TGeometryBaseEventTypes = 'change' | 'error';
 export type TGeometryObjectEventTypes = 'propertychange';
+/**
+ * The geometry type.  One of 'Point', 'LineString', 'LinearRing',
+ * 'Polygon', 'MultiPoint', 'MultiLineString', 'MultiPolygon',
+ * 'GeometryCollection', or 'Circle'.
+ */
+export type Type =
+    | 'Point'
+    | 'LineString'
+    | 'LinearRing'
+    | 'Polygon'
+    | 'MultiPoint'
+    | 'MultiLineString'
+    | 'MultiPolygon'
+    | 'GeometryCollection'
+    | 'Circle';
 export default abstract class Geometry extends BaseObject {
     constructor();
     protected simplifiedGeometryMaxMinSquaredTolerance: number;
@@ -44,7 +58,7 @@ export default abstract class Geometry extends BaseObject {
     /**
      * Get the type of this geometry.
      */
-    abstract getType(): GeometryType;
+    abstract getType(): Type;
     /**
      * Returns true if this geometry includes the specified coordinate. If the
      * coordinate is on the boundary of the geometry, returns false.

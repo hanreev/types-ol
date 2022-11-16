@@ -7,8 +7,8 @@ import { Coordinate } from '../coordinate';
 import { EventsKey, ListenerFunction } from '../events';
 import BaseEvent from '../events/Event';
 import { Condition } from '../events/condition';
-import Geometry from '../geom/Geometry';
-import GeometryType from '../geom/GeometryType';
+import Geometry, { Type } from '../geom/Geometry';
+import GeometryLayout from '../geom/GeometryLayout';
 import LineString from '../geom/LineString';
 import SimpleGeometry from '../geom/SimpleGeometry';
 import VectorLayer from '../layer/Vector';
@@ -32,7 +32,7 @@ export type GeometryFunction = (p0: SketchCoordType, p1: SimpleGeometry, p2: Pro
  */
 export type LineCoordType = Coordinate[];
 export interface Options {
-    type: GeometryType;
+    type: Type;
     clickTolerance?: number | undefined;
     features?: Collection<Feature<Geometry>> | undefined;
     source?: VectorSource<Geometry> | undefined;
@@ -49,6 +49,7 @@ export interface Options {
     freehand?: boolean | undefined;
     freehandCondition?: Condition | undefined;
     wrapX?: boolean | undefined;
+    geometryLayout?: GeometryLayout | undefined;
 }
 /**
  * Coordinate type when drawing points.

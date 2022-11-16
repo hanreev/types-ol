@@ -1,4 +1,5 @@
 import Tile from './Tile';
+import { Size } from './size';
 import { TileCoord } from './tilecoord';
 
 /**
@@ -11,6 +12,7 @@ export interface Options {
     loader: () => Promise<Data>;
     transition?: number | undefined;
     interpolate?: boolean | undefined;
+    size?: Size | undefined;
 }
 export default class DataTile extends Tile {
     constructor(options: Options);
@@ -22,6 +24,10 @@ export default class DataTile extends Tile {
      * Get any loading error.
      */
     getError(): Error;
+    /**
+     * Get the tile size.
+     */
+    getSize(): Size;
     /**
      * Load not yet loaded URI.
      */

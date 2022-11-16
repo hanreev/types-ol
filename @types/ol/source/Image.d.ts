@@ -6,8 +6,7 @@ import BaseEvent from '../events/Event';
 import { Extent } from '../extent';
 import { ProjectionLike } from '../proj';
 import Projection from '../proj/Projection';
-import Source, { AttributionLike } from './Source';
-import State from './State';
+import Source, { AttributionLike, State } from './Source';
 
 export type TImageSourceBaseEventTypes = 'change' | 'error';
 export type TImageSourceImageSourceEventTypes = 'imageloadend' | 'imageloaderror' | 'imageloadstart';

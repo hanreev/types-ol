@@ -1,8 +1,7 @@
 import Feature from '../Feature';
 import Geometry from '../geom/Geometry';
 import Projection from '../proj/Projection';
-import FeatureFormat, { ReadOptions, WriteOptions } from './Feature';
-import FormatType from './FormatType';
+import FeatureFormat, { ReadOptions, Type, WriteOptions } from './Feature';
 
 export default abstract class TextFeature extends FeatureFormat {
     constructor();
@@ -13,7 +12,7 @@ export default abstract class TextFeature extends FeatureFormat {
     protected abstract writeFeaturesText(features: Feature<Geometry>[], opt_options?: WriteOptions): string;
     protected abstract writeFeatureText(feature: Feature<Geometry>, opt_options?: WriteOptions): string;
     protected abstract writeGeometryText(geometry: Geometry, opt_options?: WriteOptions): string;
-    getType(): FormatType;
+    getType(): Type;
     /**
      * Read the feature from the source.
      */

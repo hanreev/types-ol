@@ -1,9 +1,8 @@
-import Feature, { FeatureLike } from '../Feature';
+import Feature from '../Feature';
 import Geometry from '../geom/Geometry';
 import GeometryLayout from '../geom/GeometryLayout';
 import Projection from '../proj/Projection';
-import FeatureFormat, { ReadOptions, WriteOptions } from './Feature';
-import FormatType from './FormatType';
+import FeatureFormat, { ReadOptions, Type, WriteOptions } from './Feature';
 
 export interface Options {
     splitCollection?: boolean | undefined;
@@ -17,15 +16,15 @@ export interface Options {
 }
 export default class WKB extends FeatureFormat {
     constructor(opt_options?: Options);
-    getType(): FormatType;
+    getType(): Type;
     /**
      * Read a single feature from a source.
      */
-    readFeature(source: string | ArrayBuffer | ArrayBufferView, opt_options?: ReadOptions): FeatureLike;
+    readFeature(source: string | ArrayBuffer | ArrayBufferView, opt_options?: ReadOptions): Feature<Geometry>;
     /**
      * Read all features from a source.
      */
-    readFeatures(source: string | ArrayBuffer | ArrayBufferView, opt_options?: ReadOptions): FeatureLike[];
+    readFeatures(source: string | ArrayBuffer | ArrayBufferView, opt_options?: ReadOptions): Feature<Geometry>[];
     /**
      * Read a single geometry from a source.
      */

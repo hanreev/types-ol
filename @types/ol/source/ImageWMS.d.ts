@@ -8,7 +8,7 @@ import { ProjectionLike } from '../proj';
 import Projection from '../proj/Projection';
 import ImageSource, { ImageSourceEvent } from './Image';
 import { AttributionLike } from './Source';
-import WMSServerType from './WMSServerType';
+import { ServerType } from './wms';
 
 export type TImageWMSBaseEventTypes = 'change' | 'error';
 export type TImageWMSImageSourceEventTypes = 'imageloadend' | 'imageloaderror' | 'imageloadstart';
@@ -17,7 +17,7 @@ export interface Options {
     attributions?: AttributionLike | undefined;
     crossOrigin?: null | string | undefined;
     hidpi?: boolean | undefined;
-    serverType?: WMSServerType | string | undefined;
+    serverType?: ServerType | undefined;
     imageLoadFunction?: LoadFunction | undefined;
     imageSmoothing?: boolean | undefined;
     interpolate?: boolean | undefined;

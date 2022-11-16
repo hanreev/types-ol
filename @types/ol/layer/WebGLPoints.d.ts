@@ -21,8 +21,6 @@ export type TWebGLPointsLayerObjectEventTypes =
     | 'change:zIndex'
     | 'propertychange';
 export type TWebGLPointsLayerRenderEventTypes =
-    | 'loadend'
-    | 'loadstart'
     | 'postcompose'
     | 'postrender'
     | 'precompose'

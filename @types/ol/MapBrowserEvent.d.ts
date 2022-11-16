@@ -10,6 +10,7 @@ export default class MapBrowserEvent<EVENT extends UIEvent = UIEvent> extends Ma
         originalEvent: EVENT,
         opt_dragging?: boolean,
         opt_frameState?: FrameState,
+        opt_activePointers?: PointerEvent[],
     );
     /**
      * The coordinate corresponding to the original browser event.  This will be in the user

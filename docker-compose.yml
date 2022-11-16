@@ -1,11 +1,18 @@
 version: '3'
 services:
   nodejs:
-    build: '.'
-    image: node-lts-alpine-git
-    environment:
-      ARGS: ${ARGS}
+    image: node:lts-alpine
+    user: node
     volumes:
       - .:/app
       - ./openlayers:/app/openlayers
-    command: sh -c "yarn --frozen-lockfile && yarn prepare-npm $ARGS"
+    working_dir: /app
+    command:
+      - /bin/sh
+      - -c
+      - |
+        apk add --no-cache git
+        git config --global --add safe.directory /app
+        git config --global --add safe.directory /openlayers
+        yarn
+        yarn prepare-npm $ARGS

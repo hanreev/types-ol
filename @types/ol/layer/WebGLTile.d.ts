@@ -6,7 +6,7 @@ import { Extent } from '../extent';
 import RenderEvent from '../render/Event';
 import WebGLTileLayerRenderer from '../renderer/webgl/TileLayer';
 import DataTileSource from '../source/DataTile';
-import State from '../source/State';
+import { State } from '../source/Source';
 import TileImage from '../source/TileImage';
 import { ExpressionValue } from '../style/expressions';
 import { UniformValue } from '../webgl/Helper';
@@ -28,8 +28,6 @@ export type TWebGLTileLayerObjectEventTypes =
     | 'change:zIndex'
     | 'propertychange';
 export type TWebGLTileLayerRenderEventTypes =
-    | 'loadend'
-    | 'loadstart'
     | 'postcompose'
     | 'postrender'
     | 'precompose'

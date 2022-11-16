@@ -7,8 +7,7 @@ import { ProjectionLike } from '../proj';
 import Projection from '../proj/Projection';
 import { TileCoord } from '../tilecoord';
 import TileGrid from '../tilegrid/TileGrid';
-import { AttributionLike } from './Source';
-import State from './State';
+import { AttributionLike, State } from './Source';
 import TileSource, { TileSourceEvent } from './Tile';
 
 export type TUrlTileBaseEventTypes = 'change' | 'error';

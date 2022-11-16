@@ -1,8 +1,7 @@
 import Feature from '../Feature';
 import Geometry from '../geom/Geometry';
 import Projection from '../proj/Projection';
-import FeatureFormat, { ReadOptions, WriteOptions } from './Feature';
-import FormatType from './FormatType';
+import FeatureFormat, { ReadOptions, Type, WriteOptions } from './Feature';
 
 export default abstract class JSONFeature extends FeatureFormat {
     constructor();
@@ -10,7 +9,7 @@ export default abstract class JSONFeature extends FeatureFormat {
     protected abstract readFeaturesFromObject(object: any, opt_options?: ReadOptions): Feature<Geometry>[];
     protected abstract readGeometryFromObject(object: any, opt_options?: ReadOptions): Geometry;
     protected abstract readProjectionFromObject(object: any): Projection;
-    getType(): FormatType;
+    getType(): Type;
     /**
      * Read a feature.  Only works for a single feature. Use readFeatures to
      * read a feature collection.

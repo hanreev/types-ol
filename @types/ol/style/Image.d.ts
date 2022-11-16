@@ -8,6 +8,7 @@ export interface Options {
     rotation: number;
     scale: number | Size;
     displacement: number[];
+    declutterMode: 'declutter' | 'obstacle' | 'none';
 }
 export default abstract class ImageStyle {
     constructor(options: Options);
@@ -20,6 +21,10 @@ export default abstract class ImageStyle {
      * symbolizer.
      */
     abstract getAnchor(): number[];
+    /**
+     * Get the declutter mode of the shape
+     */
+    getDeclutterMode(): 'declutter' | 'obstacle' | 'none' | undefined;
     /**
      * Get the displacement of the shape
      */

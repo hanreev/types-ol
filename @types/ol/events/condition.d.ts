@@ -86,8 +86,9 @@ export const shiftKeyOnly: (mapBrowserEvent: MapBrowserEvent<UIEvent>) => boolea
  */
 export const singleClick: (mapBrowserEvent: MapBrowserEvent<UIEvent>) => boolean;
 /**
- * Return true if the target element is not editable, i.e. not a <input>-,
- * <select>- or <textarea>-element, false otherwise.
+ * Return true if the target element is not editable, i.e. not an input,
+ * select, or textarea element and no contenteditable attribute is
+ * set or inherited, false otherwise.
  */
 export const targetNotEditable: (mapBrowserEvent: MapBrowserEvent<UIEvent>) => boolean;
 /**

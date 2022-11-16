@@ -18,6 +18,7 @@ export default class GML3 extends GMLBase {
     interiorParser(node: Element, objectStack: any[]): void;
     readCurve(node: Element, objectStack: any[]): LineString | undefined;
     readEnvelope(node: Element, objectStack: any[]): Extent | undefined;
+    readFlatCurveRing(node: Element, objectStack: any[]): number[] | undefined;
     readFlatPos(node: Node, objectStack: any[]): number[] | undefined;
     readFlatPosList(node: Element, objectStack: any[]): number[] | undefined;
     readLineStringSegment(node: Element, objectStack: any[]): number[] | undefined;

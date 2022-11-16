@@ -7,8 +7,7 @@ import { ProjectionLike } from '../proj';
 import Projection from '../proj/Projection';
 import { Size } from '../size';
 import ImageSource, { ImageSourceEvent } from './Image';
-import { AttributionLike } from './Source';
-import State from './State';
+import { AttributionLike, State } from './Source';
 
 export type TImageCanvasSourceBaseEventTypes = 'change' | 'error';
 export type TImageCanvasSourceImageSourceEventTypes = 'imageloadend' | 'imageloaderror' | 'imageloadstart';

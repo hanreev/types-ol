@@ -1,6 +1,6 @@
 {
   "name": "@hanreev/types-ol",
-  "version": "6.14.0",
+  "version": "6.15.0",
   "description": "OpenLayers 6+ TypeScript definition",
   "author": "Rifa'i M. Hanif <hanreev@gmail.com>",
   "repository": {

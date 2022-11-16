@@ -19,6 +19,11 @@ export function outerHeight(element: HTMLElement): number;
  * Equivalent to jQuery's $(el).outerWidth(true).
  */
 export function outerWidth(element: HTMLElement): number;
+/**
+ * Releases canvas memory to avoid exceeding memory limits in Safari.
+ * See https://pqina.nl/blog/total-canvas-memory-use-exceeds-the-maximum-limit/
+ */
+export function releaseCanvas(context: CanvasRenderingContext2D): void;
 export function removeChildren(node: Node): void;
 export function removeNode(node: Node): Node | null;
 /**

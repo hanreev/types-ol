@@ -1,8 +1,7 @@
 import Feature, { FeatureClass, FeatureLike } from '../Feature';
 import Geometry from '../geom/Geometry';
 import Projection from '../proj/Projection';
-import FeatureFormat, { ReadOptions, WriteOptions } from './Feature';
-import FormatType from './FormatType';
+import FeatureFormat, { ReadOptions, Type, WriteOptions } from './Feature';
 
 export interface Options {
     featureClass?: FeatureClass | undefined;
@@ -13,7 +12,7 @@ export interface Options {
 }
 export default class MVT extends FeatureFormat {
     constructor(opt_options?: Options);
-    getType(): FormatType;
+    getType(): Type;
     /**
      * Read a single feature from a source.
      */

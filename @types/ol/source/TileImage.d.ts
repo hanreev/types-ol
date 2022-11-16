@@ -9,8 +9,7 @@ import { ProjectionLike } from '../proj';
 import Projection from '../proj/Projection';
 import ReprojTile from '../reproj/Tile';
 import TileGrid from '../tilegrid/TileGrid';
-import { AttributionLike } from './Source';
-import State from './State';
+import { AttributionLike, State } from './Source';
 import { TileSourceEvent } from './Tile';
 import UrlTile from './UrlTile';
 

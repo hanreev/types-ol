@@ -26,6 +26,10 @@ export default class LRUCache<T> {
     getKeys(): string[];
     getValues(): T[];
     /**
+     * Return an entry without updating least recently used time.
+     */
+    peek(key: string): T;
+    /**
      * Get the key of the newest item in the cache.  Throws if the cache is empty.
      */
     peekFirstKey(): string;

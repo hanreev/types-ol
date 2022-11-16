@@ -3,8 +3,8 @@ import { Coordinate } from '../coordinate';
 import { EventsKey, ListenerFunction } from '../events';
 import BaseEvent from '../events/Event';
 import { Extent } from '../extent';
+import { Type } from './Geometry';
 import GeometryLayout from './GeometryLayout';
-import GeometryType from './GeometryType';
 import SimpleGeometry from './SimpleGeometry';
 
 export type TPointBaseEventTypes = 'change' | 'error';
@@ -24,7 +24,7 @@ export default class Point extends SimpleGeometry {
     /**
      * Get the type of this geometry.
      */
-    getType(): GeometryType;
+    getType(): Type;
     /**
      * Test if the geometry and the passed extent intersect.
      */

@@ -11,6 +11,7 @@ export interface Options {
     scale?: number | Size | undefined;
     rotation?: number | undefined;
     rotateWithView?: boolean | undefined;
+    declutterMode?: 'declutter' | 'obstacle' | 'none' | undefined;
 }
 export default class CircleStyle extends RegularShape {
     constructor(opt_options?: Options);

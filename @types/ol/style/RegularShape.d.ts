@@ -21,6 +21,7 @@ export interface Options {
     rotation?: number | undefined;
     rotateWithView?: boolean | undefined;
     scale?: number | Size | undefined;
+    declutterMode?: 'declutter' | 'obstacle' | 'none' | undefined;
 }
 export interface RenderOptions {
     strokeStyle?: ColorLike | undefined;
@@ -93,5 +94,13 @@ export default class RegularShape extends ImageStyle {
      * Load not yet loaded URI.
      */
     load(): void;
+    /**
+     * Set the fill style.
+     */
+    setFill(fill: Fill): void;
+    /**
+     * Set the stroke style.
+     */
+    setStroke(stroke: Stroke): void;
     unlistenImageChange(listener: (p0: BaseEvent) => void): void;
 }

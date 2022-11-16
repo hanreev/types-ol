@@ -1,5 +1,4 @@
-import { Extent } from './extent';
-import Corner from './extent/Corner';
+import { Corner, Extent } from './extent';
 import { ProjectionLike } from './proj';
 import Projection from './proj/Projection';
 import { Size } from './size';

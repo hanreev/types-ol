@@ -9,7 +9,6 @@ import WMTSTileGrid from '../tilegrid/WMTS';
 import { AttributionLike } from './Source';
 import { TileSourceEvent } from './Tile';
 import TileImage from './TileImage';
-import WMTSRequestEncoding from './WMTSRequestEncoding';
 
 export type TWMTSBaseEventTypes = 'change' | 'error';
 export type TWMTSObjectEventTypes = 'propertychange';
@@ -24,7 +23,7 @@ export interface Options {
     tileGrid: WMTSTileGrid;
     projection?: ProjectionLike | undefined;
     reprojectionErrorThreshold?: number | undefined;
-    requestEncoding?: WMTSRequestEncoding | string | undefined;
+    requestEncoding?: RequestEncoding | undefined;
     layer: string;
     style: string;
     tileClass?: typeof ImageTile | undefined;
@@ -40,6 +39,10 @@ export interface Options {
     transition?: number | undefined;
     zDirection?: number | NearestDirectionFunction | undefined;
 }
+/**
+ * Request encoding. One of 'KVP', 'REST'.
+ */
+export type RequestEncoding = 'KVP' | 'REST';
 export default class WMTS extends TileImage {
     constructor(options: Options);
     createFromWMTSTemplate(template: string): UrlFunction;
@@ -64,7 +67,7 @@ export default class WMTS extends TileImage {
     /**
      * Return the request encoding, either "KVP" or "REST".
      */
-    getRequestEncoding(): WMTSRequestEncoding;
+    getRequestEncoding(): RequestEncoding;
     /**
      * Return the style of the WMTS source.
      */

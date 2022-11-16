@@ -1,8 +1,7 @@
 import Feature from '../Feature';
 import Geometry from '../geom/Geometry';
 import Projection from '../proj/Projection';
-import FeatureFormat, { ReadOptions, WriteOptions } from './Feature';
-import FormatType from './FormatType';
+import FeatureFormat, { ReadOptions, Type, WriteOptions } from './Feature';
 
 export default abstract class XMLFeature extends FeatureFormat {
     constructor();
@@ -13,7 +12,7 @@ export default abstract class XMLFeature extends FeatureFormat {
     protected readProjectionFromDocument(doc: Document): Projection;
     protected readProjectionFromNode(node: Element): Projection;
     protected writeFeatureNode(feature: Feature<Geometry>, opt_options?: WriteOptions): Node;
-    getType(): FormatType;
+    getType(): Type;
     /**
      * Read a single feature.
      */

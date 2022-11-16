@@ -1,10 +1,13 @@
 import { Coordinate } from './coordinate';
-import Corner from './extent/Corner';
 import Relationship from './extent/Relationship';
 import { TransformFunction } from './proj';
 import Projection from './proj/Projection';
 import { Size } from './size';
 
+/**
+ * Extent corner.
+ */
+export type Corner = 'bottom-left' | 'bottom-right' | 'top-left' | 'top-right';
 /**
  * An array of numbers representing an extent: [minx, miny, maxx, maxy].
  */
@@ -138,6 +141,7 @@ export function getHeight(extent: Extent): number;
 export function getIntersection(extent1: Extent, extent2: Extent, opt_extent?: Extent): Extent;
 export function getIntersectionArea(extent1: Extent, extent2: Extent): number;
 export function getMargin(extent: Extent): number;
+export function getRotatedViewport(center: Coordinate, resolution: number, rotation: number, size: Size): number[];
 /**
  * Get the size (width, height) of an extent.
  */
@@ -169,6 +173,13 @@ export function intersectsSegment(extent: Extent, start: Coordinate, end: Coordi
 export function isEmpty(extent: Extent): boolean;
 export function returnOrUpdate(extent: Extent, opt_extent?: Extent): Extent;
 export function scaleFromCenter(extent: Extent, value: number): void;
+/**
+ * Fits the extent to the real world
+ * If the extent does not cross the anti meridian, this will return the extent in an array
+ * If the extent crosses the anti meridian, the extent will be sliced, so each part fits within the
+ * real world
+ */
+export function wrapAndSliceX(extent: Extent, projection: Projection): Extent[];
 /**
  * Modifies the provided extent in-place to be within the real world
  * extent.

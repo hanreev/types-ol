@@ -11,7 +11,7 @@ export interface Options {
     matrixIds: string[];
     sizes?: Size[] | undefined;
     tileSize?: number | Size | undefined;
-    tileSizes?: Size[] | undefined;
+    tileSizes?: (number | Size)[] | undefined;
 }
 export default class WMTSTileGrid extends TileGrid {
     constructor(options: Options);

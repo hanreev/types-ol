@@ -5,9 +5,8 @@ import BaseEvent from '../events/Event';
 import { Extent } from '../extent';
 import { TransformFunction } from '../proj';
 import { Transform } from '../transform';
-import Geometry from './Geometry';
+import Geometry, { Type } from './Geometry';
 import GeometryLayout from './GeometryLayout';
-import GeometryType from './GeometryType';
 
 export type TSimpleGeometryBaseEventTypes = 'change' | 'error';
 export type TSimpleGeometryObjectEventTypes = 'propertychange';
@@ -53,7 +52,7 @@ export default abstract class SimpleGeometry extends Geometry {
     /**
      * Get the type of this geometry.
      */
-    abstract getType(): GeometryType;
+    abstract getType(): Type;
     /**
      * Test if the geometry and the passed extent intersect.
      */

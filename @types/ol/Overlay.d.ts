@@ -1,6 +1,5 @@
 import BaseObject, { ObjectEvent } from './Object';
 import Types from './ObjectEventType';
-import OverlayPositioning from './OverlayPositioning';
 import PluggableMap from './PluggableMap';
 import { Coordinate } from './coordinate';
 import { EventsKey, ListenerFunction } from './events';
@@ -22,7 +21,7 @@ export interface Options {
     element?: HTMLElement | undefined;
     offset?: number[] | undefined;
     position?: Coordinate | undefined;
-    positioning?: OverlayPositioning | undefined;
+    positioning?: Positioning | undefined;
     stopEvent?: boolean | undefined;
     insertFirst?: boolean | undefined;
     autoPan?: PanIntoViewOptions | boolean | undefined;
@@ -46,6 +45,21 @@ export interface PanOptions {
     duration?: number | undefined;
     easing?: ((p0: number) => number) | undefined;
 }
+/**
+ * The overlay position: 'bottom-left', 'bottom-center',  'bottom-right',
+ * 'center-left', 'center-center', 'center-right', 'top-left',
+ * 'top-center', or 'top-right'.
+ */
+export type Positioning =
+    | 'bottom-left'
+    | 'bottom-center'
+    | 'bottom-right'
+    | 'center-left'
+    | 'center-center'
+    | 'center-right'
+    | 'top-left'
+    | 'top-center'
+    | 'top-right';
 export default class Overlay extends BaseObject {
     constructor(options: Options);
     protected autoPan: PanIntoViewOptions | false;
@@ -107,7 +121,7 @@ export default class Overlay extends BaseObject {
     /**
      * Get the current positioning of this overlay.
      */
-    getPositioning(): OverlayPositioning;
+    getPositioning(): Positioning;
     /**
      * Pan the map so that the overlay is entirely visible in the current viewport
      * (if necessary).
@@ -133,7 +147,7 @@ export default class Overlay extends BaseObject {
     /**
      * Set the positioning for this overlay.
      */
-    setPositioning(positioning: OverlayPositioning): void;
+    setPositioning(positioning: Positioning): void;
     on(type: TOverlayBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
     on(type: TOverlayBaseEventTypes[], listener: ListenerFunction<BaseEvent>): EventsKey[];
     once(type: TOverlayBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;

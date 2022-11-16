@@ -6,8 +6,7 @@ import { Extent } from '../extent';
 import { Versions } from '../format/IIIFInfo';
 import { ProjectionLike } from '../proj';
 import { Size } from '../size';
-import { AttributionLike } from './Source';
-import State from './State';
+import { AttributionLike, State } from './Source';
 import { TileSourceEvent } from './Tile';
 import TileImage from './TileImage';
 

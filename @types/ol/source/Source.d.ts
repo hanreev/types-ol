@@ -5,7 +5,6 @@ import { EventsKey, ListenerFunction } from '../events';
 import BaseEvent from '../events/Event';
 import { ProjectionLike } from '../proj';
 import Projection from '../proj/Projection';
-import State from './State';
 
 export type TSourceBaseEventTypes = 'change' | 'error';
 export type TSourceObjectEventTypes = 'propertychange';
@@ -32,9 +31,13 @@ export interface Options {
     wrapX?: boolean | undefined;
     interpolate?: boolean | undefined;
 }
+/**
+ * State of the source, one of 'undefined', 'loading', 'ready' or 'error'.
+ */
+export type State = 'undefined' | 'loading' | 'ready' | 'error';
 export default abstract class Source extends BaseObject {
     constructor(options: Options);
-    protected projection: Projection;
+    protected projection: Projection | null;
     protected viewRejector: () => void;
     protected viewResolver: () => void;
     /**
@@ -46,10 +49,10 @@ export default abstract class Source extends BaseObject {
     /**
      * Get the projection of the source.
      */
-    getProjection(): Projection;
+    getProjection(): Projection | null;
     abstract getResolutions(): number[] | null;
     /**
-     * Get the state of the source, see {@link module:ol/source/State~State} for possible states.
+     * Get the state of the source, see {@link module:ol/source/Source~State} for possible states.
      */
     getState(): State;
     getView(): Promise<ViewOptions>;

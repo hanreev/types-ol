@@ -68,7 +68,7 @@ export default class WebGLPointsLayerRenderer extends WebGLLayerRenderer {
     /**
      * Render the hit detection data to the corresponding render target
      */
-    renderHitDetection(frameState: FrameState): void;
+    renderHitDetection(frameState: FrameState, startWorld: number, endWorld: number, worldWidth: number): void;
     on(type: TWebGLPointsLayerRendererBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
     on(type: TWebGLPointsLayerRendererBaseEventTypes[], listener: ListenerFunction<BaseEvent>): EventsKey[];
     once(type: TWebGLPointsLayerRendererBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;

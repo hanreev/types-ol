@@ -35,7 +35,7 @@ export type TPluggableMapObjectEventTypes =
     | 'change:view'
     | 'propertychange';
 export type TPluggableMapMapBrowserEventTypes = 'click' | 'dblclick' | 'pointerdrag' | 'pointermove' | 'singleclick';
-export type TPluggableMapMapEventTypes = 'moveend' | 'movestart' | 'postrender';
+export type TPluggableMapMapEventTypes = 'loadend' | 'loadstart' | 'moveend' | 'movestart' | 'postrender';
 export type TPluggableMapRenderEventTypes = 'postcompose' | 'precompose' | 'rendercomplete';
 export interface AtPixelOptions {
     layerFilter?: ((p0: Layer<Source>) => boolean) | undefined;
@@ -103,7 +103,7 @@ export default class PluggableMap extends BaseObject {
     addControl(control: Control): void;
     /**
      * Add the given interaction to the map. If you want to add an interaction
-     * at another point of the collection use getInteraction() and the methods
+     * at another point of the collection use getInteractions() and the methods
      * available on {@link module:ol/Collection~Collection}. This can be used to
      * stop the event propagation from the handleEvent function. The interactions
      * get to handle the events in the reverse order of this collection.

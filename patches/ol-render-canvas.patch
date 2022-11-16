@@ -1,8 +1,8 @@
 diff --git a/src/ol/render/canvas.js b/src/ol/render/canvas.js
-index 6202e5f92..8471cd2c5 100644
+index 230af74a6..6d6f9ed87 100644
 --- a/src/ol/render/canvas.js
 +++ b/src/ol/render/canvas.js
-@@ -281,8 +281,9 @@ export const registerFont = (function () {
+@@ -286,8 +286,9 @@ export const registerFont = (function () {
  })();
  
  /**
@@ -14,15 +14,15 @@ index 6202e5f92..8471cd2c5 100644
  export const measureTextHeight = (function () {
    /**
 diff --git a/src/ol/render/canvas/BuilderGroup.js b/src/ol/render/canvas/BuilderGroup.js
-index 49aa6c44c..4cd5e489a 100644
+index b0c121cfd..c6e1f1573 100644
 --- a/src/ol/render/canvas/BuilderGroup.js
 +++ b/src/ol/render/canvas/BuilderGroup.js
 @@ -60,7 +60,7 @@ class BuilderGroup {
    }
  
    /**
--   * @return {!Object<string, !Object<import("./BuilderType").default, import("./Builder.js").SerializableInstructions>>} The serializable instructions
-+   * @return {!Object<string, !Object<import("./BuilderType").default, import("../canvas.js").SerializableInstructions>>} The serializable instructions
+-   * @return {!Object<string, !Object<import("../canvas.js").BuilderType, import("./Builder.js").SerializableInstructions>>} The serializable instructions
++   * @return {!Object<string, !Object<import("../canvas.js").BuilderType, import("../canvas").SerializableInstructions>>} The serializable instructions
     */
    finish() {
      const builderInstructions = {};

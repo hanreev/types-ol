@@ -16,7 +16,7 @@ export type TControlledMapObjectEventTypes =
     | 'change:view'
     | 'propertychange';
 export type TControlledMapMapBrowserEventTypes = 'click' | 'dblclick' | 'pointerdrag' | 'pointermove' | 'singleclick';
-export type TControlledMapMapEventTypes = 'moveend' | 'movestart' | 'postrender';
+export type TControlledMapMapEventTypes = 'loadend' | 'loadstart' | 'moveend' | 'movestart' | 'postrender';
 export type TControlledMapRenderEventTypes = 'postcompose' | 'precompose' | 'rendercomplete';
 export type TOverviewMapBaseEventTypes = 'change' | 'error';
 export type TOverviewMapObjectEventTypes = 'propertychange';

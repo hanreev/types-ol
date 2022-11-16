@@ -4,8 +4,7 @@ import { EventsKey, ListenerFunction } from '../events';
 import BaseEvent from '../events/Event';
 import { Extent } from '../extent';
 import { TransformFunction } from '../proj';
-import Geometry from './Geometry';
-import GeometryType from './GeometryType';
+import Geometry, { Type } from './Geometry';
 
 export type TGeometryCollectionBaseEventTypes = 'change' | 'error';
 export type TGeometryCollectionObjectEventTypes = 'propertychange';
@@ -42,7 +41,7 @@ export default class GeometryCollection extends Geometry {
     /**
      * Get the type of this geometry.
      */
-    getType(): GeometryType;
+    getType(): Type;
     /**
      * Test if the geometry and the passed extent intersect.
      */

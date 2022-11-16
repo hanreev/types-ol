@@ -10,8 +10,7 @@ import Projection from '../proj/Projection';
 import { Size } from '../size';
 import { TileCoord } from '../tilecoord';
 import TileGrid from '../tilegrid/TileGrid';
-import Source, { AttributionLike } from './Source';
-import State from './State';
+import Source, { AttributionLike, State } from './Source';
 
 export type TTileSourceBaseEventTypes = 'change' | 'error';
 export type TTileSourceObjectEventTypes = 'propertychange';

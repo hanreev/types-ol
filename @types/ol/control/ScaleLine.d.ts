@@ -9,6 +9,7 @@ export type TScaleLineObjectEventTypes = 'change:units' | 'propertychange';
 export interface Options {
     className?: string | undefined;
     minWidth?: number | undefined;
+    maxWidth?: number | undefined;
     render?: ((p0: MapEvent) => void) | undefined;
     target?: HTMLElement | string | undefined;
     units?: Units | string | undefined;

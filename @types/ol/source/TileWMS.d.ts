@@ -10,7 +10,7 @@ import TileGrid from '../tilegrid/TileGrid';
 import { AttributionLike } from './Source';
 import { TileSourceEvent } from './Tile';
 import TileImage from './TileImage';
-import WMSServerType from './WMSServerType';
+import { ServerType } from './wms';
 
 export type TTileWMSBaseEventTypes = 'change' | 'error';
 export type TTileWMSObjectEventTypes = 'propertychange';
@@ -29,7 +29,7 @@ export interface Options {
     reprojectionErrorThreshold?: number | undefined;
     tileClass?: typeof ImageTile | undefined;
     tileGrid?: TileGrid | undefined;
-    serverType?: WMSServerType | string | undefined;
+    serverType?: ServerType | undefined;
     tileLoadFunction?: LoadFunction | undefined;
     url?: string | undefined;
     urls?: string[] | undefined;

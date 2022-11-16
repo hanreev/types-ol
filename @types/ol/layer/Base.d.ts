@@ -4,8 +4,7 @@ import { EventsKey, ListenerFunction } from '../events';
 import BaseEvent from '../events/Event';
 import { Extent } from '../extent';
 import LayerRenderer from '../renderer/Layer';
-import Source from '../source/Source';
-import State_1 from '../source/State';
+import Source, { State as State_1 } from '../source/Source';
 import Layer, { State } from './Layer';
 
 export type TBaseLayerBaseEventTypes = 'change' | 'error';

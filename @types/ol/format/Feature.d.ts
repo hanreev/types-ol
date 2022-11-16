@@ -3,13 +3,13 @@ import { Extent } from '../extent';
 import Geometry from '../geom/Geometry';
 import { ProjectionLike } from '../proj';
 import Projection from '../proj/Projection';
-import FormatType from './FormatType';
 
 export interface ReadOptions {
     dataProjection?: ProjectionLike | undefined;
     extent?: Extent | undefined;
     featureProjection?: ProjectionLike | undefined;
 }
+export type Type = 'arraybuffer' | 'json' | 'text' | 'xml';
 export interface WriteOptions {
     dataProjection?: ProjectionLike | undefined;
     featureProjection?: ProjectionLike | undefined;
@@ -32,7 +32,7 @@ export default abstract class FeatureFormat {
         source: Document | Element | object | string,
         opt_options?: ReadOptions,
     ): ReadOptions | undefined;
-    abstract getType(): FormatType;
+    abstract getType(): Type;
     /**
      * Read a single feature from a source.
      */
