@@ -3,6 +3,6 @@ export function flipXY(
     offset: number,
     end: number,
     stride: number,
-    opt_dest?: number[],
-    opt_destOffset?: number,
+    dest?: number[],
+    destOffset?: number,
 ): number[];

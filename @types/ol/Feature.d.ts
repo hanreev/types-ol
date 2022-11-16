@@ -10,7 +10,7 @@ export type TFeatureObjectEventTypes = 'change:geometry' | 'propertychange';
 export type FeatureClass = typeof Feature | typeof RenderFeature;
 export type FeatureLike = Feature<Geometry_1> | RenderFeature;
 export default class Feature<Geometry extends Geometry_1 = Geometry_1> extends BaseObject {
-    constructor(opt_geometryOrProperties?: Geometry | ObjectWithGeometry<Geometry>);
+    constructor(geometryOrProperties?: Geometry | ObjectWithGeometry<Geometry>);
     /**
      * Clone this feature. If the original feature has a geometry it
      * is also cloned. The feature id is not set in the clone.
@@ -66,7 +66,7 @@ export default class Feature<Geometry extends Geometry_1 = Geometry_1> extends B
      * resolution and returns an array of styles. To unset the feature style, call
      * setStyle() without arguments or a falsey value.
      */
-    setStyle(opt_style?: StyleLike): void;
+    setStyle(style?: StyleLike): void;
     on(type: TFeatureBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
     on(type: TFeatureBaseEventTypes[], listener: ListenerFunction<BaseEvent>): EventsKey[];
     once(type: TFeatureBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;

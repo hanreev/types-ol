@@ -92,7 +92,7 @@ export interface ViewOptions {
     padding?: number[] | undefined;
 }
 export default class View extends BaseObject {
-    constructor(opt_options?: ViewOptions);
+    constructor(options?: ViewOptions);
     /**
      * Padding (in css pixels).
      * If the map viewport is partially covered with other content (overlays) along
@@ -113,23 +113,23 @@ export default class View extends BaseObject {
      * Multiply the view resolution by a ratio, optionally using an anchor. Any resolution
      * constraint will apply.
      */
-    adjustResolution(ratio: number, opt_anchor?: Coordinate): void;
+    adjustResolution(ratio: number, anchor?: Coordinate): void;
     /**
      * Multiply the view resolution by a ratio, optionally using an anchor. Any resolution
      * constraint will apply.
      */
-    adjustResolutionInternal(ratio: number, opt_anchor?: Coordinate): void;
+    adjustResolutionInternal(ratio: number, anchor?: Coordinate): void;
     /**
      * Adds a value to the view rotation, optionally using an anchor. Any rotation
      * constraint will apply.
      */
-    adjustRotation(delta: number, opt_anchor?: Coordinate): void;
-    adjustRotationInternal(delta: number, opt_anchor?: Coordinate): void;
+    adjustRotation(delta: number, anchor?: Coordinate): void;
+    adjustRotationInternal(delta: number, anchor?: Coordinate): void;
     /**
      * Adds a value to the view zoom level, optionally using an anchor. Any resolution
      * constraint will apply.
      */
-    adjustZoom(delta: number, opt_anchor?: Coordinate): void;
+    adjustZoom(delta: number, anchor?: Coordinate): void;
     /**
      * Animate the view.  The view's center, zoom (or resolution), and rotation
      * can be animated for smooth transitions between view states.  For example,
@@ -171,8 +171,8 @@ export default class View extends BaseObject {
      * should fit. In most cases you want to get the extent of the entire map,
      * that is map.getSize().
      */
-    calculateExtent(opt_size?: Size): Extent;
-    calculateExtentInternal(opt_size?: Size): Extent;
+    calculateExtent(size?: Size): Extent;
+    calculateExtentInternal(size?: Size): Extent;
     /**
      * Cancel any ongoing animations.
      */
@@ -186,20 +186,20 @@ export default class View extends BaseObject {
      * Notify the View that an interaction has ended. The view state will be resolved
      * to a stable one if needed (depending on its constraints).
      */
-    endInteraction(opt_duration?: number, opt_resolutionDirection?: number, opt_anchor?: Coordinate): void;
+    endInteraction(duration?: number, resolutionDirection?: number, anchor?: Coordinate): void;
     /**
      * Notify the View that an interaction has ended. The view state will be resolved
      * to a stable one if needed (depending on its constraints).
      */
-    endInteractionInternal(opt_duration?: number, opt_resolutionDirection?: number, opt_anchor?: Coordinate): void;
+    endInteractionInternal(duration?: number, resolutionDirection?: number, anchor?: Coordinate): void;
     /**
      * Fit the given geometry or extent based on the given map size and border.
      * The size is pixel dimensions of the box to fit the extent into.
      * In most cases you will want to use the map size, that is map.getSize().
      * Takes care of the map angle.
      */
-    fit(geometryOrExtent: SimpleGeometry | Extent, opt_options?: FitOptions): void;
-    fitInternal(geometry: SimpleGeometry, opt_options?: FitOptions): void;
+    fit(geometryOrExtent: SimpleGeometry | Extent, options?: FitOptions): void;
+    fitInternal(geometry: SimpleGeometry, options?: FitOptions): void;
     /**
      * Determine if the view is being animated.
      */
@@ -215,18 +215,18 @@ export default class View extends BaseObject {
     /**
      * Get a valid position for the view center according to the current constraints.
      */
-    getConstrainedCenter(targetCenter: Coordinate | undefined, opt_targetResolution?: number): Coordinate | undefined;
+    getConstrainedCenter(targetCenter: Coordinate | undefined, targetResolution?: number): Coordinate | undefined;
     /**
      * Get a valid resolution according to the current view constraints.
      */
-    getConstrainedResolution(targetResolution: number | undefined, opt_direction?: number): number | undefined;
+    getConstrainedResolution(targetResolution: number | undefined, direction?: number): number | undefined;
     /**
      * Get a valid zoom level according to the current view constraints.
      */
-    getConstrainedZoom(targetZoom: number | undefined, opt_direction?: number): number | undefined;
+    getConstrainedZoom(targetZoom: number | undefined, direction?: number): number | undefined;
     getConstrainResolution(): boolean;
     getConstraints(): Constraints;
-    getHints(opt_hints?: number[]): number[];
+    getHints(hints?: number[]): number[];
     /**
      * Determine if the user is interacting with the view, such as panning or zooming.
      */
@@ -258,16 +258,16 @@ export default class View extends BaseObject {
     /**
      * Get the resolution for a provided extent (in map units) and size (in pixels).
      */
-    getResolutionForExtent(extent: Extent, opt_size?: Size): number;
+    getResolutionForExtent(extent: Extent, size?: Size): number;
     /**
      * Get the resolution for a provided extent (in map units) and size (in pixels).
      */
-    getResolutionForExtentInternal(extent: Extent, opt_size?: Size): number;
+    getResolutionForExtentInternal(extent: Extent, size?: Size): number;
     /**
      * Return a function that returns a value between 0 and 1 for a
      * resolution. Exponential scaling is assumed.
      */
-    getResolutionForValueFunction(opt_power?: number): (p0: number) => number;
+    getResolutionForValueFunction(power?: number): (p0: number) => number;
     /**
      * Get the resolution for a zoom level.
      */
@@ -293,7 +293,7 @@ export default class View extends BaseObject {
      * Return a function that returns a resolution for a value between
      * 0 and 1. Exponential scaling is assumed.
      */
-    getValueForResolutionFunction(opt_power?: number): (p0: number) => number;
+    getValueForResolutionFunction(power?: number): (p0: number) => number;
     /**
      * Get the current zoom level. This method may return non-integer zoom levels
      * if the view does not constrain the resolution, or if an interaction or
@@ -311,7 +311,7 @@ export default class View extends BaseObject {
      * Note: calling this with a duration of 0 will apply the constrained values straight away,
      * without animation.
      */
-    resolveConstraints(opt_duration?: number, opt_resolutionDirection?: number, opt_anchor?: Coordinate): void;
+    resolveConstraints(duration?: number, resolutionDirection?: number, anchor?: Coordinate): void;
     /**
      * Calculate rotated extent
      */
@@ -351,7 +351,7 @@ export default class View extends BaseObject {
      * This should be done on map size change.
      * Note: the constraints are not resolved during an animation to avoid stopping it
      */
-    setViewportSize(opt_size?: Size): void;
+    setViewportSize(size?: Size): void;
     /**
      * Zoom to a specific zoom level. Any resolution constrain will apply.
      */

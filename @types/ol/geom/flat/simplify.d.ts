@@ -82,6 +82,6 @@ export function simplifyLineString(
     stride: number,
     squaredTolerance: number,
     highQuality: boolean,
-    opt_simplifiedFlatCoordinates?: number[],
+    simplifiedFlatCoordinates?: number[],
 ): number[];
 export function snap(value: number, tolerance: number): number;

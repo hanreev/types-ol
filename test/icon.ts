@@ -8,7 +8,6 @@ import { Tile as TileLayer, Vector as VectorLayer } from 'ol/layer';
 import TileJSON from 'ol/source/TileJSON';
 import VectorSource from 'ol/source/Vector';
 import { Icon, Style } from 'ol/style';
-import IconAnchorUnits from 'ol/style/IconAnchorUnits';
 
 declare let $: any;
 
@@ -22,8 +21,8 @@ const iconFeature = new Feature({
 const iconStyle = new Style({
     image: new Icon({
         anchor: [0.5, 46],
-        anchorXUnits: IconAnchorUnits.FRACTION,
-        anchorYUnits: IconAnchorUnits.PIXELS,
+        anchorXUnits: 'fraction',
+        anchorYUnits: 'pixels',
         src: 'data/icon.png',
     }),
 });

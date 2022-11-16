@@ -1,5 +1,5 @@
+import Map from '../Map';
 import { ObjectEvent } from '../Object';
-import PluggableMap from '../PluggableMap';
 import { AnimationOptions } from '../View';
 import { EventsKey, ListenerFunction } from '../events';
 import BaseEvent from '../events/Event';
@@ -13,8 +13,8 @@ export interface Options {
     prefix?: string | undefined;
 }
 export default class Link extends Interaction {
-    constructor(opt_options?: Options);
-    setMap(map: PluggableMap | null): void;
+    constructor(options?: Options);
+    setMap(map: Map | null): void;
     on(type: TLinkBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
     on(type: TLinkBaseEventTypes[], listener: ListenerFunction<BaseEvent>): EventsKey[];
     once(type: TLinkBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;

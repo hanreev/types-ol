@@ -39,7 +39,7 @@ export interface Options {
     projection?: ProjectionLike | undefined;
 }
 export default class Geolocation extends BaseObject {
-    constructor(opt_options?: Options);
+    constructor(options?: Options);
     /**
      * Clean up.
      */

@@ -14,7 +14,7 @@ export interface Options {
     kinetic?: Kinetic | undefined;
 }
 export default class DragPan extends PointerInteraction {
-    constructor(opt_options?: Options);
+    constructor(options?: Options);
     /**
      * Handle pointer down events.
      */

@@ -4,14 +4,13 @@ import { EventsKey, ListenerFunction } from '../events';
 import BaseEvent from '../events/Event';
 import { Extent } from '../extent';
 import { ProjectionLike } from '../proj';
-import { Type } from './Geometry';
-import GeometryLayout from './GeometryLayout';
+import { GeometryLayout, Type } from './Geometry';
 import SimpleGeometry from './SimpleGeometry';
 
 export type TCircleBaseEventTypes = 'change' | 'error';
 export type TCircleObjectEventTypes = 'propertychange';
 export default class Circle extends SimpleGeometry {
-    constructor(center: Coordinate, opt_radius?: number, opt_layout?: GeometryLayout);
+    constructor(center: Coordinate, radius?: number, layout?: GeometryLayout);
     protected computeExtent(extent: Extent): Extent;
     /**
      * Make a complete copy of the geometry.
@@ -49,8 +48,8 @@ export default class Circle extends SimpleGeometry {
      * Set the center (as {@link module:ol/coordinate~Coordinate coordinate}) and the radius (as
      * number) of the circle.
      */
-    setCenterAndRadius(center: Coordinate, radius: number, opt_layout?: GeometryLayout): void;
-    setCoordinates(coordinates: any[], opt_layout?: GeometryLayout): void;
+    setCenterAndRadius(center: Coordinate, radius: number, layout?: GeometryLayout): void;
+    setCoordinates(coordinates: any[], layout?: GeometryLayout): void;
     /**
      * Set the radius of the circle. The radius is in the units of the projection.
      */

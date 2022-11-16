@@ -1,8 +1,8 @@
 import Collection from '../Collection';
 import Feature from '../Feature';
+import Map from '../Map';
 import MapBrowserEvent from '../MapBrowserEvent';
 import { ObjectEvent } from '../Object';
-import PluggableMap from '../PluggableMap';
 import { Coordinate } from '../coordinate';
 import { EventsKey, ListenerFunction } from '../events';
 import BaseEvent from '../events/Event';
@@ -29,11 +29,11 @@ export interface SegmentData {
     segment: Coordinate[];
 }
 export default class Snap extends PointerInteraction {
-    constructor(opt_options?: Options);
+    constructor(options?: Options);
     /**
      * Add a feature to the collection of features that we may snap to.
      */
-    addFeature(feature: Feature<Geometry>, opt_listen?: boolean): void;
+    addFeature(feature: Feature<Geometry>, register?: boolean): void;
     handleEvent(evt: MapBrowserEvent<UIEvent>): boolean;
     /**
      * Handle pointer up events.
@@ -42,14 +42,14 @@ export default class Snap extends PointerInteraction {
     /**
      * Remove a feature from the collection of features that we may snap to.
      */
-    removeFeature(feature: Feature<Geometry>, opt_unlisten?: boolean): void;
+    removeFeature(feature: Feature<Geometry>, unlisten?: boolean): void;
     /**
      * Remove the interaction from its current map and attach it to the new map.
      * Subclasses may set up event handlers to get notified about changes to
      * the map here.
      */
-    setMap(map: PluggableMap): void;
-    snapTo(pixel: Pixel, pixelCoordinate: Coordinate, map: PluggableMap): Result | null;
+    setMap(map: Map): void;
+    snapTo(pixel: Pixel, pixelCoordinate: Coordinate, map: Map): Result | null;
     on(type: TSnapBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
     on(type: TSnapBaseEventTypes[], listener: ListenerFunction<BaseEvent>): EventsKey[];
     once(type: TSnapBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;

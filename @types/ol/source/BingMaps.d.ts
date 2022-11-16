@@ -31,7 +31,6 @@ export interface Options {
     culture?: string | undefined;
     key: string;
     imagerySet: string;
-    imageSmoothing?: boolean | undefined;
     interpolate?: boolean | undefined;
     maxZoom?: number | undefined;
     reprojectionErrorThreshold?: number | undefined;

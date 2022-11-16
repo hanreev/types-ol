@@ -11,7 +11,7 @@ export interface Options {
     width?: number | undefined;
 }
 export default class Stroke {
-    constructor(opt_options?: Options);
+    constructor(options?: Options);
     /**
      * Clones the style.
      */
@@ -27,7 +27,7 @@ export default class Stroke {
     /**
      * Get the line dash style for the stroke.
      */
-    getLineDash(): number[];
+    getLineDash(): number[] | null;
     /**
      * Get the line dash offset for the stroke.
      */
@@ -54,11 +54,8 @@ export default class Stroke {
     setLineCap(lineCap: CanvasLineCap | undefined): void;
     /**
      * Set the line dash.
-     * Please note that Internet Explorer 10 and lower do not support the
-     * setLineDash method on the CanvasRenderingContext2D and therefore this
-     * property will have no visual effect in these browsers.
      */
-    setLineDash(lineDash: number[]): void;
+    setLineDash(lineDash: number[] | null): void;
     /**
      * Set the line dash offset.
      */

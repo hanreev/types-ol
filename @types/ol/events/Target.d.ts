@@ -4,7 +4,7 @@ import BaseEvent from './Event';
 
 export type EventTargetLike = EventTarget | Target;
 export default class Target extends Disposable {
-    constructor(opt_target?: any);
+    constructor(target?: any);
     addEventListener(type: string, listener: Listener): void;
     /**
      * Dispatches an event and calls all listeners listening for events
@@ -21,6 +21,6 @@ export default class Target extends Disposable {
      * order that they will be called in.
      */
     getListeners(type: string): Listener[] | undefined;
-    hasListener(opt_type?: string): boolean;
+    hasListener(type?: string): boolean;
     removeEventListener(type: string, listener: Listener): void;
 }

@@ -1,5 +1,5 @@
 import ImageTile from '../../ImageTile';
-import { FrameState } from '../../PluggableMap';
+import { FrameState } from '../../Map';
 import Tile from '../../Tile';
 import { Coordinate } from '../../coordinate';
 import { EventsKey, ListenerFunction } from '../../events';
@@ -49,7 +49,7 @@ export default class CanvasTileLayerRenderer<
         extent: Extent,
         currentZ: number,
         preload: number,
-        opt_tileCallback?: (p0: Tile) => void,
+        tileCallback?: (p0: Tile) => void,
     ): void;
     protected scheduleExpireCache(frameState: FrameState, tileSource: TileSource): void;
     protected updateUsedTiles(

@@ -12,22 +12,17 @@ export interface XYZOptions {
     minZoom?: number | undefined;
     tileSize?: number | Size | undefined;
 }
-export function createForExtent(
-    extent: Extent,
-    opt_maxZoom?: number,
-    opt_tileSize?: number | Size,
-    opt_corner?: Corner,
-): TileGrid;
+export function createForExtent(extent: Extent, maxZoom?: number, tileSize?: number | Size, corner?: Corner): TileGrid;
 export function createForProjection(
     projection: ProjectionLike,
-    opt_maxZoom?: number,
-    opt_tileSize?: number | Size,
-    opt_corner?: Corner,
+    maxZoom?: number,
+    tileSize?: number | Size,
+    corner?: Corner,
 ): TileGrid;
 /**
  * Creates a tile grid with a standard XYZ tiling scheme.
  */
-export function createXYZ(opt_options?: XYZOptions): TileGrid;
+export function createXYZ(options?: XYZOptions): TileGrid;
 /**
  * Generate a tile grid extent from a projection.  If the projection has an
  * extent, it is used.  If not, a global extent is assumed.

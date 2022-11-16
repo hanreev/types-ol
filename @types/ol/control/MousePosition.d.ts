@@ -1,6 +1,6 @@
+import Map from '../Map';
 import MapEvent from '../MapEvent';
 import { ObjectEvent } from '../Object';
-import PluggableMap from '../PluggableMap';
 import { CoordinateFormat } from '../coordinate';
 import { EventsKey, ListenerFunction } from '../events';
 import BaseEvent from '../events/Event';
@@ -16,11 +16,10 @@ export interface Options {
     projection?: ProjectionLike | undefined;
     render?: ((p0: MapEvent) => void) | undefined;
     target?: HTMLElement | string | undefined;
-    placeholder?: string | boolean | undefined;
-    undefinedHTML?: string | undefined;
+    placeholder?: string | undefined;
 }
 export default class MousePosition extends Control {
-    constructor(opt_options?: Options);
+    constructor(options?: Options);
     protected handleMouseMove(event: MouseEvent): void;
     protected handleMouseOut(event: Event): void;
     /**
@@ -42,7 +41,7 @@ export default class MousePosition extends Control {
      * Subclasses may set up event handlers to get notified about changes to
      * the map here.
      */
-    setMap(map: PluggableMap | null): void;
+    setMap(map: Map | null): void;
     /**
      * Set the projection that is used to report the mouse position.
      */

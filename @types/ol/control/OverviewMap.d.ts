@@ -1,23 +1,13 @@
 import Collection from '../Collection';
+import Map from '../Map';
 import MapEvent from '../MapEvent';
 import { ObjectEvent } from '../Object';
-import PluggableMap from '../PluggableMap';
 import View from '../View';
 import { EventsKey, ListenerFunction } from '../events';
 import BaseEvent from '../events/Event';
 import BaseLayer from '../layer/Base';
 import Control from './Control';
 
-export type TControlledMapBaseEventTypes = 'change' | 'error';
-export type TControlledMapObjectEventTypes =
-    | 'change:layerGroup'
-    | 'change:size'
-    | 'change:target'
-    | 'change:view'
-    | 'propertychange';
-export type TControlledMapMapBrowserEventTypes = 'click' | 'dblclick' | 'pointerdrag' | 'pointermove' | 'singleclick';
-export type TControlledMapMapEventTypes = 'loadend' | 'loadstart' | 'moveend' | 'movestart' | 'postrender';
-export type TControlledMapRenderEventTypes = 'postcompose' | 'precompose' | 'rendercomplete';
 export type TOverviewMapBaseEventTypes = 'change' | 'error';
 export type TOverviewMapObjectEventTypes = 'propertychange';
 export interface Options {
@@ -34,7 +24,7 @@ export interface Options {
     view?: View | undefined;
 }
 export default class OverviewMap extends Control {
-    constructor(opt_options?: Options);
+    constructor(options?: Options);
     /**
      * Determine if the overview map is collapsed.
      */
@@ -46,7 +36,7 @@ export default class OverviewMap extends Control {
     /**
      * Return the overview map.
      */
-    getOverviewMap(): PluggableMap;
+    getOverviewMap(): Map;
     /**
      * Return true if the overview map view can rotate, false otherwise.
      */
@@ -67,7 +57,7 @@ export default class OverviewMap extends Control {
      * Subclasses may set up event handlers to get notified about changes to
      * the map here.
      */
-    setMap(map: PluggableMap | null): void;
+    setMap(map: Map | null): void;
     /**
      * Set whether the overview map view should rotate with the main map view.
      */

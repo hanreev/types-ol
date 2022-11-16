@@ -3,15 +3,14 @@ import { Coordinate } from '../coordinate';
 import { EventsKey, ListenerFunction } from '../events';
 import BaseEvent from '../events/Event';
 import { Extent } from '../extent';
-import { Type } from './Geometry';
-import GeometryLayout from './GeometryLayout';
+import { GeometryLayout, Type } from './Geometry';
 import Point from './Point';
 import SimpleGeometry from './SimpleGeometry';
 
 export type TMultiPointBaseEventTypes = 'change' | 'error';
 export type TMultiPointObjectEventTypes = 'propertychange';
 export default class MultiPoint extends SimpleGeometry {
-    constructor(coordinates: Coordinate[] | number[], opt_layout?: GeometryLayout);
+    constructor(coordinates: Coordinate[] | number[], layout?: GeometryLayout);
     /**
      * Append the passed point to this multipoint.
      */
@@ -44,7 +43,7 @@ export default class MultiPoint extends SimpleGeometry {
     /**
      * Set the coordinates of the multipoint.
      */
-    setCoordinates(coordinates: Coordinate[], opt_layout?: GeometryLayout): void;
+    setCoordinates(coordinates: Coordinate[], layout?: GeometryLayout): void;
     on(type: TMultiPointBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
     on(type: TMultiPointBaseEventTypes[], listener: ListenerFunction<BaseEvent>): EventsKey[];
     once(type: TMultiPointBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;

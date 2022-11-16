@@ -28,8 +28,8 @@ export function listen(
     target: EventTargetLike,
     type: string,
     listener: ListenerFunction<Event | BaseEvent>,
-    opt_this?: any,
-    opt_once?: boolean,
+    thisArg?: any,
+    once?: boolean,
 ): EventsKey;
 /**
  * Registers a one-off event listener on an event target. Inspired by
@@ -46,7 +46,7 @@ export function listenOnce(
     target: EventTargetLike,
     type: string,
     listener: ListenerFunction<Event | BaseEvent>,
-    opt_this?: any,
+    thisArg?: any,
 ): EventsKey;
 /**
  * Unregisters event listeners on an event target. Inspired by

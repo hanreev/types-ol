@@ -19,16 +19,15 @@ export interface Options {
     hidpi?: boolean | undefined;
     serverType?: ServerType | undefined;
     imageLoadFunction?: LoadFunction | undefined;
-    imageSmoothing?: boolean | undefined;
     interpolate?: boolean | undefined;
-    params: Record<string, any>;
+    params?: Record<string, any> | undefined;
     projection?: ProjectionLike | undefined;
     ratio?: number | undefined;
     resolutions?: number[] | undefined;
-    url: string;
+    url?: string | undefined;
 }
 export default class ImageWMS extends ImageSource {
-    constructor(opt_options?: Options);
+    constructor(options?: Options);
     /**
      * Return the GetFeatureInfo URL for the passed coordinate, resolution, and
      * projection. Return undefined if the GetFeatureInfo URL cannot be

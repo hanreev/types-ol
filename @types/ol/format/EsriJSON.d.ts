@@ -36,25 +36,21 @@ export interface Options {
     geometryName?: string | undefined;
 }
 export default class EsriJSON extends JSONFeature {
-    constructor(opt_options?: Options);
-    protected readFeatureFromObject(
-        object: any,
-        opt_options?: ReadOptions,
-        opt_idField?: string,
-    ): Feature_1<Geometry_1>;
-    protected readFeaturesFromObject(object: any, opt_options?: ReadOptions): Feature_1<Geometry_1>[];
-    protected readGeometryFromObject(object: EsriJSONGeometry, opt_options?: ReadOptions): Geometry_1;
+    constructor(options?: Options);
+    protected readFeatureFromObject(object: any, options?: ReadOptions, idField?: string): Feature_1<Geometry_1>;
+    protected readFeaturesFromObject(object: any, options?: ReadOptions): Feature_1<Geometry_1>[];
+    protected readGeometryFromObject(object: EsriJSONGeometry, options?: ReadOptions): Geometry_1;
     protected readProjectionFromObject(object: any): Projection;
     /**
      * Encode a feature as a esriJSON Feature object.
      */
-    writeFeatureObject(feature: Feature_1<Geometry_1>, opt_options?: WriteOptions): any;
+    writeFeatureObject(feature: Feature_1<Geometry_1>, options?: WriteOptions): any;
     /**
      * Encode an array of features as a EsriJSON object.
      */
-    writeFeaturesObject(features: Feature_1<Geometry_1>[], opt_options?: WriteOptions): EsriJSONFeatureSet;
+    writeFeaturesObject(features: Feature_1<Geometry_1>[], options?: WriteOptions): EsriJSONFeatureSet;
     /**
      * Encode a geometry as a EsriJSON object.
      */
-    writeGeometryObject(geometry: Geometry_1, opt_options?: WriteOptions): EsriJSONGeometry;
+    writeGeometryObject(geometry: Geometry_1, options?: WriteOptions): EsriJSONGeometry;
 }

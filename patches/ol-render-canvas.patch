@@ -1,8 +1,8 @@
 diff --git a/src/ol/render/canvas.js b/src/ol/render/canvas.js
-index 230af74a6..6d6f9ed87 100644
+index 01025e5d7..e2dccc86d 100644
 --- a/src/ol/render/canvas.js
 +++ b/src/ol/render/canvas.js
-@@ -286,8 +286,9 @@ export const registerFont = (function () {
+@@ -272,8 +272,9 @@ export const registerFont = (function () {
  })();
  
  /**

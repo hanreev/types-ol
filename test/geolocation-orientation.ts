@@ -2,7 +2,6 @@ import Geolocation from 'ol/Geolocation';
 import Map from 'ol/Map';
 import Overlay from 'ol/Overlay';
 import View from 'ol/View';
-import GeometryLayout from 'ol/geom/GeometryLayout';
 import LineString from 'ol/geom/LineString';
 import TileLayer from 'ol/layer/Tile';
 import { fromLonLat } from 'ol/proj';
@@ -37,7 +36,7 @@ map.addOverlay(marker);
 // LineString to store the different geolocation positions. This LineString
 // is time aware.
 // The Z dimension is actually used to store the rotation (heading).
-const positions = new LineString([], GeometryLayout.XYZM);
+const positions = new LineString([], 'XYZM');
 
 // Geolocation Control
 const geolocation = new Geolocation({

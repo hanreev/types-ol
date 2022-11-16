@@ -5,28 +5,28 @@ import FeatureFormat, { ReadOptions, Type, WriteOptions } from './Feature';
 
 export default abstract class XMLFeature extends FeatureFormat {
     constructor();
-    protected readFeaturesFromDocument(doc: Document, opt_options?: ReadOptions): Feature<Geometry>[];
-    protected abstract readFeaturesFromNode(node: Element, opt_options?: ReadOptions): Feature<Geometry>[];
-    protected readGeometryFromDocument(doc: Document, opt_options?: ReadOptions): Geometry;
-    protected readGeometryFromNode(node: Element, opt_options?: ReadOptions): Geometry;
+    protected readFeaturesFromDocument(doc: Document, options?: ReadOptions): Feature<Geometry>[];
+    protected abstract readFeaturesFromNode(node: Element, options?: ReadOptions): Feature<Geometry>[];
+    protected readGeometryFromDocument(doc: Document, options?: ReadOptions): Geometry;
+    protected readGeometryFromNode(node: Element, options?: ReadOptions): Geometry;
     protected readProjectionFromDocument(doc: Document): Projection;
     protected readProjectionFromNode(node: Element): Projection;
-    protected writeFeatureNode(feature: Feature<Geometry>, opt_options?: WriteOptions): Node;
+    protected writeFeatureNode(feature: Feature<Geometry>, options?: WriteOptions): Node;
     getType(): Type;
     /**
      * Read a single feature.
      */
-    readFeature(source: Document | Element | object | string, opt_options?: ReadOptions): Feature<Geometry>;
-    readFeatureFromDocument(doc: Document, opt_options?: ReadOptions): Feature<Geometry>;
-    readFeatureFromNode(node: Element, opt_options?: ReadOptions): Feature<Geometry>;
+    readFeature(source: Document | Element | object | string, options?: ReadOptions): Feature<Geometry>;
+    readFeatureFromDocument(doc: Document, options?: ReadOptions): Feature<Geometry>;
+    readFeatureFromNode(node: Element, options?: ReadOptions): Feature<Geometry>;
     /**
      * Read all features from a feature collection.
      */
-    readFeatures(source: Document | Element | object | string, opt_options?: ReadOptions): Feature<Geometry>[];
+    readFeatures(source: Document | Element | object | string, options?: ReadOptions): Feature<Geometry>[];
     /**
      * Read a single geometry from a source.
      */
-    readGeometry(source: Document | Element | object | string, opt_options?: ReadOptions): Geometry;
+    readGeometry(source: Document | Element | object | string, options?: ReadOptions): Geometry;
     /**
      * Read the projection from the source.
      */
@@ -34,15 +34,15 @@ export default abstract class XMLFeature extends FeatureFormat {
     /**
      * Encode a feature as string.
      */
-    writeFeature(feature: Feature<Geometry>, opt_options?: WriteOptions): string;
+    writeFeature(feature: Feature<Geometry>, options?: WriteOptions): string;
     /**
      * Encode an array of features as string.
      */
-    writeFeatures(features: Feature<Geometry>[], opt_options?: WriteOptions): string;
-    writeFeaturesNode(features: Feature<Geometry>[], opt_options?: WriteOptions): Node;
+    writeFeatures(features: Feature<Geometry>[], options?: WriteOptions): string;
+    writeFeaturesNode(features: Feature<Geometry>[], options?: WriteOptions): Node;
     /**
      * Encode a geometry as string.
      */
-    writeGeometry(geometry: Geometry, opt_options?: WriteOptions): string;
-    writeGeometryNode(geometry: Geometry, opt_options?: WriteOptions): Node;
+    writeGeometry(geometry: Geometry, options?: WriteOptions): string;
+    writeGeometryNode(geometry: Geometry, options?: WriteOptions): Node;
 }

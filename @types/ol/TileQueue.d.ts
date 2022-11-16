@@ -1,4 +1,4 @@
-import { FrameState } from './PluggableMap';
+import { FrameState } from './Map';
 import Tile from './Tile';
 import { Coordinate } from './coordinate';
 import BaseEvent from './events/Event';

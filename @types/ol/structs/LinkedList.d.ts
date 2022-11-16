@@ -4,7 +4,7 @@ export interface Item {
     data: any;
 }
 export default class LinkedList {
-    constructor(opt_circular?: boolean);
+    constructor(circular?: boolean);
     /**
      * Concatenates two lists.
      */

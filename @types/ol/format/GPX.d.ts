@@ -11,13 +11,13 @@ export interface Options {
     readExtensions?: ((p0: Feature<Geometry>, p1: Node) => void) | undefined;
 }
 export default class GPX extends XMLFeature {
-    constructor(opt_options?: Options);
-    readFeatureFromNode(node: Element, opt_options?: ReadOptions): Feature<Geometry>;
-    readFeaturesFromNode(node: Element, opt_options?: ReadOptions): Feature<Geometry>[];
+    constructor(options?: Options);
+    readFeatureFromNode(node: Element, options?: ReadOptions): Feature<Geometry>;
+    readFeaturesFromNode(node: Element, options?: ReadOptions): Feature<Geometry>[];
     /**
      * Encode an array of features in the GPX format as an XML node.
      * LineString geometries are output as routes (<rte>), and MultiLineString
      * as tracks (<trk>).
      */
-    writeFeaturesNode(features: Feature<Geometry>[], opt_options?: WriteOptions): Node;
+    writeFeaturesNode(features: Feature<Geometry>[], options?: WriteOptions): Node;
 }

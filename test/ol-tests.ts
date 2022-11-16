@@ -1,4 +1,4 @@
-import { Collection, Map, MapBrowserEvent, Overlay, PluggableMap, View } from 'ol';
+import { Collection, Map, MapBrowserEvent, Overlay, View } from 'ol';
 import { unByKey } from 'ol/Observable';
 import { stableSort } from 'ol/array';
 import {
@@ -287,7 +287,7 @@ const controls = defaultControls().extend([
     new FullScreen(),
     new MousePosition({
         coordinateFormat: coord => toStringXY(coord!, 8),
-        undefinedHTML: '',
+        placeholder: '',
     }),
     new OverviewMap({
         layers,
@@ -412,7 +412,7 @@ class CustomControl extends Control {
     }
 
     // Override
-    setMap(map: PluggableMap) {
+    setMap(map: Map) {
         super.setMap(map);
         unByKey(this._eventKeys);
         this._eventKeys.splice(0);

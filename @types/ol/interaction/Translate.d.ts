@@ -1,8 +1,8 @@
 import Collection from '../Collection';
 import Feature, { FeatureLike } from '../Feature';
+import Map from '../Map';
 import MapBrowserEvent from '../MapBrowserEvent';
 import { ObjectEvent } from '../Object';
-import PluggableMap from '../PluggableMap';
 import { Coordinate } from '../coordinate';
 import { EventsKey, ListenerFunction } from '../events';
 import BaseEvent from '../events/Event';
@@ -36,7 +36,7 @@ declare enum TranslateEventType {
     TRANSLATEEND = 'translateend',
 }
 export default class Translate extends PointerInteraction {
-    constructor(opt_options?: Options);
+    constructor(options?: Options);
     /**
      * Returns the Hit-detection tolerance.
      */
@@ -67,7 +67,7 @@ export default class Translate extends PointerInteraction {
      * Subclasses may set up event handlers to get notified about changes to
      * the map here.
      */
-    setMap(map: PluggableMap): void;
+    setMap(map: Map): void;
     on(type: TTranslateBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
     on(type: TTranslateBaseEventTypes[], listener: ListenerFunction<BaseEvent>): EventsKey[];
     once(type: TTranslateBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;

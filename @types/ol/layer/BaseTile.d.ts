@@ -1,5 +1,5 @@
+import Map from '../Map';
 import { ObjectEvent } from '../Object';
-import PluggableMap from '../PluggableMap';
 import { EventsKey, ListenerFunction } from '../events';
 import BaseEvent from '../events/Event';
 import { Extent } from '../extent';
@@ -36,7 +36,7 @@ export interface Options<TileSourceType extends TileSource = TileSource> {
     maxZoom?: number | undefined;
     preload?: number | undefined;
     source?: TileSourceType | undefined;
-    map?: PluggableMap | undefined;
+    map?: Map | undefined;
     useInterimTilesOnError?: boolean | undefined;
     properties?: Record<string, any> | undefined;
 }
@@ -44,7 +44,7 @@ export default class BaseTileLayer<
     TileSourceType extends TileSource = TileSource,
     RendererType extends LayerRenderer = LayerRenderer,
 > extends Layer<TileSourceType, RendererType> {
-    constructor(opt_options?: Options<TileSourceType>);
+    constructor(options?: Options<TileSourceType>);
     /**
      * Get data for a pixel location.  The return type depends on the source data.  For image tiles,
      * a four element RGBA array will be returned.  For data tiles, the array length will match the

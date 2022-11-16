@@ -8,7 +8,7 @@ export interface Entry {
     value?: any;
 }
 export default class RBush<T> {
-    constructor(opt_maxEntries?: number);
+    constructor(maxEntries?: number);
     /**
      * Remove all values from the RBush.
      */
@@ -28,7 +28,7 @@ export default class RBush<T> {
      * Return all values in the RBush.
      */
     getAll(): T[];
-    getExtent(opt_extent?: Extent): Extent;
+    getExtent(extent?: Extent): Extent;
     /**
      * Return all values in the given extent.
      */

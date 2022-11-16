@@ -38,7 +38,7 @@ export class CustomTile extends Tile {
      * Calls the callback (synchronously by default) with the available data
      * for given coordinate (or null if not yet loaded).
      */
-    forDataAtCoordinate(coordinate: Coordinate, callback: (p0: any) => void, opt_request?: boolean): void;
+    forDataAtCoordinate(coordinate: Coordinate, callback: (p0: any) => void, request?: boolean): void;
     /**
      * Synchronously returns data at given coordinate (if available).
      */
@@ -69,7 +69,7 @@ export default class UTFGrid extends TileSource {
         coordinate: Coordinate,
         resolution: number,
         callback: (p0: any) => void,
-        opt_request?: boolean,
+        request?: boolean,
     ): void;
     /**
      * Return the template from TileJSON.

@@ -20,7 +20,6 @@ export interface Options {
     crossOrigin?: null | string | undefined;
     extent?: Extent | undefined;
     format?: string | undefined;
-    imageSmoothing?: boolean | undefined;
     interpolate?: boolean | undefined;
     projection?: ProjectionLike | undefined;
     quality?: string | undefined;
@@ -38,7 +37,7 @@ export interface Options {
     zDirection?: number | NearestDirectionFunction | undefined;
 }
 export default class IIIF extends TileImage {
-    constructor(opt_options?: Options);
+    constructor(options?: Options);
     on(type: TIIIFBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
     on(type: TIIIFBaseEventTypes[], listener: ListenerFunction<BaseEvent>): EventsKey[];
     once(type: TIIIFBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;

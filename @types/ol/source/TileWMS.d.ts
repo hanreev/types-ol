@@ -20,7 +20,6 @@ export interface Options {
     attributionsCollapsible?: boolean | undefined;
     cacheSize?: number | undefined;
     crossOrigin?: null | string | undefined;
-    imageSmoothing?: boolean | undefined;
     interpolate?: boolean | undefined;
     params: Record<string, any>;
     gutter?: number | undefined;
@@ -38,7 +37,7 @@ export interface Options {
     zDirection?: number | NearestDirectionFunction | undefined;
 }
 export default class TileWMS extends TileImage {
-    constructor(opt_options?: Options);
+    constructor(options?: Options);
     /**
      * Return the GetFeatureInfo URL for the passed coordinate, resolution, and
      * projection. Return undefined if the GetFeatureInfo URL cannot be

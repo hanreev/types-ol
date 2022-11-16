@@ -1,6 +1,6 @@
 import Feature from '../Feature';
+import Map, { FrameState } from '../Map';
 import { ObjectEvent } from '../Object';
-import PluggableMap, { FrameState } from '../PluggableMap';
 import { State as State_2 } from '../View';
 import { EventsKey, ListenerFunction } from '../events';
 import BaseEvent from '../events/Event';
@@ -36,7 +36,7 @@ export interface Options<SourceType extends Source = Source> {
     minZoom?: number | undefined;
     maxZoom?: number | undefined;
     source?: SourceType | undefined;
-    map?: PluggableMap | null | undefined;
+    map?: Map | null | undefined;
     render?: RenderFunction | undefined;
     properties?: Record<string, any> | undefined;
 }
@@ -69,12 +69,12 @@ export default class Layer<
     disposeInternal(): void;
     getData(pixel: Pixel): Uint8ClampedArray | Uint8Array | Float32Array | DataView | null;
     getFeatures(pixel: Pixel): Promise<Feature<Geometry>[]>;
-    getLayersArray(opt_array?: Layer<Source, LayerRenderer>[]): Layer<Source, LayerRenderer>[];
-    getLayerStatesArray(opt_states?: State[]): State[];
+    getLayersArray(array?: Layer<Source, LayerRenderer>[]): Layer<Source, LayerRenderer>[];
+    getLayerStatesArray(states?: State[]): State[];
     /**
      * For use inside the library only.
      */
-    getMapInternal(): PluggableMap | null;
+    getMapInternal(): Map | null;
     /**
      * Get the renderer for this layer.
      */
@@ -93,18 +93,17 @@ export default class Layer<
     render(frameState: FrameState, target: HTMLElement): HTMLElement;
     /**
      * Sets the layer to be rendered on top of other layers on a map. The map will
-     * not manage this layer in its layers collection, and the callback in
-     * {@link module:ol/Map~Map#forEachLayerAtPixel} will receive null as layer. This
+     * not manage this layer in its layers collection. This
      * is useful for temporary layers. To remove an unmanaged layer from the map,
      * use #setMap(null).
      * To add the layer to a map and have it managed by the map, use
      * {@link module:ol/Map~Map#addLayer} instead.
      */
-    setMap(map: PluggableMap | null): void;
+    setMap(map: Map | null): void;
     /**
      * For use inside the library only.
      */
-    setMapInternal(map: PluggableMap | null): void;
+    setMapInternal(map: Map | null): void;
     /**
      * Set the layer source.
      */

@@ -5,7 +5,7 @@ import TileGrid from './tilegrid/TileGrid';
  * grid. The order is z (zoom level), x (column), and y (row).
  */
 export type TileCoord = number[];
-export function createOrUpdate(z: number, x: number, y: number, opt_tileCoord?: TileCoord): TileCoord;
+export function createOrUpdate(z: number, x: number, y: number, tileCoord?: TileCoord): TileCoord;
 /**
  * Get a tile coord given a key.
  */

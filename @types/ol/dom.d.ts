@@ -2,10 +2,10 @@
  * Create an html canvas element and returns its 2d context.
  */
 export function createCanvasContext2D(
-    opt_width?: number,
-    opt_height?: number,
-    opt_canvasPool?: HTMLCanvasElement[],
-    opt_Context2DSettings?: CanvasRenderingContext2DSettings,
+    width?: number,
+    height?: number,
+    canvasPool?: HTMLCanvasElement[],
+    settings?: CanvasRenderingContext2DSettings,
 ): CanvasRenderingContext2D;
 /**
  * Get the current computed height for the given element including margin,

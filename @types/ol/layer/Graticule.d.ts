@@ -53,7 +53,7 @@ export interface Options {
     properties?: Record<string, any> | undefined;
 }
 export default class Graticule extends VectorLayer<VectorSource> {
-    constructor(opt_options?: Options);
+    constructor(options?: Options);
     /**
      * Get the list of meridians.  Meridians are lines of equal longitude.
      */

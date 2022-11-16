@@ -16,7 +16,6 @@ export interface Options {
     attributions?: AttributionLike | undefined;
     cacheSize?: number | undefined;
     crossOrigin?: null | string | undefined;
-    imageSmoothing?: boolean | undefined;
     interpolate?: boolean | undefined;
     params?: Record<string, any> | undefined;
     hidpi?: boolean | undefined;
@@ -31,7 +30,7 @@ export interface Options {
     zDirection?: number | NearestDirectionFunction | undefined;
 }
 export default class TileArcGISRest extends TileImage {
-    constructor(opt_options?: Options);
+    constructor(options?: Options);
     /**
      * Get the user-provided params, i.e. those passed to the constructor through
      * the "params" option, and possibly updated using the updateParams method.

@@ -1,10 +1,9 @@
-import { FrameState } from '../../PluggableMap';
+import { FrameState } from '../../Map';
 import { Coordinate } from '../../coordinate';
 import { EventsKey, ListenerFunction } from '../../events';
 import BaseEvent from '../../events/Event';
 import { Extent } from '../../extent';
 import Layer from '../../layer/Layer';
-import { Pixel } from '../../pixel';
 import { Transform } from '../../transform';
 import LayerRenderer from '../Layer';
 import { HitMatch } from '../Map';
@@ -59,7 +58,6 @@ export default abstract class CanvasLayerRenderer<LayerType extends Layer = Laye
         matches: HitMatch<T>[],
     ): T | undefined;
     getBackground(frameState: FrameState): string;
-    getDataAtPixel(pixel: Pixel, frameState: FrameState, hitTolerance: number): Uint8ClampedArray | Uint8Array;
     getImageData(
         image: HTMLCanvasElement | HTMLImageElement | HTMLVideoElement,
         col: number,
@@ -80,7 +78,7 @@ export default abstract class CanvasLayerRenderer<LayerType extends Layer = Laye
     /**
      * Get a rendering container from an existing target, if compatible.
      */
-    useContainer(target: HTMLElement, transform: string, opt_backgroundColor?: string): void;
+    useContainer(target: HTMLElement, transform: string, backgroundColor?: string): void;
     on(type: TCanvasLayerRendererBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
     on(type: TCanvasLayerRendererBaseEventTypes[], listener: ListenerFunction<BaseEvent>): EventsKey[];
     once(type: TCanvasLayerRendererBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;

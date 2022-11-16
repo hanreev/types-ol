@@ -38,7 +38,7 @@ map.on('pointermove', evt => {
     if (evt.dragging) return;
 
     const pixel = map.getEventPixel(evt.originalEvent);
-    const hit = map.forEachLayerAtPixel(pixel, () => {
+    const hit = map.forEachFeatureAtPixel(pixel, () => {
         return true;
     });
     map.getTargetElement().style.cursor = hit ? 'pointer' : '';

@@ -16,7 +16,7 @@ export default class Triangulation {
         targetExtent: Extent,
         maxSourceExtent: Extent,
         errorThreshold: number,
-        opt_destinationResolution: number,
+        destinationResolution: number,
     );
     /**
      * Calculates extent of the source coordinates from all the triangles.

@@ -64,7 +64,7 @@ export default abstract class TileSource extends Source {
      * is outside the resolution and extent range of the tile grid, null will be
      * returned.
      */
-    getTileCoordForTileUrlFunction(tileCoord: TileCoord, opt_projection?: Projection): TileCoord;
+    getTileCoordForTileUrlFunction(tileCoord: TileCoord, projection?: Projection): TileCoord;
     /**
      * Return the tile grid of the tile source.
      */

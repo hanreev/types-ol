@@ -5,7 +5,7 @@ export interface Options {
     color?: Color | ColorLike | null | undefined;
 }
 export default class Fill {
-    constructor(opt_options?: Options);
+    constructor(options?: Options);
     /**
      * Clones the style. The color is not cloned if it is an {@link module:ol/colorlike~ColorLike}.
      */

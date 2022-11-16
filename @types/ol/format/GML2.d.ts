@@ -11,7 +11,7 @@ import Polygon from '../geom/Polygon';
 import GMLBase, { Options } from './GMLBase';
 
 export default class GML2 extends GMLBase {
-    constructor(opt_options?: Options);
+    constructor(options?: Options);
     innerBoundaryIsParser(node: Element, objectStack: any[]): void;
     outerBoundaryIsParser(node: Element, objectStack: any[]): void;
     readBox(node: Element, objectStack: any[]): Extent | undefined;

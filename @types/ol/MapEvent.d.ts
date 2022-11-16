@@ -1,8 +1,8 @@
-import PluggableMap, { FrameState } from './PluggableMap';
+import Map, { FrameState } from './Map';
 import BaseEvent from './events/Event';
 
 export default class MapEvent extends BaseEvent {
-    constructor(type: string, map: PluggableMap, opt_frameState?: FrameState);
+    constructor(type: string, map: Map, frameState?: FrameState);
     /**
      * The frame state at the time of the event.
      */
@@ -10,5 +10,5 @@ export default class MapEvent extends BaseEvent {
     /**
      * The map where the event occurred.
      */
-    map: PluggableMap;
+    map: Map;
 }

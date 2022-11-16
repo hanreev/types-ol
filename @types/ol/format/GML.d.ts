@@ -9,13 +9,13 @@ import { Options } from './GMLBase';
  * Currently only supports GML 3.1.1 Simple Features profile.
  */
 export default class GML {
-    constructor(opt_options?: Options);
+    constructor(options?: Options);
     /**
      * Encode an array of features in GML 3.1.1 Simple Features.
      */
-    writeFeatures(features: Feature<Geometry>[], opt_options?: WriteOptions): string;
+    writeFeatures(features: Feature<Geometry>[], options?: WriteOptions): string;
     /**
      * Encode an array of features in the GML 3.1.1 format as an XML node.
      */
-    writeFeaturesNode(features: Feature<Geometry>[], opt_options?: WriteOptions): Node;
+    writeFeaturesNode(features: Feature<Geometry>[], options?: WriteOptions): Node;
 }

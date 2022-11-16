@@ -11,20 +11,20 @@ export interface Options {
     idProperty?: string | undefined;
 }
 export default class MVT extends FeatureFormat {
-    constructor(opt_options?: Options);
+    constructor(options?: Options);
     getType(): Type;
     /**
      * Read a single feature from a source.
      */
-    readFeature(source: Document | Element | object | string, opt_options?: ReadOptions): FeatureLike;
+    readFeature(source: Document | Element | object | string, options?: ReadOptions): FeatureLike;
     /**
      * Read all features.
      */
-    readFeatures(source: ArrayBuffer, opt_options?: ReadOptions): FeatureLike[];
+    readFeatures(source: ArrayBuffer, options?: ReadOptions): FeatureLike[];
     /**
      * Read a single geometry from a source.
      */
-    readGeometry(source: Document | Element | object | string, opt_options?: ReadOptions): Geometry;
+    readGeometry(source: Document | Element | object | string, options?: ReadOptions): Geometry;
     /**
      * Read the projection from the source.
      */
@@ -36,13 +36,13 @@ export default class MVT extends FeatureFormat {
     /**
      * Encode a feature in this format.
      */
-    writeFeature(feature: Feature<Geometry>, opt_options?: WriteOptions): string | ArrayBuffer;
+    writeFeature(feature: Feature<Geometry>, options?: WriteOptions): string | ArrayBuffer;
     /**
      * Encode an array of features in this format.
      */
-    writeFeatures(features: Feature<Geometry>[], opt_options?: WriteOptions): string | ArrayBuffer;
+    writeFeatures(features: Feature<Geometry>[], options?: WriteOptions): string | ArrayBuffer;
     /**
      * Write a single geometry in this format.
      */
-    writeGeometry(geometry: Geometry, opt_options?: WriteOptions): string | ArrayBuffer;
+    writeGeometry(geometry: Geometry, options?: WriteOptions): string | ArrayBuffer;
 }

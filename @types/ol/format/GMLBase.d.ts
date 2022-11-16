@@ -15,7 +15,7 @@ import XMLFeature from './XMLFeature';
 export interface Options {
     featureNS?: Record<string, string> | string | undefined;
     featureType?: string[] | string | undefined;
-    srsName: string;
+    srsName?: string | undefined;
     surface?: boolean | undefined;
     curve?: boolean | undefined;
     multiCurve?: boolean | undefined;
@@ -25,19 +25,19 @@ export interface Options {
 }
 export const GMLNS: string;
 export default abstract class GMLBase extends XMLFeature {
-    constructor(opt_options?: Options);
+    constructor(options?: Options);
     protected featureNS: Record<string, string> | string;
     protected featureType: string[] | string;
     protected schemaLocation: string;
     protected srsName: string;
-    protected readGeometryFromNode(node: Element, opt_options?: ReadOptions): Geometry;
+    protected readGeometryFromNode(node: Element, options?: ReadOptions): Geometry;
     lineStringMemberParser(node: Element, objectStack: any[]): void;
     pointMemberParser(node: Element, objectStack: any[]): void;
     polygonMemberParser(node: Element, objectStack: any[]): void;
     readExtentElement(node: Element, objectStack: any[]): Extent | undefined;
     readFeatureElement(node: Element, objectStack: any[]): Feature<Geometry>;
     readFeatureElementInternal(node: Element, objectStack: any[], asFeature: boolean): Feature<Geometry> | object;
-    readFeaturesFromNode(node: Element, opt_options?: ReadOptions): Feature<Geometry>[];
+    readFeaturesFromNode(node: Element, options?: ReadOptions): Feature<Geometry>[];
     readFeaturesInternal(node: Element, objectStack: any[]): Feature<Geometry>[] | undefined;
     readFlatCoordinatesFromNode(node: Element, objectStack: any[]): number[];
     readFlatLinearRing(node: Element, objectStack: any[]): number[] | undefined;

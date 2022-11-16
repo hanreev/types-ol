@@ -14,7 +14,7 @@ export interface Options {
     declutterMode?: 'declutter' | 'obstacle' | 'none' | undefined;
 }
 export default class CircleStyle extends RegularShape {
-    constructor(opt_options?: Options);
+    constructor(options?: Options);
     /**
      * Clones the style.
      */

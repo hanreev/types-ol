@@ -41,14 +41,14 @@ export default class Executor {
         transform: Transform,
         viewRotation: number,
         snapToPixel: boolean,
-        opt_declutterTree?: RBush<any>,
+        declutterTree?: RBush<any>,
     ): void;
     executeHitDetection<T>(
         context: CanvasRenderingContext2D,
         transform: Transform,
         viewRotation: number,
-        opt_featureCallback?: FeatureCallback<T>,
-        opt_hitExtent?: Extent,
+        featureCallback?: FeatureCallback<T>,
+        hitExtent?: Extent,
     ): T | undefined;
     replayTextBackground_(
         context: CanvasRenderingContext2D,

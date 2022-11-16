@@ -7,8 +7,8 @@ export interface Options {
     layers?: string[] | undefined;
 }
 export default class WMSGetFeatureInfo extends XMLFeature {
-    constructor(opt_options?: Options);
-    protected readFeaturesFromNode(node: Element, opt_options?: ReadOptions): Feature<Geometry>[];
+    constructor(options?: Options);
+    protected readFeaturesFromNode(node: Element, options?: ReadOptions): Feature<Geometry>[];
     getLayers(): string[] | null;
     setLayers(layers: string[] | null): void;
 }

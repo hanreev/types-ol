@@ -1,6 +1,6 @@
+import Map from './Map';
 import BaseObject, { ObjectEvent } from './Object';
 import Types from './ObjectEventType';
-import PluggableMap from './PluggableMap';
 import { Coordinate } from './coordinate';
 import { EventsKey, ListenerFunction } from './events';
 import BaseEvent from './events/Event';
@@ -25,9 +25,6 @@ export interface Options {
     stopEvent?: boolean | undefined;
     insertFirst?: boolean | undefined;
     autoPan?: PanIntoViewOptions | boolean | undefined;
-    autoPanAnimation?: PanOptions | undefined;
-    autoPanMargin?: number | undefined;
-    autoPanOptions?: PanIntoViewOptions | undefined;
     className?: string | undefined;
 }
 export type OverlayObjectEventTypes =
@@ -62,7 +59,7 @@ export type Positioning =
     | 'top-right';
 export default class Overlay extends BaseObject {
     constructor(options: Options);
-    protected autoPan: PanIntoViewOptions | false;
+    protected autoPan: PanIntoViewOptions;
     protected element: HTMLElement;
     protected id: number | string;
     protected insertFirst: boolean;
@@ -105,7 +102,7 @@ export default class Overlay extends BaseObject {
     /**
      * Get the map associated with this overlay.
      */
-    getMap(): PluggableMap | null;
+    getMap(): Map | null;
     /**
      * Get the offset of this overlay.
      */
@@ -126,7 +123,7 @@ export default class Overlay extends BaseObject {
      * Pan the map so that the overlay is entirely visible in the current viewport
      * (if necessary).
      */
-    panIntoView(opt_panIntoViewOptions?: PanIntoViewOptions): void;
+    panIntoView(panIntoViewOptions?: PanIntoViewOptions): void;
     /**
      * Set the DOM element to be associated with this overlay.
      */
@@ -134,7 +131,7 @@ export default class Overlay extends BaseObject {
     /**
      * Set the map to be associated with this overlay.
      */
-    setMap(map: PluggableMap | null): void;
+    setMap(map: Map | null): void;
     /**
      * Set the offset for this overlay.
      */

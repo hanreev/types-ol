@@ -26,8 +26,8 @@ export default class CanvasImmediateRenderer extends VectorContext {
         extent: Extent,
         transform: Transform,
         viewRotation: number,
-        opt_squaredTolerance?: number,
-        opt_userTransform?: TransformFunction,
+        squaredTolerance?: number,
+        userTransform?: TransformFunction,
     );
     /**
      * Render a circle geometry into the canvas.  Rendering is immediate and uses
@@ -38,7 +38,7 @@ export default class CanvasImmediateRenderer extends VectorContext {
      * Render a feature into the canvas.  Note that any zIndex on the provided
      * style will be ignored - features are rendered immediately in the order that
      * this method is called.  If you need zIndex support, you should be using an
-     * {@link module:ol/layer/Vector~VectorLayer VectorLayer} instead.
+     * {@link module:ol/layer/Vector~VectorLayer} instead.
      */
     drawFeature(feature: Feature<Geometry>, style: Style): void;
     /**

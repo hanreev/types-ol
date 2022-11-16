@@ -42,7 +42,7 @@ export default class Cluster extends VectorSource {
     /**
      * Remove all features from the source.
      */
-    clear(opt_fast?: boolean): void;
+    clear(fast?: boolean): void;
     /**
      * Get the distance in pixels between clusters.
      */

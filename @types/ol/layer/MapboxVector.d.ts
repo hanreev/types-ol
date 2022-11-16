@@ -1,13 +1,12 @@
+import Map from '../Map';
 import { ObjectEvent } from '../Object';
-import PluggableMap from '../PluggableMap';
 import { EventsKey, ListenerFunction } from '../events';
 import BaseEvent from '../events/Event';
 import { Extent } from '../extent';
 import { OrderFunction } from '../render';
 import RenderEvent from '../render/Event';
 import { BackgroundColor } from './Base';
-import VectorTileLayer from './VectorTile';
-import VectorTileRenderType from './VectorTileRenderType';
+import VectorTileLayer, { VectorTileRenderType } from './VectorTile';
 
 export type TMapboxVectorLayerBaseEventTypes = 'change' | 'error';
 export type TMapboxVectorLayerObjectEventTypes =
@@ -42,8 +41,8 @@ export interface Options {
     maxZoom?: number | undefined;
     renderOrder?: OrderFunction | undefined;
     renderBuffer?: number | undefined;
-    renderMode?: VectorTileRenderType | string | undefined;
-    map?: PluggableMap | undefined;
+    renderMode?: VectorTileRenderType | undefined;
+    map?: Map | undefined;
     updateWhileAnimating?: boolean | undefined;
     updateWhileInteracting?: boolean | undefined;
     preload?: number | undefined;

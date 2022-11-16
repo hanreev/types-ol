@@ -11,7 +11,6 @@ export type TStamenObjectEventTypes = 'propertychange';
 export type TStamenTileSourceEventTypes = 'tileloadend' | 'tileloaderror' | 'tileloadstart';
 export interface Options {
     cacheSize?: number | undefined;
-    imageSmoothing?: boolean | undefined;
     interpolate?: boolean | undefined;
     layer: string;
     minZoom?: number | undefined;

@@ -9,7 +9,7 @@ export function getInteriorPointOfArray(
     stride: number,
     flatCenters: number[],
     flatCentersOffset: number,
-    opt_dest?: number[],
+    dest?: number[],
 ): number[];
 export function getInteriorPointsOfMultiArray(
     flatCoordinates: number[],

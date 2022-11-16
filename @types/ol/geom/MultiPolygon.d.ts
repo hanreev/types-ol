@@ -3,8 +3,7 @@ import { Coordinate } from '../coordinate';
 import { EventsKey, ListenerFunction } from '../events';
 import BaseEvent from '../events/Event';
 import { Extent } from '../extent';
-import { Type } from './Geometry';
-import GeometryLayout from './GeometryLayout';
+import { GeometryLayout, Type } from './Geometry';
 import MultiPoint from './MultiPoint';
 import Polygon from './Polygon';
 import SimpleGeometry from './SimpleGeometry';
@@ -12,11 +11,7 @@ import SimpleGeometry from './SimpleGeometry';
 export type TMultiPolygonBaseEventTypes = 'change' | 'error';
 export type TMultiPolygonObjectEventTypes = 'propertychange';
 export default class MultiPolygon extends SimpleGeometry {
-    constructor(
-        coordinates: (Coordinate[][] | Polygon)[] | number[],
-        opt_layout?: GeometryLayout,
-        opt_endss?: number[][],
-    );
+    constructor(coordinates: (Coordinate[][] | Polygon)[] | number[], layout?: GeometryLayout, endss?: number[][]);
     protected getSimplifiedGeometryInternal(squaredTolerance: number): MultiPolygon;
     /**
      * Append the passed polygon to this multipolygon.
@@ -36,7 +31,7 @@ export default class MultiPolygon extends SimpleGeometry {
      * Get the coordinate array for this geometry.  This array has the structure
      * of a GeoJSON coordinate array for multi-polygons.
      */
-    getCoordinates(opt_right?: boolean): Coordinate[][][];
+    getCoordinates(right?: boolean): Coordinate[][][];
     getEndss(): number[][];
     getFlatInteriorPoints(): number[];
     /**
@@ -63,7 +58,7 @@ export default class MultiPolygon extends SimpleGeometry {
     /**
      * Set the coordinates of the multipolygon.
      */
-    setCoordinates(coordinates: Coordinate[][][], opt_layout?: GeometryLayout): void;
+    setCoordinates(coordinates: Coordinate[][][], layout?: GeometryLayout): void;
     on(type: TMultiPolygonBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
     on(type: TMultiPolygonBaseEventTypes[], listener: ListenerFunction<BaseEvent>): EventsKey[];
     once(type: TMultiPolygonBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;

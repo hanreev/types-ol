@@ -30,7 +30,6 @@ export interface Options {
     tileGrid?: TileGrid | undefined;
     opaque?: boolean | undefined;
     state?: State | undefined;
-    tilePixelRatio?: number | undefined;
     wrapX?: boolean | undefined;
     transition?: number | undefined;
     bandCount?: number | undefined;

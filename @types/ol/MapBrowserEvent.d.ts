@@ -1,16 +1,16 @@
+import Map, { FrameState } from './Map';
 import MapEvent from './MapEvent';
-import PluggableMap, { FrameState } from './PluggableMap';
 import { Coordinate } from './coordinate';
 import { Pixel } from './pixel';
 
 export default class MapBrowserEvent<EVENT extends UIEvent = UIEvent> extends MapEvent {
     constructor(
         type: string,
-        map: PluggableMap,
+        map: Map,
         originalEvent: EVENT,
-        opt_dragging?: boolean,
-        opt_frameState?: FrameState,
-        opt_activePointers?: PointerEvent[],
+        dragging?: boolean,
+        frameState?: FrameState,
+        activePointers?: PointerEvent[],
     );
     /**
      * The coordinate corresponding to the original browser event.  This will be in the user

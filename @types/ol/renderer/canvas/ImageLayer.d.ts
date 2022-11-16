@@ -1,5 +1,5 @@
 import ImageBase from '../../ImageBase';
-import { FrameState } from '../../PluggableMap';
+import { FrameState } from '../../Map';
 import { Coordinate } from '../../coordinate';
 import { EventsKey, ListenerFunction } from '../../events';
 import BaseEvent from '../../events/Event';

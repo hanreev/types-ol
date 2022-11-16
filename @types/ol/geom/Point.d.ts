@@ -3,14 +3,13 @@ import { Coordinate } from '../coordinate';
 import { EventsKey, ListenerFunction } from '../events';
 import BaseEvent from '../events/Event';
 import { Extent } from '../extent';
-import { Type } from './Geometry';
-import GeometryLayout from './GeometryLayout';
+import { GeometryLayout, Type } from './Geometry';
 import SimpleGeometry from './SimpleGeometry';
 
 export type TPointBaseEventTypes = 'change' | 'error';
 export type TPointObjectEventTypes = 'propertychange';
 export default class Point extends SimpleGeometry {
-    constructor(coordinates: Coordinate, opt_layout?: GeometryLayout);
+    constructor(coordinates: Coordinate, layout?: GeometryLayout);
     protected computeExtent(extent: Extent): Extent;
     /**
      * Make a complete copy of the geometry.
@@ -29,7 +28,7 @@ export default class Point extends SimpleGeometry {
      * Test if the geometry and the passed extent intersect.
      */
     intersectsExtent(extent: Extent): boolean;
-    setCoordinates(coordinates: any[], opt_layout?: GeometryLayout): void;
+    setCoordinates(coordinates: any[], layout?: GeometryLayout): void;
     on(type: TPointBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
     on(type: TPointBaseEventTypes[], listener: ListenerFunction<BaseEvent>): EventsKey[];
     once(type: TPointBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;

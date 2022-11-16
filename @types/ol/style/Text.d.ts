@@ -1,7 +1,6 @@
 import { Size } from '../size';
 import Fill from './Fill';
 import Stroke from './Stroke';
-import TextPlacement from './TextPlacement';
 
 export interface Options {
     font?: string | undefined;
@@ -9,22 +8,30 @@ export interface Options {
     offsetX?: number | undefined;
     offsetY?: number | undefined;
     overflow?: boolean | undefined;
-    placement?: TextPlacement | string | undefined;
+    placement?: TextPlacement | undefined;
     scale?: number | Size | undefined;
     rotateWithView?: boolean | undefined;
     rotation?: number | undefined;
     text?: string | string[] | undefined;
-    textAlign?: string | undefined;
-    justify?: string | undefined;
-    textBaseline?: string | undefined;
+    textAlign?: CanvasTextAlign | undefined;
+    justify?: TextJustify | undefined;
+    textBaseline?: CanvasTextBaseline | undefined;
     fill?: Fill | undefined;
     stroke?: Stroke | undefined;
     backgroundFill?: Fill | undefined;
     backgroundStroke?: Stroke | undefined;
     padding?: number[] | undefined;
 }
+export type TextJustify = 'left' | 'center' | 'right';
+/**
+ * Default text placement is 'point'. Note that
+ * 'line' requires the underlying geometry to be a {@link module:ol/geom/LineString~LineString},
+ * {@link module:ol/geom/Polygon~Polygon}, {@link module:ol/geom/MultiLineString~MultiLineString} or
+ * {@link module:ol/geom/MultiPolygon~MultiPolygon}.
+ */
+export type TextPlacement = 'point' | 'line';
 export default class Text {
-    constructor(opt_options?: Options);
+    constructor(options?: Options);
     /**
      * Clones the style.
      */
@@ -48,7 +55,7 @@ export default class Text {
     /**
      * Get the justification.
      */
-    getJustify(): string | undefined;
+    getJustify(): TextJustify | undefined;
     /**
      * Get the maximum angle between adjacent characters.
      */
@@ -72,7 +79,7 @@ export default class Text {
     /**
      * Get the label placement.
      */
-    getPlacement(): TextPlacement | string;
+    getPlacement(): TextPlacement;
     /**
      * Determine whether the text rotates with the map.
      */
@@ -100,11 +107,11 @@ export default class Text {
     /**
      * Get the text alignment.
      */
-    getTextAlign(): string | undefined;
+    getTextAlign(): CanvasTextAlign | undefined;
     /**
      * Get the text baseline.
      */
-    getTextBaseline(): string | undefined;
+    getTextBaseline(): CanvasTextBaseline | undefined;
     /**
      * Set the background fill.
      */
@@ -124,7 +131,7 @@ export default class Text {
     /**
      * Set the justification.
      */
-    setJustify(justify: string | undefined): void;
+    setJustify(justify: TextJustify | undefined): void;
     /**
      * Set the maximum angle between adjacent characters.
      */
@@ -148,7 +155,7 @@ export default class Text {
     /**
      * Set the text placement.
      */
-    setPlacement(placement: TextPlacement | string): void;
+    setPlacement(placement: TextPlacement): void;
     /**
      * Set whether to rotate the text with the view.
      */
@@ -172,9 +179,9 @@ export default class Text {
     /**
      * Set the text alignment.
      */
-    setTextAlign(textAlign: string | undefined): void;
+    setTextAlign(textAlign: CanvasTextAlign | undefined): void;
     /**
      * Set the text baseline.
      */
-    setTextBaseline(textBaseline: string | undefined): void;
+    setTextBaseline(textBaseline: CanvasTextBaseline | undefined): void;
 }

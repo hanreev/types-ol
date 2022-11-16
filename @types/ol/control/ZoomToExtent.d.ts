@@ -14,7 +14,7 @@ export interface Options {
     extent?: Extent | undefined;
 }
 export default class ZoomToExtent extends Control {
-    constructor(opt_options?: Options);
+    constructor(options?: Options);
     protected extent: Extent | null;
     protected handleZoomToExtent(): void;
     on(type: TZoomToExtentBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;

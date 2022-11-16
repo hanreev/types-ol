@@ -1,6 +1,6 @@
 import Feature from '../Feature';
+import Map from '../Map';
 import { ObjectEvent } from '../Object';
-import PluggableMap from '../PluggableMap';
 import { EventsKey, ListenerFunction } from '../events';
 import BaseEvent from '../events/Event';
 import { Extent } from '../extent';
@@ -13,7 +13,6 @@ import VectorTile from '../source/VectorTile';
 import { StyleLike } from '../style/Style';
 import { BackgroundColor } from './Base';
 import BaseVectorLayer from './BaseVector';
-import VectorTileRenderType from './VectorTileRenderType';
 
 export type TVectorTileLayerBaseEventTypes = 'change' | 'error';
 export type TVectorTileLayerObjectEventTypes =
@@ -42,9 +41,9 @@ export interface Options {
     maxZoom?: number | undefined;
     renderOrder?: OrderFunction | undefined;
     renderBuffer?: number | undefined;
-    renderMode?: VectorTileRenderType | string | undefined;
+    renderMode?: VectorTileRenderType | undefined;
     source?: VectorTile | undefined;
-    map?: PluggableMap | undefined;
+    map?: Map | undefined;
     declutter?: boolean | undefined;
     style?: StyleLike | null | undefined;
     background?: BackgroundColor | false | undefined;
@@ -54,16 +53,17 @@ export interface Options {
     useInterimTilesOnError?: boolean | undefined;
     properties?: Record<string, any> | undefined;
 }
+export type VectorTileRenderType = 'hybrid' | 'vector';
 export default class VectorTileLayer extends BaseVectorLayer<VectorTile, CanvasVectorTileLayerRenderer> {
-    constructor(opt_options?: Options);
+    constructor(options?: Options);
     getBackground(): BackgroundColor;
     /**
      * Get the topmost feature that intersects the given pixel on the viewport. Returns a promise
      * that resolves with an array of features. The array will either contain the topmost feature
      * when a hit was detected, or it will be empty.
      * The hit detection algorithm used for this method is optimized for performance, but is less
-     * accurate than the one used in {@link module:ol/PluggableMap~PluggableMap#getFeaturesAtPixel map.getFeaturesAtPixel()}: Text
-     * is not considered, and icons are only represented by their bounding box instead of the exact
+     * accurate than the one used in [map.getFeaturesAtPixel()]{@link module:ol/Map~Map#getFeaturesAtPixel}.
+     * Text is not considered, and icons are only represented by their bounding box instead of the exact
      * image.
      */
     getFeatures(pixel: Pixel): Promise<Feature<Geometry>[]>;

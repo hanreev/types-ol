@@ -16,7 +16,7 @@ export function assignClosestArrayPoint(
     y: number,
     closestPoint: number[],
     minSquaredDistance: number,
-    opt_tmpPoint?: number[],
+    tmpPoint?: number[],
 ): number;
 export function assignClosestMultiArrayPoint(
     flatCoordinates: number[],
@@ -29,7 +29,7 @@ export function assignClosestMultiArrayPoint(
     y: number,
     closestPoint: number[],
     minSquaredDistance: number,
-    opt_tmpPoint?: number[],
+    tmpPoint?: number[],
 ): number;
 export function assignClosestPoint(
     flatCoordinates: number[],
@@ -42,7 +42,7 @@ export function assignClosestPoint(
     y: number,
     closestPoint: number[],
     minSquaredDistance: number,
-    opt_tmpPoint?: number[],
+    tmpPoint?: number[],
 ): number;
 /**
  * Return the squared of the largest distance between any pair of consecutive

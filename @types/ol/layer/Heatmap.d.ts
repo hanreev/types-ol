@@ -44,7 +44,7 @@ export interface Options {
     properties?: Record<string, any> | undefined;
 }
 export default class Heatmap extends BaseVectorLayer<VectorSource, WebGLPointsLayerRenderer> {
-    constructor(opt_options?: Options);
+    constructor(options?: Options);
     /**
      * Return the blur size in pixels.
      */

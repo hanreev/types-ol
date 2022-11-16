@@ -1,8 +1,8 @@
 import Collection from '../Collection';
 import Feature, { FeatureLike } from '../Feature';
+import Map from '../Map';
 import MapBrowserEvent from '../MapBrowserEvent';
 import { ObjectEvent } from '../Object';
-import PluggableMap from '../PluggableMap';
 import { EventsKey, ListenerFunction } from '../events';
 import BaseEvent from '../events/Event';
 import { Condition } from '../events/condition';
@@ -17,6 +17,7 @@ import WebGLPointsLayerRenderer from '../renderer/webgl/PointsLayer';
 import VectorSource from '../source/Vector';
 import VectorTile from '../source/VectorTile';
 import { StyleLike } from '../style/Style';
+import { FlatStyleLike } from '../style/flat';
 import PointerInteraction from './Pointer';
 
 export type TModifyBaseEventTypes = 'change' | 'error';
@@ -27,7 +28,7 @@ export interface Options {
     deleteCondition?: Condition | undefined;
     insertVertexCondition?: Condition | undefined;
     pixelTolerance?: number | undefined;
-    style?: StyleLike | undefined;
+    style?: StyleLike | FlatStyleLike | undefined;
     source?: VectorSource<Geometry> | undefined;
     hitDetection?:
         | boolean
@@ -90,7 +91,7 @@ export default class Modify extends PointerInteraction {
      * Subclasses may set up event handlers to get notified about changes to
      * the map here.
      */
-    setMap(map: PluggableMap): void;
+    setMap(map: Map): void;
     on(type: TModifyBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
     on(type: TModifyBaseEventTypes[], listener: ListenerFunction<BaseEvent>): EventsKey[];
     once(type: TModifyBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;

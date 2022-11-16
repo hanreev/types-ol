@@ -14,7 +14,7 @@ export default class VectorTile extends Tile {
         src: string,
         format: FeatureFormat,
         tileLoadFunction: LoadFunction,
-        opt_options?: Options,
+        options?: Options,
     );
     /**
      * Get the features for this tile. Geometries will be in the view projection.

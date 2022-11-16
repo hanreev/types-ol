@@ -30,24 +30,24 @@ export default abstract class FeatureFormat {
      */
     protected getReadOptions(
         source: Document | Element | object | string,
-        opt_options?: ReadOptions,
+        options?: ReadOptions,
     ): ReadOptions | undefined;
     abstract getType(): Type;
     /**
      * Read a single feature from a source.
      */
-    abstract readFeature(source: Document | Element | object | string, opt_options?: ReadOptions): FeatureLike;
+    abstract readFeature(source: Document | Element | object | string, options?: ReadOptions): FeatureLike;
     /**
      * Read all features from a source.
      */
     abstract readFeatures(
         source: Document | Element | ArrayBuffer | object | string,
-        opt_options?: ReadOptions,
+        options?: ReadOptions,
     ): FeatureLike[];
     /**
      * Read a single geometry from a source.
      */
-    abstract readGeometry(source: Document | Element | object | string, opt_options?: ReadOptions): Geometry;
+    abstract readGeometry(source: Document | Element | object | string, options?: ReadOptions): Geometry;
     /**
      * Read the projection from a source.
      */
@@ -55,19 +55,19 @@ export default abstract class FeatureFormat {
     /**
      * Encode a feature in this format.
      */
-    abstract writeFeature(feature: Feature<Geometry>, opt_options?: WriteOptions): string | ArrayBuffer;
+    abstract writeFeature(feature: Feature<Geometry>, options?: WriteOptions): string | ArrayBuffer;
     /**
      * Encode an array of features in this format.
      */
-    abstract writeFeatures(features: Feature<Geometry>[], opt_options?: WriteOptions): string | ArrayBuffer;
+    abstract writeFeatures(features: Feature<Geometry>[], options?: WriteOptions): string | ArrayBuffer;
     /**
      * Write a single geometry in this format.
      */
-    abstract writeGeometry(geometry: Geometry, opt_options?: WriteOptions): string | ArrayBuffer;
+    abstract writeGeometry(geometry: Geometry, options?: WriteOptions): string | ArrayBuffer;
 }
-export function transformExtentWithOptions(extent: Extent, opt_options?: ReadOptions): Extent;
+export function transformExtentWithOptions(extent: Extent, options?: ReadOptions): Extent;
 export function transformGeometryWithOptions(
     geometry: Geometry,
     write: boolean,
-    opt_options?: WriteOptions | ReadOptions,
+    options?: WriteOptions | ReadOptions,
 ): Geometry;

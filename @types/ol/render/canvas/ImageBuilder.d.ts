@@ -12,5 +12,5 @@ export default class CanvasImageBuilder extends CanvasBuilder {
     drawMultiPoint(multiPointGeometry: MultiPoint | RenderFeature, feature: FeatureLike): void;
     drawPoint(pointGeometry: Point | RenderFeature, feature: FeatureLike): void;
     finish(): SerializableInstructions;
-    setImageStyle(imageStyle: ImageStyle, opt_sharedData?: any): void;
+    setImageStyle(imageStyle: ImageStyle, sharedData?: any): void;
 }

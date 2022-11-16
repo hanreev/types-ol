@@ -13,7 +13,7 @@ const mousePositionControl = new MousePosition({
     // be placed within the map.
     className: 'custom-mouse-position',
     target: document.getElementById('mouse-position') as HTMLElement,
-    undefinedHTML: '&nbsp;',
+    placeholder: '&nbsp;',
 });
 
 const map = new Map({

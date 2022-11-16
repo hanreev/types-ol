@@ -1,4 +1,4 @@
-import { FrameState } from '../../PluggableMap';
+import { FrameState } from '../../Map';
 import { Coordinate } from '../../coordinate';
 import { EventsKey, ListenerFunction } from '../../events';
 import BaseEvent from '../../events/Event';
@@ -32,6 +32,7 @@ export default class WebGLTileLayerRenderer extends WebGLLayerRenderer {
         extent: Extent,
         initialZ: number,
         tileTexturesByZ: Record<number, TileTexture[]>,
+        preload: number,
     ): void;
     forEachFeatureAtCoordinate<T>(
         coordinate: Coordinate,

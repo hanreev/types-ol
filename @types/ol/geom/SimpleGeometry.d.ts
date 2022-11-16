@@ -5,8 +5,7 @@ import BaseEvent from '../events/Event';
 import { Extent } from '../extent';
 import { TransformFunction } from '../proj';
 import { Transform } from '../transform';
-import Geometry, { Type } from './Geometry';
-import GeometryLayout from './GeometryLayout';
+import Geometry, { GeometryLayout, Type } from './Geometry';
 
 export type TSimpleGeometryBaseEventTypes = 'change' | 'error';
 export type TSimpleGeometryObjectEventTypes = 'propertychange';
@@ -41,7 +40,7 @@ export default abstract class SimpleGeometry extends Geometry {
      */
     getLastCoordinate(): Coordinate;
     /**
-     * Return the {@link module:ol/geom/GeometryLayout layout} of the geometry.
+     * Return the {@link module:ol/geom/Geometry~GeometryLayout layout} of the geometry.
      */
     getLayout(): GeometryLayout;
     /**
@@ -66,13 +65,13 @@ export default abstract class SimpleGeometry extends Geometry {
      * Scale the geometry (with an optional origin).  This modifies the geometry
      * coordinates in place.
      */
-    scale(sx: number, opt_sy?: number, opt_anchor?: Coordinate): void;
-    abstract setCoordinates(coordinates: any[], opt_layout?: GeometryLayout): void;
+    scale(sx: number, sy?: number, anchor?: Coordinate): void;
+    abstract setCoordinates(coordinates: any[], layout?: GeometryLayout): void;
     setFlatCoordinates(layout: GeometryLayout, flatCoordinates: number[]): void;
     /**
      * Get a transformed and simplified version of the geometry.
      */
-    simplifyTransformed(squaredTolerance: number, opt_transform?: TransformFunction): Geometry;
+    simplifyTransformed(squaredTolerance: number, transform?: TransformFunction): Geometry;
     /**
      * Translate the geometry.  This modifies the geometry coordinates in place.  If
      * instead you want a new geometry, first clone() this geometry.
@@ -96,4 +95,4 @@ export default abstract class SimpleGeometry extends Geometry {
     ): void;
 }
 export function getStrideForLayout(layout: GeometryLayout): number;
-export function transformGeom2D(simpleGeometry: SimpleGeometry, transform: Transform, opt_dest?: number[]): number[];
+export function transformGeom2D(simpleGeometry: SimpleGeometry, transform: Transform, dest?: number[]): number[];

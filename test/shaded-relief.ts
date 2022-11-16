@@ -2,7 +2,7 @@ import Map from 'ol/Map';
 import View from 'ol/View';
 import { Image as ImageLayer, Tile as TileLayer } from 'ol/layer';
 import { OSM, Raster, XYZ } from 'ol/source';
-import { Operation, RasterOperationType } from 'ol/source/Raster';
+import { Operation } from 'ol/source/Raster';
 
 const shade: Operation = (inputs: number[][] | ImageData[], data: any): ImageData => {
     const elevationImage = inputs[0] as ImageData;
@@ -108,7 +108,7 @@ const elevation = new XYZ({
 
 const raster = new Raster({
     sources: [elevation],
-    operationType: RasterOperationType.IMAGE,
+    operationType: 'image',
     operation: shade,
 });
 

@@ -13,7 +13,7 @@ export default class ExecutorGroup {
         pixelRatio: number,
         overlaps: boolean,
         allInstructions: Record<string, Record<BuilderType, SerializableInstructions>>,
-        opt_renderBuffer?: number,
+        renderBuffer?: number,
     );
     clip(context: CanvasRenderingContext2D, transform: Transform): void;
     execute(
@@ -22,8 +22,8 @@ export default class ExecutorGroup {
         transform: Transform,
         viewRotation: number,
         snapToPixel: boolean,
-        opt_builderTypes?: BuilderType[],
-        opt_declutterTree?: RBush<any>,
+        builderTypes?: BuilderType[],
+        declutterTree?: RBush<any>,
     ): void;
     forEachFeatureAtCoordinate<T>(
         coordinate: Coordinate,

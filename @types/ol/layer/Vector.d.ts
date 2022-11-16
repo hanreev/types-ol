@@ -23,7 +23,7 @@ export default class VectorLayer<VectorSourceType extends VectorSource = VectorS
     VectorSourceType,
     CanvasVectorLayerRenderer
 > {
-    constructor(opt_options?: Options<VectorSourceType>);
+    constructor(options?: Options<VectorSourceType>);
     on(type: TVectorLayerBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
     on(type: TVectorLayerBaseEventTypes[], listener: ListenerFunction<BaseEvent>): EventsKey[];
     once(type: TVectorLayerBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;

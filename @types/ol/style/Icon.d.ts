@@ -2,10 +2,16 @@ import ImageState from '../ImageState';
 import { Color } from '../color';
 import BaseEvent from '../events/Event';
 import { Size } from '../size';
-import IconAnchorUnits from './IconAnchorUnits';
-import IconOrigin from './IconOrigin';
 import ImageStyle from './Image';
 
+/**
+ * Anchor unit can be either a fraction of the icon size or in pixels.
+ */
+export type IconAnchorUnits = 'fraction' | 'pixels';
+/**
+ * Icon origin. One of 'bottom-left', 'bottom-right', 'top-left', 'top-right'.
+ */
+export type IconOrigin = 'bottom-left' | 'bottom-right' | 'top-left' | 'top-right';
 export interface Options {
     anchor?: number[] | undefined;
     anchorOrigin?: IconOrigin | undefined;
@@ -14,20 +20,20 @@ export interface Options {
     color?: Color | string | undefined;
     crossOrigin?: null | string | undefined;
     img?: HTMLImageElement | HTMLCanvasElement | undefined;
-    offset?: number[] | undefined;
+    imgSize?: Size | undefined;
     displacement?: number[] | undefined;
-    offsetOrigin?: IconOrigin | undefined;
     opacity?: number | undefined;
     scale?: number | Size | undefined;
     rotateWithView?: boolean | undefined;
     rotation?: number | undefined;
+    offset?: number[] | undefined;
+    offsetOrigin?: IconOrigin | undefined;
     size?: Size | undefined;
-    imgSize?: Size | undefined;
     src?: string | undefined;
     declutterMode?: 'declutter' | 'obstacle' | 'none' | undefined;
 }
 export default class Icon extends ImageStyle {
-    constructor(opt_options?: Options);
+    constructor(options?: Options);
     /**
      * Clones the style. The underlying Image/HTMLCanvasElement is not cloned.
      */

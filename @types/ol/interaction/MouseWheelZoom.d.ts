@@ -7,6 +7,7 @@ import Interaction from './Interaction';
 
 export type TMouseWheelZoomBaseEventTypes = 'change' | 'error';
 export type TMouseWheelZoomObjectEventTypes = 'change:active' | 'propertychange';
+export type Mode = 'trackpad' | 'wheel';
 export interface Options {
     condition?: Condition | undefined;
     onFocusOnly?: boolean | undefined;
@@ -16,12 +17,8 @@ export interface Options {
     useAnchor?: boolean | undefined;
     constrainResolution?: boolean | undefined;
 }
-export enum Mode {
-    TRACKPAD = 'trackpad',
-    WHEEL = 'wheel',
-}
 export default class MouseWheelZoom extends Interaction {
-    constructor(opt_options?: Options);
+    constructor(options?: Options);
     /**
      * Handles the {@link module:ol/MapBrowserEvent~MapBrowserEvent map browser event} (if it was a mousewheel-event) and eventually
      * zooms the map.

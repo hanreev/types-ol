@@ -21,7 +21,6 @@ export interface Options {
     attributionsCollapsible?: boolean | undefined;
     cacheSize?: number | undefined;
     crossOrigin?: null | string | undefined;
-    imageSmoothing?: boolean | undefined;
     interpolate?: boolean | undefined;
     opaque?: boolean | undefined;
     projection?: ProjectionLike | undefined;

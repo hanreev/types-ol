@@ -1,5 +1,5 @@
 import Disposable from '../Disposable';
-import { FrameState } from '../PluggableMap';
+import { FrameState } from '../Map';
 import { Transform } from '../transform';
 import WebGLArrayBuffer from './Buffer';
 import WebGLRenderTarget from './RenderTarget';
@@ -48,8 +48,8 @@ export enum AttributeType {
     FLOAT = 5126,
 }
 /**
- * Uniform names used in the default shaders: PROJECTION_MATRIX, OFFSET_SCALE_MATRIX.
- * and OFFSET_ROTATION_MATRIX.
+ * Names of uniforms made available to all shaders.
+ * Please note: changing these will break custom shaders!
  */
 export enum DefaultUniform {
     PROJECTION_MATRIX = 'u_projectionMatrix',
@@ -58,6 +58,8 @@ export enum DefaultUniform {
     TIME = 'u_time',
     ZOOM = 'u_zoom',
     RESOLUTION = 'u_resolution',
+    SIZE_PX = 'u_sizePx',
+    PIXEL_RATIO = 'u_pixelRatio',
 }
 /**
  * Shader types, either FRAGMENT_SHADER or VERTEX_SHADER.
@@ -67,7 +69,7 @@ export enum ShaderType {
     VERTEX_SHADER = 35633,
 }
 export default class WebGLHelper extends Disposable {
-    constructor(opt_options?: Options);
+    constructor(options?: Options);
     /**
      * Sets the default matrix uniforms for a given frame state. This is called internally in prepareDraw.
      */
@@ -98,8 +100,8 @@ export default class WebGLHelper extends Disposable {
      */
     createTexture(
         size: number[],
-        opt_data?: ImageData | HTMLImageElement | HTMLCanvasElement,
-        opt_texture?: WebGLTexture,
+        data?: ImageData | HTMLImageElement | HTMLCanvasElement,
+        texture?: WebGLTexture,
     ): WebGLTexture;
     deleteBuffer(buf: WebGLArrayBuffer): void;
     /**
@@ -161,7 +163,7 @@ export default class WebGLHelper extends Disposable {
      * Post process passes will be initialized here, the first one being bound as a render target for
      * subsequent draw calls.
      */
-    prepareDraw(frameState: FrameState, opt_disableAlphaBlend?: boolean): void;
+    prepareDraw(frameState: FrameState, disableAlphaBlend?: boolean): void;
     /**
      * Clear the render target & bind it for future draw operations.
      * This is similar to prepareDraw, only post processes will not be applied.
@@ -170,12 +172,16 @@ export default class WebGLHelper extends Disposable {
     prepareDrawToRenderTarget(
         frameState: FrameState,
         renderTarget: WebGLRenderTarget,
-        opt_disableAlphaBlend?: boolean,
+        disableAlphaBlend?: boolean,
     ): void;
     /**
      * Give a value for a standard float uniform
      */
     setUniformFloatValue(uniform: string, value: number): void;
+    /**
+     * Give a value for a vec2 uniform
+     */
+    setUniformFloatVec2(uniform: string, value: number[]): void;
     /**
      * Give a value for a vec4 uniform
      */
@@ -186,9 +192,10 @@ export default class WebGLHelper extends Disposable {
     setUniformMatrixValue(uniform: string, value: number[]): void;
     setUniforms(uniforms: Record<string, UniformValue>): void;
     /**
-     * Use a program.  If the program is already in use, this will return false.
+     * Set up a program for use. The program will be set as the current one. Then, the uniforms used
+     * in the program will be set based on the current frame state and the helper configuration.
      */
-    useProgram(program: WebGLProgram): boolean;
+    useProgram(program: WebGLProgram, frameState: FrameState): void;
 }
 /**
  * Compute a stride in bytes based on a list of attributes

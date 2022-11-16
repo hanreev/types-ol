@@ -1,5 +1,5 @@
+import Map from '../Map';
 import { ObjectEvent } from '../Object';
-import PluggableMap from '../PluggableMap';
 import { EventsKey, ListenerFunction } from '../events';
 import BaseEvent from '../events/Event';
 import { Extent } from '../extent';
@@ -36,7 +36,7 @@ export interface Options<VectorSourceType extends VectorSource = VectorSource> {
     renderOrder?: OrderFunction | undefined;
     renderBuffer?: number | undefined;
     source?: VectorSourceType | undefined;
-    map?: PluggableMap | undefined;
+    map?: Map | undefined;
     declutter?: boolean | undefined;
     style?: StyleLike | null | undefined;
     imageRatio?: number | undefined;
@@ -46,7 +46,7 @@ export default class VectorImageLayer<VectorSourceType extends VectorSource = Ve
     VectorSourceType,
     CanvasVectorImageLayerRenderer
 > {
-    constructor(opt_options?: Options<VectorSourceType>);
+    constructor(options?: Options<VectorSourceType>);
     getImageRatio(): number;
     on(type: TVectorImageLayerBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
     on(type: TVectorImageLayerBaseEventTypes[], listener: ListenerFunction<BaseEvent>): EventsKey[];

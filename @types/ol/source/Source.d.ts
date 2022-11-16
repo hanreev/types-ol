@@ -1,5 +1,5 @@
+import { FrameState } from '../Map';
 import BaseObject, { ObjectEvent } from '../Object';
-import { FrameState } from '../PluggableMap';
 import { ViewOptions } from '../View';
 import { EventsKey, ListenerFunction } from '../events';
 import BaseEvent from '../events/Event';
@@ -9,7 +9,7 @@ import Projection from '../proj/Projection';
 export type TSourceBaseEventTypes = 'change' | 'error';
 export type TSourceObjectEventTypes = 'propertychange';
 /**
- * A function that takes a {@link module:ol/PluggableMap~FrameState} and returns a string or
+ * A function that takes a {@link module:ol/Map~FrameState} and returns a string or
  * an array of strings representing source attributions.
  */
 export type Attribution = (p0: FrameState) => string | string[];

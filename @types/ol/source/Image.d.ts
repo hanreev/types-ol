@@ -14,7 +14,6 @@ export type TImageSourceObjectEventTypes = 'propertychange';
 export type ImageSourceEventTypes = 'imageloadend' | 'imageloaderror' | 'imageloadstart';
 export interface Options {
     attributions?: AttributionLike | undefined;
-    imageSmoothing?: boolean | undefined;
     interpolate?: boolean | undefined;
     projection?: ProjectionLike | undefined;
     resolutions?: number[] | undefined;

@@ -27,9 +27,9 @@ export type TVectorSourceObjectEventTypes = 'propertychange';
  * is one of the standard {@link module:ol/loadingstrategy} strategies.
  */
 export type LoadingStrategy = (p0: Extent, p1: number, p2: Projection) => Extent[];
-export interface Options {
+export interface Options<Geometry extends Geometry_1 = Geometry_1> {
     attributions?: AttributionLike | undefined;
-    features?: Feature<Geometry_1>[] | Collection<Feature<Geometry_1>> | undefined;
+    features?: Feature<Geometry>[] | Collection<Feature<Geometry>> | undefined;
     format?: FeatureFormat | undefined;
     loader?: FeatureLoader | undefined;
     overlaps?: boolean | undefined;
@@ -39,7 +39,7 @@ export interface Options {
     wrapX?: boolean | undefined;
 }
 export default class VectorSource<Geometry extends Geometry_1 = Geometry_1> extends Source {
-    constructor(opt_options?: Options);
+    constructor(options?: Options<Geometry>);
     /**
      * Add a feature without firing a change event.
      */
@@ -70,7 +70,7 @@ export default class VectorSource<Geometry extends Geometry_1 = Geometry_1> exte
     /**
      * Remove all features from the source.
      */
-    clear(opt_fast?: boolean): void;
+    clear(fast?: boolean): void;
     /**
      * Iterate through all features on the source, calling the provided callback
      * with each one.  If the callback returns any "truthy" value, iteration will
@@ -111,14 +111,14 @@ export default class VectorSource<Geometry extends Geometry_1 = Geometry_1> exte
      */
     getClosestFeatureToCoordinate(
         coordinate: Coordinate,
-        opt_filter?: (p0: Feature<Geometry>) => boolean,
+        filter?: (p0: Feature<Geometry>) => boolean,
     ): Feature<Geometry>;
     /**
      * Get the extent of the features currently in the source.
      * This method is not available when the source is configured with
      * useSpatialIndex set to false.
      */
-    getExtent(opt_extent?: Extent): Extent;
+    getExtent(extent?: Extent): Extent;
     /**
      * Get a feature by its identifier (the value returned by feature.getId()).
      * Note that the index treats string and numeric identifiers as the same.  So
@@ -151,7 +151,7 @@ export default class VectorSource<Geometry extends Geometry_1 = Geometry_1> exte
      * When useSpatialIndex is set to false, this method will return all
      * features.
      */
-    getFeaturesInExtent(extent: Extent, opt_projection?: Projection): Feature<Geometry>[];
+    getFeaturesInExtent(extent: Extent, projection?: Projection): Feature<Geometry>[];
     /**
      * Get the format associated with this source.
      */
@@ -219,7 +219,7 @@ export default class VectorSource<Geometry extends Geometry_1 = Geometry_1> exte
     ): void;
 }
 export class VectorSourceEvent<Geometry extends Geometry_1 = Geometry_1> extends BaseEvent {
-    constructor(type: string, opt_feature?: Feature<Geometry>, opt_features?: Feature<Geometry>[]);
+    constructor(type: string, feature?: Feature<Geometry>, features?: Feature<Geometry>[]);
     /**
      * The added or removed feature for the ADDFEATURE and REMOVEFEATURE events, undefined otherwise.
      */

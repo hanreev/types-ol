@@ -30,7 +30,6 @@ export interface Options {
     attributions?: AttributionLike | undefined;
     cacheSize?: number | undefined;
     crossOrigin?: null | string | undefined;
-    imageSmoothing?: boolean | undefined;
     interpolate?: boolean | undefined;
     jsonp?: boolean | undefined;
     reprojectionErrorThreshold?: number | undefined;

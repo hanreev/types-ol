@@ -1,5 +1,5 @@
+import Map, { FrameState } from '../Map';
 import { ObjectEvent } from '../Object';
-import PluggableMap, { FrameState } from '../PluggableMap';
 import { EventsKey, ListenerFunction } from '../events';
 import BaseEvent from '../events/Event';
 import { Extent } from '../extent';
@@ -47,7 +47,7 @@ export interface Options {
     preload?: number | undefined;
     source?: SourceType | undefined;
     sources?: SourceType[] | ((p0: Extent, p1: number) => SourceType[]) | undefined;
-    map?: PluggableMap | undefined;
+    map?: Map | undefined;
     useInterimTilesOnError?: boolean | undefined;
     cacheSize?: number | undefined;
 }
@@ -71,7 +71,7 @@ export interface Style {
     gamma?: ExpressionValue | undefined;
 }
 export default class WebGLTileLayer extends BaseTileLayer<SourceType, WebGLTileLayerRenderer> {
-    constructor(opt_options: Options);
+    constructor(options: Options);
     /**
      * Clean up underlying WebGL resources.
      */

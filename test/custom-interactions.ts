@@ -2,13 +2,12 @@ import { MapBrowserEvent } from 'ol';
 import Feature from 'ol/Feature';
 import Map from 'ol/Map';
 import View from 'ol/View';
-import { LineString, Point, Polygon } from 'ol/geom';
+import { Geometry, LineString, Point, Polygon } from 'ol/geom';
 import { Pointer as PointerInteraction, defaults as defaultInteractions } from 'ol/interaction';
 import { Tile as TileLayer, Vector as VectorLayer } from 'ol/layer';
 import { Pixel } from 'ol/pixel';
 import { TileJSON, Vector as VectorSource } from 'ol/source';
 import { Fill, Icon, Stroke, Style } from 'ol/style';
-import IconAnchorUnits from 'ol/style/IconAnchorUnits';
 
 class Drag extends PointerInteraction {
     private coordinate_: Pixel;
@@ -125,14 +124,14 @@ const map = new Map({
             }),
         }),
         new VectorLayer({
-            source: new VectorSource({
+            source: new VectorSource<Geometry>({
                 features: [pointFeature, lineFeature, polygonFeature],
             }),
             style: new Style({
                 image: new Icon({
                     anchor: [0.5, 46],
-                    anchorXUnits: IconAnchorUnits.FRACTION,
-                    anchorYUnits: IconAnchorUnits.PIXELS,
+                    anchorXUnits: 'fraction',
+                    anchorYUnits: 'pixels',
                     opacity: 0.95,
                     src: 'data/icon.png',
                 }),

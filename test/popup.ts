@@ -12,9 +12,10 @@ const closer = document.getElementById('popup-closer') as HTMLElement;
 
 const overlay = new Overlay({
     element: container as HTMLElement,
-    autoPan: true,
-    autoPanAnimation: {
-        duration: 250,
+    autoPan: {
+        animation: {
+            duration: 250,
+        },
     },
 });
 

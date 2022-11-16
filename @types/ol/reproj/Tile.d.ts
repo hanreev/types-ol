@@ -15,9 +15,9 @@ export default class ReprojTile extends Tile {
         pixelRatio: number,
         gutter: number,
         getTileFunction: FunctionType,
-        opt_errorThreshold?: number,
-        opt_renderEdges?: boolean,
-        opt_interpolate?: boolean,
+        errorThreshold?: number,
+        renderEdges?: boolean,
+        interpolate?: boolean,
     );
     /**
      * Get the HTML Canvas element for this tile.

@@ -1,6 +1,6 @@
 import Feature from '../Feature';
+import Map, { FrameState } from '../Map';
 import { ObjectEvent } from '../Object';
-import PluggableMap, { FrameState } from '../PluggableMap';
 import { EventsKey, ListenerFunction } from '../events';
 import BaseEvent from '../events/Event';
 import { Extent } from '../extent';
@@ -15,6 +15,7 @@ import WebGLPointsLayerRenderer from '../renderer/webgl/PointsLayer';
 import VectorSource from '../source/Vector';
 import VectorTile from '../source/VectorTile';
 import { StyleFunction, StyleLike } from '../style/Style';
+import { FlatStyleLike } from '../style/flat';
 import { BackgroundColor } from './Base';
 import Layer from './Layer';
 
@@ -44,9 +45,9 @@ export interface Options<VectorSourceType extends VectorSource | VectorTile = Ve
     renderOrder?: OrderFunction | undefined;
     renderBuffer?: number | undefined;
     source?: VectorSourceType | undefined;
-    map?: PluggableMap | undefined;
+    map?: Map | undefined;
     declutter?: boolean | undefined;
-    style?: StyleLike | null | undefined;
+    style?: StyleLike | FlatStyleLike | null | undefined;
     background?: BackgroundColor | undefined;
     updateWhileAnimating?: boolean | undefined;
     updateWhileInteracting?: boolean | undefined;
@@ -64,15 +65,15 @@ export default class BaseVectorLayer<
         | CanvasVectorImageLayerRenderer
         | WebGLPointsLayerRenderer,
 > extends Layer<VectorSourceType, RendererType> {
-    constructor(opt_options?: Options<VectorSourceType>);
+    constructor(options?: Options<VectorSourceType>);
     getDeclutter(): boolean;
     /**
      * Get the topmost feature that intersects the given pixel on the viewport. Returns a promise
      * that resolves with an array of features. The array will either contain the topmost feature
      * when a hit was detected, or it will be empty.
      * The hit detection algorithm used for this method is optimized for performance, but is less
-     * accurate than the one used in {@link module:ol/PluggableMap~PluggableMap#getFeaturesAtPixel}: Text
-     * is not considered, and icons are only represented by their bounding box instead of the exact
+     * accurate than the one used in [map.getFeaturesAtPixel()]{@link module:ol/Map~Map#getFeaturesAtPixel}.
+     * Text is not considered, and icons are only represented by their bounding box instead of the exact
      * image.
      */
     getFeatures(pixel: Pixel): Promise<Feature<Geometry>[]>;
@@ -100,9 +101,12 @@ export default class BaseVectorLayer<
      * an array of styles. If set to null, the layer has no style (a null style),
      * so only features that have their own styles will be rendered in the layer. Call
      * setStyle() without arguments to reset to the default style. See
-     * {@link module:ol/style/Style~Style} for information on the default style.
+     * [the ol/style/Style module]{@link module:ol/style/Style~Style} for information on the default style.
+     * If your layer has a static style, you can use "flat" style object literals instead of
+     * using the Style and symbolizer constructors (Fill, Stroke, etc.).  See the documentation
+     * for the [flat style types]{@link module:ol/style/flat~FlatStyle} to see what properties are supported.
      */
-    setStyle(opt_style?: StyleLike | null): void;
+    setStyle(style?: StyleLike | FlatStyleLike | null): void;
     on(type: TBaseVectorLayerBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
     on(type: TBaseVectorLayerBaseEventTypes[], listener: ListenerFunction<BaseEvent>): EventsKey[];
     once(type: TBaseVectorLayerBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;

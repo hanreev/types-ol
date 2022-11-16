@@ -1,8 +1,8 @@
 import Disposable from '../Disposable';
 import ImageBase from '../ImageBase';
 import ImageCanvas from '../ImageCanvas';
+import { FrameState } from '../Map';
 import { ObjectEvent } from '../Object';
-import { FrameState } from '../PluggableMap';
 import { EventsKey, ListenerFunction } from '../events';
 import BaseEvent from '../events/Event';
 import { Extent } from '../extent';
@@ -62,14 +62,11 @@ export interface ProcessorOptions {
     queue: number;
     imageOps?: boolean | undefined;
 }
-export type RasterSourceEventTypes = ImageSourceEventTypes | 'beforeoperations' | 'afteroperations';
 /**
  * Raster operation type. Supported values are 'pixel' and 'image'.
  */
-declare enum RasterOperationType {
-    PIXEL = 'pixel',
-    IMAGE = 'image',
-}
+export type RasterOperationType = 'pixel' | 'image';
+export type RasterSourceEventTypes = ImageSourceEventTypes | 'beforeoperations' | 'afteroperations';
 export class Processor extends Disposable {
     constructor(config: ProcessorOptions);
     /**
@@ -114,7 +111,7 @@ export default class RasterSource extends ImageSource {
     /**
      * Set the operation.
      */
-    setOperation(operation: Operation, opt_lib?: any): void;
+    setOperation(operation: Operation, lib?: any): void;
     on(type: TRasterSourceRasterSourceEventTypes, listener: ListenerFunction<RasterSourceEvent>): EventsKey;
     on(type: TRasterSourceRasterSourceEventTypes[], listener: ListenerFunction<RasterSourceEvent>): EventsKey[];
     once(type: TRasterSourceRasterSourceEventTypes, listener: ListenerFunction<RasterSourceEvent>): EventsKey;

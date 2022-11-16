@@ -27,7 +27,7 @@ export interface RenderOptions {
     strokeStyle?: ColorLike | undefined;
     strokeWidth: number;
     size: number;
-    lineDash: number[];
+    lineDash: number[] | null;
     lineDashOffset: number;
     lineJoin: CanvasLineJoin;
     miterLimit: number;

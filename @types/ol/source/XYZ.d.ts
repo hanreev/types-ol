@@ -18,7 +18,6 @@ export interface Options {
     attributionsCollapsible?: boolean | undefined;
     cacheSize?: number | undefined;
     crossOrigin?: null | string | undefined;
-    imageSmoothing?: boolean | undefined;
     interpolate?: boolean | undefined;
     opaque?: boolean | undefined;
     projection?: ProjectionLike | undefined;
@@ -39,7 +38,7 @@ export interface Options {
     zDirection?: number | NearestDirectionFunction | undefined;
 }
 export default class XYZ extends TileImage {
-    constructor(opt_options?: Options);
+    constructor(options?: Options);
     getGutter(): number;
     on(type: TXYZBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
     on(type: TXYZBaseEventTypes[], listener: ListenerFunction<BaseEvent>): EventsKey[];

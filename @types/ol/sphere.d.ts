@@ -19,19 +19,19 @@ export const DEFAULT_RADIUS: number;
  * Get the spherical area of a geometry.  This is the area (in meters) assuming
  * that polygon edges are segments of great circles on a sphere.
  */
-export function getArea(geometry: Geometry, opt_options?: SphereMetricOptions): number;
+export function getArea(geometry: Geometry, options?: SphereMetricOptions): number;
 /**
  * Get the great circle distance (in meters) between two geographic coordinates.
  */
-export function getDistance(c1: any[], c2: any[], opt_radius?: number): number;
+export function getDistance(c1: any[], c2: any[], radius?: number): number;
 /**
  * Get the spherical length of a geometry.  This length is the sum of the
  * great circle distances between coordinates.  For polygons, the length is
  * the sum of all rings.  For points, the length is zero.  For multi-part
  * geometries, the length is the sum of the length of each part.
  */
-export function getLength(geometry: Geometry, opt_options?: SphereMetricOptions): number;
+export function getLength(geometry: Geometry, options?: SphereMetricOptions): number;
 /**
  * Returns the coordinate at the given distance and bearing from c1.
  */
-export function offset(c1: Coordinate, distance: number, bearing: number, opt_radius?: number): Coordinate;
+export function offset(c1: Coordinate, distance: number, bearing: number, radius?: number): Coordinate;

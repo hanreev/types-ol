@@ -46,6 +46,6 @@ export function render(
     triangulation: Triangulation,
     sources: ImageExtent[],
     gutter: number,
-    opt_renderEdges?: boolean,
-    opt_interpolate?: boolean,
+    renderEdges?: boolean,
+    interpolate?: boolean,
 ): HTMLCanvasElement;

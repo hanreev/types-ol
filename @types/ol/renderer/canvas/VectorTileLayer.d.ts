@@ -1,5 +1,5 @@
 import Feature, { FeatureLike } from '../../Feature';
-import { FrameState } from '../../PluggableMap';
+import { FrameState } from '../../Map';
 import Tile from '../../Tile';
 import VectorRenderTile from '../../VectorRenderTile';
 import { Coordinate } from '../../coordinate';
@@ -36,6 +36,10 @@ export default class CanvasVectorTileLayerRenderer extends CanvasTileLayerRender
     handleFontsChanged(): void;
     isDrawableTile(tile: VectorRenderTile): boolean;
     /**
+     * Render the vectors for this layer.
+     */
+    postRender(context: CanvasRenderingContext2D, frameState: FrameState): void;
+    /**
      * Determine whether render should be called.
      */
     prepareFrame(frameState: FrameState): boolean;
@@ -49,12 +53,8 @@ export default class CanvasVectorTileLayerRenderer extends CanvasTileLayerRender
         squaredTolerance: number,
         styles: Style | Style[],
         builderGroup: BuilderGroup,
-        opt_declutterBuilderGroup?: BuilderGroup,
+        declutterBuilderGroup?: BuilderGroup,
     ): boolean;
-    /**
-     * Render the layer.
-     */
-    renderFrame(frameState: FrameState, target: HTMLElement): HTMLElement;
     on(type: TCanvasVectorTileLayerRendererBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
     on(type: TCanvasVectorTileLayerRendererBaseEventTypes[], listener: ListenerFunction<BaseEvent>): EventsKey[];
     once(type: TCanvasVectorTileLayerRendererBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;

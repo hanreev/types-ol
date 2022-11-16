@@ -1,6 +1,6 @@
+import Map from '../Map';
 import MapBrowserEvent from '../MapBrowserEvent';
 import { ObjectEvent } from '../Object';
-import PluggableMap from '../PluggableMap';
 import { EventsKey, ListenerFunction } from '../events';
 import BaseEvent from '../events/Event';
 import { Condition } from '../events/condition';
@@ -20,7 +20,7 @@ export interface Options {
     wrapX?: boolean | undefined;
 }
 export default class Extent extends PointerInteraction {
-    constructor(opt_options?: Options);
+    constructor(options?: Options);
     /**
      * Returns the current drawn extent in the view projection (or user projection if set)
      */
@@ -51,7 +51,7 @@ export default class Extent extends PointerInteraction {
      * Subclasses may set up event handlers to get notified about changes to
      * the map here.
      */
-    setMap(map: PluggableMap): void;
+    setMap(map: Map): void;
     on(type: TExtentBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
     on(type: TExtentBaseEventTypes[], listener: ListenerFunction<BaseEvent>): EventsKey[];
     once(type: TExtentBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
