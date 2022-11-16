@@ -1,6 +1,5 @@
 import Map from 'ol/Map';
 import Overlay from 'ol/Overlay';
-import OverlayPositioning from 'ol/OverlayPositioning';
 import View from 'ol/View';
 import { toStringHDMS } from 'ol/coordinate';
 import TileLayer from 'ol/layer/Tile';
@@ -27,7 +26,7 @@ const pos = fromLonLat([16.3725, 48.208889]);
 // Vienna marker
 const marker = new Overlay({
     position: pos,
-    positioning: OverlayPositioning.CENTER_CENTER,
+    positioning: 'center-center',
     element: document.getElementById('marker') as HTMLElement,
     stopEvent: false,
 });

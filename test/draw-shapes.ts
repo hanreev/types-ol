@@ -1,6 +1,6 @@
 import Map from 'ol/Map';
 import View from 'ol/View';
-import GeometryType from 'ol/geom/GeometryType';
+import { Type as GeometryType } from 'ol/geom/Geometry';
 import Polygon from 'ol/geom/Polygon';
 import Draw, { GeometryFunction, createBox, createRegularPolygon } from 'ol/interaction/Draw';
 import { Tile as TileLayer, Vector as VectorLayer } from 'ol/layer';

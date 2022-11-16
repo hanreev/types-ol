@@ -3,7 +3,6 @@ import Map from 'ol/Map';
 import View from 'ol/View';
 import MousePosition from 'ol/control/MousePosition';
 import { LineString, Point, Polygon } from 'ol/geom';
-import GeometryType from 'ol/geom/GeometryType';
 import SimpleGeometry from 'ol/geom/SimpleGeometry';
 import { Draw, Snap } from 'ol/interaction';
 import { DrawEvent } from 'ol/interaction/Draw';
@@ -192,7 +191,7 @@ function onDrawend(e: DrawEvent) {
 }
 
 const draw = new Draw({
-    type: GeometryType.LINE_STRING,
+    type: 'LineString',
 });
 draw.on('drawend', onDrawend);
 map.addInteraction(draw);

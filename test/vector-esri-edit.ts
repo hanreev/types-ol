@@ -1,7 +1,6 @@
 import Map from 'ol/Map';
 import View from 'ol/View';
 import EsriJSON from 'ol/format/EsriJSON';
-import GeometryType from 'ol/geom/GeometryType';
 import { Draw, Modify, Select, defaults as defaultInteractions } from 'ol/interaction';
 import { Tile as TileLayer, Vector as VectorLayer } from 'ol/layer';
 import { tile as tileStrategy } from 'ol/loadingstrategy';
@@ -62,7 +61,7 @@ const raster = new TileLayer({
 
 const draw = new Draw({
     source: vectorSource,
-    type: GeometryType.POLYGON,
+    type: 'Polygon',
 });
 
 const select = new Select();

@@ -1,7 +1,6 @@
 import Feature, { FeatureLike } from 'ol/Feature';
 import Map from 'ol/Map';
 import Overlay from 'ol/Overlay';
-import OverlayPositioning from 'ol/OverlayPositioning';
 import View from 'ol/View';
 import Point from 'ol/geom/Point';
 import SimpleGeometry from 'ol/geom/SimpleGeometry';
@@ -59,7 +58,7 @@ const element = document.getElementById('popup') as HTMLElement;
 
 const popup = new Overlay({
     element,
-    positioning: OverlayPositioning.BOTTOM_CENTER,
+    positioning: 'bottom-center',
     stopEvent: false,
     offset: [0, -50],
 });

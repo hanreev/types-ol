@@ -1,6 +1,5 @@
 import Map from 'ol/Map';
 import View from 'ol/View';
-import GeometryType from 'ol/geom/GeometryType';
 import { Draw, Modify, Select, Snap } from 'ol/interaction';
 import { Tile as TileLayer, Vector as VectorLayer } from 'ol/layer';
 import { OSM, Vector as VectorSource } from 'ol/source';
@@ -73,22 +72,22 @@ const optionsForm = document.getElementById('options-form') as HTMLFormElement;
 class ExampleDrawClass {
     Point = new Draw({
         source: vector.getSource()!,
-        type: GeometryType.POINT,
+        type: 'Point',
     });
 
     LineString = new Draw({
         source: vector.getSource()!,
-        type: GeometryType.LINE_STRING,
+        type: 'LineString',
     });
 
     Polygon = new Draw({
         source: vector.getSource()!,
-        type: GeometryType.POLYGON,
+        type: 'Polygon',
     });
 
     Circle = new Draw({
         source: vector.getSource()!,
-        type: GeometryType.CIRCLE,
+        type: 'Circle',
     });
 
     activeType: 'Point' | 'LineString' | 'Polygon' | 'Circle' | null = null;
