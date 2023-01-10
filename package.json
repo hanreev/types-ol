@@ -1,6 +1,6 @@
 {
   "name": "@hanreev/types-ol",
-  "version": "7.2.0",
+  "version": "7.2.2",
   "description": "OpenLayers TypeScript definition",
   "author": "Rifa'i M. Hanif <hanreev@gmail.com>",
   "repository": {
@@ -63,7 +63,7 @@
     "jsdoc-plugin-typescript": "^2.1.1",
     "no-emit-webpack-plugin": "^4.0.1",
     "node-html-parser": "^6.1.4",
-    "ol": "7.2.0",
+    "ol": "7.2.2",
     "pinst": "^3.0.0",
     "prettier": "latest",
     "pretty-quick": "latest",
