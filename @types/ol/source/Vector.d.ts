@@ -157,7 +157,6 @@ export default class VectorSource<Geometry extends Geometry_1 = Geometry_1> exte
      */
     getFormat(): FeatureFormat | undefined;
     getOverlaps(): boolean;
-    getResolutions(): number[] | null;
     /**
      * Get the url associated with this source.
      */

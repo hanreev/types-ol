@@ -13,7 +13,7 @@ import { UniformValue } from '../webgl/Helper';
 import PaletteTexture from '../webgl/PaletteTexture';
 import BaseTileLayer from './BaseTile';
 
-export type TWebGLTileLayerBaseEventTypes = 'change' | 'error';
+export type TWebGLTileLayerBaseEventTypes = 'change' | 'error' | 'sourceready';
 export type TWebGLTileLayerObjectEventTypes =
     | 'change:extent'
     | 'change:maxResolution'

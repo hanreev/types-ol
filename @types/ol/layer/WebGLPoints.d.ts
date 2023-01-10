@@ -8,7 +8,7 @@ import VectorSource from '../source/Vector';
 import { LiteralStyle } from '../style/literal';
 import Layer from './Layer';
 
-export type TWebGLPointsLayerBaseEventTypes = 'change' | 'error';
+export type TWebGLPointsLayerBaseEventTypes = 'change' | 'error' | 'sourceready';
 export type TWebGLPointsLayerObjectEventTypes =
     | 'change:extent'
     | 'change:maxResolution'

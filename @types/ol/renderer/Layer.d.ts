@@ -1,4 +1,4 @@
-import Feature from '../Feature';
+import { FeatureLike } from '../Feature';
 import ImageBase from '../ImageBase';
 import { FrameState } from '../Map';
 import Observable from '../Observable';
@@ -7,7 +7,6 @@ import TileRange from '../TileRange';
 import { Coordinate } from '../coordinate';
 import { EventsKey, ListenerFunction } from '../events';
 import BaseEvent from '../events/Event';
-import Geometry from '../geom/Geometry';
 import Layer from '../layer/Layer';
 import { Pixel } from '../pixel';
 import Projection from '../proj/Projection';
@@ -48,7 +47,7 @@ export default class LayerRenderer<LayerType extends Layer = any> extends Observ
     /**
      * Asynchronous layer level hit detection.
      */
-    getFeatures(pixel: Pixel): Promise<Feature<Geometry>[]>;
+    getFeatures(pixel: Pixel): Promise<FeatureLike[]>;
     getLayer(): LayerType;
     /**
      * Perform action necessary to get the layer rendered after new fonts have loaded

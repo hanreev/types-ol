@@ -39,6 +39,7 @@ export default abstract class ImageSource extends Source {
     protected handleImageChange(event: BaseEvent): void;
     getImage(extent: Extent, resolution: number, pixelRatio: number, projection: Projection): ImageBase;
     getResolutions(): number[] | null;
+    setResolutions(resolutions: number[] | null): void;
     on(type: TImageSourceBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;
     on(type: TImageSourceBaseEventTypes[], listener: ListenerFunction<BaseEvent>): EventsKey[];
     once(type: TImageSourceBaseEventTypes, listener: ListenerFunction<BaseEvent>): EventsKey;

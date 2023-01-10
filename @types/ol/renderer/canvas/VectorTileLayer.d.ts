@@ -1,11 +1,10 @@
-import Feature, { FeatureLike } from '../../Feature';
+import { FeatureLike } from '../../Feature';
 import { FrameState } from '../../Map';
 import Tile from '../../Tile';
 import VectorRenderTile from '../../VectorRenderTile';
 import { Coordinate } from '../../coordinate';
 import { EventsKey, ListenerFunction } from '../../events';
 import BaseEvent from '../../events/Event';
-import Geometry from '../../geom/Geometry';
 import VectorTileLayer from '../../layer/VectorTile';
 import { Pixel } from '../../pixel';
 import Projection from '../../proj/Projection';
@@ -28,7 +27,7 @@ export default class CanvasVectorTileLayerRenderer extends CanvasTileLayerRender
     /**
      * Asynchronous layer level hit detection.
      */
-    getFeatures(pixel: Pixel): Promise<Feature<Geometry>[]>;
+    getFeatures(pixel: Pixel): Promise<FeatureLike[]>;
     getTile(z: number, x: number, y: number, frameState: FrameState): Tile;
     /**
      * Perform action necessary to get the layer rendered after new fonts have loaded

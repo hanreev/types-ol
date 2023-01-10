@@ -44,13 +44,7 @@ export default class TileImage extends UrlTile {
     protected tileCacheForProjection: Record<string, TileCache>;
     protected tileClass: typeof ImageTile;
     protected tileGridForProjection: Record<string, TileGrid>;
-    protected getTileInternal(
-        z: number,
-        x: number,
-        y: number,
-        pixelRatio: number,
-        projection: Projection,
-    ): ImageTile | ReprojTile;
+    protected getTileInternal(z: number, x: number, y: number, pixelRatio: number, projection: Projection): ImageTile;
     canExpireCache(): boolean;
     expireCache(projection: Projection, usedTiles: Record<string, boolean>): void;
     getGutter(): number;

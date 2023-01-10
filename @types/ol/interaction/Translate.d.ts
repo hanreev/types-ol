@@ -1,5 +1,5 @@
 import Collection from '../Collection';
-import Feature, { FeatureLike } from '../Feature';
+import Feature from '../Feature';
 import Map from '../Map';
 import MapBrowserEvent from '../MapBrowserEvent';
 import { ObjectEvent } from '../Object';
@@ -22,7 +22,7 @@ export type TTranslateTranslateEventTypes = 'translateend' | 'translatestart' | 
  * {@link module:ol/layer/Layer~Layer} and returns true if the feature may be
  * translated or false otherwise.
  */
-export type FilterFunction = (p0: FeatureLike, p1: Layer<Source>) => boolean;
+export type FilterFunction = (p0: Feature<Geometry>, p1: Layer<Source>) => boolean;
 export interface Options {
     condition?: Condition | undefined;
     features?: Collection<Feature<Geometry>> | undefined;

@@ -7,7 +7,7 @@ import CanvasImageLayerRenderer from '../renderer/canvas/ImageLayer';
 import ImageSource from '../source/Image';
 import BaseImageLayer, { Options } from './BaseImage';
 
-export type TImageLayerBaseEventTypes = 'change' | 'error';
+export type TImageLayerBaseEventTypes = 'change' | 'error' | 'sourceready';
 export type TImageLayerObjectEventTypes =
     | 'change:extent'
     | 'change:maxResolution'

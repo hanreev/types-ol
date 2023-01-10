@@ -57,7 +57,7 @@ export default abstract class TileSource extends Source {
      */
     getKey(): string;
     getOpaque(projection: Projection): boolean;
-    getResolutions(): number[] | null;
+    getResolutions(projection?: Projection): number[] | null;
     abstract getTile(z: number, x: number, y: number, pixelRatio: number, projection: Projection): Tile;
     /**
      * Returns a tile coordinate wrapped around the x-axis. When the tile coordinate

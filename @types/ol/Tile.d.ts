@@ -10,7 +10,7 @@ import { TileCoord } from './tilecoord';
  *   tile.getImage().src = src;
  * });</code>For more fine grained control, the load function can use fetch or XMLHttpRequest and involve
  * error handling:
- * <code>import TileState from 'ol/TileState';
+ * <code>import TileState from 'ol/TileState.js';
  *
  * source.setTileLoadFunction(function(tile, src) {
  *   const xhr = new XMLHttpRequest();

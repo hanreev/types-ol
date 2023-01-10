@@ -9,9 +9,11 @@ export type TLinkBaseEventTypes = 'change' | 'error';
 export type TLinkObjectEventTypes = 'change:active' | 'propertychange';
 export interface Options {
     animate?: boolean | AnimationOptions | undefined;
+    params?: Params[] | undefined;
     replace?: boolean | undefined;
     prefix?: string | undefined;
 }
+export type Params = 'x' | 'y' | 'z' | 'r' | 'l';
 export default class Link extends Interaction {
     constructor(options?: Options);
     setMap(map: Map | null): void;

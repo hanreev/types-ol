@@ -1,10 +1,9 @@
-import Feature from '../Feature';
+import { FeatureLike } from '../Feature';
 import Map from '../Map';
 import { ObjectEvent } from '../Object';
 import { EventsKey, ListenerFunction } from '../events';
 import BaseEvent from '../events/Event';
 import { Extent } from '../extent';
-import Geometry from '../geom/Geometry';
 import { Pixel } from '../pixel';
 import { OrderFunction } from '../render';
 import RenderEvent from '../render/Event';
@@ -14,7 +13,7 @@ import { StyleLike } from '../style/Style';
 import { BackgroundColor } from './Base';
 import BaseVectorLayer from './BaseVector';
 
-export type TVectorTileLayerBaseEventTypes = 'change' | 'error';
+export type TVectorTileLayerBaseEventTypes = 'change' | 'error' | 'sourceready';
 export type TVectorTileLayerObjectEventTypes =
     | 'change:extent'
     | 'change:maxResolution'
@@ -66,7 +65,7 @@ export default class VectorTileLayer extends BaseVectorLayer<VectorTile, CanvasV
      * Text is not considered, and icons are only represented by their bounding box instead of the exact
      * image.
      */
-    getFeatures(pixel: Pixel): Promise<Feature<Geometry>[]>;
+    getFeatures(pixel: Pixel): Promise<FeatureLike[]>;
     /**
      * Return the level as number to which we will preload tiles up to.
      */

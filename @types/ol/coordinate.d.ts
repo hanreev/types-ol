@@ -14,7 +14,7 @@ export type CoordinateFormat = (p0: Coordinate | undefined) => string;
  * Add delta to coordinate. coordinate is modified in place and returned
  * by the function.
  * Example:
- * <code>import {add} from 'ol/coordinate';
+ * <code>import {add} from 'ol/coordinate.js';
  *
  * const coord = [7.85, 47.983333];
  * add(coord, [-2, 4]);
@@ -37,13 +37,13 @@ export function closestOnSegment(coordinate: Coordinate, segment: Coordinate[]):
  * used to format
  * a {Coordinate} to a string.
  * Example without specifying the fractional digits:
- * <code>import {createStringXY} from 'ol/coordinate';
+ * <code>import {createStringXY} from 'ol/coordinate.js';
  *
  * const coord = [7.85, 47.983333];
  * const stringifyFunc = createStringXY();
  * const out = stringifyFunc(coord);
  * // out is now '8, 48'</code>Example with explicitly specifying 2 fractional digits:
- * <code>import {createStringXY} from 'ol/coordinate';
+ * <code>import {createStringXY} from 'ol/coordinate.js';
  *
  * const coord = [7.85, 47.983333];
  * const stringifyFunc = createStringXY(2);
@@ -59,13 +59,13 @@ export function equals(coordinate1: Coordinate, coordinate2: Coordinate): boolea
  * using the given string template. The strings {x} and {y} in the template
  * will be replaced with the first and second coordinate values respectively.
  * Example without specifying the fractional digits:
- * <code>import {format} from 'ol/coordinate';
+ * <code>import {format} from 'ol/coordinate.js';
  *
  * const coord = [7.85, 47.983333];
  * const template = 'Coordinate is ({x}|{y}).';
  * const out = format(coord, template);
  * // out is now 'Coordinate is (8|48).'</code>Example explicitly specifying the fractional digits:
- * <code>import {format} from 'ol/coordinate';
+ * <code>import {format} from 'ol/coordinate.js';
  *
  * const coord = [7.85, 47.983333];
  * const template = 'Coordinate is ({x}|{y}).';
@@ -78,7 +78,7 @@ export function getWorldsAway(coordinate: Coordinate, projection: Projection, so
  * Rotate coordinate by angle. coordinate is modified in place and
  * returned by the function.
  * Example:
- * <code>import {rotate} from 'ol/coordinate';
+ * <code>import {rotate} from 'ol/coordinate.js';
  *
  * const coord = [7.85, 47.983333];
  * const rotateRadians = Math.PI / 2; // 90 degrees
@@ -90,7 +90,7 @@ export function rotate(coordinate: Coordinate, angle: number): Coordinate;
  * Scale coordinate by scale. coordinate is modified in place and returned
  * by the function.
  * Example:
- * <code>import {scale as scaleCoordinate} from 'ol/coordinate';
+ * <code>import {scale as scaleCoordinate} from 'ol/coordinate.js';
  *
  * const coord = [7.85, 47.983333];
  * const scale = 1.2;
@@ -107,12 +107,12 @@ export function squaredDistanceToSegment(coordinate: Coordinate, segment: Coordi
  * Format a geographic coordinate with the hemisphere, degrees, minutes, and
  * seconds.
  * Example without specifying fractional digits:
- * <code>import {toStringHDMS} from 'ol/coordinate';
+ * <code>import {toStringHDMS} from 'ol/coordinate.js';
  *
  * const coord = [7.85, 47.983333];
  * const out = toStringHDMS(coord);
  * // out is now '47° 58′ 60″ N 7° 50′ 60″ E'</code>Example explicitly specifying 1 fractional digit:
- * <code>import {toStringHDMS} from 'ol/coordinate';
+ * <code>import {toStringHDMS} from 'ol/coordinate.js';
  *
  * const coord = [7.85, 47.983333];
  * const out = toStringHDMS(coord, 1);
@@ -122,12 +122,12 @@ export function toStringHDMS(coordinate: Coordinate, fractionDigits?: number): s
 /**
  * Format a coordinate as a comma delimited string.
  * Example without specifying fractional digits:
- * <code>import {toStringXY} from 'ol/coordinate';
+ * <code>import {toStringXY} from 'ol/coordinate.js';
  *
  * const coord = [7.85, 47.983333];
  * const out = toStringXY(coord);
  * // out is now '8, 48'</code>Example explicitly specifying 1 fractional digit:
- * <code>import {toStringXY} from 'ol/coordinate';
+ * <code>import {toStringXY} from 'ol/coordinate.js';
  *
  * const coord = [7.85, 47.983333];
  * const out = toStringXY(coord, 1);

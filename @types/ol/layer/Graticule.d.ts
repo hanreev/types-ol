@@ -11,7 +11,7 @@ import Stroke from '../style/Stroke';
 import Text from '../style/Text';
 import VectorLayer from './Vector';
 
-export type TGraticuleBaseEventTypes = 'change' | 'error';
+export type TGraticuleBaseEventTypes = 'change' | 'error' | 'sourceready';
 export type TGraticuleObjectEventTypes =
     | 'change:extent'
     | 'change:maxResolution'

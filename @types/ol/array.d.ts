@@ -10,6 +10,10 @@
  */
 export type NearestDirectionFunction = (p0: number, p1: number, p2: number) => number;
 /**
+ * Compare function sorting arrays in ascending order.  Safe to use for numeric values.
+ */
+export function ascending(a: any, b: any): number;
+/**
  * Performs a binary search on the provided sorted list and returns the index of the item if found. If it can't be found it'll return -1.
  * https://github.com/darkskyapp/binary-search
  */
@@ -18,10 +22,6 @@ export function equals(arr1: any[] | Uint8ClampedArray, arr2: any[] | Uint8Clamp
 export function extend<VALUE>(arr: VALUE[], data: VALUE[] | VALUE): void;
 export function isSorted(arr: any[], func?: () => void, strict?: boolean): boolean;
 export function linearFindNearest(arr: number[], target: number, direction: number | NearestDirectionFunction): number;
-/**
- * Compare function for array sort that is safe for numbers.
- */
-export function numberSafeCompareFunction(a: any, b: any): number;
 export function remove<VALUE>(arr: VALUE[], obj: VALUE): boolean;
 export function reverseSubArray(arr: any[], begin: number, end: number): void;
 /**

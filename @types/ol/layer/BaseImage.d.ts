@@ -8,7 +8,7 @@ import LayerRenderer from '../renderer/Layer';
 import ImageSource from '../source/Image';
 import Layer from './Layer';
 
-export type TBaseImageLayerBaseEventTypes = 'change' | 'error';
+export type TBaseImageLayerBaseEventTypes = 'change' | 'error' | 'sourceready';
 export type TBaseImageLayerObjectEventTypes =
     | 'change:extent'
     | 'change:maxResolution'

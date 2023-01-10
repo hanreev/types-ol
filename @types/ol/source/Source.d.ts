@@ -50,7 +50,7 @@ export default abstract class Source extends BaseObject {
      * Get the projection of the source.
      */
     getProjection(): Projection | null;
-    abstract getResolutions(): number[] | null;
+    getResolutions(projection?: Projection): number[] | null;
     /**
      * Get the state of the source, see {@link module:ol/source/Source~State} for possible states.
      */

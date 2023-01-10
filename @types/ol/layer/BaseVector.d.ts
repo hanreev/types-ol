@@ -1,4 +1,4 @@
-import Feature from '../Feature';
+import Feature, { FeatureLike } from '../Feature';
 import Map, { FrameState } from '../Map';
 import { ObjectEvent } from '../Object';
 import { EventsKey, ListenerFunction } from '../events';
@@ -19,7 +19,7 @@ import { FlatStyleLike } from '../style/flat';
 import { BackgroundColor } from './Base';
 import Layer from './Layer';
 
-export type TBaseVectorLayerBaseEventTypes = 'change' | 'error';
+export type TBaseVectorLayerBaseEventTypes = 'change' | 'error' | 'sourceready';
 export type TBaseVectorLayerObjectEventTypes =
     | 'change:extent'
     | 'change:maxResolution'
@@ -76,7 +76,7 @@ export default class BaseVectorLayer<
      * Text is not considered, and icons are only represented by their bounding box instead of the exact
      * image.
      */
-    getFeatures(pixel: Pixel): Promise<Feature<Geometry>[]>;
+    getFeatures(pixel: Pixel): Promise<FeatureLike[]>;
     getRenderBuffer(): number | undefined;
     getRenderOrder(): (p0: Feature<Geometry>, p1: Feature<Geometry>) => number | null | undefined;
     /**

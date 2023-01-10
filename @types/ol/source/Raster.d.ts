@@ -54,6 +54,7 @@ export interface Options {
     lib?: any;
     threads?: number | undefined;
     operationType?: RasterOperationType | undefined;
+    resolutions?: number[] | null | undefined;
 }
 export interface ProcessorOptions {
     threads: number;
@@ -108,6 +109,7 @@ export default class RasterSource extends ImageSource {
      */
     dispose(): void;
     getImage(extent: Extent, resolution: number, pixelRatio: number, projection: Projection): ImageCanvas;
+    getResolutions(projection?: Projection): number[] | null;
     /**
      * Set the operation.
      */

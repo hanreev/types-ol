@@ -9,7 +9,7 @@ import LayerRenderer from '../renderer/Layer';
 import TileSource from '../source/Tile';
 import Layer from './Layer';
 
-export type TBaseTileLayerBaseEventTypes = 'change' | 'error';
+export type TBaseTileLayerBaseEventTypes = 'change' | 'error' | 'sourceready';
 export type TBaseTileLayerObjectEventTypes =
     | 'change:extent'
     | 'change:maxResolution'

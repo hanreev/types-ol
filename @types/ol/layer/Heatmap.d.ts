@@ -10,7 +10,7 @@ import WebGLPointsLayerRenderer from '../renderer/webgl/PointsLayer';
 import VectorSource from '../source/Vector';
 import BaseVectorLayer from './BaseVector';
 
-export type THeatmapBaseEventTypes = 'change' | 'error';
+export type THeatmapBaseEventTypes = 'change' | 'error' | 'sourceready';
 export type THeatmapObjectEventTypes =
     | 'change:blur'
     | 'change:extent'

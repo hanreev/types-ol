@@ -17,6 +17,7 @@ export interface Options {
     render?: ((p0: MapEvent) => void) | undefined;
     target?: HTMLElement | string | undefined;
     placeholder?: string | undefined;
+    wrapX?: boolean | undefined;
 }
 export default class MousePosition extends Control {
     constructor(options?: Options);

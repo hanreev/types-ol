@@ -1,18 +1,17 @@
-import Feature from '../Feature';
+import { FeatureLike } from '../Feature';
 import Map, { FrameState } from '../Map';
 import { ObjectEvent } from '../Object';
 import { State as State_2 } from '../View';
 import { EventsKey, ListenerFunction } from '../events';
 import BaseEvent from '../events/Event';
 import { Extent } from '../extent';
-import Geometry from '../geom/Geometry';
 import { Pixel } from '../pixel';
 import RenderEvent from '../render/Event';
 import LayerRenderer from '../renderer/Layer';
 import Source, { State as State_1 } from '../source/Source';
 import BaseLayer from './Base';
 
-export type TLayerBaseEventTypes = 'change' | 'error';
+export type TLayerBaseEventTypes = 'change' | 'error' | 'sourceready';
 export type TLayerObjectEventTypes =
     | 'change:extent'
     | 'change:maxResolution'
@@ -25,6 +24,7 @@ export type TLayerObjectEventTypes =
     | 'change:zIndex'
     | 'propertychange';
 export type TLayerRenderEventTypes = 'postrender' | 'prerender';
+export type LayerEventType = 'sourceready' | 'change:source';
 export interface Options<SourceType extends Source = Source> {
     className?: string | undefined;
     opacity?: number | undefined;
@@ -68,7 +68,7 @@ export default class Layer<
      */
     disposeInternal(): void;
     getData(pixel: Pixel): Uint8ClampedArray | Uint8Array | Float32Array | DataView | null;
-    getFeatures(pixel: Pixel): Promise<Feature<Geometry>[]>;
+    getFeatures(pixel: Pixel): Promise<FeatureLike[]>;
     getLayersArray(array?: Layer<Source, LayerRenderer>[]): Layer<Source, LayerRenderer>[];
     getLayerStatesArray(states?: State[]): State[];
     /**

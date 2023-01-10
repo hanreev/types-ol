@@ -122,8 +122,14 @@ export default class Geolocation extends BaseObject {
         listener: ListenerFunction<GeolocationError>,
     ): void;
 }
-declare class GeolocationError extends BaseEvent {
-    constructor(error: any);
+export class GeolocationError extends BaseEvent {
+    constructor(error: GeolocationPositionError);
+    /**
+     * Code of the underlying GeolocationPositionError.
+     */
     code: number;
+    /**
+     * Message of the underlying GeolocationPositionError.
+     */
     message: string;
 }

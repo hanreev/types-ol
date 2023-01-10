@@ -10,7 +10,7 @@ import VectorSource from '../source/Vector';
 import { StyleLike } from '../style/Style';
 import BaseVectorLayer from './BaseVector';
 
-export type TVectorImageLayerBaseEventTypes = 'change' | 'error';
+export type TVectorImageLayerBaseEventTypes = 'change' | 'error' | 'sourceready';
 export type TVectorImageLayerObjectEventTypes =
     | 'change:extent'
     | 'change:maxResolution'

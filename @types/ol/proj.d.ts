@@ -66,7 +66,7 @@ export function clearAllProjections(): void;
  * Clear the user projection if set.
  */
 export function clearUserProjection(): void;
-export function cloneTransform(input: number[], output?: number[], dimension?: number): number[];
+export function cloneTransform(input: number[], output?: number[]): number[];
 export function createProjection(projection: Projection | string | undefined, defaultCode: string): Projection;
 /**
  * Creates a safe coordinate transform function from a coordinate transform function.
@@ -156,7 +156,7 @@ export function getTransformFromProjections(
  * projections is not yet complete and should be considered experimental.
  */
 export function getUserProjection(): Projection | null;
-export function identityTransform(input: number[], output?: number[], dimension?: number): number[];
+export function identityTransform(input: number[], output?: number[]): number[];
 /**
  * Set the projection for coordinates supplied from and returned by API methods.
  * This includes all API methods except for those interacting with tile grids.

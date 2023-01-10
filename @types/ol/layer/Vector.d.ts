@@ -6,7 +6,7 @@ import CanvasVectorLayerRenderer from '../renderer/canvas/VectorLayer';
 import VectorSource from '../source/Vector';
 import BaseVectorLayer, { Options } from './BaseVector';
 
-export type TVectorLayerBaseEventTypes = 'change' | 'error';
+export type TVectorLayerBaseEventTypes = 'change' | 'error' | 'sourceready';
 export type TVectorLayerObjectEventTypes =
     | 'change:extent'
     | 'change:maxResolution'

@@ -51,7 +51,6 @@ export default class Cluster extends VectorSource {
      * The configured minimum distance between clusters.
      */
     getMinDistance(): number;
-    getResolutions(): number[] | null;
     /**
      * Get a reference to the wrapped source.
      */

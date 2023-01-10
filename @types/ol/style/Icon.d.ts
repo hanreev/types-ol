@@ -23,6 +23,8 @@ export interface Options {
     imgSize?: Size | undefined;
     displacement?: number[] | undefined;
     opacity?: number | undefined;
+    width?: number | undefined;
+    height?: number | undefined;
     scale?: number | Size | undefined;
     rotateWithView?: boolean | undefined;
     rotation?: number | undefined;
@@ -47,6 +49,10 @@ export default class Icon extends ImageStyle {
      * Get the icon color.
      */
     getColor(): Color;
+    /**
+     * Get the height of the icon (in pixels).
+     */
+    getHeight(): number;
     getHitDetectionImage(): HTMLImageElement | HTMLCanvasElement;
     /**
      * Get the image icon.
@@ -70,6 +76,10 @@ export default class Icon extends ImageStyle {
      * Get the image URL.
      */
     getSrc(): string | undefined;
+    /**
+     * Get the width of the icon (in pixels).
+     */
+    getWidth(): number;
     listenImageChange(listener: (p0: BaseEvent) => void): void;
     /**
      * Load not yet loaded URI.
@@ -83,5 +93,13 @@ export default class Icon extends ImageStyle {
      * symbolizer.
      */
     setAnchor(anchor: number[]): void;
+    /**
+     * Set the height of the icon in pixels.
+     */
+    setHeight(height: number): void;
+    /**
+     * Set the width of the icon in pixels.
+     */
+    setWidth(width: number): void;
     unlistenImageChange(listener: (p0: BaseEvent) => void): void;
 }

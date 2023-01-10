@@ -43,7 +43,7 @@ export class ShaderBuilder {
     /**
      * Generates a symbol vertex shader from the builder parameters,
      * intended to be used on point geometries.
-     * Three uniforms are hardcoded in all shaders: u_projectionMatrix, u_offsetScaleMatrix,
+     * Four uniforms are hardcoded in all shaders: u_projectionMatrix, u_offsetScaleMatrix,
      * u_offsetRotateMatrix, u_time.
      * The following attributes are hardcoded and expected to be present in the vertex buffers:
      * vec2 a_position, float a_index (being the index of the vertex in the quad, 0 to 3).

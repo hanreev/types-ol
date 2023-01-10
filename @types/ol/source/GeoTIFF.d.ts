@@ -57,6 +57,13 @@ export interface SourceInfo {
 }
 export default class GeoTIFFSource extends DataTileSource {
     constructor(options: Options);
+    /**
+     * Determine the projection of the images in this GeoTIFF.
+     * The default implementation looks at the ProjectedCSTypeGeoKey and the GeographicTypeGeoKey
+     * of each image in turn.
+     * You can override this method in a subclass to support more projections.
+     */
+    determineProjection(sources: GeoTIFFImage[][]): void;
     getError(): Error;
     /**
      * Get a promise for view properties based on the source.  Use the result of this function

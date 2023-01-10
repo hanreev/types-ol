@@ -1,5 +1,6 @@
 import DataTile, { Data } from '../DataTile';
 import { ObjectEvent } from '../Object';
+import TileCache from '../TileCache';
 import { EventsKey, ListenerFunction } from '../events';
 import BaseEvent from '../events/Event';
 import { ProjectionLike } from '../proj';
@@ -48,12 +49,24 @@ export default class DataTileSource extends TileSource {
      * levels in the tile grid.
      */
     protected setTileSizes(tileSizes: Size[]): void;
+    expireCache(projection: Projection, usedTiles: Record<string, boolean>): void;
     getGutterForProjection(projection: Projection): number;
+    getReprojTile_(z: number, x: number, y: number, targetProj: Projection, sourceProj: Projection): DataTile;
     getTile(z: number, x: number, y: number, pixelRatio: number, projection: Projection): DataTile;
+    getTileCacheForProjection(projection: Projection): TileCache;
+    getTileGridForProjection(projection: Projection): TileGrid;
     /**
      * Handle tile change events.
      */
     handleTileChange_(event: BaseEvent): void;
+    /**
+     * Sets the tile grid to use when reprojecting the tiles to the given
+     * projection instead of the default tile grid for the projection.
+     * This can be useful when the default tile grid cannot be created
+     * (e.g. projection has no extent defined) or
+     * for optimization reasons (custom tile size, resolutions, ...).
+     */
+    setTileGridForProjection(projection: ProjectionLike, tilegrid: TileGrid): void;
     /**
      * Marks a tile coord as being used, without triggering a load.
      */

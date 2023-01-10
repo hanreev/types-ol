@@ -8,7 +8,7 @@ import RenderEvent from '../render/Event';
 import { BackgroundColor } from './Base';
 import VectorTileLayer, { VectorTileRenderType } from './VectorTile';
 
-export type TMapboxVectorLayerBaseEventTypes = 'change' | 'error';
+export type TMapboxVectorLayerBaseEventTypes = 'change' | 'error' | 'sourceready';
 export type TMapboxVectorLayerObjectEventTypes =
     | 'change:extent'
     | 'change:maxResolution'

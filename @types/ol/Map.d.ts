@@ -163,7 +163,7 @@ export default class Map extends BaseObject {
     /**
      * Returns the map pixel position for a browser event relative to the viewport.
      */
-    getEventPixel(event: UIEvent): Pixel;
+    getEventPixel(event: UIEvent | object): Pixel;
     /**
      * Get all features that intersect a pixel on the viewport.
      */

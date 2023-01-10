@@ -1,4 +1,4 @@
-import DataTile, { Data } from '../DataTile';
+import DataTile, { ArrayLike } from '../DataTile';
 import ImageTile from '../ImageTile';
 import Target from '../events/Target';
 import ReprojTile from '../reproj/Tile';
@@ -17,6 +17,6 @@ export default class TileTexture extends Target {
     /**
      * Get data for a pixel.  If the tile is not loaded, null is returned.
      */
-    getPixelData(renderCol: number, renderRow: number): Data | null;
+    getPixelData(renderCol: number, renderRow: number): ArrayLike | null;
     setTile(tile: TileType): void;
 }

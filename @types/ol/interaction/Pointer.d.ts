@@ -2,7 +2,6 @@ import MapBrowserEvent from '../MapBrowserEvent';
 import { ObjectEvent } from '../Object';
 import { EventsKey, ListenerFunction } from '../events';
 import BaseEvent from '../events/Event';
-import { Pixel } from '../pixel';
 import Interaction from './Interaction';
 
 export type TPointerInteractionBaseEventTypes = 'change' | 'error';
@@ -68,4 +67,4 @@ export default class PointerInteraction extends Interaction {
         listener: ListenerFunction<ObjectEvent>,
     ): void;
 }
-export function centroid(pointerEvents: PointerEvent[]): Pixel;
+export function centroid(pointerEvents: PointerEvent[]): any;

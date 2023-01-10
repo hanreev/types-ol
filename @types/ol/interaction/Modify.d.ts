@@ -1,5 +1,5 @@
 import Collection from '../Collection';
-import Feature, { FeatureLike } from '../Feature';
+import Feature from '../Feature';
 import Map from '../Map';
 import MapBrowserEvent from '../MapBrowserEvent';
 import { ObjectEvent } from '../Object';
@@ -46,7 +46,7 @@ export interface Options {
 }
 export interface SegmentData {
     depth?: number[] | undefined;
-    feature: FeatureLike;
+    feature: Feature<Geometry>;
     geometry: SimpleGeometry;
     index?: number | undefined;
     segment: number[][];
@@ -109,11 +109,15 @@ export default class Modify extends PointerInteraction {
     un(type: TModifyModifyEventTypes | TModifyModifyEventTypes[], listener: ListenerFunction<ModifyEvent>): void;
 }
 export class ModifyEvent extends BaseEvent {
-    constructor(type: ModifyEventType, features: Collection<FeatureLike>, mapBrowserEvent: MapBrowserEvent<UIEvent>);
+    constructor(
+        type: ModifyEventType,
+        features: Collection<Feature<Geometry>>,
+        mapBrowserEvent: MapBrowserEvent<UIEvent>,
+    );
     /**
      * The features being modified.
      */
-    features: Collection<FeatureLike>;
+    features: Collection<Feature<Geometry>>;
     /**
      * Associated {@link module:ol/MapBrowserEvent~MapBrowserEvent}.
      */

@@ -14,4 +14,4 @@ export function createHitDetectionImageData(
     resolution: number,
     rotation: number,
 ): ImageData;
-export function hitDetect(pixel: Pixel, features: FeatureLike[], imageData: ImageData): FeatureLike[];
+export function hitDetect<FeatureLike>(pixel: Pixel, features: F[], imageData: ImageData): F[];

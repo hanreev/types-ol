@@ -6,7 +6,7 @@ import CanvasTileLayerRenderer from '../renderer/canvas/TileLayer';
 import TileSource from '../source/Tile';
 import BaseTileLayer, { Options } from './BaseTile';
 
-export type TTileLayerBaseEventTypes = 'change' | 'error';
+export type TTileLayerBaseEventTypes = 'change' | 'error' | 'sourceready';
 export type TTileLayerObjectEventTypes =
     | 'change:extent'
     | 'change:maxResolution'
