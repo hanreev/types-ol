@@ -13,9 +13,9 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Generate Changelog
-        run: git log --oneline $(git describe --tags --abbrev=0 $(git rev-list --tags --skip=1 --max-count=1))..$(git describe --tags --abbrev=0) > ${{ github.workspace }}-CHANGELOG.md
+        run: git log --oneline $(git describe --tags --abbrev=0 $(git rev-list --tags --skip=1 --max-count=1))..$(git describe --tags --abbrev=0) > ${{ github.workspace }}-CHANGELOG.txt
 
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
-          body_path: ${{ github.workspace }}-CHANGELOG.md
+          body_path: ${{ github.workspace }}-CHANGELOG.txt
