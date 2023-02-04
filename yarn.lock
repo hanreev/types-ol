@@ -2342,9 +2342,9 @@ hosted-git-info@^5.0.0:
     lru-cache "^7.5.1"
 
 http-cache-semantics@^4.1.0:
-  version "4.1.0"
-  resolved "https://registry.yarnpkg.com/http-cache-semantics/-/http-cache-semantics-4.1.0.tgz#49e91c5cbf36c9b94bcfcd71c23d5249ec74e390"
-  integrity sha512-carPklcUh7ROWRK7Cv27RPtdhYhUsela/ue5/jKzjegVvXDqM2ILE9Q2BGn9JZJh1g87cp56su/FgQSzcWS8cQ==
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/http-cache-semantics/-/http-cache-semantics-4.1.1.tgz#abe02fcb2985460bf0323be664436ec3476a6d5a"
+  integrity sha512-er295DKPVsV82j5kw1Gjt+ADA/XYHsajl82cGNQG2eyoPkvgUhX+nDIyelzhIWbbsXP39EHcI6l5tYs2FYqYXQ==
 
 http-proxy-agent@^5.0.0:
   version "5.0.0"
@@ -3346,10 +3346,10 @@ ol-mapbox-style@^9.2.0:
     "@mapbox/mapbox-gl-style-spec" "^13.23.1"
     mapbox-to-css-font "^2.4.1"
 
-ol@7.2.0:
-  version "7.2.0"
-  resolved "https://registry.yarnpkg.com/ol/-/ol-7.2.0.tgz#e05cb01149d04e1a72c643aede4e2fe6033bc8b3"
-  integrity sha512-VVy+le7xTOadNz5AR8b+FIjxg2rtHemYJC/b8P3O3DG4R3pkWnaw51AMDBowvgCleBhAyE4Hoxj0zPTElDvyTQ==
+ol@7.2.2:
+  version "7.2.2"
+  resolved "https://registry.yarnpkg.com/ol/-/ol-7.2.2.tgz#d675a1525fd995a29a70a9a9fa9c3a9bc827aa39"
+  integrity sha512-eqJ1hhVQQ3Ap4OhYq9DRu5pz9RMpLhmoTauDoIqpn7logVi1AJE+lXjEHrPrTSuZYjtFbMgqr07sxoLNR65nrw==
   dependencies:
     earcut "^2.2.3"
     geotiff "^2.0.7"
